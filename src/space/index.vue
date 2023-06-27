@@ -6,7 +6,7 @@ defineOptions({
 })
 
 const {
-  align = 'stretch',
+  align = 'start',
   justify = 'start',
   vertical = false,
   wrap = true,

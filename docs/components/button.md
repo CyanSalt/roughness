@@ -72,15 +72,15 @@ import { RButton, RSpace } from 'roughness'
 
 <template>
   <RSpace>
-    <RButton rounded>Normal</RButton>
-    <RButton type="primary" filled rounded>Primary Filled</RButton>
+    <RButton rounded>Enter the Pipe</RButton>
+    <RButton type="error" filled rounded>Eat the Mushroom</RButton>
   </RSpace>
 </template>
 ```
 
 <RSpace>
-  <RButton rounded>Normal</RButton>
-  <RButton type="primary" filled rounded>Primary Filled</RButton>
+  <RButton rounded>Enter the Pipe</RButton>
+  <RButton type="error" filled rounded>Eat the Mushroom</RButton>
 </RSpace>
 
 ### Disabled
@@ -92,15 +92,15 @@ import { RButton, RSpace } from 'roughness'
 
 <template>
   <RSpace>
-    <RButton disabled>Normal</RButton>
-    <RButton type="primary" filled disabled>Primary Filled</RButton>
+    <RButton disabled>Train AlphaGo</RButton>
+    <RButton type="primary" filled disabled>Let there be light</RButton>
   </RSpace>
 </template>
 ```
 
 <RSpace>
-  <RButton disabled>Normal</RButton>
-  <RButton type="primary" filled disabled>Primary Filled</RButton>
+  <RButton disabled>Train AlphaGo</RButton>
+  <RButton type="primary" filled disabled>Let there be light</RButton>
 </RSpace>
 
 ### Block
@@ -112,15 +112,15 @@ import { RButton, RSpace } from 'roughness'
 
 <template>
   <RSpace vertical>
-    <RButton block>Normal</RButton>
-    <RButton type="primary" block>Primary</RButton>
+    <RButton block>Switch Account</RButton>
+    <RButton type="error" block>Log out of Chaos</RButton>
   </RSpace>
 </template>
 ```
 
 <RSpace vertical>
-  <RButton block>Normal</RButton>
-  <RButton type="primary" filled block>Primary Filled</RButton>
+  <RButton block>Switch Account</RButton>
+  <RButton type="error" block>Log out of Chaos</RButton>
 </RSpace>
 
 ## Usage
