@@ -104,5 +104,6 @@ watchEffect(() => {
 }
 :global(:has(> .r-grid-guide.is-responsive)) {
   position: relative;
+  z-index: 0;
 }
 </style>

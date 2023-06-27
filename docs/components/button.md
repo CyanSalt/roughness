@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import { RButton, RSpace, RTable } from 'roughness'
-
-function title(text: string) {
-  return text.slice(0, 1).toUpperCase() + text.slice(1)
-}
+import { title } from '../utils/helpers'
 </script>
 
 # Button

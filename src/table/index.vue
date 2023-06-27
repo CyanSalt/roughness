@@ -53,7 +53,6 @@ function calculateDimensions() {
     ...(getFirstColumn(head) ?? []),
     ...(getFirstColumn(body) ?? []),
   ]
-  console.log({ firstRow, firstColumn })
   dimensions.x = firstRow.map(el => el.clientWidth)
   dimensions.y = firstColumn.map(el => el.clientHeight)
 }
