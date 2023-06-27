@@ -95,11 +95,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   white-space: nowrap;
   text-align: center;
   cursor: pointer;
+  &:hover {
+    --r-button-border-dash: 8 8;
+  }
   &:focus {
     --r-button-border-width: 2;
   }
   &:active {
-    --r-button-border-dash: 8 8;
+    --r-button-border-width: 2;
   }
   &:disabled {
     text-decoration: line-through;
