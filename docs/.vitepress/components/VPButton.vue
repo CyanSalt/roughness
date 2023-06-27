@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { EXTERNAL_URL_RE } from 'vitepress/dist/client/shared'
 import { RButton } from '../../../src'
 
 const { tag, size = 'medium', theme = 'brand', text, href } = defineProps<{
@@ -15,21 +16,26 @@ const type = $computed(() => {
     default: return 'default'
   }
 })
+
+const isExternal = $computed(() => href && EXTERNAL_URL_RE.test(href))
 </script>
 
 <template>
-  <RButton :tag="tag" :type="type" :href="href" :class="['VPButton', size]">{{ text }}</RButton>
+  <RButton
+    :tag="tag"
+    :type="type"
+    :href="href"
+    :target="isExternal ? '_blank' : undefined"
+    :rel="isExternal ? 'noreferrer' : undefined"
+    :class="['VPButton', size]"
+  >{{ text }}</RButton>
 </template>
 
 <style lang="scss" scoped>
 .VPButton.medium {
-  padding: 0 20px;
   font-size: 14px;
-  line-height: 38px;
 }
 .VPButton.big {
-  padding: 0 24px;
   font-size: 16px;
-  line-height: 46px;
 }
 </style>

@@ -1,5 +1,2 @@
-export { default as RButton } from './button/index.vue'
-export { default as RGraphics } from './graphics/index.vue'
-export { default as RGridGuide } from './grid-guide/index.vue'
-export { default as RSpace } from './space/index.vue'
-export { default as RTable } from './table/index.vue'
+export { default } from './all'
+export * from './components'

@@ -14,10 +14,10 @@ hero:
       link: https://github.com/CyanSalt/roughness
 
 features:
-  - title: 手绘风格
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: 主题可定制
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: 类型提示
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Hand-drawn Style
+    details: I'm tired of the same web color blocks.
+  - title: Lots of Components (Working on It)
+    details: It's not just a toy.
+  - title: Uses TypeScript
+    details: All components are written in TypeScript. Who doesn't like type hints?
 ---

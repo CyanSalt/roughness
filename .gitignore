@@ -1,8 +1,8 @@
 .DS_Store
 node_modules
 dist
+cache
 .*cache
-docs/.vitepress/cache
 
 # Log files
 npm-debug.log*

@@ -2,6 +2,7 @@
   "name": "roughness",
   "version": "0.1.0-0",
   "description": "A Vue component library with hand-drawn appearance",
+  "type": "module",
   "main": "dist/index.js",
   "files": [
     "dist"

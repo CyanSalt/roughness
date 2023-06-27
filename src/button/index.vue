@@ -19,7 +19,7 @@ const {
   block?: boolean,
   filled?: boolean,
   rounded?: boolean,
-  tag?: string,
+  tag?: 'button' | 'a' | string,
   type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
 }>()
 
@@ -70,7 +70,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <component :is="tag" ref="root" :class="['r-button', `is-${type}`, { 'is-filled': filled, 'is-block': block }]">
+  <component :is="tag" ref="root" :class="['r-button', type, { 'is-filled': filled, 'is-block': block }]">
     <RGraphics responsive @draw="draw" />
     <slot></slot>
   </component>
@@ -109,19 +109,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     opacity: 0.8;
     cursor: not-allowed;
   }
-  &.is-primary {
+  &.primary {
     --r-button-color: var(--r-common-primary-color);
   }
-  &.is-info {
+  &.info {
     --r-button-color: var(--r-common-info-color);
   }
-  &.is-success {
+  &.success {
     --r-button-color: var(--r-common-success-color);
   }
-  &.is-warning {
+  &.warning {
     --r-button-color: var(--r-common-warning-color);
   }
-  &.is-error {
+  &.error {
     --r-button-color: var(--r-common-error-color);
   }
   &.is-filled:not(:disabled) {

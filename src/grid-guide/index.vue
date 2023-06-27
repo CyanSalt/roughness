@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import { useElementSize, useParentElement } from '@vueuse/core'
 import { watchEffect } from 'vue'
+import { useDark } from '../common/utils'
+
+defineOptions({
+  name: 'RGridGuide',
+})
 
 const {
   maxSections = 10,
@@ -20,16 +25,17 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
+const dark = $(useDark())
+
 function draw() {
   if (!root) return
+  void dark
   const actualWidth = width * window.devicePixelRatio
   const actualHeight = height * window.devicePixelRatio
   const viewportSize = Math.max(window.innerWidth, window.innerHeight) * window.devicePixelRatio
   const sectionSize = Math.ceil(viewportSize / maxSections)
   const cellSize = Math.ceil(sectionSize / sectionCells)
 
-  const sectionRows = Math.ceil(actualHeight / sectionSize)
-  const sectionColumns = Math.ceil(actualWidth / sectionSize)
   const cellRows = Math.ceil(actualHeight / cellSize)
   const cellColumns = Math.ceil(actualWidth / cellSize)
 
@@ -92,6 +98,9 @@ watchEffect(() => {
   max-width: 100%;
   max-height: 100%;
   pointer-events: none;
+  :root.dark & {
+    --r-grid-guide-color: rgb(255 255 255 / 0.1);
+  }
 }
 :global(:has(> .r-grid-guide.is-responsive)) {
   position: relative;

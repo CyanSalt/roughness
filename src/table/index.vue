@@ -6,6 +6,10 @@ import type { Ref } from 'vue'
 import { onMounted, reactive } from 'vue'
 import RGraphics from '../graphics/index.vue'
 
+defineOptions({
+  name: 'RTable',
+})
+
 const {
   columns,
   rows,
@@ -91,14 +95,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
   let offsetY = 0
   for (const value of y.slice(0, -1)) {
     offsetY += value
-    const line = rc.line(padding, offsetY, svg.width.baseVal.value - padding * 2, offsetY)
+    const line = rc.line(padding, offsetY, svg.width.baseVal.value - padding * 2, offsetY, options)
     svg.appendChild(line)
   }
   // Column lines
   let offsetX = 0
   for (const value of x.slice(0, -1)) {
     offsetX += value
-    const line = rc.line(offsetX, padding, offsetX, svg.height.baseVal.value - padding * 2)
+    const line = rc.line(offsetX, padding, offsetX, svg.height.baseVal.value - padding * 2, options)
     svg.appendChild(line)
   }
 }

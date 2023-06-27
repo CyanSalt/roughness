@@ -16,15 +16,17 @@ A Vue component library with hand-drawn appearance.
 
 *Font: [Cabin Sketch](https://fonts.google.com/specimen/Cabin+Sketch)*
 
-## Documentation
-
-https://roughness.vercel.app
-
 ## Installation
 
 ```shell
 npm i roughness
 ```
+
+Or from a CDN like [unpkg](https://www.unpkg.com/) via HTML.
+
+## Documentation
+
+You can find the documentation [on the website](https://roughness.vercel.app).
 
 ## License
 

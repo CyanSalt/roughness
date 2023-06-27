@@ -21,6 +21,16 @@
   --r-common-error-color: #ac3235;
 }
 
+:root.dark {
+  --r-common-fg-color: #f4f4f0;
+  --r-common-bg-color: #31343a;
+  --r-common-primary-color: #94c0cc;
+  --r-common-info-color: #a6aebb;
+  --r-common-success-color: #bcdf8a;
+  --r-common-warning-color: #dfc281;
+  --r-common-error-color: #ed7777;
+}
+
 [class^='r-'], [class*=' r-'] {
   font-family: var(--r-common-font-family);
 }

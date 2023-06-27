@@ -11,37 +11,50 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/installation', activeMatch: '^/guide/' },
       { text: 'Components', link: '/components/button', activeMatch: '^/components/' },
     ],
-    sidebar: {
-      '/components/': [
-        {
-          text: 'Basic',
-          items: [
-            { text: 'Button', link: '/components/button' },
-            { text: 'Space', link: '/components/space' },
-          ],
-        },
-        {
-          text: 'Form',
-          items: [],
-        },
-        {
-          text: 'Data',
-          items: [],
-        },
-        {
-          text: 'Navigation',
-          items: [],
-        },
-        {
-          text: 'Feedback',
-          items: [],
-        },
-        {
-          text: 'Configuration',
-          items: [],
-        },
-      ],
-    },
+    sidebar: [
+      {
+        text: 'Guide',
+        items: [
+          { text: 'Installation', link: '/guide/installation' },
+          { text: 'Usage', link: '/guide/usage' },
+        ],
+      },
+      {
+        text: 'Components',
+        items: [
+          {
+            text: 'Basic',
+            items: [
+              { text: 'Button', link: '/components/button' },
+              { text: 'Grid Guide', link: '/components/grid-guide' },
+              { text: 'Space', link: '/components/space' },
+            ],
+          },
+          {
+            text: 'Form',
+            items: [],
+          },
+          {
+            text: 'Data',
+            items: [
+              { text: 'Table', link: '/components/table' },
+            ],
+          },
+          {
+            text: 'Navigation',
+            items: [],
+          },
+          {
+            text: 'Feedback',
+            items: [],
+          },
+          {
+            text: 'Configuration',
+            items: [],
+          },
+        ],
+      },
+    ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CyanSalt/roughness' },
     ],

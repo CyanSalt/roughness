@@ -136,4 +136,54 @@ import { RButton, RSpace } from 'roughness'
 >
   <template #head:*="{ column }">{{ title(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:block.type>
+    <code>boolean</code>
+  </template>
+  <template #body:block.default>
+    <code>false</code>
+  </template>
+  <template #body:block.description>
+    Whether the button is displayed as block.
+  </template>
+
+  <template #body:filled.type>
+    <code>boolean</code>
+  </template>
+  <template #body:filled.default>
+    <code>false</code>
+  </template>
+  <template #body:filled.description>
+    Whether the button is filled with its color.
+  </template>
+
+  <template #body:rounded.type>
+    <code>boolean</code>
+  </template>
+  <template #body:rounded.default>
+    <code>false</code>
+  </template>
+  <template #body:rounded.description>
+    Whether the button is round.
+  </template>
+
+  <template #body:tag.type>
+    <code>string</code>, but usually <code>'button' | 'a'</code>
+  </template>
+  <template #body:tag.default>
+    <code>'button'</code>
+  </template>
+  <template #body:tag.description>
+    HTML tag for rendering the button.
+  </template>
+
+  <template #body:type.type>
+    <code>string</code>, but usually <code>'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'</code>
+  </template>
+  <template #body:type.default>
+    <code>'default'</code>
+  </template>
+  <template #body:type.description>
+    Button style type.
+  </template>
 </RTable>
