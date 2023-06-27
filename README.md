@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://github.com/CyanSalt/roughness">
-  <img src="https://raw.githubusercontent.com/CyanSalt/roughness/public/roughness.svg" alt="Roughness" width="300">
+  <img src="https://raw.githubusercontent.com/CyanSalt/roughness/main/public/roughness.svg" alt="Roughness" width="300">
 </a>
 <br>
 A Vue component library with hand-drawn appearance.
