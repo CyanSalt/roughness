@@ -1,0 +1,13 @@
+@use 'sass:list';
+@use 'sass:math';
+
+@mixin stroke($color, $size: 1px) {
+  $corner: math.div(math.$pi, 8);
+  $shadows: ();
+  @for $i from 0 to 16 {
+    /* stylelint-disable-next-line scss/no-duplicate-dollar-variables */
+    $shadows: list.append($shadows, ($size * math.cos($corner * $i)) ($size * math.sin($corner * $i)) 0 $color, $separator: comma);
+  }
+  /* stylelint-disable-next-line order/order */
+  text-shadow: $shadows;
+}

@@ -1,0 +1,21 @@
+:root {
+  --vp-font-family-base: 'CabinSketch';
+  --vp-c-brand: var(--r-common-primary-color);
+}
+
+.vp-doc table {
+  display: revert;
+}
+.vp-doc tr {
+  border-top: revert;
+}
+.vp-doc tr:nth-child(2n) {
+  background: revert;
+}
+.vp-doc th, .vp-doc td {
+  border: revert;
+}
+.vp-doc th {
+  color: revert;
+  background: revert;
+}

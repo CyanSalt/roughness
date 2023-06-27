@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'CabinSketch';
+  font-weight: normal;
+  src: url('./fonts/CabinSketch.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'CabinSketch';
+  font-weight: bold;
+  src: url('./fonts/CabinSketch-Bold.woff2') format('woff2');
+}
+
+:root {
+  --r-common-font-family: 'CabinSketch';
+  --r-common-fg-color: #44413c;
+  --r-common-bg-color: #ffffff;
+  --r-common-primary-color: #0247fe;
+  --r-common-info-color: #2b4057;
+  --r-common-success-color: #11887b;
+  --r-common-warning-color: #9d6016;
+  --r-common-error-color: #ac3235;
+}
+
+[class^='r-'], [class*=' r-'] {
+  font-family: var(--r-common-font-family);
+}

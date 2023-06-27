@@ -1,0 +1,10 @@
+{
+  "extends": "@cyansalt/tsconfig/tsconfig.app",
+  "compilerOptions": {
+    "checkJs": true
+  },
+  "exclude": [
+    "**/dist",
+    "**/node_modules"
+  ]
+}
