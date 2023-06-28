@@ -1,16 +1,27 @@
 import { useMutationObserver } from '@vueuse/core'
-import { ref } from 'vue'
+import { customRef } from 'vue'
 
 export function useDark() {
-  let dark = ref(false)
-  // for SSR
-  if (typeof document !== 'undefined') {
-    useMutationObserver(document.documentElement, () => {
-      dark.value = document.documentElement.classList.contains('dark')
-    }, {
-      attributes: true,
-      attributeFilter: ['class'],
-    })
-  }
-  return dark
+  return customRef<boolean>((track, trigger) => {
+    let dark = false
+    // for SSR
+    if (typeof document !== 'undefined') {
+      useMutationObserver(document.documentElement, () => {
+        dark = document.documentElement.classList.contains('dark')
+        trigger()
+      }, {
+        attributes: true,
+        attributeFilter: ['class'],
+      })
+    }
+    return {
+      get: () => {
+        track()
+        return dark
+      },
+      set: value => {
+        document.documentElement.classList.toggle('dark', value)
+      },
+    }
+  })
 }

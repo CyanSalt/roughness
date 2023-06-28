@@ -26,7 +26,7 @@ const isExternal = $computed(() => href && EXTERNAL_URL_RE.test(href))
     :type="type"
     :href="href"
     :target="isExternal ? '_blank' : undefined"
-    :rel="isExternal ? 'noreferrer' : undefined"
+    :rel="isExternal ? 'noopener noreferrer' : undefined"
     :class="['VPButton', size]"
   >{{ text }}</RButton>
 </template>

@@ -27,7 +27,9 @@ export default defineConfig({
             items: [
               { text: 'Button', link: '/components/button' },
               { text: 'Grid Guide', link: '/components/grid-guide' },
+              { text: 'Link', link: '/components/link' },
               { text: 'Space', link: '/components/space' },
+              { text: 'Text', link: '/components/text' },
             ],
           },
           {
@@ -37,6 +39,7 @@ export default defineConfig({
           {
             text: 'Data',
             items: [
+              { text: 'Chart', link: '/components/chart' },
               { text: 'Table', link: '/components/table' },
             ],
           },

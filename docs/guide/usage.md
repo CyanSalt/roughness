@@ -7,7 +7,7 @@ Roughness supports Vue 3.
 Roughness supports tree-shaking. Components that are never imported will be ignored by the bundler.
 
 ```vue
-<script setup>
+<script lang="ts" setup>
 import { RButton } from 'roughness'
 </script>
 

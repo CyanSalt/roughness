@@ -12,12 +12,14 @@ defineOptions({
 const {
   block = false,
   filled = false,
+  htmlType,
   rounded = false,
   tag = 'button',
   type = 'default',
 } = defineProps<{
   block?: boolean,
   filled?: boolean,
+  htmlType?: HTMLButtonElement['type'],
   rounded?: boolean,
   tag?: 'button' | 'a' | string,
   type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
@@ -70,8 +72,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <component :is="tag" ref="root" :class="['r-button', type, { 'is-filled': filled, 'is-block': block }]">
-    <RGraphics responsive @draw="draw" />
+  <component
+    :is="tag"
+    ref="root"
+    :type="htmlType"
+    :class="['r-button', type, { 'is-filled': filled, 'is-block': block }]"
+  >
+    <RGraphics @draw="draw" />
     <slot></slot>
   </component>
 </template>
@@ -82,16 +89,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 :global(:root) {
   --r-button-border-width: 1;
   --r-button-border-dash: none;
+  --r-button-color: var(--r-common-fg-color);
 }
 .r-button {
-  --r-button-color: var(--r-common-fg-color);
   --r-button-border-color: var(--r-button-color);
   appearance: none;
   display: inline-block;
-  padding: 8px 20px;
+  padding: var(--r-common-box-padding);
   color: var(--r-button-color);
-  font-size: 14px;
-  line-height: calc(1em + 8px);
+  font-size: var(--r-common-font-size);
+  line-height: var(--r-common-line-height);
   white-space: nowrap;
   text-align: center;
   cursor: pointer;

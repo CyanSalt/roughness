@@ -11,7 +11,7 @@ defineOptions({
 
 const {
   ctx,
-  responsive = false,
+  responsive = true,
   tag = 'svg',
 } = defineProps<{
   ctx?: any,
@@ -28,6 +28,10 @@ const container = $computed(() => (responsive ? parent : null))
 const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
+
+watchEffect(() => {
+  console.log(container, width, height)
+})
 
 let root = $ref<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>()
 
@@ -72,10 +76,14 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .r-graphics {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
   pointer-events: none;
+  &.is-responsive {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
 }
 :global(:has(> .r-graphics.is-responsive)) {
   position: relative;

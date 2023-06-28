@@ -90,16 +90,20 @@ watchEffect(() => {
 </template>
 
 <style lang="scss" scoped>
-.r-grid-guide {
+:global(:root) {
   --r-grid-guide-color: #f5f5f5;
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  max-width: 100%;
-  max-height: 100%;
+}
+:global(:root.dark) {
+  --r-grid-guide-color: rgb(255 255 255 / 0.1);
+}
+.r-grid-guide {
   pointer-events: none;
-  :root.dark & {
-    --r-grid-guide-color: rgb(255 255 255 / 0.1);
+  &.is-responsive {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
   }
 }
 :global(:has(> .r-grid-guide.is-responsive)) {

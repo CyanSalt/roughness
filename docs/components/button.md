@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RSpace, RTable } from 'roughness'
+import { RButton, RLink, RSpace, RTable } from 'roughness'
 import { title } from '../utils/helpers'
 </script>
 
@@ -129,7 +129,7 @@ import { RButton, RSpace } from 'roughness'
 
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'filled', 'rounded', 'tag', 'type']"
+  :rows="['block', 'filled', 'html-type', 'rounded', 'tag', 'type']"
 >
   <template #head:*="{ column }">{{ title(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
@@ -152,6 +152,19 @@ import { RButton, RSpace } from 'roughness'
   </template>
   <template #body:filled.description>
     Whether the button is filled with its color.
+  </template>
+
+  <template #body:html-type.type>
+    <RLink
+      href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <code>'submit' | 'reset' | 'button'</code>
+    </RLink>
+  </template>
+  <template #body:html-type.description>
+    The <code>type</code> property of <code>HTMLButtonElement</code>.
   </template>
 
   <template #body:rounded.type>

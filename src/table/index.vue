@@ -109,7 +109,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
 
 <template>
   <table class="r-table">
-    <RGraphics responsive :ctx="dimensions" @draw="draw" />
+    <RGraphics :ctx="dimensions" @draw="draw" />
     <thead v-if="showHeader" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
@@ -136,7 +136,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
 </template>
 
 <style lang="scss" scoped>
-.r-table {
+:global(:root) {
   --r-table-border-color: var(--r-common-fg-color);
+}
+.r-table {
+  td, th {
+    padding: var(--r-common-box-padding);
+    color: var(--r-button-color);
+    font-size: var(--r-common-font-size);
+  }
 }
 </style>
