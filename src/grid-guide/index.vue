@@ -43,7 +43,7 @@ function draw() {
   const color = style.getPropertyValue('--r-grid-guide-color')
 
   const extraSections = 1
-  const padding = sectionSize / 2
+  const padding = Math.round(cellSize * (sectionCells / 2 - 0.5))
 
   root.width = actualWidth
   root.height = actualHeight
