@@ -24,9 +24,6 @@ const {
 }
 .r-text {
   color: var(--r-text-color);
-  font-size: var(--r-common-font-size);
-  line-height: var(--r-common-line-height);
-  text-align: center;
   &.primary {
     --r-text-color: var(--r-common-primary-color);
   }
@@ -42,5 +39,9 @@ const {
   &.error {
     --r-text-color: var(--r-common-error-color);
   }
+}
+div.r-text, span.r-text {
+  font-size: var(--r-common-font-size);
+  line-height: var(--r-common-line-height);
 }
 </style>

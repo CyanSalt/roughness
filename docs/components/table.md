@@ -96,7 +96,7 @@ import { RTable, RText } from 'roughness'
     <RText type="error">Required</RText>
   </template>
   <template #body:columns.description>
-    Column keys.
+    Column keys. Recommended to use all lowercase letters and hyphens and underscores.
   </template>
 
   <template #body:header.type>
@@ -116,6 +116,52 @@ import { RTable, RText } from 'roughness'
     <RText type="error">Required</RText>
   </template>
   <template #body:rows.description>
-    Row keys.
+    Row keys. Recommended to use all lowercase letters and hyphens and underscores.
+  </template>
+</RTable>
+
+### Slots
+
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['head:_column_', 'head:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*']"
+>
+  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
+  <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
+
+  <template #body:head:_column_.description>
+    Header cell in the column corresponding to <code>[column]</code>. Fallback to <code>head:*</code>.
+  </template>
+
+  <template #body:head:*.parameters>
+    <code>{ column: string }</code>
+  </template>
+  <template #body:head:*.description>
+    Header cell in each column.
+  </template>
+
+  <template #body:body:_row_._column_.description>
+    Body cell in the row corresponding to <code>[row]</code> and the column corresponding to <code>[column]</code>. Fallback to <code>body:*.[column]</code>.
+  </template>
+
+  <template #body:body:*._column_.parameters>
+    <code>{ row: string }</code>
+  </template>
+  <template #body:body:*._column_.description>
+    Body cell in the column corresponding to <code>[column]</code>. Fallback to <code>body:[row].*</code>.
+  </template>
+
+  <template #body:body:_row_.*.parameters>
+    <code>{ column: string }</code>
+  </template>
+  <template #body:body:_row_.*.description>
+    Body cell in the row corresponding to <code>[row]</code>. Fallback to <code>body:*.*</code>.
+  </template>
+
+  <template #body:body:*.*.parameters>
+    <code>{ row: string, column: string }</code>
+  </template>
+  <template #body:body:*.*.description>
+    Body cell in each row and column.
   </template>
 </RTable>

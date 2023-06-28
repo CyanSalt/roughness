@@ -1,7 +1,6 @@
 :root {
-  --vp-font-family-base: 'CabinSketch';
+  --vp-font-family-base: var(--r-common-font-family);
   --vp-c-brand: var(--r-common-primary-color);
-  --vp-code-font-size: 1em;
 }
 
 .vp-doc table {

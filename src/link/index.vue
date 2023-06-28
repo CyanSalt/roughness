@@ -21,12 +21,22 @@ const {
 
 :global(:root) {
   --r-link-color: var(--r-common-text-color);
+  --r-link-underline-width: 1;
 }
 .r-link {
   color: var(--r-link-color);
   font-size: var(--r-common-font-size);
   line-height: var(--r-common-line-height);
-  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  &[href], &:hover {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: calc(var(--r-link-underline-width) * 1px + 1px);
+  }
+  &:focus, &:active {
+    --r-link-underline-width: 2;
+  }
   &.primary {
     --r-link-color: var(--r-common-primary-color);
   }

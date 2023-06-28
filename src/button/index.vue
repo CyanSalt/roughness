@@ -102,19 +102,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   white-space: nowrap;
   text-align: center;
   cursor: pointer;
+  text-decoration-thickness: calc(var(--r-button-border-width) * 1px + 1px);
   &:hover {
     --r-button-border-dash: 8 8;
   }
-  &:focus {
-    --r-button-border-width: 2;
-  }
-  &:active {
+  &:focus, &:active {
     --r-button-border-width: 2;
   }
   &:disabled {
-    text-decoration: line-through;
     opacity: 0.8;
     cursor: not-allowed;
+    text-decoration-line: line-through;
   }
   &.primary {
     --r-button-color: var(--r-common-primary-color);
@@ -137,5 +135,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.is-block {
     display: block;
   }
+}
+a.r-button {
+  text-decoration: none;
 }
 </style>

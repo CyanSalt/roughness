@@ -124,6 +124,27 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="error" block>Log out of Chaos</RButton>
 </RSpace>
 
+### Tag
+
+```vue
+<script lang="ts" setup>
+import { RButton, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace>
+    <RButton tag="a" type="primary" filled>Remote Bomb</RButton>
+    <RButton tag="a" type="error">Magnesis</RButton>
+  </RSpace>
+</template>
+```
+
+<RSpace>
+  <RButton tag="a" type="primary" filled>Remote Bomb</RButton>
+  <RButton tag="a" type="error">Magnesis</RButton>
+</RSpace>
+
+
 ## Usage
 
 ### Props
@@ -165,7 +186,7 @@ import { RButton, RSpace } from 'roughness'
     </RLink>
   </template>
   <template #body:html-type.description>
-    The <code>type</code> property of <code>HTMLButtonElement</code>.
+    The <code>type</code> attribute of <code>HTMLButtonElement</code>.
   </template>
 
   <template #body:rounded.type>
