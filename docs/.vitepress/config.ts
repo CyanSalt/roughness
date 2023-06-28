@@ -17,6 +17,7 @@ export default defineConfig({
         items: [
           { text: 'Installation', link: '/guide/installation' },
           { text: 'Usage', link: '/guide/usage' },
+          { text: 'Theme', link: '/guide/theme' },
         ],
       },
       {
@@ -27,6 +28,7 @@ export default defineConfig({
             items: [
               { text: 'Button', link: '/components/button' },
               { text: 'Details', link: '/components/details' },
+              { text: 'Graphics', link: '/components/graphics' },
               { text: 'Grid Guide', link: '/components/grid-guide' },
               { text: 'Link', link: '/components/link' },
               { text: 'Space', link: '/components/space' },

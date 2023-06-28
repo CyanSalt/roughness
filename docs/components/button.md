@@ -4,7 +4,7 @@ import { RButton, RDetails, RSpace, RTable } from 'roughness'
 
 # Button
 
-Squares are buttons.
+My first name is Belly.
 
 ## Example
 

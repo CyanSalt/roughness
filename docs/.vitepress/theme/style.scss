@@ -1,0 +1,33 @@
+@use 'sass:color';
+
+:root {
+  --vp-font-family-base: var(--r-common-font-family);
+  --vp-c-brand: var(--r-common-primary-color);
+  --vp-c-brand-light: #{color.scale(#0247fe, $lightness: 25%)};
+  --vp-c-brand-lighter: #{color.scale(#0247fe, $lightness: 50%)};
+  --vp-c-brand-dark: #{color.scale(#0247fe, $lightness: -25%)};
+  --vp-c-brand-darker: #{color.scale(#0247fe, $lightness: -50%)};
+}
+:root.dark {
+  --vp-c-brand-light: #{color.scale(#94c0cc, $lightness: 25%)};
+  --vp-c-brand-lighter: #{color.scale(#94c0cc, $lightness: 50%)};
+  --vp-c-brand-dark: #{color.scale(#94c0cc, $lightness: -25%)};
+  --vp-c-brand-darker: #{color.scale(#94c0cc, $lightness: -50%)};
+}
+
+.vp-doc table {
+  display: revert;
+}
+.vp-doc tr {
+  border-top: revert;
+}
+.vp-doc tr:nth-child(2n) {
+  background: revert;
+}
+.vp-doc th, .vp-doc td {
+  border: revert;
+}
+.vp-doc th {
+  color: revert;
+  background: revert;
+}

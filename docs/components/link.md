@@ -66,6 +66,10 @@ import { RLink, RSpace } from 'roughness'
   <RLink type="error" href="https://en.wikipedia.org/wiki/Nuclear_weapon">End</RLink>
 </RSpace>
 
+### As Button
+
+See [Button](/components/button.html#tag).
+
 ## Usage
 
 ### Props

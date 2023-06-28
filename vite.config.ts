@@ -19,6 +19,9 @@ export default defineConfig(async () => ({
       },
     },
     rollupOptions: {
+      external: [
+        'vue',
+      ],
       output: {
         chunkFileNames: 'chunks/dep-[hash].js',
       },
