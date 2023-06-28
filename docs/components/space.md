@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RSpace, RTable } from 'roughness'
+import { RButton, RDetails, RSpace, RTable } from 'roughness'
 </script>
 
 # Space
@@ -9,6 +9,9 @@ We need to keep our distance.
 ## Example
 
 ### Basic
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -24,6 +27,8 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace :style="{ 'max-width': '600px' }">
   <RButton>Rocket to the moon</RButton>
   <RButton>Bring newton back to life</RButton>
@@ -31,6 +36,9 @@ import { RButton, RSpace } from 'roughness'
 </RSpace>
 
 ### Vertical
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -46,6 +54,8 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace vertical>
   <RButton>Mars</RButton>
   <RButton>Jupiter</RButton>
@@ -53,6 +63,9 @@ import { RButton, RSpace } from 'roughness'
 </RSpace>
 
 ### From Center
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -67,6 +80,8 @@ import { RButton, RSpace } from 'roughness'
   </RSpace>
 </template>
 ```
+
+</RDetails>
 
 <RSpace justify="center">
   <RButton>Squidward</RButton>
@@ -86,40 +101,56 @@ import { RButton, RSpace } from 'roughness'
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:align.type>
-    <code>'start' | 'end' | 'center' | 'baseline' | 'stretch'</code>
+
+  `'start' | 'end' | 'center' | 'baseline' | 'stretch'`
+
   </template>
   <template #body:align.default>
-    <code>'start'</code>
+
+  `stretch` if `vertical`, `'start'` else
+
   </template>
   <template #body:align.description>
     Vertical arrangement.
   </template>
 
   <template #body:justify.type>
-    <code>'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'</code>
+
+  `'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'`
+
   </template>
   <template #body:justify.default>
-    <code>'start'</code>
+
+  `'start'`
+
   </template>
   <template #body:justify.description>
     Horizontal arrangement.
   </template>
 
   <template #body:vertical.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:vertical.default>
-    <code>false</code>
+
+  `false`
+
   </template>
   <template #body:vertical.description>
     Whether to layout vertically.
   </template>
 
   <template #body:wrap.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:wrap.default>
-    <code>true</code>
+
+  `true`
+
   </template>
   <template #body:wrap.description>
     Whether to exceed the line break.

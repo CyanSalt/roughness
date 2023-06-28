@@ -51,8 +51,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   if (rounded) {
     const ellipse = rc.ellipse(
-      Math.round(svg.width.baseVal.value / 2) - padding,
-      Math.round(svg.height.baseVal.value / 2) - padding,
+      Math.round(svg.width.baseVal.value / 2),
+      Math.round(svg.height.baseVal.value / 2),
       svg.width.baseVal.value - padding * 2,
       svg.height.baseVal.value - padding * 2,
       options,
@@ -86,13 +86,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss" scoped>
 @use '../common/_partials';
 
-:global(:root) {
+.r-button {
+  --r-button-color: var(--r-common-text-color);
+  --r-button-border-color: var(--r-button-color);
   --r-button-border-width: 1;
   --r-button-border-dash: none;
-  --r-button-color: var(--r-common-text-color);
-}
-.r-button {
-  --r-button-border-color: var(--r-button-color);
   appearance: none;
   display: inline-block;
   padding: var(--r-common-box-padding);

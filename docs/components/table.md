@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RTable, RText } from 'roughness'
+import { RDetails, RTable, RText } from 'roughness'
 </script>
 
 # Table
@@ -9,6 +9,9 @@ Tic, tac, toe.
 ## Example
 
 ### Basic
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -31,6 +34,8 @@ import { RTable, RText } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RTable
   :columns="['name', 'age']"
   :rows="['html', 'js', 'css']"
@@ -45,6 +50,9 @@ import { RTable, RText } from 'roughness'
 </RTable>
 
 ### Without Header
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -65,6 +73,8 @@ import { RTable, RText } from 'roughness'
   </RTable>
 </template>
 ```
+
+</RDetails>
 
 <RTable
   :columns="['name', 'life']"
@@ -90,7 +100,9 @@ import { RTable, RText } from 'roughness'
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:columns.type>
-    <code>string[]</code>
+
+  `string[]`
+
   </template>
   <template #body:columns.default>
     <RText type="error">Required</RText>
@@ -100,17 +112,23 @@ import { RTable, RText } from 'roughness'
   </template>
 
   <template #body:header.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:header.default>
-    <code>true</code>
+
+  `true`
+
   </template>
   <template #body:header.description>
     Whether to display the table header.
   </template>
 
   <template #body:rows.type>
-    <code>string[]</code>
+
+  `string[]`
+
   </template>
   <template #body:rows.default>
     <RText type="error">Required</RText>
@@ -130,36 +148,52 @@ import { RTable, RText } from 'roughness'
   <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
 
   <template #body:head:_column_.description>
-    Header cell in the column corresponding to <code>[column]</code>. Fallback to <code>head:*</code>.
+
+  Header cell in the column corresponding to `[column]`. Fallback to `head:*`.
+
   </template>
 
   <template #body:head:*.parameters>
-    <code>{ column: string }</code>
+
+  `{ column: string }`
+
   </template>
   <template #body:head:*.description>
     Header cell in each column.
   </template>
 
   <template #body:body:_row_._column_.description>
-    Body cell in the row corresponding to <code>[row]</code> and the column corresponding to <code>[column]</code>. Fallback to <code>body:*.[column]</code>.
+
+  Body cell in the row corresponding to `[row]` and the column corresponding to `[column]`. Fallback to `body:*.[column]`.
+
   </template>
 
   <template #body:body:*._column_.parameters>
-    <code>{ row: string }</code>
+
+  `{ row: string }`
+
   </template>
   <template #body:body:*._column_.description>
-    Body cell in the column corresponding to <code>[column]</code>. Fallback to <code>body:[row].*</code>.
+
+  Body cell in the column corresponding to `[column]`. Fallback to `body:[row].*`.
+
   </template>
 
   <template #body:body:_row_.*.parameters>
-    <code>{ column: string }</code>
+
+  `{ column: string }`
+
   </template>
   <template #body:body:_row_.*.description>
-    Body cell in the row corresponding to <code>[row]</code>. Fallback to <code>body:*.*</code>.
+
+  Body cell in the row corresponding to `[row]`. Fallback to `body:*.*`.
+
   </template>
 
   <template #body:body:*.*.parameters>
-    <code>{ row: string, column: string }</code>
+
+  `{ row: string, column: string }`
+
   </template>
   <template #body:body:*.*.description>
     Body cell in each row and column.

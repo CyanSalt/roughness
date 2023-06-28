@@ -26,6 +26,7 @@ export default defineConfig({
             text: 'Basic',
             items: [
               { text: 'Button', link: '/components/button' },
+              { text: 'Details', link: '/components/details' },
               { text: 'Grid Guide', link: '/components/grid-guide' },
               { text: 'Link', link: '/components/link' },
               { text: 'Space', link: '/components/space' },
@@ -49,10 +50,6 @@ export default defineConfig({
           },
           {
             text: 'Feedback',
-            items: [],
-          },
-          {
-            text: 'Configuration',
             items: [],
           },
         ],

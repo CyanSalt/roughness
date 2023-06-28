@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RLink, RSpace, RTable } from 'roughness'
+import { RDetails, RLink, RSpace, RTable } from 'roughness'
 </script>
 
 # Link
@@ -9,6 +9,9 @@ The blood moon rises once again. Please be careful, Link...
 ## Example
 
 ### Basic
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -27,6 +30,8 @@ import { RLink, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace>
   <RLink>Normal</RLink>
   <RLink type="primary">Primary</RLink>
@@ -37,6 +42,9 @@ import { RLink, RSpace } from 'roughness'
 </RSpace>
 
 ### With `href` attribute
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -50,6 +58,8 @@ import { RLink, RSpace } from 'roughness'
   </RSpace>
 </template>
 ```
+
+</RDetails>
 
 <RSpace>
   <RLink href="https://en.wikipedia.org/wiki/Telephone">Start</RLink>
@@ -68,10 +78,14 @@ import { RLink, RSpace } from 'roughness'
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:type.type>
-    <code>string</code>, but usually <code>'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'</code>
+
+  `string`, but usually `'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'`
+
   </template>
   <template #body:type.default>
-    <code>'default'</code>
+
+  `'default'`
+
   </template>
   <template #body:type.description>
     Link style type.

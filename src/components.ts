@@ -1,4 +1,5 @@
 export { default as RButton } from './button/index.vue'
+export { default as RDetails } from './details/index.vue'
 export { default as RGraphics } from './graphics/index.vue'
 export { default as RGridGuide } from './grid-guide/index.vue'
 export { default as RSpace } from './space/index.vue'

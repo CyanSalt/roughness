@@ -10,17 +10,15 @@ defineOptions({
 })
 
 const {
-  ctx,
   responsive = true,
   tag = 'svg',
 } = defineProps<{
-  ctx?: any,
   responsive?: boolean,
   tag?: T,
 }>()
 
 const emit = defineEmits<{
-  (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, svg: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement, ctx: any): void,
+  (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, svg: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
 }>()
 
 const parent = $(useParentElement())
@@ -57,7 +55,7 @@ watchEffect(() => {
   } else {
     root.innerHTML = ''
   }
-  emit('draw', rc, root, ctx)
+  emit('draw', rc, root)
 })
 </script>
 

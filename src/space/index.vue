@@ -6,7 +6,7 @@ defineOptions({
 })
 
 const {
-  align = 'start',
+  align: userAlign,
   justify = 'start',
   vertical = false,
   wrap = true,
@@ -16,6 +16,10 @@ const {
   vertical?: boolean,
   wrap?: boolean,
 }>()
+
+const align = $computed(() => {
+  return userAlign ?? (vertical ? 'stretch' : 'start')
+})
 
 const style = $computed<HTMLAttributes['style']>(() => {
   return {
@@ -34,10 +38,8 @@ const style = $computed<HTMLAttributes['style']>(() => {
 </template>
 
 <style lang="scss" scoped>
-:global(:root) {
-  --r-space-size: 12px;
-}
 .r-space {
+  --r-space-size: 12px;
   display: flex;
   gap: var(--r-space-size);
 }

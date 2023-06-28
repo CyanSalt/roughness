@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RSpace, RTable, RText } from 'roughness'
+import { RDetails, RSpace, RTable, RText } from 'roughness'
 </script>
 
 # Text
@@ -9,6 +9,9 @@ The secret of being boring is to say everything.
 ## Example
 
 ### Basic
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -27,6 +30,8 @@ import { RSpace, RText } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace>
   <RText>Normal</RText>
   <RText type="primary">Primary</RText>
@@ -38,6 +43,9 @@ import { RSpace, RText } from 'roughness'
 
 ### Tag
 
+<RDetails>
+  <template #summary>Show Code</template>
+
 ```vue
 <script lang="ts" setup>
 import { RSpace, RText } from 'roughness'
@@ -48,6 +56,8 @@ import { RSpace, RText } from 'roughness'
   <RText tag="small">Who really cares?</RText>
 </template>
 ```
+
+</RDetails>
 
 <RSpace>
   <RText tag="h1" type="error">Statement on the second meeting of the International Health Regulations (2005) Emergency Committee regarding the outbreak of novel coronavirus (2019-nCoV)</RText>
@@ -66,20 +76,28 @@ import { RSpace, RText } from 'roughness'
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:tag.type>
-    <code>string</code>
+
+  `string`
+
   </template>
   <template #body:tag.default>
-    <code>'span'</code>
+
+  `'span'`
+
   </template>
   <template #body:tag.description>
     HTML tag for rendering the text.
   </template>
 
   <template #body:type.type>
-    <code>string</code>, but usually <code>'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'</code>
+
+  `string`, but usually `'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'`
+
   </template>
   <template #body:type.default>
-    <code>'default'</code>
+
+  `'default'`
+
   </template>
   <template #body:type.description>
     Text style type.

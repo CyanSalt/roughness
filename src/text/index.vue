@@ -19,10 +19,8 @@ const {
 </template>
 
 <style lang="scss" scoped>
-:global(:root) {
-  --r-text-color: var(--r-common-text-color);
-}
 .r-text {
+  --r-text-color: var(--r-common-text-color);
   color: var(--r-text-color);
   &.primary {
     --r-text-color: var(--r-common-primary-color);

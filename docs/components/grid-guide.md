@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RGridGuide, RTable } from 'roughness'
+import { RDetails, RGridGuide, RTable } from 'roughness'
 </script>
 
 # Grid Guide
@@ -7,6 +7,9 @@ import { RGridGuide, RTable } from 'roughness'
 Guide lines are always straight.
 
 ## Example
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -19,6 +22,8 @@ import { RGridGuide } from 'roughness'
   </section>
 </template>
 ```
+
+</RDetails>
 
 <section :style="{ height: '240px' }">
   <RGridGuide :style="{ '--r-grid-guide-color': 'var(--r-common-primary-color)' }" />
@@ -36,30 +41,42 @@ import { RGridGuide } from 'roughness'
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:max-sections.type>
-    <code>number</code>
+
+  `number`
+
   </template>
   <template #body:max-sections.default>
-    <code>10</code>
+
+  `10`
+
   </template>
   <template #body:max-sections.description>
     The maximum number of sections that can be displayed under the current viewport dimensions.
   </template>
 
   <template #body:responsive.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:responsive.default>
-    <code>true</code>
+
+  `true`
+
   </template>
   <template #body:responsive.description>
     Whether to adjust the size to fit the parent element.
   </template>
 
   <template #body:section-cells.type>
-    <code>number</code>
+
+  `number`
+
   </template>
   <template #body:section-cells.default>
-    <code>8</code>
+
+  `8`
+
   </template>
   <template #body:section-cells.description>
     The number of cells in one section dimension.

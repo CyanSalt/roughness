@@ -77,7 +77,8 @@ onMounted(() => {
   calculateDimensions()
 })
 
-function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
+function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  const { x, y } = dimensions
   const padding = 2
   const options: Options = {
     stroke: 'var(--r-table-border-color)',
@@ -114,7 +115,7 @@ const helpers = {
 
 <template>
   <table class="r-table">
-    <RGraphics :ctx="dimensions" @draw="draw" />
+    <RGraphics @draw="draw" />
     <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
@@ -141,10 +142,8 @@ const helpers = {
 </template>
 
 <style lang="scss" scoped>
-:global(:root) {
-  --r-table-border-color: var(--r-common-text-color);
-}
 .r-table {
+  --r-table-border-color: var(--r-common-text-color);
   td, th {
     padding: var(--r-common-box-padding);
     color: var(--r-button-color);

@@ -19,11 +19,9 @@ const {
 <style lang="scss" scoped>
 @use '../common/_partials';
 
-:global(:root) {
+.r-link {
   --r-link-color: var(--r-common-text-color);
   --r-link-underline-width: 1;
-}
-.r-link {
   color: var(--r-link-color);
   font-size: var(--r-common-font-size);
   line-height: var(--r-common-line-height);

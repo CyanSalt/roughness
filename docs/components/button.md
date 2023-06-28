@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RLink, RSpace, RTable } from 'roughness'
+import { RButton, RDetails, RSpace, RTable } from 'roughness'
 </script>
 
 # Button
@@ -9,6 +9,9 @@ Squares are buttons.
 ## Example
 
 ### Basic
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -27,6 +30,8 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace>
   <RButton>Normal</RButton>
   <RButton type="primary">Primary</RButton>
@@ -37,6 +42,9 @@ import { RButton, RSpace } from 'roughness'
 </RSpace>
 
 ### Filled
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -55,6 +63,8 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace>
   <RButton filled>Normal</RButton>
   <RButton type="primary" filled>Primary</RButton>
@@ -65,6 +75,9 @@ import { RButton, RSpace } from 'roughness'
 </RSpace>
 
 ### Rounded
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -79,12 +92,17 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace>
   <RButton rounded>Enter the Pipe</RButton>
   <RButton type="error" filled rounded>Eat the Mushroom</RButton>
 </RSpace>
 
 ### Disabled
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -99,6 +117,8 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
+</RDetails>
+
 <RSpace>
   <RButton disabled>Train AlphaGo</RButton>
   <RButton type="primary" filled disabled>Let there be light</RButton>
@@ -106,25 +126,33 @@ import { RButton, RSpace } from 'roughness'
 
 ### Block
 
+<RDetails>
+  <template #summary>Show Code</template>
+
 ```vue
 <script lang="ts" setup>
 import { RButton, RSpace } from 'roughness'
 </script>
 
 <template>
-  <RSpace vertical align="stretch">
+  <RSpace vertical>
     <RButton block>Switch Account</RButton>
     <RButton type="error" block>Log out of Chaos</RButton>
   </RSpace>
 </template>
 ```
 
-<RSpace vertical align="stretch">
+</RDetails>
+
+<RSpace vertical>
   <RButton block>Switch Account</RButton>
   <RButton type="error" block>Log out of Chaos</RButton>
 </RSpace>
 
 ### Tag
+
+<RDetails>
+  <template #summary>Show Code</template>
 
 ```vue
 <script lang="ts" setup>
@@ -138,6 +166,8 @@ import { RButton, RSpace } from 'roughness'
   </RSpace>
 </template>
 ```
+
+</RDetails>
 
 <RSpace>
   <RButton tag="a" type="primary" filled>Remote Bomb</RButton>
@@ -157,63 +187,81 @@ import { RButton, RSpace } from 'roughness'
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:block.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:block.default>
-    <code>false</code>
+
+  `false`
+
   </template>
   <template #body:block.description>
     Whether the button is displayed as block.
   </template>
 
   <template #body:filled.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:filled.default>
-    <code>false</code>
+
+  `false`
+
   </template>
   <template #body:filled.description>
     Whether the button is filled with its color.
   </template>
 
   <template #body:html-type.type>
-    <RLink
-      href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <code>'submit' | 'reset' | 'button'</code>
-    </RLink>
+
+  [`'submit' | 'reset' | 'button'`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type)
+
   </template>
   <template #body:html-type.description>
-    The <code>type</code> attribute of <code>HTMLButtonElement</code>.
+
+  The `type` attribute of `HTMLButtonElement`.
+
   </template>
 
   <template #body:rounded.type>
-    <code>boolean</code>
+
+  `boolean`
+
   </template>
   <template #body:rounded.default>
-    <code>false</code>
+
+  `false`
+
   </template>
   <template #body:rounded.description>
     Whether the button is round.
   </template>
 
   <template #body:tag.type>
-    <code>string</code>, but usually <code>'button' | 'a'</code>
+
+  `string`, but usually `'button' | 'a'`
+
   </template>
   <template #body:tag.default>
-    <code>'button'</code>
+
+  `'button'`
+
   </template>
   <template #body:tag.description>
     HTML tag for rendering the button.
   </template>
 
   <template #body:type.type>
-    <code>string</code>, but usually <code>'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'</code>
+
+  `string`, but usually `'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'`
+
   </template>
   <template #body:type.default>
-    <code>'default'</code>
+
+  `'default'`
+
   </template>
   <template #body:type.description>
     Button style type.
