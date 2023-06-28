@@ -16,11 +16,12 @@ You can use roughness directly from a CDN via HTML tags:
 <script type="importmap">
 {
   "imports": {
+    "roughness": "https://unpkg.com/roughness",
     "vue": "https://unpkg.com/vue"
   }
 }
 </script>
 <script type="module">
-import * as roughness from 'https://unpkg.com/roughness'
+import * as roughness from 'roughness'
 </script>
 ```
