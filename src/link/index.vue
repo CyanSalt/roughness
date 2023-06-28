@@ -20,7 +20,7 @@ const {
 @use '../common/_partials';
 
 :global(:root) {
-  --r-link-color: var(--r-common-fg-color);
+  --r-link-color: var(--r-common-text-color);
 }
 .r-link {
   color: var(--r-link-color);

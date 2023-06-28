@@ -16,8 +16,8 @@
   --r-common-line-height: calc(var(--r-common-font-size) + 8px);
   --r-common-box-padding: 8px 20px;
 
-  --r-common-fg-color: #44413c;
-  --r-common-bg-color: #ffffff;
+  --r-common-text-color: #44413c;
+  --r-common-background-color: #ffffff;
   --r-common-primary-color: #0247fe;
   --r-common-info-color: #2b4057;
   --r-common-success-color: #11887b;
@@ -26,8 +26,8 @@
 }
 
 :root.dark {
-  --r-common-fg-color: #f4f4f0;
-  --r-common-bg-color: #31343a;
+  --r-common-text-color: #f4f4f0;
+  --r-common-background-color: #31343a;
   --r-common-primary-color: #94c0cc;
   --r-common-info-color: #a6aebb;
   --r-common-success-color: #bcdf8a;

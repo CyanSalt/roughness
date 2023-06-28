@@ -89,7 +89,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 :global(:root) {
   --r-button-border-width: 1;
   --r-button-border-dash: none;
-  --r-button-color: var(--r-common-fg-color);
+  --r-button-color: var(--r-common-text-color);
 }
 .r-button {
   --r-button-border-color: var(--r-button-color);
@@ -132,7 +132,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-button-color: var(--r-common-error-color);
   }
   &.is-filled:not(:disabled) {
-    @include partials.stroke(var(--r-common-bg-color), 2px);
+    @include partials.stroke(var(--r-common-background-color), 2px);
   }
   &.is-block {
     display: block;

@@ -20,7 +20,7 @@ const {
 
 <style lang="scss" scoped>
 :global(:root) {
-  --r-text-color: var(--r-common-fg-color);
+  --r-text-color: var(--r-common-text-color);
 }
 .r-text {
   color: var(--r-text-color);

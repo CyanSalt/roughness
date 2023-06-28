@@ -137,7 +137,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
 
 <style lang="scss" scoped>
 :global(:root) {
-  --r-table-border-color: var(--r-common-fg-color);
+  --r-table-border-color: var(--r-common-text-color);
 }
 .r-table {
   td, th {
