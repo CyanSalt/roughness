@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useMutationObserver } from '@vueuse/core'
+import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
@@ -12,12 +13,12 @@ defineOptions({
 
 const {
   columns,
+  header = true,
   rows,
-  showHeader = true,
 } = defineProps<{
   columns: string[],
+  header?: boolean,
   rows: string[],
-  showHeader?: boolean,
 }>()
 
 let head = $ref<HTMLTableSectionElement>()
@@ -105,16 +106,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
     svg.appendChild(line)
   }
 }
+
+const helpers = {
+  startCase,
+}
 </script>
 
 <template>
   <table class="r-table">
     <RGraphics :ctx="dimensions" @draw="draw" />
-    <thead v-if="showHeader" ref="head">
+    <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`head:${column}`">
-            <slot name="head:*" :column="column"></slot>
+          <slot :name="`head:${column}`" :helpers="helpers">
+            <slot name="head:*" :column="column" :helpers="helpers"></slot>
           </slot>
         </th>
       </tr>
@@ -122,10 +127,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, { x, y }: TableDimensions) {
     <tbody ref="body">
       <tr v-for="row in rows" :key="row">
         <td v-for="column in columns" :key="column">
-          <slot :name="`body:${row}.${column}`">
-            <slot :name="`body:*.${column}`" :row="row">
-              <slot :name="`body:${row}.*`" :column="column">
-                <slot name="body:*.*" :row="row" :column="column"></slot>
+          <slot :name="`body:${row}.${column}`" :helpers="helpers">
+            <slot :name="`body:*.${column}`" :row="row" :helpers="helpers">
+              <slot :name="`body:${row}.*`" :column="column" :helpers="helpers">
+                <slot name="body:*.*" :row="row" :column="column" :helpers="helpers"></slot>
               </slot>
             </slot>
           </slot>

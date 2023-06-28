@@ -29,10 +29,6 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-watchEffect(() => {
-  console.log(container, width, height)
-})
-
 let root = $ref<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>()
 
 const rc = $computed(() => {

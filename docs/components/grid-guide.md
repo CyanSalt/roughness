@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { RGridGuide, RTable } from 'roughness'
-import { title } from '../utils/helpers'
 </script>
 
 # Grid Guide
+
+Guide lines are always straight.
 
 ## Example
 
@@ -31,7 +32,7 @@ import { RGridGuide } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['max-sections', 'responsive', 'section-cells']"
 >
-  <template #head:*="{ column }">{{ title(column) }}</template>
+  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:max-sections.type>

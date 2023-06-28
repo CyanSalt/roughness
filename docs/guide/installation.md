@@ -13,7 +13,14 @@ You can use roughness directly from a CDN via HTML tags:
 ```html
 <link rel="stylesheet" href="https://unpkg.com/roughness/dist/style.css">
 
+<script type="importmap">
+{
+  "imports": {
+    "vue": "https://unpkg.com/vue"
+  }
+}
+</script>
 <script type="module">
-import * as roughness from 'https://unpkg.com/roughness/dist/index.js'
+import * as roughness from 'https://unpkg.com/roughness'
 </script>
 ```

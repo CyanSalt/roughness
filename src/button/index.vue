@@ -132,7 +132,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-button-color: var(--r-common-error-color);
   }
   &.is-filled:not(:disabled) {
-    @include partials.stroke(var(--r-common-background-color), 2px);
+    @include partials.stroke(var(--r-common-background-color), 3px);
   }
   &.is-block {
     display: block;

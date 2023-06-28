@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { RButton, RSpace, RTable } from 'roughness'
-import { title } from '../utils/helpers'
 </script>
 
 # Space
+
+We need to keep our distance.
 
 ## Example
 
@@ -81,7 +82,7 @@ import { RButton, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['align', 'justify', 'vertical', 'wrap']"
 >
-  <template #head:*="{ column }">{{ title(column) }}</template>
+  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:align.type>

@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { RButton, RLink, RSpace, RTable } from 'roughness'
-import { title } from '../utils/helpers'
 </script>
 
 # Button
+
+Squares are buttons.
 
 ## Example
 
@@ -111,14 +112,14 @@ import { RButton, RSpace } from 'roughness'
 </script>
 
 <template>
-  <RSpace vertical>
+  <RSpace vertical align="stretch">
     <RButton block>Switch Account</RButton>
     <RButton type="error" block>Log out of Chaos</RButton>
   </RSpace>
 </template>
 ```
 
-<RSpace vertical>
+<RSpace vertical align="stretch">
   <RButton block>Switch Account</RButton>
   <RButton type="error" block>Log out of Chaos</RButton>
 </RSpace>
@@ -131,7 +132,7 @@ import { RButton, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['block', 'filled', 'html-type', 'rounded', 'tag', 'type']"
 >
-  <template #head:*="{ column }">{{ title(column) }}</template>
+  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:block.type>
