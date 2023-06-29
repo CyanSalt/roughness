@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RTable, RText } from 'roughness'
+import { RDetails, RSpace, RTable, RText } from 'roughness'
 </script>
 
 # Table
@@ -90,6 +90,7 @@ import { RTable, RText } from 'roughness'
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['columns', 'header', 'rows']"
@@ -134,9 +135,11 @@ import { RTable, RText } from 'roughness'
     Row keys. Recommended to use all lowercase letters and hyphens and underscores.
   </template>
 </RTable>
+</RSpace>
 
 ### Slots
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['head:_column_', 'head:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*']"
@@ -197,9 +200,11 @@ import { RTable, RText } from 'roughness'
     Body cell in each row and column.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color']"
@@ -220,3 +225,4 @@ import { RTable, RText } from 'roughness'
     Color of the table border.
   </template>
 </RTable>
+</RSpace>

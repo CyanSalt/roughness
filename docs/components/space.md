@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable } from 'roughness'
+import { RButton, RDetails, RSpace, RTable, RText } from 'roughness'
 </script>
 
 # Space
@@ -89,13 +89,37 @@ import { RButton, RSpace } from 'roughness'
   <RButton>Patrick</RButton>
 </RSpace>
 
+### Overflow
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RButton, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace overflow>
+    <RText tag="pre">A spectre is haunting Europe -- the spectre of Communism. All the Powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Czar, Metternich and Guizot, French Radicals and German police-spies.</RText>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace overflow>
+  <RText tag="pre">A spectre is haunting Europe -- the spectre of Communism. All the Powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Czar, Metternich and Guizot, French Radicals and German police-spies.</RText>
+</RSpace>
+
 ## Usage
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'justify', 'vertical', 'wrap']"
+  :rows="['align', 'justify', 'overflow', 'vertical', 'wrap']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -127,6 +151,20 @@ import { RButton, RSpace } from 'roughness'
     Horizontal arrangement.
   </template>
 
+  <template #body:overflow.type>
+
+  `boolean`
+
+  </template>
+  <template #body:overflow.default>
+
+  `false`
+
+  </template>
+  <template #body:overflow.description>
+    Whether to show the scrollbar when the content overflows.
+  </template>
+
   <template #body:vertical.type>
 
   `boolean`
@@ -155,26 +193,29 @@ import { RButton, RSpace } from 'roughness'
     Whether to exceed the line break.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['size']"
+  :rows="['gap-size']"
 >
   <template #body:*.name="{ row }">--r-space-{{ row }}</template>
 
-  <template #body:size.values>
+  <template #body:gap-size.values>
 
   `<length>`
 
   </template>
-  <template #body:size.default>
+  <template #body:gap-size.default>
 
   `12px`
 
   </template>
-  <template #body:size.description>
-    Size of the gap.
+  <template #body:gap-size.description>
+    Size of the space gap.
   </template>
 </RTable>
+</RSpace>

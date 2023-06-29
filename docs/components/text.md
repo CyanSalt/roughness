@@ -95,6 +95,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['size', 'tag', 'type']"
@@ -143,9 +144,11 @@ import { RSpace, RText } from 'roughness'
     Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color']"
@@ -166,3 +169,4 @@ import { RSpace, RText } from 'roughness'
     Color of text.
   </template>
 </RTable>
+</RSpace>

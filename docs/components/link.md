@@ -101,6 +101,7 @@ See <RLink href="/components/button.html#tag">Button</RLink>.
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['size', 'type']"
@@ -135,9 +136,11 @@ See <RLink href="/components/button.html#tag">Button</RLink>.
     Link style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'underline-width']"
@@ -174,3 +177,4 @@ See <RLink href="/components/button.html#tag">Button</RLink>.
 
   </template>
 </RTable>
+</RSpace>

@@ -8,11 +8,13 @@ defineOptions({
 const {
   align: userAlign,
   justify = 'start',
+  overflow = false,
   vertical = false,
   wrap = true,
 } = defineProps<{
   justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
   align?: 'start' | 'end' | 'center' | 'baseline' | 'stretch',
+  overflow?: boolean,
   vertical?: boolean,
   wrap?: boolean,
 }>()
@@ -27,6 +29,7 @@ const style = $computed<HTMLAttributes['style']>(() => {
     'align-items': ['start', 'end'].includes(align) ? `flex-${align}` : align,
     'flex-direction': vertical ? 'column' : undefined,
     'flex-wrap': wrap ? 'wrap' : undefined,
+    overflow: overflow ? 'overlay' : undefined,
   }
 })
 </script>
@@ -39,8 +42,8 @@ const style = $computed<HTMLAttributes['style']>(() => {
 
 <style lang="scss" scoped>
 .r-space {
-  --r-space-size: 12px;
+  --r-space-gap-size: 12px;
   display: flex;
-  gap: var(--r-space-size);
+  gap: var(--r-space-gap-size);
 }
 </style>

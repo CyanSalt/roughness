@@ -206,6 +206,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['block', 'filled', 'html-type', 'rounded', 'size', 'tag', 'type']"
@@ -307,9 +308,11 @@ import { RButton, RSpace } from 'roughness'
     Button style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'border-width', 'border-dash']"
@@ -376,3 +379,4 @@ import { RButton, RSpace } from 'roughness'
 
   </template>
 </RTable>
+</RSpace>

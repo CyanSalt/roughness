@@ -55,6 +55,7 @@ function toggle() {
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['open']"
@@ -75,9 +76,11 @@ function toggle() {
     Whether the details are currently visible.
   </template>
 </RTable>
+</RSpace>
 
 ### Events
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:open']"
@@ -93,9 +96,11 @@ function toggle() {
     Callback function triggered when visibility of the details are changed.
   </template>
 </RTable>
+</RSpace>
 
 ### Slots
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['summary', 'default']"
@@ -109,9 +114,11 @@ function toggle() {
     The content of the details.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['summary-color', 'summary-marker-size']"
@@ -146,3 +153,4 @@ function toggle() {
     Size of the block of summary marker.
   </template>
 </RTable>
+</RSpace>

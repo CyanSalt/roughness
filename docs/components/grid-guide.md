@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RGridGuide, RTable } from 'roughness'
+import { RDetails, RGridGuide, RSpace, RTable } from 'roughness'
 </script>
 
 # Grid Guide
@@ -33,6 +33,7 @@ import { RGridGuide } from 'roughness'
 
 ### Props
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['max-sections', 'responsive', 'section-cells']"
@@ -81,9 +82,11 @@ import { RGridGuide } from 'roughness'
     The number of cells in one section dimension.
   </template>
 </RTable>
+</RSpace>
 
 ### Styles
 
+<RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color']"
@@ -104,3 +107,4 @@ import { RGridGuide } from 'roughness'
     Color of the guide lines.
   </template>
 </RTable>
+</RSpace>
