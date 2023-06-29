@@ -54,7 +54,7 @@ import { RTable, RText } from 'roughness'
 
 ```vue
 <script lang="ts" setup>
-import { RTable, RText } from 'roughness'
+import { RTable } from 'roughness'
 </script>
 
 <template>

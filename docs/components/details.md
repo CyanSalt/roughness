@@ -20,7 +20,7 @@ The devil is in the details.
 
 ```vue
 <script lang="ts" setup>
-import { RDetails } from 'roughness'
+import { RButton, RDetails, RSpace } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(true)

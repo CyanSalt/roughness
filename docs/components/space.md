@@ -96,7 +96,7 @@ import { RButton, RSpace } from 'roughness'
 
 ```vue
 <script lang="ts" setup>
-import { RButton, RSpace } from 'roughness'
+import { RButton, RSpace, RText } from 'roughness'
 </script>
 
 <template>
