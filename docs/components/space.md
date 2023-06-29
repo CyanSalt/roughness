@@ -97,7 +97,6 @@ import { RButton, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['align', 'justify', 'vertical', 'wrap']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:align.type>
@@ -154,5 +153,28 @@ import { RButton, RSpace } from 'roughness'
   </template>
   <template #body:wrap.description>
     Whether to exceed the line break.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['size']"
+>
+  <template #body:*.name="{ row }">--r-space-{{ row }}</template>
+
+  <template #body:size.values>
+
+  `<length>`
+
+  </template>
+  <template #body:size.default>
+
+  `12px`
+
+  </template>
+  <template #body:size.description>
+    Size of the gap.
   </template>
 </RTable>

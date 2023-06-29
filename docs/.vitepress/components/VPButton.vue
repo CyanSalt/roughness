@@ -33,9 +33,9 @@ const isExternal = $computed(() => href && EXTERNAL_URL_RE.test(href))
 
 <style lang="scss" scoped>
 .VPButton.medium {
-  font-size: 14px;
+  font-size: var(--r-common-font-size);
 }
 .VPButton.big {
-  font-size: 16px;
+  font-size: calc(var(--r-common-font-size) + 2px);
 }
 </style>

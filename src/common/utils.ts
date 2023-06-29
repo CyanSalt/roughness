@@ -27,33 +27,33 @@ export function useDark() {
 }
 
 export interface Colors {
-  'text-color': string,
-  'background-color': string,
-  'primary-color': string,
-  'info-color': string,
-  'success-color': string,
-  'warning-color': string,
-  'error-color': string,
+  textColor: string,
+  backgroundColor: string,
+  primaryColor: string,
+  infoColor: string,
+  successColor: string,
+  warningColor: string,
+  errorColor: string,
 }
 
 export const lightColors = {
-  'text-color': '#44413c',
-  'background-color': '#ffffff',
-  'primary-color': '#0247fe',
-  'info-color': '#2b4057',
-  'success-color': '#11887b',
-  'warning-color': '#9d6016',
-  'error-color': '#ac3235',
+  textColor: '#44413c',
+  backgroundColor: '#ffffff',
+  primaryColor: '#0247fe',
+  infoColor: '#2b4057',
+  successColor: '#11887b',
+  warningColor: '#9d6016',
+  errorColor: '#ac3235',
 }
 
 export const darkColors = {
-  'text-color': '#f4f4f0',
-  'background-color': '#31343a',
-  'primary-color': '#94c0cc',
-  'info-color': '#a6aebb',
-  'success-color': '#bcdf8a',
-  'warning-color': '#dfc281',
-  'error-color': '#ed7777',
+  textColor: '#f4f4f0',
+  backgroundColor: '#31343a',
+  primaryColor: '#94c0cc',
+  infoColor: '#a6aebb',
+  successColor: '#bcdf8a',
+  warningColor: '#dfc281',
+  errorColor: '#ed7777',
 }
 
 export function useColors() {

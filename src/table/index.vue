@@ -107,10 +107,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     svg.appendChild(line)
   }
 }
-
-const helpers = {
-  startCase,
-}
 </script>
 
 <template>
@@ -119,8 +115,8 @@ const helpers = {
     <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`head:${column}`" :helpers="helpers">
-            <slot name="head:*" :column="column" :helpers="helpers"></slot>
+          <slot :name="`head:${column}`">
+            <slot name="head:*" :column="column">{{ startCase(column) }}</slot>
           </slot>
         </th>
       </tr>
@@ -128,10 +124,10 @@ const helpers = {
     <tbody ref="body">
       <tr v-for="row in rows" :key="row">
         <td v-for="column in columns" :key="column">
-          <slot :name="`body:${row}.${column}`" :helpers="helpers">
-            <slot :name="`body:*.${column}`" :row="row" :helpers="helpers">
-              <slot :name="`body:${row}.*`" :column="column" :helpers="helpers">
-                <slot name="body:*.*" :row="row" :column="column" :helpers="helpers"></slot>
+          <slot :name="`body:${row}.${column}`">
+            <slot :name="`body:*.${column}`" :row="row">
+              <slot :name="`body:${row}.*`" :column="column">
+                <slot name="body:*.*" :row="row" :column="column"></slot>
               </slot>
             </slot>
           </slot>

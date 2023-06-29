@@ -68,7 +68,7 @@ import { RLink, RSpace } from 'roughness'
 
 ### As Button
 
-See [Button](/components/button.html#tag).
+See <RLink href="/components/button.html#tag">Button</RLink>.
 
 ## Usage
 
@@ -78,7 +78,6 @@ See [Button](/components/button.html#tag).
   :columns="['name', 'type', 'default', 'description']"
   :rows="['type']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:type.type>
@@ -92,6 +91,45 @@ See [Button](/components/button.html#tag).
 
   </template>
   <template #body:type.description>
-    Link style type.
+    Link style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['color', 'underline-width']"
+>
+  <template #body:*.name="{ row }">--r-link-{{ row }}</template>
+
+  <template #body:color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:color.default>
+
+  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
+
+  </template>
+  <template #body:color.description>
+    Color of the link.
+  </template>
+
+  <template #body:underline-width.values>
+
+  `<length>`
+
+  </template>
+  <template #body:underline-width.default>
+
+  `2px` when focused or active, `1px` else
+
+  </template>
+  <template #body:underline-width.description>
+
+  Size of the link underline. Only visible when hovered, or with the `href` attribute.
+
   </template>
 </RTable>

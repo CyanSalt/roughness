@@ -74,6 +74,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   align-items: center;
   color: var(--r-detail-summary-color);
   cursor: pointer;
+  // for Safari
+  &::-webkit-details-marker {
+    display: none;
+  }
   &::marker {
     content: none;
   }

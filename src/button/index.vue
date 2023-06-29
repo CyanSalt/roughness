@@ -41,7 +41,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const strokeWidth = parseInt(borderWidth, 10) || 0
   const strokeLineDash = borderDash === 'none'
     ? undefined
-    : borderDash.split(/\s+/).map(part => parseInt(part, 10) || 0)
+    : borderDash.split(/[,\s]+/).map(part => parseInt(part, 10) || 0)
   const padding = 2
   const options: Options = {
     stroke: 'var(--r-button-border-color)',

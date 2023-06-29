@@ -183,7 +183,6 @@ import { RButton, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['block', 'filled', 'html-type', 'rounded', 'tag', 'type']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:block.type>
@@ -264,6 +263,75 @@ import { RButton, RSpace } from 'roughness'
 
   </template>
   <template #body:type.description>
-    Button style type.
+    Button style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['color', 'border-color', 'border-width', 'border-dash']"
+>
+  <template #body:*.name="{ row }">--r-button-{{ row }}</template>
+
+  <template #body:color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:color.default>
+
+  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
+
+  </template>
+  <template #body:color.description>
+    Color of the button text.
+  </template>
+
+  <template #body:border-color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:border-color.default>
+
+  `var(--r-button-color)`
+
+  </template>
+  <template #body:border-color.description>
+    Color of the button border.
+  </template>
+
+  <template #body:border-width.values>
+
+  `<integer>`
+
+  </template>
+  <template #body:border-width.default>
+
+  `2` when focused or active, `1` else
+
+  </template>
+  <template #body:border-width.description>
+    Size of the button border.
+  </template>
+
+  <template #body:border-dash.values>
+
+  `<integer> +` or `none`
+
+  </template>
+  <template #body:border-dash.default>
+
+  `8` when hovered, `none` else
+
+  </template>
+  <template #body:border-dash.description>
+
+  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the button border.
+
+  An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+
   </template>
 </RTable>

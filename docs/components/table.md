@@ -23,7 +23,6 @@ import { RTable, RText } from 'roughness'
     :columns="['name', 'age']"
     :rows="['html', 'js', 'css']"
   >
-    <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
     <template #body:*.name="{ row }">{{ row.toUpperCase() }}</template>
     <template #body:html.age>
       <RText type="primary">30</RText>
@@ -40,7 +39,6 @@ import { RTable, RText } from 'roughness'
   :columns="['name', 'age']"
   :rows="['html', 'js', 'css']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row.toUpperCase() }}</template>
   <template #body:html.age>
     <RText type="primary">30</RText>
@@ -96,7 +94,6 @@ import { RTable, RText } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['columns', 'header', 'rows']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:columns.type>
@@ -144,7 +141,6 @@ import { RTable, RText } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['head:_column_', 'head:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
 
   <template #body:head:_column_.description>
@@ -159,7 +155,9 @@ import { RTable, RText } from 'roughness'
 
   </template>
   <template #body:head:*.description>
-    Header cell in each column.
+
+  Header cell in each column. Defaults to `startCase(column)`.
+
   </template>
 
   <template #body:body:_row_._column_.description>
@@ -197,5 +195,28 @@ import { RTable, RText } from 'roughness'
   </template>
   <template #body:body:*.*.description>
     Body cell in each row and column.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['border-color']"
+>
+  <template #body:*.name="{ row }">--r-table-{{ row }}</template>
+
+  <template #body:border-color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:border-color.default>
+
+  `var(--r-common-text-color)`
+
+  </template>
+  <template #body:border-color.description>
+    Color of the table border.
   </template>
 </RTable>

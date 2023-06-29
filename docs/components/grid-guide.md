@@ -37,7 +37,6 @@ import { RGridGuide } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['max-sections', 'responsive', 'section-cells']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:max-sections.type>
@@ -80,5 +79,28 @@ import { RGridGuide } from 'roughness'
   </template>
   <template #body:section-cells.description>
     The number of cells in one section dimension.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['color']"
+>
+  <template #body:*.name="{ row }">--r-grid-guide-{{ row }}</template>
+
+  <template #body:color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:color.default>
+
+  `rgb(255 255 255 / 0.1)` in dark theme, `#f5f5f5` else
+
+  </template>
+  <template #body:color.description>
+    Color of the guide lines.
   </template>
 </RTable>

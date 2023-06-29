@@ -21,7 +21,7 @@ const {
 
 .r-link {
   --r-link-color: var(--r-common-text-color);
-  --r-link-underline-width: 1;
+  --r-link-underline-width: 1px;
   color: var(--r-link-color);
   font-size: var(--r-common-font-size);
   line-height: var(--r-common-line-height);
@@ -30,10 +30,10 @@ const {
   &[href], &:hover {
     text-decoration-line: underline;
     text-decoration-style: dashed;
-    text-decoration-thickness: calc(var(--r-link-underline-width) * 1px + 1px);
+    text-decoration-thickness: calc(var(--r-link-underline-width) + 1px);
   }
   &:focus, &:active {
-    --r-link-underline-width: 2;
+    --r-link-underline-width: 2px;
   }
   &.primary {
     --r-link-color: var(--r-common-primary-color);

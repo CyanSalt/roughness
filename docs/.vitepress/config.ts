@@ -18,6 +18,7 @@ export default defineConfig({
           { text: 'Installation', link: '/guide/installation' },
           { text: 'Usage', link: '/guide/usage' },
           { text: 'Theme', link: '/guide/theme' },
+          { text: 'Chart', link: '/guide/chart' },
         ],
       },
       {
@@ -42,7 +43,6 @@ export default defineConfig({
           {
             text: 'Data',
             items: [
-              { text: 'Chart', link: '/components/chart' },
               { text: 'Table', link: '/components/table' },
             ],
           },

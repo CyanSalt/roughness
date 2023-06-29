@@ -59,7 +59,6 @@ function toggle() {
   :columns="['name', 'type', 'default', 'description']"
   :rows="['open']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:open.type>
@@ -83,7 +82,6 @@ function toggle() {
   :columns="['name', 'parameters', 'description']"
   :rows="['update:open']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:update:open.parameters>
@@ -102,7 +100,6 @@ function toggle() {
   :columns="['name', 'parameters', 'description']"
   :rows="['summary', 'default']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:summary.description>
@@ -110,5 +107,42 @@ function toggle() {
   </template>
   <template #body:default.description>
     The content of the details.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['summary-color', 'summary-marker-size']"
+>
+  <template #body:*.name="{ row }">--r-details-{{ row }}</template>
+
+  <template #body:summary-color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:summary-color.default>
+
+  `var(--r-common-text-color)`
+
+  </template>
+  <template #body:summary-color.description>
+    Color of summary text and marker.
+  </template>
+
+  <template #body:summary-marker-size.values>
+
+  `<length>`
+
+  </template>
+  <template #body:summary-marker-size.default>
+
+  `var(--r-common-line-height)`
+
+  </template>
+  <template #body:summary-marker-size.description>
+    Size of the block of summary marker.
   </template>
 </RTable>

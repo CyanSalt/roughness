@@ -72,7 +72,6 @@ import { RSpace, RText } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['tag', 'type']"
 >
-  <template #head:*="{ column, helpers }">{{ helpers.startCase(column) }}</template>
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:tag.type>
@@ -100,6 +99,29 @@ import { RSpace, RText } from 'roughness'
 
   </template>
   <template #body:type.description>
-    Text style type.
+    Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+  </template>
+</RTable>
+
+### Styles
+
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['color']"
+>
+  <template #body:*.name="{ row }">--r-text-{{ row }}</template>
+
+  <template #body:color.values>
+
+  `<color>`
+
+  </template>
+  <template #body:color.default>
+
+  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
+
+  </template>
+  <template #body:color.description>
+    Color of text.
   </template>
 </RTable>
