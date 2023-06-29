@@ -41,6 +41,33 @@ import { RSpace, RText } from 'roughness'
   <RText type="error">Error</RText>
 </RSpace>
 
+### Size
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RSpace, RText } from 'roughness'
+</script>
+
+<template>
+  <RSpace align="center">
+    <RText size="small">Small</RText>
+    <RText>Medium</RText>
+    <RText size="large">Large</RText>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace align="center">
+  <RText size="small">Small</RText>
+  <RText>Medium</RText>
+  <RText size="large">Large</RText>
+</RSpace>
+
 ### Tag
 
 <RDetails>
@@ -70,9 +97,23 @@ import { RSpace, RText } from 'roughness'
 
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['tag', 'type']"
+  :rows="['size', 'tag', 'type']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:size.type>
+
+  `string`, but usually `'small' | 'medium' | 'large'`
+
+  </template>
+  <template #body:size.default>
+
+  `'medium'`
+
+  </template>
+  <template #body:size.description>
+    Text size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+  </template>
 
   <template #body:tag.type>
 

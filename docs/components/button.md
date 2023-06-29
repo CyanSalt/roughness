@@ -41,6 +41,33 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="error">Error</RButton>
 </RSpace>
 
+### Size
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RButton, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace align="center">
+    <RButton size="small">Small</RButton>
+    <RButton>Medium</RButton>
+    <RButton size="large">Large</RButton>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace align="center">
+  <RButton size="small">Small</RButton>
+  <RButton>Medium</RButton>
+  <RButton size="large">Large</RButton>
+</RSpace>
+
 ### Filled
 
 <RDetails>
@@ -181,7 +208,7 @@ import { RButton, RSpace } from 'roughness'
 
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'filled', 'html-type', 'rounded', 'tag', 'type']"
+  :rows="['block', 'filled', 'html-type', 'rounded', 'size', 'tag', 'type']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -236,6 +263,20 @@ import { RButton, RSpace } from 'roughness'
   </template>
   <template #body:rounded.description>
     Whether the button is round.
+  </template>
+
+  <template #body:size.type>
+
+  `string`, but usually `'small' | 'medium' | 'large'`
+
+  </template>
+  <template #body:size.default>
+
+  `'medium'`
+
+  </template>
+  <template #body:size.description>
+    Button size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 
   <template #body:tag.type>

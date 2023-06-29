@@ -13,8 +13,10 @@
 :root {
   --r-common-font-family: 'CabinSketch';
   --r-common-font-size: 16px;
-  --r-common-line-height: calc(var(--r-common-font-size) + 8px);
-  --r-common-box-padding: 8px 20px;
+  --r-common-small-font-size: calc(var(--r-common-font-size) - 4px);
+  --r-common-large-font-size: calc(var(--r-common-font-size) + 4px);
+  --r-common-line-height: calc(1em + 8px);
+  --r-common-box-padding: 0.5em calc(1em + 4px);
 
   --r-common-text-color: #44413c;
   --r-common-background-color: #ffffff;

@@ -41,6 +41,33 @@ import { RLink, RSpace } from 'roughness'
   <RLink type="error">Error</RLink>
 </RSpace>
 
+### Size
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RLink, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace align="center">
+    <RLink size="small">Small</RLink>
+    <RLink>Medium</RLink>
+    <RLink size="large">Large</RLink>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace align="center">
+  <RLink size="small">Small</RLink>
+  <RLink>Medium</RLink>
+  <RLink size="large">Large</RLink>
+</RSpace>
+
 ### With `href` attribute
 
 <RDetails>
@@ -76,9 +103,23 @@ See <RLink href="/components/button.html#tag">Button</RLink>.
 
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['type']"
+  :rows="['size', 'type']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:size.type>
+
+  `string`, but usually `'small' | 'medium' | 'large'`
+
+  </template>
+  <template #body:size.default>
+
+  `'medium'`
+
+  </template>
+  <template #body:size.description>
+    Link size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+  </template>
 
   <template #body:type.type>
 
@@ -124,7 +165,7 @@ See <RLink href="/components/button.html#tag">Button</RLink>.
   </template>
   <template #body:underline-width.default>
 
-  `2px` when focused or active, `1px` else
+  `3px` when focused or active, `2px` else
 
   </template>
   <template #body:underline-width.description>

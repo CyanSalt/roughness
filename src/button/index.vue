@@ -14,6 +14,7 @@ const {
   filled = false,
   htmlType,
   rounded = false,
+  size = 'medium',
   tag = 'button',
   type = 'default',
 } = defineProps<{
@@ -21,6 +22,7 @@ const {
   filled?: boolean,
   htmlType?: HTMLButtonElement['type'],
   rounded?: boolean,
+  size?: 'small' | 'medium' | 'large' | string,
   tag?: 'button' | 'a' | string,
   type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
 }>()
@@ -76,7 +78,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :is="tag"
     ref="root"
     :type="htmlType"
-    :class="['r-button', type, { 'is-filled': filled, 'is-block': block }]"
+    :class="['r-button', type, size, { 'is-filled': filled, 'is-block': block }]"
   >
     <RGraphics @draw="draw" />
     <slot></slot>
@@ -112,6 +114,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     cursor: not-allowed;
     text-decoration-line: line-through;
   }
+  &.is-filled:not(:disabled) {
+    @include partials.stroke(var(--r-common-background-color), 3px);
+  }
+  &.is-block {
+    display: block;
+  }
   &.primary {
     --r-button-color: var(--r-common-primary-color);
   }
@@ -127,11 +135,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.error {
     --r-button-color: var(--r-common-error-color);
   }
-  &.is-filled:not(:disabled) {
-    @include partials.stroke(var(--r-common-background-color), 3px);
+  &.small {
+    font-size: var(--r-common-small-font-size);
   }
-  &.is-block {
-    display: block;
+  &.large {
+    font-size: var(--r-common-large-font-size);
   }
 }
 a.r-button {

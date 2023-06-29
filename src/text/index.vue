@@ -4,16 +4,18 @@ defineOptions({
 })
 
 const {
+  size = 'medium',
   tag = 'span',
   type = 'default',
 } = defineProps<{
+  size?: 'small' | 'medium' | 'large' | string,
   tag?: string,
   type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
 }>()
 </script>
 
 <template>
-  <component :is="tag" :class="['r-text', type]">
+  <component :is="tag" :class="['r-text', type, size]">
     <slot></slot>
   </component>
 </template>
@@ -36,6 +38,12 @@ const {
   }
   &.error {
     --r-text-color: var(--r-common-error-color);
+  }
+  &.small {
+    font-size: var(--r-common-small-font-size);
+  }
+  &.large {
+    font-size: var(--r-common-large-font-size);
   }
 }
 div.r-text, span.r-text {
