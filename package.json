@@ -1,6 +1,6 @@
 {
   "name": "roughness",
-  "version": "0.1.0-0",
+  "version": "0.1.0-alpha.0",
   "description": "A Vue component library with hand-drawn appearance",
   "type": "module",
   "main": "dist/index.js",
@@ -15,6 +15,8 @@
   ],
   "scripts": {
     "prepack": "vite build",
+    "release": "release-it",
+    "release:alpha-as-latest": "npm run release -- --preRelease=alpha --npm.tag=latest",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "lint:script": "eslint --ignore-path .gitignore --ext .cjs,.js,.ts,.vue --cache --fix .",
@@ -40,6 +42,7 @@
     "@cyansalt/eslint-config-preset": "^1.14.0",
     "@cyansalt/stylelint-config-preset": "^1.4.1",
     "@cyansalt/tsconfig": "^2.1.1",
+    "@release-it/conventional-changelog": "^5.1.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue-macros/reactivity-transform": "^0.3.10",
     "@vueuse/core": "^10.2.0",
@@ -47,6 +50,7 @@
     "chartjs-plugin-roughness": "^1.0.6",
     "fast-glob": "^3.2.12",
     "lodash-es": "^4.17.21",
+    "release-it": "^15.11.0",
     "roughjs": "^4.5.2",
     "sass": "^1.63.6",
     "typescript": "^5.1.3",
