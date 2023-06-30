@@ -58,7 +58,7 @@ function toggle() {
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['open']"
+  :rows="['open', 'reactions']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -73,7 +73,29 @@ function toggle() {
 
   </template>
   <template #body:open.description>
-    Whether the details are currently visible.
+
+  Whether the details are currently visible.
+
+  See [`open`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#open).
+
+  </template>
+
+  <template #body:reactions.type>
+
+  `string[]`
+
+  </template>
+  <template #body:reactions.default>
+
+  `[]`
+
+  </template>
+  <template #body:reactions.description>
+
+  States that trigger graphics redrawing.
+
+  See [Reactions](/guide/theme#reactions).
+
   </template>
 </RTable>
 </RSpace>
@@ -108,7 +130,11 @@ function toggle() {
   <template #body:*.name="{ row }">{{ row }}</template>
 
   <template #body:summary.description>
-    The content of the summary.
+
+  The content of the summary.
+
+  See [`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary).
+
   </template>
   <template #body:default.description>
     The content of the details.

@@ -10,5 +10,6 @@ module.exports = {
     'sort-imports': ['warn', { ignoreCase: true, ignoreDeclarationSort: true }],
     'vue/no-undef-components': 'error',
     'vue/no-undef-properties': 'error',
+    'vue/match-component-file-name': 'off',
   },
 }

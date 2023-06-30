@@ -2,6 +2,11 @@ import * as path from 'node:path'
 import vue from '@vitejs/plugin-vue'
 import fastglob from 'fast-glob'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
+
+function stripExtension(file: string) {
+  return file.slice(0, -path.extname(file).length)
+}
 
 export default defineConfig(async () => ({
   build: {
@@ -9,13 +14,13 @@ export default defineConfig(async () => ({
     lib: {
       entry: {
         index: 'src/index.ts',
-        ...Object.fromEntries((await fastglob('src/*/index.vue')).map(file => {
-          return [path.basename(path.dirname(file)), file]
+        ...Object.fromEntries((await fastglob('src/*/*.vue')).map(file => {
+          return [stripExtension(path.relative('src', file)), file]
         })),
       },
       formats: ['es'],
       fileName: (format, entryName) => {
-        return entryName === 'index' ? '[name].js' : '[name]/index.js'
+        return entryName === 'index' ? '[name].js' : '[name].js'
       },
     },
     rollupOptions: {
@@ -29,5 +34,9 @@ export default defineConfig(async () => ({
   },
   plugins: [
     vue(),
+    dts({
+      entryRoot: 'src',
+      cleanVueFileName: true,
+    }),
   ],
 }))

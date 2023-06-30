@@ -1,16 +1,22 @@
 <script lang="ts" setup>
-import { useElementHover } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watchEffect } from 'vue'
+import { toRef, watchEffect } from 'vue'
+import type { ReactionProps } from '../common/utils'
+import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+
+defineOptions({
+  name: 'RDetails',
+})
 
 const {
   open = false,
+  reactions = (() => []) as never,
 } = defineProps<{
   open?: boolean,
-}>()
+} & ReactionProps>()
 
 const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
@@ -29,13 +35,13 @@ function toggle(event: Event) {
 
 let summary = $ref<HTMLElement>()
 
-const hovered = $(useElementHover($$(summary)))
+const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void hovered
+  getReactionState()
   const options: Options = {
-    stroke: 'var(--r-detail-summary-color)',
-    fill: 'var(--r-detail-summary-color)',
+    stroke: 'var(--r-details-summary-color)',
+    fill: 'var(--r-details-summary-color)',
   }
   const padding = 2
   const points: Point[] = internalOpen ? [
@@ -66,13 +72,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss" scoped>
 .r-details {
-  --r-detail-summary-color: var(--r-common-text-color);
+  --r-details-summary-color: var(--r-common-text-color);
   --r-details-summary-marker-size: var(--r-common-line-height);
 }
 .r-details__summary {
   display: flex;
   align-items: center;
-  color: var(--r-detail-summary-color);
+  color: var(--r-details-summary-color);
   cursor: pointer;
   // for Safari
   &::-webkit-details-marker {

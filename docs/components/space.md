@@ -134,7 +134,9 @@ import { RButton, RSpace, RText } from 'roughness'
 
   </template>
   <template #body:align.description>
-    Vertical arrangement.
+
+  [Item axis arrangement](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items).
+
   </template>
 
   <template #body:justify.type>
@@ -148,7 +150,9 @@ import { RButton, RSpace, RText } from 'roughness'
 
   </template>
   <template #body:justify.description>
-    Horizontal arrangement.
+
+  [Item arrangement](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content).
+
   </template>
 
   <template #body:overflow.type>

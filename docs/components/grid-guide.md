@@ -36,7 +36,7 @@ import { RGridGuide } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['max-sections', 'responsive', 'section-cells']"
+  :rows="['max-sections', 'reactions', 'responsive', 'section-cells']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -52,6 +52,24 @@ import { RGridGuide } from 'roughness'
   </template>
   <template #body:max-sections.description>
     The maximum number of sections that can be displayed under the current viewport dimensions.
+  </template>
+
+  <template #body:reactions.type>
+
+  `string[]`
+
+  </template>
+  <template #body:reactions.default>
+
+  `['dark']`
+
+  </template>
+  <template #body:reactions.description>
+
+  States that trigger graphics redrawing.
+
+  See [Reactions](/guide/theme#reactions).
+
   </template>
 
   <template #body:responsive.type>

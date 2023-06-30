@@ -134,16 +134,15 @@ import { RSpace, RText } from 'roughness'
 
   <template #body:type.type>
 
-  `string`, but usually `'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'`
-
-  </template>
-  <template #body:type.default>
-
-  `'default'`
+  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
 
   </template>
   <template #body:type.description>
-    Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  Also see [Color Styles](/guide/theme#color-styles).
+
   </template>
 </RTable>
 </RSpace>

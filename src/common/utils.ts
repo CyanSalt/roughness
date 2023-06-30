@@ -1,5 +1,6 @@
-import { useMutationObserver } from '@vueuse/core'
-import { computed, customRef } from 'vue'
+import { useCurrentElement, useElementHover, useFocus, useMousePressed, useMutationObserver } from '@vueuse/core'
+import type { MaybeRef } from 'vue'
+import { computed, customRef, unref } from 'vue'
 
 export function useDark() {
   return customRef<boolean>((track, trigger) => {
@@ -61,4 +62,48 @@ export function useColors() {
   return computed(() => {
     return dark.value ? darkColors : lightColors
   })
+}
+
+export interface ColorProps {
+  type?: string, // 'primary' | 'info' | 'success' | 'warning' | 'error'
+}
+
+export interface SizeProps {
+  size?: string, // 'small' | 'large'
+}
+
+export interface ReactionState {
+  hover: boolean,
+  focus: boolean,
+  active: boolean,
+  dark: boolean,
+}
+
+export interface ReactionProps {
+  reactions?: (keyof ReactionState)[],
+}
+
+export function useReactionState(
+  reactions: MaybeRef<(keyof ReactionState)[]>,
+  element?: MaybeRef<HTMLElement | null | undefined>,
+) {
+  const currentElement = element ?? useCurrentElement<HTMLElement>()
+  const hovered = useElementHover(currentElement)
+  const { focused } = useFocus(currentElement)
+  const { pressed } = useMousePressed({ target: currentElement })
+  const dark = useDark()
+  return () => Object.fromEntries(unref(reactions).map(reaction => {
+    switch (reaction) {
+      case 'hover':
+        return [reaction, hovered.value]
+      case 'focus':
+        return [reaction, focused.value]
+      case 'active':
+        return [reaction, pressed.value]
+      case 'dark':
+        return [reaction, dark.value]
+      default:
+        return [reaction, undefined]
+    }
+  })) as Partial<ReactionState>
 }

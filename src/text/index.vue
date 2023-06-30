@@ -1,17 +1,17 @@
 <script lang="ts" setup>
+import type { ColorProps, SizeProps } from '../common/utils'
+
 defineOptions({
   name: 'RText',
 })
 
 const {
-  size = 'medium',
   tag = 'span',
-  type = 'default',
+  type,
+  size,
 } = defineProps<{
-  size?: 'small' | 'medium' | 'large' | string,
   tag?: string,
-  type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
-}>()
+} & ColorProps & SizeProps>()
 </script>
 
 <template>

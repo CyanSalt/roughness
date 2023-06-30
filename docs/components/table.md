@@ -93,7 +93,7 @@ import { RTable } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['columns', 'header', 'rows']"
+  :rows="['columns', 'header', 'reactions', 'rows']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -121,6 +121,24 @@ import { RTable } from 'roughness'
   </template>
   <template #body:header.description>
     Whether to display the table header.
+  </template>
+
+  <template #body:reactions.type>
+
+  `string[]`
+
+  </template>
+  <template #body:reactions.default>
+
+  `[]`
+
+  </template>
+  <template #body:reactions.description>
+
+  States that trigger graphics redrawing.
+
+  See [Reactions](/guide/theme#reactions).
+
   </template>
 
   <template #body:rows.type>

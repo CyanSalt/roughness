@@ -1,8 +1,10 @@
 <script lang="ts" setup>
-import { useElementHover, useFocus, useMousePressed } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import '../common/style.scss'
+import { toRef } from 'vue'
+import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
+import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 
 defineOptions({
@@ -14,29 +16,22 @@ const {
   filled = false,
   htmlType,
   rounded = false,
-  size = 'medium',
   tag = 'button',
-  type = 'default',
+  type,
+  size,
+  reactions = (() => ['hover', 'focus', 'active']) as never,
 } = defineProps<{
   block?: boolean,
   filled?: boolean,
   htmlType?: HTMLButtonElement['type'],
   rounded?: boolean,
-  size?: 'small' | 'medium' | 'large' | string,
   tag?: 'button' | 'a' | string,
-  type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
-}>()
+} & ColorProps & SizeProps & ReactionProps>()
 
-let root = $ref<HTMLButtonElement>()
-
-const hovered = $(useElementHover($$(root)))
-const { focused } = $(useFocus($$(root)))
-const { pressed } = $(useMousePressed({ target: $$(root) }))
+const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void hovered
-  void focused
-  void pressed
+  getReactionState()
   const style = getComputedStyle(svg)
   const borderWidth = style.getPropertyValue('--r-button-border-width')
   const borderDash = style.getPropertyValue('--r-button-border-dash')
@@ -76,7 +71,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <template>
   <component
     :is="tag"
-    ref="root"
     :type="htmlType"
     :class="['r-button', type, size, { 'is-filled': filled, 'is-block': block }]"
   >

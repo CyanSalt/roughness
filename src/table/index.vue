@@ -4,7 +4,9 @@ import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, toRef } from 'vue'
+import type { ReactionProps } from '../common/utils'
+import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 
 defineOptions({
@@ -15,11 +17,12 @@ const {
   columns,
   header = true,
   rows,
+  reactions = (() => []) as never,
 } = defineProps<{
   columns: string[],
   header?: boolean,
   rows: string[],
-}>()
+} & ReactionProps>()
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -77,7 +80,10 @@ onMounted(() => {
   calculateDimensions()
 })
 
+const getReactionState = useReactionState(toRef(() => reactions))
+
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  getReactionState()
   const { x, y } = dimensions
   const padding = 2
   const options: Options = {

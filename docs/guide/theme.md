@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RLink, RSpace, RTable, RText } from 'roughness'
+import { RButton, RDetails, RSpace, RTable, RText } from 'roughness'
 import VPSwitchAppearance from 'vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue'
 </script>
 
@@ -28,7 +28,7 @@ In dark and light mode, in addition to the foreground and background colors, the
 
 ## Customizing Theme
 
-Most components support specific CSS custom properties. You can find them in the documentation related to components, such as <RLink href="/components/button#styles">Button Styles</RLink>.
+Most components support specific CSS custom properties. You can find them in the documentation related to components, such as [Button Styles](/components/button#styles).
 
 Obviously, you can also customize these CSS properties. For example:
 
@@ -39,11 +39,37 @@ Obviously, you can also customize these CSS properties. For example:
 }
 ```
 
-Note that due to the limitations of HTML itself, **modifying CSS dynamically cannot trigger Rough.js to redraw the background graphics in real time**. Usually you need to wait until the graphics are drawn next time to take effect.
+Note that due to the limitations of HTML itself, modifying CSS dynamically cannot trigger Rough.js to redraw the background graphics in real time. If you wish to associate specific actions with the drawing of the graphics, you may use the `reactions` property: {#reactions}
 
-Common style properties are declared under the root node. Changing them will affect all components.
+```vue
+<template>
+  <RDetails :reactions="['hover']" class="my-details">
+    <template #summary>Beyond 99% sweat</template>
+    Good luck.
+  </RDetails>
+</template>
+
+<style scoped>
+.my-details:hover {
+  --r-details-summary-color: var(--r-common-error-color);
+}
+</style>
+```
+
+<RDetails :reactions="['hover']" class="my-details">
+  <template #summary>Beyond 99% sweat</template>
+  Good luck.
+</RDetails>
+
+<style scoped>
+.my-details:hover {
+  --r-details-summary-color: var(--r-common-error-color);
+}
+</style>
 
 ### Styles
+
+Common style properties are declared under the root node. Changing them will affect all components.
 
 <RSpace overflow>
 <RTable
@@ -152,7 +178,7 @@ Common style properties are declared under the root node. Changing them will aff
 </RTable>
 </RSpace>
 
-The following properties (of colors) change with dark/light theme changes:
+The following properties (of colors) change with dark/light theme changes: {#color-styles}
 
 <RSpace overflow>
 <RTable

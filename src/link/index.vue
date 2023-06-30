@@ -1,15 +1,14 @@
 <script lang="ts" setup>
+import type { ColorProps, SizeProps } from '../common/utils'
+
 defineOptions({
   name: 'RLink',
 })
 
 const {
-  size = 'medium',
-  type = 'default',
-} = defineProps<{
-  size?: 'small' | 'medium' | 'large' | string,
-  type?: 'default' | 'primary' | 'info' | 'success' | 'warning' | 'error' | string,
-}>()
+  type,
+  size,
+} = defineProps<ColorProps & SizeProps>()
 </script>
 
 <template>

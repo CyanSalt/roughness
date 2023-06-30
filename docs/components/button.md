@@ -101,6 +101,8 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="error" filled>Error</RButton>
 </RSpace>
 
+Also see [GraphicsConfig](/components/graphics#configuration).
+
 ### Rounded
 
 <RDetails>
@@ -201,7 +203,6 @@ import { RButton, RSpace } from 'roughness'
   <RButton tag="a" type="error">Magnesis</RButton>
 </RSpace>
 
-
 ## Usage
 
 ### Props
@@ -209,7 +210,7 @@ import { RButton, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'filled', 'html-type', 'rounded', 'size', 'tag', 'type']"
+  :rows="['block', 'filled', 'html-type', 'reactions', 'rounded', 'size', 'tag', 'type']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -243,12 +244,30 @@ import { RButton, RSpace } from 'roughness'
 
   <template #body:html-type.type>
 
-  [`'submit' | 'reset' | 'button'`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type)
+  `'submit' | 'reset' | 'button'`
 
   </template>
   <template #body:html-type.description>
 
-  The `type` attribute of `HTMLButtonElement`.
+  [The `type` attribute of `HTMLButtonElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type).
+
+  </template>
+
+  <template #body:reactions.type>
+
+  `string[]`
+
+  </template>
+  <template #body:reactions.default>
+
+  `['hover', 'focus', 'active']`
+
+  </template>
+  <template #body:reactions.description>
+
+  States that trigger graphics redrawing.
+
+  See [Reactions](/guide/theme#reactions).
 
   </template>
 
@@ -296,16 +315,15 @@ import { RButton, RSpace } from 'roughness'
 
   <template #body:type.type>
 
-  `string`, but usually `'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'`
-
-  </template>
-  <template #body:type.default>
-
-  `'default'`
+  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
 
   </template>
   <template #body:type.description>
-    Button style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  Button style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  Also see [Color Styles](/guide/theme#color-styles).
+
   </template>
 </RTable>
 </RSpace>
@@ -376,6 +394,8 @@ import { RButton, RSpace } from 'roughness'
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the button border.
 
   An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+
+  See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
   </template>
 </RTable>

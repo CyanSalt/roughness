@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { useElementSize, useParentElement } from '@vueuse/core'
-import { watchEffect } from 'vue'
-import { useDark } from '../common/utils'
+import { toRef, watchEffect } from 'vue'
+import type { ReactionProps } from '../common/utils'
+import { useReactionState } from '../common/utils'
 
 defineOptions({
   name: 'RGridGuide',
@@ -11,11 +12,14 @@ const {
   maxSections = 10,
   responsive = true,
   sectionCells = 8,
+  reactions = (() => ['dark']) as never,
 } = defineProps<{
   maxSections?: number,
   responsive?: boolean,
   sectionCells?: number,
-}>()
+} & ReactionProps>()
+
+const getReactionState = useReactionState(toRef(() => reactions))
 
 const root = $ref<HTMLCanvasElement>()
 
@@ -25,11 +29,9 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-const dark = $(useDark())
-
 function draw() {
   if (!root) return
-  void dark
+  getReactionState()
   const actualWidth = width * window.devicePixelRatio
   const actualHeight = height * window.devicePixelRatio
   const viewportSize = Math.max(window.innerWidth, window.innerHeight) * window.devicePixelRatio

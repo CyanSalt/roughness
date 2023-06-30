@@ -3,7 +3,8 @@ import { useElementSize, useParentElement } from '@vueuse/core'
 import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watchEffect } from 'vue'
+import { inject, ref, watchEffect } from 'vue'
+import { configInjection } from './utils'
 
 defineOptions({
   name: 'RGraphics',
@@ -18,23 +19,25 @@ const {
 }>()
 
 const emit = defineEmits<{
-  (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, svg: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
+  (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
 }>()
 
+let root = $ref<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>()
+
 const parent = $(useParentElement())
-const container = $computed(() => (responsive ? parent : null))
+const container = $computed(() => (responsive ? parent : root))
 const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-let root = $ref<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>()
+const config = $(inject(configInjection) ?? ref<undefined>())
 
 const rc = $computed(() => {
   if (!root) return null
   return (
     root instanceof HTMLCanvasElement
-      ? rough.canvas(root)
-      : rough.svg(root)
+      ? rough.canvas(root, { options: config })
+      : rough.svg(root, { options: config })
   ) as T extends 'canvas' ? RoughCanvas : RoughSVG
 })
 

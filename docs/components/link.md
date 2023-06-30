@@ -95,7 +95,7 @@ import { RLink, RSpace } from 'roughness'
 
 ### As Button
 
-See <RLink href="/components/button.html#tag">Button</RLink>.
+See [Button](/components/button.html#tag).
 
 ## Usage
 
@@ -124,16 +124,15 @@ See <RLink href="/components/button.html#tag">Button</RLink>.
 
   <template #body:type.type>
 
-  `string`, but usually `'default' | 'primary' | 'info' | 'success' | 'warning' | 'error'`
-
-  </template>
-  <template #body:type.default>
-
-  `'default'`
+  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
 
   </template>
   <template #body:type.description>
-    Link style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  Link style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  Also see [Color Styles](/guide/theme#color-styles).
+
   </template>
 </RTable>
 </RSpace>
