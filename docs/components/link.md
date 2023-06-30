@@ -95,7 +95,7 @@ import { RLink, RSpace } from 'roughness'
 
 ### As Button
 
-See [Button](/components/button.html#tag).
+See [Button](/components/button#tag).
 
 ## Usage
 

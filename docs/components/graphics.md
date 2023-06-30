@@ -1,21 +1,30 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RGraphics, RGraphicsConfig, RSpace, RTable } from 'roughness'
+import { RAlert, RButton, RDetails, RGraphics, RGraphicsConfig, RSpace, RTable, RText } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function drawHeart(rc: RoughSVG, svg: SVGSVGElement) {
   const path = rc.path('M10 30a20 20 0 0 1 40 0 20 20 0 0 1 40 0q0 30-40 60-40-30-40-60z', {
     stroke: 'red',
     fill: 'red',
   })
   svg.appendChild(path)
 }
+
+function drawOcean(rc: RoughSVG, svg: SVGSVGElement) {
+  const rect = rc.rectangle(0, 0, svg.width.baseVal.value, svg.height.baseVal.value, {
+    fill: 'var(--r-common-primary-color)',
+  })
+  svg.appendChild(rect)
+}
 </script>
 
 # Graphics
 
-::: warning
-In general, `RGraphics` components are only used inside the component library.
-:::
+<RAlert type="warning">
+
+WARNING<br>In general, `RGraphics` components are only used inside the component library.
+
+</RAlert>
 
 Seeing is believing.
 
@@ -47,7 +56,51 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 </RDetails>
 
-<RGraphics :responsive="false" width="100" height="100" @draw="draw" />
+<RGraphics :responsive="false" width="100" height="100" @draw="drawHeart" />
+
+### Responsive
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import type { RoughSVG } from 'roughjs/bin/svg'
+import { RGraphics, RTable } from 'roughness'
+
+function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  const rect = rc.rectangle(0, 0, svg.width.baseVal.value, svg.height.baseVal.value, {
+    fill: 'var(--r-common-primary-color)',
+  })
+  svg.appendChild(rect)
+}
+</script>
+
+<template>
+  <RTable
+    :columns="['continent', 'ocean']"
+    :rows="['color']"
+  >
+    <template #body:color.ocean>
+      <RGraphics @draw="draw" />
+    </template>
+  </RTable>
+</template>
+```
+
+</RDetails>
+
+<RTable
+  :columns="['continent', 'ocean']"
+  :rows="['color']"
+>
+  <template #body:color.continent>
+    New Zealand
+  </template>
+  <template #body:color.ocean>
+    <RGraphics @draw="drawOcean" />
+  </template>
+</RTable>
 
 ### Configuration
 

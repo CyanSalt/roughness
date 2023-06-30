@@ -15,19 +15,22 @@
   --vp-c-brand-darker: #{color.scale(#94c0cc, $lightness: -50%)};
 }
 
-.vp-doc table {
+.vp-doc .r-table {
   display: revert;
+  tr {
+    border-top: revert;
+  }
+  tr:nth-child(2n) {
+    background: revert;
+  }
+  th, td {
+    border: revert;
+  }
+  th {
+    color: revert;
+    background: revert;
+  }
 }
-.vp-doc tr {
-  border-top: revert;
-}
-.vp-doc tr:nth-child(2n) {
-  background: revert;
-}
-.vp-doc th, .vp-doc td {
-  border: revert;
-}
-.vp-doc th {
-  color: revert;
-  background: revert;
+.vp-doc .r-alert {
+  margin: 16px 0;
 }

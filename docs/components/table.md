@@ -86,6 +86,10 @@ import { RTable } from 'roughness'
   <template #body:eastern.life>AD 395–1453</template>
 </RTable>
 
+### Filled
+
+See [Responsive Graphics](/components/graphics#responsive).
+
 ## Usage
 
 ### Props
