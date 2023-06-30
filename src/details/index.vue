@@ -6,6 +6,7 @@ import { toRef, watchEffect } from 'vue'
 import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RDetails',
@@ -44,14 +45,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: 'var(--r-details-summary-color)',
   }
   const padding = 2
+  const { width, height } = getSVGSize(svg)
   const points: Point[] = internalOpen ? [
-    [padding, Math.round(svg.height.baseVal.value / 8) + padding],
-    [svg.width.baseVal.value - padding * 2, Math.round(svg.height.baseVal.value / 8) + padding],
-    [Math.round(svg.width.baseVal.value / 2), svg.height.baseVal.value - padding * 2],
+    [padding, Math.round(height / 8) + padding],
+    [width - padding * 2, Math.round(height / 8) + padding],
+    [Math.round(width / 2), height - padding * 2],
   ] : [
-    [Math.round(svg.width.baseVal.value / 8) + padding, padding],
-    [Math.round(svg.width.baseVal.value / 8) + padding, svg.height.baseVal.value - padding * 2],
-    [svg.width.baseVal.value - padding * 2, Math.round(svg.height.baseVal.value / 2)],
+    [Math.round(width / 8) + padding, padding],
+    [Math.round(width / 8) + padding, height - padding * 2],
+    [width - padding * 2, Math.round(height / 2)],
   ]
   const polygon = rc.polygon(points, options)
   svg.appendChild(polygon)

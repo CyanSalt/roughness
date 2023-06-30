@@ -52,7 +52,9 @@ export default defineConfig({
           },
           {
             text: 'Feedback',
-            items: [],
+            items: [
+              { text: 'Alert', link: '/components/alert' },
+            ],
           },
         ],
       },

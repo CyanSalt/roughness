@@ -1,3 +1,4 @@
+export { default as RAlert } from './alert/index.vue'
 export { default as RButton } from './button/index.vue'
 export { default as RDetails } from './details/index.vue'
 export { default as RGraphics } from './graphics/index.vue'

@@ -74,7 +74,7 @@ Common style properties are declared under the root node. Changing them will aff
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['font-family', 'font-size', 'small-font-size', 'large-font-size', 'line-height', 'box-padding']"
+  :rows="['font-family', 'font-size', 'small-font-size', 'large-font-size', 'line-height', 'box-padding-block', 'box-padding-inline']"
 >
   <template #body:*.name="{ row }">--r-common-{{ row }}</template>
 
@@ -162,18 +162,32 @@ Common style properties are declared under the root node. Changing them will aff
     Line height of components.
   </template>
 
-  <template #body:box-padding.values>
+  <template #body:box-padding-block.values>
 
-  1-4 `<length>` or `<percentage>`
-
-  </template>
-  <template #body:box-padding.default>
-
-  `0.5em calc(1em + 4px)`
+  1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:box-padding.description>
-    Padding of components with rectangular boxes. Such as Button, or cells of Table.
+  <template #body:box-padding-block.default>
+
+  `0.5em`
+
+  </template>
+  <template #body:box-padding-block.description>
+    Vertical padding of components with rectangular boxes. Such as Button, or cells of Table.
+  </template>
+
+  <template #body:box-padding-inline.values>
+
+  1-2 `<length>` or `<percentage>`
+
+  </template>
+  <template #body:box-padding-inline.default>
+
+  `calc(1em + 4px)`
+
+  </template>
+  <template #body:box-padding-inline.description>
+    Horizontal padding of components with rectangular boxes. Such as Button, or cells of Table.
   </template>
 </RTable>
 </RSpace>

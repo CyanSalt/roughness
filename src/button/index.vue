@@ -6,6 +6,7 @@ import { toRef } from 'vue'
 import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RButton',
@@ -46,12 +47,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     strokeWidth,
     strokeLineDash,
   }
+  const { width, height } = getSVGSize(svg)
   if (rounded) {
     const ellipse = rc.ellipse(
-      Math.round(svg.width.baseVal.value / 2),
-      Math.round(svg.height.baseVal.value / 2),
-      svg.width.baseVal.value - padding * 2,
-      svg.height.baseVal.value - padding * 2,
+      Math.round(width / 2),
+      Math.round(height / 2),
+      width - padding * 2,
+      height - padding * 2,
       options,
     )
     svg.appendChild(ellipse)
@@ -59,8 +61,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     const rect = rc.rectangle(
       padding,
       padding,
-      svg.width.baseVal.value - padding * 2,
-      svg.height.baseVal.value - padding * 2,
+      width - padding * 2,
+      height - padding * 2,
       options,
     )
     svg.appendChild(rect)
@@ -89,7 +91,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-button-border-dash: none;
   appearance: none;
   display: inline-block;
-  padding: var(--r-common-box-padding);
+  padding-block: var(--r-common-box-padding-block);
+  padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-button-color);
   font-size: var(--r-common-font-size);
   line-height: var(--r-common-line-height);

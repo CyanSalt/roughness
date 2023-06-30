@@ -30,7 +30,7 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-const config = $(inject(configInjection) ?? ref<undefined>())
+const config = $(inject(configInjection, ref()))
 
 const rc = $computed(() => {
   if (!root) return null

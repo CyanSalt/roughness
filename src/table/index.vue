@@ -8,6 +8,7 @@ import { onMounted, reactive, toRef } from 'vue'
 import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RTable',
@@ -89,12 +90,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const options: Options = {
     stroke: 'var(--r-table-border-color)',
   }
+  const { width, height } = getSVGSize(svg)
   // Outline
   const rect = rc.rectangle(
     padding,
     padding,
-    svg.width.baseVal.value - padding * 2,
-    svg.height.baseVal.value - padding * 2,
+    width - padding * 2,
+    height - padding * 2,
     options,
   )
   svg.appendChild(rect)
@@ -102,14 +104,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   let offsetY = 0
   for (const value of y.slice(0, -1)) {
     offsetY += value
-    const line = rc.line(padding, offsetY, svg.width.baseVal.value - padding * 2, offsetY, options)
+    const line = rc.line(padding, offsetY, width - padding * 2, offsetY, options)
     svg.appendChild(line)
   }
   // Column lines
   let offsetX = 0
   for (const value of x.slice(0, -1)) {
     offsetX += value
-    const line = rc.line(offsetX, padding, offsetX, svg.height.baseVal.value - padding * 2, options)
+    const line = rc.line(offsetX, padding, offsetX, height - padding * 2, options)
     svg.appendChild(line)
   }
 }
@@ -147,7 +149,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-table {
   --r-table-border-color: var(--r-common-text-color);
   td, th {
-    padding: var(--r-common-box-padding);
+    padding-block: var(--r-common-box-padding-block);
+    padding-inline: var(--r-common-box-padding-inline);
     color: var(--r-button-color);
     font-size: var(--r-common-font-size);
   }
