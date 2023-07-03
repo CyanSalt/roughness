@@ -39,7 +39,6 @@ provide(modelInjection, $$(model))
   <RSpace
     tag="fieldset"
     class="r-checkbox-group"
-    :role="multiple ? undefined : 'radiogroup'"
   >
     <slot></slot>
   </RSpace>

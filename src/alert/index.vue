@@ -79,7 +79,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <strong :class="['r-alert', type, size, { 'is-inline': inline }]">
+  <strong
+    :class="['r-alert', type, size, { 'is-inline': inline }]"
+    role="status"
+  >
     <RGraphics @draw="draw" />
     <slot></slot>
   </strong>

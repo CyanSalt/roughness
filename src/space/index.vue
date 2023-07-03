@@ -47,6 +47,7 @@ const style = $computed<HTMLAttributes['style']>(() => {
     :is="tag"
     :class="['r-space', { 'is-inline': inline }]"
     :style="style"
+    :aria-orientation="vertical ? 'vertical' : 'horizontal'"
   >
     <slot></slot>
   </component>
