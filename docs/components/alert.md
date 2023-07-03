@@ -115,7 +115,7 @@ import { RAlert, RSpace } from 'roughness'
 
   </template>
   <template #body:inline.description>
-    Whether the button is displayed as an inline block.
+    Whether the alert is displayed as an inline box.
   </template>
 
   <template #body:reactions.type>

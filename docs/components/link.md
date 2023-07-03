@@ -20,12 +20,7 @@ import { RLink, RSpace } from 'roughness'
 
 <template>
   <RSpace>
-    <RLink>Normal</RLink>
-    <RLink type="primary">Primary</RLink>
-    <RLink type="info">Info</RLink>
-    <RLink type="success">Success</RLink>
-    <RLink type="warning">Warning</RLink>
-    <RLink type="error">Error</RLink>
+    <RLink>This way, sir.</RLink>
   </RSpace>
 </template>
 ```
@@ -33,40 +28,12 @@ import { RLink, RSpace } from 'roughness'
 </RDetails>
 
 <RSpace>
-  <RLink>Normal</RLink>
-  <RLink type="primary">Primary</RLink>
-  <RLink type="info">Info</RLink>
-  <RLink type="success">Success</RLink>
-  <RLink type="warning">Warning</RLink>
-  <RLink type="error">Error</RLink>
+  <RLink>This way, sir.</RLink>
 </RSpace>
 
-### Size
+### Color and Size
 
-<RDetails>
-  <template #summary>Show Code</template>
-
-```vue
-<script lang="ts" setup>
-import { RLink, RSpace } from 'roughness'
-</script>
-
-<template>
-  <RSpace align="center">
-    <RLink size="small">Small</RLink>
-    <RLink>Medium</RLink>
-    <RLink size="large">Large</RLink>
-  </RSpace>
-</template>
-```
-
-</RDetails>
-
-<RSpace align="center">
-  <RLink size="small">Small</RLink>
-  <RLink>Medium</RLink>
-  <RLink size="large">Large</RLink>
-</RSpace>
+See [Text](/components/text).
 
 ### With `href` attribute
 
@@ -104,34 +71,13 @@ See [Button](/components/button#tag).
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['size', 'type']"
+  :rows="['...']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
-  <template #body:size.type>
+  <template #body:....description>
 
-  `string`, but usually `'small' | 'medium' | 'large'`
-
-  </template>
-  <template #body:size.default>
-
-  `'medium'`
-
-  </template>
-  <template #body:size.description>
-    Link size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-  </template>
-
-  <template #body:type.type>
-
-  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
-
-  </template>
-  <template #body:type.description>
-
-  Link style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-
-  Also see [Color Styles](/guide/theme#color-styles).
+  See [Text Props](/components/text#props).
 
   </template>
 </RTable>
@@ -142,23 +88,9 @@ See [Button](/components/button#tag).
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'underline-width']"
+  :rows="['underline-width', '...']"
 >
   <template #body:*.name="{ row }">--r-link-{{ row }}</template>
-
-  <template #body:color.values>
-
-  `<color>`
-
-  </template>
-  <template #body:color.default>
-
-  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
-
-  </template>
-  <template #body:color.description>
-    Color of the link.
-  </template>
 
   <template #body:underline-width.values>
 
@@ -173,6 +105,13 @@ See [Button](/components/button#tag).
   <template #body:underline-width.description>
 
   Width of the link underline. Only visible when hovered, or with the `href` attribute.
+
+  </template>
+
+  <template #body:....name>...</template>
+  <template #body:....description>
+
+  See [Text Styles](/components/text#styles).
 
   </template>
 </RTable>

@@ -119,7 +119,7 @@ import { RButton, RSpace, RText } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'justify', 'overflow', 'vertical', 'wrap']"
+  :rows="['align', 'justify', 'inline', 'overflow', 'tag', 'vertical', 'wrap']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -155,6 +155,20 @@ import { RButton, RSpace, RText } from 'roughness'
 
   </template>
 
+  <template #body:inline.type>
+
+  `boolean`
+
+  </template>
+  <template #body:inline.default>
+
+  `false`
+
+  </template>
+  <template #body:inline.description>
+    Whether the space is displayed as an inline box.
+  </template>
+
   <template #body:overflow.type>
 
   `boolean`
@@ -167,6 +181,20 @@ import { RButton, RSpace, RText } from 'roughness'
   </template>
   <template #body:overflow.description>
     Whether to show the scrollbar when the content overflows.
+  </template>
+
+  <template #body:tag.type>
+
+  `string`
+
+  </template>
+  <template #body:tag.default>
+
+  `'div'`
+
+  </template>
+  <template #body:tag.description>
+    HTML tag for rendering the space.
   </template>
 
   <template #body:vertical.type>

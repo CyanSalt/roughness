@@ -8,13 +8,17 @@ defineOptions({
 const {
   align: userAlign,
   justify = 'start',
+  inline = false,
   overflow = false,
+  tag = 'div',
   vertical = false,
   wrap = true,
 } = defineProps<{
-  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
   align?: 'start' | 'end' | 'center' | 'baseline' | 'stretch',
+  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
+  inline?: boolean,
   overflow?: boolean,
+  tag?: string,
   vertical?: boolean,
   wrap?: boolean,
 }>()
@@ -39,9 +43,13 @@ const style = $computed<HTMLAttributes['style']>(() => {
 </script>
 
 <template>
-  <div class="r-space" :style="style">
+  <component
+    :is="tag"
+    :class="['r-space', { 'is-inline': inline }]"
+    :style="style"
+  >
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <style lang="scss" scoped>
@@ -49,5 +57,8 @@ const style = $computed<HTMLAttributes['style']>(() => {
   --r-space-gap-size: 12px;
   display: flex;
   gap: var(--r-space-gap-size);
+  &.is-inline {
+    display: inline-flex;
+  }
 }
 </style>
