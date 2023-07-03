@@ -292,7 +292,7 @@ const value = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['model-value', 'multiple', 'vertical']"
+  :rows="['model-value', 'multiple', '...']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -322,18 +322,10 @@ const value = ref<string | undefined>()
     Whether to support checking multiple items.
   </template>
 
-  <template #body:vertical.type>
+  <template #body:....description>
 
-  `boolean`
+  See [Space Props](/components/space#props).
 
-  </template>
-  <template #body:vertical.default>
-
-  `false`
-
-  </template>
-  <template #body:vertical.description>
-    Whether to layout vertically.
   </template>
 </RTable>
 </RSpace>
@@ -363,22 +355,15 @@ const value = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['gap-size']"
+  :rows="['...']"
 >
   <template #body:*.name="{ row }">--r-checkbox-group-{{ row }}</template>
 
-  <template #body:gap-size.values>
+  <template #body:....name>...</template>
+  <template #body:....description>
 
-  `<length>`
+  See [Space Styles](/components/space#styles).
 
-  </template>
-  <template #body:gap-size.default>
-
-  `12px`
-
-  </template>
-  <template #body:gap-size.description>
-    Size of the group gap.
   </template>
 </RTable>
 </RSpace>
