@@ -87,6 +87,7 @@ watchEffect(() => {
 <template>
   <canvas
     ref="root"
+    aria-hidden="true"
     :class="['r-grid-guide', { 'is-responsive': responsive }]"
   ></canvas>
 </template>

@@ -23,6 +23,11 @@ const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
 }>()
 
+defineSlots<{
+  summary?: (props: {}) => any,
+  default?: (props: {}) => any,
+}>()
+
 let internalOpen = $ref(open)
 
 watchEffect(() => {

@@ -9,6 +9,10 @@ const {
   type,
   size,
 } = defineProps<ColorProps & SizeProps>()
+
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
 </script>
 
 <template>

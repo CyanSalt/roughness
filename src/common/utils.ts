@@ -1,4 +1,4 @@
-import { useCurrentElement, useElementHover, useFocus, useMousePressed, useMutationObserver } from '@vueuse/core'
+import { useCurrentElement, useElementHover, useFocus, useFocusWithin, useMousePressed, useMutationObserver } from '@vueuse/core'
 import type { MaybeRef } from 'vue'
 import { computed, customRef, unref } from 'vue'
 
@@ -75,6 +75,7 @@ export interface SizeProps {
 export interface ReactionState {
   hover: boolean,
   focus: boolean,
+  'focus-within': boolean,
   active: boolean,
   dark: boolean,
 }
@@ -90,6 +91,7 @@ export function useReactionState(
   const currentElement = element ?? useCurrentElement<HTMLElement>()
   const hovered = useElementHover(currentElement)
   const { focused } = useFocus(currentElement)
+  const { focused: focusedWithin } = useFocusWithin(currentElement)
   const { pressed } = useMousePressed({ target: currentElement })
   const dark = useDark()
   return () => Object.fromEntries(unref(reactions).map(reaction => {
@@ -98,6 +100,8 @@ export function useReactionState(
         return [reaction, hovered.value]
       case 'focus':
         return [reaction, focused.value]
+      case 'focus-within':
+        return [reaction, focusedWithin.value]
       case 'active':
         return [reaction, pressed.value]
       case 'dark':

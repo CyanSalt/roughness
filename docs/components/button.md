@@ -376,7 +376,7 @@ import { RButton, RSpace } from 'roughness'
 
   </template>
   <template #body:border-width.description>
-    Size of the button border.
+    Width of the button border.
   </template>
 
   <template #body:border-dash.values>

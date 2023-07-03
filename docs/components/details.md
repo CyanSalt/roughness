@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable } from 'roughness'
+import { RButton, RDetails, RSpace, RTable, RText } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(true)
@@ -37,6 +37,7 @@ function toggle() {
       Clown suits
     </RDetails>
     <RButton :filled="!open" @click="toggle">Closet Door</RButton>
+    <RText>Look! The door is {{ open ? 'open' : 'closed' }}.</RText>
   </RSpace>
 </template>
 ```
@@ -49,6 +50,7 @@ function toggle() {
     Clown suits
   </RDetails>
   <RButton :filled="!open" @click="toggle">Closet Door</RButton>
+  <RText>Look! The door is {{ open ? 'open' : 'closed' }}.</RText>
 </RSpace>
 
 ## Usage
@@ -111,7 +113,7 @@ function toggle() {
 
   <template #body:update:open.parameters>
 
-  `(open: boolean)`
+  `(value: boolean)`
 
   </template>
   <template #body:update:open.description>

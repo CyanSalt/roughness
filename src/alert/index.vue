@@ -19,6 +19,10 @@ const {
   inline?: boolean,
 } & ColorProps & SizeProps & ReactionProps>()
 
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
 const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {

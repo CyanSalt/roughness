@@ -43,6 +43,7 @@
     "@cyansalt/stylelint-config-preset": "^1.4.1",
     "@cyansalt/tsconfig": "^2.1.1",
     "@release-it/conventional-changelog": "^5.1.1",
+    "@types/lodash-es": "^4.17.7",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue-macros/reactivity-transform": "^0.3.10",
     "@vueuse/core": "^10.2.0",

@@ -172,7 +172,7 @@ See [Button](/components/button#tag).
   </template>
   <template #body:underline-width.description>
 
-  Size of the link underline. Only visible when hovered, or with the `href` attribute.
+  Width of the link underline. Only visible when hovered, or with the `href` attribute.
 
   </template>
 </RTable>

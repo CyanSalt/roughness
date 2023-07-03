@@ -164,7 +164,7 @@ See [Responsive Graphics](/components/graphics#responsive).
 <RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['head:_column_', 'head:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*']"
+  :rows="['head:_column_', 'head:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*', 'default']"
 >
   <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
 
@@ -220,6 +220,12 @@ See [Responsive Graphics](/components/graphics#responsive).
   </template>
   <template #body:body:*.*.description>
     Body cell in each row and column.
+  </template>
+
+  <template #body:default.description>
+
+  Extra content for the table. For example `<caption>` or `<colgroup>`, etc.
+
   </template>
 </RTable>
 </RSpace>

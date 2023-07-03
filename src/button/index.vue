@@ -29,6 +29,10 @@ const {
   tag?: 'button' | 'a' | string,
 } & ColorProps & SizeProps & ReactionProps>()
 
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
 const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {

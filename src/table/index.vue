@@ -25,6 +25,12 @@ const {
   rows: string[],
 } & ReactionProps>()
 
+defineSlots<{
+  'head:*'?: (props: { column: string }) => any,
+  'body:*.*'?: (props: { row: string, column: string }) => any,
+  default?: (props: {}) => any,
+}>()
+
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
 
@@ -103,9 +109,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Row lines
   let offsetY = 0
   for (const value of y.slice(0, -1)) {
+    const headerDivider = !offsetY && header
     offsetY += value
-    const line = rc.line(padding, offsetY, width - padding * 2, offsetY, options)
-    svg.appendChild(line)
+    if (headerDivider) {
+      const firstLine = rc.line(padding, offsetY - 1, width - padding * 2, offsetY - 1, options)
+      svg.appendChild(firstLine)
+      const secondLine = rc.line(padding, offsetY + 1, width - padding * 2, offsetY + 1, options)
+      svg.appendChild(secondLine)
+    } else {
+      const line = rc.line(padding, offsetY, width - padding * 2, offsetY, options)
+      svg.appendChild(line)
+    }
   }
   // Column lines
   let offsetX = 0
@@ -120,6 +134,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <template>
   <table class="r-table">
     <RGraphics @draw="draw" />
+    <slot></slot>
     <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">

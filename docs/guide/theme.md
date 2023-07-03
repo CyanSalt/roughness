@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable, RText } from 'roughness'
-import VPSwitchAppearance from 'vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue'
+import { RButton, RCheckbox, RDetails, RSpace, RTable, RText, useDark } from 'roughness'
+
+const dark = useDark()
 </script>
 
 # Theme
@@ -13,8 +14,7 @@ In dark and light mode, in addition to the foreground and background colors, the
 
 <RSpace vertical>
   <RSpace>
-    <VPSwitchAppearance />
-    <RText>Toggle light/dark mode</RText>
+    <RCheckbox v-model:checked="dark">Enable dark mode</RCheckbox>
   </RSpace>
   <RSpace>
     <RButton filled>Normal</RButton>

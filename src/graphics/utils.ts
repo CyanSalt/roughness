@@ -1,7 +1,7 @@
 import type { Options } from 'roughjs/bin/core'
 import type { InjectionKey, Ref } from 'vue'
 
-export const configInjection: InjectionKey<Ref<Options | undefined>> = Symbol('RGraphicsConfig')
+export const optionsInjection: InjectionKey<Ref<Options | undefined>> = Symbol('RGraphicsConfig#options')
 
 export function getSVGSize(element: SVGSVGElement) {
   return {

@@ -1,10 +1,10 @@
-<script lang="ts" setup generic="T extends 'canvas' | 'svg' = 'svg'">
+<script lang="ts" setup generic="const T extends 'canvas' | 'svg' = 'svg'">
 import { useElementSize, useParentElement } from '@vueuse/core'
 import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, watchEffect } from 'vue'
-import { configInjection } from './utils'
+import { optionsInjection } from './utils'
 
 defineOptions({
   name: 'RGraphics',
@@ -30,14 +30,14 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-const config = $(inject(configInjection, ref()))
+const options = $(inject(optionsInjection, ref()))
 
 const rc = $computed(() => {
   if (!root) return null
   return (
     root instanceof HTMLCanvasElement
-      ? rough.canvas(root, { options: config })
-      : rough.svg(root, { options: config })
+      ? rough.canvas(root, { options })
+      : rough.svg(root, { options })
   ) as T extends 'canvas' ? RoughCanvas : RoughSVG
 })
 

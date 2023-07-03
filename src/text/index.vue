@@ -12,6 +12,10 @@ const {
 } = defineProps<{
   tag?: string,
 } & ColorProps & SizeProps>()
+
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
 </script>
 
 <template>

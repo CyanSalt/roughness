@@ -19,6 +19,10 @@ const {
   wrap?: boolean,
 }>()
 
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
 const align = $computed(() => {
   return userAlign ?? (vertical ? 'stretch' : 'start')
 })

@@ -213,7 +213,7 @@ import { RAlert, RSpace } from 'roughness'
 
   </template>
   <template #body:line-width.description>
-    Size of the alert lines.
+    Width of the alert lines.
   </template>
 
   <template #body:line-length.values>
