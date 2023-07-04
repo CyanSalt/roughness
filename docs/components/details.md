@@ -117,7 +117,7 @@ function toggle() {
 
   </template>
   <template #body:update:open.description>
-    Callback function triggered when visibility of the details are changed.
+    Callback function triggered when visibility of the detail is changed.
   </template>
 </RTable>
 </RSpace>

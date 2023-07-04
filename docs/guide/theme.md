@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RCheckbox, RDetails, RSpace, RTable, RText, useDark } from 'roughness'
+import { RButton, RDetails, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
 
 const dark = useDark()
 </script>
@@ -14,7 +14,7 @@ In dark and light mode, in addition to the foreground and background colors, the
 
 <RSpace vertical>
   <RSpace>
-    <RCheckbox v-model:checked="dark">Enable dark mode</RCheckbox>
+    <RSwitch v-model="dark">Enable dark mode</RSwitch>
   </RSpace>
   <RSpace>
     <RButton filled>Normal</RButton>

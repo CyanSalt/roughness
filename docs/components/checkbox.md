@@ -191,7 +191,7 @@ import { RCheckbox } from 'roughness'
   </template>
   <template #body:reactions.default>
 
-  `['focus', 'active']`
+  `['focus-within', 'active']`
 
   </template>
   <template #body:reactions.description>
@@ -228,7 +228,7 @@ import { RCheckbox } from 'roughness'
 
   </template>
   <template #body:update:checked.description>
-    Callback function triggered when checked state of the checkbox are changed.
+    Callback function triggered when checked state of the checkbox is changed.
   </template>
 </RTable>
 </RSpace>

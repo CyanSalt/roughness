@@ -1,10 +1,11 @@
 <script lang="ts" setup>
+import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useReactionState, type ColorProps, type ReactionProps, type SizeProps } from '../common/utils'
+import { toRef } from 'vue'
+import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
+import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import { toRef } from 'vue';
-import { getSVGSize } from '../graphics/utils';
-import { Options } from 'roughjs/bin/core';
+import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RAlert',
@@ -30,9 +31,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
 
   const style = getComputedStyle(svg)
-  const lineWidth = parseInt(style.getPropertyValue('--r-alert-line-width'), 10)|| 0
+  const lineWidth = parseInt(style.getPropertyValue('--r-alert-line-width'), 10) || 0
   const lineLength = parseInt(style.getPropertyValue('--r-alert-line-length'), 10) || 0
-  const lineGap = parseInt(style.getPropertyValue('--r-alert-line-gap'), 10)|| 0
+  const lineGap = parseInt(style.getPropertyValue('--r-alert-line-gap'), 10) || 0
 
   const options: Options = {
     stroke: 'var(--r-alert-line-color)',
@@ -48,7 +49,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const innerEllipsisB = outerEllipsisB - lineLength
   const centerEllipsisA = outerEllipsisA + lineLength / 2
   const centerEllipsisB = outerEllipsisB + lineLength / 2
-  const startAngle = - Math.PI / 2
+  const startAngle = -Math.PI / 2
 
   const unit = lineGap / Math.max(width, height)
   let lastX = Math.cos(startAngle) * centerEllipsisA

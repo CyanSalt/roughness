@@ -4,9 +4,10 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watch, watchEffect } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
+import type { ReactionProps } from '../common/utils'
+import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import { getSVGSize } from '../graphics/utils'
-import { ReactionProps, useReactionState } from '../common/utils'
 
 defineOptions({
   name: 'RSelect',
@@ -92,11 +93,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   )
   svg.appendChild(rect)
   const arrowSize = height / 2
-  const arrowPadding = height / 4
+  const arrowMargin = height / 4
   const linearPath = rc.linearPath([
-    [Math.round(width - arrowPadding - arrowSize * 7 / 8), Math.round(arrowPadding + arrowSize * 3 / 8)],
-    [Math.round(width - arrowPadding - arrowSize / 2), Math.round(height - arrowPadding - arrowSize / 4)],
-    [Math.round(width - arrowPadding - arrowSize / 8), Math.round(arrowPadding + arrowSize * 3 / 8)],
+    [Math.round(width - arrowMargin - arrowSize * 7 / 8), Math.round(arrowMargin + arrowSize * 3 / 8)],
+    [Math.round(width - arrowMargin - arrowSize / 2), Math.round(height - arrowMargin - arrowSize / 4)],
+    [Math.round(width - arrowMargin - arrowSize / 8), Math.round(arrowMargin + arrowSize * 3 / 8)],
   ], {
     stroke: 'var(--r-select-border-color)',
     strokeWidth,

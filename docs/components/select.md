@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RCheckbox, RSelect, RDetails, RSpace, RTable } from 'roughness'
+import { RCheckbox, RDetails, RSelect, RSpace, RTable } from 'roughness'
 </script>
 
 # Select

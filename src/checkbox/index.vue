@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, toRef, watch, watchEffect } from 'vue'
 import type { ReactionProps } from '../common/utils'
@@ -7,7 +8,6 @@ import RGraphics from '../graphics/index.vue'
 import { getSVGSize } from '../graphics/utils'
 import type { CheckboxValue } from './utils'
 import { modelInjection, multipleInjection } from './utils'
-import { Options } from 'roughjs/bin/core'
 
 defineOptions({
   name: 'RCheckbox',
@@ -27,7 +27,7 @@ const {
 } & ReactionProps>()
 
 const emit = defineEmits<{
-  (event: 'update:checked', value: typeof checked): void
+  (event: 'update:checked', value: typeof checked): void,
 }>()
 
 defineSlots<{
@@ -81,7 +81,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: indeterminate ? 'var(--r-checkbox-border-color)' : undefined,
   }
   if (multiple === false) {
-    const ellipse = rc.ellipse(width / 2 , height / 2, width - padding * 2, height - padding * 2, options)
+    const ellipse = rc.ellipse(width / 2, height / 2, width - padding * 2, height - padding * 2, options)
     svg.appendChild(ellipse)
   } else {
     const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, options)
@@ -91,7 +91,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     const checkedStrokeWidth = parseInt(checkedWidth, 10) || 0
     const linearPath = rc.linearPath([
       [padding, Math.round(height / 2)],
-      [Math.round(width / 2),  height - padding],
+      [Math.round(width / 2), height - padding],
       [width - padding, padding],
     ], {
       stroke: 'var(--r-checkbox-checked-color)',
@@ -113,7 +113,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-checkbox__input"
     >
     <span class="r-checkbox__control">
-      <RGraphics @draw="draw"/>
+      <RGraphics @draw="draw" />
     </span>
     <slot></slot>
   </label>
