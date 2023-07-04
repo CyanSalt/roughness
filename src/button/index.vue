@@ -6,7 +6,7 @@ import { toRef } from 'vue'
 import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import { getSVGSize } from '../graphics/utils'
+import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 
 defineOptions({
   name: 'RButton',
@@ -37,21 +37,17 @@ const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
-  const style = getComputedStyle(svg)
-  const borderWidth = style.getPropertyValue('--r-button-border-width')
-  const borderDash = style.getPropertyValue('--r-button-border-dash')
-  const strokeWidth = parseInt(borderWidth, 10) || 0
-  const strokeLineDash = borderDash === 'none'
-    ? undefined
-    : borderDash.split(/[,\s]+/).map(part => parseInt(part, 10) || 0)
-  const padding = 2
+  const { width, height } = getSVGSize(svg)
+  const strokeWidth = measureSVGSize(svg, '--r-button-border-width') ?? 0
+  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-button-border-dash')
+    ?.map(value => value ?? 0) ?? undefined
   const options: Options = {
     stroke: 'var(--r-button-border-color)',
     fill: filled ? 'var(--r-button-color)' : undefined,
     strokeWidth,
     strokeLineDash,
   }
-  const { width, height } = getSVGSize(svg)
+  const padding = 2
   if (rounded) {
     const ellipse = rc.ellipse(
       Math.round(width / 2),
@@ -91,7 +87,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-button {
   --r-button-color: var(--r-common-text-color);
   --r-button-border-color: var(--r-button-color);
-  --r-button-border-width: 1;
+  --r-button-border-width: 1px;
   --r-button-border-dash: none;
   appearance: none;
   display: inline-block;
@@ -103,12 +99,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   white-space: nowrap;
   text-align: center;
   cursor: pointer;
-  text-decoration-thickness: calc(var(--r-button-border-width) * 1px + 1px);
+  text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
   &:hover {
-    --r-button-border-dash: 8 8;
+    --r-button-border-dash: 8px 8px;
   }
   &:focus, &:active {
-    --r-button-border-width: 2;
+    --r-button-border-width: 2px;
   }
   &:disabled {
     opacity: 0.8;

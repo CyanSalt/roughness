@@ -45,12 +45,12 @@ const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
+  const { width, height } = getSVGSize(svg)
   const options: Options = {
     stroke: 'var(--r-details-summary-color)',
     fill: 'var(--r-details-summary-color)',
   }
   const padding = 2
-  const { width, height } = getSVGSize(svg)
   const points: Point[] = internalOpen ? [
     [padding, Math.round(height / 8) + padding],
     [width - padding, Math.round(height / 8) + padding],

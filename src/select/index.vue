@@ -7,7 +7,7 @@ import type { CheckboxValue } from '../checkbox/utils'
 import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import { getSVGSize } from '../graphics/utils'
+import { getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RSelect',
@@ -76,11 +76,9 @@ const getReactionState = useReactionState(toRef(() => reactions), $$(input))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
-  const style = getComputedStyle(svg)
-  const borderWidth = style.getPropertyValue('--r-select-border-width')
-  const strokeWidth = parseInt(borderWidth, 10) || 0
-  const padding = 2
   const { width, height } = getSVGSize(svg)
+  const strokeWidth = measureSVGSize(svg, '--r-select-border-width') ?? 0
+  const padding = 2
   const rect = rc.rectangle(
     padding,
     padding,
@@ -106,10 +104,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
-  const style = getComputedStyle(svg)
-  const borderWidth = style.getPropertyValue('--r-select-dropdown-border-width')
-  const strokeWidth = parseInt(borderWidth, 10) || 0
   const { width, height } = getSVGSize(svg)
+  const strokeWidth = measureSVGSize(svg, '--r-select-dropdown-border-width') ?? 0
   const padding = 2
   const linearPath = rc.linearPath([
     [padding, padding],
@@ -154,15 +150,17 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss" scoped>
 .r-select {
   --r-select-border-color: var(--r-common-text-color);
-  --r-select-border-width: 1;
-  --r-select-dropdown-border-width: 1;
+  --r-select-border-width: 1px;
+  --r-select-dropdown-border-width: 1px;
   position: relative;
   display: inline-block;
+  width: 210px;
   &:has(> .r-select__input:focus) {
-    --r-select-border-width: 2;
+    --r-select-border-width: 2px;
   }
 }
 .r-select__input {
+  width: 100%;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   font-size: var(--r-common-font-size);

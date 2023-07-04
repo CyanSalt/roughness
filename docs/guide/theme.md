@@ -35,7 +35,7 @@ Obviously, you can also customize these CSS properties. For example:
 ```css
 /* Render thicker borders for all buttons */
 .r-button {
-  --r-button-border-width: 2;
+  --r-button-border-width: 2px;
 }
 ```
 

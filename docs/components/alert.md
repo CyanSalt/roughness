@@ -218,12 +218,12 @@ import { RAlert, RSpace } from 'roughness'
 
   <template #body:line-length.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:line-length.default>
 
-  `8`
+  `0.5em`
 
   </template>
   <template #body:line-length.description>
@@ -232,12 +232,12 @@ import { RAlert, RSpace } from 'roughness'
 
   <template #body:line-gap.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:line-gap.default>
 
-  `12`
+  `12px`
 
   </template>
   <template #body:line-gap.description>

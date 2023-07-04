@@ -124,7 +124,7 @@ const value = ref<string | undefined>()
 
 ```vue
 <script lang="ts" setup>
-import { RCheckbox } from 'roughness'
+import { RCheckbox, RSpace } from 'roughness'
 
 </script>
 
@@ -273,12 +273,12 @@ import { RCheckbox } from 'roughness'
 
   <template #body:border-width.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:border-width.default>
 
-  `2` when focused or active, `1` else
+  `2px` when focused or active, `1px` else
 
   </template>
   <template #body:border-width.description>
@@ -301,12 +301,12 @@ import { RCheckbox } from 'roughness'
 
   <template #body:checked-width.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:checked-width.default>
 
-  `1`
+  `1px`
 
   </template>
   <template #body:checked-width.description>

@@ -148,12 +148,12 @@ import { RCheckbox, RSelect } from 'roughness'
 
   <template #body:border-width.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:border-width.default>
 
-  `2` when focused, `1` else
+  `2px` when focused, `1px` else
 
   </template>
   <template #body:border-width.description>
@@ -162,12 +162,12 @@ import { RCheckbox, RSelect } from 'roughness'
 
   <template #body:dropdown-border-width.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:dropdown-border-width.default>
 
-  `1`
+  `1px`
 
   </template>
   <template #body:dropdown-border-width.description>

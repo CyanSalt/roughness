@@ -91,12 +91,12 @@ const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
+  const { width, height } = getSVGSize(svg)
   const { x, y } = dimensions
-  const padding = 2
   const options: Options = {
     stroke: 'var(--r-table-border-color)',
   }
-  const { width, height } = getSVGSize(svg)
+  const padding = 2
   // Outline
   const rect = rc.rectangle(
     padding,

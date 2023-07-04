@@ -5,7 +5,7 @@ import { inject, ref, toRef, watch, watchEffect } from 'vue'
 import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import { getSVGSize } from '../graphics/utils'
+import { getSVGSize, measureSVGSize } from '../graphics/utils'
 import type { CheckboxValue } from './utils'
 import { modelInjection, multipleInjection } from './utils'
 
@@ -70,16 +70,13 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const style = getComputedStyle(svg)
-  const borderWidth = style.getPropertyValue('--r-checkbox-border-width')
-  const checkedWidth = style.getPropertyValue('--r-checkbox-checked-width')
-  const strokeWidth = parseInt(borderWidth, 10) || 0
-  const padding = 2
+  const strokeWidth = measureSVGSize(svg, '--r-checkbox-border-width') ?? 0
   const options: Options = {
     stroke: 'var(--r-checkbox-border-color)',
     strokeWidth,
     fill: indeterminate ? 'var(--r-checkbox-border-color)' : undefined,
   }
+  const padding = 2
   if (multiple === false) {
     const ellipse = rc.ellipse(width / 2, height / 2, width - padding * 2, height - padding * 2, options)
     svg.appendChild(ellipse)
@@ -88,7 +85,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     svg.appendChild(rectangle)
   }
   if (internalChecked) {
-    const checkedStrokeWidth = parseInt(checkedWidth, 10) || 0
+    const checkedStrokeWidth = measureSVGSize(svg, '--r-checkbox-checked-width') ?? 0
     const linearPath = rc.linearPath([
       [padding, Math.round(height / 2)],
       [Math.round(width / 2), height - padding],
@@ -122,15 +119,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss" scoped>
 .r-checkbox {
   --r-checkbox-border-color: var(--r-common-text-color);
-  --r-checkbox-border-width: 1;
+  --r-checkbox-border-width: 1px;
   --r-checkbox-checked-color: var(--r-common-primary-color);
-  --r-checkbox-checked-width: 2;
+  --r-checkbox-checked-width: 2px;
   --r-checkbox-control-size: var(--r-common-line-height);
   display: inline-flex;
   cursor: pointer;
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
-    --r-checkbox-border-width: 2;
+    --r-checkbox-border-width: 2px;
   }
   &:has(> .r-checkbox__input:disabled) {
     cursor: not-allowed;

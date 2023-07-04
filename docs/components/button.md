@@ -367,12 +367,12 @@ import { RButton, RSpace } from 'roughness'
 
   <template #body:border-width.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:border-width.default>
 
-  `2` when focused or active, `1` else
+  `2px` when focused or active, `1px` else
 
   </template>
   <template #body:border-width.description>
@@ -381,12 +381,12 @@ import { RButton, RSpace } from 'roughness'
 
   <template #body:border-dash.values>
 
-  `<integer> +` or `none`
+  `<length> +` or `none`
 
   </template>
   <template #body:border-dash.default>
 
-  `8` when hovered, `none` else
+  `8px` when hovered, `none` else
 
   </template>
   <template #body:border-dash.description>

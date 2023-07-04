@@ -5,7 +5,7 @@ import { toRef } from 'vue'
 import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import { getSVGSize } from '../graphics/utils'
+import { getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RAlert',
@@ -29,11 +29,9 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-
-  const style = getComputedStyle(svg)
-  const lineWidth = parseInt(style.getPropertyValue('--r-alert-line-width'), 10) || 0
-  const lineLength = parseInt(style.getPropertyValue('--r-alert-line-length'), 10) || 0
-  const lineGap = parseInt(style.getPropertyValue('--r-alert-line-gap'), 10) || 0
+  const lineWidth = measureSVGSize(svg, '--r-alert-line-width') ?? 0
+  const lineLength = measureSVGSize(svg, '--r-alert-line-length') ?? 0
+  const lineGap = measureSVGSize(svg, '--r-alert-line-gap') ?? 0
 
   const options: Options = {
     stroke: 'var(--r-alert-line-color)',
@@ -94,11 +92,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-alert-color: var(--r-common-text-color);
   --r-alert-line-color: var(--r-alert-color);
   --r-alert-line-width: 2px;
-  --r-alert-line-length: 8;
-  --r-alert-line-gap: 12;
+  --r-alert-line-length: 0.5em;
+  // `calc(1em - 4px)` in fact
+  --r-alert-line-gap: 12px;
   display: block;
-  padding-block: calc(var(--r-common-box-padding-block) + var(--r-alert-line-length) * 1px / 2);
-  padding-inline: calc(var(--r-common-box-padding-inline) + var(--r-alert-line-length) * 1px / 2);
+  padding-block: calc(var(--r-common-box-padding-block) + var(--r-alert-line-length) / 2);
+  padding-inline: calc(var(--r-common-box-padding-inline) + var(--r-alert-line-length) / 2);
   color: var(--r-alert-color);
   text-align: center;
   &.is-inline {
@@ -120,13 +119,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-alert-color: var(--r-common-error-color);
   }
   &.small {
-    --r-alert-line-length: 6;
-    --r-alert-line-gap: 8;
+    --r-alert-line-gap: 8px;
     font-size: var(--r-common-small-font-size);
   }
   &.large {
-    --r-alert-line-length: 10;
-    --r-alert-line-gap: 16;
+    --r-alert-line-gap: 16px;
     font-size: var(--r-common-large-font-size);
   }
 }

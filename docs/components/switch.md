@@ -130,12 +130,12 @@ import { RSwitch } from 'roughness'
 
   <template #body:border-width.values>
 
-  `<integer>`
+  `<length>`
 
   </template>
   <template #body:border-width.default>
 
-  `2` when focused or active, `1` else
+  `2px` when focused or active, `1px` else
 
   </template>
   <template #body:border-width.description>
