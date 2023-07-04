@@ -53,12 +53,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const points: Point[] = internalOpen ? [
     [padding, Math.round(height / 8) + padding],
-    [width - padding * 2, Math.round(height / 8) + padding],
-    [Math.round(width / 2), height - padding * 2],
+    [width - padding, Math.round(height / 8) + padding],
+    [Math.round(width / 2), height - padding],
   ] : [
     [Math.round(width / 8) + padding, padding],
-    [Math.round(width / 8) + padding, height - padding * 2],
-    [width - padding * 2, Math.round(height / 2)],
+    [Math.round(width / 8) + padding, height - padding],
+    [width - padding, Math.round(height / 2)],
   ]
   const polygon = rc.polygon(points, options)
   svg.appendChild(polygon)
@@ -100,7 +100,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   flex: none;
   width: var(--r-details-summary-marker-size);
   height: var(--r-details-summary-marker-size);
-  margin-right: calc(var(--r-details-summary-marker-size) / 4);
+  margin-inline-end: calc(var(--r-details-summary-marker-size) / 4);
   pointer-events: none;
 }
 </style>

@@ -46,6 +46,7 @@
     "@types/lodash-es": "^4.17.7",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue-macros/reactivity-transform": "^0.3.10",
+    "@vueuse/components": "^10.2.1",
     "@vueuse/core": "^10.2.0",
     "chart.js": "^4.3.0",
     "chartjs-plugin-roughness": "^1.0.6",

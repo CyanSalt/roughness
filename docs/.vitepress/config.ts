@@ -40,6 +40,7 @@ export default defineConfig({
             text: 'Form',
             items: [
               { text: 'Checkbox', link: '/components/checkbox' },
+              { text: 'Select', link: '/components/select' },
             ],
           },
           {

@@ -112,12 +112,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     const headerDivider = !offsetY && header
     offsetY += value
     if (headerDivider) {
-      const firstLine = rc.line(padding, offsetY - 1, width - padding * 2, offsetY - 1, options)
+      const firstLine = rc.line(padding, offsetY - 1, width - padding, offsetY - 1, options)
       svg.appendChild(firstLine)
-      const secondLine = rc.line(padding, offsetY + 1, width - padding * 2, offsetY + 1, options)
+      const secondLine = rc.line(padding, offsetY + 1, width - padding, offsetY + 1, options)
       svg.appendChild(secondLine)
     } else {
-      const line = rc.line(padding, offsetY, width - padding * 2, offsetY, options)
+      const line = rc.line(padding, offsetY, width - padding, offsetY, options)
       svg.appendChild(line)
     }
   }
@@ -125,7 +125,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   let offsetX = 0
   for (const value of x.slice(0, -1)) {
     offsetX += value
-    const line = rc.line(offsetX, padding, offsetX, height - padding * 2, options)
+    const line = rc.line(offsetX, padding, offsetX, height - padding, options)
     svg.appendChild(line)
   }
 }

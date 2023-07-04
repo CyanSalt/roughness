@@ -1,4 +1,4 @@
-<script lang="ts" setup generic="T extends boolean = true">
+<script lang="ts" setup>
 import { provide } from 'vue'
 import RSpace from '../space/index.vue'
 import type { CheckboxValue } from './utils'
@@ -12,8 +12,8 @@ const {
   modelValue,
   multiple = true,
 } = defineProps<{
-  modelValue: T extends true ? CheckboxValue[] : CheckboxValue | undefined,
-  multiple?: T,
+  modelValue: CheckboxValue[] | CheckboxValue | undefined,
+  multiple?: boolean,
 }>()
 
 const emit = defineEmits<{

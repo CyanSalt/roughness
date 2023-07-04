@@ -117,6 +117,32 @@ const value = ref<string | undefined>()
   <RText>{{ value ?? 'Nobody' }} is going hiking.</RText>
 </RSpace>
 
+### Disabled
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RCheckbox } from 'roughness'
+
+</script>
+
+<template>
+  <RSpace vertical>
+    <RCheckbox disabled>I can't move.</RCheckbox>
+    <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RCheckbox checked disabled>I can't move.</RCheckbox>
+  <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
+</RSpace>
+
 ## Usage
 
 ### Checkbox Props
@@ -124,7 +150,7 @@ const value = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['checked', 'reactions', 'value']"
+  :rows="['checked', 'indeterminate', 'reactions', 'value']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -142,6 +168,22 @@ const value = ref<string | undefined>()
     Checked state of the checkbox.
   </template>
 
+  <template #body:indeterminate.type>
+
+  `boolean`
+
+  </template>
+  <template #body:indeterminate.default>
+
+  `false`
+
+  </template>
+  <template #body:indeterminate.description>
+
+  [Indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) of the checkbox.
+
+  </template>
+
   <template #body:reactions.type>
 
   `string[]`
@@ -149,7 +191,7 @@ const value = ref<string | undefined>()
   </template>
   <template #body:reactions.default>
 
-  `['hover', 'focus', 'active']`
+  `['focus', 'active']`
 
   </template>
   <template #body:reactions.description>

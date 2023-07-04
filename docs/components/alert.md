@@ -125,7 +125,7 @@ import { RAlert, RSpace } from 'roughness'
   </template>
   <template #body:reactions.default>
 
-  `['hover', 'focus', 'active']`
+  `[]`
 
   </template>
   <template #body:reactions.description>

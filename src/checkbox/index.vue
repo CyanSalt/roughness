@@ -15,10 +15,14 @@ defineOptions({
 
 const {
   checked = false,
-  reactions = (() => ['focus-within', 'active']) as never,
+  disabled = false,
+  indeterminate = false,
   value,
+  reactions = (() => ['focus-within', 'active']) as never,
 } = defineProps<{
   checked?: boolean,
+  disabled?: boolean,
+  indeterminate?: boolean,
   value?: CheckboxValue,
 } & ReactionProps>()
 
@@ -74,6 +78,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const options: Options = {
     stroke: 'var(--r-checkbox-border-color)',
     strokeWidth,
+    fill: indeterminate ? 'var(--r-checkbox-border-color)' : undefined,
   }
   if (multiple === false) {
     const ellipse = rc.ellipse(width / 2 , height / 2, width - padding * 2, height - padding * 2, options)
@@ -86,8 +91,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     const checkedStrokeWidth = parseInt(checkedWidth, 10) || 0
     const linearPath = rc.linearPath([
       [padding, Math.round(height / 2)],
-      [Math.round(width / 2),  height - padding * 2],
-      [width - padding * 2, padding],
+      [Math.round(width / 2),  height - padding],
+      [width - padding, padding],
     ], {
       stroke: 'var(--r-checkbox-checked-color)',
       strokeWidth: checkedStrokeWidth,
@@ -103,7 +108,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       v-model="internalChecked"
       :type="multiple === false ? 'radio' : 'checkbox'"
       :value="value"
-      class="r-checkbox__model"
+      :disabled="disabled"
+      .indeterminate="indeterminate"
+      class="r-checkbox__input"
     >
     <span class="r-checkbox__control">
       <RGraphics @draw="draw"/>
@@ -122,11 +129,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: inline-flex;
   cursor: pointer;
   &:focus-within,
-  &:active {
+  &:not(:has(> .r-checkbox__input:disabled)):active {
     --r-checkbox-border-width: 2;
   }
+  &:has(> .r-checkbox__input:disabled) {
+    cursor: not-allowed;
+    text-decoration-line: line-through;
+  }
 }
-.r-checkbox__model {
+.r-checkbox__input {
   appearance: none;
   margin: 0;
 }
@@ -135,6 +146,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   flex: none;
   width: var(--r-checkbox-control-size);
   height: var(--r-checkbox-control-size);
-  margin-right: calc(var(--r-checkbox-control-size) / 4);
+  margin-inline-end: calc(var(--r-checkbox-control-size) / 4);
+  .r-checkbox__input:disabled + & {
+    opacity: 0.8;
+  }
 }
 </style>
