@@ -28,8 +28,6 @@ defineSlots<{
 .r-text {
   --r-text-color: var(--r-common-text-color);
   color: var(--r-text-color);
-  font-size: var(--r-common-font-size);
-  line-height: var(--r-common-line-height);
   &.primary {
     --r-text-color: var(--r-common-primary-color);
   }

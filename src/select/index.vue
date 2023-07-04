@@ -163,8 +163,6 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   width: 100%;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
-  font-size: var(--r-common-font-size);
-  line-height: var(--r-common-line-height);
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
