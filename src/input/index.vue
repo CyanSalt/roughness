@@ -99,6 +99,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <input
       v-else
       v-model="internalModelValue"
+      :type="modelModifiers.number ? 'number' : 'text'"
       :disabled="disabled"
       :readonly="readonly"
       :placeholder="placeholder"
@@ -143,6 +144,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &:not(:read-only) {
     cursor: pointer;
+  }
+  &::placeholder {
+    color: var(--r-common-placeholder-color);
   }
 }
 textarea.r-input__input {

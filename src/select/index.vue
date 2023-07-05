@@ -181,6 +181,9 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   .r-select:not(.is-readonly) > & {
     cursor: pointer;
   }
+  &::placeholder {
+    color: var(--r-common-placeholder-color);
+  }
 }
 .r-select__dropdown {
   position: absolute;
