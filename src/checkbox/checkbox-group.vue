@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { provide } from 'vue'
 import RSpace from '../space/index.vue'
 import type { CheckboxValue } from './utils'
@@ -25,7 +26,13 @@ defineSlots<{
 }>()
 
 const model = $computed({
-  get: () => modelValue,
+  get: () => {
+    return multiple ? (
+      Array.isArray(modelValue) ? modelValue : (modelValue === undefined ? [] : [modelValue])
+    ) : (
+      Array.isArray(modelValue) ? modelValue[0] : modelValue
+    )
+  },
   set: value => {
     emit('update:modelValue', value)
   },

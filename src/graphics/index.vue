@@ -1,4 +1,5 @@
 <script lang="ts" setup generic="const T extends 'canvas' | 'svg' = 'svg'">
+import '../common/style.scss'
 import { useElementSize, useParentElement } from '@vueuse/core'
 import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
@@ -66,8 +67,8 @@ watchEffect(() => {
   <component
     :is="(tag as T)"
     ref="root"
-    aria-hidden="true"
     :class="['r-graphics', { 'is-responsive': responsive }]"
+    aria-hidden="true"
   />
 </template>
 

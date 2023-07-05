@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { ColorProps, SizeProps } from '../common/utils'
 
 defineOptions({

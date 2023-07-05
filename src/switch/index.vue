@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watch, watchEffect } from 'vue'
@@ -114,7 +115,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   margin: 0;
 }
 .r-switch__control {
-  display: inline-block;
   flex: none;
   width: calc(var(--r-switch-control-size) * 2);
   height: var(--r-switch-control-size);

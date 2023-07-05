@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
 import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'

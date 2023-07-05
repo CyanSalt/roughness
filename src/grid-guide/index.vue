@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { useElementSize, useParentElement } from '@vueuse/core'
 import { toRef, watchEffect } from 'vue'
 import type { ReactionProps } from '../common/utils'
@@ -87,8 +88,8 @@ watchEffect(() => {
 <template>
   <canvas
     ref="root"
-    aria-hidden="true"
     :class="['r-grid-guide', { 'is-responsive': responsive }]"
+    aria-hidden="true"
   ></canvas>
 </template>
 

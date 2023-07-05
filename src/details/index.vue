@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
@@ -96,7 +97,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-details__summary-marker {
-  display: inline-block;
   flex: none;
   width: var(--r-details-summary-marker-size);
   height: var(--r-details-summary-marker-size);

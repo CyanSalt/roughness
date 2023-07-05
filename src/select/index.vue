@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watch, watchEffect } from 'vue'
@@ -36,10 +37,19 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalModelValue = $ref(modelValue ?? (multiple ? [] : undefined) as typeof modelValue)
+const defaultModelValue: typeof modelValue = $computed<typeof modelValue>(() => {
+  return multiple ? (
+    Array.isArray(modelValue) ? modelValue : (modelValue === undefined ? [] : [modelValue])
+  ) : (
+    Array.isArray(modelValue) ? modelValue[0] : modelValue
+  )
+})
+
+// eslint-disable-next-line vue/no-ref-object-destructure
+let internalModelValue = $ref(defaultModelValue)
 
 watchEffect(() => {
-  internalModelValue = modelValue ?? (multiple ? [] : undefined) as typeof modelValue
+  internalModelValue = defaultModelValue
 })
 
 watch($$(internalModelValue), currentValue => {
@@ -47,7 +57,7 @@ watch($$(internalModelValue), currentValue => {
 })
 
 const displayText = $computed(() => {
-  return multiple ? (internalModelValue as CheckboxValue[]).join(', ') : internalModelValue
+  return Array.isArray(internalModelValue) ? internalModelValue.join(', ') : internalModelValue
 })
 
 let input = $ref<HTMLInputElement>()
@@ -153,7 +163,7 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   --r-select-border-width: 1px;
   --r-select-dropdown-border-width: 1px;
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   width: 210px;
   &:has(> .r-select__input:focus) {
     --r-select-border-width: 2px;

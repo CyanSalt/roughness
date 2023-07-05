@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import '../common/style.scss'
 import { toRef } from 'vue'
 import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
@@ -99,7 +99,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
   &:hover {
-    --r-button-border-dash: 8px 8px;
+    --r-button-border-dash: 8px;
   }
   &:focus, &:active {
     --r-button-border-width: 2px;

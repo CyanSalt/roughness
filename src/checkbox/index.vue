@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, toRef, watch, watchEffect } from 'vue'
@@ -41,8 +42,8 @@ let internalChecked = $ref(checked)
 
 watchEffect(() => {
   if (typeof multiple === 'boolean') {
-    internalChecked = multiple
-      ? (model as CheckboxValue[]).includes(value!)
+    internalChecked = Array.isArray(model)
+      ? model.includes(value!)
       : model === value
   } else {
     internalChecked = checked
@@ -52,11 +53,13 @@ watchEffect(() => {
 watch($$(internalChecked), currentValue => {
   if (typeof multiple === 'boolean') {
     if (multiple) {
-      const currentChecked = (model as CheckboxValue[]).includes(value!)
+      const currentChecked = Array.isArray(model)
+        ? model.includes(value!)
+        : model === value
       if (currentValue && !currentChecked) {
-        model = (model as CheckboxValue[]).concat(value!)
+        model = Array.isArray(model) ? model.concat(value!) : [value!]
       } else if (!currentValue && currentChecked) {
-        model = (model as CheckboxValue[]).filter(item => item !== value)
+        model = Array.isArray(model) ? model.filter(item => item !== value) : []
       }
     } else if (currentValue) {
       model = value
@@ -139,7 +142,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   margin: 0;
 }
 .r-checkbox__control {
-  display: inline-block;
   flex: none;
   width: var(--r-checkbox-control-size);
   height: var(--r-checkbox-control-size);

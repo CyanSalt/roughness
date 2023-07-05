@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import { provide, toRef } from 'vue'
 import { optionsInjection } from './utils'
