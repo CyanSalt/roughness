@@ -14,7 +14,7 @@ let rate = ref(3)
 
 ```vue
 <script lang="ts" setup>
-import { RDetails, RRate, RTable } from 'roughness'
+import { RRate } from 'roughness'
 import { ref } from 'vue'
 
 let rate = ref(3)
