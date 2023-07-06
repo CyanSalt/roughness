@@ -1,5 +1,27 @@
 
 
+## [0.1.0-alpha.2](https://github.com/CyanSalt/roughness/compare/v0.1.0-alpha.1...v0.1.0-alpha.2) (2023-07-06)
+
+
+### Features
+
+* `overflow` of space ([8a3c1ee](https://github.com/CyanSalt/roughness/commit/8a3c1eed4d8a553aee50766692139dd0f2780ba7))
+* add checkbox ([59a6af9](https://github.com/CyanSalt/roughness/commit/59a6af9321987fcc1417bd99d289bc53c077a198))
+* add divider ([404e9bd](https://github.com/CyanSalt/roughness/commit/404e9bde853fc8e1be41ec9ab85d44ad6e0fa5b8))
+* add input ([c8bb93a](https://github.com/CyanSalt/roughness/commit/c8bb93abb2eedbced6b0feb7a4d631371d4ab0df))
+* add rate ([70ffc88](https://github.com/CyanSalt/roughness/commit/70ffc882b6b8eb207eab2e05fef4f8fbffc25ea0))
+* add select ([a3e7628](https://github.com/CyanSalt/roughness/commit/a3e7628f106c238a6da36fa57ce356e6c325f6f9))
+* add switch ([958f0c8](https://github.com/CyanSalt/roughness/commit/958f0c8b6fc3ccf0edfe65f07b9719d445ac314e))
+* alert ([8f0a93f](https://github.com/CyanSalt/roughness/commit/8f0a93f6712c6b27854a712573f108c248a3a999))
+* graphics config ([9770929](https://github.com/CyanSalt/roughness/commit/9770929d43b5436ef2859faae2ca3b8a77dbc556))
+* placeholder color ([73c59e7](https://github.com/CyanSalt/roughness/commit/73c59e7d1371b19f9b75b6ecfd5da42043857832))
+
+
+### Bug Fixes
+
+* a11y ([0ea952e](https://github.com/CyanSalt/roughness/commit/0ea952e4b02f9d6568ed12aa07c6ade4f5656f58))
+* aria orientation ([1ea16b5](https://github.com/CyanSalt/roughness/commit/1ea16b51d3f759fd95d670350caff437d77ed549))
+
 ## 0.1.0-alpha.1 (2023-06-29)
 
 
