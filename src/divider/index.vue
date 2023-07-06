@@ -24,7 +24,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <span :class="['r-divider', { 'is-vertical': vertical }]" role="separator">
+  <span
+    :class="['r-divider', { 'is-vertical': vertical }]"
+    role="separator"
+    :aria-orientation="vertical ? 'vertical' : 'horizontal'"
+  >
     <RGraphics @draw="draw" />
   </span>
 </template>
