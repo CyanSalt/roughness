@@ -43,9 +43,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ?.map(value => value ?? 0) ?? undefined
   const options: Options = {
     stroke: 'var(--r-button-border-color)',
-    fill: filled ? 'var(--r-button-color)' : undefined,
     strokeWidth,
     strokeLineDash,
+    fill: filled ? 'var(--r-button-color)' : undefined,
   }
   const padding = 2
   if (rounded) {

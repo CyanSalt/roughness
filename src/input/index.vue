@@ -48,7 +48,6 @@ watch($$(internalModelValue), currentValue => {
   const value = currentValue !== undefined && modelModifiers.number
     ? Number(currentValue)
     : currentValue
-  console.log('value?', value)
   emit('update:modelValue', value)
 })
 

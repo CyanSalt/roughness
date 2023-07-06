@@ -1,4 +1,4 @@
-import { useCurrentElement, useElementHover, useFocus, useFocusWithin, useMousePressed, useMutationObserver } from '@vueuse/core'
+import { useCurrentElement, useFocus, useFocusWithin, useMouseInElement, useMousePressed, useMutationObserver } from '@vueuse/core'
 import type { MaybeRef } from 'vue'
 import { computed, customRef, unref } from 'vue'
 
@@ -74,6 +74,7 @@ export interface SizeProps {
 
 export interface ReactionState {
   hover: boolean,
+  'hover-at': [number, number] | null,
   focus: boolean,
   'focus-within': boolean,
   active: boolean,
@@ -89,7 +90,7 @@ export function useReactionState(
   element?: MaybeRef<HTMLElement | null | undefined>,
 ) {
   const currentElement = element ?? useCurrentElement<HTMLElement>()
-  const hovered = useElementHover(currentElement)
+  const { elementX, elementY, isOutside } = useMouseInElement(currentElement)
   const { focused } = useFocus(currentElement)
   const { focused: focusedWithin } = useFocusWithin(currentElement)
   const { pressed } = useMousePressed({ target: currentElement })
@@ -97,7 +98,9 @@ export function useReactionState(
   return () => Object.fromEntries(unref(reactions).map(reaction => {
     switch (reaction) {
       case 'hover':
-        return [reaction, hovered.value]
+        return [reaction, !isOutside.value]
+      case 'hover-at':
+        return [reaction, isOutside.value ? null : [elementX.value, elementY.value]]
       case 'focus':
         return [reaction, focused.value]
       case 'focus-within':
