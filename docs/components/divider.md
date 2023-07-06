@@ -4,6 +4,8 @@ import { RDetails, RDivider, RTable, RText } from 'roughness'
 
 # Divider
 
+The LORD caused the sea to go back by a strong east wind all the night, and made the sea dry land, and the waters were divided.
+
 ## Example
 
 ### Basic

@@ -7,6 +7,8 @@ let rate = ref(3)
 
 # Rate
 
+Only God can judge me.
+
 ## Example
 
 <RDetails>
