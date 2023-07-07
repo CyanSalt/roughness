@@ -31,6 +31,12 @@ Or from a CDN like [unpkg](https://www.unpkg.com/) via HTML.
 
 You can find the documentation [on the website](https://roughness.vercel.app).
 
+## Acknowledgments
+
+Roughness is inspired by [ossinsight-lite](https://github.com/pingcap/ossinsight-lite/), which is based on Rough.js, uses [chartjs-plugin-roughness](https://www.npmjs.com/package/chartjs-plugin-roughness), Cabin Sketch font and grid guide appearance.
+
+Also thanks to Sora and Celeste for their encouragement.
+
 ## License
 
 ISC &copy; [CyanSalt](https://github.com/CyanSalt)

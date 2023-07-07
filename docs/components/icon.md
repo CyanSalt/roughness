@@ -8,7 +8,7 @@ No Picture, No Truth.
 
 <RAlert type="info">
 
-INFO<br>Roughness uses [Feather Icons](https://feathericons.com/).
+INFO<br>Roughness uses and redraws [Feather Icons](https://feathericons.com/).
 
 </RAlert>
 
