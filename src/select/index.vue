@@ -103,9 +103,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const arrowSize = height / 2
   const arrowMargin = height / 4
   const linearPath = rc.linearPath([
-    [Math.round(width - arrowMargin - arrowSize * 7 / 8), Math.round(arrowMargin + arrowSize * 3 / 8)],
-    [Math.round(width - arrowMargin - arrowSize / 2), Math.round(height - arrowMargin - arrowSize / 4)],
-    [Math.round(width - arrowMargin - arrowSize / 8), Math.round(arrowMargin + arrowSize * 3 / 8)],
+    [width - arrowMargin - arrowSize * 7 / 8, arrowMargin + arrowSize * 3 / 8],
+    [width - arrowMargin - arrowSize / 2, height - arrowMargin - arrowSize / 4],
+    [width - arrowMargin - arrowSize / 8, arrowMargin + arrowSize * 3 / 8],
   ], {
     stroke: 'var(--r-select-border-color)',
     strokeWidth,

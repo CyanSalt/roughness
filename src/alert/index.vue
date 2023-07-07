@@ -64,10 +64,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       const startY = sin * innerEllipsisB
       const endY = sin * outerEllipsisB
       const line = rc.line(
-        Math.round(centerX + startX),
-        Math.round(centerY + startY),
-        Math.round(centerX + endX),
-        Math.round(centerY + endY),
+        centerX + startX,
+        centerY + startY,
+        centerX + endX,
+        centerY + endY,
         options,
       )
       svg.appendChild(line)

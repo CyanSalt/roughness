@@ -90,8 +90,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   if (internalChecked) {
     const checkedStrokeWidth = measureSVGSize(svg, '--r-checkbox-checked-width') ?? 0
     const linearPath = rc.linearPath([
-      [padding, Math.round(height / 2)],
-      [Math.round(width / 2), height - padding],
+      [padding, height / 2],
+      [width / 2, height - padding],
       [width - padding, padding],
     ], {
       stroke: 'var(--r-checkbox-checked-color)',

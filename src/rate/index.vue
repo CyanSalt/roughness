@@ -65,8 +65,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   for (let i = 0; i < 5; i += 1) {
     const startX = padding + shapeSize * i * 1.5
     const polygon = rc.polygon(basePoints.map(([x, y]) => [
-      Math.round(startX + x * shapeSize / baseWidth),
-      Math.round(padding + y * shapeSize / baseWidth),
+      startX + x * shapeSize / baseWidth,
+      padding + y * shapeSize / baseWidth,
     ]), {
       stroke: hoveredAt || focusedWithin || active || activeIndex > i ? 'var(--r-rate-color)' : 'var(--r-rate-border-color)',
       fill: activeIndex > i ? 'var(--r-rate-color)' : undefined,

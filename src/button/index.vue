@@ -50,8 +50,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const padding = 2
   if (rounded) {
     const ellipse = rc.ellipse(
-      Math.round(width / 2),
-      Math.round(height / 2),
+      width / 2,
+      height / 2,
       width - padding * 2,
       height - padding * 2,
       options,

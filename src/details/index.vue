@@ -53,13 +53,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   const padding = 2
   const points: Point[] = internalOpen ? [
-    [padding, Math.round(height / 8) + padding],
-    [width - padding, Math.round(height / 8) + padding],
-    [Math.round(width / 2), height - padding],
+    [padding, height / 8 + padding],
+    [width - padding, height / 8 + padding],
+    [width / 2, height - padding],
   ] : [
-    [Math.round(width / 8) + padding, padding],
-    [Math.round(width / 8) + padding, height - padding],
-    [width - padding, Math.round(height / 2)],
+    [width / 8 + padding, padding],
+    [width / 8 + padding, height - padding],
+    [width - padding, height / 2],
   ]
   const polygon = rc.polygon(points, options)
   svg.appendChild(polygon)
