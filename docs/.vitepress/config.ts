@@ -6,6 +6,9 @@ import pkg from '../../package.json'
 export default defineConfig({
   title: 'Roughness',
   description: pkg.description,
+  head: [
+    ['link', { rel: 'icon', href: '/r.svg' }],
+  ],
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/installation', activeMatch: '^/guide/' },
