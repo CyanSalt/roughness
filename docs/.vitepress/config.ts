@@ -32,6 +32,7 @@ export default defineConfig({
               { text: 'Divider', link: '/components/divider' },
               { text: 'Graphics', link: '/components/graphics' },
               { text: 'Grid Guide', link: '/components/grid-guide' },
+              { text: 'Icon', link: '/components/icon' },
               { text: 'Link', link: '/components/link' },
               { text: 'Space', link: '/components/space' },
               { text: 'Text', link: '/components/text' },

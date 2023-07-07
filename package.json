@@ -53,6 +53,7 @@
     "chart.js": "^4.3.0",
     "chartjs-plugin-roughness": "^1.0.6",
     "fast-glob": "^3.2.12",
+    "feather-icons": "^4.29.0",
     "lodash-es": "^4.17.21",
     "parse-unit": "^1.0.1",
     "release-it": "^15.11.0",
