@@ -1,7 +1,13 @@
 @use 'sass:color';
 
+@font-face {
+  font-family: 'Syne Mono';
+  src: url('./SyneMono.woff2') format('woff2');
+}
+
 :root {
   --vp-font-family-base: var(--r-common-font-family);
+  --vp-font-family-mono: 'Syne Mono';
   --vp-c-brand: var(--r-common-primary-color);
   --vp-c-brand-light: #{color.scale(#0247fe, $lightness: 25%)};
   --vp-c-brand-lighter: #{color.scale(#0247fe, $lightness: 50%)};

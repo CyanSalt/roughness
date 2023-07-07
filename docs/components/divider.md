@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RDivider, RTable, RText } from 'roughness'
+import { RDetails, RDivider, RSpace, RTable, RText } from 'roughness'
 </script>
 
 # Divider

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RRate, RTable } from 'roughness'
+import { RDetails, RRate, RSpace, RTable } from 'roughness'
 import { ref } from 'vue'
 
 let rate = ref(3)
