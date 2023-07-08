@@ -118,7 +118,7 @@ import { RGridGuide } from 'roughness'
   </template>
   <template #body:color.default>
 
-  `rgb(255 255 255 / 0.1)` in dark theme, `#f5f5f5` else
+  `rgb(255 255 255 / 10%)` in dark theme, `#f5f5f5` else
 
   </template>
   <template #body:color.description>

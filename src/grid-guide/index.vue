@@ -105,7 +105,7 @@ watchEffect(() => {
     height: 100%;
   }
   :root.dark & {
-    --r-grid-guide-color: rgb(255 255 255 / 0.1);
+    --r-grid-guide-color: rgb(255 255 255 / 10%);
   }
 }
 :global(:has(> .r-grid-guide.is-responsive)) {

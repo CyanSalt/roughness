@@ -1,5 +1,6 @@
 export { default as RAlert } from './alert/index.vue'
 export { default as RButton } from './button/index.vue'
+export { default as RCard } from './card/index.vue'
 export { default as RCheckbox } from './checkbox/index.vue'
 export { default as RCheckboxGroup } from './checkbox/checkbox-group.vue'
 export { default as RDetails } from './details/index.vue'

@@ -62,7 +62,30 @@ import { RLink, RSpace } from 'roughness'
 
 ### As Button
 
-See [Button](/components/button#tag).
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RLink, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace>
+    <RLink tag="button" type="primary">Confirm cancelling</RLink>
+    <RLink tag="button" type="error">Cancel confirming</RLink>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace>
+  <RLink tag="button" type="primary">Confirm cancelling</RLink>
+  <RLink tag="button" type="error">Cancel confirming</RLink>
+</RSpace>
+
+Also see [Button](/components/button#tag).
 
 ## Usage
 
@@ -71,9 +94,23 @@ See [Button](/components/button#tag).
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['...']"
+  :rows="['tag', '...']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:tag.type>
+
+  `string`, but usually `'a' | 'button'`
+
+  </template>
+  <template #body:tag.default>
+
+  `'a'`
+
+  </template>
+  <template #body:tag.description>
+    HTML tag for rendering the link.
+  </template>
 
   <template #body:....description>
 

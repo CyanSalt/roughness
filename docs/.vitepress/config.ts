@@ -54,6 +54,7 @@ export default defineConfig({
           {
             text: 'Data',
             items: [
+              { text: 'Card', link: '/components/card' },
               { text: 'Table', link: '/components/table' },
             ],
           },

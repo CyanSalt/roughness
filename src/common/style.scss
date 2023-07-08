@@ -35,7 +35,7 @@
 :root.dark {
   --r-common-text-color: #f4f4f0;
   --r-common-background-color: #31343a;
-  --r-common-placeholder-color: rgb(255 255 255 / #{math.div(3 - math.sqrt(5), 2)});
+  --r-common-placeholder-color: rgb(255 255 255 / #{math.div(3 - math.sqrt(5), 4) * 100%});
   --r-common-primary-color: #94c0cc;
   --r-common-info-color: #a6aebb;
   --r-common-success-color: #bcdf8a;

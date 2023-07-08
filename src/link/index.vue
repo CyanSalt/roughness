@@ -6,7 +6,12 @@ defineOptions({
   name: 'RLink',
 })
 
-defineProps<{}>()
+const {
+  tag = 'a',
+} = defineProps<{
+  // FIXME: type issue of volar
+  tag?: 'a' | 'button' | string,
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -14,7 +19,7 @@ defineSlots<{
 </script>
 
 <template>
-  <RText tag="a" class="r-link">
+  <RText :tag="tag" class="r-link">
     <slot></slot>
   </RText>
 </template>
@@ -34,5 +39,8 @@ defineSlots<{
   &:focus, &:active {
     --r-link-underline-width: 3px;
   }
+}
+button.r-link {
+  appearance: none;
 }
 </style>
