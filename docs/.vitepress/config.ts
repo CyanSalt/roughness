@@ -62,6 +62,7 @@ export default defineConfig({
             text: 'Feedback',
             items: [
               { text: 'Alert', link: '/components/alert' },
+              { text: 'Dialog', link: '/components/dialog' },
             ],
           },
         ],
