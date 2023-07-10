@@ -78,7 +78,7 @@ function close() {
           formmethod="dialog"
           class="r-dialog__close"
         >
-          <RIcon name="x" />
+          <RIcon name="x" size="large" />
         </RLink>
       </template>
       <template #title>

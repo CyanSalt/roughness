@@ -11,6 +11,8 @@ function show() {
 
 # Dialog
 
+Uno stile tutto cose e tutto pensiero, scevro di ogni pretensione e di ogni maniera, in quella forma diretta e propria in che è l'ultima perfezione della prosa.
+
 ## Example
 
 <RDetails>

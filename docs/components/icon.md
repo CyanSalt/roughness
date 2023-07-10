@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import icons from 'feather-icons/dist/icons.json'
 import { RAlert, RDetails, RIcon, RSpace, RTable, RText } from 'roughness'
 </script>
 
@@ -46,6 +47,18 @@ import { RIcon, RSpace } from 'roughness'
 See [Text](/components/text).
 
 ## Usage
+
+<RDetails>
+  <template #summary>Show All Icons</template>
+  <RSpace :style="{ '--r-space-gap-size': '24px' }">
+    <template v-for="(graphics, name) in icons" :key="name">
+      <RSpace align="center">
+        <RIcon :name="name" />
+        <RText>{{ name }}</RText>
+      </RSpace>
+    </template>
+  </RSpace>
+</RDetails>
 
 ### Props
 
