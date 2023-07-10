@@ -17,7 +17,7 @@ const {
   responsive = true,
   tag = 'svg',
 } = defineProps<{
-  options: Options,
+  options?: Options,
   responsive?: boolean,
   tag?: T,
 }>()

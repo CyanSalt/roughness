@@ -3,9 +3,9 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watch, watchEffect } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -16,10 +16,11 @@ const {
   disabled = false,
   modelValue,
   reactions = (() => ['focus-within', 'active']) as never,
+  graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
   modelValue?: boolean,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
@@ -86,7 +87,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-switch__input"
     >
     <span class="r-switch__control">
-      <RGraphics @draw="draw" />
+      <RGraphics :options="graphicsOptions" @draw="draw" />
     </span>
     <slot></slot>
   </label>

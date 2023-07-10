@@ -5,9 +5,9 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watch, watchEffect } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -21,13 +21,14 @@ const {
   placeholder,
   readonly = false,
   reactions = (() => ['focus']) as never,
+  graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
   modelValue?: CheckboxValue[] | CheckboxValue | undefined,
   multiple?: boolean,
   placeholder?: string,
   readonly?: boolean,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
@@ -132,7 +133,7 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <label v-on-click-outside.bubble="close" :class="['r-select', { 'is-readonly': readonly }]">
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
     <input
       ref="input"
       :value="displayText"
@@ -151,7 +152,7 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-select__dropdown"
       @update:model-value="update"
     >
-      <RGraphics @draw="drawDropdown" />
+      <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
       <slot></slot>
     </RCheckboxGroup>
   </label>

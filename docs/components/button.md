@@ -210,7 +210,7 @@ import { RButton, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'filled', 'html-type', 'reactions', 'rounded', 'size', 'tag', 'type']"
+  :rows="['block', 'filled', 'graphics-options', 'html-type', 'reactions', 'rounded', 'size', 'tag', 'type']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -240,6 +240,19 @@ import { RButton, RSpace } from 'roughness'
   </template>
   <template #body:filled.description>
     Whether the button is filled with its color.
+  </template>
+
+  <template #body:graphics-options.type>
+
+  `import('roughjs/bin/core').Options`
+
+  </template>
+  <template #body:graphics-options.description>
+
+  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
+
+  See [Graphics Configuration](/components/graphics#component-prop).
+
   </template>
 
   <template #body:html-type.type>

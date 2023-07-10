@@ -4,9 +4,9 @@ import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watchEffect } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -16,9 +16,10 @@ defineOptions({
 const {
   open = false,
   reactions = (() => []) as never,
+  graphicsOptions,
 } = defineProps<{
   open?: boolean,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
@@ -70,7 +71,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   <details :data-open="open" :open="internalOpen" class="r-details" @toggle="toggle">
     <summary ref="summary" class="r-details__summary">
       <span class="r-details__summary-marker">
-        <RGraphics @draw="draw" />
+        <RGraphics :options="graphicsOptions" @draw="draw" />
       </span>
       <slot name="summary"></slot>
     </summary>

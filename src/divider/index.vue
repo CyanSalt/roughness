@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { toRef } from 'vue'
+import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -9,11 +12,16 @@ defineOptions({
 
 const {
   vertical = false,
+  reactions = (() => []) as never,
+  graphicsOptions,
 } = defineProps<{
   vertical?: boolean,
-}>()
+} & GraphicsProps>()
+
+const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  getReactionState()
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const line = rc.line(padding, padding, vertical ? padding : width - padding, vertical ? height - padding : padding, {
@@ -29,7 +37,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     role="separator"
     :aria-orientation="vertical ? 'vertical' : 'horizontal'"
   >
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
   </span>
 </template>
 

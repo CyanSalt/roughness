@@ -100,9 +100,22 @@ import { RAlert, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['inline', 'reactions', 'size', 'type']"
+  :rows="['graphics-options', 'inline', 'reactions', 'size', 'type']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:graphics-options.type>
+
+  `import('roughjs/bin/core').Options`
+
+  </template>
+  <template #body:graphics-options.description>
+
+  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
+
+  See [Graphics Configuration](/components/graphics#component-prop).
+
+  </template>
 
   <template #body:inline.type>
 

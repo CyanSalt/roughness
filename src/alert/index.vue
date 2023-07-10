@@ -3,9 +3,10 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
-import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
+import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -17,9 +18,10 @@ const {
   type,
   size,
   reactions = (() => []) as never,
+  graphicsOptions,
 } = defineProps<{
   inline?: boolean,
-} & ColorProps & SizeProps & ReactionProps>()
+} & ColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -83,7 +85,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-alert', type, size, { 'is-inline': inline }]"
     role="status"
   >
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
   </strong>
 </template>

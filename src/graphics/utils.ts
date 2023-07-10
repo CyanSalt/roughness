@@ -2,8 +2,13 @@ import unit from 'parse-unit'
 import type { Options } from 'roughjs/bin/core'
 import toPX from 'to-px'
 import type { InjectionKey, Ref } from 'vue'
+import type { ReactionProps } from '../common/utils'
 
 export const optionsInjection: InjectionKey<Ref<Options | undefined>> = Symbol('RGraphicsConfig#options')
+
+export interface GraphicsProps extends ReactionProps {
+  graphicsOptions?: Options,
+}
 
 export function getSVGSize(element: SVGSVGElement) {
   return {

@@ -6,9 +6,9 @@ import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
 import { onMounted, reactive, toRef } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -20,11 +20,12 @@ const {
   header = true,
   rows,
   reactions = (() => []) as never,
+  graphicsOptions,
 } = defineProps<{
   columns: string[],
   header?: boolean,
   rows: string[],
-} & ReactionProps>()
+} & GraphicsProps>()
 
 defineSlots<{
   'head:*'?: (props: { column: string }) => any,
@@ -134,7 +135,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <table class="r-table">
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
     <thead v-if="header" ref="head">
       <tr>

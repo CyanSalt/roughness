@@ -5,9 +5,9 @@ import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import RText from '../text/index.vue'
 
 defineOptions({
@@ -17,9 +17,10 @@ defineOptions({
 const {
   name,
   reactions = (() => ['']) as never,
+  graphicsOptions,
 } = defineProps<{
   name: string,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const svgAttrs: Partial<Record<keyof SVGSVGElement, string>> = {
   viewBox: '0 0 24 24',
@@ -122,6 +123,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <template>
   <RText class="r-icon">
     <RGraphics
+      :options="graphicsOptions"
       :responsive="false"
       v-bind="svgAttrs"
       @draw="draw"

@@ -3,9 +3,10 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
-import type { ColorProps, ReactionProps, SizeProps } from '../common/utils'
+import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 
 defineOptions({
@@ -21,13 +22,14 @@ const {
   type,
   size,
   reactions = (() => ['hover', 'focus', 'active']) as never,
+  graphicsOptions,
 } = defineProps<{
   block?: boolean,
   filled?: boolean,
   htmlType?: HTMLButtonElement['type'],
   rounded?: boolean,
   tag?: 'button' | 'a' | string,
-} & ColorProps & SizeProps & ReactionProps>()
+} & ColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -76,7 +78,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :type="htmlType"
     :class="['r-button', type, size, { 'is-filled': filled, 'is-block': block }]"
   >
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
   </component>
 </template>

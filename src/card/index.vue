@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
@@ -17,11 +17,12 @@ const {
   header = true,
   tag = 'article',
   reactions = (() => []) as never,
+  graphicsOptions,
 } = defineProps<{
   footer?: boolean,
   header?: boolean,
   tag?: string,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 defineSlots<{
   title?: (props: {}) => any,
@@ -56,7 +57,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <component :is="tag" class="r-card">
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"
       tag="header"

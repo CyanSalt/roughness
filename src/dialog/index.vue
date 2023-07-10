@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { watch, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
-import type { ReactionProps } from '../common/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 import RLink from '../link/index.vue'
 
@@ -15,12 +15,13 @@ const {
   header = true,
   open = false,
   reactions,
+  graphicsOptions,
 } = defineProps<{
   closable?: boolean,
   footer?: boolean,
   header?: boolean,
   open?: boolean,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
@@ -56,6 +57,14 @@ watchEffect(() => {
 function close() {
   internalOpen = false
 }
+
+const nestingGraphicsOptions = $computed(() => {
+  return {
+    fill: 'var(--r-common-background-color)',
+    fillStyle: 'solid',
+    ...graphicsOptions,
+  }
+})
 </script>
 
 <template>
@@ -68,6 +77,7 @@ function close() {
       :header="header"
       :footer="footer"
       :reactions="reactions"
+      :graphics-options="nestingGraphicsOptions"
       tag="form"
       class="r-dialog__card"
     >
@@ -97,6 +107,7 @@ function close() {
   max-width: min(90vw, 960px);
   padding: 0;
   border: none;
+  background-color: transparent;
   &::backdrop {
     background-color: rgb(0 0 0 / 50%);
   }

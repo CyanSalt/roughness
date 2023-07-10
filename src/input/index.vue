@@ -3,9 +3,9 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { DirectiveBinding } from 'vue'
 import { toRef, watch, watchEffect } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 
 defineOptions({
@@ -20,6 +20,7 @@ const {
   placeholder,
   readonly = false,
   reactions = (() => ['hover', 'focus', 'active']) as never,
+  graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
   lines?: number,
@@ -27,7 +28,7 @@ const {
   modelModifiers?: DirectiveBinding['modifiers'],
   placeholder?: string,
   readonly?: boolean,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
@@ -86,7 +87,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-input', { 'is-multiline': lines > 1 }]"
     :style="{ '--r-input-lines': lines > 1 ? lines : undefined }"
   >
-    <RGraphics @draw="draw" />
+    <RGraphics :options="graphicsOptions" @draw="draw" />
     <textarea
       v-if="lines > 1"
       v-model="internalModelValue"

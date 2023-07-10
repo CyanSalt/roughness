@@ -131,6 +131,25 @@ import { RButton, RGraphicsConfig } from 'roughness'
   </RSpace>
 </RGraphicsConfig>
 
+Additionally, almost all components with graphics support the `graphics-options` prop:{#component-prop}
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RButton } from 'roughness'
+</script>
+
+<template>
+  <RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Psychological Shadow</RButton>
+</template>
+```
+
+</RDetails>
+
+<RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Medieval Sky</RButton>
+
 ## Usage
 
 ### GraphicsConfig Props

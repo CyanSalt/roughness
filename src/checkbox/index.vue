@@ -3,9 +3,9 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, toRef, watch, watchEffect } from 'vue'
-import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize } from '../graphics/utils'
 import type { CheckboxValue } from './utils'
 import { modelInjection, multipleInjection } from './utils'
@@ -20,12 +20,13 @@ const {
   indeterminate = false,
   value,
   reactions = (() => ['focus-within', 'active']) as never,
+  graphicsOptions,
 } = defineProps<{
   checked?: boolean,
   disabled?: boolean,
   indeterminate?: boolean,
   value?: CheckboxValue,
-} & ReactionProps>()
+} & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:checked', value: typeof checked): void,
@@ -113,7 +114,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-checkbox__input"
     >
     <span class="r-checkbox__control">
-      <RGraphics @draw="draw" />
+      <RGraphics :options="graphicsOptions" @draw="draw" />
     </span>
     <slot></slot>
   </label>
