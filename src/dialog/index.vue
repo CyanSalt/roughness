@@ -88,13 +88,13 @@ const nestingGraphicsOptions = $computed(() => {
       :reactions="reactions"
       :graphics-options="nestingGraphicsOptions"
       tag="form"
+      method="dialog"
       class="r-dialog__card"
     >
       <template v-if="closable" #header-end>
         <RLink
           tag="button"
           size="large"
-          formmethod="dialog"
           class="r-dialog__close"
         >
           <RIcon name="x" size="large" />

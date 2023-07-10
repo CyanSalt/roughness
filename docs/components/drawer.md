@@ -53,7 +53,7 @@ function show() {
       (Here! Bamboo-copter!)<br>
       Ah ah ah, I love you so much, Doraemon
     <template #footer>
-      <RButton formmethod="dialog">Close</RButton>
+      <RButton>Close</RButton>
     </template>
   </RDrawer>
 </template>
@@ -75,7 +75,7 @@ function show() {
     (Here! Bamboo-copter!)<br>
     Ah ah ah, I love you so much, Doraemon
   <template #footer>
-    <RButton formmethod="dialog">Close</RButton>
+    <RButton>Close</RButton>
   </template>
 </RDrawer>
 
@@ -102,7 +102,7 @@ function showBottom() {
     <template #title>This site eats cookies.</template>
       We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
     <template #footer>
-      <RButton type="primary" formmethod="dialog">Accept</RButton>
+      <RButton type="primary">Accept</RButton>
     </template>
   </RDrawer>
 </template>
@@ -115,7 +115,7 @@ function showBottom() {
   <template #title>This site eats cookies.</template>
     We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
   <template #footer>
-    <RButton type="primary" formmethod="dialog">Accept</RButton>
+    <RButton type="primary">Accept</RButton>
   </template>
 </RDrawer>
 
