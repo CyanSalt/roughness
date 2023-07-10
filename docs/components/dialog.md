@@ -62,7 +62,7 @@ function show() {
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['closable', 'graphics-options', 'open', '...']"
+  :rows="['closable', 'graphics-options', 'open', 'state', '...']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -105,6 +105,22 @@ function show() {
   </template>
   <template #body:open.description>
     Whether to display the dialog modal.
+  </template>
+
+  <template #body:state.type>
+
+  `'auto' | 'manual'`
+
+  </template>
+  <template #body:state.default>
+
+  `'manual'`
+
+  </template>
+  <template #body:state.description>
+
+  When specified as `auto`, the dialog can be closed by clicking the backdrop.
+
   </template>
 
   <template #body:....description>

@@ -3,7 +3,7 @@ import { watch, watchEffect } from 'vue'
 import RDialog from '../dialog/index.vue'
 
 defineOptions({
-  name: 'RDialog',
+  name: 'RDrawer',
 })
 
 const {

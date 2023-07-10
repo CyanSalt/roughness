@@ -14,6 +14,7 @@ const {
   footer = true,
   header = true,
   open = false,
+  state = 'manual',
   reactions,
   graphicsOptions,
 } = defineProps<{
@@ -21,6 +22,7 @@ const {
   footer?: boolean,
   header?: boolean,
   open?: boolean,
+  state?: 'auto' | 'manual',
 } & GraphicsProps>()
 
 const emit = defineEmits<{
@@ -54,6 +56,12 @@ watchEffect(() => {
   }
 })
 
+function clickBackdrop(event: MouseEvent) {
+  if (state === 'auto') {
+    (event.target as HTMLDialogElement).close()
+  }
+}
+
 function close() {
   internalOpen = false
 }
@@ -71,6 +79,7 @@ const nestingGraphicsOptions = $computed(() => {
   <dialog
     ref="root"
     class="r-dialog"
+    @click.self="clickBackdrop"
     @close="close"
   >
     <RCard
