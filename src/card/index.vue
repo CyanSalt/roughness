@@ -56,7 +56,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <component :is="tag" class="r-card">
+  <RSpace :tag="tag" vertical class="r-card">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"
@@ -82,7 +82,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     >
       <slot name="footer"></slot>
     </RSpace>
-  </component>
+  </RSpace>
 </template>
 
 <style lang="scss" scoped>
@@ -95,10 +95,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-block: var(--r-card-padding-block);
   padding-inline: var(--r-card-padding-inline);
 }
-.r-card__header {
-  margin-block-end: var(--r-card-padding-block);
+.r-card__header, .r-card__footer {
+  flex: none;
 }
-.r-card__footer {
-  margin-block-start: var(--r-card-padding-block);
+.r-card__body {
+  flex: auto;
 }
 </style>

@@ -116,3 +116,38 @@ function show() {
   </template>
 </RTable>
 </RSpace>
+
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['...']"
+>
+  <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:....description>
+
+  See [Card Slots](/components/card#slots).
+
+  </template>
+</RTable>
+</RSpace>
+
+### Styles
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['...']"
+>
+  <template #body:*.name="{ row }">--r-dialog-{{ row }}</template>
+
+  <template #body:....name>...</template>
+  <template #body:....description>
+
+  See [Card Styles](/components/card#styles).
+
+  </template>
+</RTable>
+</RSpace>

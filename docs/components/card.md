@@ -44,7 +44,7 @@ import { RCard } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['footer', 'graphics-options', 'header', 'reactions', 'tag']"
+  :rows="['footer', 'graphics-options', 'header', 'reactions', 'tag', '...']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
@@ -107,18 +107,48 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:tag.type>
+  <template #body:....description>
 
-  `string`
+  See [Space Props](/components/space#props).
 
-  </template>
-  <template #body:tag.default>
-
-  `'article'`
+  Unlike Space, the default value of Card's `tag` is `article`.
 
   </template>
-  <template #body:tag.description>
-    HTML tag for rendering the button.
+</RTable>
+</RSpace>
+
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['footer', 'header-extra', 'title', 'default']"
+>
+  <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:footer.description>
+
+  The content of the card footer.
+
+  Only available if the `footer` is `true`.
+
+  </template>
+  <template #body:header-extra.description>
+
+  The content of the card header after title.
+
+  Only available if the `header` is `true`.
+
+  </template>
+  <template #body:title.description>
+
+  The content of the card title.
+
+  Only available if the `header` is `true`.
+
+  </template>
+  <template #body:default.description>
+    The content of the card.
   </template>
 </RTable>
 </RSpace>
@@ -128,7 +158,7 @@ import { RCard } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline']"
+  :rows="['border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline', '...']"
 >
   <template #body:*.name="{ row }">--r-card-{{ row }}</template>
 
@@ -191,7 +221,7 @@ import { RCard } from 'roughness'
 
   </template>
   <template #body:padding-block.description>
-    Vertical padding of the card and between the card header or footer and the body.
+    Vertical padding of the card.
   </template>
 
   <template #body:padding-inline.values>
@@ -206,6 +236,13 @@ import { RCard } from 'roughness'
   </template>
   <template #body:padding-inline.description>
     Horizontal padding of the card.
+  </template>
+
+  <template #body:....name>...</template>
+  <template #body:....description>
+
+  See [Space Styles](/components/space#styles).
+
   </template>
 </RTable>
 </RSpace>

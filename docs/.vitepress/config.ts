@@ -63,6 +63,7 @@ export default defineConfig({
             items: [
               { text: 'Alert', link: '/components/alert' },
               { text: 'Dialog', link: '/components/dialog' },
+              { text: 'Drawer', link: '/components/drawer' },
             ],
           },
         ],
