@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { watch, watchEffect } from 'vue'
 import RDialog from '../dialog/index.vue'
 
 defineOptions({
@@ -8,14 +7,8 @@ defineOptions({
 
 const {
   direction = 'right',
-  open = false,
 } = defineProps<{
   direction?: 'left' | 'right' | 'top' | 'bottom',
-  open?: boolean,
-}>()
-
-const emit = defineEmits<{
-  (event: 'update:open', value: typeof open): void,
 }>()
 
 defineSlots<{
@@ -23,20 +16,10 @@ defineSlots<{
   default?: (props: {}) => any,
   footer?: (props: {}) => any,
 }>()
-
-let internalOpen = $ref(open)
-
-watchEffect(() => {
-  internalOpen = open
-})
-
-watch($$(internalOpen), currentValue => {
-  emit('update:open', currentValue)
-})
 </script>
 
 <template>
-  <RDialog v-model:open="internalOpen" :class="['r-drawer', direction]">
+  <RDialog :class="['r-drawer', direction]">
     <template #title>
       <slot name="title"></slot>
     </template>
