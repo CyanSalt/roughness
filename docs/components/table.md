@@ -47,7 +47,7 @@ import { RTable, RText } from 'roughness'
   <template #body:css.age>27</template>
 </RTable>
 
-### Without Header
+### Header and Footer
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -62,12 +62,15 @@ import { RTable } from 'roughness'
     :columns="['name', 'life']"
     :rows="['unified', 'western', 'eastern']"
     :header="false"
+    footer
   >
     <template #body:*.name="{ row }">{{ row.toUpperCase() }}</template>
     <template #body:unified.name="{ row }">(unified)</template>
     <template #body:unified.life>27 BC–AD 395</template>
     <template #body:western.life>AD 395–476/480</template>
     <template #body:eastern.life>AD 395–1453</template>
+    <template #footer:name>Total</template>
+    <template #footer:life>1480</template>
   </RTable>
 </template>
 ```
@@ -78,12 +81,15 @@ import { RTable } from 'roughness'
   :columns="['name', 'life']"
   :rows="['unified', 'western', 'eastern']"
   :header="false"
+  footer
 >
   <template #body:*.name="{ row }">{{ row.toUpperCase() }}</template>
   <template #body:unified.name="{ row }">(unified)</template>
   <template #body:unified.life>27 BC–AD 395</template>
   <template #body:western.life>AD 395–476/480</template>
   <template #body:eastern.life>AD 395–1453</template>
+  <template #footer:name>Total</template>
+  <template #footer:life>1480</template>
 </RTable>
 
 ### Filled
@@ -177,22 +183,28 @@ See [Responsive Graphics](/components/graphics#responsive).
 <RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['head:_column_', 'head:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*', 'default']"
+  :rows="['default', 'header:_column_', 'header:*', 'body:_row_._column_', 'body:*._column_', 'body:_row_.*', 'body:*.*']"
 >
   <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
 
-  <template #body:head:_column_.description>
+  <template #body:default.description>
 
-  Header cell in the column corresponding to `[column]`. Fallback to `head:*`.
+  Extra content for the table. For example `<caption>` or `<colgroup>`, etc.
 
   </template>
 
-  <template #body:head:*.parameters>
+  <template #body:header:_column_.description>
+
+  Header cell in the column corresponding to `[column]`. Fallback to `header:*`.
+
+  </template>
+
+  <template #body:header:*.parameters>
 
   `{ column: string }`
 
   </template>
-  <template #body:head:*.description>
+  <template #body:header:*.description>
 
   Header cell in each column. Defaults to `startCase(column)`.
 
@@ -235,9 +247,14 @@ See [Responsive Graphics](/components/graphics#responsive).
     Body cell in each row and column.
   </template>
 
-  <template #body:default.description>
+  <template #body:footer:*.parameters>
 
-  Extra content for the table. For example `<caption>` or `<colgroup>`, etc.
+  `{ column: string }`
+
+  </template>
+  <template #body:footer:*.description>
+
+  Footer cell in each column.
 
   </template>
 </RTable>

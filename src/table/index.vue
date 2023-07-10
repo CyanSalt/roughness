@@ -17,24 +17,27 @@ defineOptions({
 
 const {
   columns,
+  footer = false,
   header = true,
   rows,
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   columns: string[],
+  footer?: boolean,
   header?: boolean,
   rows: string[],
 } & GraphicsProps>()
 
 defineSlots<{
-  'head:*'?: (props: { column: string }) => any,
+  'header:*'?: (props: { column: string }) => any,
   'body:*.*'?: (props: { row: string, column: string }) => any,
   default?: (props: {}) => any,
 }>()
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
+let foot = $ref<HTMLTableSectionElement>()
 
 interface TableDimensions {
   x: number[],
@@ -61,10 +64,11 @@ function getFirstColumn(section: HTMLTableSectionElement | undefined) {
 }
 
 function calculateDimensions() {
-  const firstRow = getFirstRow(body) ?? getFirstRow(head) ?? []
+  const firstRow = getFirstRow(body) ?? getFirstRow(head) ?? getFirstRow(foot) ?? []
   const firstColumn = [
     ...(getFirstColumn(head) ?? []),
     ...(getFirstColumn(body) ?? []),
+    ...(getFirstColumn(foot) ?? []),
   ]
   dimensions.x = firstRow.map(el => el.clientWidth)
   dimensions.y = firstColumn.map(el => el.clientHeight)
@@ -84,6 +88,7 @@ function observeDimensions(section: Ref<HTMLTableSectionElement | undefined>) {
 
 observeDimensions($$(head))
 observeDimensions($$(body))
+observeDimensions($$(foot))
 
 onMounted(() => {
   calculateDimensions()
@@ -110,10 +115,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   svg.appendChild(rect)
   // Row lines
   let offsetY = 0
-  for (const value of y.slice(0, -1)) {
-    const headerDivider = !offsetY && header
+  for (let i = 0; i < y.length - 1; i += 1) {
+    const value = y[i]
+    const isSectionDivider = header && i === 0 || footer && i === y.length - 2
     offsetY += value
-    if (headerDivider) {
+    if (isSectionDivider) {
       const firstLine = rc.line(padding, offsetY - 1, width - padding, offsetY - 1, options)
       svg.appendChild(firstLine)
       const secondLine = rc.line(padding, offsetY + 1, width - padding, offsetY + 1, options)
@@ -140,8 +146,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`head:${column}`">
-            <slot name="head:*" :column="column">{{ startCase(column) }}</slot>
+          <slot :name="`header:${column}`">
+            <slot name="header:*" :column="column">{{ startCase(column) }}</slot>
           </slot>
         </th>
       </tr>
@@ -159,6 +165,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
         </td>
       </tr>
     </tbody>
+    <tfoot v-if="footer" ref="foot">
+      <tr>
+        <th v-for="column in columns" :key="column">
+          <slot :name="`footer:${column}`">
+            <slot name="footer:*" :column="column"></slot>
+          </slot>
+        </th>
+      </tr>
+    </tfoot>
   </table>
 </template>
 

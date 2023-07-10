@@ -122,24 +122,10 @@ import { RCard } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['footer', 'header-extra', 'title', 'default']"
+  :rows="['title', 'header-extra', 'default', 'footer']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
-  <template #body:footer.description>
-
-  The content of the card footer.
-
-  Only available if the `footer` is `true`.
-
-  </template>
-  <template #body:header-extra.description>
-
-  The content of the card header after title.
-
-  Only available if the `header` is `true`.
-
-  </template>
   <template #body:title.description>
 
   The content of the card title.
@@ -147,8 +133,25 @@ import { RCard } from 'roughness'
   Only available if the `header` is `true`.
 
   </template>
+
+  <template #body:header-extra.description>
+
+  The content of the card header after title.
+
+  Only available if the `header` is `true`.
+
+  </template>
+
   <template #body:default.description>
     The content of the card.
+  </template>
+
+  <template #body:footer.description>
+
+  The content of the card footer.
+
+  Only available if the `footer` is `true`.
+
   </template>
 </RTable>
 </RSpace>
