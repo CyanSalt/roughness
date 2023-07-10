@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RAlert, RButton, RDetails, RGraphics, RGraphicsConfig, RSpace, RTable, RText } from 'roughness'
+import { RAlert, RButton, RDetails, RGraphics, RGraphicsConfig, RRate, RSpace, RTable, RText } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 
 function drawHeart(rc: RoughSVG, svg: SVGSVGElement) {
@@ -114,15 +114,21 @@ import { RButton, RGraphicsConfig } from 'roughness'
 
 <template>
   <RGraphicsConfig :options="{ fillStyle: 'cross-hatch' }">
-    <RButton filled>Psychological Shadow</RButton>
+    <RSpace vertical align="start">
+      <RButton filled>Psychological Shadow</RButton>
+      <RRate :model-value="3" />
+    </RSpace>
   </RGraphicsConfig>
 </template>
 ```
 
 </RDetails>
 
-<RGraphicsConfig :options="{ fillStyle: 'cross-hatch' }">
-  <RButton filled>Psychological Shadow</RButton>
+<RGraphicsConfig :options="{ fillStyle: 'solid' }">
+  <RSpace vertical align="start">
+    <RButton filled>Medieval Sky</RButton>
+    <RRate :model-value="1" />
+  </RSpace>
 </RGraphicsConfig>
 
 ## Usage
@@ -154,9 +160,20 @@ import { RButton, RGraphicsConfig } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['responsive', 'tag']"
+  :rows="['options', 'responsive', 'tag']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
+
+  <template #body:options.type>
+
+  `import('roughjs/bin/core').Options`
+
+  </template>
+  <template #body:options.description>
+
+  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
+
+  </template>
 
   <template #body:responsive.type>
 

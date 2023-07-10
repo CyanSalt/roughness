@@ -3,6 +3,7 @@ import '../common/style.scss'
 import { useElementSize, useParentElement } from '@vueuse/core'
 import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
+import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, watchEffect } from 'vue'
 import { optionsInjection } from './utils'
@@ -12,9 +13,11 @@ defineOptions({
 })
 
 const {
+  options,
   responsive = true,
   tag = 'svg',
 } = defineProps<{
+  options: Options,
   responsive?: boolean,
   tag?: T,
 }>()
@@ -31,14 +34,21 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-const options = $(inject(optionsInjection, ref()))
+const configOptions = $(inject(optionsInjection, ref()))
+
+const nestingOptions = $computed<Options>(() => {
+  return {
+    ...configOptions,
+    ...options,
+  }
+})
 
 const rc = $computed(() => {
   if (!root) return null
   return (
     root instanceof HTMLCanvasElement
-      ? rough.canvas(root, { options })
-      : rough.svg(root, { options })
+      ? rough.canvas(root, { options: nestingOptions })
+      : rough.svg(root, { options: nestingOptions })
   ) as T extends 'canvas' ? RoughCanvas : RoughSVG
 })
 
