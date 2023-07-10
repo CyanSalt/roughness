@@ -65,11 +65,11 @@ export function useColors() {
 }
 
 export interface ColorProps {
-  type?: string, // 'primary' | 'info' | 'success' | 'warning' | 'error'
+  type?: 'primary' | 'info' | 'success' | 'warning' | 'error' | (string & {}),
 }
 
 export interface SizeProps {
-  size?: string, // 'small' | 'large'
+  size?: 'small' | 'large' | (string & {}),
 }
 
 export interface ReactionState {

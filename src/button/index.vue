@@ -28,7 +28,7 @@ const {
   filled?: boolean,
   htmlType?: HTMLButtonElement['type'],
   rounded?: boolean,
-  tag?: 'button' | 'a' | string,
+  tag?: 'button' | 'a' | (string & {}),
 } & ColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
