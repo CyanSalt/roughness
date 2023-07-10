@@ -1,9 +1,10 @@
 <p align="center">
-<a href="https://github.com/CyanSalt/roughness#gh-light-mode-only">
-  <img src="https://raw.githubusercontent.com/CyanSalt/roughness/main/docs/roughness.svg#gh-light-mode-only" alt="Roughness" width="300">
-</a>
-<a href="https://github.com/CyanSalt/roughness#gh-dark-mode-only">
-  <img src="https://raw.githubusercontent.com/CyanSalt/roughness/main/docs/roughness-dark.svg#gh-dark-mode-only" alt="Roughness" width="300">
+<a href="https://github.com/CyanSalt/roughness">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/CyanSalt/roughness/main/docs/roughness-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/CyanSalt/roughness/main/docs/roughness.svg">
+    <img alt="Roughness" src="https://raw.githubusercontent.com/CyanSalt/roughness/main/docs/roughness.svg">
+  </picture>
 </a>
 <br>
 A Vue component library with hand-drawn appearance.
