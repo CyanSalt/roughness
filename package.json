@@ -4,6 +4,7 @@
   "description": "A Vue component library with hand-drawn appearance",
   "type": "module",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],

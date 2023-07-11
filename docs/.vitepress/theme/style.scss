@@ -47,3 +47,6 @@
 .VPNav .title {
   color: var(--r-common-primary-color);
 }
+.vp-doc .r-list__item {
+  margin-top: revert;
+}

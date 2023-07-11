@@ -8,6 +8,7 @@ export default defineConfig({
   description: pkg.description,
   head: [
     ['link', { rel: 'icon', href: '/r.svg' }],
+    ['link', { rel: 'icon', href: '/r-dark.svg', media: '(prefers-color-scheme: dark)' }],
   ],
   themeConfig: {
     nav: [
@@ -55,6 +56,7 @@ export default defineConfig({
             text: 'Data',
             items: [
               { text: 'Card', link: '/components/card' },
+              { text: 'List', link: '/components/list' },
               { text: 'Table', link: '/components/table' },
             ],
           },
