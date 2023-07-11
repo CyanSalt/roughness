@@ -20,14 +20,20 @@ const {
   graphicsOptions,
   reactions = (() => []) as never,
 } = defineProps<{
-  items: string[],
+  items: string[] | number,
   listStyle?: 'disc' | 'circle' | 'square' | 'auto',
 } & GraphicsProps>()
 
 defineSlots<{
-  '*'?: (props: {}) => any,
+  '*'?: (props: { item: string }) => any,
   default?: (props: {}) => any,
 }>()
+
+const renderedItems = $computed(() => {
+  return typeof items === 'number'
+    ? Array.from({ length: items }, (item, index) => String(index + 1))
+    : items
+})
 
 const tag = $computed(() => {
   return listStyle === 'auto' ? 'ol' : 'ul'
@@ -114,7 +120,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <li v-if="listStyle !== 'auto'" role="presentation" class="r-list__markers">
       <RGraphics ref="graphics" :options="graphicsOptions" @draw="draw" />
     </li>
-    <li v-for="item in items" :key="item" class="r-list__item">
+    <li v-for="item in renderedItems" :key="item" class="r-list__item">
       <slot :name="item">
         <slot name="*" :item="item"></slot>
       </slot>

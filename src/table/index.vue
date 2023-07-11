@@ -23,10 +23,10 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
-  columns: string[],
+  columns: string[] | number,
   footer?: boolean,
   header?: boolean,
-  rows: string[],
+  rows: string[] | number,
 } & GraphicsProps>()
 
 defineSlots<{
@@ -34,6 +34,18 @@ defineSlots<{
   'body:*.*'?: (props: { row: string, column: string }) => any,
   default?: (props: {}) => any,
 }>()
+
+const renderedRows = $computed(() => {
+  return typeof rows === 'number'
+    ? Array.from({ length: rows }, (item, index) => String(index + 1))
+    : rows
+})
+
+const renderedColumns = $computed(() => {
+  return typeof columns === 'number'
+    ? Array.from({ length: columns }, (item, index) => String(index + 1))
+    : columns
+})
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -145,7 +157,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <slot></slot>
     <thead v-if="header" ref="head">
       <tr>
-        <th v-for="column in columns" :key="column">
+        <th v-for="column in renderedColumns" :key="column">
           <slot :name="`header:${column}`">
             <slot name="header:*" :column="column">{{ startCase(column) }}</slot>
           </slot>
@@ -153,8 +165,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       </tr>
     </thead>
     <tbody ref="body">
-      <tr v-for="row in rows" :key="row">
-        <td v-for="column in columns" :key="column">
+      <tr v-for="row in renderedRows" :key="row">
+        <td v-for="column in renderedColumns" :key="column">
           <slot :name="`body:${row}.${column}`">
             <slot :name="`body:*.${column}`" :row="row">
               <slot :name="`body:${row}.*`" :column="column">
@@ -167,7 +179,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     </tbody>
     <tfoot v-if="footer" ref="foot">
       <tr>
-        <th v-for="column in columns" :key="column">
+        <th v-for="column in renderedColumns" :key="column">
           <slot :name="`footer:${column}`">
             <slot name="footer:*" :column="column"></slot>
           </slot>

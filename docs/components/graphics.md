@@ -113,10 +113,10 @@ import { RButton, RGraphicsConfig } from 'roughness'
 </script>
 
 <template>
-  <RGraphicsConfig :options="{ fillStyle: 'cross-hatch' }">
+  <RGraphicsConfig :options="{ fillStyle: 'solid' }">
     <RSpace vertical align="start">
-      <RButton filled>Psychological Shadow</RButton>
-      <RRate :model-value="3" />
+      <RButton filled>Medieval Sky</RButton>
+      <RRate :model-value="1" />
     </RSpace>
   </RGraphicsConfig>
 </template>
@@ -148,7 +148,7 @@ import { RButton } from 'roughness'
 
 </RDetails>
 
-<RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Medieval Sky</RButton>
+<RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Psychological Shadow</RButton>
 
 ## Usage
 

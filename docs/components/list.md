@@ -46,7 +46,7 @@ import { RList } from 'roughness'
 </script>
 
 <template>
-  <RList :items="['1', '2']" list-style="square">
+  <RList :items="2" list-style="square">
     <template #1>How are you?</template>
     <template #2>Fine, thank you.<br>And you?</template>
   </RList>
@@ -55,7 +55,7 @@ import { RList } from 'roughness'
 
 </RDetails>
 
-<RList :items="['1', '2']" list-style="square">
+<RList :items="2" list-style="square">
   <template #1>How are you?</template>
   <template #2>Fine, thank you.<br>And you?</template>
 </RList>
@@ -73,14 +73,18 @@ import { RList } from 'roughness'
 
   <template #body:items.type>
 
-  `string[]`
+  `string[] | number`
 
   </template>
   <template #body:items.default>
     <RText type="error">Required</RText>
   </template>
   <template #body:items.description>
-    Item keys. Recommended to use all lowercase letters and hyphens and underscores.
+
+  Item keys. Recommended to use all lowercase letters and hyphens and underscores.
+
+  When specified as number, integer strings of `1...n` will be generated as values.
+
   </template>
 
   <template #body:list-style.type>
@@ -97,7 +101,7 @@ import { RList } from 'roughness'
 
   Marker style of the list. See [`list-style-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
 
-  When declared as `auto`, the list will be **ordered** and the markers will be drawn by the user agent.
+  When specified as `auto`, the list will be **ordered** and the markers will be drawn by the user agent.
 
   </template>
 

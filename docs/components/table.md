@@ -122,14 +122,18 @@ See [Responsive Graphics](/components/graphics#responsive).
 
   <template #body:columns.type>
 
-  `string[]`
+  `string[] | number`
 
   </template>
   <template #body:columns.default>
     <RText type="error">Required</RText>
   </template>
   <template #body:columns.description>
-    Column keys. Recommended to use all lowercase letters and hyphens and underscores.
+
+  Column keys. Recommended to use all lowercase letters and hyphens and underscores.
+
+  When specified as number, integer strings of `1...n` will be generated as values.
+
   </template>
 
   <template #body:header.type>
@@ -166,14 +170,18 @@ See [Responsive Graphics](/components/graphics#responsive).
 
   <template #body:rows.type>
 
-  `string[]`
+  `string[] | number`
 
   </template>
   <template #body:rows.default>
     <RText type="error">Required</RText>
   </template>
   <template #body:rows.description>
-    Row keys. Recommended to use all lowercase letters and hyphens and underscores.
+
+  Row keys. Recommended to use all lowercase letters and hyphens and underscores.
+
+  When specified as number, integer strings of `1...n` will be generated as values.
+
   </template>
 </RTable>
 </RSpace>
