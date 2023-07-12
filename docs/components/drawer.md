@@ -79,7 +79,7 @@ function show() {
   </template>
 </RDrawer>
 
-### Direction
+### Side
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -98,7 +98,7 @@ function showBottom() {
 
 <template>
   <RButton @click="showBottom">Cookie Jar</RButton>
-  <RDrawer v-model:open="bottomOpen" direction="bottom">
+  <RDrawer v-model:open="bottomOpen" side="bottom">
     <template #title>This site eats cookies.</template>
       We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
     <template #footer>
@@ -111,7 +111,7 @@ function showBottom() {
 </RDetails>
 
 <RButton @click="showBottom">Cookie Jar</RButton>
-<RDrawer v-model:open="bottomOpen" direction="bottom">
+<RDrawer v-model:open="bottomOpen" side="bottom">
   <template #title>This site eats cookies.</template>
     We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
   <template #footer>
@@ -126,21 +126,22 @@ function showBottom() {
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['direction', '...']"
+  :rows="['side', '...']"
 >
   <template #body:*.name="{ row }">{{ row }}</template>
 
-  <template #body:direction.type>
+  <template #body:side.type>
 
   `'left' | 'right' | 'top' | 'bottom'`
 
   </template>
-  <template #body:direction.default>
+  <template #body:side.default>
 
   `'right'`
 
   </template>
-  <template #body:direction.description>
+  <template #body:side.description>
+    Which side of the page the drawer will show on.
   </template>
 
   <template #body:....description>
