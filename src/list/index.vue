@@ -26,7 +26,6 @@ const {
 
 defineSlots<{
   '*'?: (props: { item: string }) => any,
-  default?: (props: {}) => any,
 }>()
 
 const renderedItems = $computed(() => {

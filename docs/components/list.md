@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RList, RSpace, RTable } from 'roughness'
+import { RDetails, RList, RSpace, RTable, RText } from 'roughness'
 </script>
 
 # List
@@ -141,6 +141,34 @@ import { RList } from 'roughness'
   See [Space Props](/components/space#props).
 
   Unlike Space, the default value of List's `tag` is `ul` or `ol`.
+
+  </template>
+</RTable>
+</RSpace>
+
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['_item_', '_*_']"
+>
+  <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]').replace(/_\*_/g, '*') }}</template>
+
+  <template #body:_item_.description>
+
+  Content for list item corresponding to `[item]`. Fallback to `*`.
+
+  </template>
+
+  <template #body:_*_.parameters>
+
+  `{ item: string }`
+
+  </template>
+  <template #body:_*_.description>
+
+  Content for each list item.
 
   </template>
 </RTable>
