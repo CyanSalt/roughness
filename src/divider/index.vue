@@ -46,14 +46,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-divider-color: var(--r-common-text-color);
   --r-divider-gap-size: 12px;
   display: block;
-  height: 5px;
+  block-size: 5px;
   margin-block: calc(var(--r-divider-gap-size) - 2px);
   margin-inline: auto;
   /* background-color: var(--r-divider-color); */
   &.is-vertical {
     display: inline-block;
-    width: 5px;
-    height: var(--r-common-line-height);
+    block-size: var(--r-common-line-height);
+    inline-size: 5px;
     margin-block: auto;
     margin-inline: calc(var(--r-divider-gap-size) - 2px);
     vertical-align: middle;

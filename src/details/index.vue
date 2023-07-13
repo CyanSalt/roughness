@@ -68,7 +68,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <details :data-open="open" :open="internalOpen" class="r-details" @toggle="toggle">
+  <details
+    :open="internalOpen"
+    class="r-details"
+    @toggle="toggle"
+  >
     <summary ref="summary" class="r-details__summary">
       <span class="r-details__summary-marker">
         <RGraphics :options="graphicsOptions" @draw="draw" />
@@ -83,10 +87,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-details {
   --r-details-summary-color: var(--r-common-text-color);
   --r-details-summary-marker-size: var(--r-common-line-height);
+  --r-details-gap-size: 12px;
 }
 .r-details__summary {
   display: flex;
   align-items: center;
+  margin-block-end: var(--r-details-gap-size);
   color: var(--r-details-summary-color);
   cursor: pointer;
   // for Safari

@@ -162,7 +162,7 @@ function toggle() {
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['summary-color', 'summary-marker-size']"
+  :rows="['summary-color', 'summary-marker-size', 'gap-size']"
 >
   <template #body:*.name="{ row }">--r-details-{{ row }}</template>
 
@@ -192,6 +192,20 @@ function toggle() {
   </template>
   <template #body:summary-marker-size.description>
     Size of the block of summary marker.
+  </template>
+
+  <template #body:gap-size.values>
+
+  `<length>`
+
+  </template>
+  <template #body:gap-size.default>
+
+  `12px`
+
+  </template>
+  <template #body:gap-size.description>
+    Size of the gap between the summary and content.
   </template>
 </RTable>
 </RSpace>
