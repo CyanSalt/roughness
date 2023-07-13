@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends string[] | number">
 import { useMutationObserver } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
@@ -20,19 +20,13 @@ const {
   graphicsOptions,
   reactions = (() => []) as never,
 } = defineProps<{
-  items: string[] | number,
+  items: T,
   listStyle?: 'disc' | 'circle' | 'square' | 'auto',
 } & GraphicsProps>()
 
 defineSlots<{
-  '*'?: (props: { item: string }) => any,
-}>()
-
-const renderedItems = $computed(() => {
-  return typeof items === 'number'
-    ? Array.from({ length: items }, (item, index) => String(index + 1))
-    : items
-})
+  '*'?: (props: { item: T extends string[] ? string : number }) => any,
+} & Record<string, (props: {}) => any>>()
 
 const tag = $computed(() => {
   return listStyle === 'auto' ? 'ol' : 'ul'
@@ -119,8 +113,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <li v-if="listStyle !== 'auto'" role="presentation" class="r-list__markers">
       <RGraphics ref="graphics" :options="graphicsOptions" @draw="draw" />
     </li>
-    <li v-for="item in renderedItems" :key="item" class="r-list__item">
-      <slot :name="item">
+    <li v-for="item in items" :key="item" class="r-list__item">
+      <slot :name="(item as string | number)">
         <slot name="*" :item="item"></slot>
       </slot>
     </li>

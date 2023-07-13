@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script lang="ts" setup generic="T extends string[] | number, U extends string[] | number">
 import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
 import { startCase } from 'lodash-es'
@@ -23,29 +23,18 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
-  columns: string[] | number,
+  columns: T,
   footer?: boolean,
   header?: boolean,
-  rows: string[] | number,
+  rows: U,
 } & GraphicsProps>()
 
 defineSlots<{
-  'header:*'?: (props: { column: string }) => any,
-  'body:*.*'?: (props: { row: string, column: string }) => any,
+  'header:*'?: (props: { column: T extends string[] ? string : number }) => any,
+  'body:*.*'?: (props: { row: U extends string[] ? string : number, column: T extends string[] ? string : number }) => any,
+  'footer:*'?: (props: { column: T extends string[] ? string : number }) => any,
   default?: (props: {}) => any,
-}>()
-
-const renderedRows = $computed(() => {
-  return typeof rows === 'number'
-    ? Array.from({ length: rows }, (item, index) => String(index + 1))
-    : rows
-})
-
-const renderedColumns = $computed(() => {
-  return typeof columns === 'number'
-    ? Array.from({ length: columns }, (item, index) => String(index + 1))
-    : columns
-})
+} & Record<`header:${string}` | `body:${string}` | `footer:${string}`, (props: {}) => any>>()
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -157,19 +146,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <slot></slot>
     <thead v-if="header" ref="head">
       <tr>
-        <th v-for="column in renderedColumns" :key="column">
-          <slot :name="`header:${column}`">
+        <th v-for="column in columns" :key="column">
+          <slot :name="`header:${column as string | number}`">
             <slot name="header:*" :column="column">{{ startCase(column) }}</slot>
           </slot>
         </th>
       </tr>
     </thead>
     <tbody ref="body">
-      <tr v-for="row in renderedRows" :key="row">
-        <td v-for="column in renderedColumns" :key="column">
-          <slot :name="`body:${row}.${column}`">
-            <slot :name="`body:*.${column}`" :row="row">
-              <slot :name="`body:${row}.*`" :column="column">
+      <tr v-for="row in rows" :key="row">
+        <td v-for="column in columns" :key="column">
+          <slot :name="`body:${row as string | number}.${column as string | number}`">
+            <slot :name="`body:*.${column as string | number}`" :row="row">
+              <slot :name="`body:${row as string | number}.*`" :column="column">
                 <slot name="body:*.*" :row="row" :column="column"></slot>
               </slot>
             </slot>
@@ -179,8 +168,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     </tbody>
     <tfoot v-if="footer" ref="foot">
       <tr>
-        <th v-for="column in renderedColumns" :key="column">
-          <slot :name="`footer:${column}`">
+        <th v-for="column in columns" :key="column">
+          <slot :name="`footer:${column as string | number}`">
             <slot name="footer:*" :column="column"></slot>
           </slot>
         </th>
