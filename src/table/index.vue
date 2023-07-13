@@ -184,8 +184,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   td, th {
     padding-block: var(--r-common-box-padding-block);
     padding-inline: var(--r-common-box-padding-inline);
-    color: var(--r-button-color);
-    font-size: var(--r-common-font-size);
   }
 }
 </style>

@@ -103,6 +103,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-inline: calc(var(--r-common-box-padding-inline) + var(--r-alert-line-length) / 2);
   color: var(--r-alert-color);
   text-align: center;
+  :deep(.r-graphics) {
+    font-size: inherit;
+  }
   &.is-inline {
     display: inline-block;
   }

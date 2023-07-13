@@ -101,6 +101,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   text-align: center;
   cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
+  :deep(.r-graphics) {
+    font-size: inherit;
+  }
   &:hover {
     --r-button-border-dash: 8px;
   }
