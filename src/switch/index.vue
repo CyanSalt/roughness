@@ -6,7 +6,7 @@ import { toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RSwitch',
@@ -47,6 +47,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--r-switch-border-color)',
     strokeWidth,
     fill: internalModelValue ? 'var(--r-switch-track-color)' : undefined,
+    ...getFilledSizeOptions(strokeWidth),
   })
   svg.appendChild(rectangle)
   const handleOptions: Options = {

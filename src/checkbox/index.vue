@@ -6,7 +6,7 @@ import { inject, ref, toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
 import type { CheckboxValue } from './utils'
 import { modelInjection, multipleInjection } from './utils'
 
@@ -79,6 +79,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--r-checkbox-border-color)',
     strokeWidth,
     fill: indeterminate ? 'var(--r-checkbox-border-color)' : undefined,
+    ...getFilledSizeOptions(strokeWidth),
   }
   const padding = 2
   if (multiple === false) {

@@ -7,7 +7,7 @@ import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import { getFilledSizeOptions, getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 
 defineOptions({
   name: 'RButton',
@@ -48,6 +48,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     strokeWidth,
     strokeLineDash,
     fill: filled ? 'var(--r-button-color)' : undefined,
+    ...getFilledSizeOptions(strokeWidth),
   }
   const padding = 2
   if (rounded) {

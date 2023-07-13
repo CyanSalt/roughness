@@ -34,3 +34,10 @@ export function measureSVGSizeAsArray(element: SVGSVGElement, property: string) 
   if (value.length === 1 && value[0] === null) return null
   return value
 }
+
+export function getFilledSizeOptions(strokeWidth: number) {
+  return {
+    fillWeight: strokeWidth ? strokeWidth / 2 : 0.5,
+    hachureGap: strokeWidth ? strokeWidth * 4 : 4,
+  }
+}
