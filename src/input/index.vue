@@ -19,6 +19,7 @@ const {
   modelModifiers = (() => ({})) as never,
   placeholder,
   readonly = false,
+  type,
   reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
@@ -28,6 +29,7 @@ const {
   modelModifiers?: DirectiveBinding['modifiers'],
   placeholder?: string,
   readonly?: boolean,
+  type?: HTMLInputElement['type'],
 } & GraphicsProps>()
 
 const emit = defineEmits<{
@@ -99,7 +101,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <input
       v-else
       v-model="internalModelValue"
-      :type="modelModifiers.number ? 'number' : 'text'"
+      :type="modelModifiers.number ? 'number' : type"
       :disabled="disabled"
       :readonly="readonly"
       :placeholder="placeholder"

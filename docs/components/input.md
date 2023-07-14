@@ -105,6 +105,30 @@ import { RInput, RSpace } from 'roughness'
   <RInput model-value="You may not remove or alter the substance of any license notices contained within the Source Code Form of the Covered Software" disabled />
 </RSpace>
 
+### Types
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RInput, RSpace } from 'roughness'
+
+</script>
+
+<template>
+  <RSpace vertical>
+    <RInput type="date" />
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RInput type="date" />
+</RSpace>
+
 ## Usage
 
 ### Props
