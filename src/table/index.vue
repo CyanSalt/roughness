@@ -11,6 +11,9 @@ import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
+type Column = T extends string[] ? string : number
+type Row = U extends string[] ? string : number
+
 defineOptions({
   name: 'RTable',
 })
@@ -30,11 +33,11 @@ const {
 } & GraphicsProps>()
 
 defineSlots<{
-  'header:*'?: (props: { column: T extends string[] ? string : number }) => any,
-  'body:*.*'?: (props: { row: U extends string[] ? string : number, column: T extends string[] ? string : number }) => any,
-  'footer:*'?: (props: { column: T extends string[] ? string : number }) => any,
+  'header:*'?: (props: { column: Column }) => any,
+  'body:*.*'?: (props: { row: Row, column: Column }) => any,
+  'footer:*'?: (props: { column: Column }) => any,
   default?: (props: {}) => any,
-} & Record<`header:${string}` | `body:${string}` | `footer:${string}`, (props: {}) => any>>()
+} & Record<`header:${string}` | `body:${string}.${string}` | `footer:${string}`, (props: {}) => any>>()
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -147,7 +150,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`header:${column as string | number}`">
+          <slot :name="`header:${column as Column}`">
             <slot name="header:*" :column="column">{{ startCase(column) }}</slot>
           </slot>
         </th>
@@ -156,9 +159,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <tbody ref="body">
       <tr v-for="row in rows" :key="row">
         <td v-for="column in columns" :key="column">
-          <slot :name="`body:${row as string | number}.${column as string | number}`">
-            <slot :name="`body:*.${column as string | number}`" :row="row">
-              <slot :name="`body:${row as string | number}.*`" :column="column">
+          <slot :name="`body:${row as Row}.${column as Column}`">
+            <slot :name="`body:*.${column as Column}`" :row="row">
+              <slot :name="`body:${row as Row}.*`" :column="column">
                 <slot name="body:*.*" :row="row" :column="column"></slot>
               </slot>
             </slot>
@@ -169,7 +172,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <tfoot v-if="footer" ref="foot">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`footer:${column as string | number}`">
+          <slot :name="`footer:${column as Column}`">
             <slot name="footer:*" :column="column"></slot>
           </slot>
         </th>

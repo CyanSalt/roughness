@@ -102,7 +102,11 @@ import { RList, RListItem } from 'roughness'
 
   </template>
   <template #body:items.default>
-    <RText type="error">Required</RText>
+
+  <RText type="error">Required</RText>.
+
+  Or use [Custom Items](#custom-items).
+
   </template>
   <template #body:items.description>
 

@@ -9,7 +9,6 @@ defineOptions({
 const {
   tag = 'a',
 } = defineProps<{
-  // FIXME: type issue of volar
   tag?: 'a' | 'button' | (string & {}),
 }>()
 

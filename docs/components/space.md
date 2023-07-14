@@ -190,7 +190,7 @@ import { RButton, RSpace, RText } from 'roughness'
   </template>
   <template #body:tag.default>
 
-  `'div'`
+  `'section'`
 
   </template>
   <template #body:tag.description>

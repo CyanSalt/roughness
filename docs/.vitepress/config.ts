@@ -61,6 +61,12 @@ export default defineConfig({
             ],
           },
           {
+            text: 'Navigation',
+            items: [
+              { text: 'Tabs', link: '/components/tabs' },
+            ],
+          },
+          {
             text: 'Feedback',
             items: [
               { text: 'Alert', link: '/components/alert' },

@@ -11,7 +11,7 @@ const {
   justify = 'start',
   inline = false,
   overflow = false,
-  tag = 'div',
+  tag = 'section',
   vertical = false,
   wrap = true,
 } = defineProps<{

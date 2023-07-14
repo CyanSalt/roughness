@@ -6,6 +6,8 @@ import RListItem from './list-item.vue'
 import type { ListStyle } from './utils'
 import { listStyleInjection } from './utils'
 
+type Item = T extends string[] ? string : number
+
 defineOptions({
   name: 'RList',
 })
@@ -21,7 +23,7 @@ const {
 } & GraphicsProps>()
 
 defineSlots<{
-  '*'?: (props: { item: T extends string[] ? string : number }) => any,
+  '*'?: (props: { item: Item }) => any,
   default?: (props: {}) => any,
 } & Record<string, (props: {}) => any>>()
 
@@ -45,7 +47,7 @@ provide(listStyleInjection, $$(listStyle))
         :reactions="reactions"
         :graphics-options="graphicsOptions"
       >
-        <slot :name="(item as string | number)">
+        <slot :name="`${item as Item}`">
           <slot name="*" :item="item"></slot>
         </slot>
       </RListItem>
