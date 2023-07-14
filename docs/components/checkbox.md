@@ -3,8 +3,9 @@ import { RCheckbox, RCheckboxGroup, RDetails, RSpace, RTable, RText } from 'roug
 import { ref } from 'vue'
 
 const checked = ref(true)
-const values = ref([])
+const values = ref<string[]>([])
 const value = ref<string | undefined>()
+const treeValue = ref<string | undefined>()
 </script>
 
 # Checkbox
@@ -51,7 +52,7 @@ const checked = ref(true)
 import { RCheckbox, RCheckboxGroup } from 'roughness'
 import { ref } from 'vue'
 
-const values = ref([])
+const values = ref<string[]>([])
 </script>
 
 <template>
@@ -141,6 +142,68 @@ import { RCheckbox, RSpace } from 'roughness'
 <RSpace vertical>
   <RCheckbox checked disabled>I can't move.</RCheckbox>
   <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
+</RSpace>
+
+### Tree
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RCheckbox, RCheckboxGroup } from 'roughness'
+import { ref } from 'vue'
+
+const treeValue = ref<string | undefined>()
+</script>
+
+<template>
+  <RSpace vertical>
+    <RCheckboxGroup v-model="treeValue" vertical :multiple="false">
+      <RCheckbox value="Peggy's Family">
+        <RSpace vertical>
+          <RText>Peggy's Family</RText>
+          <RCheckbox value="Peggy">Peggy</RCheckbox>
+          <RCheckbox value="George">George</RCheckbox>
+          <RCheckbox value="Mummy">Mummy</RCheckbox>
+          <RCheckbox value="Daddy">Daddy</RCheckbox>
+        </RSpace>
+      </RCheckbox>
+      <RCheckbox value="Grandpa's Family">
+        <RSpace vertical>
+          <RText>Grandpa's Family</RText>
+          <RCheckbox value="Grandpa">Grandpa</RCheckbox>
+          <RCheckbox value="Granny">Granny</RCheckbox>
+        </RSpace>
+      </RCheckbox>
+    </RCheckboxGroup>
+    <RText>{{ treeValue ?? 'Nobody' }} is going hiking.</RText>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RCheckboxGroup v-model="treeValue" vertical :multiple="false">
+    <RCheckbox value="Peggy's Family">
+      <RSpace vertical>
+        <RText>Peggy's Family</RText>
+        <RCheckbox value="Peggy">Peggy</RCheckbox>
+        <RCheckbox value="George">George</RCheckbox>
+        <RCheckbox value="Mummy">Mummy</RCheckbox>
+        <RCheckbox value="Daddy">Daddy</RCheckbox>
+      </RSpace>
+    </RCheckbox>
+    <RCheckbox value="Grandpa's Family">
+      <RSpace vertical>
+        <RText>Grandpa's Family</RText>
+        <RCheckbox value="Grandpa">Grandpa</RCheckbox>
+        <RCheckbox value="Granny">Granny</RCheckbox>
+      </RSpace>
+    </RCheckbox>
+  </RCheckboxGroup>
+  <RText>{{ treeValue ?? 'Nobody' }} is going hiking.</RText>
 </RSpace>
 
 ## Usage

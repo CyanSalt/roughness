@@ -66,6 +66,10 @@ import { RCheckbox, RSelect } from 'roughness'
   <RCheckbox value="Left Leg">Left Leg</RCheckbox>
 </RSelect>
 
+### Tree
+
+See [Checkbox Tree](/components/checkbox#tree).
+
 ## Usage
 
 ### Props
