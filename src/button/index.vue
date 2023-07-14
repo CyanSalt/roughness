@@ -96,6 +96,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
+  border: none;
   color: var(--r-button-color);
   white-space: nowrap;
   text-align: center;

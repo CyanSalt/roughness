@@ -145,7 +145,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'dropdown-border-width']"
+  :rows="['border-color', 'border-width', 'dropdown-border-width', 'dropdown-padding-block', 'dropdown-padding-inline']"
 >
   <template #body:*:name="{ row }">--r-select-{{ row }}</template>
 
@@ -189,6 +189,34 @@ See [Checkbox Tree](/components/checkbox#tree).
   </template>
   <template #body:dropdown-border-width:description>
     Width of the select dropdown border.
+  </template>
+
+  <template #body:dropdown-padding-block:values>
+
+  1-2 `<length>` or `<percentage>`
+
+  </template>
+  <template #body:dropdown-padding-block:default>
+
+  `12px`
+
+  </template>
+  <template #body:dropdown-padding-block:description>
+    Vertical padding of the select dropdown.
+  </template>
+
+  <template #body:dropdown-padding-inline:values>
+
+  1-2 `<length>` or `<percentage>`
+
+  </template>
+  <template #body:dropdown-padding-inline:default>
+
+  `12px`
+
+  </template>
+  <template #body:dropdown-padding-inline:description>
+    Horizontal padding of the select dropdown.
   </template>
 </RTable>
 </RSpace>

@@ -66,7 +66,7 @@ function activate(tab: Tab) {
 
 <template>
   <RSpace vertical class="r-tabs">
-    <RSpace tag="menu" class="r-tabs__anchors">
+    <RSpace class="r-tabs__anchors" role="tablist">
       <RTabAnchor
         v-for="tab in tabs"
         :key="tab"
@@ -81,10 +81,12 @@ function activate(tab: Tab) {
         </slot>
       </RTabAnchor>
     </RSpace>
-    <slot v-if="internalModelValue" :name="`content:${internalModelValue}`">
-      <slot name="content:*" :tab="(internalModelValue as Tab)"></slot>
-    </slot>
-    <slot v-else name="content:*" :tab="(internalModelValue as Tab)"></slot>
+    <div class="r-tabs__content" role="tabpanel" aria-expanded="true">
+      <slot v-if="internalModelValue" :name="`content:${internalModelValue}`">
+        <slot name="content:*" :tab="(internalModelValue as Tab)"></slot>
+      </slot>
+      <slot v-else name="content:*" :tab="(internalModelValue as Tab)"></slot>
+    </div>
   </RSpace>
 </template>
 

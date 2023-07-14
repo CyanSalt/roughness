@@ -118,16 +118,13 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const strokeWidth = measureSVGSize(svg, '--r-select-dropdown-border-width') ?? 0
   const padding = 2
-  const linearPath = rc.linearPath([
-    [padding, padding],
-    [padding, height - padding],
-    [width - padding, height - padding],
-    [width - padding, padding],
-  ], {
+  const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
     stroke: 'var(--r-select-border-color)',
     strokeWidth,
+    fill: 'var(--r-common-background-color)',
+    fillStyle: 'solid',
   })
-  svg.appendChild(linearPath)
+  svg.appendChild(rectangle)
 }
 </script>
 
@@ -141,8 +138,9 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
       readonly
       :placeholder="placeholder"
       class="r-select__input"
-      @keydown.enter="toggle"
       @click="toggle"
+      @keydown.enter="toggle"
+      @keydown.escape="close"
     >
     <RCheckboxGroup
       v-if="state"
@@ -163,6 +161,8 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   --r-select-border-color: var(--r-common-text-color);
   --r-select-border-width: 1px;
   --r-select-dropdown-border-width: 1px;
+  --r-select-dropdown-padding-block: 12px;
+  --r-select-dropdown-padding-inline: 12px;
   position: relative;
   display: inline-flex;
   width: 210px;
@@ -191,8 +191,8 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   inset-block-end: 0;
   inset-inline: 0;
   z-index: 1;
-  padding: 12px;
-  background: var(--r-common-background-color);
+  padding-block: var(--r-select-dropdown-padding-block);
+  padding-inline: var(--r-select-dropdown-padding-inline);
   transform: translateY(100%);
 }
 </style>

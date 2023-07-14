@@ -101,7 +101,7 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="error" filled>Error</RButton>
 </RSpace>
 
-Also see [GraphicsConfig](/components/graphics#configuration).
+See also [GraphicsConfig](/components/graphics#configuration).
 
 ### Rounded
 
@@ -335,7 +335,7 @@ import { RButton, RSpace } from 'roughness'
 
   Button style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
-  Also see [Color Styles](/guide/theme#color-styles).
+  See also [Color Styles](/guide/theme#color-styles).
 
   </template>
 </RTable>

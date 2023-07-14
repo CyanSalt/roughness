@@ -3,7 +3,7 @@ import icons from 'feather-icons/dist/icons.json'
 import { RAlert, RDetails, RIcon, RSpace, RTable, RText } from 'roughness'
 </script>
 
-# RIcon
+# Icon
 
 No Picture, No Truth.
 

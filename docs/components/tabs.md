@@ -4,6 +4,8 @@ import { RDetails, RSpace, RTable, RTabs, RText } from 'roughness'
 
 # Tabs
 
+My brain has too many tabs open.
+
 ## Example
 
 <RDetails>
@@ -73,7 +75,7 @@ import { RTabs } from 'roughness'
   </template>
   <template #body:reactions:default>
 
-  `[]`
+  `['hover', 'focus-within', 'active']`
 
   </template>
   <template #body:reactions:description>

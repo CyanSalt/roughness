@@ -72,6 +72,7 @@ export default defineConfig({
               { text: 'Alert', link: '/components/alert' },
               { text: 'Dialog', link: '/components/dialog' },
               { text: 'Drawer', link: '/components/drawer' },
+              { text: 'Popover', link: '/components/popover' },
             ],
           },
         ],

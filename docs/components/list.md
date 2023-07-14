@@ -267,7 +267,7 @@ import { RList, RListItem } from 'roughness'
   </template>
   <template #body:reactions:default>
 
-  `['hover-at', 'focus-within', 'active']`
+  `[]`
 
   </template>
   <template #body:reactions:description>

@@ -85,7 +85,7 @@ import { RLink, RSpace } from 'roughness'
   <RLink tag="button" type="error">Cancel confirming</RLink>
 </RSpace>
 
-Also see [Button](/components/button#tag).
+See also [Button](/components/button#tag).
 
 ## Usage
 

@@ -2,7 +2,7 @@
 import { RButton, RCard, RDetails, RSpace, RTable, RText } from 'roughness'
 </script>
 
-# RCard
+# Card
 
 Sawatdee Card!
 

@@ -172,7 +172,7 @@ import { RAlert, RSpace } from 'roughness'
 
   Alert style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
-  Also see [Color Styles](/guide/theme#color-styles).
+  See also [Color Styles](/guide/theme#color-styles).
 
   </template>
 </RTable>

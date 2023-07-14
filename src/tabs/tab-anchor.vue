@@ -53,7 +53,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <li :class="['r-tab-anchor', { 'is-active': active }]">
+  <li
+    :class="['r-tab-anchor', { 'is-active': active }]"
+    role="tab"
+    :aria-selected="active"
+  >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <button class="r-tab-anchor__button" @click="activate">
       <slot></slot>
