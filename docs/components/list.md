@@ -94,21 +94,21 @@ import { RList, RListItem } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['items', 'list-style', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:items.type>
+  <template #body:items:type>
 
   `string[] | number`
 
   </template>
-  <template #body:items.default>
+  <template #body:items:default>
 
   <RText type="error">Required</RText>.
 
   Or use [Custom Items](#custom-items).
 
   </template>
-  <template #body:items.description>
+  <template #body:items:description>
 
   Item keys. Recommended to use all lowercase letters and hyphens and underscores.
 
@@ -116,17 +116,17 @@ import { RList, RListItem } from 'roughness'
 
   </template>
 
-  <template #body:list-style.type>
+  <template #body:list-style:type>
 
   `'disc' | 'circle' | 'square' | 'auto'`
 
   </template>
-  <template #body:list-style.default>
+  <template #body:list-style:default>
 
   `'disc'`
 
   </template>
-  <template #body:list-style.description>
+  <template #body:list-style:description>
 
   Marker style of the list. See [`list-style-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
 
@@ -134,7 +134,7 @@ import { RList, RListItem } from 'roughness'
 
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [ListItem Props](#listitem-props) and [Space Props](/components/space#props).
 
@@ -151,26 +151,26 @@ import { RList, RListItem } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['_item_', '_*_', 'default']"
 >
-  <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]').replace(/_\*_/g, '*') }}</template>
+  <template #body:*:name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]').replace(/_\*_/g, '*') }}</template>
 
-  <template #body:_item_.description>
+  <template #body:_item_:description>
 
   Content of the list item corresponding to `[item]`. Fallback to `*`.
 
   </template>
 
-  <template #body:_*_.parameters>
+  <template #body:_*_:parameters>
 
   `{ item: string }`
 
   </template>
-  <template #body:_*_.description>
+  <template #body:_*_:description>
 
   Content of each list item.
 
   </template>
 
-  <template #body:default.description>
+  <template #body:default:description>
 
   Content of the list. This will override all list item slots, you can render one or more ListItem by yourself.
 
@@ -185,52 +185,52 @@ import { RList, RListItem } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['marker-color', 'marker-block-size', 'marker-inline-size', '...']"
 >
-  <template #body:*.name="{ row }">--r-list-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-list-{{ row }}</template>
 
-  <template #body:marker-color.values>
+  <template #body:marker-color:values>
 
   `<color>`
 
   </template>
-  <template #body:marker-color.default>
+  <template #body:marker-color:default>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:marker-color.description>
+  <template #body:marker-color:description>
     Color of the list marker.
   </template>
 
-  <template #body:marker-block-size.values>
+  <template #body:marker-block-size:values>
 
   `<length>`
 
   </template>
-  <template #body:marker-block-size.default>
+  <template #body:marker-block-size:default>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:marker-block-size.description>
+  <template #body:marker-block-size:description>
     Area height of the list marker.
   </template>
 
-  <template #body:marker-inline-size.values>
+  <template #body:marker-inline-size:values>
 
   `<length>`
 
   </template>
-  <template #body:marker-inline-size.default>
+  <template #body:marker-inline-size:default>
 
   `1.5em`
 
   </template>
-  <template #body:marker-inline-size.description>
+  <template #body:marker-inline-size:description>
     Area width of the list marker.
   </template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Space Styles](/components/space#styles).
 
@@ -245,14 +245,14 @@ import { RList, RListItem } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'reactions']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -260,17 +260,17 @@ import { RList, RListItem } from 'roughness'
 
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `['hover-at', 'focus-within', 'active']`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 

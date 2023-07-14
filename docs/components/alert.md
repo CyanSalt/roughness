@@ -102,14 +102,14 @@ import { RAlert, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'inline', 'reactions', 'size', 'type']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -117,31 +117,31 @@ import { RAlert, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:inline.type>
+  <template #body:inline:type>
 
   `boolean`
 
   </template>
-  <template #body:inline.default>
+  <template #body:inline:default>
 
   `false`
 
   </template>
-  <template #body:inline.description>
+  <template #body:inline:description>
     Whether the alert is displayed as an inline box.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -149,26 +149,26 @@ import { RAlert, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:size.type>
+  <template #body:size:type>
 
   `string`, but usually `'small' | 'medium' | 'large'`
 
   </template>
-  <template #body:size.default>
+  <template #body:size:default>
 
   `'medium'`
 
   </template>
-  <template #body:size.description>
+  <template #body:size:description>
     Alert size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 
-  <template #body:type.type>
+  <template #body:type:type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
 
   </template>
-  <template #body:type.description>
+  <template #body:type:description>
 
   Alert style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
@@ -185,75 +185,75 @@ import { RAlert, RSpace } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'line-color', 'line-width', 'line-length', 'line-gap']"
 >
-  <template #body:*.name="{ row }">--r-alert-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-alert-{{ row }}</template>
 
-  <template #body:color.values>
+  <template #body:color:values>
 
   `<color>`
 
   </template>
-  <template #body:color.default>
+  <template #body:color:default>
 
   `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
-  <template #body:color.description>
+  <template #body:color:description>
     Color of the alert text.
   </template>
 
-  <template #body:line-color.values>
+  <template #body:line-color:values>
 
   `<color>`
 
   </template>
-  <template #body:line-color.default>
+  <template #body:line-color:default>
 
   `var(--r-alert-color)`
 
   </template>
-  <template #body:line-color.description>
+  <template #body:line-color:description>
     Color of the alert lines.
   </template>
 
-  <template #body:line-width.values>
+  <template #body:line-width:values>
 
   `<length>`
 
   </template>
-  <template #body:line-width.default>
+  <template #body:line-width:default>
 
   `2px`
 
   </template>
-  <template #body:line-width.description>
+  <template #body:line-width:description>
     Width of the alert lines.
   </template>
 
-  <template #body:line-length.values>
+  <template #body:line-length:values>
 
   `<length>`
 
   </template>
-  <template #body:line-length.default>
+  <template #body:line-length:default>
 
   `0.5em`
 
   </template>
-  <template #body:line-length.description>
+  <template #body:line-length:description>
     Length of the alert lines.
   </template>
 
-  <template #body:line-gap.values>
+  <template #body:line-gap:values>
 
   `<length>`
 
   </template>
-  <template #body:line-gap.default>
+  <template #body:line-gap:default>
 
   `12px`
 
   </template>
-  <template #body:line-gap.description>
+  <template #body:line-gap:description>
     Gap size of the alert lines.
   </template>
 </RTable>

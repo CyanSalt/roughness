@@ -81,7 +81,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :columns="['continent', 'ocean']"
     :rows="['color']"
   >
-    <template #body:color.ocean>
+    <template #body:color:ocean>
       <RGraphics @draw="draw" />
     </template>
   </RTable>
@@ -94,10 +94,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   :columns="['continent', 'ocean']"
   :rows="['color']"
 >
-  <template #body:color.continent>
+  <template #body:color:continent>
     New Zealand
   </template>
-  <template #body:color.ocean>
+  <template #body:color:ocean>
     <RGraphics @draw="drawOcean" />
   </template>
 </RTable>
@@ -159,14 +159,14 @@ import { RButton } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['options']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:options.type>
+  <template #body:options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:options.description>
+  <template #body:options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -181,44 +181,44 @@ import { RButton } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['options', 'responsive', 'tag']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:options.type>
+  <template #body:options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:options.description>
+  <template #body:options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   </template>
 
-  <template #body:responsive.type>
+  <template #body:responsive:type>
 
   `boolean`
 
   </template>
-  <template #body:responsive.default>
+  <template #body:responsive:default>
 
   `true`
 
   </template>
-  <template #body:responsive.description>
+  <template #body:responsive:description>
     Whether to adjust the size to fit the parent element.
   </template>
 
-  <template #body:tag.type>
+  <template #body:tag:type>
 
   `'canvas' | 'svg'`
 
   </template>
-  <template #body:tag.default>
+  <template #body:tag:default>
 
   `'svg'`
 
   </template>
-  <template #body:tag.description>
+  <template #body:tag:description>
 
   [HTML tag for rendering the graphics](https://github.com/rough-stuff/rough/wiki#roughcanvas--roughsvg).
 
@@ -233,14 +233,14 @@ import { RButton } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['draw']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:draw.parameters>
+  <template #body:draw:parameters>
 
   `(rc: import('roughjs/bin/canvas').RoughCanvas, element: HTMLCanvasElement)` or `(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement)`
 
   </template>
-  <template #body:draw.description>
+  <template #body:draw:description>
     Ready to start drawing.
   </template>
 </RTable>

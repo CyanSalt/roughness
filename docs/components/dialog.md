@@ -64,28 +64,28 @@ function show() {
   :columns="['name', 'type', 'default', 'description']"
   :rows="['closable', 'graphics-options', 'open', 'state', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:closable.type>
+  <template #body:closable:type>
 
   `boolean`
 
   </template>
-  <template #body:closable.default>
+  <template #body:closable:default>
 
   `true`
 
   </template>
-  <template #body:closable.description>
+  <template #body:closable:description>
     Whether to display the close button.
   </template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -93,37 +93,37 @@ function show() {
 
   </template>
 
-  <template #body:open.type>
+  <template #body:open:type>
 
   `boolean`
 
   </template>
-  <template #body:open.default>
+  <template #body:open:default>
 
   `false`
 
   </template>
-  <template #body:open.description>
+  <template #body:open:description>
     Whether to display the dialog modal.
   </template>
 
-  <template #body:state.type>
+  <template #body:state:type>
 
   `'auto' | 'manual'`
 
   </template>
-  <template #body:state.default>
+  <template #body:state:default>
 
   `'manual'`
 
   </template>
-  <template #body:state.description>
+  <template #body:state:description>
 
   When specified as `auto`, the dialog can be closed by clicking the backdrop.
 
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Card Props](/components/card#props).
 
@@ -140,9 +140,9 @@ function show() {
   :columns="['name', 'parameters', 'description']"
   :rows="['...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Card Slots](/components/card#slots).
 
@@ -157,10 +157,10 @@ function show() {
   :columns="['name', 'values', 'default', 'description']"
   :rows="['...']"
 >
-  <template #body:*.name="{ row }">--r-dialog-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-dialog-{{ row }}</template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Card Styles](/components/card#styles).
 

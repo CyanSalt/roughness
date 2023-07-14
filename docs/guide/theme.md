@@ -76,19 +76,19 @@ Common style properties are declared under the root node. Changing them will aff
   :columns="['name', 'values', 'default', 'description']"
   :rows="['font-family', 'font-size', 'small-font-size', 'large-font-size', 'line-height', 'box-padding-block', 'box-padding-inline']"
 >
-  <template #body:*.name="{ row }">--r-common-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-common-{{ row }}</template>
 
-  <template #body:font-family.values>
+  <template #body:font-family:values>
 
   `<family-name> +`
 
   </template>
-  <template #body:font-family.default>
+  <template #body:font-family:default>
 
   `'CabinSketch'`
 
   </template>
-  <template #body:font-family.description>
+  <template #body:font-family:description>
 
   Font family of components. This is only valid for Roughness components. If you want it to take effect for the entire page, you can define the following styles:
 
@@ -100,31 +100,31 @@ Common style properties are declared under the root node. Changing them will aff
 
   </template>
 
-  <template #body:font-size.values>
+  <template #body:font-size:values>
 
   `<length>`
 
   </template>
-  <template #body:font-size.default>
+  <template #body:font-size:default>
 
   `16px`
 
   </template>
-  <template #body:font-size.description>
+  <template #body:font-size:description>
     Font size of components.
   </template>
 
-  <template #body:small-font-size.values>
+  <template #body:small-font-size:values>
 
   `<length>`
 
   </template>
-  <template #body:small-font-size.default>
+  <template #body:small-font-size:default>
 
   `calc(var(--r-common-font-size) - 4px)`
 
   </template>
-  <template #body:small-font-size.description>
+  <template #body:small-font-size:description>
 
   Font size of components with `size="small"`.
 
@@ -132,61 +132,61 @@ Common style properties are declared under the root node. Changing them will aff
 
   </template>
 
-  <template #body:large-font-size.values>
+  <template #body:large-font-size:values>
 
   `<length>`
 
   </template>
-  <template #body:large-font-size.default>
+  <template #body:large-font-size:default>
 
   `calc(var(--r-common-font-size) + 4px)`
 
   </template>
-  <template #body:large-font-size.description>
+  <template #body:large-font-size:description>
 
   Font size of components with `size="large"`.
 
   </template>
 
-  <template #body:line-height.values>
+  <template #body:line-height:values>
 
   `<number>` or `<length>` or `<percentage>` or `normal`
 
   </template>
-  <template #body:line-height.default>
+  <template #body:line-height:default>
 
   `calc(1em + 8px)`
 
   </template>
-  <template #body:line-height.description>
+  <template #body:line-height:description>
     Line height of components.
   </template>
 
-  <template #body:box-padding-block.values>
+  <template #body:box-padding-block:values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:box-padding-block.default>
+  <template #body:box-padding-block:default>
 
   `0.5em`
 
   </template>
-  <template #body:box-padding-block.description>
+  <template #body:box-padding-block:description>
     Vertical padding of components with rectangular boxes. Such as Button, or cells of Table.
   </template>
 
-  <template #body:box-padding-inline.values>
+  <template #body:box-padding-inline:values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:box-padding-inline.default>
+  <template #body:box-padding-inline:default>
 
   `calc(1em + 4px)`
 
   </template>
-  <template #body:box-padding-inline.description>
+  <template #body:box-padding-inline:description>
     Horizontal padding of components with rectangular boxes. Such as Button, or cells of Table.
   </template>
 </RTable>
@@ -199,20 +199,20 @@ The following properties (of colors) change with dark/light theme changes: {#col
   :columns="['name', 'values', 'default', 'description']"
   :rows="['text-color', 'background-color', 'primary-color', 'info-color', 'success-color', 'warning-color', 'error-color']"
 >
-  <template #body:*.name="{ row }">--r-common-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-common-{{ row }}</template>
 
-  <template #body:*.values>
+  <template #body:*:values>
 
   `<color>`
 
   </template>
 
-  <template #body:text-color.default>
+  <template #body:text-color:default>
 
   `#f4f4f0` in the dark mode, `#44413c` else
 
   </template>
-  <template #body:text-color.description>
+  <template #body:text-color:description>
 
   Color of foreground content such as text and borders. This is only valid for Roughness components. If you want it to take effect for the entire page, you can define the following styles:
 
@@ -224,12 +224,12 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  <template #body:background-color.default>
+  <template #body:background-color:default>
 
   `#31343a` in the dark mode, `#ffffff` else
 
   </template>
-  <template #body:background-color.description>
+  <template #body:background-color:description>
 
   Color of background content such as backdrop and text stroke. This is only valid for Roughness components. If you want it to take effect for the entire page, you can define the following styles:
 
@@ -241,56 +241,56 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  <template #body:primary-color.default>
+  <template #body:primary-color:default>
 
   `#94c0cc` in the dark mode, `#0247fe` else
 
   </template>
-  <template #body:primary-color.description>
+  <template #body:primary-color:description>
 
   Color of the key content on the page. Components with `type="primary"` use this color.
 
   </template>
 
-  <template #body:info-color.default>
+  <template #body:info-color:default>
 
   `#a6aebb` in the dark mode, `#2b4057` else
 
   </template>
-  <template #body:info-color.description>
+  <template #body:info-color:description>
 
   Color of auxiliary information on the page. Components with `type="info"` use this color.
 
   </template>
 
-  <template #body:success-color.default>
+  <template #body:success-color:default>
 
   `#bcdf8a` in the dark mode, `#11887b` else
 
   </template>
-  <template #body:success-color.description>
+  <template #body:success-color:description>
 
   Color of success message. Components with `type="success"` use this color.
 
   </template>
 
-  <template #body:warning-color.default>
+  <template #body:warning-color:default>
 
   `#dfc281` in the dark mode, `#9d6016` else
 
   </template>
-  <template #body:warning-color.description>
+  <template #body:warning-color:description>
 
   Color of warning message. Components with `type="warning"` use this color.
 
   </template>
 
-  <template #body:error-color.default>
+  <template #body:error-color:default>
 
   `#ed7777` in the dark mode, `#ac3235` else
 
   </template>
-  <template #body:error-color.description>
+  <template #body:error-color:description>
 
   Color of error message. Components with `type="error"` use this color.
 

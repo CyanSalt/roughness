@@ -121,107 +121,107 @@ import { RButton, RSpace, RText } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['align', 'justify', 'inline', 'overflow', 'tag', 'vertical', 'wrap']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:align.type>
+  <template #body:align:type>
 
   `'start' | 'end' | 'center' | 'baseline' | 'stretch'`
 
   </template>
-  <template #body:align.default>
+  <template #body:align:default>
 
   `stretch` if `vertical`, `'start'` else
 
   </template>
-  <template #body:align.description>
+  <template #body:align:description>
 
   [Item axis arrangement](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items).
 
   </template>
 
-  <template #body:justify.type>
+  <template #body:justify:type>
 
   `'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'`
 
   </template>
-  <template #body:justify.default>
+  <template #body:justify:default>
 
   `'start'`
 
   </template>
-  <template #body:justify.description>
+  <template #body:justify:description>
 
   [Item arrangement](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content).
 
   </template>
 
-  <template #body:inline.type>
+  <template #body:inline:type>
 
   `boolean`
 
   </template>
-  <template #body:inline.default>
+  <template #body:inline:default>
 
   `false`
 
   </template>
-  <template #body:inline.description>
+  <template #body:inline:description>
     Whether the space is displayed as an inline box.
   </template>
 
-  <template #body:overflow.type>
+  <template #body:overflow:type>
 
   `boolean`
 
   </template>
-  <template #body:overflow.default>
+  <template #body:overflow:default>
 
   `false`
 
   </template>
-  <template #body:overflow.description>
+  <template #body:overflow:description>
     Whether to show the scrollbar when the content overflows.
   </template>
 
-  <template #body:tag.type>
+  <template #body:tag:type>
 
   `string`
 
   </template>
-  <template #body:tag.default>
+  <template #body:tag:default>
 
-  `'section'`
+  `'div'`
 
   </template>
-  <template #body:tag.description>
+  <template #body:tag:description>
     HTML tag for rendering the space.
   </template>
 
-  <template #body:vertical.type>
+  <template #body:vertical:type>
 
   `boolean`
 
   </template>
-  <template #body:vertical.default>
+  <template #body:vertical:default>
 
   `false`
 
   </template>
-  <template #body:vertical.description>
+  <template #body:vertical:description>
     Whether to layout vertically.
   </template>
 
-  <template #body:wrap.type>
+  <template #body:wrap:type>
 
   `boolean`
 
   </template>
-  <template #body:wrap.default>
+  <template #body:wrap:default>
 
   `true`
 
   </template>
-  <template #body:wrap.description>
+  <template #body:wrap:description>
     Whether to exceed the line break.
   </template>
 </RTable>
@@ -234,19 +234,19 @@ import { RButton, RSpace, RText } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['gap-size']"
 >
-  <template #body:*.name="{ row }">--r-space-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-space-{{ row }}</template>
 
-  <template #body:gap-size.values>
+  <template #body:gap-size:values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size.default>
+  <template #body:gap-size:default>
 
   `12px`
 
   </template>
-  <template #body:gap-size.description>
+  <template #body:gap-size:description>
     Size of the space gap.
   </template>
 </RTable>

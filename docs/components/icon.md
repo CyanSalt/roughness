@@ -67,14 +67,14 @@ See [Text](/components/text).
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'name', 'reactions', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -82,31 +82,31 @@ See [Text](/components/text).
 
   </template>
 
-  <template #body:name.type>
+  <template #body:name:type>
 
   `string`
 
   </template>
-  <template #body:name.default>
+  <template #body:name:default>
     <RText type="error">Required</RText>
   </template>
-  <template #body:name.description>
+  <template #body:name:description>
 
   Name of the icon in [Feather Icons](https://feathericons.com/).
 
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -114,7 +114,7 @@ See [Text](/components/text).
 
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Text Props](/components/text#props).
 
@@ -129,24 +129,24 @@ See [Text](/components/text).
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', '...']"
 >
-  <template #body:*.name="{ row }">--r-icon-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-icon-{{ row }}</template>
 
-  <template #body:color.values>
+  <template #body:color:values>
 
   `<color>`
 
   </template>
-  <template #body:color.default>
+  <template #body:color:default>
 
   `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
-  <template #body:color.description>
+  <template #body:color:description>
     Color of the icon.
   </template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Text Styles](/components/text#styles).
 

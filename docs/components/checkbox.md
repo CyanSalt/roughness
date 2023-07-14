@@ -152,28 +152,28 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['checked', 'graphics-options', 'indeterminate', 'reactions', 'value']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:checked.type>
+  <template #body:checked:type>
 
   `boolean`
 
   </template>
-  <template #body:checked.default>
+  <template #body:checked:default>
 
   `false`
 
   </template>
-  <template #body:checked.description>
+  <template #body:checked:description>
     Checked state of the checkbox.
   </template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -181,33 +181,33 @@ import { RCheckbox, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:indeterminate.type>
+  <template #body:indeterminate:type>
 
   `boolean`
 
   </template>
-  <template #body:indeterminate.default>
+  <template #body:indeterminate:default>
 
   `false`
 
   </template>
-  <template #body:indeterminate.description>
+  <template #body:indeterminate:description>
 
   [Indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) of the checkbox.
 
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `['focus-within', 'active']`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -215,12 +215,12 @@ import { RCheckbox, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:value.type>
+  <template #body:value:type>
 
   `string | number`
 
   </template>
-  <template #body:value.description>
+  <template #body:value:description>
     Item value when checked in the CheckboxGroup.
   </template>
 </RTable>
@@ -233,14 +233,14 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['update:checked']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:update:checked.parameters>
+  <template #body:update:checked:parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:checked.description>
+  <template #body:update:checked:description>
     Callback function triggered when checked state of the checkbox is changed.
   </template>
 </RTable>
@@ -253,9 +253,9 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:default.description>
+  <template #body:default:description>
     Label of the checkbox.
   </template>
 </RTable>
@@ -268,75 +268,75 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'checked-color', 'checked-width', 'control-size']"
 >
-  <template #body:*.name="{ row }">--r-checkbox-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-checkbox-{{ row }}</template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the checkbox control border.
   </template>
 
-  <template #body:border-width.values>
+  <template #body:border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:border-width.default>
+  <template #body:border-width:default>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width.description>
+  <template #body:border-width:description>
     Width of the checkbox control border.
   </template>
 
-  <template #body:checked-color.values>
+  <template #body:checked-color:values>
 
   `<color>`
 
   </template>
-  <template #body:checked-color.default>
+  <template #body:checked-color:default>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:checked-color.description>
+  <template #body:checked-color:description>
     Color of the checkbox checked line.
   </template>
 
-  <template #body:checked-width.values>
+  <template #body:checked-width:values>
 
   `<length>`
 
   </template>
-  <template #body:checked-width.default>
+  <template #body:checked-width:default>
 
   `1px`
 
   </template>
-  <template #body:checked-width.description>
+  <template #body:checked-width:description>
     Width of the checkbox checked line.
   </template>
 
-  <template #body:control-size.values>
+  <template #body:control-size:values>
 
   `<length>`
 
   </template>
-  <template #body:control-size.default>
+  <template #body:control-size:default>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size.description>
+  <template #body:control-size:description>
     Size of the checkbox control.
   </template>
 </RTable>
@@ -349,35 +349,35 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['model-value', 'multiple', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:model-value.type>
+  <template #body:model-value:type>
 
   `string | number | undefined` or `(string | number)[]`
 
   </template>
-  <template #body:model-value.default>
+  <template #body:model-value:default>
     <RText type="error">Required</RText>
   </template>
-  <template #body:model-value.description>
+  <template #body:model-value:description>
     Value(s) of the checked item(s) of the group.
   </template>
 
-  <template #body:multiple.type>
+  <template #body:multiple:type>
 
   `boolean`
 
   </template>
-  <template #body:multiple.default>
+  <template #body:multiple:default>
 
   `true`
 
   </template>
-  <template #body:multiple.description>
+  <template #body:multiple:description>
     Whether to support checking multiple items.
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Space Props](/components/space#props).
 
@@ -392,14 +392,14 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:update:model-value.parameters>
+  <template #body:update:model-value:parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value.description>
+  <template #body:update:model-value:description>
     Callback function triggered when checked items of the group are changed.
   </template>
 </RTable>
@@ -412,10 +412,10 @@ import { RCheckbox, RSpace } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['...']"
 >
-  <template #body:*.name="{ row }">--r-checkbox-group-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-checkbox-group-{{ row }}</template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Space Styles](/components/space#styles).
 

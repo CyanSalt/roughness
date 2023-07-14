@@ -34,14 +34,14 @@ import { RSwitch } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'model-value', 'reactions']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -49,31 +49,31 @@ import { RSwitch } from 'roughness'
 
   </template>
 
-  <template #body:model-value.type>
+  <template #body:model-value:type>
 
   `boolean`
 
   </template>
-  <template #body:model-value.default>
+  <template #body:model-value:default>
 
   `false`
 
   </template>
-  <template #body:model-value.description>
+  <template #body:model-value:description>
     State of the switch.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `['focus-within', 'active']`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -90,14 +90,14 @@ import { RSwitch } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:update:model-value.parameters>
+  <template #body:update:model-value:parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value.description>
+  <template #body:update:model-value:description>
     Callback function triggered when state of the switch is changed.
   </template>
 </RTable>
@@ -110,9 +110,9 @@ import { RSwitch } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:default.description>
+  <template #body:default:description>
     Label of the switch.
   </template>
 </RTable>
@@ -125,75 +125,75 @@ import { RSwitch } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'control-size', 'track-color', 'handle-color']"
 >
-  <template #body:*.name="{ row }">--r-switch-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-switch-{{ row }}</template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the switch control border.
   </template>
 
-  <template #body:border-width.values>
+  <template #body:border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:border-width.default>
+  <template #body:border-width:default>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width.description>
+  <template #body:border-width:description>
     Width of the switch control border.
   </template>
 
-  <template #body:control-size.values>
+  <template #body:control-size:values>
 
   `<length>`
 
   </template>
-  <template #body:control-size.default>
+  <template #body:control-size:default>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size.description>
+  <template #body:control-size:description>
     Size of the switch control.
   </template>
 
-  <template #body:track-color.values>
+  <template #body:track-color:values>
 
   `<color>`
 
   </template>
-  <template #body:track-color.default>
+  <template #body:track-color:default>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:track-color.description>
+  <template #body:track-color:description>
     Color of the switch track when open.
   </template>
 
-  <template #body:handle-color.values>
+  <template #body:handle-color:values>
 
   `<color>`
 
   </template>
-  <template #body:handle-color.default>
+  <template #body:handle-color:default>
 
   `var(--r-common-background-color)`
 
   </template>
-  <template #body:handle-color.description>
+  <template #body:handle-color:description>
     Color of the switch handle.
   </template>
 </RTable>

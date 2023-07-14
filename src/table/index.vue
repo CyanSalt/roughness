@@ -1,6 +1,6 @@
 <script lang="ts" setup generic="T extends string[] | number, U extends string[] | number">
 import '../common/style.scss'
-import { useMutationObserver } from '@vueuse/core'
+import { useResizeObserver } from '@vueuse/core'
 import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
@@ -34,10 +34,10 @@ const {
 
 defineSlots<{
   'header:*'?: (props: { column: Column }) => any,
-  'body:*.*'?: (props: { row: Row, column: Column }) => any,
+  'body:*:*'?: (props: { row: Row, column: Column }) => any,
   'footer:*'?: (props: { column: Column }) => any,
   default?: (props: {}) => any,
-} & Record<`header:${string}` | `body:${string}.${string}` | `footer:${string}`, (props: {}) => any>>()
+} & Record<`header:${string}` | `body:${string}:${string}` | `footer:${string}`, (props: {}) => any>>()
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -79,14 +79,10 @@ function calculateDimensions() {
 }
 
 function observeDimensions(section: Ref<HTMLTableSectionElement | undefined>) {
-  return useMutationObserver(section, (mutations) => {
-    if (mutations.length) {
+  return useResizeObserver(section, (entries) => {
+    if (entries.length) {
       calculateDimensions()
     }
-  }, {
-    characterData: true,
-    childList: true,
-    subtree: true,
   })
 }
 
@@ -159,10 +155,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <tbody ref="body">
       <tr v-for="row in rows" :key="row">
         <td v-for="column in columns" :key="column">
-          <slot :name="`body:${row as Row}.${column as Column}`">
-            <slot :name="`body:*.${column as Column}`" :row="row">
-              <slot :name="`body:${row as Row}.*`" :column="column">
-                <slot name="body:*.*" :row="row" :column="column"></slot>
+          <slot :name="`body:${row as Row}:${column as Column}`">
+            <slot :name="`body:*:${column as Column}`" :row="row">
+              <slot :name="`body:${row as Row}:*`" :column="column">
+                <slot name="body:*:*" :row="row" :column="column"></slot>
               </slot>
             </slot>
           </slot>

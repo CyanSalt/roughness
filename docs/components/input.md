@@ -114,14 +114,14 @@ import { RInput, RSpace } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'lines', 'model-value', 'reactions']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -129,40 +129,40 @@ import { RInput, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:lines.type>
+  <template #body:lines:type>
 
   `number`
 
   </template>
-  <template #body:lines.default>
+  <template #body:lines:default>
 
   `1`
 
   </template>
-  <template #body:lines.description>
+  <template #body:lines:description>
     Line count of the input.
   </template>
 
-  <template #body:model-value.type>
+  <template #body:model-value:type>
 
   `string`
 
   </template>
-  <template #body:model-value.description>
+  <template #body:model-value:description>
     Value of the input text.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -179,47 +179,47 @@ import { RInput, RSpace } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'border-dash', 'line-height']"
 >
-  <template #body:*.name="{ row }">--r-input-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-input-{{ row }}</template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the input border.
   </template>
 
-  <template #body:border-width.values>
+  <template #body:border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:border-width.default>
+  <template #body:border-width:default>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width.description>
+  <template #body:border-width:description>
     Width of the input border.
   </template>
 
-  <template #body:border-dash.values>
+  <template #body:border-dash:values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash.default>
+  <template #body:border-dash:default>
 
   `8px` when hovered, `none` else
 
   </template>
-  <template #body:border-dash.description>
+  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the input border.
 
@@ -229,17 +229,17 @@ import { RInput, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:line-height.values>
+  <template #body:line-height:values>
 
   `<length>`
 
   </template>
-  <template #body:line-height.default>
+  <template #body:line-height:default>
 
   `calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height))`
 
   </template>
-  <template #body:line-height.description>
+  <template #body:line-height:description>
     Line height of the input.
   </template>
 </RTable>

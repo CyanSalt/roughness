@@ -128,23 +128,23 @@ function showBottom() {
   :columns="['name', 'type', 'default', 'description']"
   :rows="['side', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:side.type>
+  <template #body:side:type>
 
   `'left' | 'right' | 'top' | 'bottom'`
 
   </template>
-  <template #body:side.default>
+  <template #body:side:default>
 
   `'right'`
 
   </template>
-  <template #body:side.description>
+  <template #body:side:description>
     Which side of the page the drawer will show on.
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Dialog Props](/components/dialog#props).
 
@@ -159,9 +159,9 @@ function showBottom() {
   :columns="['name', 'parameters', 'description']"
   :rows="['...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Dialog Slots](/components/dialog#slots).
 
@@ -176,10 +176,10 @@ function showBottom() {
   :columns="['name', 'values', 'default', 'description']"
   :rows="['...']"
 >
-  <template #body:*.name="{ row }">--r-drawer-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-drawer-{{ row }}</template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Dialog Styles](/components/dialog#styles).
 

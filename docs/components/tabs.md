@@ -40,14 +40,14 @@ import { RTabs } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'model-value', 'reactions', 'tabs', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -55,28 +55,28 @@ import { RTabs } from 'roughness'
 
   </template>
 
-  <template #body:model-value.type>
+  <template #body:model-value:type>
 
   `number` if `tabs` is `number`, `string` else.
 
   </template>
-  <template #body:model-value.description>
+  <template #body:model-value:description>
 
   Currently active tab key.
 
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -84,15 +84,15 @@ import { RTabs } from 'roughness'
 
   </template>
 
-  <template #body:tabs.type>
+  <template #body:tabs:type>
 
   `string[] | number`
 
   </template>
-  <template #body:tabs.default>
+  <template #body:tabs:default>
     <RText type="error">Required</RText>.
   </template>
-  <template #body:tabs.description>
+  <template #body:tabs:description>
 
   Tab keys. Recommended to use all lowercase letters and hyphens and underscores.
 
@@ -100,7 +100,7 @@ import { RTabs } from 'roughness'
 
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Space Props](/components/space#props).
 
@@ -115,37 +115,37 @@ import { RTabs } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['anchor:_tab_', 'anchor:*', 'content:_tab_', 'content:*']"
 >
-  <template #body:*.name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
+  <template #body:*:name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
 
-  <template #body:anchor:_tab_.description>
+  <template #body:anchor:_tab_:description>
 
   Anchor for tab corresponding to `[tab]`. Fallback to `anchor:*`.
 
   </template>
 
-  <template #body:anchor:*.parameters>
+  <template #body:anchor:*:parameters>
 
   `{ tab: string }`
 
   </template>
-  <template #body:anchor:*.description>
+  <template #body:anchor:*:description>
 
   Anchor for each tab. Defaults to `startCase(tab)`.
 
   </template>
 
-  <template #body:content:_tab_.description>
+  <template #body:content:_tab_:description>
 
   Content for tab corresponding to `[tab]`. Fallback to `content:*`.
 
   </template>
 
-  <template #body:content:*.parameters>
+  <template #body:content:*:parameters>
 
   `{ tab: string }`
 
   </template>
-  <template #body:content:*.description>
+  <template #body:content:*:description>
 
   Content for each tab.
 
@@ -160,61 +160,61 @@ import { RTabs } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['active-color', 'border-color', 'border-width', 'border-dash']"
 >
-  <template #body:*.name="{ row }">--r-tab-anchor-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-tab-anchor-{{ row }}</template>
 
-  <template #body:active-color.values>
+  <template #body:active-color:values>
 
   `<color>`
 
   </template>
-  <template #body:active-color.default>
+  <template #body:active-color:default>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:active-color.description>
+  <template #body:active-color:description>
     Color of the tab anchor and its border when active.
   </template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the tab anchor border.
   </template>
 
-  <template #body:border-width.values>
+  <template #body:border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:border-width.default>
+  <template #body:border-width:default>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width.description>
+  <template #body:border-width:description>
     Width of the tab anchor border.
   </template>
 
-  <template #body:border-dash.values>
+  <template #body:border-dash:values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash.default>
+  <template #body:border-dash:default>
 
   `8px` when hovered, `none` else
 
   </template>
-  <template #body:border-dash.description>
+  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the tab anchor border.
 

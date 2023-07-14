@@ -38,33 +38,33 @@ import { RGridGuide } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['max-sections', 'reactions', 'responsive', 'section-cells']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:max-sections.type>
+  <template #body:max-sections:type>
 
   `number`
 
   </template>
-  <template #body:max-sections.default>
+  <template #body:max-sections:default>
 
   `10`
 
   </template>
-  <template #body:max-sections.description>
+  <template #body:max-sections:description>
     The maximum number of sections that can be displayed under the current viewport dimensions.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `['dark']`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -72,31 +72,31 @@ import { RGridGuide } from 'roughness'
 
   </template>
 
-  <template #body:responsive.type>
+  <template #body:responsive:type>
 
   `boolean`
 
   </template>
-  <template #body:responsive.default>
+  <template #body:responsive:default>
 
   `true`
 
   </template>
-  <template #body:responsive.description>
+  <template #body:responsive:description>
     Whether to adjust the size to fit the parent element.
   </template>
 
-  <template #body:section-cells.type>
+  <template #body:section-cells:type>
 
   `number`
 
   </template>
-  <template #body:section-cells.default>
+  <template #body:section-cells:default>
 
   `8`
 
   </template>
-  <template #body:section-cells.description>
+  <template #body:section-cells:description>
     The number of cells in one section dimension.
   </template>
 </RTable>
@@ -109,19 +109,19 @@ import { RGridGuide } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color']"
 >
-  <template #body:*.name="{ row }">--r-grid-guide-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-grid-guide-{{ row }}</template>
 
-  <template #body:color.values>
+  <template #body:color:values>
 
   `<color>`
 
   </template>
-  <template #body:color.default>
+  <template #body:color:default>
 
   `rgb(255 255 255 / 10%)` in dark theme, `#f5f5f5` else
 
   </template>
-  <template #body:color.description>
+  <template #body:color:description>
     Color of the guide lines.
   </template>
 </RTable>

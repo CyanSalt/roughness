@@ -40,14 +40,14 @@ let rate = ref(3)
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'model-value', 'reactions']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -55,29 +55,29 @@ let rate = ref(3)
 
   </template>
 
-  <template #body:model-value.type>
+  <template #body:model-value:type>
 
   `number`
 
   </template>
-  <template #body:model-value.default>
+  <template #body:model-value:default>
     <RText type="error">Required</RText>
   </template>
-  <template #body:model-value.description>
+  <template #body:model-value:description>
     Value of the rate.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `['hover-at', 'focus-within', 'active']`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -94,47 +94,47 @@ let rate = ref(3)
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'control-size']"
 >
-  <template #body:*.name="{ row }">--r-rate-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-rate-{{ row }}</template>
 
-  <template #body:color.values>
+  <template #body:color:values>
 
   `<color>`
 
   </template>
-  <template #body:color.default>
+  <template #body:color:default>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:color.description>
+  <template #body:color:description>
     Color of the rate control when active.
   </template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the rate control border.
   </template>
 
-  <template #body:control-size.values>
+  <template #body:control-size:values>
 
   `<length>`
 
   </template>
-  <template #body:control-size.default>
+  <template #body:control-size:default>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size.description>
+  <template #body:control-size:description>
     Size of the rate control.
   </template>
 </RTable>

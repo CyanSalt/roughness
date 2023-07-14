@@ -46,28 +46,28 @@ import { RCard } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['footer', 'graphics-options', 'header', 'reactions', 'tag', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:footer.type>
+  <template #body:footer:type>
 
   `boolean`
 
   </template>
-  <template #body:footer.default>
+  <template #body:footer:default>
 
   `false`
 
   </template>
-  <template #body:footer.description>
+  <template #body:footer:description>
     Whether to display the card header.
   </template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -75,31 +75,31 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:header.type>
+  <template #body:header:type>
 
   `boolean`
 
   </template>
-  <template #body:header.default>
+  <template #body:header:default>
 
   `true`
 
   </template>
-  <template #body:header.description>
+  <template #body:header:description>
     Whether to display the card header.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -107,7 +107,7 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Space Props](/components/space#props).
 
@@ -124,9 +124,9 @@ import { RCard } from 'roughness'
   :columns="['name', 'parameters', 'description']"
   :rows="['title', 'header-extra', 'default', 'footer']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:title.description>
+  <template #body:title:description>
 
   The content of the card title.
 
@@ -134,7 +134,7 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:header-extra.description>
+  <template #body:header-extra:description>
 
   The content of the card header after title.
 
@@ -142,11 +142,11 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:default.description>
+  <template #body:default:description>
     The content of the card.
   </template>
 
-  <template #body:footer.description>
+  <template #body:footer:description>
 
   The content of the card footer.
 
@@ -163,47 +163,47 @@ import { RCard } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline', '...']"
 >
-  <template #body:*.name="{ row }">--r-card-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-card-{{ row }}</template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the button border.
   </template>
 
-  <template #body:border-width.values>
+  <template #body:border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:border-width.default>
+  <template #body:border-width:default>
 
   `1px`
 
   </template>
-  <template #body:border-width.description>
+  <template #body:border-width:description>
     Width of the card border.
   </template>
 
-  <template #body:border-dash.values>
+  <template #body:border-dash:values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash.default>
+  <template #body:border-dash:default>
 
   `none`
 
   </template>
-  <template #body:border-dash.description>
+  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the button border.
 
@@ -213,36 +213,36 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:padding-block.values>
+  <template #body:padding-block:values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:padding-block.default>
+  <template #body:padding-block:default>
 
   `calc(var(--r-common-box-padding-block) * 2)`
 
   </template>
-  <template #body:padding-block.description>
+  <template #body:padding-block:description>
     Vertical padding of the card.
   </template>
 
-  <template #body:padding-inline.values>
+  <template #body:padding-inline:values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:padding-inline.default>
+  <template #body:padding-inline:default>
 
   `var(--r-common-box-padding-inline)`
 
   </template>
-  <template #body:padding-inline.description>
+  <template #body:padding-inline:description>
     Horizontal padding of the card.
   </template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Space Styles](/components/space#styles).
 

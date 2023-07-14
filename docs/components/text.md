@@ -102,42 +102,42 @@ import { RSpace, RText } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['size', 'tag', 'type']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:size.type>
+  <template #body:size:type>
 
   `string`, but usually `'small' | 'medium' | 'large'`
 
   </template>
-  <template #body:size.default>
+  <template #body:size:default>
 
   `'medium'`
 
   </template>
-  <template #body:size.description>
+  <template #body:size:description>
     Text size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 
-  <template #body:tag.type>
+  <template #body:tag:type>
 
   `string`
 
   </template>
-  <template #body:tag.default>
+  <template #body:tag:default>
 
   `'span'`
 
   </template>
-  <template #body:tag.description>
+  <template #body:tag:description>
     HTML tag for rendering the text.
   </template>
 
-  <template #body:type.type>
+  <template #body:type:type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
 
   </template>
-  <template #body:type.description>
+  <template #body:type:description>
 
   Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
@@ -154,19 +154,19 @@ import { RSpace, RText } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color']"
 >
-  <template #body:*.name="{ row }">--r-text-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-text-{{ row }}</template>
 
-  <template #body:color.values>
+  <template #body:color:values>
 
   `<color>`
 
   </template>
-  <template #body:color.default>
+  <template #body:color:default>
 
   `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
-  <template #body:color.description>
+  <template #body:color:description>
     Color of text.
   </template>
 </RTable>

@@ -75,14 +75,14 @@ import { RCheckbox, RSelect } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'model-value', 'multiple', 'reactions']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -90,43 +90,43 @@ import { RCheckbox, RSelect } from 'roughness'
 
   </template>
 
-  <template #body:model-value.type>
+  <template #body:model-value:type>
 
   `string | number | undefined` or `(string | number)[]`
 
   </template>
-  <template #body:model-value.default>
+  <template #body:model-value:default>
     <RText type="error">Required</RText>
   </template>
-  <template #body:model-value.description>
+  <template #body:model-value:description>
     Value(s) of the selected item(s).
   </template>
 
-  <template #body:multiple.type>
+  <template #body:multiple:type>
 
   `boolean`
 
   </template>
-  <template #body:multiple.default>
+  <template #body:multiple:default>
 
   `false`
 
   </template>
-  <template #body:multiple.description>
+  <template #body:multiple:description>
     Whether to support selecting multiple items.
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -143,47 +143,47 @@ import { RCheckbox, RSelect } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'dropdown-border-width']"
 >
-  <template #body:*.name="{ row }">--r-select-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-select-{{ row }}</template>
 
-  <template #body:border-color.values>
+  <template #body:border-color:values>
 
   `<color>`
 
   </template>
-  <template #body:border-color.default>
+  <template #body:border-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color.description>
+  <template #body:border-color:description>
     Color of the select control border.
   </template>
 
-  <template #body:border-width.values>
+  <template #body:border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:border-width.default>
+  <template #body:border-width:default>
 
   `2px` when focused, `1px` else
 
   </template>
-  <template #body:border-width.description>
+  <template #body:border-width:description>
     Width of the select control border.
   </template>
 
-  <template #body:dropdown-border-width.values>
+  <template #body:dropdown-border-width:values>
 
   `<length>`
 
   </template>
-  <template #body:dropdown-border-width.default>
+  <template #body:dropdown-border-width:default>
 
   `1px`
 
   </template>
-  <template #body:dropdown-border-width.description>
+  <template #body:dropdown-border-width:description>
     Width of the select dropdown border.
   </template>
 </RTable>

@@ -55,14 +55,14 @@ import { RDivider, RText } from 'roughness'
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'reactions', 'vertical']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -70,17 +70,17 @@ import { RDivider, RText } from 'roughness'
 
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -88,17 +88,17 @@ import { RDivider, RText } from 'roughness'
 
   </template>
 
-  <template #body:vertical.type>
+  <template #body:vertical:type>
 
   `boolean`
 
   </template>
-  <template #body:vertical.default>
+  <template #body:vertical:default>
 
   `false`
 
   </template>
-  <template #body:vertical.description>
+  <template #body:vertical:description>
     Whether to display vertical divider.
   </template>
 </RTable>
@@ -111,33 +111,33 @@ import { RDivider, RText } from 'roughness'
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'gap-size']"
 >
-  <template #body:*.name="{ row }">--r-divider-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-divider-{{ row }}</template>
 
-  <template #body:color.values>
+  <template #body:color:values>
 
   `<color>`
 
   </template>
-  <template #body:color.default>
+  <template #body:color:default>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:color.description>
+  <template #body:color:description>
     Color of the divider.
   </template>
 
-  <template #body:gap-size.values>
+  <template #body:gap-size:values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size.default>
+  <template #body:gap-size:default>
 
   `12px`
 
   </template>
-  <template #body:gap-size.description>
+  <template #body:gap-size:description>
     Size of the divider gap.
   </template>
 </RTable>

@@ -62,14 +62,14 @@ function toggle() {
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'open', 'reactions']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:graphics-options.type>
+  <template #body:graphics-options:type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options.description>
+  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
@@ -77,17 +77,17 @@ function toggle() {
 
   </template>
 
-  <template #body:open.type>
+  <template #body:open:type>
 
   `boolean`
 
   </template>
-  <template #body:open.default>
+  <template #body:open:default>
 
   `false`
 
   </template>
-  <template #body:open.description>
+  <template #body:open:description>
 
   Whether the details are currently visible.
 
@@ -95,17 +95,17 @@ function toggle() {
 
   </template>
 
-  <template #body:reactions.type>
+  <template #body:reactions:type>
 
   `string[]`
 
   </template>
-  <template #body:reactions.default>
+  <template #body:reactions:default>
 
   `[]`
 
   </template>
-  <template #body:reactions.description>
+  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
@@ -122,14 +122,14 @@ function toggle() {
   :columns="['name', 'parameters', 'description']"
   :rows="['update:open']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:update:open.parameters>
+  <template #body:update:open:parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:open.description>
+  <template #body:update:open:description>
     Callback function triggered when visibility of the detail is changed.
   </template>
 </RTable>
@@ -142,16 +142,16 @@ function toggle() {
   :columns="['name', 'parameters', 'description']"
   :rows="['summary', 'default']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:summary.description>
+  <template #body:summary:description>
 
   The content of the summary.
 
   See [`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary).
 
   </template>
-  <template #body:default.description>
+  <template #body:default:description>
     The content of the details.
   </template>
 </RTable>
@@ -164,47 +164,47 @@ function toggle() {
   :columns="['name', 'values', 'default', 'description']"
   :rows="['summary-color', 'summary-marker-size', 'gap-size']"
 >
-  <template #body:*.name="{ row }">--r-details-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-details-{{ row }}</template>
 
-  <template #body:summary-color.values>
+  <template #body:summary-color:values>
 
   `<color>`
 
   </template>
-  <template #body:summary-color.default>
+  <template #body:summary-color:default>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:summary-color.description>
+  <template #body:summary-color:description>
     Color of summary text and marker.
   </template>
 
-  <template #body:summary-marker-size.values>
+  <template #body:summary-marker-size:values>
 
   `<length>`
 
   </template>
-  <template #body:summary-marker-size.default>
+  <template #body:summary-marker-size:default>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:summary-marker-size.description>
+  <template #body:summary-marker-size:description>
     Size of the block of summary marker.
   </template>
 
-  <template #body:gap-size.values>
+  <template #body:gap-size:values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size.default>
+  <template #body:gap-size:default>
 
   `12px`
 
   </template>
-  <template #body:gap-size.description>
+  <template #body:gap-size:description>
     Size of the gap between the summary and content.
   </template>
 </RTable>

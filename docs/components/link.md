@@ -96,23 +96,23 @@ Also see [Button](/components/button#tag).
   :columns="['name', 'type', 'default', 'description']"
   :rows="['tag', '...']"
 >
-  <template #body:*.name="{ row }">{{ row }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:tag.type>
+  <template #body:tag:type>
 
   `string`, but usually `'a' | 'button'`
 
   </template>
-  <template #body:tag.default>
+  <template #body:tag:default>
 
   `'a'`
 
   </template>
-  <template #body:tag.description>
+  <template #body:tag:description>
     HTML tag for rendering the link.
   </template>
 
-  <template #body:....description>
+  <template #body:...:description>
 
   See [Text Props](/components/text#props).
 
@@ -127,26 +127,26 @@ Also see [Button](/components/button#tag).
   :columns="['name', 'values', 'default', 'description']"
   :rows="['underline-width', '...']"
 >
-  <template #body:*.name="{ row }">--r-link-{{ row }}</template>
+  <template #body:*:name="{ row }">--r-link-{{ row }}</template>
 
-  <template #body:underline-width.values>
+  <template #body:underline-width:values>
 
   `<length>`
 
   </template>
-  <template #body:underline-width.default>
+  <template #body:underline-width:default>
 
   `3px` when focused or active, `2px` else
 
   </template>
-  <template #body:underline-width.description>
+  <template #body:underline-width:description>
 
   Width of the link underline. Only visible when hovered, or with the `href` attribute.
 
   </template>
 
-  <template #body:....name>...</template>
-  <template #body:....description>
+  <template #body:....name>..:</template>
+  <template #body:...:description>
 
   See [Text Styles](/components/text#styles).
 
