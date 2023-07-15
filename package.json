@@ -17,7 +17,7 @@
   "scripts": {
     "prepack": "vite build",
     "release": "release-it",
-    "release:alpha-as-latest": "npm run release -- --preRelease=alpha --npm.tag=latest",
+    "release:beta-as-latest": "npm run release -- --preRelease=beta --npm.tag=latest",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "lint:script": "eslint --ignore-path .gitignore --ext .cjs,.js,.ts,.vue --cache --fix .",
