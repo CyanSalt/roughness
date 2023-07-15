@@ -1,5 +1,33 @@
 
 
+## [0.1.0-beta.0](https://github.com/CyanSalt/roughness/compare/v0.1.0-alpha.2...v0.1.0-beta.0) (2023-07-15)
+
+
+### Features
+
+* add card ([1627587](https://github.com/CyanSalt/roughness/commit/1627587dd0dbdae66dd8e78108392cfe99aa5a31))
+* add dialog ([cf57ff1](https://github.com/CyanSalt/roughness/commit/cf57ff1643d5453a137f4e62a1c3a4ece865da3c))
+* add drawer ([96ec4d5](https://github.com/CyanSalt/roughness/commit/96ec4d57b6e1f6357a41dc92cce99106466c01fb))
+* add icon ([2fe4229](https://github.com/CyanSalt/roughness/commit/2fe4229a5f1d5c43fbbee7fcdbd0855532f50b95))
+* add list ([e771e62](https://github.com/CyanSalt/roughness/commit/e771e62f19417608d3f6dc1cc54bd56737fdadb3))
+* add popover ([d67eb06](https://github.com/CyanSalt/roughness/commit/d67eb0644bd1a0bad9a0b03bd13e7c7c58fe9c60))
+* add tabs ([0b5b26d](https://github.com/CyanSalt/roughness/commit/0b5b26dba6c3ecaf75b7bf82c250828c7eaf4daf))
+* add toast ([612c43a](https://github.com/CyanSalt/roughness/commit/612c43a0452b12878f4f47b063e29cd9e6ce1333))
+* custom list items ([0914d22](https://github.com/CyanSalt/roughness/commit/0914d22eb026741e41f91773856994aa1ab70dac))
+* dialog#state ([a28680e](https://github.com/CyanSalt/roughness/commit/a28680e92d2e70554cdc86a76b57bf718fa7b0ac))
+* nesting graphics config ([a7fc419](https://github.com/CyanSalt/roughness/commit/a7fc41949031a78c13e430f39ef9bc29a98c45d3))
+* number as keys ([c1de4a1](https://github.com/CyanSalt/roughness/commit/c1de4a1a26d35c628ab2b9cc9a11949ddfbac61c))
+* table footer ([2f9d3df](https://github.com/CyanSalt/roughness/commit/2f9d3dfe60488a1c0b470a0c82a67cbc99bb9dc8))
+
+
+### Bug Fixes
+
+* alert line size ([60123b9](https://github.com/CyanSalt/roughness/commit/60123b9c1365391ccdcc9bc9ac322418a025ae39))
+* details gap ([4aee89c](https://github.com/CyanSalt/roughness/commit/4aee89c0b31150adf7385cc3ed8f67a02075fd81))
+* icon size ([d752276](https://github.com/CyanSalt/roughness/commit/d752276b511c21a1ff3b7c7a57d94b122b2331f8))
+* input type ([34a180c](https://github.com/CyanSalt/roughness/commit/34a180c8ec204159867f9b3317a1ff9e0db49ddd))
+* support zero-width stroke ([a85e2d5](https://github.com/CyanSalt/roughness/commit/a85e2d5e7f0facadb68e5d8bea9bbaef9a394922))
+
 ## [0.1.0-alpha.2](https://github.com/CyanSalt/roughness/compare/v0.1.0-alpha.1...v0.1.0-alpha.2) (2023-07-06)
 
 
