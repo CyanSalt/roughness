@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { HTMLAttributes } from 'vue'

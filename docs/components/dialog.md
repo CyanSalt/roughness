@@ -100,7 +100,7 @@ function show() {
   </template>
   <template #body:open:default>
 
-  `false`
+  `true`
 
   </template>
   <template #body:open:description>
@@ -129,6 +129,26 @@ function show() {
 
   Unlike Card, the default value of Dialog's `footer` is `true`.
 
+  </template>
+</RTable>
+</RSpace>
+
+### Events
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['update:open']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:update:open:parameters>
+
+  `(value: boolean)`
+
+  </template>
+  <template #body:update:open:description>
+    Callback function triggered when visibility of the dialog is changed.
   </template>
 </RTable>
 </RSpace>

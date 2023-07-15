@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
 import { useReactionState } from '../common/utils'

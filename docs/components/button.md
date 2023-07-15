@@ -300,12 +300,7 @@ import { RButton, RSpace } from 'roughness'
 
   <template #body:size:type>
 
-  `string`, but usually `'small' | 'medium' | 'large'`
-
-  </template>
-  <template #body:size:default>
-
-  `'medium'`
+  `string`, but usually `'small' | 'large'`
 
   </template>
   <template #body:size:description>

@@ -114,3 +114,11 @@ export function useReactionState(
     }
   })) as Partial<ReactionState>
 }
+
+export type ComponentProps<
+  // Original tsc cannot derive components as constructor types
+  // T extends abstract new (...args: any[]) => { $props: any },
+  T,
+> = T extends abstract new (...args: any[]) => { $props: infer U } ? {
+  -readonly [P in keyof U]: U[P];
+} : never

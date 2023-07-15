@@ -1,4 +1,5 @@
 <script lang="ts" setup generic="T extends string[] | number">
+import '../common/style.scss'
 import { provide } from 'vue'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'

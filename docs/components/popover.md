@@ -124,6 +124,26 @@ import { RPopover } from 'roughness'
 </RTable>
 </RSpace>
 
+### Events
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['update:open']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:update:open:parameters>
+
+  `(value: boolean)`
+
+  </template>
+  <template #body:update:open:description>
+    Callback function triggered when visibility of the popover is changed.
+  </template>
+</RTable>
+</RSpace>
+
 ### Slots
 
 <RSpace overflow>

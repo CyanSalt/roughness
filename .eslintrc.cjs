@@ -6,6 +6,9 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.tools.json',
   },
+  globals: {
+    ToggleEvent: 'readonly',
+  },
   rules: {
     'sort-imports': ['warn', { ignoreCase: true, ignoreDeclarationSort: true }],
     'vue/no-undef-components': 'error',

@@ -140,6 +140,26 @@ See [Checkbox Tree](/components/checkbox#tree).
 </RTable>
 </RSpace>
 
+### Event
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['update:model-value']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:update:model-value:parameters>
+
+  `(value: boolean)`
+
+  </template>
+  <template #body:update:model-value:description>
+    Callback function triggered when the selected item is changed.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

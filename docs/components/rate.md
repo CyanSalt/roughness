@@ -87,6 +87,26 @@ let rate = ref(3)
 </RTable>
 </RSpace>
 
+### Event
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['update:model-value']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:update:model-value:parameters>
+
+  `(value: boolean)`
+
+  </template>
+  <template #body:update:model-value:description>
+    Callback function triggered when the value is changed.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

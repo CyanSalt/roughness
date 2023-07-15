@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { watch, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -13,7 +14,7 @@ const {
   closable = true,
   footer = true,
   header = true,
-  open = false,
+  open = true,
   state = 'manual',
   reactions,
   graphicsOptions,

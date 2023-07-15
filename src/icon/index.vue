@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import icons from 'feather-icons/dist/icons.json'
 import { chunk } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
