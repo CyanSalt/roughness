@@ -32,12 +32,13 @@ const {
   rows: U,
 } & GraphicsProps>()
 
-defineSlots<{
-  'header:*'?: (props: { column: Column }) => any,
-  'body:*:*'?: (props: { row: Row, column: Column }) => any,
-  'footer:*'?: (props: { column: Column }) => any,
-  default?: (props: {}) => any,
-} & Record<`header:${string}` | `body:${string}:${string}` | `footer:${string}`, (props: {}) => any>>()
+defineSlots<Record<
+  `header:${string}` | `footer:${string}`,
+  (props: { column: Column }) => any
+> & Record<
+  `body:${string}:${string}`,
+  (props: { row: Column, column: Column }) => any
+>>()
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -146,7 +147,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <thead v-if="header" ref="head">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`header:${column as Column}`">
+          <slot :name="`header:${column as Column}`" :column="column">
             <slot name="header:*" :column="column">{{ startCase(column) }}</slot>
           </slot>
         </th>
@@ -155,9 +156,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <tbody ref="body">
       <tr v-for="row in rows" :key="row">
         <td v-for="column in columns" :key="column">
-          <slot :name="`body:${row as Row}:${column as Column}`">
-            <slot :name="`body:*:${column as Column}`" :row="row">
-              <slot :name="`body:${row as Row}:*`" :column="column">
+          <slot :name="`body:${row as Row}:${column as Column}`" :row="row" :column="column">
+            <slot :name="`body:*:${column as Column}`" :row="row" :column="column">
+              <slot :name="`body:${row as Row}:*`" :row="row" :column="column">
                 <slot name="body:*:*" :row="row" :column="column"></slot>
               </slot>
             </slot>
@@ -168,7 +169,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <tfoot v-if="footer" ref="foot">
       <tr>
         <th v-for="column in columns" :key="column">
-          <slot :name="`footer:${column as Column}`">
+          <slot :name="`footer:${column as Column}`" :column="column">
             <slot name="footer:*" :column="column"></slot>
           </slot>
         </th>

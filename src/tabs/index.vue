@@ -26,10 +26,10 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-defineSlots<{
-  'anchor:*'?: (props: { tab: Tab }) => any,
-  'content:*'?: (props: { tab: Tab }) => any,
-} & Record<`anchor:${string}` | `content:${string}`, (props: {}) => any>>()
+defineSlots<Record<
+  `anchor:${string}` | `content:${string}`,
+  (props: { tab: Tab }) => any
+>>()
 
 let internalModelValue = $ref(modelValue) as typeof modelValue
 
@@ -76,13 +76,13 @@ function activate(tab: Tab) {
         :graphics-options="graphicsOptions"
         @activate="activate"
       >
-        <slot :name="`anchor:${tab as Tab}`">
+        <slot :name="`anchor:${tab as Tab}`" :tab="tab">
           <slot name="anchor:*" :tab="tab">{{ startCase(tab) }}</slot>
         </slot>
       </RTabAnchor>
     </RSpace>
     <div class="r-tabs__content" role="tabpanel" aria-expanded="true">
-      <slot v-if="internalModelValue" :name="`content:${internalModelValue}`">
+      <slot v-if="internalModelValue" :name="`content:${internalModelValue}`" :tab="(internalModelValue as Tab)">
         <slot name="content:*" :tab="(internalModelValue as Tab)"></slot>
       </slot>
       <slot v-else name="content:*" :tab="(internalModelValue as Tab)"></slot>
