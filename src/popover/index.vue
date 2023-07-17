@@ -183,6 +183,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-popover-border-color: var(--r-common-text-color);
   --r-popover-border-width: 1px;
   position: relative;
+  display: inline-block;
 }
 .r-popover__anchor {
   appearance: none;
@@ -194,6 +195,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-popover__content {
   position: absolute;
+  width: max-content;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
 }
