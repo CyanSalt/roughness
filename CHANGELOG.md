@@ -1,5 +1,13 @@
 
 
+## [0.1.0-beta.2](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.1...v0.1.0-beta.2) (2023-07-17)
+
+
+### Bug Fixes
+
+* reset style ([f93c6a8](https://github.com/CyanSalt/roughness/commit/f93c6a85aea735f327bf37fcb1ff7a8c51b41bef))
+* select label ([a146e2a](https://github.com/CyanSalt/roughness/commit/a146e2afaf9430ea8e2196e4eff5af41c7ab7902))
+
 ## [0.1.0-beta.1](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.0...v0.1.0-beta.1) (2023-07-17)
 
 
