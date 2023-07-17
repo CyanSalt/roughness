@@ -50,7 +50,7 @@ import { RPopover, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'graphics-options', 'open', 'reactions', 'side', 'trigger']"
+  :rows="['align', 'open', 'side', 'trigger', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -75,19 +75,6 @@ import { RPopover, RSpace } from 'roughness'
 
   </template>
 
-  <template #body:graphics-options:type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-  <template #body:graphics-options:description>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </template>
-
   <template #body:open:type>
 
   `boolean`
@@ -100,24 +87,6 @@ import { RPopover, RSpace } from 'roughness'
   </template>
   <template #body:open:description>
     Whether to display the popover content.
-  </template>
-
-  <template #body:reactions:type>
-
-  `string[]`
-
-  </template>
-  <template #body:reactions:default>
-
-  `[]`
-
-  </template>
-  <template #body:reactions:description>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
   </template>
 
   <template #body:side:type>
@@ -147,6 +116,14 @@ import { RPopover, RSpace } from 'roughness'
   <template #body:trigger:description>
     How to trigger the display of popover content.
   </template>
+
+  <template #body:...:description>
+
+  See [Card Props](/components/card#props).
+
+  Unlike Card, the default value of Popover's `header` is `false`.
+
+  </template>
 </RTable>
 </RSpace>
 
@@ -175,7 +152,7 @@ import { RPopover, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['anchor', 'default']"
+  :rows="['anchor', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -183,47 +160,10 @@ import { RPopover, RSpace } from 'roughness'
     Anchor of the popover.
   </template>
 
-  <template #body:default:description>
-    Content of the popover.
-  </template>
-</RTable>
-</RSpace>
+  <template #body:...:description>
 
-### Styles
+  See [Card Slots](/components/card#slots).
 
-<RSpace overflow>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width']"
->
-  <template #body:*:name="{ row }">--r-popover-{{ row }}</template>
-
-  <template #body:border-color:values>
-
-  `<color>`
-
-  </template>
-  <template #body:border-color:default>
-
-  `var(--r-common-text-color)`
-
-  </template>
-  <template #body:border-color:description>
-    Color of the popover border.
-  </template>
-
-  <template #body:border-width:values>
-
-  `<length>`
-
-  </template>
-  <template #body:border-width:default>
-
-  `1px`
-
-  </template>
-  <template #body:border-width:description>
-    Width of the popover border.
   </template>
 </RTable>
 </RSpace>

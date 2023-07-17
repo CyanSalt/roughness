@@ -62,7 +62,7 @@ function show() {
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['closable', 'graphics-options', 'open', 'state', '...']"
+  :rows="['closable', 'open', 'state', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -78,19 +78,6 @@ function show() {
   </template>
   <template #body:closable:description>
     Whether to display the close button.
-  </template>
-
-  <template #body:graphics-options:type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-  <template #body:graphics-options:description>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
   </template>
 
   <template #body:open:type>

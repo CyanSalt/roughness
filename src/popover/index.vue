@@ -2,13 +2,10 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { refDebounced, useMouseInElement } from '@vueuse/core'
-import type { RoughSVG } from 'roughjs/bin/svg'
 import type { HTMLAttributes } from 'vue'
-import { toRef, watch, watchEffect } from 'vue'
-import { useReactionState } from '../common/utils'
-import RGraphics from '../graphics/index.vue'
+import { watch, watchEffect } from 'vue'
+import RCard from '../card/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RPopover',
@@ -16,13 +13,17 @@ defineOptions({
 
 const {
   align = 'start',
+  footer = false,
+  header = false,
   open = false,
   side = 'top',
   trigger = 'hover',
-  reactions = (() => []) as never,
+  reactions,
   graphicsOptions,
 } = defineProps<{
   align?: 'start' | 'end' | 'center' | 'stretch',
+  footer?: boolean,
+  header?: boolean,
   open?: boolean,
   side?: 'top' | 'bottom' | 'left' | 'right',
   trigger?: 'hover' | 'click' | 'manual',
@@ -138,21 +139,13 @@ const contentStyle = $computed(() => {
   return style
 })
 
-const getReactionState = useReactionState(toRef(() => reactions))
-
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  getReactionState()
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-popover-border-width') ?? 0
-  const padding = 2
-  const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
-    stroke: 'var(--r-popover-border-color)',
-    strokeWidth,
+const nestingGraphicsOptions = $computed(() => {
+  return {
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',
-  })
-  svg.appendChild(rectangle)
-}
+    ...graphicsOptions,
+  }
+})
 </script>
 
 <template>
@@ -165,16 +158,28 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     >
       <slot name="anchor"></slot>
     </button>
-    <div
+    <RCard
       v-if="internalOpen"
       ref="content"
+      :header="header"
+      :footer="footer"
+      :reactions="reactions"
+      :graphics-options="nestingGraphicsOptions"
       class="r-popover__content"
       :style="contentStyle"
       role="tooltip"
     >
-      <RGraphics :options="graphicsOptions" @draw="draw" />
+      <template #header-end>
+        <slot name="header-end"></slot>
+      </template>
+      <template #title>
+        <slot name="title"></slot>
+      </template>
       <slot></slot>
-    </div>
+      <template #footer>
+        <slot name="footer"></slot>
+      </template>
+    </RCard>
   </span>
 </template>
 
@@ -182,8 +187,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-popover {
-  --r-popover-border-color: var(--r-common-text-color);
-  --r-popover-border-width: 1px;
   position: relative;
   display: inline-block;
 }
