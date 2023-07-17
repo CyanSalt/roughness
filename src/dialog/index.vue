@@ -15,7 +15,7 @@ const {
   footer = true,
   header = true,
   open = true,
-  state = 'manual',
+  state = 'auto',
   reactions,
   graphicsOptions,
 } = defineProps<{

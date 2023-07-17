@@ -114,7 +114,7 @@ function show() {
   </template>
   <template #body:state:default>
 
-  `'manual'`
+  `'auto'`
 
   </template>
   <template #body:state:description>
