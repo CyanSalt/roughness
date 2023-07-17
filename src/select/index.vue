@@ -203,7 +203,7 @@ provide(labelsInjection, labels)
     cursor: pointer;
   }
   &::placeholder {
-    color: var(--r-common-comment-color);
+    color: var(--r-common-placeholder-color);
   }
 }
 .r-select__dropdown {

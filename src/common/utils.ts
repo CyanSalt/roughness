@@ -30,6 +30,7 @@ export function useDark() {
 export interface Colors {
   textColor: string,
   backgroundColor: string,
+  placeholderColor: string,
   commentColor: string,
   primaryColor: string,
   infoColor: string,
@@ -41,7 +42,8 @@ export interface Colors {
 export const lightColors: Colors = {
   textColor: '#44413c',
   backgroundColor: '#ffffff',
-  commentColor: '#d2d0cc',
+  placeholderColor: '#44413c40',
+  commentColor: '#44413c80',
   primaryColor: '#0247fe',
   infoColor: '#2b4057',
   successColor: '#11887b',
@@ -52,7 +54,8 @@ export const lightColors: Colors = {
 export const darkColors: Colors = {
   textColor: '#f4f4f0',
   backgroundColor: '#31343a',
-  commentColor: 'rgb(255 255 255 / 19%)',
+  placeholderColor: '#f4f4f040',
+  commentColor: '#f4f4f080',
   primaryColor: '#94c0cc',
   infoColor: '#a6aebb',
   successColor: '#bcdf8a',

@@ -183,7 +183,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     text-decoration-line: line-through;
   }
   &::placeholder {
-    color: var(--r-common-comment-color);
+    color: var(--r-common-placeholder-color);
   }
 }
 textarea.r-input__input {
