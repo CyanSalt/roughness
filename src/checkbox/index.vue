@@ -8,7 +8,7 @@ import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
 import type { CheckboxValue } from './utils'
-import { modelInjection, multipleInjection } from './utils'
+import { labelsInjection, modelInjection, multipleInjection } from './utils'
 
 defineOptions({
   name: 'RCheckbox',
@@ -18,6 +18,7 @@ const {
   checked = false,
   disabled = false,
   indeterminate = false,
+  label,
   value,
   reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
@@ -25,6 +26,7 @@ const {
   checked?: boolean,
   disabled?: boolean,
   indeterminate?: boolean,
+  label?: string,
   value?: CheckboxValue,
 } & GraphicsProps>()
 
@@ -38,6 +40,16 @@ defineSlots<{
 
 const multiple = $(inject(multipleInjection, ref()))
 let model = $(inject(modelInjection, ref()))
+const labels = inject(labelsInjection, new Map<CheckboxValue, string>())
+
+watchEffect(onInvalidate => {
+  if (value !== undefined && label !== undefined) {
+    labels.set(value, label)
+    onInvalidate(() => {
+      labels.delete(value)
+    })
+  }
+})
 
 let internalChecked = $ref(checked)
 
@@ -117,7 +129,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <span class="r-checkbox__control">
       <RGraphics :options="graphicsOptions" @draw="draw" />
     </span>
-    <slot></slot>
+    <slot>{{ label }}</slot>
   </label>
 </template>
 

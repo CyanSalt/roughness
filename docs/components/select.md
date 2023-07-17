@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RCheckbox, RDetails, RSelect, RSpace, RTable } from 'roughness'
+import { RCheckbox, RDetails, RSelect, RSpace, RTable, RText } from 'roughness'
 </script>
 
 # Select
@@ -20,10 +20,10 @@ import { RCheckbox, RSelect } from 'roughness'
 
 <template>
   <RSelect placeholder="Test engineer rank">
-    <RCheckbox value="Stable">Stable</RCheckbox>
-    <RCheckbox value="Beta">Beta</RCheckbox>
-    <RCheckbox value="Dev">Dev</RCheckbox>
-    <RCheckbox value="Canary">Canary</RCheckbox>
+    <RCheckbox value="stable" label="Stable" />
+    <RCheckbox value="beta" label="Beta" />
+    <RCheckbox value="dev" label="Dev" />
+    <RCheckbox value="canary" label="Canary" />
   </RSelect>
 </template>
 ```
@@ -31,10 +31,10 @@ import { RCheckbox, RSelect } from 'roughness'
 </RDetails>
 
 <RSelect placeholder="Test engineer rank">
-  <RCheckbox value="Stable">Stable</RCheckbox>
-  <RCheckbox value="Beta">Beta</RCheckbox>
-  <RCheckbox value="Dev">Dev</RCheckbox>
-  <RCheckbox value="Canary">Canary</RCheckbox>
+  <RCheckbox value="stable" label="Stable" />
+  <RCheckbox value="beta" label="Beta" />
+  <RCheckbox value="dev" label="Dev" />
+  <RCheckbox value="canary" label="Canary" />
 </RSelect>
 
 ### Multiple
@@ -49,10 +49,10 @@ import { RCheckbox, RSelect } from 'roughness'
 
 <template>
   <RSelect multiple placeholder="Exodia">
-    <RCheckbox value="Right Arm">Right Arm</RCheckbox>
-    <RCheckbox value="Left Arm">Left Arm</RCheckbox>
-    <RCheckbox value="Right Leg">Right Leg</RCheckbox>
-    <RCheckbox value="Left Leg">Left Leg</RCheckbox>
+    <RCheckbox value="Right Arm" label="Right Arm" />
+    <RCheckbox value="Left Arm" label="Left Arm" />
+    <RCheckbox value="Right Leg" label="Right Leg" />
+    <RCheckbox value="Left Leg" label="Left Leg" />
   </RSelect>
 </template>
 ```
@@ -60,10 +60,10 @@ import { RCheckbox, RSelect } from 'roughness'
 </RDetails>
 
 <RSelect multiple placeholder="Exodia">
-  <RCheckbox value="Right Arm">Right Arm</RCheckbox>
-  <RCheckbox value="Left Arm">Left Arm</RCheckbox>
-  <RCheckbox value="Right Leg">Right Leg</RCheckbox>
-  <RCheckbox value="Left Leg">Left Leg</RCheckbox>
+  <RCheckbox value="Right Arm" label="Right Arm" />
+  <RCheckbox value="Left Arm" label="Left Arm" />
+  <RCheckbox value="Right Leg" label="Right Leg" />
+  <RCheckbox value="Left Leg" label="Left Leg" />
 </RSelect>
 
 ### Tree

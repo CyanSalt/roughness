@@ -2,9 +2,10 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { toRef, watch, watchEffect } from 'vue'
+import { provide, reactive, toRef, watch, watchEffect } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
+import { labelsInjection } from '../checkbox/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -57,8 +58,13 @@ watch($$(internalModelValue), currentValue => {
   emit('update:modelValue', currentValue)
 })
 
+const labels = reactive(new Map<CheckboxValue, string>())
+
 const displayText = $computed(() => {
-  return Array.isArray(internalModelValue) ? internalModelValue.join(', ') : internalModelValue
+  const text = Array.isArray(internalModelValue)
+    ? internalModelValue.map(value => labels.get(value) ?? value)
+    : (internalModelValue !== undefined ? labels.get(internalModelValue) ?? internalModelValue : internalModelValue)
+  return Array.isArray(text) ? text.join(', ') : text
 })
 
 let input = $ref<HTMLInputElement>()
@@ -126,6 +132,8 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   })
   svg.appendChild(rectangle)
 }
+
+provide(labelsInjection, labels)
 </script>
 
 <template>
@@ -143,7 +151,7 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
       @keydown.escape="close"
     >
     <RCheckboxGroup
-      v-if="state"
+      v-show="state"
       v-model="internalModelValue"
       :multiple="multiple"
       vertical
@@ -171,9 +179,15 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-select__input {
+  appearance: none;
   width: 100%;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
+  border: none;
+  background-color: transparent;
+  &:focus {
+    outline: none;
+  }
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;

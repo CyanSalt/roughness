@@ -213,7 +213,7 @@ const treeValue = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['checked', 'graphics-options', 'indeterminate', 'reactions', 'value']"
+  :rows="['checked', 'graphics-options', 'indeterminate', 'label', 'reactions', 'value']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -242,6 +242,15 @@ const treeValue = ref<string | undefined>()
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
+  </template>
+
+  <template #body:value:type>
+
+  `string`
+
+  </template>
+  <template #body:value:description>
+    Item label when checked and displayed, e.g. in Select.
   </template>
 
   <template #body:indeterminate:type>
