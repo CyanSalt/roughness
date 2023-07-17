@@ -103,6 +103,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   background-color: transparent;
   cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
+  &:focus {
+    outline: none;
+  }
   :deep(.r-graphics) {
     font-size: inherit;
   }

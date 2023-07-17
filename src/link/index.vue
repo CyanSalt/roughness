@@ -41,6 +41,9 @@ defineSlots<{
   &:focus, &:active {
     --r-link-underline-width: 3px;
   }
+  &:focus {
+    outline: none;
+  }
 }
 button.r-link {
   appearance: none;
