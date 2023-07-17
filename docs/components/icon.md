@@ -138,7 +138,7 @@ See [Text](/components/text).
   </template>
   <template #body:color:default>
 
-  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
+  `var(--r-text-color)`
 
   </template>
   <template #body:color:description>

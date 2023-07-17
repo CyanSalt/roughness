@@ -29,6 +29,9 @@ defineSlots<{
 .r-text {
   --r-text-color: var(--r-common-text-color);
   color: var(--r-text-color);
+  :where(.r-text) {
+    --r-text-color: inherit;
+  }
   &.primary {
     --r-text-color: var(--r-common-primary-color);
   }

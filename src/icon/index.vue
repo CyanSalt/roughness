@@ -134,7 +134,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss" scoped>
 .r-icon {
-  --r-icon-color: var(--r-common-text-color);
+  --r-icon-color: var(--r-text-color);
   display: inline-block;
   width: calc(1em + 4px);
   height: calc(1em + 4px);

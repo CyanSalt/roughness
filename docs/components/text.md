@@ -158,7 +158,9 @@ import { RSpace, RText } from 'roughness'
   </template>
   <template #body:color:default>
 
-  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
+  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`.
+
+  When `type` is `default`, it will also be inherited from ancestors.
 
   </template>
   <template #body:color:description>
