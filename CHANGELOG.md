@@ -1,5 +1,13 @@
 
 
+## [0.1.0-beta.5](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.4...v0.1.0-beta.5) (2023-07-17)
+
+
+### Bug Fixes
+
+* reset style priority ([b275dae](https://github.com/CyanSalt/roughness/commit/b275daef777ae12dd901175bc2a2a41736b879f8))
+* useColors typing ([3dd1d5a](https://github.com/CyanSalt/roughness/commit/3dd1d5affac4ddb6389fbaab6118f2830ce95b34))
+
 ## [0.1.0-beta.4](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.3...v0.1.0-beta.4) (2023-07-17)
 
 
