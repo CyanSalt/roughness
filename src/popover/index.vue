@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
+import { refDebounced, useMouseInElement } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { HTMLAttributes } from 'vue'
 import { toRef, watch, watchEffect } from 'vue'
@@ -15,14 +16,16 @@ defineOptions({
 
 const {
   align = 'start',
-  open,
+  open = false,
   side = 'top',
+  trigger = 'hover',
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   align?: 'start' | 'end' | 'center' | 'stretch',
   open?: boolean,
   side?: 'top' | 'bottom' | 'left' | 'right',
+  trigger?: 'hover' | 'click' | 'manual',
 } & GraphicsProps>()
 
 const emit = defineEmits<{
@@ -45,12 +48,29 @@ watch($$(internalOpen), currentValue => {
 })
 
 function toggle() {
-  internalOpen = !internalOpen
+  if (trigger !== 'manual') {
+    internalOpen = !internalOpen
+  }
 }
 
 function close() {
-  internalOpen = false
+  if (trigger !== 'manual') {
+    internalOpen = false
+  }
 }
+
+let anchor = $ref<HTMLElement>()
+let content = $ref<HTMLElement>()
+const { isOutside: isOutsideAnchor } = $(useMouseInElement($$(anchor)))
+const { isOutside: isOutsideContent } = $(useMouseInElement($$(content)))
+const isOutside = $computed<boolean>(() => isOutsideAnchor && isOutsideContent)
+const isOutsideDebounced = $(refDebounced($$(isOutside), 200))
+
+watchEffect(() => {
+  if (trigger === 'hover') {
+    internalOpen = !isOutsideDebounced
+  }
+})
 
 const contentStyle = $computed(() => {
   let style: HTMLAttributes['style'] = {}
@@ -137,11 +157,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <span v-on-click-outside.bubble="close" class="r-popover">
-    <button class="r-popover__anchor" @click="toggle" @keydown.escape="close">
+    <button
+      ref="anchor"
+      class="r-popover__anchor"
+      @click="toggle"
+      @keydown.escape="close"
+    >
       <slot name="anchor"></slot>
     </button>
     <div
       v-if="internalOpen"
+      ref="content"
       class="r-popover__content"
       :style="contentStyle"
       role="tooltip"
@@ -163,6 +189,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: block;
   padding: 0;
   border: none;
+  background-color: transparent;
 }
 .r-popover__content {
   position: absolute;

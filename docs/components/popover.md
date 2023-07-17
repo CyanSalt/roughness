@@ -13,23 +13,35 @@ Should this text appear in a popover?
 
 ```vue
 <script lang="ts" setup>
-import { RPopover } from 'roughness'
+import { RPopover, RSpace } from 'roughness'
 </script>
 
 <template>
-  <RPopover>
-    <template #anchor>Tom is dreaming...</template>
-    About giving Jerry as a gift to the girl he loves
-  </RPopover>
+  <RSpace vertical>
+    <RPopover>
+      <template #anchor>Tom is dreaming...</template>
+      About giving Jerry as a gift to the girl he loves
+    </RPopover>
+    <RPopover trigger="click" side="bottom">
+      <template #anchor>Click to wake Tom up</template>
+      And let him find out that Jerry stole his cheese
+    </RPopover>
+  </RSpace>
 </template>
 ```
 
 </RDetails>
 
-<RPopover>
-  <template #anchor>Tom is dreaming...</template>
-  About giving Jerry as a gift to the girl he loves
-</RPopover>
+<RSpace vertical>
+  <RPopover>
+    <template #anchor>Tom is dreaming...</template>
+    About giving Jerry as a gift to the girl he loves
+  </RPopover>
+  <RPopover trigger="click" side="bottom">
+    <template #anchor>Click to wake Tom up</template>
+    And let him find out that Jerry stole his cheese
+  </RPopover>
+</RSpace>
 
 ## Usage
 
@@ -38,7 +50,7 @@ import { RPopover } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'graphics-options', 'open', 'reactions', 'side']"
+  :rows="['align', 'graphics-options', 'open', 'reactions', 'side', 'trigger']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -120,6 +132,20 @@ import { RPopover } from 'roughness'
   </template>
   <template #body:side:description>
     Which side of the anchor the popover will show on.
+  </template>
+
+  <template #body:trigger:type>
+
+  `'hover' | 'click'`
+
+  </template>
+  <template #body:trigger:default>
+
+  `'hover'`
+
+  </template>
+  <template #body:trigger:description>
+    How to trigger the display of popover content.
   </template>
 </RTable>
 </RSpace>
