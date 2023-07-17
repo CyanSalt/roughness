@@ -122,7 +122,7 @@ import { RCard } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['title', 'header-extra', 'default', 'footer']"
+  :rows="['title', 'header-end', 'default', 'footer']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -134,7 +134,7 @@ import { RCard } from 'roughness'
 
   </template>
 
-  <template #body:header-extra:description>
+  <template #body:header-end:description>
 
   The content of the card header after title.
 

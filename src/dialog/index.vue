@@ -5,6 +5,7 @@ import RCard from '../card/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 import RLink from '../link/index.vue'
+import RSpace from '../space/index.vue'
 
 defineOptions({
   name: 'RDialog',
@@ -92,14 +93,18 @@ const nestingGraphicsOptions = $computed(() => {
       method="dialog"
       class="r-dialog__card"
     >
-      <template v-if="closable" #header-end>
-        <RLink
-          tag="button"
-          size="large"
-          class="r-dialog__close"
-        >
-          <RIcon name="x" size="large" />
-        </RLink>
+      <template #header-end>
+        <RSpace>
+          <slot name="header-end"></slot>
+          <RLink
+            v-if="closable"
+            tag="button"
+            size="large"
+            class="r-dialog__close"
+          >
+            <RIcon name="x" size="large" />
+          </RLink>
+        </RSpace>
       </template>
       <template #title>
         <slot name="title"></slot>
