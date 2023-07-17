@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.1](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.0...v0.1.0-beta.1) (2023-07-17)
+
+
+### Bug Fixes
+
+* reactivity transform ([43b6e69](https://github.com/CyanSalt/roughness/commit/43b6e69af30f858d28442d64f23925f6b22e2505))
+
 ## [0.1.0-beta.0](https://github.com/CyanSalt/roughness/compare/v0.1.0-alpha.2...v0.1.0-beta.0) (2023-07-15)
 
 
