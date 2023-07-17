@@ -94,6 +94,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
+:where(.r-toast) {
+  @include reset.popover;
+}
 .r-toast {
   --r-toast-color: var(--r-common-text-color);
   position: fixed;
@@ -102,7 +107,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   inset-inline-start: 50%;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  border: none;
   color: var(--r-toast-color);
   transform: translate(-50%, -50%);
   &.primary {

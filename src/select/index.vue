@@ -168,6 +168,8 @@ provide(labelsInjection, labels)
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-select {
   --r-select-border-color: var(--r-common-text-color);
   --r-select-border-width: 1px;
@@ -181,14 +183,14 @@ provide(labelsInjection, labels)
     --r-select-border-width: 2px;
   }
 }
+:where(.r-select__input) {
+  @include reset.input;
+}
 .r-select__input {
-  appearance: none;
   width: 100%;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
-  border: none;
   color: var(--r-common-text-color);
-  background-color: transparent;
   &:focus {
     outline: none;
   }

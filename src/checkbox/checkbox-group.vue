@@ -52,9 +52,9 @@ provide(modelInjection, $$(model))
 </template>
 
 <style lang="scss" scoped>
-.r-checkbox-group {
-  margin: 0;
-  padding: 0;
-  border: none;
+@use '../common/_reset';
+
+:where(.r-checkbox-group) {
+  @include reset.fieldset;
 }
 </style>

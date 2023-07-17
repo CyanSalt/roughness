@@ -114,6 +114,8 @@ function click(event: MouseEvent) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-rate {
   --r-rate-color: var(--r-common-primary-color);
   --r-rate-border-color: var(--r-common-text-color);
@@ -123,11 +125,12 @@ function click(event: MouseEvent) {
     cursor: not-allowed;
   }
 }
+:where(.r-rate__input) {
+  @include reset.input-range;
+}
 .r-rate__input {
-  appearance: none;
   width: calc((var(--r-rate-control-size) - 4) * 7 * 48 / 45 + 4);
   height: var(--r-rate-control-size);
-  margin: 0;
   opacity: 0;
   cursor: pointer;
   pointer-events: none;

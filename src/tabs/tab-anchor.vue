@@ -67,6 +67,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-tab-anchor {
   --r-tab-anchor-active-color: var(--r-common-primary-color);
   --r-tab-anchor-border-color: var(--r-common-text-color);
@@ -83,8 +85,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-tab-anchor-border-color: var(--r-tab-anchor-active-color);
   }
 }
+:where(.r-tab-anchor__button) {
+  @include reset.button;
+}
 .r-tab-anchor__button {
-  appearance: none;
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);

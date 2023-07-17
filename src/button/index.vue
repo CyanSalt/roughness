@@ -86,21 +86,25 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss" scoped>
 @use '../common/_partials';
+@use '../common/_reset';
 
+:where(.r-button) {
+  @include reset.button;
+}
+:where(a.r-button) {
+  text-decoration: none;
+}
 .r-button {
   --r-button-color: var(--r-common-text-color);
   --r-button-border-color: var(--r-button-color);
   --r-button-border-width: 1px;
   --r-button-border-dash: none;
-  appearance: none;
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  border: none;
   color: var(--r-button-color);
   white-space: nowrap;
   text-align: center;
-  background-color: transparent;
   cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
   &:focus {
@@ -150,8 +154,5 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.large {
     font-size: var(--r-common-large-font-size);
   }
-}
-a.r-button {
-  text-decoration: none;
 }
 </style>

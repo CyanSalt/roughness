@@ -28,7 +28,11 @@ defineSlots<{
 
 <style lang="scss" scoped>
 @use '../common/_partials';
+@use '../common/_reset';
 
+:where(button.r-link) {
+  @include reset.button;
+}
 .r-link {
   --r-link-underline-width: 2px;
   text-decoration: none;
@@ -46,9 +50,6 @@ defineSlots<{
   }
 }
 button.r-link {
-  appearance: none;
-  border: none;
   color: var(--r-common-text-color);
-  background-color: transparent;
 }
 </style>

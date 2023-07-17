@@ -1,0 +1,47 @@
+@mixin a {
+  text-decoration: none;
+}
+
+@mixin button {
+  appearance: none;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+@mixin dialog {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+
+@mixin fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+@mixin input {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+}
+
+@mixin input-checkbox {
+  appearance: none;
+  margin: 0;
+}
+
+@mixin input-range {
+  appearance: none;
+  margin: 0;
+}
+
+@mixin popover {
+  border: none;
+}
+
+@mixin textarea {
+  background: none;
+  resize: none;
+}

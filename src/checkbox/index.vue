@@ -135,6 +135,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-checkbox {
   --r-checkbox-border-color: var(--r-common-text-color);
   --r-checkbox-border-width: 1px;
@@ -152,10 +154,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     text-decoration-line: line-through;
   }
 }
+:where(.r-checkbox__input) {
+  @include reset.input-checkbox;
+}
 .r-checkbox__input {
-  appearance: none;
   position: absolute;
-  margin: 0;
 }
 .r-checkbox__control {
   flex: none;

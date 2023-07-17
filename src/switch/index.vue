@@ -96,6 +96,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-switch {
   --r-switch-border-color: var(--r-common-text-color);
   --r-switch-border-width: 1px;
@@ -113,10 +115,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     text-decoration-line: line-through;
   }
 }
+:where(.r-switch__input) {
+  @include reset.input-checkbox;
+}
 .r-switch__input {
-  appearance: none;
   position: absolute;
-  margin: 0;
 }
 .r-switch__control {
   flex: none;

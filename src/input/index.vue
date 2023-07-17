@@ -138,6 +138,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-input {
   --r-input-border-color: var(--r-common-text-color);
   --r-input-border-width: 1px;
@@ -160,14 +162,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width: auto;
   }
 }
+:where(.r-input__input) {
+  @include reset.input;
+}
+:where(textarea.r-input__input) {
+  @include reset.textarea;
+}
 .r-input__input {
-  appearance: none;
   width: 100%;
   padding-inline: var(--r-common-box-padding-inline);
-  border: none;
   color: var(--r-common-text-color);
   line-height: var(--r-input-line-height);
-  background-color: transparent;
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
   &:focus {
     outline: none;
@@ -183,7 +188,5 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 textarea.r-input__input {
   height: calc(var(--r-input-lines) * var(--r-input-line-height));
-  background: none;
-  resize: none;
 }
 </style>

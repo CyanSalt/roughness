@@ -179,19 +179,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
 .r-popover {
   --r-popover-border-color: var(--r-common-text-color);
   --r-popover-border-width: 1px;
   position: relative;
   display: inline-block;
 }
+:where(.r-popover__anchor) {
+  @include reset.button;
+}
 .r-popover__anchor {
-  appearance: none;
   display: block;
-  padding: 0;
-  border: none;
   color: var(--r-common-text-color);
-  background-color: transparent;
 }
 .r-popover__content {
   position: absolute;
