@@ -1,36 +1,67 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import type { DirectiveBinding } from 'vue'
+import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 
+interface InputProps {
+  accept?: InputHTMLAttributes['accept'],
+  alt?: InputHTMLAttributes['alt'],
+  autocomplete?: InputHTMLAttributes['autocomplete'],
+  autofocus?: InputHTMLAttributes['autofocus'],
+  capture?: InputHTMLAttributes['capture'],
+  checked?: InputHTMLAttributes['checked'],
+  crossorigin?: InputHTMLAttributes['crossorigin'],
+  disabled?: InputHTMLAttributes['disabled'],
+  form?: InputHTMLAttributes['form'],
+  formaction?: InputHTMLAttributes['formaction'],
+  formenctype?: InputHTMLAttributes['formenctype'],
+  formmethod?: InputHTMLAttributes['formmethod'],
+  formnovalidate?: InputHTMLAttributes['formnovalidate'],
+  formtarget?: InputHTMLAttributes['formtarget'],
+  height?: InputHTMLAttributes['height'],
+  indeterminate?: InputHTMLAttributes['indeterminate'],
+  list?: InputHTMLAttributes['list'],
+  max?: InputHTMLAttributes['max'],
+  maxlength?: InputHTMLAttributes['maxlength'],
+  min?: InputHTMLAttributes['min'],
+  minlength?: InputHTMLAttributes['minlength'],
+  multiple?: InputHTMLAttributes['multiple'],
+  name?: InputHTMLAttributes['name'],
+  pattern?: InputHTMLAttributes['pattern'],
+  placeholder?: InputHTMLAttributes['placeholder'],
+  readonly?: InputHTMLAttributes['readonly'],
+  required?: InputHTMLAttributes['required'],
+  size?: InputHTMLAttributes['size'],
+  src?: InputHTMLAttributes['src'],
+  step?: InputHTMLAttributes['step'],
+  type?: InputHTMLAttributes['type'],
+  value?: InputHTMLAttributes['value'],
+  width?: InputHTMLAttributes['width'],
+}
+
 defineOptions({
   name: 'RInput',
 })
 
 const {
-  disabled = false,
   lines = 1,
   modelValue,
   modelModifiers = (() => ({})) as never,
-  placeholder,
-  readonly = false,
   type,
   reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
+  ...props
 } = defineProps<{
-  disabled?: boolean,
   lines?: number,
   modelValue?: string | number,
   modelModifiers?: DirectiveBinding['modifiers'],
-  placeholder?: string,
-  readonly?: boolean,
-  type?: HTMLInputElement['type'],
-} & GraphicsProps>()
+  type?: string,
+} & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
@@ -93,18 +124,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <textarea
       v-if="lines > 1"
       v-model="internalModelValue"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
+      v-bind="(props as TextareaHTMLAttributes)"
       class="r-input__input"
     ></textarea>
     <input
       v-else
       v-model="internalModelValue"
       :type="modelModifiers.number ? 'number' : type"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
+      v-bind="props"
       class="r-input__input"
     >
   </label>
