@@ -120,6 +120,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.error {
     --r-toast-color: var(--r-common-error-color);
   }
+  &.comment {
+    --r-toast-color: var(--r-common-comment-color);
+  }
   &.small {
     font-size: var(--r-common-small-font-size);
   }

@@ -141,6 +141,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.error {
     --r-button-color: var(--r-common-error-color);
   }
+  &.comment {
+    --r-button-color: var(--r-common-comment-color);
+  }
   &.small {
     font-size: var(--r-common-small-font-size);
   }

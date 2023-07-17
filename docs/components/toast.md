@@ -12,7 +12,7 @@ const toast = useToast()
 
 function add() {
   toast('Yummy!', {
-    type: ['primary', 'info', 'warning', 'error'][Math.floor(Math.random() * 4)],
+    type: ['primary', 'info', 'success', 'warning', 'error'][Math.floor(Math.random() * 5)],
   })
 }
 </script>
@@ -76,7 +76,7 @@ const toast = useToast()
 
 function add() {
   toast('Yummy!', {
-    type: ['primary', 'info', 'warning', 'error'][Math.floor(Math.random() * 4)],
+    type: ['primary', 'info', 'success', 'warning', 'error'][Math.floor(Math.random() * 5)],
   })
 }
 </script>
@@ -171,7 +171,7 @@ function add() {
 
   <template #body:type:type>
 
-  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
+  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
   <template #body:type:description>

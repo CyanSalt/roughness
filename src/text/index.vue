@@ -47,6 +47,9 @@ defineSlots<{
   &.error {
     --r-text-color: var(--r-common-error-color);
   }
+  &.comment {
+    --r-text-color: var(--r-common-comment-color);
+  }
   &.small {
     font-size: var(--r-common-small-font-size);
   }

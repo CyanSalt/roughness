@@ -201,7 +201,7 @@ provide(labelsInjection, labels)
     cursor: pointer;
   }
   &::placeholder {
-    color: var(--r-common-placeholder-color);
+    color: var(--r-common-comment-color);
   }
 }
 .r-select__dropdown {

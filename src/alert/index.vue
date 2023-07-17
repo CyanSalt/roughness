@@ -124,6 +124,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.error {
     --r-alert-color: var(--r-common-error-color);
   }
+  &.comment {
+    --r-alert-color: var(--r-common-comment-color);
+  }
   &.small {
     --r-alert-line-gap: 8px;
     font-size: var(--r-common-small-font-size);

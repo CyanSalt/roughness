@@ -40,6 +40,7 @@ export interface Colors {
 export const lightColors = {
   textColor: '#44413c',
   backgroundColor: '#ffffff',
+  commentColor: '#d2d0cc',
   primaryColor: '#0247fe',
   infoColor: '#2b4057',
   successColor: '#11887b',
@@ -50,6 +51,7 @@ export const lightColors = {
 export const darkColors = {
   textColor: '#f4f4f0',
   backgroundColor: '#31343a',
+  commentColor: 'rgb(255 255 255 / 19%)',
   primaryColor: '#94c0cc',
   infoColor: '#a6aebb',
   successColor: '#bcdf8a',
@@ -65,7 +67,7 @@ export function useColors() {
 }
 
 export interface ColorProps {
-  type?: 'primary' | 'info' | 'success' | 'warning' | 'error' | (string & {}),
+  type?: 'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment' | (string & {}),
 }
 
 export interface SizeProps {

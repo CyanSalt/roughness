@@ -323,7 +323,7 @@ import { RButton, RSpace } from 'roughness'
 
   <template #body:type:type>
 
-  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error'`
+  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
   <template #body:type:description>

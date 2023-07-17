@@ -24,7 +24,7 @@
 
   --r-common-text-color: #44413c;
   --r-common-background-color: #ffffff;
-  --r-common-placeholder-color: #{color.scale(#44413c, $lightness: 75%)};
+  --r-common-comment-color: #{color.scale(#44413c, $lightness: 75%)};
   --r-common-primary-color: #0247fe;
   --r-common-info-color: #2b4057;
   --r-common-success-color: #11887b;
@@ -35,7 +35,7 @@
 :root.dark {
   --r-common-text-color: #f4f4f0;
   --r-common-background-color: #31343a;
-  --r-common-placeholder-color: rgb(255 255 255 / #{math.div(3 - math.sqrt(5), 4) * 100%});
+  --r-common-comment-color: rgb(255 255 255 / #{math.div(3 - math.sqrt(5), 4) * 100%});
   --r-common-primary-color: #94c0cc;
   --r-common-info-color: #a6aebb;
   --r-common-success-color: #bcdf8a;
