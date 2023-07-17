@@ -8,6 +8,7 @@ import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
+import RSpace from '../space/index.vue'
 
 defineOptions({
   name: 'RDetails',
@@ -73,12 +74,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     class="r-details"
     @toggle="toggle"
   >
-    <summary ref="summary" class="r-details__summary">
+    <RSpace ref="summary" tag="summary" class="r-details__summary">
       <span class="r-details__summary-marker">
         <RGraphics :options="graphicsOptions" @draw="draw" />
       </span>
       <slot name="summary"></slot>
-    </summary>
+    </RSpace>
     <slot></slot>
   </details>
 </template>
@@ -107,7 +108,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   flex: none;
   width: var(--r-details-summary-marker-size);
   height: var(--r-details-summary-marker-size);
-  margin-inline-end: calc(var(--r-details-summary-marker-size) / 4);
   pointer-events: none;
 }
 </style>

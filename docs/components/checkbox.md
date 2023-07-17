@@ -213,7 +213,7 @@ const treeValue = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['checked', 'graphics-options', 'indeterminate', 'label', 'reactions', 'value']"
+  :rows="['checked', 'graphics-options', 'indeterminate', 'label', 'reactions', 'value', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -244,12 +244,12 @@ const treeValue = ref<string | undefined>()
 
   </template>
 
-  <template #body:value:type>
+  <template #body:label:type>
 
   `string`
 
   </template>
-  <template #body:value:description>
+  <template #body:label:description>
     Item label when checked and displayed, e.g. in Select.
   </template>
 
@@ -295,6 +295,14 @@ const treeValue = ref<string | undefined>()
   <template #body:value:description>
     Item value when checked in the CheckboxGroup.
   </template>
+
+  <template #body:...:description>
+
+  See [Space Props](/components/space#props).
+
+  Unlike Space, the default value of Checkbox's `tag` is `label`.
+
+  </template>
 </RTable>
 </RSpace>
 
@@ -338,7 +346,7 @@ const treeValue = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'checked-color', 'checked-width', 'control-size']"
+  :rows="['border-color', 'border-width', 'checked-color', 'checked-width', 'control-size', '...']"
 >
   <template #body:*:name="{ row }">--r-checkbox-{{ row }}</template>
 
@@ -410,6 +418,13 @@ const treeValue = ref<string | undefined>()
   </template>
   <template #body:control-size:description>
     Size of the checkbox control.
+  </template>
+
+  <template #body:....name>...</template>
+  <template #body:...:description>
+
+  See [Space Styles](/components/space#styles).
+
   </template>
 </RTable>
 </RSpace>
@@ -486,7 +501,7 @@ const treeValue = ref<string | undefined>()
 >
   <template #body:*:name="{ row }">--r-checkbox-group-{{ row }}</template>
 
-  <template #body:....name>..:</template>
+  <template #body:....name>...</template>
   <template #body:...:description>
 
   See [Space Styles](/components/space#styles).

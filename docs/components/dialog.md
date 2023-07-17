@@ -179,7 +179,7 @@ function show() {
 >
   <template #body:*:name="{ row }">--r-dialog-{{ row }}</template>
 
-  <template #body:....name>..:</template>
+  <template #body:....name>...</template>
   <template #body:...:description>
 
   See [Card Styles](/components/card#styles).

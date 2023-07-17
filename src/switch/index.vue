@@ -7,6 +7,7 @@ import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
+import RSpace from '../space/index.vue'
 
 defineOptions({
   name: 'RSwitch',
@@ -80,7 +81,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <label class="r-switch">
+  <RSpace tag="label" inline class="r-switch">
     <input
       v-model="internalModelValue"
       :disabled="disabled"
@@ -91,7 +92,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       <RGraphics :options="graphicsOptions" @draw="draw" />
     </span>
     <slot></slot>
-  </label>
+  </RSpace>
 </template>
 
 <style lang="scss" scoped>
@@ -101,7 +102,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-switch-control-size: var(--r-common-line-height);
   --r-switch-track-color: var(--r-common-primary-color);
   --r-switch-handle-color: var(--r-common-background-color);
-  display: inline-flex;
+  position: relative;
   cursor: pointer;
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
@@ -114,15 +115,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-switch__input {
   appearance: none;
+  position: absolute;
   margin: 0;
 }
 .r-switch__control {
   flex: none;
   width: calc(var(--r-switch-control-size) * 2);
   height: var(--r-switch-control-size);
-  &:not(:last-child) {
-    margin-inline-end: calc(var(--r-switch-control-size) / 4);
-  }
   .r-switch__input:disabled + & {
     opacity: 0.8;
   }

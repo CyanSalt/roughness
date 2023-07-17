@@ -32,7 +32,7 @@ import { RSwitch } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'model-value', 'reactions']"
+  :rows="['graphics-options', 'model-value', 'reactions', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -80,6 +80,14 @@ import { RSwitch } from 'roughness'
   See [Reactions](/guide/theme#reactions).
 
   </template>
+
+  <template #body:...:description>
+
+  See [Space Props](/components/space#props).
+
+  Unlike Space, the default value of Switch's `tag` is `label`.
+
+  </template>
 </RTable>
 </RSpace>
 
@@ -123,7 +131,7 @@ import { RSwitch } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'control-size', 'track-color', 'handle-color']"
+  :rows="['border-color', 'border-width', 'control-size', 'track-color', 'handle-color', '...']"
 >
   <template #body:*:name="{ row }">--r-switch-{{ row }}</template>
 
@@ -195,6 +203,13 @@ import { RSwitch } from 'roughness'
   </template>
   <template #body:handle-color:description>
     Color of the switch handle.
+  </template>
+
+  <template #body:....name>...</template>
+  <template #body:...:description>
+
+  See [Space Styles](/components/space#styles).
+
   </template>
 </RTable>
 </RSpace>

@@ -147,7 +147,7 @@ See also [Button](/components/button#tag).
 
   </template>
 
-  <template #body:....name>..:</template>
+  <template #body:....name>...</template>
   <template #body:...:description>
 
   See [Text Styles](/components/text#styles).

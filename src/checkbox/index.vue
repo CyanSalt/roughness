@@ -7,6 +7,7 @@ import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
+import RSpace from '../space/index.vue'
 import type { CheckboxValue } from './utils'
 import { labelsInjection, modelInjection, multipleInjection } from './utils'
 
@@ -117,7 +118,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <label class="r-checkbox">
+  <RSpace tag="label" inline class="r-checkbox">
     <input
       v-model="internalChecked"
       :type="multiple === false ? 'radio' : 'checkbox'"
@@ -130,7 +131,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       <RGraphics :options="graphicsOptions" @draw="draw" />
     </span>
     <slot>{{ label }}</slot>
-  </label>
+  </RSpace>
 </template>
 
 <style lang="scss" scoped>
@@ -140,7 +141,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-checkbox-checked-color: var(--r-common-primary-color);
   --r-checkbox-checked-width: 2px;
   --r-checkbox-control-size: var(--r-common-line-height);
-  display: inline-flex;
+  position: relative;
   cursor: pointer;
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
@@ -153,15 +154,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-checkbox__input {
   appearance: none;
+  position: absolute;
   margin: 0;
 }
 .r-checkbox__control {
   flex: none;
   width: var(--r-checkbox-control-size);
   height: var(--r-checkbox-control-size);
-  &:not(:last-child) {
-    margin-inline-end: calc(var(--r-checkbox-control-size) / 4);
-  }
   .r-checkbox__input:disabled + & {
     opacity: 0.8;
   }

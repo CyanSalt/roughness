@@ -229,7 +229,7 @@ import { RList, RListItem } from 'roughness'
     Area width of the list marker.
   </template>
 
-  <template #body:....name>..:</template>
+  <template #body:....name>...</template>
   <template #body:...:description>
 
   See [Space Styles](/components/space#styles).

@@ -145,7 +145,7 @@ See [Text](/components/text).
     Color of the icon.
   </template>
 
-  <template #body:....name>..:</template>
+  <template #body:....name>...</template>
   <template #body:...:description>
 
   See [Text Styles](/components/text#styles).
