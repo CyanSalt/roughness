@@ -1,5 +1,22 @@
 
 
+## [0.1.0-beta.4](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.3...v0.1.0-beta.4) (2023-07-17)
+
+
+### Features
+
+* support type=comment ([1f91cc8](https://github.com/CyanSalt/roughness/commit/1f91cc85dc22aa24f545b3d4f9f6fe928eebf699))
+
+
+### Bug Fixes
+
+* accept all input props ([a060315](https://github.com/CyanSalt/roughness/commit/a060315f5d29ae4db113b877cb143efa56d6c118))
+* dialog close icon style ([ef9cae9](https://github.com/CyanSalt/roughness/commit/ef9cae909d8794d2e2c1fd6fb178b26ce63836a7))
+* popover style ([932a1de](https://github.com/CyanSalt/roughness/commit/932a1def7bebc77ce637a0d22ea45ee0e3626f38))
+* reset fieldset style ([f4edc18](https://github.com/CyanSalt/roughness/commit/f4edc185a00b2edc4af57cc31d1a87cd5ebae4cc))
+* select dropdown overflow ([a0c6cdc](https://github.com/CyanSalt/roughness/commit/a0c6cdc8a94fb8a79f8af0aedeb32fc990019007))
+* use space internally ([9fb61ee](https://github.com/CyanSalt/roughness/commit/9fb61eefa72ff2386836905684012498cb813b02))
+
 ## [0.1.0-beta.3](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.2...v0.1.0-beta.3) (2023-07-17)
 
 
