@@ -41,6 +41,10 @@
   border: none;
 }
 
+@mixin table {
+  border-spacing: 0;
+}
+
 @mixin textarea {
   background: none;
   resize: none;

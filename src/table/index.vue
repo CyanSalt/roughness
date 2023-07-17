@@ -179,6 +179,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss" scoped>
+@use '../common/_reset';
+
+:where(.r-table) {
+  @include reset.table;
+}
 .r-table {
   --r-table-border-color: var(--r-common-text-color);
   td, th {
