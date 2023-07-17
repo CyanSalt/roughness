@@ -120,7 +120,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   flex: none;
   width: calc(var(--r-switch-control-size) * 2);
   height: var(--r-switch-control-size);
-  margin-inline-end: calc(var(--r-switch-control-size) / 4);
+  &:not(:last-child) {
+    margin-inline-end: calc(var(--r-switch-control-size) / 4);
+  }
   .r-switch__input:disabled + & {
     opacity: 0.8;
   }
