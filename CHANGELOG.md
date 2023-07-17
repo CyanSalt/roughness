@@ -1,5 +1,23 @@
 
 
+## [0.1.0-beta.3](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.2...v0.1.0-beta.3) (2023-07-17)
+
+
+### Features
+
+* popover trigger ([013dc58](https://github.com/CyanSalt/roughness/commit/013dc5878b0cf4ec3b64d64675871472ce068c47))
+
+
+### Bug Fixes
+
+* checkbox and switch margin ([288f1ad](https://github.com/CyanSalt/roughness/commit/288f1adf059380f70142742f1d237244271006ce))
+* dialog default state ([f54fce4](https://github.com/CyanSalt/roughness/commit/f54fce44f42c96c3812d216cba298ce59df43052))
+* dialog header-end slot ([763bf6c](https://github.com/CyanSalt/roughness/commit/763bf6c5098ebf883f64e57ee20059c6b909e3fb))
+* input border ([1eb6615](https://github.com/CyanSalt/roughness/commit/1eb6615b4f0981508e93f6b0f5ea48c4f22bce89))
+* reset button and link style ([5afc130](https://github.com/CyanSalt/roughness/commit/5afc1309be7d4ea2925d450895dd99715cc46d9e))
+* reset color ([b5349a5](https://github.com/CyanSalt/roughness/commit/b5349a5f625616f72d8ab0f3542218c4b06a44b9))
+* text color ([9c07561](https://github.com/CyanSalt/roughness/commit/9c075610887e0a7ccc0758e642e75b9b59c4cae8))
+
 ## [0.1.0-beta.2](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.1...v0.1.0-beta.2) (2023-07-17)
 
 
