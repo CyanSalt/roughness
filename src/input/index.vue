@@ -137,6 +137,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   appearance: none;
   width: 100%;
   padding-inline: var(--r-common-box-padding-inline);
+  border: none;
   color: var(--r-common-text-color);
   line-height: var(--r-input-line-height);
   background-color: transparent;
@@ -148,9 +149,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     opacity: 0.8;
     cursor: not-allowed;
     text-decoration-line: line-through;
-  }
-  &:not(:read-only) {
-    cursor: pointer;
   }
   &::placeholder {
     color: var(--r-common-placeholder-color);
