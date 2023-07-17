@@ -48,6 +48,7 @@ defineSlots<{
 button.r-link {
   appearance: none;
   border: none;
+  color: var(--r-common-text-color);
   background-color: transparent;
 }
 </style>

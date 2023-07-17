@@ -189,6 +189,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: block;
   padding: 0;
   border: none;
+  color: var(--r-common-text-color);
   background-color: transparent;
 }
 .r-popover__content {

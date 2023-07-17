@@ -122,6 +122,7 @@ const nestingGraphicsOptions = $computed(() => {
   max-width: min(90vw, 960px);
   padding: 0;
   border: none;
+  color: var(--r-common-text-color);
   background-color: transparent;
   &::backdrop {
     background-color: rgb(0 0 0 / 50%);

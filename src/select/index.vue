@@ -184,6 +184,7 @@ provide(labelsInjection, labels)
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   border: none;
+  color: var(--r-common-text-color);
   background-color: transparent;
   &:focus {
     outline: none;

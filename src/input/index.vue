@@ -137,6 +137,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   appearance: none;
   width: 100%;
   padding-inline: var(--r-common-box-padding-inline);
+  color: var(--r-common-text-color);
   line-height: var(--r-input-line-height);
   background-color: transparent;
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
