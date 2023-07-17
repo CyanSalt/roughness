@@ -30,6 +30,7 @@ export function useDark() {
 export interface Colors {
   textColor: string,
   backgroundColor: string,
+  commentColor: string,
   primaryColor: string,
   infoColor: string,
   successColor: string,
@@ -37,7 +38,7 @@ export interface Colors {
   errorColor: string,
 }
 
-export const lightColors = {
+export const lightColors: Colors = {
   textColor: '#44413c',
   backgroundColor: '#ffffff',
   commentColor: '#d2d0cc',
@@ -48,7 +49,7 @@ export const lightColors = {
   errorColor: '#ac3235',
 }
 
-export const darkColors = {
+export const darkColors: Colors = {
   textColor: '#f4f4f0',
   backgroundColor: '#31343a',
   commentColor: 'rgb(255 255 255 / 19%)',
