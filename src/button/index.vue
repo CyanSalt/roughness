@@ -100,6 +100,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   color: var(--r-button-color);
   white-space: nowrap;
   text-align: center;
+  background-color: transparent;
   cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
   :deep(.r-graphics) {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { provide } from 'vue'
+import { provide, reactive } from 'vue'
 import RToast from './index.vue'
 import type { Toast } from './utils'
 import { toastsInjection } from './utils'
@@ -12,7 +12,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const toasts = $ref<Toast[]>([])
+const toasts = reactive<Toast[]>([])
 
 function toggle(open: boolean, id: Toast['id']) {
   if (!open) {
@@ -23,7 +23,7 @@ function toggle(open: boolean, id: Toast['id']) {
   }
 }
 
-provide(toastsInjection, $$(toasts))
+provide(toastsInjection, toasts)
 </script>
 
 <template>

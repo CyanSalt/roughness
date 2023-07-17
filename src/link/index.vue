@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import type { ColorProps } from '../common/utils'
 import RText from '../text/index.vue'
 
 defineOptions({
@@ -8,8 +9,10 @@ defineOptions({
 
 const {
   tag = 'a',
+  type = 'primary',
 } = defineProps<{
   tag?: 'a' | 'button' | (string & {}),
+  type?: ColorProps['type'],
 }>()
 
 defineSlots<{
@@ -18,7 +21,7 @@ defineSlots<{
 </script>
 
 <template>
-  <RText :tag="tag" class="r-link">
+  <RText :tag="tag" :type="type" class="r-link">
     <slot></slot>
   </RText>
 </template>
@@ -41,5 +44,7 @@ defineSlots<{
 }
 button.r-link {
   appearance: none;
+  border: none;
+  background-color: transparent;
 }
 </style>

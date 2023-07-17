@@ -116,6 +116,8 @@ See also [Button](/components/button#tag).
 
   See [Text Props](/components/text#props).
 
+  Unlike Text, the default value of Link's `type` is `primary`.
+
   </template>
 </RTable>
 </RSpace>

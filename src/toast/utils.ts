@@ -1,5 +1,5 @@
-import type { InjectionKey, Ref, RenderFunction } from 'vue'
-import { inject, ref } from 'vue'
+import type { InjectionKey, RenderFunction } from 'vue'
+import { inject } from 'vue'
 import type { ComponentProps } from '../common/utils'
 import type RToast from './index.vue'
 
@@ -9,13 +9,13 @@ export interface Toast {
   props?: ComponentProps<typeof RToast>,
 }
 
-export const toastsInjection: InjectionKey<Ref<Toast[]>> = Symbol('RToastProvider#toasts')
+export const toastsInjection: InjectionKey<Toast[]> = Symbol('RToastProvider#toasts')
 
 let base = 0n
 const generateId = () => String(++base)
 
 export function useToast() {
-  const toasts = $(inject(toastsInjection, ref([])))
+  const toasts = inject(toastsInjection, [])
   return function (
     slot: string | number | boolean | null | undefined | RenderFunction,
     props?: Toast['props'],

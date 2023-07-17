@@ -138,7 +138,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   width: 100%;
   padding-inline: var(--r-common-box-padding-inline);
   line-height: var(--r-input-line-height);
+  background-color: transparent;
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
+  &:focus {
+    outline: none;
+  }
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
