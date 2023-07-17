@@ -150,17 +150,20 @@ provide(labelsInjection, labels)
       @keydown.enter="toggle"
       @keydown.escape="close"
     >
-    <RCheckboxGroup
-      v-show="state"
-      v-model="internalModelValue"
-      :multiple="multiple"
-      vertical
-      class="r-select__dropdown"
-      @update:model-value="update"
-    >
+    <div v-show="state" class="r-select__dropdown">
       <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
-      <slot></slot>
-    </RCheckboxGroup>
+      <RCheckboxGroup
+        v-model="internalModelValue"
+        :multiple="multiple"
+        vertical
+        :wrap="false"
+        overflow
+        class="r-select__group"
+        @update:model-value="update"
+      >
+        <slot></slot>
+      </RCheckboxGroup>
+    </div>
   </label>
 </template>
 
@@ -206,8 +209,11 @@ provide(labelsInjection, labels)
   inset-block-end: 0;
   inset-inline: 0;
   z-index: 1;
+  transform: translateY(100%);
+}
+.r-select__group {
+  max-block-size: calc(var(--r-select-dropdown-padding-block) * 2 + var(--r-common-line-height) * 5 + var(--r-space-gap-size) * 4);
   padding-block: var(--r-select-dropdown-padding-block);
   padding-inline: var(--r-select-dropdown-padding-inline);
-  transform: translateY(100%);
 }
 </style>
