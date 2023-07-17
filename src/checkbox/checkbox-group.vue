@@ -53,6 +53,8 @@ provide(modelInjection, $$(model))
 
 <style lang="scss" scoped>
 .r-checkbox-group {
+  margin: 0;
+  padding: 0;
   border: none;
 }
 </style>
