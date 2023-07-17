@@ -65,7 +65,7 @@ function activate(tab: Tab) {
 </script>
 
 <template>
-  <RSpace vertical class="r-tabs">
+  <RSpace vertical :wrap="false" class="r-tabs">
     <RSpace class="r-tabs__anchors" role="tablist">
       <RTabAnchor
         v-for="tab in tabs"

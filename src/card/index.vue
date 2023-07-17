@@ -57,7 +57,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace :tag="tag" vertical class="r-card">
+  <RSpace :tag="tag" vertical :wrap="false" class="r-card">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"

@@ -118,7 +118,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace tag="label" inline class="r-checkbox">
+  <RSpace tag="label" inline :wrap="false" class="r-checkbox">
     <input
       v-model="internalChecked"
       :type="multiple === false ? 'radio' : 'checkbox'"

@@ -74,7 +74,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     class="r-details"
     @toggle="toggle"
   >
-    <RSpace ref="summary" tag="summary" class="r-details__summary">
+    <RSpace ref="summary" tag="summary" :wrap="false" class="r-details__summary">
       <span class="r-details__summary-marker">
         <RGraphics :options="graphicsOptions" @draw="draw" />
       </span>

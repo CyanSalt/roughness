@@ -94,7 +94,7 @@ const nestingGraphicsOptions = $computed(() => {
       class="r-dialog__card"
     >
       <template #header-end>
-        <RSpace>
+        <RSpace :wrap="false">
           <slot name="header-end"></slot>
           <RLink
             v-if="closable"

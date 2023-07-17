@@ -81,7 +81,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace tag="label" inline class="r-switch">
+  <RSpace tag="label" inline :wrap="false" class="r-switch">
     <input
       v-model="internalModelValue"
       :disabled="disabled"
