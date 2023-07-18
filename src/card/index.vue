@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
+import type { ColorProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -17,13 +18,14 @@ const {
   footer = false,
   header = true,
   tag = 'article',
+  type,
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   footer?: boolean,
   header?: boolean,
   tag?: string,
-} & GraphicsProps>()
+} & ColorProps & GraphicsProps>()
 
 defineSlots<{
   title?: (props: {}) => any,
@@ -57,7 +59,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace :tag="tag" vertical :wrap="false" class="r-card">
+  <RSpace :tag="tag" vertical :wrap="false" :class="['r-card', type]">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"
@@ -66,7 +68,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       align="center"
       class="r-card__header"
     >
-      <RText tag="strong" size="large" class="r-card__title">
+      <RText tag="strong" :type="type" size="large" class="r-card__title">
         <slot name="title"></slot>
       </RText>
       <slot name="header-end"></slot>
@@ -88,13 +90,33 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss" scoped>
 .r-card {
-  --r-card-border-color: var(--r-common-text-color);
+  --r-card-color: var(--r-common-text-color);
+  --r-card-border-color: var(--r-card-color);
   --r-card-border-width: 1px;
   --r-card-border-dash: none;
   --r-card-padding-block: calc(var(--r-common-box-padding-block) * 2);
   --r-card-padding-inline: var(--r-common-box-padding-inline);
   padding-block: var(--r-card-padding-block);
   padding-inline: var(--r-card-padding-inline);
+  color: var(--r-card-color);
+  &.primary {
+    --r-card-color: var(--r-common-primary-color);
+  }
+  &.info {
+    --r-card-color: var(--r-common-info-color);
+  }
+  &.success {
+    --r-card-color: var(--r-common-success-color);
+  }
+  &.warning {
+    --r-card-color: var(--r-common-warning-color);
+  }
+  &.error {
+    --r-card-color: var(--r-common-error-color);
+  }
+  &.comment {
+    --r-card-color: var(--r-common-comment-color);
+  }
 }
 .r-card__header, .r-card__footer {
   flex: none;

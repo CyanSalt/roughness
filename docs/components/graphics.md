@@ -20,13 +20,13 @@ function drawOcean(rc: RoughSVG, svg: SVGSVGElement) {
 
 # Graphics
 
+Seeing is believing.
+
 <RAlert type="warning">
 
 WARNING<br>In general, `RGraphics` components are only used inside the component library.
 
 </RAlert>
-
-Seeing is believing.
 
 ## Example
 

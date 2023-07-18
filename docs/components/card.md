@@ -8,6 +8,8 @@ Sawatdee Card!
 
 ## Example
 
+### Basic
+
 <RDetails>
   <template #summary>Show Code</template>
 
@@ -37,6 +39,59 @@ import { RCard } from 'roughness'
   Bowing, in homesickness I’m drowned.
 </RCard>
 
+### Alert
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RCard, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace vertical>
+    <RCard type="info">
+      <template #title>INFO</template>
+      For every minute in Africa, 60 seconds pass.
+    </RCard>
+    <RCard type="success">
+      <template #title>SUCCESS</template>
+      You successfully failed.
+    </RCard>
+    <RCard type="warning">
+      <template #title>WARNING</template>
+      No programmer can see warnings.
+    </RCard>
+    <RCard type="error">
+      <template #title>ERROR</template>
+      You threw tantrums on me!
+    </RCard>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RCard type="info">
+    <template #title>INFO</template>
+    For every minute in Africa, 60 seconds pass.
+  </RCard>
+  <RCard type="success">
+    <template #title>SUCCESS</template>
+    You successfully failed.
+  </RCard>
+  <RCard type="warning">
+    <template #title>WARNING</template>
+    No programmer can see warnings.
+  </RCard>
+  <RCard type="error">
+    <template #title>ERROR</template>
+    You threw tantrums on me!
+  </RCard>
+</RSpace>
+
 ## Usage
 
 ### Props
@@ -44,7 +99,7 @@ import { RCard } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['footer', 'graphics-options', 'header', 'reactions', 'tag', '...']"
+  :rows="['footer', 'graphics-options', 'header', 'reactions', 'tag', 'type', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -107,6 +162,19 @@ import { RCard } from 'roughness'
 
   </template>
 
+  <template #body:type:type>
+
+  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
+
+  </template>
+  <template #body:type:description>
+
+  Card style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  See also [Color Styles](/guide/theme#color-styles).
+
+  </template>
+
   <template #body:...:description>
 
   See [Space Props](/components/space#props).
@@ -161,9 +229,23 @@ import { RCard } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline', '...']"
+  :rows="['color', 'border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline', '...']"
 >
   <template #body:*:name="{ row }">--r-card-{{ row }}</template>
+
+  <template #body:color:values>
+
+  `<color>`
+
+  </template>
+  <template #body:color:default>
+
+  `var(--r-common-text-color)`
+
+  </template>
+  <template #body:color:description>
+    Color of the card text.
+  </template>
 
   <template #body:border-color:values>
 
@@ -172,11 +254,11 @@ import { RCard } from 'roughness'
   </template>
   <template #body:border-color:default>
 
-  `var(--r-common-text-color)`
+  `var(--r-card-color)`
 
   </template>
   <template #body:border-color:description>
-    Color of the button border.
+    Color of the card border.
   </template>
 
   <template #body:border-width:values>

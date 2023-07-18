@@ -95,6 +95,10 @@ import { RAlert, RSpace } from 'roughness'
   <RAlert size="large">France surrendered.</RAlert>
 </RSpace>
 
+### Flat Style
+
+See [Card Alert](/components/card#alert).
+
 ## Usage
 
 ### Props
