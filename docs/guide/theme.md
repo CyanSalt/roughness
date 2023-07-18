@@ -10,7 +10,7 @@ Roughness has a built-in set of colors and supports dark and light themes.
 
 ## Colors
 
-In dark and light mode, in addition to the foreground and background colors, the theme colors are also different. In light mode, the colors are rendered in a *pen-style*; in dark mode, they are rendered in a *chalk-style*.
+In dark and light mode, in addition to the foreground and background colors, the theme colors are also different. The built-in color themes use [One Light](https://github.com/atom/atom/tree/master/packages/one-light-syntax) and [One Dark](https://github.com/atom/atom/tree/master/packages/one-dark-syntax) color schemes.
 
 <RSpace vertical>
   <RSpace>
@@ -23,6 +23,7 @@ In dark and light mode, in addition to the foreground and background colors, the
     <RButton type="success" filled>Success</RButton>
     <RButton type="warning" filled>Warning</RButton>
     <RButton type="error" filled>Error</RButton>
+    <RButton type="comment" filled>Comment</RButton>
   </RSpace>
 </RSpace>
 

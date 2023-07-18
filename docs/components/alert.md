@@ -26,6 +26,7 @@ import { RAlert, RSpace } from 'roughness'
     <RAlert type="success">Success</RAlert>
     <RAlert type="warning">Warning</RAlert>
     <RAlert type="error">Error</RAlert>
+    <RAlert type="comment">Comment</RAlert>
   </RSpace>
 </template>
 ```
@@ -39,6 +40,7 @@ import { RAlert, RSpace } from 'roughness'
   <RAlert type="success">Success</RAlert>
   <RAlert type="warning">Warning</RAlert>
   <RAlert type="error">Error</RAlert>
+  <RAlert type="comment">Comment</RAlert>
 </RSpace>
 
 ### Inline

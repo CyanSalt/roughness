@@ -26,6 +26,7 @@ import { RButton, RSpace } from 'roughness'
     <RButton type="success">Success</RButton>
     <RButton type="warning">Warning</RButton>
     <RButton type="error">Error</RButton>
+    <RButton type="comment">Comment</RButton>
   </RSpace>
 </template>
 ```
@@ -39,6 +40,7 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="success">Success</RButton>
   <RButton type="warning">Warning</RButton>
   <RButton type="error">Error</RButton>
+  <RButton type="comment">Comment</RButton>
 </RSpace>
 
 ### Size
@@ -86,6 +88,7 @@ import { RButton, RSpace } from 'roughness'
     <RButton type="success" filled>Success</RButton>
     <RButton type="warning" filled>Warning</RButton>
     <RButton type="error" filled>Error</RButton>
+    <RButton type="comment" filled>Comment</RButton>
   </RSpace>
 </template>
 ```
@@ -99,6 +102,7 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="success" filled>Success</RButton>
   <RButton type="warning" filled>Warning</RButton>
   <RButton type="error" filled>Error</RButton>
+  <RButton type="comment" filled>Comment</RButton>
 </RSpace>
 
 See also [GraphicsConfig](/components/graphics#configuration).

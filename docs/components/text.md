@@ -26,6 +26,7 @@ import { RSpace, RText } from 'roughness'
     <RText type="success">Success</RText>
     <RText type="warning">Warning</RText>
     <RText type="error">Error</RText>
+    <RText type="comment">Comment</RText>
   </RSpace>
 </template>
 ```
@@ -39,6 +40,7 @@ import { RSpace, RText } from 'roughness'
   <RText type="success">Success</RText>
   <RText type="warning">Warning</RText>
   <RText type="error">Error</RText>
+  <RText type="comment">Comment</RText>
 </RSpace>
 
 ### Size
