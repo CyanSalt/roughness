@@ -1,20 +1,22 @@
 @use 'sass:color';
 
 @font-face {
-  font-family: 'Syne Mono';
+  font-family: 'SyneMono';
   src: url('./SyneMono.woff2') format('woff2');
 }
 
 :root {
   --vp-font-family-base: var(--r-common-font-family);
-  --vp-font-family-mono: 'Syne Mono';
+  --vp-font-family-mono: 'SyneMono';
   --vp-c-bg: var(--r-common-background-color);
+  --vp-c-bg-soft: var(--vp-c-bg-alt);
   --vp-c-text-1: var(--r-common-text-color);
   --vp-c-brand: var(--r-common-primary-color);
   --vp-local-search-highlight-bg: var(--r-common-primary-color);
   --vp-local-search-highlight-text: var(--r-common-background-color);
 
   --vp-c-bg-alt: #{color.scale(#fafafa, $lightness: -3%)};
+  --vp-c-divider: #383a4220;
   --vp-c-brand-light: #{color.scale(#4078f2, $lightness: 25%)};
   --vp-c-brand-lighter: #{color.scale(#4078f2, $lightness: 50%)};
   --vp-c-brand-dark: #{color.scale(#4078f2, $lightness: -25%)};
@@ -22,6 +24,7 @@
 }
 :root.dark {
   --vp-c-bg-alt: #{color.scale(#282c34, $lightness: -15%)};
+  --vp-c-divider: #abb2bf40;
   --vp-c-brand-light: #{color.scale(#61aff0, $lightness: 25%)};
   --vp-c-brand-lighter: #{color.scale(#61aff0, $lightness: 50%)};
   --vp-c-brand-dark: #{color.scale(#61aff0, $lightness: -25%)};

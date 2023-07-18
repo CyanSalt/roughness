@@ -10,6 +10,12 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/r.svg' }],
     ['link', { rel: 'icon', href: '/r-dark.svg', media: '(prefers-color-scheme: dark)' }],
   ],
+  markdown: {
+    theme: {
+      light: 'github-light',
+      dark: 'github-dark',
+    },
+  },
   themeConfig: {
     nav: [
       { text: 'Guide', link: '/guide/installation', activeMatch: '^/guide/' },
