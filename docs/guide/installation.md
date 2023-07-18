@@ -17,7 +17,7 @@ You can use roughness directly from a CDN via HTML tags:
 {
   "imports": {
     "roughness": "https://unpkg.com/roughness",
-    "vue": "https://unpkg.com/vue"
+    "vue": "https://unpkg.com/vue/dist/vue.esm-browser.prod.js"
   }
 }
 </script>
