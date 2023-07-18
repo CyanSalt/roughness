@@ -178,7 +178,7 @@ function showBottom() {
 >
   <template #body:*:name="{ row }">--r-drawer-{{ row }}</template>
 
-  <template #body:....name>...</template>
+  <template #body:...:name>...</template>
   <template #body:...:description>
 
   See [Dialog Styles](/components/dialog#styles).

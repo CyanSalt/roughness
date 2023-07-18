@@ -127,7 +127,7 @@ See [Text](/components/text).
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', '...']"
+  :rows="['color', 'line-width', '...']"
 >
   <template #body:*:name="{ row }">--r-icon-{{ row }}</template>
 
@@ -145,7 +145,21 @@ See [Text](/components/text).
     Color of the icon.
   </template>
 
-  <template #body:....name>...</template>
+  <template #body:line-width:values>
+
+  `<length>`
+
+  </template>
+  <template #body:line-width:default>
+
+  `2px`
+
+  </template>
+  <template #body:line-width:description>
+    Line width of the icon.
+  </template>
+
+  <template #body:...:name>...</template>
   <template #body:...:description>
 
   See [Text Styles](/components/text#styles).

@@ -241,7 +241,7 @@ import { RCard } from 'roughness'
     Horizontal padding of the card.
   </template>
 
-  <template #body:....name>...</template>
+  <template #body:...:name>...</template>
   <template #body:...:description>
 
   See [Space Styles](/components/space#styles).

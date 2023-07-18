@@ -10,6 +10,7 @@ import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize } from '../graphics/utils'
+import RIcon from '../icon/index.vue'
 
 defineOptions({
   name: 'RSelect',
@@ -107,17 +108,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     },
   )
   svg.appendChild(rect)
-  const arrowSize = height / 2
-  const arrowMargin = height / 4
-  const linearPath = rc.linearPath([
-    [width - arrowMargin - arrowSize * 7 / 8, arrowMargin + arrowSize * 3 / 8],
-    [width - arrowMargin - arrowSize / 2, height - arrowMargin - arrowSize / 4],
-    [width - arrowMargin - arrowSize / 8, arrowMargin + arrowSize * 3 / 8],
-  ], {
-    stroke: 'var(--r-select-border-color)',
-    strokeWidth,
-  })
-  svg.appendChild(linearPath)
 }
 
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
@@ -150,6 +140,11 @@ provide(labelsInjection, labels)
       @keydown.enter="toggle"
       @keydown.escape="close"
     >
+    <RIcon
+      name="chevron-down"
+      :graphics-options="graphicsOptions"
+      class="r-select__icon"
+    />
     <div v-show="state" class="r-select__dropdown">
       <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
       <RCheckboxGroup
@@ -178,18 +173,25 @@ provide(labelsInjection, labels)
   --r-select-dropdown-padding-inline: 12px;
   position: relative;
   display: inline-flex;
+  align-items: center;
   width: 210px;
+  padding-block: var(--r-common-box-padding-block);
+  padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 8px) / 2);
   &:has(> .r-select__input:focus) {
     --r-select-border-width: 2px;
   }
+}
+.r-select__icon {
+  --r-icon-line-width: var(--r-select-border-width);
+  flex: none;
+  margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 8px) / 2 - 4px);
+  font-size: calc(1em + 8px);
 }
 :where(.r-select__input) {
   @include reset.input;
 }
 .r-select__input {
   width: 100%;
-  padding-block: var(--r-common-box-padding-block);
-  padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   color: var(--r-common-text-color);
   &:focus {
     outline: none;

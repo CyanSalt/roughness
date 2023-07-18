@@ -205,7 +205,7 @@ import { RSwitch } from 'roughness'
     Color of the switch handle.
   </template>
 
-  <template #body:....name>...</template>
+  <template #body:...:name>...</template>
   <template #body:...:description>
 
   See [Space Styles](/components/space#styles).

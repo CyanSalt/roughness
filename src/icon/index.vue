@@ -9,6 +9,7 @@ import { toRef } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
+import { measureSVGSize } from '../graphics/utils'
 import RText from '../text/index.vue'
 
 defineOptions({
@@ -48,9 +49,10 @@ const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
+  const strokeWidth = measureSVGSize(svg, '--r-icon-line-width') ?? 0
   const options: Options = {
     stroke: 'var(--r-icon-color)',
-    strokeWidth: 2,
+    strokeWidth,
   }
   for (const item of elements) {
     switch (item.tagName) {
@@ -135,6 +137,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss" scoped>
 .r-icon {
   --r-icon-color: var(--r-text-color);
+  --r-icon-line-width: 2px;
   display: inline-block;
   width: calc(1em + 4px);
   height: calc(1em + 4px);

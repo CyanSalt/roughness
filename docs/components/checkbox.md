@@ -420,7 +420,7 @@ const treeValue = ref<string | undefined>()
     Size of the checkbox control.
   </template>
 
-  <template #body:....name>...</template>
+  <template #body:...:name>...</template>
   <template #body:...:description>
 
   See [Space Styles](/components/space#styles).
@@ -501,7 +501,7 @@ const treeValue = ref<string | undefined>()
 >
   <template #body:*:name="{ row }">--r-checkbox-group-{{ row }}</template>
 
-  <template #body:....name>...</template>
+  <template #body:...:name>...</template>
   <template #body:...:description>
 
   See [Space Styles](/components/space#styles).
