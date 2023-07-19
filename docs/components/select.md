@@ -73,7 +73,7 @@ import { RCheckbox, RSelect } from 'roughness'
 
 ```vue
 <script lang="ts" setup>
-import { RCheckbox, RSelect } from 'roughness'
+import { RCheckbox, RSpace, RSelect } from 'roughness'
 </script>
 
 <template>
@@ -95,6 +95,35 @@ import { RCheckbox, RSelect } from 'roughness'
   <RSelect loading placeholder="Arsenal" />
 </RSpace>
 
+### Clearable
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RCheckbox, RSelect } from 'roughness'
+</script>
+
+<template>
+  <RSelect clearable placeholder="Blue time">
+    <RCheckbox value="Spring" label="Spring" />
+    <RCheckbox value="Summer" label="Summer" />
+    <RCheckbox value="Autumn" label="Autumn" />
+    <RCheckbox value="Winter" label="Winter" />
+  </RSelect>
+</template>
+```
+
+</RDetails>
+
+<RSelect clearable placeholder="Blue time">
+  <RCheckbox value="Spring" label="Spring" />
+  <RCheckbox value="Summer" label="Summer" />
+  <RCheckbox value="Autumn" label="Autumn" />
+  <RCheckbox value="Winter" label="Winter" />
+</RSelect>
+
 ### Tree
 
 See [Checkbox Tree](/components/checkbox#tree).
@@ -106,9 +135,23 @@ See [Checkbox Tree](/components/checkbox#tree).
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'loading', 'model-value', 'multiple', 'reactions']"
+  :rows="['clearable', 'graphics-options', 'loading', 'model-value', 'multiple', 'reactions']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:clearable:type>
+
+  `boolean`
+
+  </template>
+  <template #body:clearable:default>
+
+  `false`
+
+  </template>
+  <template #body:clearable:description>
+    Whether the select is clearable.
+  </template>
 
   <template #body:graphics-options:type>
 

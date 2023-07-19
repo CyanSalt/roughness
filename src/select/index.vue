@@ -17,6 +17,7 @@ defineOptions({
 })
 
 const {
+  clearable = false,
   disabled = false,
   loading = false,
   modelValue,
@@ -25,6 +26,7 @@ const {
   reactions = (() => ['focus']) as never,
   graphicsOptions,
 } = defineProps<{
+  clearable?: boolean,
   disabled?: boolean,
   loading?: boolean,
   modelValue?: CheckboxValue[] | CheckboxValue | undefined,
@@ -90,6 +92,10 @@ function update() {
   }
 }
 
+function clear() {
+  internalModelValue = multiple ? [] : undefined
+}
+
 const getReactionState = useReactionState(toRef(() => reactions), $$(input))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
@@ -141,7 +147,22 @@ provide(labelsInjection, labels)
       @keydown.escape="close"
     >
     <RIcon
-      :name="loading ? 'loader' : 'chevron-down'"
+      v-if="loading"
+      name="loader"
+      :graphics-options="graphicsOptions"
+      class="r-select__icon"
+    />
+    <RIcon
+      v-else-if="clearable && state"
+      tag="a"
+      name="x"
+      :graphics-options="graphicsOptions"
+      class="r-select__icon"
+      @click="clear"
+    />
+    <RIcon
+      v-else
+      name="chevron-down"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
     />
