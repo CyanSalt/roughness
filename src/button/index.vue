@@ -8,6 +8,7 @@ import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import RIcon from '../icon/index.vue'
 
 defineOptions({
   name: 'RButton',
@@ -15,8 +16,10 @@ defineOptions({
 
 const {
   block = false,
+  disabled: userDisabled,
   filled = false,
   htmlType,
+  loading = false,
   rounded = false,
   tag = 'button',
   type,
@@ -25,8 +28,10 @@ const {
   graphicsOptions,
 } = defineProps<{
   block?: boolean,
+  disabled?: boolean,
   filled?: boolean,
   htmlType?: HTMLButtonElement['type'],
+  loading?: boolean,
   rounded?: boolean,
   tag?: 'button' | 'a' | (string & {}),
 } & ColorProps & SizeProps & GraphicsProps>()
@@ -34,6 +39,10 @@ const {
 defineSlots<{
   default?: (props: {}) => any,
 }>()
+
+const disabled = $computed(() => {
+  return Boolean(userDisabled || loading)
+})
 
 const getReactionState = useReactionState(toRef(() => reactions))
 
@@ -77,10 +86,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   <component
     :is="tag"
     :type="htmlType"
-    :class="['r-button', type, size, { 'is-filled': filled, 'is-block': block }]"
+    :disabled="disabled"
+    :class="['r-button', type, size, { 'is-filled': filled, 'is-block': block, 'is-loading': loading }]"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
+    <div v-if="loading" class="r-button__loading">
+      <RIcon :type="type" name="loader" class="r-button__loading-icon" />
+    </div>
   </component>
 </template>
 
@@ -113,13 +126,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   :deep(.r-graphics) {
     font-size: inherit;
   }
-  &:hover {
+  &:hover:not(.is-loading) {
     --r-button-border-dash: 8px;
   }
   &:focus, &:active {
     --r-button-border-width: 2px;
   }
-  &:disabled {
+  &:disabled:not(.is-loading) {
     opacity: 0.8;
     cursor: not-allowed;
     text-decoration-line: line-through;
@@ -154,5 +167,24 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.large {
     font-size: var(--r-common-large-font-size);
   }
+}
+.r-button__loading {
+  position: absolute;
+  inset: 0;
+  padding-block: var(--r-common-box-padding-block);
+  padding-inline: var(--r-common-box-padding-inline);
+  cursor: pointer;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: var(--r-common-background-color);
+    opacity: 0.2;
+  }
+}
+.r-button__loading-icon {
+  position: relative;
+  z-index: 1;
 }
 </style>

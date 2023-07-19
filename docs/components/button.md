@@ -132,7 +132,7 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="error" filled rounded>Eat the Mushroom</RButton>
 </RSpace>
 
-### Disabled
+### State
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -146,6 +146,7 @@ import { RButton, RSpace } from 'roughness'
   <RSpace>
     <RButton disabled>Train AlphaGo</RButton>
     <RButton type="primary" filled disabled>Let there be light</RButton>
+    <RButton type="warning" loading>Give up domination</RButton>
   </RSpace>
 </template>
 ```
@@ -155,6 +156,7 @@ import { RButton, RSpace } from 'roughness'
 <RSpace>
   <RButton disabled>Train AlphaGo</RButton>
   <RButton type="primary" filled disabled>Let there be light</RButton>
+  <RButton type="warning" loading>Give up domination</RButton>
 </RSpace>
 
 ### Block
@@ -214,7 +216,7 @@ import { RButton, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'filled', 'graphics-options', 'html-type', 'reactions', 'rounded', 'size', 'tag', 'type']"
+  :rows="['block', 'filled', 'graphics-options', 'html-type', 'loading', 'reactions', 'rounded', 'size', 'tag', 'type']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -268,6 +270,20 @@ import { RButton, RSpace } from 'roughness'
 
   [The `type` attribute of `HTMLButtonElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type).
 
+  </template>
+
+  <template #body:loading:type>
+
+  `boolean`
+
+  </template>
+  <template #body:loading:default>
+
+  `false`
+
+  </template>
+  <template #body:loading:description>
+    Whether the button is loading. It will be non-interactive in loading state.
   </template>
 
   <template #body:reactions:type>
