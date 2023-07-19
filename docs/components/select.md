@@ -66,6 +66,35 @@ import { RCheckbox, RSelect } from 'roughness'
   <RCheckbox value="Left Leg" label="Left Leg" />
 </RSelect>
 
+### State
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RCheckbox, RSelect } from 'roughness'
+</script>
+
+<template>
+  <RSpace>
+    <RSelect :model-value="['basic']" multiple disabled>
+      <RCheckbox value="basic" label="Basic User Info" />
+    </RSelect>
+    <RSelect loading placeholder="Arsenal" />
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace>
+  <RSelect :model-value="['basic']" multiple disabled>
+    <RCheckbox value="basic" label="Basic User Info" />
+  </RSelect>
+  <RSelect loading placeholder="Arsenal" />
+</RSpace>
+
 ### Tree
 
 See [Checkbox Tree](/components/checkbox#tree).
@@ -77,7 +106,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'model-value', 'multiple', 'reactions']"
+  :rows="['graphics-options', 'loading', 'model-value', 'multiple', 'reactions']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -92,6 +121,20 @@ See [Checkbox Tree](/components/checkbox#tree).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
+  </template>
+
+  <template #body:loading:type>
+
+  `boolean`
+
+  </template>
+  <template #body:loading:default>
+
+  `false`
+
+  </template>
+  <template #body:loading:description>
+    Whether the select is loading. It will be non-interactive in loading state.
   </template>
 
   <template #body:model-value:type>

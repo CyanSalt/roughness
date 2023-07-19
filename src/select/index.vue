@@ -18,18 +18,18 @@ defineOptions({
 
 const {
   disabled = false,
+  loading = false,
   modelValue,
   multiple = false,
   placeholder,
-  readonly = false,
   reactions = (() => ['focus']) as never,
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
+  loading?: boolean,
   modelValue?: CheckboxValue[] | CheckboxValue | undefined,
   multiple?: boolean,
   placeholder?: string,
-  readonly?: boolean,
 } & GraphicsProps>()
 
 const emit = defineEmits<{
@@ -73,7 +73,7 @@ let input = $ref<HTMLInputElement>()
 let state = $ref(false)
 
 function toggle() {
-  if (readonly || disabled) return
+  if (disabled || loading) return
   state = !state
 }
 
@@ -127,7 +127,7 @@ provide(labelsInjection, labels)
 </script>
 
 <template>
-  <label v-on-click-outside.bubble="close" :class="['r-select', { 'is-readonly': readonly }]">
+  <label v-on-click-outside.bubble="close" :class="['r-select', { 'is-loading': loading }]">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <input
       ref="input"
@@ -141,7 +141,7 @@ provide(labelsInjection, labels)
       @keydown.escape="close"
     >
     <RIcon
-      name="chevron-down"
+      :name="loading ? 'loader' : 'chevron-down'"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
     />
@@ -201,7 +201,7 @@ provide(labelsInjection, labels)
     cursor: not-allowed;
     text-decoration-line: line-through;
   }
-  .r-select:not(.is-readonly) > & {
+  .r-select:not(.is-loading) > & {
     cursor: pointer;
   }
   &::placeholder {
