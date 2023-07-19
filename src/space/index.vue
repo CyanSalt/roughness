@@ -11,6 +11,7 @@ const {
   justify = 'start',
   inline = false,
   overflow = false,
+  reverse = false,
   tag = 'div',
   vertical = false,
   wrap = true,
@@ -19,6 +20,7 @@ const {
   justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
   inline?: boolean,
   overflow?: boolean,
+  reverse?: boolean,
   tag?: string,
   vertical?: boolean,
   wrap?: boolean,
@@ -36,7 +38,7 @@ const style = $computed<HTMLAttributes['style']>(() => {
   return {
     'justify-content': ['start', 'end'].includes(justify) ? `flex-${justify}` : justify,
     'align-items': ['start', 'end'].includes(align) ? `flex-${align}` : align,
-    'flex-direction': vertical ? 'column' : undefined,
+    'flex-direction': vertical ? (reverse ? 'column-reverse' : 'column') : (reverse ? 'row-reverse' : 'row'),
     'flex-wrap': wrap ? 'wrap' : undefined,
     overflow: overflow ? 'overlay' : undefined,
   }

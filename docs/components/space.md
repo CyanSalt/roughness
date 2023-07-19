@@ -35,7 +35,7 @@ import { RButton, RSpace } from 'roughness'
   <RButton type="warning">Single loop of Never Gonna Give You Up</RButton>
 </RSpace>
 
-### Vertical
+### Direction
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -47,6 +47,10 @@ import { RButton, RSpace } from 'roughness'
 
 <template>
   <RSpace vertical>
+    <RSpace reverse>
+      <RButton>Moon</RButton>
+      <RButton>Earth</RButton>
+    </RSpace>
     <RButton>Mars</RButton>
     <RButton>Jupiter</RButton>
     <RButton>Saturn</RButton>
@@ -57,6 +61,10 @@ import { RButton, RSpace } from 'roughness'
 </RDetails>
 
 <RSpace vertical>
+  <RSpace reverse>
+    <RButton>Moon</RButton>
+    <RButton>Earth</RButton>
+  </RSpace>
   <RButton>Mars</RButton>
   <RButton>Jupiter</RButton>
   <RButton>Saturn</RButton>
@@ -119,7 +127,7 @@ import { RButton, RSpace, RText } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'justify', 'inline', 'overflow', 'tag', 'vertical', 'wrap']"
+  :rows="['align', 'justify', 'inline', 'overflow', 'reverse', 'tag', 'vertical', 'wrap']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -181,6 +189,20 @@ import { RButton, RSpace, RText } from 'roughness'
   </template>
   <template #body:overflow:description>
     Whether to show the scrollbar when the content overflows.
+  </template>
+
+  <template #body:reverse:type>
+
+  `boolean`
+
+  </template>
+  <template #body:reverse:default>
+
+  `false`
+
+  </template>
+  <template #body:reverse:description>
+    Whether to reverse the layout.
   </template>
 
   <template #body:tag:type>
