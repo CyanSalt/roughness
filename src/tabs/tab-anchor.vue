@@ -13,11 +13,13 @@ defineOptions({
 
 const {
   active = false,
+  side = 'top',
   tab,
   reactions = (() => ['hover', 'focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   active?: boolean,
+  side?: 'top' | 'bottom' | 'left' | 'right',
   tab: T,
 } & GraphicsProps>()
 
@@ -38,11 +40,42 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const strokeLineDash = measureSVGSizeAsArray(svg, '--r-tab-anchor-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
+  let startX: number
+  let startY: number
+  let endX: number
+  let endY: number
+  switch (side) {
+    case 'bottom':
+      startX = padding
+      startY = padding
+      endX = width - padding
+      endY = padding
+      break
+    case 'left':
+      startX = width - padding
+      startY = padding
+      endX = width - padding
+      endY = height - padding
+      break
+    case 'right':
+      startX = padding
+      startY = padding
+      endX = padding
+      endY = height - padding
+      break
+    case 'top':
+    default:
+      startX = padding
+      startY = height - padding
+      endX = width - padding
+      endY = height - padding
+      break
+  }
   const line = rc.line(
-    padding,
-    height - padding,
-    width - padding,
-    height - padding,
+    startX,
+    startY,
+    endX,
+    endY,
     {
       stroke: 'var(--r-tab-anchor-border-color)',
       strokeWidth,

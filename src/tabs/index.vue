@@ -15,12 +15,14 @@ defineOptions({
 const {
   content = true,
   modelValue,
+  side = 'top',
   tabs,
   reactions,
   graphicsOptions,
 } = defineProps<{
   content?: boolean,
   modelValue?: Tab | undefined,
+  side?: 'top' | 'bottom' | 'left' | 'right',
   tabs: T,
 } & GraphicsProps>()
 
@@ -67,12 +69,22 @@ function activate(tab: Tab) {
 </script>
 
 <template>
-  <RSpace vertical :wrap="false" class="r-tabs">
-    <RSpace class="r-tabs__anchors" role="tablist">
+  <RSpace
+    :vertical="!(side === 'left' || side === 'right')"
+    :reverse="side === 'bottom' || side === 'right'"
+    :wrap="false"
+    class="r-tabs"
+  >
+    <RSpace
+      :vertical="side === 'left' || side === 'right'"
+      class="r-tabs__anchors"
+      role="tablist"
+    >
       <RTabAnchor
         v-for="tab in tabs"
         :key="tab"
         :active="tab === internalModelValue"
+        :side="side"
         :tab="tab"
         :reactions="reactions"
         :graphics-options="graphicsOptions"

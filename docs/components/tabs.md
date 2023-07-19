@@ -8,6 +8,8 @@ My brain has too many tabs open.
 
 ## Example
 
+### Basic
+
 <RDetails>
   <template #summary>Show Code</template>
 
@@ -33,6 +35,25 @@ import { RTabs } from 'roughness'
   <template #content:meta>Meta is a prefix meaning "more comprehensive" or "transcending".</template>
 </RTabs>
 
+### Side
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RTabs } from 'roughness'
+</script>
+
+<template>
+  <RTabs :tabs="['installation', 'usage', 'theme', 'chart']" side="left" :content="false" />
+</template>
+```
+
+</RDetails>
+
+<RTabs :tabs="['installation', 'usage', 'theme', 'chart']" side="left" :content="false" />
+
 ## Usage
 
 ### Tabs Props
@@ -40,7 +61,7 @@ import { RTabs } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['content', 'graphics-options', 'model-value', 'reactions', 'tabs', '...']"
+  :rows="['content', 'graphics-options', 'model-value', 'reactions', 'side', 'tabs', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -98,6 +119,20 @@ import { RTabs } from 'roughness'
 
   See [Reactions](/guide/theme#reactions).
 
+  </template>
+
+  <template #body:side:type>
+
+  `'top' | 'bottom' | 'left' | 'right'`
+
+  </template>
+  <template #body:side:default>
+
+  `'top'`
+
+  </template>
+  <template #body:side:description>
+    Which side of the content the anchors will show on.
   </template>
 
   <template #body:tabs:type>
