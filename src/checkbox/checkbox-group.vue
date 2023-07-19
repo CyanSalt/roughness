@@ -3,16 +3,18 @@ import '../common/style.scss'
 import { provide } from 'vue'
 import RSpace from '../space/index.vue'
 import type { CheckboxValue } from './utils'
-import { modelInjection, multipleInjection } from './utils'
+import { disabledInjection, modelInjection, multipleInjection } from './utils'
 
 defineOptions({
   name: 'RCheckboxGroup',
 })
 
 const {
+  disabled = false,
   modelValue,
   multiple = true,
 } = defineProps<{
+  disabled?: boolean,
   modelValue: CheckboxValue[] | CheckboxValue | undefined,
   multiple?: boolean,
 }>()
@@ -40,6 +42,7 @@ const model = $computed({
 
 provide(multipleInjection, $$(multiple))
 provide(modelInjection, $$(model))
+provide(disabledInjection, $$(disabled))
 </script>
 
 <template>

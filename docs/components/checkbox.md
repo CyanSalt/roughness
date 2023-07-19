@@ -118,7 +118,7 @@ const value = ref<string | undefined>()
   <RText>{{ value ?? 'Nobody' }} is going hiking.</RText>
 </RSpace>
 
-### Disabled
+### State
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -133,6 +133,10 @@ import { RCheckbox, RSpace } from 'roughness'
   <RSpace vertical>
     <RCheckbox disabled>I can't move.</RCheckbox>
     <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
+    <RCheckboxGroup vertical disabled>
+      <RCheckbox value="1984">1984</RCheckbox>
+      <RCheckbox value="Ugly Americans">Ugly Americans</RCheckbox>
+    </RCheckboxGroup>
   </RSpace>
 </template>
 ```
@@ -142,6 +146,10 @@ import { RCheckbox, RSpace } from 'roughness'
 <RSpace vertical>
   <RCheckbox checked disabled>I can't move.</RCheckbox>
   <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
+  <RCheckboxGroup vertical disabled>
+    <RCheckbox value="1984">1984</RCheckbox>
+    <RCheckbox value="Ugly Americans">Ugly Americans</RCheckbox>
+  </RCheckboxGroup>
 </RSpace>
 
 ### Tree
@@ -434,9 +442,23 @@ const treeValue = ref<string | undefined>()
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['model-value', 'multiple', '...']"
+  :rows="['disabled', 'model-value', 'multiple', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:disabled:type>
+
+  `boolean`
+
+  </template>
+  <template #body:disabled:default>
+
+  `false`
+
+  </template>
+  <template #body:disabled:description>
+    Whether to disable all checking items.
+  </template>
 
   <template #body:model-value:type>
 

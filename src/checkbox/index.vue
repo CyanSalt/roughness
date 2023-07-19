@@ -9,7 +9,7 @@ import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import type { CheckboxValue } from './utils'
-import { labelsInjection, modelInjection, multipleInjection } from './utils'
+import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
 
 defineOptions({
   name: 'RCheckbox',
@@ -17,7 +17,7 @@ defineOptions({
 
 const {
   checked = false,
-  disabled = false,
+  disabled: userDisabled,
   indeterminate = false,
   label,
   value,
@@ -41,6 +41,7 @@ defineSlots<{
 
 const multiple = $(inject(multipleInjection, ref()))
 let model = $(inject(modelInjection, ref()))
+const disabledByGroup = $(inject(disabledInjection, ref()))
 const labels = inject(labelsInjection, new Map<CheckboxValue, string>())
 
 watchEffect(onInvalidate => {
@@ -80,6 +81,10 @@ watch($$(internalChecked), currentValue => {
     }
   }
   emit('update:checked', currentValue)
+})
+
+const disabled = $computed(() => {
+  return Boolean(userDisabled || disabledByGroup)
 })
 
 const getReactionState = useReactionState(toRef(() => reactions))
