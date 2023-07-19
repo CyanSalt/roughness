@@ -13,11 +13,13 @@ defineOptions({
 })
 
 const {
+  content = true,
   modelValue,
   tabs,
   reactions,
   graphicsOptions,
 } = defineProps<{
+  content?: boolean,
   modelValue?: Tab | undefined,
   tabs: T,
 } & GraphicsProps>()
@@ -81,7 +83,7 @@ function activate(tab: Tab) {
         </slot>
       </RTabAnchor>
     </RSpace>
-    <div class="r-tabs__content" role="tabpanel" aria-expanded="true">
+    <div v-if="content" class="r-tabs__content" role="tabpanel" aria-expanded="true">
       <slot v-if="internalModelValue" :name="`content:${internalModelValue}`" :tab="(internalModelValue as Tab)">
         <slot name="content:*" :tab="(internalModelValue as Tab)"></slot>
       </slot>

@@ -40,9 +40,23 @@ import { RTabs } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'model-value', 'reactions', 'tabs', '...']"
+  :rows="['content', 'graphics-options', 'model-value', 'reactions', 'tabs', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:content:type>
+
+  `boolean`
+
+  </template>
+  <template #body:content:default>
+
+  `true`
+
+  </template>
+  <template #body:content:description>
+    Whether to display the tabs content.
+  </template>
 
   <template #body:graphics-options:type>
 
