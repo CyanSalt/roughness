@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, toRef, watch, watchEffect } from 'vue'
@@ -19,7 +20,7 @@ const {
   checked = false,
   disabled: userDisabled,
   indeterminate = false,
-  label,
+  label: userLabel,
   value,
   reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
@@ -43,6 +44,10 @@ const multiple = $(inject(multipleInjection, ref()))
 let model = $(inject(modelInjection, ref()))
 const disabledByGroup = $(inject(disabledInjection, ref()))
 const labels = inject(labelsInjection, new Map<CheckboxValue, string>())
+
+const label = $computed(() => {
+  return userLabel ?? (typeof value === 'string' ? startCase(value) : undefined)
+})
 
 watchEffect(onInvalidate => {
   if (value !== undefined && label !== undefined) {

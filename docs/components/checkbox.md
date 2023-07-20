@@ -58,10 +58,10 @@ const values = ref<string[]>([])
 <template>
   <RSpace vertical>
     <RCheckboxGroup v-model="values" vertical>
-      <RCheckbox value="Peggy">Peggy</RCheckbox>
-      <RCheckbox value="George">George</RCheckbox>
-      <RCheckbox value="Mummy">Mummy</RCheckbox>
-      <RCheckbox value="Daddy">Daddy</RCheckbox>
+      <RCheckbox value="Peggy" />
+      <RCheckbox value="George" />
+      <RCheckbox value="Mummy" />
+      <RCheckbox value="Daddy" />
     </RCheckboxGroup>
     <RText>{{ values.length ? values.join(', ') : 'Nobody' }} {{ values.length > 1 ? 'are' : 'is' }} going hiking.</RText>
   </RSpace>
@@ -72,10 +72,10 @@ const values = ref<string[]>([])
 
 <RSpace vertical>
   <RCheckboxGroup v-model="values" vertical>
-    <RCheckbox value="Peggy">Peggy</RCheckbox>
-    <RCheckbox value="George">George</RCheckbox>
-    <RCheckbox value="Mummy">Mummy</RCheckbox>
-    <RCheckbox value="Daddy">Daddy</RCheckbox>
+    <RCheckbox value="Peggy" />
+    <RCheckbox value="George" />
+    <RCheckbox value="Mummy" />
+    <RCheckbox value="Daddy" />
   </RCheckboxGroup>
   <RText>{{ values.length ? values.join(', ') : 'Nobody' }} {{ values.length > 1 ? 'are' : 'is' }} going hiking.</RText>
 </RSpace>
@@ -96,10 +96,10 @@ const value = ref<string | undefined>()
 <template>
   <RSpace vertical>
     <RCheckboxGroup v-model="value" :multiple="false">
-      <RCheckbox value="Peggy">Peggy</RCheckbox>
-      <RCheckbox value="George">George</RCheckbox>
-      <RCheckbox value="Mummy">Mummy</RCheckbox>
-      <RCheckbox value="Daddy">Daddy</RCheckbox>
+      <RCheckbox value="Peggy" />
+      <RCheckbox value="George" />
+      <RCheckbox value="Mummy" />
+      <RCheckbox value="Daddy" />
     </RCheckboxGroup>
     <RText>{{ value ?? 'Nobody' }} is going hiking.</RText>
   </RSpace>
@@ -110,10 +110,10 @@ const value = ref<string | undefined>()
 
 <RSpace vertical>
   <RCheckboxGroup v-model="value" :multiple="false">
-    <RCheckbox value="Peggy">Peggy</RCheckbox>
-    <RCheckbox value="George">George</RCheckbox>
-    <RCheckbox value="Mummy">Mummy</RCheckbox>
-    <RCheckbox value="Daddy">Daddy</RCheckbox>
+    <RCheckbox value="Peggy" />
+    <RCheckbox value="George" />
+    <RCheckbox value="Mummy" />
+    <RCheckbox value="Daddy" />
   </RCheckboxGroup>
   <RText>{{ value ?? 'Nobody' }} is going hiking.</RText>
 </RSpace>
@@ -134,8 +134,8 @@ import { RCheckbox, RSpace } from 'roughness'
     <RCheckbox disabled>I can't move.</RCheckbox>
     <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
     <RCheckboxGroup vertical disabled>
-      <RCheckbox value="1984">1984</RCheckbox>
-      <RCheckbox value="Ugly Americans">Ugly Americans</RCheckbox>
+      <RCheckbox value="1984" />
+      <RCheckbox value="Ugly Americans" />
     </RCheckboxGroup>
   </RSpace>
 </template>
@@ -147,8 +147,8 @@ import { RCheckbox, RSpace } from 'roughness'
   <RCheckbox checked disabled>I can't move.</RCheckbox>
   <RCheckbox indeterminate>Maybe I should make a decision sooner.</RCheckbox>
   <RCheckboxGroup vertical disabled>
-    <RCheckbox value="1984">1984</RCheckbox>
-    <RCheckbox value="Ugly Americans">Ugly Americans</RCheckbox>
+    <RCheckbox value="1984" />
+    <RCheckbox value="Ugly Americans" />
   </RCheckboxGroup>
 </RSpace>
 
@@ -171,17 +171,17 @@ const treeValue = ref<string | undefined>()
       <RCheckbox value="Peggy's Family">
         <RSpace vertical>
           <RText>Peggy's Family</RText>
-          <RCheckbox value="Peggy">Peggy</RCheckbox>
-          <RCheckbox value="George">George</RCheckbox>
-          <RCheckbox value="Mummy">Mummy</RCheckbox>
-          <RCheckbox value="Daddy">Daddy</RCheckbox>
+          <RCheckbox value="Peggy" />
+          <RCheckbox value="George" />
+          <RCheckbox value="Mummy" />
+          <RCheckbox value="Daddy" />
         </RSpace>
       </RCheckbox>
       <RCheckbox value="Grandpa's Family">
         <RSpace vertical>
           <RText>Grandpa's Family</RText>
-          <RCheckbox value="Grandpa">Grandpa</RCheckbox>
-          <RCheckbox value="Granny">Granny</RCheckbox>
+          <RCheckbox value="Grandpa" />
+          <RCheckbox value="Granny" />
         </RSpace>
       </RCheckbox>
     </RCheckboxGroup>
@@ -197,17 +197,17 @@ const treeValue = ref<string | undefined>()
     <RCheckbox value="Peggy's Family">
       <RSpace vertical>
         <RText>Peggy's Family</RText>
-        <RCheckbox value="Peggy">Peggy</RCheckbox>
-        <RCheckbox value="George">George</RCheckbox>
-        <RCheckbox value="Mummy">Mummy</RCheckbox>
-        <RCheckbox value="Daddy">Daddy</RCheckbox>
+        <RCheckbox value="Peggy" />
+        <RCheckbox value="George" />
+        <RCheckbox value="Mummy" />
+        <RCheckbox value="Daddy" />
       </RSpace>
     </RCheckbox>
     <RCheckbox value="Grandpa's Family">
       <RSpace vertical>
         <RText>Grandpa's Family</RText>
-        <RCheckbox value="Grandpa">Grandpa</RCheckbox>
-        <RCheckbox value="Granny">Granny</RCheckbox>
+        <RCheckbox value="Grandpa" />
+        <RCheckbox value="Granny" />
       </RSpace>
     </RCheckbox>
   </RCheckboxGroup>
@@ -255,6 +255,11 @@ const treeValue = ref<string | undefined>()
   <template #body:label:type>
 
   `string`
+
+  </template>
+  <template #body:label:default>
+
+  `startCase(value)` if `value` is `string`
 
   </template>
   <template #body:label:description>

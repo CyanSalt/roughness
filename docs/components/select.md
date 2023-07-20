@@ -20,10 +20,10 @@ import { RCheckbox, RSelect } from 'roughness'
 
 <template>
   <RSelect placeholder="Test engineer rank">
-    <RCheckbox value="stable" label="Stable" />
-    <RCheckbox value="beta" label="Beta" />
-    <RCheckbox value="dev" label="Dev" />
-    <RCheckbox value="canary" label="Canary" />
+    <RCheckbox value="stable" />
+    <RCheckbox value="beta" />
+    <RCheckbox value="dev" />
+    <RCheckbox value="canary" />
   </RSelect>
 </template>
 ```
@@ -31,10 +31,10 @@ import { RCheckbox, RSelect } from 'roughness'
 </RDetails>
 
 <RSelect placeholder="Test engineer rank">
-  <RCheckbox value="stable" label="Stable" />
-  <RCheckbox value="beta" label="Beta" />
-  <RCheckbox value="dev" label="Dev" />
-  <RCheckbox value="canary" label="Canary" />
+  <RCheckbox value="stable" />
+  <RCheckbox value="beta" />
+  <RCheckbox value="dev" />
+  <RCheckbox value="canary" />
 </RSelect>
 
 ### Multiple
@@ -49,10 +49,10 @@ import { RCheckbox, RSelect } from 'roughness'
 
 <template>
   <RSelect multiple placeholder="Exodia">
-    <RCheckbox value="Right Arm" label="Right Arm" />
-    <RCheckbox value="Left Arm" label="Left Arm" />
-    <RCheckbox value="Right Leg" label="Right Leg" />
-    <RCheckbox value="Left Leg" label="Left Leg" />
+    <RCheckbox value="Right Arm" />
+    <RCheckbox value="Left Arm" />
+    <RCheckbox value="Right Leg" />
+    <RCheckbox value="Left Leg" />
   </RSelect>
 </template>
 ```
@@ -60,10 +60,10 @@ import { RCheckbox, RSelect } from 'roughness'
 </RDetails>
 
 <RSelect multiple placeholder="Exodia">
-  <RCheckbox value="Right Arm" label="Right Arm" />
-  <RCheckbox value="Left Arm" label="Left Arm" />
-  <RCheckbox value="Right Leg" label="Right Leg" />
-  <RCheckbox value="Left Leg" label="Left Leg" />
+  <RCheckbox value="Right Arm" />
+  <RCheckbox value="Left Arm" />
+  <RCheckbox value="Right Leg" />
+  <RCheckbox value="Left Leg" />
 </RSelect>
 
 ### State
@@ -107,10 +107,10 @@ import { RCheckbox, RSelect } from 'roughness'
 
 <template>
   <RSelect clearable placeholder="Blue time">
-    <RCheckbox value="Spring" label="Spring" />
-    <RCheckbox value="Summer" label="Summer" />
-    <RCheckbox value="Autumn" label="Autumn" />
-    <RCheckbox value="Winter" label="Winter" />
+    <RCheckbox value="Spring" />
+    <RCheckbox value="Summer" />
+    <RCheckbox value="Autumn" />
+    <RCheckbox value="Winter" />
   </RSelect>
 </template>
 ```
@@ -118,10 +118,10 @@ import { RCheckbox, RSelect } from 'roughness'
 </RDetails>
 
 <RSelect clearable placeholder="Blue time">
-  <RCheckbox value="Spring" label="Spring" />
-  <RCheckbox value="Summer" label="Summer" />
-  <RCheckbox value="Autumn" label="Autumn" />
-  <RCheckbox value="Winter" label="Winter" />
+  <RCheckbox value="Spring" />
+  <RCheckbox value="Summer" />
+  <RCheckbox value="Autumn" />
+  <RCheckbox value="Winter" />
 </RSelect>
 
 ### Tree
