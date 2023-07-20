@@ -34,6 +34,8 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
+const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
+
 const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
@@ -69,7 +71,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-card__header"
     >
       <RText tag="strong" :type="type" size="large" class="r-card__title">
-        <slot name="title"></slot>
+        <slot name="title">
+          <template v-if="COLORED_TYPES.includes(type!)">{{ type!.toUpperCase() }}</template>
+        </slot>
       </RText>
       <slot name="header-end"></slot>
     </RSpace>

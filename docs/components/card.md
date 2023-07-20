@@ -51,22 +51,10 @@ import { RCard, RSpace } from 'roughness'
 
 <template>
   <RSpace vertical>
-    <RCard type="info">
-      <template #title>INFO</template>
-      For every minute in Africa, 60 seconds pass.
-    </RCard>
-    <RCard type="success">
-      <template #title>SUCCESS</template>
-      You successfully failed.
-    </RCard>
-    <RCard type="warning">
-      <template #title>WARNING</template>
-      No programmer can see warnings.
-    </RCard>
-    <RCard type="error">
-      <template #title>ERROR</template>
-      You threw tantrums on me!
-    </RCard>
+    <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>
+    <RCard type="success">You successfully failed.</RCard>
+    <RCard type="warning">No programmer can see warnings.</RCard>
+    <RCard type="error">You threw tantrums on me!</RCard>
   </RSpace>
 </template>
 ```
@@ -74,22 +62,10 @@ import { RCard, RSpace } from 'roughness'
 </RDetails>
 
 <RSpace vertical>
-  <RCard type="info">
-    <template #title>INFO</template>
-    For every minute in Africa, 60 seconds pass.
-  </RCard>
-  <RCard type="success">
-    <template #title>SUCCESS</template>
-    You successfully failed.
-  </RCard>
-  <RCard type="warning">
-    <template #title>WARNING</template>
-    No programmer can see warnings.
-  </RCard>
-  <RCard type="error">
-    <template #title>ERROR</template>
-    You threw tantrums on me!
-  </RCard>
+  <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>
+  <RCard type="success">You successfully failed.</RCard>
+  <RCard type="warning">No programmer can see warnings.</RCard>
+  <RCard type="error">You threw tantrums on me!</RCard>
 </RSpace>
 
 ## Usage
@@ -196,7 +172,7 @@ import { RCard, RSpace } from 'roughness'
 
   <template #body:title:description>
 
-  The content of the card title.
+  The content of the card title. When a reasonable `type` is specified, the uppercase form of `type` is displayed by default.
 
   Only available if the `header` is `true`.
 
