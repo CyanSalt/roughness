@@ -98,7 +98,7 @@ function showBottom() {
 
 <template>
   <RButton @click="showBottom">Cookie Jar</RButton>
-  <RDrawer v-model:open="bottomOpen" side="bottom">
+  <RDrawer v-model:open="bottomOpen" placement="bottom">
     <template #title>This site eats cookies.</template>
       We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
     <template #footer>
@@ -111,7 +111,7 @@ function showBottom() {
 </RDetails>
 
 <RButton @click="showBottom">Cookie Jar</RButton>
-<RDrawer v-model:open="bottomOpen" side="bottom">
+<RDrawer v-model:open="bottomOpen" placement="bottom">
   <template #title>This site eats cookies.</template>
     We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
   <template #footer>
@@ -126,21 +126,21 @@ function showBottom() {
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['side', '...']"
+  :rows="['placement', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:side:type>
+  <template #body:placement:type>
 
   `'left' | 'right' | 'top' | 'bottom'`
 
   </template>
-  <template #body:side:default>
+  <template #body:placement:default>
 
   `'right'`
 
   </template>
-  <template #body:side:description>
+  <template #body:placement:description>
     Which side of the page the drawer will show on.
   </template>
 

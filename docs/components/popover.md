@@ -22,7 +22,7 @@ import { RPopover, RSpace } from 'roughness'
       <template #anchor>Tom is dreaming...</template>
       About giving Jerry as a gift to the girl he loves
     </RPopover>
-    <RPopover trigger="click" side="bottom">
+    <RPopover trigger="click" placement="bottom">
       <template #anchor>Click to wake Tom up</template>
       And let him find out that Jerry stole his cheese
     </RPopover>
@@ -37,7 +37,7 @@ import { RPopover, RSpace } from 'roughness'
     <template #anchor>Tom is dreaming...</template>
     About giving Jerry as a gift to the girl he loves
   </RPopover>
-  <RPopover trigger="click" side="bottom">
+  <RPopover trigger="click" placement="bottom">
     <template #anchor>Click to wake Tom up</template>
     And let him find out that Jerry stole his cheese
   </RPopover>
@@ -50,7 +50,7 @@ import { RPopover, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'open', 'side', 'trigger', '...']"
+  :rows="['align', 'placement', 'open', 'trigger', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -68,11 +68,25 @@ import { RPopover, RSpace } from 'roughness'
 
   Alignment of the popover content relative to the anchor.
 
-  - `start`: Align to the left or top of the anchor, depending on the value of `side`
-  - `end`: Align to the right or bottom of the anchor, depending on the value of `side`
+  - `start`: Align to the left or top of the anchor, depending on the value of `placement`
+  - `end`: Align to the right or bottom of the anchor, depending on the value of `placement`
   - `center`: Align to the center of the anchor
   - `stretch`: Align to both sides of the anchor at the same time
 
+  </template>
+
+  <template #body:placement:type>
+
+  `'top' | 'bottom' | 'left' | 'right'`
+
+  </template>
+  <template #body:placement:default>
+
+  `'top'`
+
+  </template>
+  <template #body:placement:description>
+    Which side of the anchor the popover will show on.
   </template>
 
   <template #body:open:type>
@@ -87,20 +101,6 @@ import { RPopover, RSpace } from 'roughness'
   </template>
   <template #body:open:description>
     Whether to display the popover content.
-  </template>
-
-  <template #body:side:type>
-
-  `'top' | 'bottom' | 'left' | 'right'`
-
-  </template>
-  <template #body:side:default>
-
-  `'top'`
-
-  </template>
-  <template #body:side:description>
-    Which side of the anchor the popover will show on.
   </template>
 
   <template #body:trigger:type>

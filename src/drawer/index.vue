@@ -6,9 +6,9 @@ defineOptions({
 })
 
 const {
-  side = 'right',
+  placement = 'right',
 } = defineProps<{
-  side?: 'left' | 'right' | 'top' | 'bottom',
+  placement?: 'left' | 'right' | 'top' | 'bottom',
 }>()
 
 defineSlots<{
@@ -19,7 +19,7 @@ defineSlots<{
 </script>
 
 <template>
-  <RDialog :class="['r-drawer', side]">
+  <RDialog :class="['r-drawer', placement]">
     <template #title>
       <slot name="title"></slot>
     </template>

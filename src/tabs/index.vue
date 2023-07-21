@@ -15,14 +15,14 @@ defineOptions({
 const {
   content = true,
   modelValue,
-  side = 'top',
+  placement = 'top',
   tabs,
   reactions,
   graphicsOptions,
 } = defineProps<{
   content?: boolean,
   modelValue?: Tab | undefined,
-  side?: 'top' | 'bottom' | 'left' | 'right',
+  placement?: 'top' | 'bottom' | 'left' | 'right',
   tabs: T,
 } & GraphicsProps>()
 
@@ -78,13 +78,13 @@ function activate(tab: Tab) {
 
 <template>
   <RSpace
-    :vertical="!(side === 'left' || side === 'right')"
-    :reverse="side === 'bottom' || side === 'right'"
+    :vertical="!(placement === 'left' || placement === 'right')"
+    :reverse="placement === 'bottom' || placement === 'right'"
     :wrap="false"
     class="r-tabs"
   >
     <RSpace
-      :vertical="side === 'left' || side === 'right'"
+      :vertical="placement === 'left' || placement === 'right'"
       class="r-tabs__anchors"
       role="tablist"
     >
@@ -92,7 +92,7 @@ function activate(tab: Tab) {
         v-for="tab in tabs"
         :key="tab"
         :active="tab === internalModelValue"
-        :side="side"
+        :placement="placement"
         :tab="tab"
         :reactions="reactions"
         :graphics-options="graphicsOptions"

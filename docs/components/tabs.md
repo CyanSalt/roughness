@@ -46,13 +46,13 @@ import { RTabs } from 'roughness'
 </script>
 
 <template>
-  <RTabs :tabs="['installation', 'usage', 'theme', 'chart']" side="left" :content="false" />
+  <RTabs :tabs="['installation', 'usage', 'theme', 'chart']" placement="left" :content="false" />
 </template>
 ```
 
 </RDetails>
 
-<RTabs :tabs="['installation', 'usage', 'theme', 'chart']" side="left" :content="false" />
+<RTabs :tabs="['installation', 'usage', 'theme', 'chart']" placement="left" :content="false" />
 
 ## Usage
 
@@ -61,7 +61,7 @@ import { RTabs } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['content', 'graphics-options', 'model-value', 'reactions', 'side', 'tabs', '...']"
+  :rows="['content', 'graphics-options', 'model-value', 'placement', 'reactions', 'tabs', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -103,6 +103,20 @@ import { RTabs } from 'roughness'
 
   </template>
 
+  <template #body:placement:type>
+
+  `'top' | 'bottom' | 'left' | 'right'`
+
+  </template>
+  <template #body:placement:default>
+
+  `'top'`
+
+  </template>
+  <template #body:placement:description>
+    Which side of the content the anchors will show on.
+  </template>
+
   <template #body:reactions:type>
 
   `string[]`
@@ -119,20 +133,6 @@ import { RTabs } from 'roughness'
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-
-  <template #body:side:type>
-
-  `'top' | 'bottom' | 'left' | 'right'`
-
-  </template>
-  <template #body:side:default>
-
-  `'top'`
-
-  </template>
-  <template #body:side:description>
-    Which side of the content the anchors will show on.
   </template>
 
   <template #body:tabs:type>

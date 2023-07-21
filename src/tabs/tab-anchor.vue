@@ -13,13 +13,13 @@ defineOptions({
 
 const {
   active = false,
-  side = 'top',
+  placement = 'top',
   tab,
   reactions = (() => ['hover', 'focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   active?: boolean,
-  side?: 'top' | 'bottom' | 'left' | 'right',
+  placement?: 'top' | 'bottom' | 'left' | 'right',
   tab: T,
 } & GraphicsProps>()
 
@@ -44,7 +44,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   let startY: number
   let endX: number
   let endY: number
-  switch (side) {
+  switch (placement) {
     case 'bottom':
       startX = padding
       startY = padding
