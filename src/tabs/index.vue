@@ -1,7 +1,7 @@
 <script lang="ts" setup generic="T extends string[] | number">
 import type { RefValue } from '@vue-macros/reactivity-transform/macros'
 import { startCase } from 'lodash-es'
-import { watch, watchEffect } from 'vue'
+import { reactive, watch, watchEffect } from 'vue'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
@@ -63,6 +63,14 @@ watchEffect(() => {
   }
 })
 
+const renderedTabs = reactive<Set<Tab>>(new Set())
+
+watchEffect(() => {
+  if (internalModelValue && !renderedTabs.has(internalModelValue)) {
+    renderedTabs.add(internalModelValue)
+  }
+})
+
 function activate(tab: Tab) {
   internalModelValue = tab
 }
@@ -95,12 +103,19 @@ function activate(tab: Tab) {
         </slot>
       </RTabAnchor>
     </RSpace>
-    <div v-if="content" class="r-tabs__content" role="tabpanel" aria-expanded="true">
-      <slot v-if="internalModelValue" :name="`content:${internalModelValue}`" :tab="(internalModelValue as Tab)">
-        <slot name="content:*" :tab="(internalModelValue as Tab)"></slot>
-      </slot>
-      <slot v-else name="content:*" :tab="(internalModelValue as Tab)"></slot>
-    </div>
+    <template v-if="content">
+      <div
+        v-for="tab in renderedTabs"
+        :key="tab"
+        :class="['r-tabs__content', { 'is-active': internalModelValue === tab }]"
+        role="tabpanel"
+        :aria-expanded="internalModelValue === tab"
+      >
+        <slot :name="`content:${tab}`" :tab="tab">
+          <slot name="content:*" :tab="tab"></slot>
+        </slot>
+      </div>
+    </template>
   </RSpace>
 </template>
 
@@ -109,5 +124,10 @@ function activate(tab: Tab) {
   margin-block: 0;
   padding-inline: 0;
   list-style-type: none;
+}
+.r-tabs__content {
+  &:not(.is-active) {
+    display: none;
+  }
 }
 </style>
