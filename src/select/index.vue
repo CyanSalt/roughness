@@ -195,9 +195,10 @@ provide(labelsInjection, labels)
   position: relative;
   display: inline-flex;
   align-items: center;
+  box-sizing: border-box;
   width: 210px;
   padding-block: var(--r-common-box-padding-block);
-  padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 8px) / 2);
+  padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2);
   &:has(> .r-select__input:focus) {
     --r-select-border-width: 2px;
   }
@@ -205,8 +206,8 @@ provide(labelsInjection, labels)
 .r-select__icon {
   --r-icon-line-width: var(--r-select-border-width);
   flex: none;
-  margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 8px) / 2 - 4px);
-  font-size: calc(1em + 8px);
+  margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2 - 4px);
+  font-size: calc(1em + 4px);
 }
 :where(.r-select__input) {
   @include reset.input;
