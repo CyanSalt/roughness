@@ -14,12 +14,12 @@ defineOptions({
 })
 
 const {
-  items,
+  items = (() => []) as never,
   listStyle = 'disc',
   graphicsOptions,
   reactions = (() => []) as never,
 } = defineProps<{
-  items: T,
+  items?: T,
   listStyle?: ListStyle,
 } & GraphicsProps>()
 
