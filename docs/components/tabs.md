@@ -35,7 +35,7 @@ import { RTabs } from 'roughness'
   <template #content:meta>Meta is a prefix meaning "more comprehensive" or "transcending".</template>
 </RTabs>
 
-### Side
+### Anchor Side
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -46,13 +46,13 @@ import { RTabs } from 'roughness'
 </script>
 
 <template>
-  <RTabs :tabs="['installation', 'usage', 'theme', 'chart']" placement="left" :content="false" />
+  <RTabs :tabs="['installation', 'usage', 'theme', 'chart']" anchor-side="left" :content="false" />
 </template>
 ```
 
 </RDetails>
 
-<RTabs :tabs="['installation', 'usage', 'theme', 'chart']" placement="left" :content="false" />
+<RTabs :tabs="['installation', 'usage', 'theme', 'chart']" anchor-side="left" :content="false" />
 
 ## Usage
 
@@ -61,7 +61,7 @@ import { RTabs } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['content', 'graphics-options', 'model-value', 'placement', 'reactions', 'tabs', '...']"
+  :rows="['anchor-side', 'content', 'graphics-options', 'model-value', 'reactions', 'tabs', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -103,17 +103,17 @@ import { RTabs } from 'roughness'
 
   </template>
 
-  <template #body:placement:type>
+  <template #body:anchor-side:type>
 
   `'top' | 'bottom' | 'left' | 'right'`
 
   </template>
-  <template #body:placement:default>
+  <template #body:anchor-side:default>
 
   `'top'`
 
   </template>
-  <template #body:placement:description>
+  <template #body:anchor-side:description>
     Which side of the content the anchors will show on.
   </template>
 

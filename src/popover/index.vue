@@ -16,7 +16,7 @@ const {
   footer = false,
   header = false,
   open = false,
-  placement = 'top',
+  side = 'top',
   trigger = 'hover',
   reactions,
   graphicsOptions,
@@ -25,7 +25,7 @@ const {
   footer?: boolean,
   header?: boolean,
   open?: boolean,
-  placement?: 'top' | 'bottom' | 'left' | 'right',
+  side?: 'top' | 'bottom' | 'left' | 'right',
   trigger?: 'hover' | 'click' | 'manual',
 } & GraphicsProps>()
 
@@ -77,7 +77,7 @@ const contentStyle = $computed(() => {
   let style: HTMLAttributes['style'] = {}
   let translateX = '0'
   let translateY = '0'
-  switch (placement) {
+  switch (side) {
     case 'top':
       style.top = '0'
       translateY = '-100%'
@@ -95,7 +95,7 @@ const contentStyle = $computed(() => {
       translateX = '100%'
       break
   }
-  switch (placement) {
+  switch (side) {
     case 'top':
     case 'bottom':
       switch (align) {
