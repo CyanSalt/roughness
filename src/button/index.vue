@@ -9,6 +9,7 @@ import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
+import RSpace from '../space/index.vue'
 
 defineOptions({
   name: 'RButton',
@@ -91,9 +92,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
-    <div v-if="loading" class="r-button__loading">
+    <RSpace v-if="loading" justify="center" align="center" class="r-button__loading">
       <RIcon :type="type" name="loader" class="r-button__loading-icon" />
-    </div>
+    </RSpace>
   </component>
 </template>
 
