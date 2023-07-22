@@ -28,9 +28,9 @@ const svgAttrs: Partial<Record<keyof SVGSVGElement, string>> = {
   viewBox: '0 0 24 24',
 }
 
-const parser = new DOMParser()
-
 const elements = $computed<SVGElement[]>(() => {
+  if (typeof DOMParser !== 'function') return []
+  const parser = new DOMParser()
   const root = parser.parseFromString(`<svg>${icons[name]}</svg>`, 'image/svg+xml')
   const doc = root.documentElement as unknown as SVGSVGElement
   return Array.from(doc.children as HTMLCollectionOf<SVGElement>)
