@@ -2,11 +2,12 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { provide, reactive, toRef, watch, watchEffect } from 'vue'
+import { inject, provide, reactive, ref, toRef, watch, watchEffect } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
 import { labelsInjection } from '../checkbox/utils'
-import { useReactionState } from '../common/utils'
+import { sentenceCase, useReactionState } from '../common/utils'
+import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize } from '../graphics/utils'
@@ -22,7 +23,8 @@ const {
   loading = false,
   modelValue,
   multiple = false,
-  placeholder,
+  name: userName,
+  placeholder: userPlaceholder,
   reactions = (() => ['focus']) as never,
   graphicsOptions,
 } = defineProps<{
@@ -31,6 +33,7 @@ const {
   loading?: boolean,
   modelValue?: CheckboxValue[] | CheckboxValue | undefined,
   multiple?: boolean,
+  name?: string,
   placeholder?: string,
 } & GraphicsProps>()
 
@@ -41,6 +44,16 @@ const emit = defineEmits<{
 defineSlots<{
   default?: (props: {}) => any,
 }>()
+
+const formItemName = $(inject(nameInjection, ref()))
+
+const name = $computed(() => {
+  return userName ?? formItemName
+})
+
+const placeholder = $computed(() => {
+  return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`select-${name}`) : undefined)
+})
 
 const defaultModelValue: typeof modelValue = $computed<typeof modelValue>(() => {
   return multiple ? (
@@ -140,6 +153,7 @@ provide(labelsInjection, labels)
       :value="displayText"
       :disabled="disabled"
       readonly
+      :name="name"
       :placeholder="placeholder"
       class="r-select__input"
       @click="toggle"

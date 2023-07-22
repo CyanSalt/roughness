@@ -2,8 +2,9 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
-import { toRef, watch, watchEffect } from 'vue'
-import { useReactionState } from '../common/utils'
+import { inject, ref, toRef, watch, watchEffect } from 'vue'
+import { sentenceCase, useReactionState } from '../common/utils'
+import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
@@ -31,9 +32,7 @@ interface InputProps {
   min?: InputHTMLAttributes['min'],
   minlength?: InputHTMLAttributes['minlength'],
   multiple?: InputHTMLAttributes['multiple'],
-  name?: InputHTMLAttributes['name'],
   pattern?: InputHTMLAttributes['pattern'],
-  placeholder?: InputHTMLAttributes['placeholder'],
   readonly?: InputHTMLAttributes['readonly'],
   required?: InputHTMLAttributes['required'],
   size?: InputHTMLAttributes['size'],
@@ -52,6 +51,8 @@ const {
   lines = 1,
   modelValue,
   modelModifiers = (() => ({})) as never,
+  name: userName,
+  placeholder: userPlaceholder,
   type,
   reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
@@ -60,12 +61,24 @@ const {
   lines?: number,
   modelValue?: string | number,
   modelModifiers?: DirectiveBinding['modifiers'],
+  name?: string,
+  placeholder?: string,
   type?: string,
 } & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
+
+const formItemName = $(inject(nameInjection, ref()))
+
+const name = $computed(() => {
+  return userName ?? formItemName
+})
+
+const placeholder = $computed(() => {
+  return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`enter-${name}`) : undefined)
+})
 
 const modelValueText: string | undefined = $computed(() => {
   return typeof modelValue === 'number' ? String(modelValue) : modelValue
@@ -124,6 +137,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <textarea
       v-if="lines > 1"
       v-model="internalModelValue"
+      :name="name"
+      :placeholder="placeholder"
       v-bind="(props as TextareaHTMLAttributes)"
       class="r-input__input"
     ></textarea>
@@ -131,6 +146,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       v-else
       v-model="internalModelValue"
       :type="modelModifiers.number ? 'number' : type"
+      :name="name"
+      :placeholder="placeholder"
       v-bind="props"
       class="r-input__input"
     >

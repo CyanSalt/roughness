@@ -1,4 +1,5 @@
 import { useCurrentElement, useFocus, useFocusWithin, useMouseInElement, useMousePressed, useMutationObserver } from '@vueuse/core'
+import { startCase } from 'lodash-es'
 import type { MaybeRef } from 'vue'
 import { computed, customRef, unref } from 'vue'
 
@@ -128,3 +129,7 @@ export type ComponentProps<
 > = T extends abstract new (...args: any[]) => { $props: infer U } ? {
   -readonly [P in keyof U]: U[P];
 } : never
+
+export function sentenceCase(text: string) {
+  return startCase(text).toLowerCase().replace(/\w/, matched => matched.toUpperCase())
+}
