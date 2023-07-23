@@ -10,7 +10,7 @@ import { sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
 defineOptions({
@@ -115,6 +115,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = measureSVGSize(svg, '--r-select-border-width') ?? 0
+  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-select-border-dash')
+    ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rect = rc.rectangle(
     padding,
@@ -124,6 +126,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     {
       stroke: 'var(--r-select-border-color)',
       strokeWidth,
+      strokeLineDash,
     },
   )
   svg.appendChild(rect)
@@ -132,10 +135,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const strokeWidth = measureSVGSize(svg, '--r-select-dropdown-border-width') ?? 0
+  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-select-dropdown-border-dash')
+    ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
     stroke: 'var(--r-select-border-color)',
     strokeWidth,
+    strokeLineDash,
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',
   })
@@ -203,7 +209,9 @@ provide(labelsInjection, labels)
 .r-select {
   --r-select-border-color: var(--r-common-text-color);
   --r-select-border-width: 1px;
+  --r-select-border-dash: none;
   --r-select-dropdown-border-width: 1px;
+  --r-select-dropdown-border-dash: none;
   --r-select-dropdown-padding-block: 12px;
   --r-select-dropdown-padding-inline: 12px;
   position: relative;

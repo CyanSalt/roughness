@@ -251,7 +251,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'dropdown-border-width', 'dropdown-padding-block', 'dropdown-padding-inline']"
+  :rows="['border-color', 'border-width', 'border-dash', 'dropdown-border-width', 'dropdown-border-dash', 'dropdown-padding-block', 'dropdown-padding-inline']"
 >
   <template #body:*:name="{ row }">--r-select-{{ row }}</template>
 
@@ -283,6 +283,26 @@ See [Checkbox Tree](/components/checkbox#tree).
     Width of the select control border.
   </template>
 
+  <template #body:border-dash:values>
+
+  `<length> +` or `none`
+
+  </template>
+  <template #body:border-dash:default>
+
+  `none`
+
+  </template>
+  <template #body:border-dash:description>
+
+  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the select border.
+
+  An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+
+  See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+
+  </template>
+
   <template #body:dropdown-border-width:values>
 
   `<length>`
@@ -295,6 +315,20 @@ See [Checkbox Tree](/components/checkbox#tree).
   </template>
   <template #body:dropdown-border-width:description>
     Width of the select dropdown border.
+  </template>
+
+  <template #body:dropdown-border-dash:values>
+
+  `<length> +` or `none`
+
+  </template>
+  <template #body:dropdown-border-dash:default>
+
+  `none`
+
+  </template>
+  <template #body:dropdown-border-dash:description>
+    List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the select dropdown border.
   </template>
 
   <template #body:dropdown-padding-block:values>

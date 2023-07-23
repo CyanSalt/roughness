@@ -231,7 +231,7 @@ import { RProgress, RSpace } from 'roughness'
   </template>
   <template #body:border-dash:default>
 
-  `8px` when hovered, `none` else
+  `none`
 
   </template>
   <template #body:border-dash:description>
