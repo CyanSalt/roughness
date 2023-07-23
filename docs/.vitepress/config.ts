@@ -80,6 +80,7 @@ export default defineConfig({
               { text: 'Dialog', link: '/components/dialog' },
               { text: 'Drawer', link: '/components/drawer' },
               { text: 'Popover', link: '/components/popover' },
+              { text: 'Progress', link: '/components/progress' },
               { text: 'Toast', link: '/components/toast' },
             ],
           },
