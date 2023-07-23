@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { provide, reactive } from 'vue'
 import RToast from './index.vue'
 import type { Toast } from './utils'

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, provide, ref, toRef } from 'vue'

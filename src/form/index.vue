@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import { provide } from 'vue'
 import RSpace from '../space/index.vue'
 import { labelInlineInjection } from './utils'

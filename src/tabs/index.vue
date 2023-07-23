@@ -1,4 +1,5 @@
 <script lang="ts" setup generic="T extends string[] | number">
+import '../common/style.scss'
 import type { RefValue } from '@vue-macros/reactivity-transform/macros'
 import { startCase } from 'lodash-es'
 import { reactive, watch, watchEffect } from 'vue'

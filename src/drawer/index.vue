@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '../common/style.scss'
 import RDialog from '../dialog/index.vue'
 
 defineOptions({
