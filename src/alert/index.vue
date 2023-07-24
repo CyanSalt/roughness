@@ -103,9 +103,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-inline: calc(var(--r-common-box-padding-inline) + var(--r-alert-line-length) / 2);
   color: var(--r-alert-color);
   text-align: center;
-  :deep(.r-graphics) {
-    font-size: inherit;
-  }
   &.is-inline {
     display: inline-block;
   }
@@ -129,11 +126,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &.small {
     --r-alert-line-gap: 8px;
-    font-size: var(--r-common-small-font-size);
+    --r-element-font-size: var(--r-common-small-font-size);
   }
   &.large {
     --r-alert-line-gap: 16px;
-    font-size: var(--r-common-large-font-size);
+    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 </style>

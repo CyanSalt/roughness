@@ -128,10 +128,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-toast-color: var(--r-common-comment-color);
   }
   &.small {
-    font-size: var(--r-common-small-font-size);
+    --r-element-font-size: var(--r-common-small-font-size);
   }
   &.large {
-    font-size: var(--r-common-large-font-size);
+    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 </style>

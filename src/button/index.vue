@@ -124,9 +124,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &:focus {
     outline: none;
   }
-  :deep(.r-graphics) {
-    font-size: inherit;
-  }
   &:hover:not(.is-loading) {
     --r-button-border-dash: 8px;
   }
@@ -163,10 +160,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-button-color: var(--r-common-comment-color);
   }
   &.small {
-    font-size: var(--r-common-small-font-size);
+    --r-element-font-size: var(--r-common-small-font-size);
   }
   &.large {
-    font-size: var(--r-common-large-font-size);
+    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 .r-button__loading {

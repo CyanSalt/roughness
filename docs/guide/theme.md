@@ -70,6 +70,67 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
 
 ### Styles
 
+All elements with `r-*` classes support the following style variables:
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'values', 'default', 'description']"
+  :rows="['font-family', 'font-size', 'line-height']"
+>
+  <template #body:*:name="{ row }">--r-element-{{ row }}</template>
+
+  <template #body:font-family:values>
+
+  `<family-name> +`
+
+  </template>
+  <template #body:font-family:default>
+
+  `var(--r-common-font-family)`
+
+  </template>
+  <template #body:font-family:description>
+    Font family of the element.
+  </template>
+
+  <template #body:font-size:values>
+
+  `<length>`
+
+  </template>
+  <template #body:font-size:default>
+
+  `var(--r-common-font-size)`
+
+  </template>
+  <template #body:font-size:description>
+    Font size of the element.
+  </template>
+
+  <template #body:line-height:values>
+
+  `<number>` or `<length>` or `<percentage>` or `normal`
+
+  </template>
+  <template #body:line-height:default>
+
+  `var(--r-common-line-height)`
+
+  </template>
+  <template #body:line-height:description>
+    Line height of the element.
+  </template>
+</RTable>
+</RSpace>
+
+These are only valid for Roughness elements. If you want it to take effect for the entire page, you can define the following styles:
+
+```css
+body {
+  font-family: var(--r-common-font-family);
+}
+```
+
 Common style properties are declared under the root node. Changing them will affect all components.
 
 <RSpace overflow>
@@ -90,15 +151,7 @@ Common style properties are declared under the root node. Changing them will aff
 
   </template>
   <template #body:font-family:description>
-
-  Font family of components. This is only valid for Roughness components. If you want it to take effect for the entire page, you can define the following styles:
-
-  ```css
-  body {
-    font-family: var(--r-common-font-family);
-  }
-  ```
-
+    Font family of components.
   </template>
 
   <template #body:font-size:values>

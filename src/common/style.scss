@@ -22,6 +22,10 @@
   --r-common-box-padding-block: 0.5em;
   --r-common-box-padding-inline: calc(1em + 4px);
 
+  --r-element-font-family: var(--r-common-font-family);
+  --r-element-font-size: var(--r-common-font-size);
+  --r-element-line-height: var(--r-common-line-height);
+
   --r-common-text-color: #383a42;
   --r-common-background-color: #fafafa;
   --r-common-placeholder-color: #383a4240;
@@ -46,7 +50,7 @@
 }
 
 [class^='r-'], [class*=' r-'] {
-  font-family: var(--r-common-font-family);
-  font-size: var(--r-common-font-size);
-  line-height: var(--r-common-line-height);
+  font-family: var(--r-element-font-family);
+  font-size: var(--r-element-font-size);
+  line-height: var(--r-element-line-height);
 }

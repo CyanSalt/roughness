@@ -221,7 +221,7 @@ import { RInput, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'border-dash', 'line-height']"
+  :rows="['border-color', 'border-width', 'border-dash']"
 >
   <template #body:*:name="{ row }">--r-input-{{ row }}</template>
 
@@ -271,20 +271,6 @@ import { RInput, RSpace } from 'roughness'
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
-
-  <template #body:line-height:values>
-
-  `<length>`
-
-  </template>
-  <template #body:line-height:default>
-
-  `calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height))`
-
-  </template>
-  <template #body:line-height:description>
-    Line height of the input.
   </template>
 </RTable>
 </RSpace>

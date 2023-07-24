@@ -161,7 +161,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-input-border-color: var(--r-common-text-color);
   --r-input-border-width: 1px;
   --r-input-border-dash: none;
-  --r-input-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
+  --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   display: inline-flex;
   width: 210px;
   &:has(> .r-input__input:hover:not(:read-only, :disabled)) {
@@ -170,9 +170,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &:has(> .r-input__input:focus),
   &:active {
     --r-input-border-width: 2px;
-  }
-  :deep(> .r-graphics) {
-    line-height: var(--r-input-line-height);
   }
   &.is-multiline {
     display: flex;
@@ -189,7 +186,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   width: 100%;
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-common-text-color);
-  line-height: var(--r-input-line-height);
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
   &:focus {
     outline: none;
@@ -204,6 +200,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 textarea.r-input__input {
-  height: calc(var(--r-input-lines) * var(--r-input-line-height));
+  height: calc(var(--r-input-lines) * var(--r-element-line-height));
 }
 </style>

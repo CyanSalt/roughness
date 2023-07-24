@@ -127,16 +127,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-progress-color: var(--r-common-comment-color);
   }
   &.small {
-    font-size: var(--r-common-small-font-size);
+    --r-element-font-size: var(--r-common-small-font-size);
   }
   &.large {
-    font-size: var(--r-common-large-font-size);
+    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 .r-progress__content {
+  --r-element-font-size: calc(1em - 2px);
   @include partials.stroke(var(--r-common-background-color), 3px);
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-progress-color);
-  font-size: calc(1em - 2px);
 }
 </style>
