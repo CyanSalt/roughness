@@ -93,7 +93,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
     <RSpace v-if="loading" justify="center" align="center" class="r-button__loading">
-      <RIcon :type="type" name="loader" class="r-button__loading-icon" />
+      <RIcon name="loader" class="r-button__loading-icon" />
     </RSpace>
   </component>
 </template>

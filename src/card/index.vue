@@ -70,7 +70,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       align="center"
       class="r-card__header"
     >
-      <RText tag="strong" :type="type" size="large" class="r-card__title">
+      <RText tag="strong" size="large" class="r-card__title">
         <slot name="title">
           <template v-if="COLORED_TYPES.includes(type!)">{{ type!.toUpperCase() }}</template>
         </slot>
