@@ -2,7 +2,9 @@
 import { RCheckbox, RDetails, RForm, RFormItem, RInput, RRate, RSpace, RSelect, RSwitch, RTable, RText } from 'roughness'
 import { ref } from 'vue'
 
+let label = ref<string>('Label')
 let labelInline = ref(false)
+let required = ref(true)
 </script>
 
 # Form
@@ -27,17 +29,17 @@ let labelInline = ref(false)
     <RFormItem name="label-inline">
       <RSwitch v-model="labelInline" />
     </RFormItem>
-    <RFormItem name="title">
-      <RInput />
+    <RFormItem name="label">
+      <RInput v-model="label" />
     </RFormItem>
-    <RFormItem name="drink" required>
+    <RFormItem name="required" :required="required">
+      <RCheckbox v-model:checked="required" />
+    </RFormItem>
+    <RFormItem name="drink">
       <RSelect>
         <RCheckbox value="juice" />
         <RCheckbox value="milk" />
       </RSelect>
-    </RFormItem>
-    <RFormItem name="shopping-bag-required">
-      <RCheckbox />
     </RFormItem>
     <RFormItem name="satisfaction">
       <RRate />
@@ -55,17 +57,18 @@ let labelInline = ref(false)
   <RFormItem name="label-inline">
     <RSwitch v-model="labelInline" />
   </RFormItem>
-  <RFormItem name="title">
-    <RInput />
+  <RFormItem name="label">
+    <template #label>{{ label }}</template>
+    <RInput v-model="label" />
   </RFormItem>
-  <RFormItem name="drink" required>
+  <RFormItem name="required" :required="required">
+    <RCheckbox v-model:checked="required" />
+  </RFormItem>
+  <RFormItem name="drink">
     <RSelect>
       <RCheckbox value="juice" />
       <RCheckbox value="milk" />
     </RSelect>
-  </RFormItem>
-  <RFormItem name="shopping-bag-required">
-    <RCheckbox />
   </RFormItem>
   <RFormItem name="satisfaction">
     <RRate />
