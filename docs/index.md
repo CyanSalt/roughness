@@ -16,7 +16,7 @@ hero:
 features:
   - title: Hand-drawn Style
     details: I'm tired of the same web color blocks.
-  - title: Lots of Components (Working on It)
+  - title: Lots of Components
     details: It's not just a toy.
   - title: Uses TypeScript
     details: All components are written in TypeScript. Who doesn't like type hints?
