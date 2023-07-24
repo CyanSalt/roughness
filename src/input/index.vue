@@ -38,8 +38,6 @@ interface InputProps {
   size?: InputHTMLAttributes['size'],
   src?: InputHTMLAttributes['src'],
   step?: InputHTMLAttributes['step'],
-  type?: InputHTMLAttributes['type'],
-  value?: InputHTMLAttributes['value'],
   width?: InputHTMLAttributes['width'],
 }
 
