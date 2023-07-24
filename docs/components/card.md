@@ -68,6 +68,33 @@ import { RCard, RSpace } from 'roughness'
   <RCard type="error">You threw tantrums on me!</RCard>
 </RSpace>
 
+### Size
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RCard, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace vertical>
+    <RCard type="warning" size="small">You use dependencies from {{ 2023 - 1679 }} years ago.</RCard>
+    <RCard type="info">Building 2 versions...</RCard>
+    <RCard type="success" size="large">Build succeeded!</RCard>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RCard type="warning" size="small">You use dependencies from {{ 2023 - 1679 }} years ago.</RCard>
+  <RCard type="info">Building 2 versions...</RCard>
+  <RCard type="success" size="large">Build succeeded!</RCard>
+</RSpace>
+
 ## Usage
 
 ### Props

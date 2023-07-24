@@ -265,7 +265,7 @@ import { RButton, RSpace, RText } from 'roughness'
   </template>
   <template #body:gap-size:default>
 
-  `12px`
+  `calc(1em - 4px)`
 
   </template>
   <template #body:gap-size:description>

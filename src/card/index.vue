@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
-import type { ColorProps } from '../common/utils'
+import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -19,13 +19,14 @@ const {
   header = true,
   tag = 'article',
   type,
+  size,
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   footer?: boolean,
   header?: boolean,
   tag?: string,
-} & ColorProps & GraphicsProps>()
+} & ColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
   title?: (props: {}) => any,
@@ -61,7 +62,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace :tag="tag" vertical :wrap="false" :class="['r-card', type]">
+  <RSpace :tag="tag" vertical :wrap="false" :class="['r-card', type, size]">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"
@@ -70,7 +71,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       align="center"
       class="r-card__header"
     >
-      <RText tag="strong" size="large" class="r-card__title">
+      <RText tag="strong" class="r-card__title">
         <slot name="title">
           <template v-if="COLORED_TYPES.includes(type!)">{{ type!.toUpperCase() }}</template>
         </slot>
@@ -121,9 +122,18 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.comment {
     --r-element-color: var(--r-common-comment-color);
   }
+  &.small {
+    --r-element-font-size: var(--r-common-small-font-size);
+  }
+  &.large {
+    --r-element-font-size: var(--r-common-large-font-size);
+  }
 }
 .r-card__header, .r-card__footer {
   flex: none;
+}
+.r-card__title {
+  --r-element-font-size: calc(1em + 4px);
 }
 .r-card__body {
   flex: auto;

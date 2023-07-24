@@ -212,8 +212,8 @@ provide(labelsInjection, labels)
   --r-select-border-dash: none;
   --r-select-dropdown-border-width: 1px;
   --r-select-dropdown-border-dash: none;
-  --r-select-dropdown-padding-block: 12px;
-  --r-select-dropdown-padding-inline: 12px;
+  --r-select-dropdown-padding-block: calc(1em - 4px);
+  --r-select-dropdown-padding-inline: calc(1em - 4px);
   position: relative;
   display: inline-flex;
   align-items: center;

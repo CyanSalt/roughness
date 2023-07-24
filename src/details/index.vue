@@ -88,7 +88,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-details {
   --r-details-summary-color: var(--r-common-text-color);
   --r-details-summary-marker-size: var(--r-common-line-height);
-  --r-details-gap-size: 12px;
+  --r-details-gap-size: calc(1em - 4px);
 }
 .r-details__summary {
   display: flex;
