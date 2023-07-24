@@ -120,6 +120,51 @@ import { RButton, RSpace, RText } from 'roughness'
   <RText tag="pre">A spectre is haunting Europe -- the spectre of Communism. All the Powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Czar, Metternich and Guizot, French Radicals and German police-spies.</RText>
 </RSpace>
 
+### Size
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RSpace, RText } from 'roughness'
+</script>
+
+<template>
+  <RSpace vertical>
+    <RSpace size="small">
+      <RText>You</RText>
+      <RText>Your primary school classmates</RText>
+    </RSpace>
+    <RSpace>
+      <RText>You</RText>
+      <RText>Your middle school classmates</RText>
+    </RSpace>
+    <RSpace size="large">
+      <RText>You</RText>
+      <RText>Your college classmates</RText>
+    </RSpace>
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RSpace size="small">
+    <RText>You</RText>
+    <RText>Your primary school classmates</RText>
+  </RSpace>
+  <RSpace>
+    <RText>You</RText>
+    <RText>Your middle school classmates</RText>
+  </RSpace>
+  <RSpace size="large">
+    <RText>You</RText>
+    <RText>Your college classmates</RText>
+  </RSpace>
+</RSpace>
+
 ## Usage
 
 ### Props
@@ -127,7 +172,7 @@ import { RButton, RSpace, RText } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'justify', 'inline', 'overflow', 'reverse', 'tag', 'vertical', 'wrap']"
+  :rows="['align', 'justify', 'inline', 'overflow', 'reverse', 'size', 'tag', 'vertical', 'wrap']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -203,6 +248,15 @@ import { RButton, RSpace, RText } from 'roughness'
   </template>
   <template #body:reverse:description>
     Whether to reverse the layout.
+  </template>
+
+  <template #body:size:type>
+
+  `string`, but usually `'small' | 'large'`
+
+  </template>
+  <template #body:size:description>
+    Space size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 
   <template #body:tag:type>

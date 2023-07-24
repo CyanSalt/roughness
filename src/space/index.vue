@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { HTMLAttributes } from 'vue'
+import type { SizeProps } from '../common/utils'
 
 defineOptions({
   name: 'RSpace',
@@ -15,6 +16,7 @@ const {
   tag = 'div',
   vertical = false,
   wrap = true,
+  size,
 } = defineProps<{
   align?: 'start' | 'end' | 'center' | 'baseline' | 'stretch',
   justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
@@ -24,7 +26,7 @@ const {
   tag?: string,
   vertical?: boolean,
   wrap?: boolean,
-}>()
+} & SizeProps>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -48,7 +50,7 @@ const style = $computed<HTMLAttributes['style']>(() => {
 <template>
   <component
     :is="tag"
-    :class="['r-space', { 'is-inline': inline }]"
+    :class="['r-space', size, { 'is-inline': inline }]"
     :style="style"
     :aria-orientation="vertical ? 'vertical' : 'horizontal'"
   >
@@ -63,6 +65,12 @@ const style = $computed<HTMLAttributes['style']>(() => {
   gap: var(--r-space-gap-size);
   &.is-inline {
     display: inline-flex;
+  }
+  &.small {
+    --r-element-font-size: var(--r-common-small-font-size);
+  }
+  &.large {
+    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 </style>

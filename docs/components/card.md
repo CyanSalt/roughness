@@ -102,7 +102,7 @@ import { RCard, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['footer', 'graphics-options', 'header', 'reactions', 'tag', 'type', '...']"
+  :rows="['footer', 'graphics-options', 'header', 'reactions', 'size', 'tag', 'type', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -163,6 +163,15 @@ import { RCard, RSpace } from 'roughness'
 
   See [Reactions](/guide/theme#reactions).
 
+  </template>
+
+  <template #body:size:type>
+
+  `string`, but usually `'small' | 'large'`
+
+  </template>
+  <template #body:size:description>
+    Card size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 
   <template #body:type:type>
