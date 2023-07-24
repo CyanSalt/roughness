@@ -127,7 +127,9 @@ These are only valid for Roughness elements. If you want it to take effect for t
 
 ```css
 body {
-  font-family: var(--r-common-font-family);
+  font-family: var(--r-element-font-family);
+  font-size: var(--r-element-font-size);
+  line-height: var(--r-element-line-height);
 }
 ```
 
