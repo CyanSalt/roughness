@@ -53,8 +53,8 @@ import { RCard, RSpace } from 'roughness'
   <RSpace vertical>
     <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>
     <RCard type="success">You successfully failed.</RCard>
-    <RCard type="warning">No programmer can see warnings.</RCard>
-    <RCard type="error">You threw tantrums on me!</RCard>
+    <RCard type="warning" size="small">No programmer can see warnings.</RCard>
+    <RCard type="error" size="large">You threw tantrums on me!</RCard>
   </RSpace>
 </template>
 ```
@@ -64,35 +64,8 @@ import { RCard, RSpace } from 'roughness'
 <RSpace vertical>
   <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>
   <RCard type="success">You successfully failed.</RCard>
-  <RCard type="warning">No programmer can see warnings.</RCard>
-  <RCard type="error">You threw tantrums on me!</RCard>
-</RSpace>
-
-### Size
-
-<RDetails>
-  <template #summary>Show Code</template>
-
-```vue
-<script lang="ts" setup>
-import { RCard, RSpace } from 'roughness'
-</script>
-
-<template>
-  <RSpace vertical>
-    <RCard type="warning" size="small">You use dependencies from {{ 2023 - 1679 }} years ago.</RCard>
-    <RCard type="info">Building 2 versions...</RCard>
-    <RCard type="success" size="large">Build succeeded!</RCard>
-  </RSpace>
-</template>
-```
-
-</RDetails>
-
-<RSpace vertical>
-  <RCard type="warning" size="small">You use dependencies from {{ 2023 - 1679 }} years ago.</RCard>
-  <RCard type="info">Building 2 versions...</RCard>
-  <RCard type="success" size="large">Build succeeded!</RCard>
+  <RCard type="warning" size="small">No programmer can see warnings.</RCard>
+  <RCard type="error" size="large">You threw tantrums on me!</RCard>
 </RSpace>
 
 ## Usage
@@ -102,7 +75,7 @@ import { RCard, RSpace } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['footer', 'graphics-options', 'header', 'reactions', 'size', 'tag', 'type', '...']"
+  :rows="['footer', 'graphics-options', 'header', 'reactions', 'type', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -163,15 +136,6 @@ import { RCard, RSpace } from 'roughness'
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-
-  <template #body:size:type>
-
-  `string`, but usually `'small' | 'large'`
-
-  </template>
-  <template #body:size:description>
-    Card size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
   </template>
 
   <template #body:type:type>

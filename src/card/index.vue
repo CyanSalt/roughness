@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'
-import type { ColorProps, SizeProps } from '../common/utils'
+import type { ColorProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -19,14 +19,13 @@ const {
   header = true,
   tag = 'article',
   type,
-  size,
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   footer?: boolean,
   header?: boolean,
   tag?: string,
-} & ColorProps & SizeProps & GraphicsProps>()
+} & ColorProps & GraphicsProps>()
 
 defineSlots<{
   title?: (props: {}) => any,
@@ -62,7 +61,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace :tag="tag" vertical :wrap="false" :class="['r-card', type, size]">
+  <RSpace :tag="tag" vertical :wrap="false" :class="['r-card', type]">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"
@@ -121,12 +120,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &.comment {
     --r-element-color: var(--r-common-comment-color);
-  }
-  &.small {
-    --r-element-font-size: var(--r-common-small-font-size);
-  }
-  &.large {
-    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 .r-card__header, .r-card__footer {
