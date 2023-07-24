@@ -99,7 +99,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-progress {
-  --r-progress-color: var(--r-common-text-color);
+  --r-progress-color: var(--r-element-color);
   --r-progress-block-size: var(--r-common-line-height);
   --r-progress-inline-size: calc(var(--r-progress-block-size) * 10);
   --r-progress-border-color: var(--r-common-text-color);
@@ -109,22 +109,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   block-size: var(--r-progress-block-size);
   inline-size: var(--r-progress-inline-size);
   &.primary {
-    --r-progress-color: var(--r-common-primary-color);
+    --r-element-color: var(--r-common-primary-color);
   }
   &.info {
-    --r-progress-color: var(--r-common-info-color);
+    --r-element-color: var(--r-common-info-color);
   }
   &.success {
-    --r-progress-color: var(--r-common-success-color);
+    --r-element-color: var(--r-common-success-color);
   }
   &.warning {
-    --r-progress-color: var(--r-common-warning-color);
+    --r-element-color: var(--r-common-warning-color);
   }
   &.error {
-    --r-progress-color: var(--r-common-error-color);
+    --r-element-color: var(--r-common-error-color);
   }
   &.comment {
-    --r-progress-color: var(--r-common-comment-color);
+    --r-element-color: var(--r-common-comment-color);
   }
   &.small {
     --r-element-font-size: var(--r-common-small-font-size);

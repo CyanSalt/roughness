@@ -126,7 +126,7 @@ const nestingGraphicsOptions = $computed(() => {
 }
 .r-dialog {
   max-width: min(90vw, 960px);
-  color: var(--r-common-text-color);
+  color: var(--r-element-color);
   &::backdrop {
     background-color: rgb(0 0 0 / 50%);
   }

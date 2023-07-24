@@ -109,7 +109,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   text-decoration: none;
 }
 .r-button {
-  --r-button-color: var(--r-common-text-color);
+  --r-button-color: var(--r-element-color);
   --r-button-border-color: var(--r-button-color);
   --r-button-border-width: 1px;
   --r-button-border-dash: none;
@@ -142,22 +142,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     display: block;
   }
   &.primary {
-    --r-button-color: var(--r-common-primary-color);
+    --r-element-color: var(--r-common-primary-color);
   }
   &.info {
-    --r-button-color: var(--r-common-info-color);
+    --r-element-color: var(--r-common-info-color);
   }
   &.success {
-    --r-button-color: var(--r-common-success-color);
+    --r-element-color: var(--r-common-success-color);
   }
   &.warning {
-    --r-button-color: var(--r-common-warning-color);
+    --r-element-color: var(--r-common-warning-color);
   }
   &.error {
-    --r-button-color: var(--r-common-error-color);
+    --r-element-color: var(--r-common-error-color);
   }
   &.comment {
-    --r-button-color: var(--r-common-comment-color);
+    --r-element-color: var(--r-common-comment-color);
   }
   &.small {
     --r-element-font-size: var(--r-common-small-font-size);

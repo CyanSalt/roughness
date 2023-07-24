@@ -195,7 +195,7 @@ const nestingGraphicsOptions = $computed(() => {
 }
 .r-popover__anchor {
   display: block;
-  color: var(--r-common-text-color);
+  color: var(--r-element-color);
 }
 .r-popover__content {
   position: absolute;

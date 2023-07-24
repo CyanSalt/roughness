@@ -92,7 +92,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss" scoped>
 .r-alert {
-  --r-alert-color: var(--r-common-text-color);
+  --r-alert-color: var(--r-element-color);
   --r-alert-line-color: var(--r-alert-color);
   --r-alert-line-width: 2px;
   --r-alert-line-length: 0.5em;
@@ -107,22 +107,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     display: inline-block;
   }
   &.primary {
-    --r-alert-color: var(--r-common-primary-color);
+    --r-element-color: var(--r-common-primary-color);
   }
   &.info {
-    --r-alert-color: var(--r-common-info-color);
+    --r-element-color: var(--r-common-info-color);
   }
   &.success {
-    --r-alert-color: var(--r-common-success-color);
+    --r-element-color: var(--r-common-success-color);
   }
   &.warning {
-    --r-alert-color: var(--r-common-warning-color);
+    --r-element-color: var(--r-common-warning-color);
   }
   &.error {
-    --r-alert-color: var(--r-common-error-color);
+    --r-element-color: var(--r-common-error-color);
   }
   &.comment {
-    --r-alert-color: var(--r-common-comment-color);
+    --r-element-color: var(--r-common-comment-color);
   }
   &.small {
     --r-alert-line-gap: 8px;

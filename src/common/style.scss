@@ -22,10 +22,6 @@
   --r-common-box-padding-block: 0.5em;
   --r-common-box-padding-inline: calc(1em + 4px);
 
-  --r-element-font-family: var(--r-common-font-family);
-  --r-element-font-size: var(--r-common-font-size);
-  --r-element-line-height: var(--r-common-line-height);
-
   --r-common-text-color: #383a42;
   --r-common-background-color: #fafafa;
   --r-common-placeholder-color: #383a4240;
@@ -35,6 +31,11 @@
   --r-common-success-color: #50a14f;
   --r-common-warning-color: #c18401;
   --r-common-error-color: #ca1243;
+
+  --r-element-color: var(--r-common-text-color);
+  --r-element-font-family: var(--r-common-font-family);
+  --r-element-font-size: var(--r-common-font-size);
+  --r-element-line-height: var(--r-common-line-height);
 }
 
 :root.dark {

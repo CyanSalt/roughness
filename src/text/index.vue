@@ -27,11 +27,8 @@ defineSlots<{
 
 <style lang="scss" scoped>
 .r-text {
-  --r-text-color: var(--r-common-text-color);
+  --r-text-color: var(--r-element-color);
   color: var(--r-text-color);
-  :where(.r-text) {
-    --r-text-color: inherit;
-  }
   &.primary {
     --r-text-color: var(--r-common-primary-color);
   }

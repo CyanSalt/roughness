@@ -100,7 +100,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   @include reset.popover;
 }
 .r-toast {
-  --r-toast-color: var(--r-common-text-color);
+  --r-toast-color: var(--r-element-color);
   position: fixed;
   inset: unset;
   inset-block-start: 75%;
@@ -110,22 +110,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   color: var(--r-toast-color);
   transform: translate(-50%, -50%);
   &.primary {
-    --r-toast-color: var(--r-common-primary-color);
+    --r-element-color: var(--r-common-primary-color);
   }
   &.info {
-    --r-toast-color: var(--r-common-info-color);
+    --r-element-color: var(--r-common-info-color);
   }
   &.success {
-    --r-toast-color: var(--r-common-success-color);
+    --r-element-color: var(--r-common-success-color);
   }
   &.warning {
-    --r-toast-color: var(--r-common-warning-color);
+    --r-element-color: var(--r-common-warning-color);
   }
   &.error {
-    --r-toast-color: var(--r-common-error-color);
+    --r-element-color: var(--r-common-error-color);
   }
   &.comment {
-    --r-toast-color: var(--r-common-comment-color);
+    --r-element-color: var(--r-common-comment-color);
   }
   &.small {
     --r-element-font-size: var(--r-common-small-font-size);

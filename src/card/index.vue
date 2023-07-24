@@ -94,7 +94,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss" scoped>
 .r-card {
-  --r-card-color: var(--r-common-text-color);
+  --r-card-color: var(--r-element-color);
   --r-card-border-color: var(--r-card-color);
   --r-card-border-width: 1px;
   --r-card-border-dash: none;
@@ -104,22 +104,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-inline: var(--r-card-padding-inline);
   color: var(--r-card-color);
   &.primary {
-    --r-card-color: var(--r-common-primary-color);
+    --r-element-color: var(--r-common-primary-color);
   }
   &.info {
-    --r-card-color: var(--r-common-info-color);
+    --r-element-color: var(--r-common-info-color);
   }
   &.success {
-    --r-card-color: var(--r-common-success-color);
+    --r-element-color: var(--r-common-success-color);
   }
   &.warning {
-    --r-card-color: var(--r-common-warning-color);
+    --r-element-color: var(--r-common-warning-color);
   }
   &.error {
-    --r-card-color: var(--r-common-error-color);
+    --r-element-color: var(--r-common-error-color);
   }
   &.comment {
-    --r-card-color: var(--r-common-comment-color);
+    --r-element-color: var(--r-common-comment-color);
   }
 }
 .r-card__header, .r-card__footer {

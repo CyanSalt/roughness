@@ -50,6 +50,6 @@ defineSlots<{
   }
 }
 button.r-link {
-  color: var(--r-common-text-color);
+  color: var(--r-element-color);
 }
 </style>
