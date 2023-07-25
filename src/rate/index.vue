@@ -60,7 +60,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   ]
   const padding = 2
   const shapeSizeByWidth = (width - padding * 2) / 7
-  const shapeSizeByHeight = height - padding * 2 * baseWidth / baseHeight
+  const shapeSizeByHeight = (height - padding * 2) * baseWidth / baseHeight
   const shapeSize = Math.min(shapeSizeByWidth, shapeSizeByHeight)
   const cursorX = hoveredAt?.[0] ?? -Infinity
   const activeIndex = hoveredAt ? Math.ceil((cursorX - padding) / (shapeSize * 1.5)) : internalModelValue
@@ -121,6 +121,9 @@ function click(event: MouseEvent) {
   --r-rate-border-color: var(--r-common-text-color);
   --r-rate-control-size: var(--r-common-line-height);
   display: inline-flex;
+  width: calc((var(--r-rate-control-size) - 4px) * 7 * 48 / 45 + 4px);
+  height: var(--r-rate-control-size);
+  cursor: pointer;
   &:has(> .r-rate__input:disabled) {
     cursor: not-allowed;
   }
@@ -129,10 +132,9 @@ function click(event: MouseEvent) {
   @include reset.input-range;
 }
 .r-rate__input {
-  width: calc((var(--r-rate-control-size) - 4) * 7 * 48 / 45 + 4);
-  height: var(--r-rate-control-size);
+  position: absolute;
+  block-size: 0;
+  inline-size: 0;
   opacity: 0;
-  cursor: pointer;
-  pointer-events: none;
 }
 </style>
