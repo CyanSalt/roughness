@@ -121,8 +121,8 @@ function click(event: MouseEvent) {
   --r-rate-border-color: var(--r-common-text-color);
   --r-rate-control-size: var(--r-common-line-height);
   display: inline-flex;
-  width: calc((var(--r-rate-control-size) - 4px) * 7 * 48 / 45 + 4px);
-  height: var(--r-rate-control-size);
+  block-size: var(--r-rate-control-size);
+  inline-size: calc((var(--r-rate-control-size) - 4px) * 7 * 48 / 45 + 4px);
   cursor: pointer;
   &:has(> .r-rate__input:disabled) {
     cursor: not-allowed;

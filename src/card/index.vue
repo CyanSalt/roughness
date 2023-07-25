@@ -45,7 +45,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const strokeLineDash = measureSVGSizeAsArray(svg, '--r-card-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
-  const rect = rc.rectangle(
+  const rectangle = rc.rectangle(
     padding,
     padding,
     width - padding * 2,
@@ -56,7 +56,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       strokeLineDash,
     },
   )
-  svg.appendChild(rect)
+  svg.appendChild(rectangle)
 }
 </script>
 

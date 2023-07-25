@@ -43,14 +43,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       break
     }
     case 'square': {
-      const rect = rc.rectangle(
+      const rectangle = rc.rectangle(
         width / 2 - width / 8,
         height / 2 - width / 8 + offsetY,
         width / 3,
         width / 3,
         options,
       )
-      svg.appendChild(rect)
+      svg.appendChild(rectangle)
       break
     }
   }
@@ -70,7 +70,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-list-item {
   position: relative;
   &::marker {
-    width: var(--r-list-marker-inline-size);
+    inline-size: var(--r-list-marker-inline-size);
   }
 }
 .r-list-item__marker {

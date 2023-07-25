@@ -71,14 +71,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     )
     svg.appendChild(ellipse)
   } else {
-    const rect = rc.rectangle(
+    const rectangle = rc.rectangle(
       padding,
       padding,
       width - padding * 2,
       height - padding * 2,
       options,
     )
-    svg.appendChild(rect)
+    svg.appendChild(rectangle)
   }
 }
 </script>

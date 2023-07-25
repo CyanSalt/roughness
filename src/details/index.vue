@@ -106,8 +106,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-details__summary-marker {
   flex: none;
-  width: var(--r-details-summary-marker-size);
-  height: var(--r-details-summary-marker-size);
+  block-size: var(--r-details-summary-marker-size);
+  inline-size: var(--r-details-summary-marker-size);
   pointer-events: none;
 }
 </style>

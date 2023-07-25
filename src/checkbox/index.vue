@@ -172,8 +172,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-checkbox__control {
   flex: none;
-  width: var(--r-checkbox-control-size);
-  height: var(--r-checkbox-control-size);
+  block-size: var(--r-checkbox-control-size);
+  inline-size: var(--r-checkbox-control-size);
   .r-checkbox__input:disabled + & {
     opacity: 0.8;
   }

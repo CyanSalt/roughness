@@ -139,8 +139,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-icon-color: var(--r-text-color);
   --r-icon-line-width: 2px;
   display: inline-block;
-  width: calc(1em + 4px);
-  height: calc(1em + 4px);
+  block-size: calc(1em + 4px);
+  inline-size: calc(1em + 4px);
   :deep(.r-graphics) {
     width: 100%;
     height: 100%;

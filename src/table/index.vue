@@ -106,14 +106,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   const padding = 2
   // Outline
-  const rect = rc.rectangle(
+  const rectangle = rc.rectangle(
     padding,
     padding,
     width - padding * 2,
     height - padding * 2,
     options,
   )
-  svg.appendChild(rect)
+  svg.appendChild(rectangle)
   // Row lines
   let offsetY = 0
   for (let i = 0; i < y.length - 1; i += 1) {

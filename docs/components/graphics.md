@@ -11,10 +11,10 @@ function drawHeart(rc: RoughSVG, svg: SVGSVGElement) {
 }
 
 function drawOcean(rc: RoughSVG, svg: SVGSVGElement) {
-  const rect = rc.rectangle(0, 0, svg.width.baseVal.value, svg.height.baseVal.value, {
+  const rectangle = rc.rectangle(0, 0, svg.width.baseVal.value, svg.height.baseVal.value, {
     fill: 'var(--r-common-primary-color)',
   })
-  svg.appendChild(rect)
+  svg.appendChild(rectangle)
 }
 </script>
 
@@ -69,10 +69,10 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { RGraphics, RTable } from 'roughness'
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  const rect = rc.rectangle(0, 0, svg.width.baseVal.value, svg.height.baseVal.value, {
+  const rectangle = rc.rectangle(0, 0, svg.width.baseVal.value, svg.height.baseVal.value, {
     fill: 'var(--r-common-primary-color)',
   })
-  svg.appendChild(rect)
+  svg.appendChild(rectangle)
 }
 </script>
 

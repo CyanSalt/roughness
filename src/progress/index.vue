@@ -42,7 +42,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ?.map(item => item ?? 0) ?? undefined
   const { width, height } = getSVGSize(svg)
   const padding = 2
-  const rect = rc.rectangle(
+  const rectangle = rc.rectangle(
     padding,
     padding,
     width - padding * 2,
@@ -53,7 +53,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       strokeLineDash,
     },
   )
-  svg.appendChild(rect)
+  svg.appendChild(rectangle)
   const line = rc.line(
     (width - padding * 2) * ratio,
     padding,
