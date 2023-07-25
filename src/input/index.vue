@@ -68,6 +68,8 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
+defineSlots<{}>()
+
 const formItemName = $(inject(nameInjection, ref()))
 
 const name = $computed(() => {

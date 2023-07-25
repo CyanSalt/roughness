@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
@@ -24,6 +25,8 @@ const {
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
+
+defineSlots<{}>()
 
 let internalModelValue = $ref(modelValue)
 
@@ -77,13 +80,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 
+let root = $ref<HTMLLabelElement>()
 let input = $ref<HTMLInputElement>()
 
-function click(event: MouseEvent) {
-  const target = event.target as HTMLLabelElement
-  const width = target.clientWidth
-  const height = target.clientHeight
-  const cursorX = event.offsetX
+const { pressed } = $(useMousePressed({ target: $$(root) }))
+const { elementX } = $(useMouseInElement($$(root)))
+
+watchEffect(() => {
+  if (!root || !pressed) return
+  const width = root.clientWidth
+  const height = root.clientHeight
 
   const baseWidth = 48
   const baseHeight = 45
@@ -91,15 +97,15 @@ function click(event: MouseEvent) {
   const shapeSizeByWidth = (width - padding * 2) / 7
   const shapeSizeByHeight = height - padding * 2 * baseWidth / baseHeight
   const shapeSize = Math.min(shapeSizeByWidth, shapeSizeByHeight)
-  internalModelValue = Math.ceil((cursorX - padding) / (shapeSize * 1.5))
+  internalModelValue = Math.ceil((elementX - padding) / (shapeSize * 1.5))
   if (input) {
     input.focus()
   }
-}
+})
 </script>
 
 <template>
-  <label class="r-rate" @click.self="click">
+  <label ref="root" class="r-rate">
     <input
       ref="input"
       v-model.number="internalModelValue"
