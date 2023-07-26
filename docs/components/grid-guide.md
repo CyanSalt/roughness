@@ -36,23 +36,9 @@ import { RGridGuide } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['max-sections', 'reactions', 'responsive', 'section-cells']"
+  :rows="['reactions', 'responsive']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
-
-  <template #body:max-sections:type>
-
-  `number`
-
-  </template>
-  <template #body:max-sections:default>
-
-  `10`
-
-  </template>
-  <template #body:max-sections:description>
-    The maximum number of sections that can be displayed under the current viewport dimensions.
-  </template>
 
   <template #body:reactions:type>
 
@@ -85,20 +71,6 @@ import { RGridGuide } from 'roughness'
   <template #body:responsive:description>
     Whether to adjust the size to fit the parent element.
   </template>
-
-  <template #body:section-cells:type>
-
-  `number`
-
-  </template>
-  <template #body:section-cells:default>
-
-  `8`
-
-  </template>
-  <template #body:section-cells:description>
-    The number of cells in one section dimension.
-  </template>
 </RTable>
 </RSpace>
 
@@ -107,7 +79,7 @@ import { RGridGuide } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['color']"
+  :rows="['color', 'cell-size', 'section-cell-count']"
 >
   <template #body:*:name="{ row }">--r-grid-guide-{{ row }}</template>
 
@@ -123,6 +95,34 @@ import { RGridGuide } from 'roughness'
   </template>
   <template #body:color:description>
     Color of the guide lines.
+  </template>
+
+  <template #body:cell-size:values>
+
+  `<length>`
+
+  </template>
+  <template #body:cell-size:default>
+
+  `var(--r-common-font-size)`
+
+  </template>
+  <template #body:cell-size:description>
+    Size of the grid cell.
+  </template>
+
+  <template #body:section-cell-count:values>
+
+  `<integer>`
+
+  </template>
+  <template #body:section-cell-count:default>
+
+  `8`
+
+  </template>
+  <template #body:section-cell-count:description>
+    The number of cells in one section dimension.
   </template>
 </RTable>
 </RSpace>

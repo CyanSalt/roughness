@@ -4,15 +4,14 @@ import { useElementSize, useParentElement } from '@vueuse/core'
 import { toRef, watchEffect } from 'vue'
 import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
+import { getIntegerProperty, getLengthProperty, getProperty } from '../graphics/utils'
 
 defineOptions({
   name: 'RGridGuide',
 })
 
 const {
-  maxSections = 10,
   responsive = true,
-  sectionCells = 8,
   reactions = (() => ['dark']) as never,
 } = defineProps<{
   maxSections?: number,
@@ -35,20 +34,20 @@ const { width, height } = $(useElementSize($$(container), undefined, {
 function draw() {
   if (!root) return
   getReactionState()
+
+  const cellSize = getLengthProperty(root, '--r-grid-guide-cell-size') ?? 0
+  const cellCount = getIntegerProperty(root, '--r-grid-guide-section-cell-count') ?? 1
+  const color = getProperty(root, '--r-grid-guide-color')
+
   const actualWidth = width * window.devicePixelRatio
   const actualHeight = height * window.devicePixelRatio
-  const viewportSize = Math.max(window.innerWidth, window.innerHeight) * window.devicePixelRatio
-  const sectionSize = Math.ceil(viewportSize / maxSections)
-  const cellSize = Math.ceil(sectionSize / sectionCells)
+  const actualCellSize = cellSize * window.devicePixelRatio
 
-  const cellRows = Math.ceil(actualHeight / cellSize)
-  const cellColumns = Math.ceil(actualWidth / cellSize)
-
-  const style = getComputedStyle(root)
-  const color = style.getPropertyValue('--r-grid-guide-color')
+  const cellRows = Math.ceil(actualHeight / actualCellSize)
+  const cellColumns = Math.ceil(actualWidth / actualCellSize)
 
   const extraSections = 1
-  const padding = Math.round(cellSize * (sectionCells / 2 - 0.5))
+  const padding = Math.round(actualCellSize * (cellCount / 2 - 0.5))
 
   root.width = actualWidth
   root.height = actualHeight
@@ -57,27 +56,27 @@ function draw() {
   ctx.clearRect(0, 0, actualWidth, actualHeight)
   ctx.strokeStyle = color
   ctx.lineWidth = 1
-  for (let i = -extraSections * sectionCells; i <= cellColumns; i++) {
+  for (let i = -extraSections * cellCount; i <= cellColumns; i++) {
     ctx.beginPath()
-    if (i % sectionCells === 0) {
+    if (i % cellCount === 0) {
       ctx.lineWidth = 2
     } else {
       ctx.lineWidth = 1
     }
-    ctx.moveTo(cellSize * i + padding, 0)
-    ctx.lineTo(cellSize * i + padding, actualHeight + padding)
+    ctx.moveTo(actualCellSize * i + padding, 0)
+    ctx.lineTo(actualCellSize * i + padding, actualHeight + padding)
     ctx.stroke()
   }
 
-  for (let i = -extraSections * sectionCells; i <= cellRows; i++) {
+  for (let i = -extraSections * cellCount; i <= cellRows; i++) {
     ctx.beginPath()
-    if (i % sectionCells === 0) {
+    if (i % cellCount === 0) {
       ctx.lineWidth = 3
     } else {
       ctx.lineWidth = 1
     }
-    ctx.moveTo(0, cellSize * i + padding)
-    ctx.lineTo(actualWidth + padding, cellSize * i + padding)
+    ctx.moveTo(0, actualCellSize * i + padding)
+    ctx.lineTo(actualWidth + padding, actualCellSize * i + padding)
     ctx.stroke()
   }
 }
@@ -98,6 +97,8 @@ watchEffect(() => {
 <style lang="scss" scoped>
 .r-grid-guide {
   --r-grid-guide-color: #f5f5f5;
+  --r-grid-guide-cell-size: var(--r-common-font-size);
+  --r-grid-guide-section-cell-count: 8;
   pointer-events: none;
   &.is-responsive {
     position: absolute;
