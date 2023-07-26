@@ -1,5 +1,51 @@
 
 
+## [0.1.0-beta.6](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.5...v0.1.0-beta.6) (2023-07-26)
+
+
+### Features
+
+* add form and form-item ([c592011](https://github.com/CyanSalt/roughness/commit/c592011b71ceecff02018406b1abdde920c13aaa))
+* add progress ([291806d](https://github.com/CyanSalt/roughness/commit/291806dd7c9fe00780cf4f7385e71ee811282c89))
+* add slider ([b6edf92](https://github.com/CyanSalt/roughness/commit/b6edf9260ff77f16ccf7f637d48a9fa2167ac4b2))
+* button loading ([14e6012](https://github.com/CyanSalt/roughness/commit/14e6012df12f939388cf4142261debfd15c6ae7a))
+* card size and dynamic space ([eb9e827](https://github.com/CyanSalt/roughness/commit/eb9e827260b770a90445c46d628dc400b585fcdf))
+* card type as alert ([b2df65d](https://github.com/CyanSalt/roughness/commit/b2df65d588c8152cbeff7bfdb7746c34a57f637f))
+* **card:** default title ([d44b9b8](https://github.com/CyanSalt/roughness/commit/d44b9b8ddc87d87beaa99015f40de262ed614f90))
+* checkbox-group disabled ([f4b84b9](https://github.com/CyanSalt/roughness/commit/f4b84b97c294653c5264f920f2bd92742c2ed389))
+* **checkbox:** value as label by default ([c317ec0](https://github.com/CyanSalt/roughness/commit/c317ec0475a222f12c75b5f6c9fb23548cfa5fc5))
+* icon line width and select icon ([589e387](https://github.com/CyanSalt/roughness/commit/589e387e7e0f1a90900abed823b64a266eb8f2c2))
+* inherit color ([f9a0dac](https://github.com/CyanSalt/roughness/commit/f9a0dac869feb7ec117ce8b0f3329b9c48f6bf51))
+* inherit text styles ([85d0196](https://github.com/CyanSalt/roughness/commit/85d0196c87aa98469dbbcc12a8360d8a69637576))
+* loading select ([ed3999f](https://github.com/CyanSalt/roughness/commit/ed3999fad83adc680be56bfdb5b4f797153ad1b8))
+* rename `placement` to `side` or `anchor-side` ([eb87575](https://github.com/CyanSalt/roughness/commit/eb87575f2d232d421d9238fc8e1e57b6b96716cb))
+* rename `side` to `placement` ([827187e](https://github.com/CyanSalt/roughness/commit/827187ec23babff2f78716cd32fe764b9782f288))
+* replace built-in color schemes ([102a6a3](https://github.com/CyanSalt/roughness/commit/102a6a3fe78ebca9a1d3c6907f4c2a4d4932edb7))
+* select clearable ([7b95cd4](https://github.com/CyanSalt/roughness/commit/7b95cd49fca470eed1be0f3897db9e6d84270c16))
+* **select:** border dash ([874e3a6](https://github.com/CyanSalt/roughness/commit/874e3a65cd9cec0fbc14c479755a9682b7c253e4))
+* space reverse ([a773224](https://github.com/CyanSalt/roughness/commit/a7732244ba90db599d5e1d5ac43a7393532b05a8))
+* space size ([72904ff](https://github.com/CyanSalt/roughness/commit/72904ff9961b755a0dd437df183bcbf80d267577))
+* tabs content ([374469e](https://github.com/CyanSalt/roughness/commit/374469e3f680e17f1b83ef3712c10865d75b25ce))
+* tabs side ([011b86b](https://github.com/CyanSalt/roughness/commit/011b86bbf20c7e3442e7e9435d259c3385e6a19a))
+* **tabs:** keep content alive ([ba40f94](https://github.com/CyanSalt/roughness/commit/ba40f94b09ee57ea1c45dd5b3b2b1e041aa93b25))
+
+
+### Bug Fixes
+
+* **button:** loading positioning ([a6870d4](https://github.com/CyanSalt/roughness/commit/a6870d473c98d86b2dc2f5eff20d8a51a688875e))
+* disable wrap for some internal space ([c46539d](https://github.com/CyanSalt/roughness/commit/c46539d80341add3672c8490d570fbdf19ca6129))
+* **icon:** ssr ([ed081cc](https://github.com/CyanSalt/roughness/commit/ed081ccf262e008f57be1fd920a711ad86bfa793))
+* import styles ([39465e3](https://github.com/CyanSalt/roughness/commit/39465e3b3530165320f56e624c3746a0346d14d5))
+* **input:** bad model ([7a32c78](https://github.com/CyanSalt/roughness/commit/7a32c78abac3a86a56cbe48e9bc97e0cbcd85ce4))
+* list require items ([cb72d1d](https://github.com/CyanSalt/roughness/commit/cb72d1dfd33a655d0c9cfc707942302897373b7e))
+* **list:** optional items ([79a2882](https://github.com/CyanSalt/roughness/commit/79a28820ac73a2a691238eb2a59aeb315b4c7d81))
+* logical size ([9a0fde1](https://github.com/CyanSalt/roughness/commit/9a0fde16117a5d1a03fe39620f3edc595174cab5))
+* **rate:** movable ([52052a2](https://github.com/CyanSalt/roughness/commit/52052a2cf3e32fd6501bd6636ca4baee35fca2a1))
+* **rate:** shape size ([4385306](https://github.com/CyanSalt/roughness/commit/43853069e9037e74255bb83e1954416a98ca4eb2))
+* reset table style ([29dc89a](https://github.com/CyanSalt/roughness/commit/29dc89af779038e6419a23f703e678e0cbd10761))
+* **select:** make height the same as input ([31e3b86](https://github.com/CyanSalt/roughness/commit/31e3b861dbeb58f683beeadd415fcf566485ff5a))
+* wildcard slot typings ([b1dc727](https://github.com/CyanSalt/roughness/commit/b1dc7278cdf78ef2070420b8e890ab02df785382))
+
 ## [0.1.0-beta.5](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.4...v0.1.0-beta.5) (2023-07-17)
 
 
