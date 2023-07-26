@@ -10,7 +10,7 @@ import { sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import { getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
 defineOptions({
@@ -114,8 +114,8 @@ const getReactionState = useReactionState(toRef(() => reactions), $$(input))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-select-border-width') ?? 0
-  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-select-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--r-select-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(
@@ -134,8 +134,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-select-dropdown-border-width') ?? 0
-  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-select-dropdown-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--r-select-dropdown-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-dropdown-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {

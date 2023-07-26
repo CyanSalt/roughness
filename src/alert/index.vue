@@ -7,7 +7,7 @@ import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getLengthProperty, getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RAlert',
@@ -32,9 +32,9 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const lineWidth = measureSVGSize(svg, '--r-alert-line-width') ?? 0
-  const lineLength = measureSVGSize(svg, '--r-alert-line-length') ?? 0
-  const lineGap = measureSVGSize(svg, '--r-alert-line-gap') ?? 0
+  const lineWidth = getLengthProperty(svg, '--r-alert-line-width') ?? 0
+  const lineLength = getLengthProperty(svg, '--r-alert-line-length') ?? 0
+  const lineGap = getLengthProperty(svg, '--r-alert-line-gap') ?? 0
 
   const options: Options = {
     stroke: 'var(--r-alert-line-color)',

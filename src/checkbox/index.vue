@@ -7,7 +7,7 @@ import { inject, ref, toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getLengthProperty, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import type { CheckboxValue } from './utils'
 import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
@@ -97,7 +97,7 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-checkbox-border-width') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--r-checkbox-border-width') ?? 0
   const options: Options = {
     stroke: 'var(--r-checkbox-border-color)',
     strokeWidth,
@@ -113,7 +113,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     svg.appendChild(rectangle)
   }
   if (internalChecked) {
-    const checkedStrokeWidth = measureSVGSize(svg, '--r-checkbox-checked-width') ?? 0
+    const checkedStrokeWidth = getLengthProperty(svg, '--r-checkbox-checked-width') ?? 0
     const linearPath = rc.linearPath([
       [padding, height / 2],
       [width / 2, height - padding],

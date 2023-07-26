@@ -6,7 +6,7 @@ import { toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getLengthProperty, getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RSlider',
@@ -58,8 +58,8 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-slider-border-width') ?? 0
-  const trackSize = measureSVGSize(svg, '--r-slider-track-size') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--r-slider-border-width') ?? 0
+  const trackSize = getLengthProperty(svg, '--r-slider-track-size') ?? 0
   const padding = 2
   const rectangle = rc.rectangle(
     padding,

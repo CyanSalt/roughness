@@ -6,7 +6,7 @@ import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import { getFilledSizeOptions, getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
 defineOptions({
@@ -37,8 +37,8 @@ const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
-  const strokeWidth = measureSVGSize(svg, '--r-progress-border-width') ?? 0
-  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-progress-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--r-progress-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined
   const { width, height } = getSVGSize(svg)
   const padding = 2

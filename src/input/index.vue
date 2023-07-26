@@ -7,7 +7,7 @@ import { sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import { getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
 
 interface InputProps {
   accept?: InputHTMLAttributes['accept'],
@@ -103,12 +103,12 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-input-border-width') ?? 0
-  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-input-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--r-input-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-input-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   if (lines > 1) {
-    const lineHeight = measureSVGSize(svg, 'line-height') ?? 0
+    const lineHeight = getLengthProperty(svg, 'line-height') ?? 0
     for (let offset = lineHeight - padding; offset < height; offset += lineHeight) {
       const line = rc.line(padding, offset, width - padding, offset, {
         stroke: 'var(--r-input-border-color)',

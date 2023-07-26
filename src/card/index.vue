@@ -6,7 +6,7 @@ import type { ColorProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import { getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
 
@@ -41,8 +41,8 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-card-border-width') ?? 0
-  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-card-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--r-card-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-card-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(

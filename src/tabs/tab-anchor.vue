@@ -5,7 +5,7 @@ import { toRef } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, measureSVGSize, measureSVGSizeAsArray } from '../graphics/utils'
+import { getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
 
 defineOptions({
   name: 'RTabAnchor',
@@ -36,8 +36,8 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-tab-anchor-border-width') ?? 0
-  const strokeLineDash = measureSVGSizeAsArray(svg, '--r-tab-anchor-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--r-tab-anchor-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-tab-anchor-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   let startX: number

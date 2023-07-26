@@ -17,22 +17,32 @@ export function getSVGSize(element: SVGSVGElement) {
   }
 }
 
-function measureCSSValue(element: Element, value: string) {
+function transformValueToLength(element: Element, value: string) {
   const parts = unit(value)
   if (!isNaN(parts[0]) && !parts[1]) return parts[0]
   return toPX(value, element as HTMLElement)
 }
 
-export function measureSVGSize(element: SVGSVGElement, property: string) {
-  const size = getComputedStyle(element).getPropertyValue(property)
-  return measureCSSValue(element, size)
+export function getProperty(element: Element, property: string) {
+  return getComputedStyle(element).getPropertyValue(property)
 }
 
-export function measureSVGSizeAsArray(element: SVGSVGElement, property: string) {
-  const size = getComputedStyle(element).getPropertyValue(property)
-  const value = size.split(/[,\s]+/).map(part => measureCSSValue(element, part))
-  if (value.length === 1 && value[0] === null) return null
-  return value
+export function getIntegerProperty(element: Element, property: string) {
+  const value = getProperty(element, property)
+  const integer = parseInt(value, 10)
+  return isNaN(integer) ? null : integer
+}
+
+export function getLengthProperty(element: Element, property: string) {
+  const value = getProperty(element, property)
+  return transformValueToLength(element, value)
+}
+
+export function getLengthPropertyAsArray(element: Element, property: string) {
+  const value = getProperty(element, property)
+  const values = value.split(/[,\s]+/).map(part => transformValueToLength(element, part))
+  if (values.length === 1 && values[0] === null) return null
+  return values
 }
 
 export function getFilledSizeOptions(strokeWidth: number) {

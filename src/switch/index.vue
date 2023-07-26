@@ -6,7 +6,7 @@ import { toRef, watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize, measureSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getLengthProperty, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
 defineOptions({
@@ -42,7 +42,7 @@ const getReactionState = useReactionState(toRef(() => reactions))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = measureSVGSize(svg, '--r-switch-border-width') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--r-switch-border-width') ?? 0
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
     stroke: 'var(--r-switch-border-color)',
