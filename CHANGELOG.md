@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.7](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.6...v0.1.0-beta.7) (2023-07-26)
+
+
+### Bug Fixes
+
+* color in compositions ([1d2d0c6](https://github.com/CyanSalt/roughness/commit/1d2d0c6a8daac93252f8b0d2eb3a8b849ee28d41))
+
 ## [0.1.0-beta.6](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.5...v0.1.0-beta.6) (2023-07-26)
 
 
