@@ -7,7 +7,7 @@ import { sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
+import { getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
 
 interface InputProps {
   accept?: InputHTMLAttributes['accept'],

@@ -6,7 +6,7 @@ import type { ColorProps, SizeProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
+import { getFilledSizeOptions, getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
 defineOptions({

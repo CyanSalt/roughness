@@ -6,7 +6,7 @@ import type { ColorProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize, getLengthProperty, getLengthPropertyAsArray } from '../graphics/utils'
+import { getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
 
