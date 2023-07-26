@@ -37,7 +37,7 @@ defineSlots<Record<
   (props: { column: Column }) => any
 > & Record<
   `body:${string}:${string}`,
-  (props: { row: Column, column: Column }) => any
+  (props: { row: Row, column: Column }) => any
 >>()
 
 let head = $ref<HTMLTableSectionElement>()

@@ -152,6 +152,7 @@ const nestingGraphicsOptions = $computed(() => {
   <span v-on-click-outside.bubble="close" class="r-popover">
     <button
       ref="anchor"
+      type="button"
       class="r-popover__anchor"
       @click="toggle"
       @keydown.escape="close"
@@ -199,8 +200,7 @@ const nestingGraphicsOptions = $computed(() => {
 }
 .r-popover__content {
   position: absolute;
+  z-index: 1;
   width: max-content;
-  padding-block: var(--r-common-box-padding-block);
-  padding-inline: var(--r-common-box-padding-inline);
 }
 </style>

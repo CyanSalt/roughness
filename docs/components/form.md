@@ -44,7 +44,7 @@ let labelInline = ref(false)
     <RFormItem name="satisfaction">
       <RRate />
       <template #message>
-        <RText type="comment">Please support us a lot!</RText>
+        <RText type="comment" size="small">Please support us a lot!</RText>
       </template>
     </RFormItem>
   </RForm>
@@ -73,7 +73,7 @@ let labelInline = ref(false)
   <RFormItem name="satisfaction">
     <RRate />
     <template #message>
-      <RText type="comment">Please support us a lot!</RText>
+      <RText type="comment" size="small">Please support us a lot!</RText>
     </template>
   </RFormItem>
 </RForm>

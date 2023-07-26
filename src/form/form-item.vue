@@ -91,7 +91,7 @@ provide(nameInjection, $$(name))
   padding-block-start: var(--r-common-box-padding-block);
   padding-inline-end: var(--r-common-box-padding-inline);
   .r-form-item.is-label-inline > & {
-    block-size: 105px;
+    inline-size: 105px;
     padding-block-end: var(--r-common-box-padding-block);
     text-align: end;
   }

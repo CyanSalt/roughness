@@ -93,7 +93,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :aria-selected="active"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
-    <button class="r-tab-anchor__button" @click="activate">
+    <button type="button" class="r-tab-anchor__button" @click="activate">
       <slot></slot>
     </button>
   </li>
