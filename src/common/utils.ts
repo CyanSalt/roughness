@@ -41,27 +41,27 @@ export interface Colors {
 }
 
 export const lightColors: Colors = {
-  textColor: '#44413c',
-  backgroundColor: '#ffffff',
-  placeholderColor: '#44413c40',
-  commentColor: '#44413c80',
-  primaryColor: '#0247fe',
-  infoColor: '#2b4057',
-  successColor: '#11887b',
-  warningColor: '#9d6016',
-  errorColor: '#ac3235',
+  textColor: '#383a42',
+  backgroundColor: '#fafafa',
+  placeholderColor: '#383a4240',
+  commentColor: '#383a4280',
+  primaryColor: '#4078f2',
+  infoColor: '#0184bc',
+  successColor: '#50a14f',
+  warningColor: '#c18401',
+  errorColor: '#ca1243',
 }
 
 export const darkColors: Colors = {
-  textColor: '#f4f4f0',
-  backgroundColor: '#31343a',
-  placeholderColor: '#f4f4f040',
-  commentColor: '#f4f4f080',
-  primaryColor: '#94c0cc',
-  infoColor: '#a6aebb',
-  successColor: '#bcdf8a',
-  warningColor: '#dfc281',
-  errorColor: '#ed7777',
+  textColor: '#abb2bf',
+  backgroundColor: '#282c34',
+  placeholderColor: '#abb2bf60',
+  commentColor: '#abb2bf80',
+  primaryColor: '#61aff0',
+  infoColor: '#56b6c2',
+  successColor: '#98c379',
+  warningColor: '#e5c07b',
+  errorColor: '#be5046',
 }
 
 export function useColors() {

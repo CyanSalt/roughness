@@ -265,7 +265,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:text-color:default>
 
-  `#f4f4f0` in the dark mode, `#44413c` else
+  `#abb2bf` in the dark mode, `#383a42` else
 
   </template>
   <template #body:text-color:description>
@@ -282,7 +282,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:background-color:default>
 
-  `#31343a` in the dark mode, `#ffffff` else
+  `#282c34` in the dark mode, `#fafafa` else
 
   </template>
   <template #body:background-color:description>
@@ -299,7 +299,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:primary-color:default>
 
-  `#94c0cc` in the dark mode, `#0247fe` else
+  `#61aff0` in the dark mode, `#4078f2` else
 
   </template>
   <template #body:primary-color:description>
@@ -310,7 +310,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:info-color:default>
 
-  `#a6aebb` in the dark mode, `#2b4057` else
+  `#56b6c2` in the dark mode, `#0184bc` else
 
   </template>
   <template #body:info-color:description>
@@ -321,7 +321,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:success-color:default>
 
-  `#bcdf8a` in the dark mode, `#11887b` else
+  `#98c379` in the dark mode, `#50a14f` else
 
   </template>
   <template #body:success-color:description>
@@ -332,7 +332,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:warning-color:default>
 
-  `#dfc281` in the dark mode, `#9d6016` else
+  `#e5c07b` in the dark mode, `#c18401` else
 
   </template>
   <template #body:warning-color:description>
@@ -343,12 +343,23 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   <template #body:error-color:default>
 
-  `#ed7777` in the dark mode, `#ac3235` else
+  `#be5046` in the dark mode, `#ca1243` else
 
   </template>
   <template #body:error-color:description>
 
   Color of error message. Components with `type="error"` use this color.
+
+  </template>
+
+  <template #body:comment-color:default>
+
+  `#abb2bf80` in the dark mode, `#383a4280` else
+
+  </template>
+  <template #body:comment-color:description>
+
+  Color of comment message. Components with `type="comment"` use this color.
 
   </template>
 </RTable>
