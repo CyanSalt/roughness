@@ -89,7 +89,7 @@ let internalModelValue = $ref(modelValueText)
 
 watchEffect(() => {
   internalModelValue = modelValueText
-})
+}, { flush: 'post' })
 
 watch($$(internalModelValue), currentValue => {
   const value = currentValue !== undefined && modelModifiers.number

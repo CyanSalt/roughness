@@ -68,7 +68,7 @@ let internalModelValue = $ref(defaultModelValue)
 
 watchEffect(() => {
   internalModelValue = defaultModelValue
-})
+}, { flush: 'post' })
 
 watch($$(internalModelValue), currentValue => {
   emit('update:modelValue', currentValue)

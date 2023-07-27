@@ -42,7 +42,7 @@ let internalOpen = $ref(open)
 
 watchEffect(() => {
   internalOpen = open
-})
+}, { flush: 'post' })
 
 watch($$(internalOpen), currentValue => {
   emit('update:open', currentValue)

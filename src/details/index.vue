@@ -35,7 +35,7 @@ let internalOpen = $ref(open)
 
 watchEffect(() => {
   internalOpen = open
-})
+}, { flush: 'post' })
 
 function toggle(event: Event) {
   internalOpen = (event.target as HTMLDetailsElement).open

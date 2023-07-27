@@ -43,7 +43,7 @@ let internalModelValue = $ref(modelValue)
 
 watchEffect(() => {
   internalModelValue = round(modelValue)
-})
+}, { flush: 'post' })
 
 watch($$(internalModelValue), currentValue => {
   emit('update:modelValue', currentValue)

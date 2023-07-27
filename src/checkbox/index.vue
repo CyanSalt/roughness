@@ -68,7 +68,7 @@ watchEffect(() => {
   } else {
     internalChecked = checked
   }
-})
+}, { flush: 'post' })
 
 watch($$(internalChecked), currentValue => {
   if (typeof multiple === 'boolean') {

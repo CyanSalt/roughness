@@ -36,7 +36,7 @@ let internalOpen = $ref(open)
 
 watchEffect(() => {
   internalOpen = open
-})
+}, { flush: 'post' })
 
 watchEffect(onInvalidate => {
   if (internalOpen && Number.isFinite(duration)) {
