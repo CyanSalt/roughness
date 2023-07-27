@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { RDetails, RSpace, RTable, RText } from 'roughness'
+import { RDetails, RKey, RSpace, RTable, RText } from 'roughness'
+
+const data = [
+  { [RKey]: 1, z: 2, element: 'He' },
+  { [RKey]: 2, z: 10, element: 'Ne' },
+  { [RKey]: 3, z: 18, element: 'Ar' },
+]
 </script>
 
 # Table
@@ -96,6 +102,39 @@ import { RTable } from 'roughness'
 
 See [Responsive Graphics](/components/graphics#responsive).
 
+### Data Driven
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RKey, RTable, RText } from 'roughness'
+
+const data = [
+  { [RKey]: 1, z: 2, element: 'He' },
+  { [RKey]: 2, z: 10, element: 'Ne' },
+  { [RKey]: 3, z: 18, element: 'Ar' },
+]
+</script>
+
+<template>
+  <RTable :columns="['z', 'element']" :rows="data">
+    <template #body:1:element>
+      <RText type="primary">He</RText>
+    </template>
+  </RTable>
+</template>
+```
+
+</RDetails>
+
+<RTable :columns="['z', 'element']" :rows="data">
+  <template #body:1:element>
+    <RText type="primary">He</RText>
+  </template>
+</RTable>
+
 ## Usage
 
 ### Props
@@ -122,7 +161,7 @@ See [Responsive Graphics](/components/graphics#responsive).
 
   <template #body:columns:type>
 
-  `string[] | number`
+  `(string | number | RValue)[] | number`
 
   </template>
   <template #body:columns:default>
@@ -130,9 +169,9 @@ See [Responsive Graphics](/components/graphics#responsive).
   </template>
   <template #body:columns:description>
 
-  Column keys. Recommended to use all lowercase letters and hyphens and underscores.
+  Column keys or data. Recommended to use all lowercase letters and hyphens and underscores as keys.
 
-  When specified as number, integer strings of `1...n` will be generated as values.
+  When specified as number, integer strings of `1...n` will be generated as keys.
 
   </template>
 
@@ -170,7 +209,7 @@ See [Responsive Graphics](/components/graphics#responsive).
 
   <template #body:rows:type>
 
-  `string[] | number`
+  `(string | number | RValue)[] | number`
 
   </template>
   <template #body:rows:default>
@@ -178,9 +217,9 @@ See [Responsive Graphics](/components/graphics#responsive).
   </template>
   <template #body:rows:description>
 
-  Row keys. Recommended to use all lowercase letters and hyphens and underscores.
+  Row keys or data. Recommended to use all lowercase letters and hyphens and underscores as keys.
 
-  When specified as number, integer strings of `1...n` will be generated as values.
+  When specified as number, integer strings of `1...n` will be generated as keys.
 
   </template>
 </RTable>
@@ -214,7 +253,7 @@ See [Responsive Graphics](/components/graphics#responsive).
   </template>
   <template #body:header:*:description>
 
-  Header cell in each column. Defaults to `startCase(column)`.
+  Header cell in each column. Defaults to `startCase(keyOf(column))`.
 
   </template>
 
@@ -252,7 +291,9 @@ See [Responsive Graphics](/components/graphics#responsive).
 
   </template>
   <template #body:body:*:*:description>
-    Body cell in each row and column.
+
+  Body cell in each row and column. Defaults to `row[keyOf(column)]` if `row` is an object.
+
   </template>
 
   <template #body:footer:_column_:description>

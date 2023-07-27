@@ -1,4 +1,4 @@
-<script lang="ts" setup generic="T extends string | number">
+<script lang="ts" setup generic="T">
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { toRef } from 'vue'

@@ -19,20 +19,20 @@ import { RList } from 'roughness'
 </script>
 
 <template>
-  <RList :items="['dog', 'cat', 'human']">
-    <template #dog>Dog Food</template>
-    <template #cat>Cat Food</template>
-    <template #human>Human Food</template>
+  <RList :items="['dog-food', 'cat-food', 'human-food']">
+    <template #human-food>
+      <RText type="warning">Human Food</RText>
+    </template>
   </RList>
 </template>
 ```
 
 </RDetails>
 
-<RList :items="['dog', 'cat', 'human']">
-  <template #dog>Dog Food</template>
-  <template #cat>Cat Food</template>
-  <template #human>Human Food</template>
+<RList :items="['dog-food', 'cat-food', 'human-food']">
+  <template #human-food>
+    <RText type="warning">Human Food</RText>
+  </template>
 </RList>
 
 ### List Style
@@ -98,7 +98,7 @@ import { RList, RListItem } from 'roughness'
 
   <template #body:items:type>
 
-  `string[] | number`
+  `(string | number | RValue)[] | number`
 
   </template>
   <template #body:items:default>
@@ -110,9 +110,9 @@ import { RList, RListItem } from 'roughness'
   </template>
   <template #body:items:description>
 
-  Item keys. Recommended to use all lowercase letters and hyphens and underscores.
+  Item keys or data. Recommended to use all lowercase letters and hyphens and underscores as keys.
 
-  When specified as number, integer strings of `1...n` will be generated as values.
+  When specified as number, integer strings of `1...n` will be generated as keys.
 
   </template>
 
@@ -166,7 +166,7 @@ import { RList, RListItem } from 'roughness'
   </template>
   <template #body:_*_:description>
 
-  Content of each list item.
+  Content of each list item. Defaults to `startCase(keyOf(item))`.
 
   </template>
 

@@ -1,13 +1,16 @@
-<script lang="ts" setup generic="T extends string[] | number">
+<script lang="ts" setup generic="T extends (string | number | RValue)[] | number">
 import '../common/style.scss'
+import { startCase } from 'lodash-es'
 import { provide } from 'vue'
+import type { RValue } from '../common/utils'
+import { keyOf } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RListItem from './list-item.vue'
 import type { ListStyle } from './utils'
 import { listStyleInjection } from './utils'
 
-type Item = T extends string[] ? string : number
+type Item = T extends (infer U)[] ? U : number
 
 defineOptions({
   name: 'RList',
@@ -44,12 +47,12 @@ provide(listStyleInjection, $$(listStyle))
     <slot>
       <RListItem
         v-for="item in items"
-        :key="item"
+        :key="keyOf(item)"
         :reactions="reactions"
         :graphics-options="graphicsOptions"
       >
-        <slot :name="`${item as Item}`">
-          <slot name="*" :item="item"></slot>
+        <slot :name="`${keyOf(item)}`">
+          <slot name="*" :item="item">{{ startCase(keyOf(item)) }}</slot>
         </slot>
       </RListItem>
     </slot>

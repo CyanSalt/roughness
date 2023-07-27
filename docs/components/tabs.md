@@ -137,7 +137,7 @@ import { RTabs } from 'roughness'
 
   <template #body:tabs:type>
 
-  `string[] | number`
+  `(string | number | RValue)[] | number`
 
   </template>
   <template #body:tabs:default>
@@ -145,9 +145,9 @@ import { RTabs } from 'roughness'
   </template>
   <template #body:tabs:description>
 
-  Tab keys. Recommended to use all lowercase letters and hyphens and underscores.
+  Tab keys or data. Recommended to use all lowercase letters and hyphens and underscores as keys.
 
-  When specified as number, integer strings of `1...n` will be generated as values.
+  When specified as number, integer strings of `1...n` will be generated as keys.
 
   </template>
 
@@ -201,7 +201,7 @@ import { RTabs } from 'roughness'
   </template>
   <template #body:anchor:*:description>
 
-  Anchor for each tab. Defaults to `startCase(tab)`.
+  Anchor for each tab. Defaults to `startCase(keyOf(tab))`.
 
   </template>
 

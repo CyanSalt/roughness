@@ -1,13 +1,15 @@
-<script lang="ts" setup generic="T extends string[] | number">
+<script lang="ts" setup generic="T extends (string | number | RValue)[] | number">
 import '../common/style.scss'
 import type { RefValue } from '@vue-macros/reactivity-transform/macros'
 import { startCase } from 'lodash-es'
 import { reactive, watch, watchEffect } from 'vue'
+import type { RValue } from '../common/utils'
+import { keyOf } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
 
-type Tab = T extends string[] ? string : number
+type Tab = T extends (infer U)[] ? U : number
 
 defineOptions({
   name: 'RTabs',
@@ -53,12 +55,12 @@ watchEffect(() => {
     } else if (!internalModelValue || internalModelValue as number <= 0) {
       internalModelValue = 1 as Tab
     } else if (internalModelValue as number > tabs) {
-      internalModelValue = tabs as number as Tab
+      internalModelValue = tabs as Tab
     }
   } else {
     if (!tabs.length) {
       internalModelValue = undefined
-    } else if (!internalModelValue || !tabs.includes(internalModelValue as string)) {
+    } else if (!internalModelValue || !tabs.includes(internalModelValue)) {
       internalModelValue = tabs[0] as Tab
     }
   }
@@ -91,7 +93,7 @@ function activate(tab: Tab) {
     >
       <RTabAnchor
         v-for="tab in tabs"
-        :key="tab"
+        :key="keyOf(tab)"
         :active="tab === internalModelValue"
         :side="anchorSide"
         :tab="tab"
@@ -99,20 +101,20 @@ function activate(tab: Tab) {
         :graphics-options="graphicsOptions"
         @activate="activate"
       >
-        <slot :name="`anchor:${tab as Tab}`" :tab="tab">
-          <slot name="anchor:*" :tab="tab">{{ startCase(tab) }}</slot>
+        <slot :name="`anchor:${keyOf(tab)}`" :tab="tab">
+          <slot name="anchor:*" :tab="tab">{{ startCase(keyOf(tab)) }}</slot>
         </slot>
       </RTabAnchor>
     </RSpace>
     <template v-if="content">
       <div
         v-for="tab in renderedTabs"
-        :key="tab"
+        :key="keyOf(tab)"
         :class="['r-tabs__content', { 'is-active': internalModelValue === tab }]"
         role="tabpanel"
         :aria-expanded="internalModelValue === tab"
       >
-        <slot :name="`content:${tab}`" :tab="tab">
+        <slot :name="`content:${keyOf(tab)}`" :tab="tab">
           <slot name="content:*" :tab="tab"></slot>
         </slot>
       </div>

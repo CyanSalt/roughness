@@ -133,3 +133,17 @@ export type ComponentProps<
 export function sentenceCase(text: string) {
   return startCase(text).toLowerCase().replace(/\w/, matched => matched.toUpperCase())
 }
+
+export const RKey = Symbol('RKey')
+
+export interface RValue {
+  [RKey]: string | number,
+}
+
+export function keyOf(value: unknown) {
+  return String(
+    typeof value === 'string' || typeof value === 'number'
+      ? value
+      : (value as RValue)[RKey],
+  )
+}

@@ -1,18 +1,23 @@
-<script lang="ts" setup generic="T extends string[] | number, U extends string[] | number">
+<script lang="ts" setup generic="
+  T extends (string | number | RValue)[] | number,
+  U extends (string | number | RValue)[] | number
+"
+>
 import '../common/style.scss'
 import { useResizeObserver } from '@vueuse/core'
-import { startCase } from 'lodash-es'
+import { isObjectLike, startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
 import { onMounted, reactive, toRef } from 'vue'
-import { useReactionState } from '../common/utils'
+import type { RValue } from '../common/utils'
+import { keyOf, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
-type Column = T extends string[] ? string : number
-type Row = U extends string[] ? string : number
+type Column = T extends (infer V)[] ? V : number
+type Row = U extends (infer V)[] ? V : number
 
 defineOptions({
   name: 'RTable',
@@ -146,20 +151,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <slot></slot>
     <thead v-if="header" ref="head">
       <tr>
-        <th v-for="column in columns" :key="column">
-          <slot :name="`header:${column as Column}`" :column="column">
-            <slot name="header:*" :column="column">{{ startCase(column) }}</slot>
+        <th v-for="column in columns" :key="keyOf(column)">
+          <slot :name="`header:${keyOf(column)}`" :column="column">
+            <slot name="header:*" :column="column">{{ startCase(keyOf(column)) }}</slot>
           </slot>
         </th>
       </tr>
     </thead>
     <tbody ref="body">
-      <tr v-for="row in rows" :key="row">
-        <td v-for="column in columns" :key="column">
-          <slot :name="`body:${row as Row}:${column as Column}`" :row="row" :column="column">
-            <slot :name="`body:*:${column as Column}`" :row="row" :column="column">
-              <slot :name="`body:${row as Row}:*`" :row="row" :column="column">
-                <slot name="body:*:*" :row="row" :column="column"></slot>
+      <tr v-for="row in rows" :key="keyOf(row)">
+        <td v-for="column in columns" :key="keyOf(column)">
+          <slot :name="`body:${keyOf(row)}:${keyOf(column)}`" :row="row" :column="column">
+            <slot :name="`body:*:${keyOf(column)}`" :row="row" :column="column">
+              <slot :name="`body:${keyOf(row)}:*`" :row="row" :column="column">
+                <slot name="body:*:*" :row="row" :column="column">{{
+                  isObjectLike(row) ? row[keyOf(column)] : undefined
+                }}</slot>
               </slot>
             </slot>
           </slot>
@@ -168,8 +175,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     </tbody>
     <tfoot v-if="footer" ref="foot">
       <tr>
-        <th v-for="column in columns" :key="column">
-          <slot :name="`footer:${column as Column}`" :column="column">
+        <th v-for="column in columns" :key="keyOf(column)">
+          <slot :name="`footer:${keyOf(column)}`" :column="column">
             <slot name="footer:*" :column="column"></slot>
           </slot>
         </th>
