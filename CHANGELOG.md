@@ -1,5 +1,17 @@
 
 
+## [0.1.0-beta.8](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.7...v0.1.0-beta.8) (2023-07-27)
+
+
+### Features
+
+* data driven list and table ([72b0af6](https://github.com/CyanSalt/roughness/commit/72b0af6a79ccef67b35399d579656060155b58f3))
+
+
+### Bug Fixes
+
+* button type ([ab99eae](https://github.com/CyanSalt/roughness/commit/ab99eae08c1ae1d8aaec6b9b114c2c5dfdc266fe))
+
 ## [0.1.0-beta.7](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.6...v0.1.0-beta.7) (2023-07-26)
 
 
