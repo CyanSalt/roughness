@@ -1,5 +1,14 @@
 <script lang="ts" setup>
-import { RDetails, RProgress, RSpace, RTable, RText } from 'roughness'
+import gsap from 'gsap'
+import { RAlert, RDetails, RProgress, RSlider, RSpace, RTable, RText } from 'roughness'
+import { reactive, ref, watch } from 'vue'
+
+let value = ref(0)
+let tweened = reactive({ number: 0 })
+
+watch(value, n => {
+  gsap.to(tweened, { duration: 1, number: n / 100 })
+})
 </script>
 
 # Progress
@@ -7,6 +16,8 @@ import { RDetails, RProgress, RSpace, RTable, RText } from 'roughness'
 Deadline tomorrow.
 
 ## Example
+
+### Basic
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -39,6 +50,46 @@ import { RProgress, RSpace } from 'roughness'
   <RProgress :value="0.9" type="warning">Warning</RProgress>
   <RProgress :value="0.2" type="error">Error</RProgress>
   <RProgress :value="0.6" type="comment">Comment</RProgress>
+</RSpace>
+
+### Animation
+
+<RAlert type="comment">
+
+\* You need to install `gsap` yourself.
+
+</RAlert>
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import gsap from 'gsap'
+import { RProgress, RSlider, RSpace } from 'roughness'
+import { reactive, ref, watch } from 'vue'
+
+let value = ref(0)
+let tweened = reactive({ number: 0 })
+
+watch(value, n => {
+  gsap.to(tweened, { duration: 1, number: n / 100 })
+})
+</script>
+
+<template>
+  <RSpace vertical>
+    <RProgress :value="tweened.number" />
+    <RSlider v-model="value" />
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical>
+  <RProgress :value="tweened.number" />
+  <RSlider v-model="value" />
 </RSpace>
 
 ### Props
