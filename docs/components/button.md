@@ -372,7 +372,7 @@ import { RButton, RSpace } from 'roughness'
   </template>
   <template #body:color:default>
 
-  `var(--r-common-text-color)` for `default` `type`, other theme colors for other `type`
+  `var(--r-element-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
   <template #body:color:description>

@@ -58,6 +58,7 @@ export default defineConfig({
               { text: 'Select', link: '/components/select' },
               { text: 'Slider', link: '/components/slider' },
               { text: 'Switch', link: '/components/switch' },
+              { text: 'Upload', link: '/components/upload' },
             ],
           },
           {
