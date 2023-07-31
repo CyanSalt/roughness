@@ -18,7 +18,6 @@ defineOptions({
 .r-loading {
   position: absolute;
   inset: 0;
-  cursor: pointer;
   &::before {
     content: '';
     position: absolute;

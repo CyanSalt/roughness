@@ -224,6 +224,12 @@ provide(labelsInjection, labels)
   &:has(> .r-select__input:focus) {
     --r-select-border-width: 2px;
   }
+  &:not(.is-loading) {
+    cursor: pointer;
+  }
+  &:has(.r-select__input:disabled) {
+    cursor: not-allowed;
+  }
 }
 .r-select__icon {
   --r-icon-line-width: var(--r-select-border-width);
@@ -237,13 +243,10 @@ provide(labelsInjection, labels)
 .r-select__input {
   width: 100%;
   color: var(--r-common-text-color);
+  cursor: inherit;
   &:disabled {
     opacity: 0.8;
-    cursor: not-allowed;
     text-decoration-line: line-through;
-  }
-  .r-select:not(.is-loading) > & {
-    cursor: pointer;
   }
   &::placeholder {
     color: var(--r-common-placeholder-color);

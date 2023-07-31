@@ -116,13 +116,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   color: var(--r-button-color);
   white-space: nowrap;
   text-align: center;
-  cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
   &:hover:not(.is-loading) {
     --r-button-border-dash: 8px;
   }
   &:focus, &:active {
     --r-button-border-width: 2px;
+  }
+  &:not(.is-loading) {
+    cursor: pointer;
   }
   &:disabled:not(.is-loading) {
     opacity: 0.8;
