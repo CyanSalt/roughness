@@ -26,8 +26,6 @@ const emit = defineEmits<{
   (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
 }>()
 
-defineSlots<{}>()
-
 let root = $ref<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>()
 
 const parent = $(useParentElement())

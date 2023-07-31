@@ -19,8 +19,6 @@ const {
   vertical?: boolean,
 } & GraphicsProps>()
 
-defineSlots<{}>()
-
 const getReactionState = useReactionState(toRef(() => reactions))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {

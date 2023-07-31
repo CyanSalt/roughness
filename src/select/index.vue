@@ -237,9 +237,6 @@ provide(labelsInjection, labels)
 .r-select__input {
   width: 100%;
   color: var(--r-common-text-color);
-  &:focus {
-    outline: none;
-  }
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;

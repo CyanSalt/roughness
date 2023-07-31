@@ -19,8 +19,6 @@ const {
   sectionCells?: number,
 } & ReactionProps>()
 
-defineSlots<{}>()
-
 const getReactionState = useReactionState(toRef(() => reactions))
 
 const root = $ref<HTMLCanvasElement>()

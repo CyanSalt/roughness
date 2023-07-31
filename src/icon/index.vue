@@ -24,8 +24,6 @@ const {
   name: string,
 } & GraphicsProps>()
 
-defineSlots<{}>()
-
 const svgAttrs: Partial<Record<keyof SVGSVGElement, string>> = {
   viewBox: '0 0 24 24',
 }

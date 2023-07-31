@@ -8,8 +8,7 @@ import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
-import RIcon from '../icon/index.vue'
-import RSpace from '../space/index.vue'
+import RLoading from '../loading/index.vue'
 
 defineOptions({
   name: 'RButton',
@@ -92,9 +91,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
-    <RSpace v-if="loading" justify="center" align="center" class="r-button__loading">
-      <RIcon name="loader" class="r-button__loading-icon" />
-    </RSpace>
+    <RLoading v-if="loading" class="r-button__loading" />
   </component>
 </template>
 
@@ -121,9 +118,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   text-align: center;
   cursor: pointer;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
-  &:focus {
-    outline: none;
-  }
   &:hover:not(.is-loading) {
     --r-button-border-dash: 8px;
   }
@@ -165,24 +159,5 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &.large {
     --r-element-font-size: var(--r-common-large-font-size);
   }
-}
-.r-button__loading {
-  position: absolute;
-  inset: 0;
-  padding-block: var(--r-common-box-padding-block);
-  padding-inline: var(--r-common-box-padding-inline);
-  cursor: pointer;
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-color: var(--r-common-background-color);
-    opacity: 0.2;
-  }
-}
-.r-button__loading-icon {
-  position: relative;
-  z-index: 1;
 }
 </style>

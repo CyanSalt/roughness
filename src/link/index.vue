@@ -30,12 +30,14 @@ defineSlots<{
 @use '../common/_partials';
 @use '../common/_reset';
 
+:where(a.r-link) {
+  @include reset.a;
+}
 :where(button.r-link) {
   @include reset.button;
 }
 .r-link {
   --r-link-underline-width: 2px;
-  text-decoration: none;
   cursor: pointer;
   &[href], &:hover {
     text-decoration-line: underline;
@@ -44,9 +46,6 @@ defineSlots<{
   }
   &:focus, &:active {
     --r-link-underline-width: 3px;
-  }
-  &:focus {
-    outline: none;
   }
 }
 button.r-link {

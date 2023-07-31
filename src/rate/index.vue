@@ -26,8 +26,6 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-defineSlots<{}>()
-
 let internalModelValue = $ref(modelValue)
 
 watchEffect(() => {

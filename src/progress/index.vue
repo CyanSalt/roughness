@@ -27,8 +27,6 @@ const {
   value: number,
 } & ColorProps & SizeProps & GraphicsProps>()
 
-defineSlots<{}>()
-
 const ratio = $computed(() => {
   return (value - min) / (max - min) || 0
 })

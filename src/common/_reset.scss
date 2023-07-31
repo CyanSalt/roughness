@@ -1,5 +1,8 @@
 @mixin a {
   text-decoration: none;
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin button {
@@ -7,6 +10,9 @@
   padding: 0;
   border: none;
   background-color: transparent;
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin dialog {
@@ -25,16 +31,25 @@
   appearance: none;
   border: none;
   background-color: transparent;
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin input-checkbox {
   appearance: none;
   margin: 0;
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin input-range {
   appearance: none;
   margin: 0;
+  &:focus {
+    outline: none;
+  }
 }
 
 @mixin popover {
@@ -48,4 +63,7 @@
 @mixin textarea {
   background: none;
   resize: none;
+  &:focus {
+    outline: none;
+  }
 }

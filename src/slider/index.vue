@@ -32,8 +32,6 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-defineSlots<{}>()
-
 function round(value: number) {
   const rest = value % step
   return rest >= step / 2 ? value - rest + step : value - rest

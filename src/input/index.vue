@@ -68,8 +68,6 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-defineSlots<{}>()
-
 const formItemName = $(inject(nameInjection, ref()))
 
 const name = $computed(() => {
@@ -187,9 +185,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-common-text-color);
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
-  &:focus {
-    outline: none;
-  }
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
