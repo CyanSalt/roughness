@@ -54,4 +54,7 @@
   font-family: var(--r-element-font-family);
   font-size: var(--r-element-font-size);
   line-height: var(--r-element-line-height);
+  :root.dark & {
+    color-scheme: dark;
+  }
 }
