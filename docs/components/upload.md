@@ -11,7 +11,7 @@ function select(value: File) {
 
 # Upload
 
-Just a moment...
+Upload your days, download your life.
 
 ## Example
 
