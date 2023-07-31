@@ -49,7 +49,7 @@ watch($$(internalOpen), currentValue => {
 })
 
 function toggle() {
-  if (trigger !== 'manual') {
+  if (trigger === 'click') {
     internalOpen = !internalOpen
   }
 }
