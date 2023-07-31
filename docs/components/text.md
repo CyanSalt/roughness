@@ -102,9 +102,23 @@ import { RSpace, RText } from 'roughness'
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['size', 'tag', 'type']"
+  :rows="['block', 'size', 'tag', 'type']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:block:type>
+
+  `boolean`
+
+  </template>
+  <template #body:block:default>
+
+  `false`
+
+  </template>
+  <template #body:block:description>
+    Whether the text is displayed as block.
+  </template>
 
   <template #body:size:type>
 

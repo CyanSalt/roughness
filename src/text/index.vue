@@ -7,10 +7,12 @@ defineOptions({
 })
 
 const {
+  block = false,
   tag = 'span',
   type,
   size,
 } = defineProps<{
+  block?: boolean,
   tag?: string,
 } & ColorProps & SizeProps>()
 
@@ -20,7 +22,7 @@ defineSlots<{
 </script>
 
 <template>
-  <component :is="tag" :class="['r-text', type, size]">
+  <component :is="tag" :class="['r-text', type, size, { 'is-block': block }]">
     <slot></slot>
   </component>
 </template>
@@ -29,6 +31,9 @@ defineSlots<{
 .r-text {
   --r-text-color: var(--r-element-color);
   color: var(--r-text-color);
+  &.is-block {
+    display: block;
+  }
   &.primary {
     --r-text-color: var(--r-common-primary-color);
   }
