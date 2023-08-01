@@ -1,13 +1,7 @@
 @use 'sass:color';
 
-@font-face {
-  font-family: 'SyneMono';
-  src: url('./SyneMono.woff2') format('woff2');
-}
-
 :root {
   --vp-font-family-base: var(--r-common-font-family);
-  --vp-font-family-mono: 'SyneMono';
   --vp-c-bg: var(--r-common-background-color);
   --vp-c-bg-soft: var(--vp-c-bg-alt);
   --vp-c-text-1: var(--r-common-text-color);
