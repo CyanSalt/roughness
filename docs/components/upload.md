@@ -3,9 +3,14 @@ import { RDetails, RSpace, RTable, RText, RUpload } from 'roughness'
 import { ref } from 'vue'
 
 let file = ref<File>()
+let loading = ref(false)
 
 function select(value: File) {
-  file.value = value
+  loading.value = true
+  setTimeout(() => {
+    file.value = value
+    loading.value = false
+  }, 1000)
 }
 </script>
 
@@ -24,15 +29,20 @@ import { RSpace, RText, RUpload } from 'roughness'
 import { ref } from 'vue'
 
 let file = ref<File>()
+let loading = ref(false)
 
 function select(value: File) {
-  file.value = value
+  loading.value = true
+  setTimeout(() => {
+    file.value = value
+    loading.value = false
+  }, 1000)
 }
 </script>
 
 <template>
   <RSpace vertical align="start">
-    <RUpload @select="select">Drop or Select File</RUpload>
+    <RUpload :loading="loading" @select="select">Drop or Select File</RUpload>
     <RText>It's {{ file ? file.name : 'nothing' }}.</RText>
   </RSpace>
 </template>
@@ -41,7 +51,7 @@ function select(value: File) {
 </RDetails>
 
 <RSpace vertical align="start">
-  <RUpload @select="select">Drop or Select File</RUpload>
+  <RUpload :loading="loading" @select="select">Drop or Select File</RUpload>
   <RText>It's {{ file ? file.name : 'nothing' }}.</RText>
 </RSpace>
 
