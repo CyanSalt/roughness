@@ -53,6 +53,7 @@
     "@vueuse/core": "^10.2.0",
     "chart.js": "^4.3.0",
     "chartjs-plugin-roughness": "^1.0.6",
+    "colord": "^2.9.3",
     "fast-glob": "^3.2.12",
     "feather-icons": "^4.29.0",
     "gsap": "^3.12.2",
