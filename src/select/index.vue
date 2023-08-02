@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, provide, reactive, ref, toRef, watch, watchEffect } from 'vue'
+import { inject, provide, reactive, ref, watch, watchEffect } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
 import { labelsInjection } from '../checkbox/utils'
@@ -109,7 +109,7 @@ function clear() {
   internalModelValue = multiple ? [] : undefined
 }
 
-const getReactionState = useReactionState(toRef(() => reactions), $$(input))
+const getReactionState = useReactionState(() => reactions, $$(input))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()

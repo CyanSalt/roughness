@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { toRef, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -44,7 +44,7 @@ function toggle(event: Event) {
 
 let summary = $ref<HTMLElement>()
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()

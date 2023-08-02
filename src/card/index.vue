@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { toRef } from 'vue'
 import type { ColorProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
@@ -36,7 +35,7 @@ defineSlots<{
 
 const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()

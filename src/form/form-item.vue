@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, provide, ref, toRef } from 'vue'
+import { inject, provide, ref } from 'vue'
 import { useReactionState } from '../common/utils'
 import { RGraphics } from '../components'
 import type { GraphicsProps } from '../graphics/utils'
@@ -42,7 +42,7 @@ const labelInline = $computed(() => {
 })
 
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()

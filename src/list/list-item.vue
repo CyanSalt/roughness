@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, ref, toRef } from 'vue'
+import { inject, ref } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -17,7 +17,7 @@ const {
   reactions = (() => []) as never,
 } = defineProps<GraphicsProps>()
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 const listStyle = $(inject(listStyleInjection, ref()))
 

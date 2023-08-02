@@ -9,7 +9,7 @@ import { isObjectLike, startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { onMounted, reactive, toRef } from 'vue'
+import { onMounted, reactive } from 'vue'
 import type { RValue } from '../common/utils'
 import { keyOf, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
@@ -100,7 +100,7 @@ onMounted(() => {
   calculateDimensions()
 })
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()

@@ -1,7 +1,7 @@
 import { useCurrentElement, useFocus, useFocusWithin, useMouseInElement, useMousePressed, useMutationObserver } from '@vueuse/core'
 import { startCase } from 'lodash-es'
-import type { MaybeRef } from 'vue'
-import { computed, customRef, unref } from 'vue'
+import type { MaybeRef, MaybeRefOrGetter } from 'vue'
+import { computed, customRef, toValue } from 'vue'
 
 export function useDark() {
   return customRef<boolean>((track, trigger) => {
@@ -93,7 +93,7 @@ export interface ReactionProps {
 }
 
 export function useReactionState(
-  reactions: MaybeRef<(keyof ReactionState)[]>,
+  reactions: MaybeRefOrGetter<(keyof ReactionState)[]>,
   element?: MaybeRef<HTMLElement | null | undefined>,
 ) {
   const currentElement = element ?? useCurrentElement<HTMLElement>()
@@ -102,7 +102,7 @@ export function useReactionState(
   const { focused: focusedWithin } = useFocusWithin(currentElement)
   const { pressed } = useMousePressed({ target: currentElement })
   const dark = useDark()
-  return () => Object.fromEntries(unref(reactions).map(reaction => {
+  return () => Object.fromEntries(toValue(reactions).map(reaction => {
     switch (reaction) {
       case 'hover':
         return [reaction, !isOutside.value]

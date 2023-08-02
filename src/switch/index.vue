@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { toRef, watch, watchEffect } from 'vue'
+import { watch, watchEffect } from 'vue'
 import { useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -37,7 +37,7 @@ watch($$(internalModelValue), currentValue => {
   emit('update:modelValue', currentValue)
 })
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { useElementSize, useParentElement } from '@vueuse/core'
-import { toRef, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import type { ReactionProps } from '../common/utils'
 import { useReactionState } from '../common/utils'
 import { getIntegerProperty, getLengthProperty, getProperty } from '../graphics/utils'
@@ -19,7 +19,7 @@ const {
   sectionCells?: number,
 } & ReactionProps>()
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 const root = $ref<HTMLCanvasElement>()
 

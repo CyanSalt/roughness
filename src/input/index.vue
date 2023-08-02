@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
-import { inject, ref, toRef, watch, watchEffect } from 'vue'
+import { inject, ref, watch, watchEffect } from 'vue'
 import { sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
@@ -96,7 +96,7 @@ watch($$(internalModelValue), currentValue => {
   emit('update:modelValue', value)
 })
 
-const getReactionState = useReactionState(toRef(() => reactions))
+const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
