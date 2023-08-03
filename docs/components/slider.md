@@ -129,7 +129,7 @@ let value = ref(62)
 </RTable>
 </RSpace>
 
-### Event
+### Events
 
 <RSpace overflow>
 <RTable

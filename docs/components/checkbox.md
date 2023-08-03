@@ -319,7 +319,7 @@ const treeValue = ref<string | undefined>()
 </RTable>
 </RSpace>
 
-### Checkbox Event
+### Checkbox Events
 
 <RSpace overflow>
 <RTable
@@ -514,7 +514,7 @@ const treeValue = ref<string | undefined>()
 </RTable>
 </RSpace>
 
-### CheckboxGroup Event
+### CheckboxGroup Events
 
 <RSpace overflow>
 <RTable

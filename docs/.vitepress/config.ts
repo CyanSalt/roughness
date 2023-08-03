@@ -81,6 +81,7 @@ export default defineConfig({
             items: [
               { text: 'Alert', link: '/components/alert' },
               { text: 'Badge', link: '/components/badge' },
+              { text: 'Confirm', link: '/components/confirm' },
               { text: 'Dialog', link: '/components/dialog' },
               { text: 'Drawer', link: '/components/drawer' },
               { text: 'Loading', link: '/components/loading' },

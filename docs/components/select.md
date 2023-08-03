@@ -226,7 +226,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 </RTable>
 </RSpace>
 
-### Event
+### Events
 
 <RSpace overflow>
 <RTable

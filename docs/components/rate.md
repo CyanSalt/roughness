@@ -87,7 +87,7 @@ let rate = ref(3)
 </RTable>
 </RSpace>
 
-### Event
+### Events
 
 <RSpace overflow>
 <RTable

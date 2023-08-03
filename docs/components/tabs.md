@@ -159,7 +159,7 @@ import { RTabs } from 'roughness'
 </RTable>
 </RSpace>
 
-### Tabs Event
+### Tabs Events
 
 <RSpace overflow>
 <RTable

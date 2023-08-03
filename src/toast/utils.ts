@@ -1,11 +1,12 @@
-import type { InjectionKey, RenderFunction } from 'vue'
+import type { InjectionKey } from 'vue'
 import { inject } from 'vue'
-import type { ComponentProps } from '../common/utils'
+import type { ComponentProps, ComponentRenderable, ComponentRenderFunctions } from '../common/utils'
+import { getComponentRenderFunctions } from '../common/utils'
 import type RToast from './index.vue'
 
 export interface ToastItem {
   id: string,
-  render: RenderFunction,
+  slots: ComponentRenderFunctions<typeof RToast>,
   props?: ComponentProps<typeof RToast>,
 }
 
@@ -17,12 +18,12 @@ const generateId = () => String(++base)
 export function useToast() {
   const items = inject(itemsInjection, [])
   return function (
-    slot: string | number | boolean | null | undefined | RenderFunction,
+    renderable: ComponentRenderable<typeof RToast>,
     props?: ToastItem['props'],
   ) {
     items.unshift({
       id: generateId(),
-      render: typeof slot === 'function' ? slot : () => slot,
+      slots: getComponentRenderFunctions(renderable),
       props,
     })
   }

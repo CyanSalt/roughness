@@ -37,7 +37,7 @@ provide(itemsInjection, items)
       :style="{ '--r-toast-provider-index': index }"
       @update:open="toggle($event, item.id)"
     >
-      <component :is="item.render"></component>
+      <component :is="item.slots.default"></component>
     </RToast>
   </div>
 </template>

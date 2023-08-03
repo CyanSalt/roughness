@@ -12,7 +12,7 @@ const toast = useToast()
 
 function add() {
   toast('Yummy!', {
-    type: ['primary', 'info', 'success', 'warning', 'error'][Math.floor(Math.random() * 5)],
+    type: ['primary', 'info', 'success', 'warning', 'error', 'comment'][Math.floor(Math.random() * 6)],
   })
 }
 </script>
@@ -35,8 +35,8 @@ import { ref } from 'vue'
 
 let open = ref(false)
 
-function show() {
-  open.value = true
+function toggle() {
+  open.value = !open.value
 }
 </script>
 
@@ -76,7 +76,7 @@ const toast = useToast()
 
 function add() {
   toast('Yummy!', {
-    type: ['primary', 'info', 'success', 'warning', 'error'][Math.floor(Math.random() * 5)],
+    type: ['primary', 'info', 'success', 'warning', 'error', 'comment'][Math.floor(Math.random() * 6)],
   })
 }
 </script>
@@ -184,7 +184,7 @@ function add() {
 </RTable>
 </RSpace>
 
-### Toast Event
+### Toast Events
 
 <RSpace overflow>
 <RTable
@@ -286,10 +286,10 @@ function add() {
 ### Compositions
 
 ```ts
-import type { RenderFunction } from 'vue'
+import type { ComponentProps, ComponentRenderable } from 'roughness'
 
 export declare function useToast(): (
-  slot: string | number | boolean | null | undefined | RenderFunction,
+  renderable: ComponentRenderable<typeof RToast>,
   props?: ComponentProps<typeof RToast>,
 ) => void;
 ```

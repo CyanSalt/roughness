@@ -91,7 +91,7 @@ import { RSwitch } from 'roughness'
 </RTable>
 </RSpace>
 
-### Event
+### Events
 
 <RSpace overflow>
 <RTable

@@ -196,7 +196,7 @@ import { RInput, RSpace } from 'roughness'
 </RTable>
 </RSpace>
 
-### Event
+### Events
 
 <RSpace overflow>
 <RTable
