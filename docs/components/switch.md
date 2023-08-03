@@ -106,7 +106,7 @@ import { RSwitch } from 'roughness'
 
   </template>
   <template #body:update:model-value:description>
-    Callback function triggered when state of the switch is changed.
+    Callback function triggered when state is changed.
   </template>
 </RTable>
 </RSpace>

@@ -246,6 +246,21 @@ See [Checkbox Tree](/components/checkbox#tree).
 </RTable>
 </RSpace>
 
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the select dropdown.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

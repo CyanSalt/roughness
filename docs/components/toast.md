@@ -204,6 +204,21 @@ function add() {
 </RTable>
 </RSpace>
 
+### Toast Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the toast.
+  </template>
+</RTable>
+</RSpace>
+
 ### Toast Styles
 
 <RSpace overflow>

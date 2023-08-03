@@ -146,13 +146,13 @@ function toggle() {
 
   <template #body:summary:description>
 
-  The content of the summary.
+  Content of the summary.
 
   See [`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary).
 
   </template>
   <template #body:default:description>
-    The content of the details.
+    Content of the details.
   </template>
 </RTable>
 </RSpace>

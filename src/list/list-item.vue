@@ -17,6 +17,10 @@ const {
   reactions = (() => []) as never,
 } = defineProps<GraphicsProps>()
 
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
 const getReactionState = useReactionState(() => reactions)
 
 const listStyle = $(inject(listStyleInjection, ref()))

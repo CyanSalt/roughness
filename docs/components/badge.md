@@ -95,12 +95,10 @@ import { RBadge, RButton } from 'roughness'
   <template #body:*:name="{ row }">{{ row }}</template>
 
   <template #body:marker:description>
-
-  The content of the badge marker.
-
+    Content of the badge marker.
   </template>
   <template #body:default:description>
-    The decorated content of the badge.
+    Decorated content of the badge.
   </template>
 </RTable>
 </RSpace>

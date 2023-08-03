@@ -116,7 +116,7 @@ let color = ref('')
 
   </template>
   <template #body:update:model-value:description>
-    Callback function triggered when the value is changed.
+    Callback function triggered when the color is changed.
   </template>
 </RTable>
 </RSpace>

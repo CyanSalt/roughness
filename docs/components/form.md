@@ -100,6 +100,21 @@ let labelInline = ref(false)
 </RTable>
 </RSpace>
 
+### Form Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the form.
+  </template>
+</RTable>
+</RSpace>
+
 ### FormItem Props
 
 <RSpace overflow>

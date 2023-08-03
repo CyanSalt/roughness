@@ -303,6 +303,21 @@ import { RSpace, RText } from 'roughness'
 </RTable>
 </RSpace>
 
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the space.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

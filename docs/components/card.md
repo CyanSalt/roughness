@@ -172,7 +172,7 @@ import { RCard, RSpace } from 'roughness'
 
   <template #body:title:description>
 
-  The content of the card title. When a reasonable `type` is specified, the uppercase form of `type` is displayed by default.
+  Content of the card title. When a reasonable `type` is specified, the uppercase form of `type` is displayed by default.
 
   Only available if the `header` is `true`.
 
@@ -180,19 +180,19 @@ import { RCard, RSpace } from 'roughness'
 
   <template #body:header-end:description>
 
-  The content of the card header after title.
+  Content of the card header after title.
 
   Only available if the `header` is `true`.
 
   </template>
 
   <template #body:default:description>
-    The content of the card.
+    Content of the card.
   </template>
 
   <template #body:footer:description>
 
-  The content of the card footer.
+  Content of the card footer.
 
   Only available if the `footer` is `true`.
 

@@ -122,6 +122,21 @@ See also [Button](/components/button#tag).
 </RTable>
 </RSpace>
 
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the link.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

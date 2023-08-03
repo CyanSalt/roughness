@@ -279,3 +279,18 @@ import { RList, RListItem } from 'roughness'
   </template>
 </RTable>
 </RSpace>
+
+### ListItem Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the list item.
+  </template>
+</RTable>
+</RSpace>

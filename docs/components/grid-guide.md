@@ -122,7 +122,7 @@ import { RGridGuide } from 'roughness'
 
   </template>
   <template #body:section-cell-count:description>
-    The number of cells in one section dimension.
+    Number of cells in one section dimension.
   </template>
 </RTable>
 </RSpace>

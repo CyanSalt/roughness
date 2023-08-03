@@ -499,6 +499,21 @@ const treeValue = ref<string | undefined>()
 </RTable>
 </RSpace>
 
+### CheckboxGroup Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the checkbox group.
+  </template>
+</RTable>
+</RSpace>
+
 ### CheckboxGroup Event
 
 <RSpace overflow>
@@ -514,7 +529,7 @@ const treeValue = ref<string | undefined>()
 
   </template>
   <template #body:update:model-value:description>
-    Callback function triggered when checked items of the group are changed.
+    Callback function triggered when the checked items are changed.
   </template>
 </RTable>
 </RSpace>

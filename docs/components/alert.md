@@ -179,6 +179,21 @@ See [Card Alert](/components/card#alert).
 </RTable>
 </RSpace>
 
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the alert.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

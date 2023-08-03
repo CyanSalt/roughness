@@ -161,6 +161,21 @@ function select(value: File) {
 </RTable>
 </RSpace>
 
+### Slots
+
+<RSpace overflow>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:default:description>
+    Content of the upload.
+  </template>
+</RTable>
+</RSpace>
+
 ### Styles
 
 <RSpace overflow>

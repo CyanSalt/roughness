@@ -125,7 +125,7 @@ watch(value, n => {
 
   </template>
   <template #body:max:description>
-    The upper numeric bound of the range.
+    Upper numeric bound of the range.
   </template>
 
   <template #body:min:type>
@@ -139,7 +139,7 @@ watch(value, n => {
 
   </template>
   <template #body:min:description>
-    The lower numeric bound of the range.
+    Lower numeric bound of the range.
   </template>
 
   <template #body:value:type>
@@ -151,7 +151,7 @@ watch(value, n => {
     <RText type="error">Required</RText>
   </template>
   <template #body:value:description>
-    The current numeric progress value.
+    Current numeric progress value.
   </template>
 
   <template #body:reactions:type>

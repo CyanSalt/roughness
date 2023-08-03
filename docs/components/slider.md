@@ -66,7 +66,7 @@ let value = ref(62)
 
   </template>
   <template #body:max:description>
-    The upper numeric bound of the range.
+    Upper numeric bound of the range.
   </template>
 
   <template #body:min:type>
@@ -80,7 +80,7 @@ let value = ref(62)
 
   </template>
   <template #body:min:description>
-    The lower numeric bound of the range.
+    Lower numeric bound of the range.
   </template>
 
   <template #body:model-value:type>
@@ -124,7 +124,7 @@ let value = ref(62)
 
   </template>
   <template #body:step:description>
-    The minimum unit of the slider.
+    Minimum unit of the slider.
   </template>
 </RTable>
 </RSpace>
