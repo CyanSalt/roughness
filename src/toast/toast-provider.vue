@@ -2,8 +2,8 @@
 import '../common/style.scss'
 import { provide, reactive } from 'vue'
 import RToast from './index.vue'
-import type { Toast } from './utils'
-import { toastsInjection } from './utils'
+import type { ToastItem } from './utils'
+import { itemsInjection } from './utils'
 
 defineOptions({
   name: 'RToastProvider',
@@ -13,31 +13,31 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const toasts = reactive<Toast[]>([])
+const items = reactive<ToastItem[]>([])
 
-function toggle(open: boolean, id: Toast['id']) {
+function toggle(open: boolean, id: ToastItem['id']) {
   if (!open) {
-    const index = toasts.findIndex(item => item.id === id)
+    const index = items.findIndex(item => item.id === id)
     if (index !== -1) {
-      toasts.splice(index, 1)
+      items.splice(index, 1)
     }
   }
 }
 
-provide(toastsInjection, toasts)
+provide(itemsInjection, items)
 </script>
 
 <template>
   <slot></slot>
   <div class="r-toast-provider">
     <RToast
-      v-for="(toast, index) in toasts"
-      :key="toast.id"
-      v-bind="toast.props"
+      v-for="(item, index) in items"
+      :key="item.id"
+      v-bind="item.props"
       :style="{ '--r-toast-provider-index': index }"
-      @update:open="toggle($event, toast.id)"
+      @update:open="toggle($event, item.id)"
     >
-      <component :is="toast.render"></component>
+      <component :is="item.render"></component>
     </RToast>
   </div>
 </template>
