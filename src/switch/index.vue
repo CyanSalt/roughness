@@ -2,8 +2,7 @@
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watch, watchEffect } from 'vue'
-import { useReactionState } from '../common/utils'
+import { effectRef, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getLengthProperty, getSVGSize } from '../graphics/utils'
@@ -27,15 +26,12 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-let internalModelValue = $ref(modelValue)
-
-watchEffect(() => {
-  internalModelValue = modelValue
-}, { flush: 'post' })
-
-watch($$(internalModelValue), currentValue => {
-  emit('update:modelValue', currentValue)
-})
+let internalModelValue = $(effectRef({
+  get: () => modelValue,
+  set: value => {
+    emit('update:modelValue', value)
+  },
+}))
 
 const getReactionState = useReactionState(() => reactions)
 

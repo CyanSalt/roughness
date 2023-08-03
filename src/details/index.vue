@@ -3,8 +3,7 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watchEffect } from 'vue'
-import { useReactionState } from '../common/utils'
+import { effectRef, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -31,15 +30,15 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $ref(open)
-
-watchEffect(() => {
-  internalOpen = open
-}, { flush: 'post' })
+let internalOpen = $(effectRef({
+  get: () => open,
+  set: value => {
+    emit('update:open', value)
+  },
+}))
 
 function toggle(event: Event) {
   internalOpen = (event.target as HTMLDetailsElement).open
-  emit('update:open', internalOpen)
 }
 
 let summary = $ref<HTMLElement>()

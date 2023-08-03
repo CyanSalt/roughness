@@ -1,10 +1,9 @@
 <script lang="ts" setup generic="T extends (string | number | RValue)[] | number">
 import '../common/style.scss'
-import type { RefValue } from '@vue-macros/reactivity-transform/macros'
 import { startCase } from 'lodash-es'
-import { reactive, watch, watchEffect } from 'vue'
+import { reactive, watchEffect } from 'vue'
 import type { RValue } from '../common/utils'
-import { keyOf } from '../common/utils'
+import { effectRef, keyOf } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
@@ -38,15 +37,12 @@ defineSlots<Record<
   (props: { tab: Tab }) => any
 >>()
 
-let internalModelValue = $ref(modelValue) as typeof modelValue
-
-watchEffect(() => {
-  internalModelValue = modelValue
-}, { flush: 'post' })
-
-watch($$(internalModelValue as RefValue<typeof modelValue>), currentValue => {
-  emit('update:modelValue', currentValue)
-})
+let internalModelValue = $(effectRef({
+  get: () => modelValue,
+  set: value => {
+    emit('update:modelValue', value)
+  },
+})) as typeof modelValue
 
 watchEffect(() => {
   if (typeof tabs === 'number') {

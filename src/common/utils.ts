@@ -1,7 +1,7 @@
 import { useCurrentElement, useFocus, useFocusWithin, useMouseInElement, useMousePressed, useMutationObserver } from '@vueuse/core'
 import { startCase } from 'lodash-es'
-import type { MaybeRef, MaybeRefOrGetter } from 'vue'
-import { computed, customRef, toValue } from 'vue'
+import type { ComputedGetter, ComputedSetter, MaybeRef, MaybeRefOrGetter, Ref, WritableComputedOptions } from 'vue'
+import { computed, customRef, ref, toValue, watch, watchEffect } from 'vue'
 
 export function useDark() {
   return customRef<boolean>((track, trigger) => {
@@ -146,4 +146,23 @@ export function keyOf(value: unknown) {
       ? value
       : (value as RValue)[RKey],
   )
+}
+
+export function effectRef<T>(getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>) {
+  let getter: ComputedGetter<T>
+  let setter: ComputedSetter<T> | undefined
+  if (typeof getterOrOptions === 'function') {
+    getter = getterOrOptions
+  } else {
+    getter = getterOrOptions.get
+    setter = getterOrOptions.set
+  }
+  let value = ref(getter()) as Ref<T>
+  watchEffect(() => {
+    value.value = getter()
+  }, { flush: 'post' })
+  if (setter) {
+    watch(value, setter)
+  }
+  return value
 }

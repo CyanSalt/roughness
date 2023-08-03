@@ -2,8 +2,8 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
-import { inject, ref, watch, watchEffect } from 'vue'
-import { sentenceCase, useReactionState } from '../common/utils'
+import { inject, ref } from 'vue'
+import { effectRef, sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -78,23 +78,17 @@ const placeholder = $computed(() => {
   return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`enter-${name}`) : undefined)
 })
 
-const modelValueText: string | undefined = $computed(() => {
-  return typeof modelValue === 'number' ? String(modelValue) : modelValue
-})
-
-// eslint-disable-next-line vue/no-ref-object-destructure
-let internalModelValue = $ref(modelValueText)
-
-watchEffect(() => {
-  internalModelValue = modelValueText
-}, { flush: 'post' })
-
-watch($$(internalModelValue), currentValue => {
-  const value = currentValue !== undefined && modelModifiers.number
-    ? Number(currentValue)
-    : currentValue
-  emit('update:modelValue', value)
-})
+let internalModelValue = $(effectRef({
+  get: () => {
+    return typeof modelValue === 'number' ? String(modelValue) : modelValue
+  },
+  set: value => {
+    const currentValue = value !== undefined && modelModifiers.number
+      ? Number(value)
+      : value
+    emit('update:modelValue', currentValue)
+  },
+}))
 
 const getReactionState = useReactionState(() => reactions)
 

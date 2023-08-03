@@ -2,9 +2,8 @@
 import '../common/style.scss'
 import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watch, watchEffect } from 'vue'
 import type { ColorProps, SizeProps } from '../common/utils'
-import { useReactionState } from '../common/utils'
+import { effectRef, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getLengthProperty, getLengthPropertyAsArray, getProperty, getSVGSize } from '../graphics/utils'
@@ -30,15 +29,12 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-let internalModelValue = $ref(modelValue || '#000000')
-
-watchEffect(() => {
-  internalModelValue = modelValue || '#000000'
-}, { flush: 'post' })
-
-watch($$(internalModelValue), currentValue => {
-  emit('update:modelValue', currentValue)
-})
+let internalModelValue = $(effectRef({
+  get: () => modelValue || '#000000',
+  set: value => {
+    emit('update:modelValue', value)
+  },
+}))
 
 const disabled = $computed(() => {
   return Boolean(userDisabled || loading)

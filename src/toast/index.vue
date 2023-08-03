@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { watchEffect } from 'vue'
 import type { ColorProps, SizeProps } from '../common/utils'
-import { useReactionState } from '../common/utils'
+import { effectRef, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -32,11 +32,16 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $ref(open)
+let internalOpen = $(effectRef({
+  get: () => open,
+  set: value => {
+    emit('update:open', internalOpen)
+  },
+}))
 
-watchEffect(() => {
-  internalOpen = open
-}, { flush: 'post' })
+function toggle(event: ToggleEvent) {
+  internalOpen = event.newState === 'open'
+}
 
 watchEffect(onInvalidate => {
   if (internalOpen && Number.isFinite(duration)) {
@@ -48,11 +53,6 @@ watchEffect(onInvalidate => {
     })
   }
 })
-
-function toggle(event: ToggleEvent) {
-  internalOpen = event.newState === 'open'
-  emit('update:open', internalOpen)
-}
 
 let root = $ref<HTMLElement>()
 

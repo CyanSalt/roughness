@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { watch, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import RCard from '../card/index.vue'
+import { effectRef } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 import RLink from '../link/index.vue'
@@ -37,15 +38,12 @@ defineSlots<{
   footer?: (props: {}) => any,
 }>()
 
-let internalOpen = $ref(open)
-
-watchEffect(() => {
-  internalOpen = open
-}, { flush: 'post' })
-
-watch($$(internalOpen), currentValue => {
-  emit('update:open', currentValue)
-})
+let internalOpen = $(effectRef({
+  get: () => open,
+  set: value => {
+    emit('update:open', value)
+  },
+}))
 
 let root = $ref<HTMLDialogElement>()
 

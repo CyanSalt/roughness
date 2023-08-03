@@ -3,8 +3,9 @@ import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { refDebounced, useMouseInElement } from '@vueuse/core'
 import type { HTMLAttributes } from 'vue'
-import { watch, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import RCard from '../card/index.vue'
+import { effectRef } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 
 defineOptions({
@@ -38,15 +39,12 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $ref(open)
-
-watchEffect(() => {
-  internalOpen = open
-}, { flush: 'post' })
-
-watch($$(internalOpen), currentValue => {
-  emit('update:open', currentValue)
-})
+let internalOpen = $(effectRef({
+  get: () => open,
+  set: value => {
+    emit('update:open', value)
+  },
+}))
 
 function toggle() {
   if (trigger === 'click') {

@@ -2,11 +2,11 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, provide, reactive, ref, watch, watchEffect } from 'vue'
+import { inject, provide, reactive, ref } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
 import { labelsInjection } from '../checkbox/utils'
-import { sentenceCase, useReactionState } from '../common/utils'
+import { effectRef, sentenceCase, useReactionState } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -63,16 +63,12 @@ const defaultModelValue: typeof modelValue = $computed<typeof modelValue>(() => 
   )
 })
 
-// eslint-disable-next-line vue/no-ref-object-destructure
-let internalModelValue = $ref(defaultModelValue)
-
-watchEffect(() => {
-  internalModelValue = defaultModelValue
-}, { flush: 'post' })
-
-watch($$(internalModelValue), currentValue => {
-  emit('update:modelValue', currentValue)
-})
+let internalModelValue = $(effectRef({
+  get: () => defaultModelValue,
+  set: value => {
+    emit('update:modelValue', value)
+  },
+}))
 
 const labels = reactive(new Map<CheckboxValue, string>())
 

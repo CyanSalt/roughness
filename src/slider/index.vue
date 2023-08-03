@@ -2,8 +2,8 @@
 import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watch, watchEffect } from 'vue'
-import { useReactionState } from '../common/utils'
+import { watchEffect } from 'vue'
+import { effectRef, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getLengthProperty, getSVGSize } from '../graphics/utils'
@@ -37,15 +37,12 @@ function round(value: number) {
   return rest >= step / 2 ? value - rest + step : value - rest
 }
 
-let internalModelValue = $ref(modelValue)
-
-watchEffect(() => {
-  internalModelValue = round(modelValue)
-}, { flush: 'post' })
-
-watch($$(internalModelValue), currentValue => {
-  emit('update:modelValue', currentValue)
-})
+let internalModelValue = $(effectRef({
+  get: () => round(modelValue),
+  set: value => {
+    emit('update:modelValue', value)
+  },
+}))
 
 const ratio = $computed(() => {
   return (internalModelValue - min) / (max - min) || 0

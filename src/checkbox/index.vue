@@ -3,8 +3,8 @@ import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, ref, watch, watchEffect } from 'vue'
-import { useReactionState } from '../common/utils'
+import { inject, ref, watchEffect } from 'vue'
+import { effectRef, useReactionState } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getLengthProperty, getSVGSize } from '../graphics/utils'
@@ -58,35 +58,32 @@ watchEffect(onInvalidate => {
   }
 })
 
-let internalChecked = $ref(checked)
-
-watchEffect(() => {
-  if (typeof multiple === 'boolean') {
-    internalChecked = Array.isArray(model)
-      ? model.includes(value!)
-      : model === value
-  } else {
-    internalChecked = checked
-  }
-}, { flush: 'post' })
-
-watch($$(internalChecked), currentValue => {
-  if (typeof multiple === 'boolean') {
-    if (multiple) {
-      const currentChecked = Array.isArray(model)
+let internalChecked = $(effectRef({
+  get: () => {
+    return typeof multiple === 'boolean' ? (
+      Array.isArray(model)
         ? model.includes(value!)
         : model === value
-      if (currentValue && !currentChecked) {
-        model = Array.isArray(model) ? model.concat(value!) : [value!]
-      } else if (!currentValue && currentChecked) {
-        model = Array.isArray(model) ? model.filter(item => item !== value) : []
+    ) : checked
+  },
+  set: currentValue => {
+    if (typeof multiple === 'boolean') {
+      if (multiple) {
+        const currentChecked = Array.isArray(model)
+          ? model.includes(value!)
+          : model === value
+        if (currentValue && !currentChecked) {
+          model = Array.isArray(model) ? model.concat(value!) : [value!]
+        } else if (!currentValue && currentChecked) {
+          model = Array.isArray(model) ? model.filter(item => item !== value) : []
+        }
+      } else if (currentValue) {
+        model = value
       }
-    } else if (currentValue) {
-      model = value
     }
-  }
-  emit('update:checked', currentValue)
-})
+    emit('update:checked', currentValue)
+  },
+}))
 
 const disabled = $computed(() => {
   return Boolean(userDisabled || disabledByGroup)
