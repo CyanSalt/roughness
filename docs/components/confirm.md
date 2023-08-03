@@ -81,7 +81,10 @@ const confirm = useConfirm()
 const toast = useToast()
 
 async function ask() {
-  const result = await confirm('Let\'s go for a walk outside!')
+  const result = await confirm({
+    title: () => 'Hey Guys',
+    default: () => 'Let\'s go for a walk outside!',
+  })
   toast(result ? 'Hooray!' : 'OK...', {
     type: result ? 'success' : 'comment',
   })
@@ -124,6 +127,14 @@ async function ask() {
   :rows="['confirm', 'cancel', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:confirm:description>
+    Callback function triggered when the confirm button is clicked.
+  </template>
+
+  <template #body:cancel:description>
+    Callback function triggered when the confirm is closed for reasons other than the confirm button.
+  </template>
 
   <template #body:...:description>
 
