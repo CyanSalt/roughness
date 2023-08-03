@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useReactionState } from '../common/utils'
+import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
+import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
 defineOptions({

@@ -2,11 +2,13 @@
 import '../common/style.scss'
 import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { getLengthProperty, getLengthPropertyAsArray, getProperty } from '../common/property'
+import { useReactionState } from '../common/reaction'
 import type { ColorProps, SizeProps } from '../common/utils'
-import { effectRef, useReactionState } from '../common/utils'
+import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getLengthProperty, getLengthPropertyAsArray, getProperty, getSVGSize } from '../graphics/utils'
+import { getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
 defineOptions({

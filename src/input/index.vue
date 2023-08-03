@@ -3,11 +3,13 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { inject, ref } from 'vue'
-import { effectRef, sentenceCase, useReactionState } from '../common/utils'
+import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
+import { useReactionState } from '../common/reaction'
+import { effectRef, sentenceCase } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getLengthProperty, getLengthPropertyAsArray, getSVGSize } from '../graphics/utils'
+import { getSVGSize } from '../graphics/utils'
 
 interface InputProps {
   accept?: InputHTMLAttributes['accept'],

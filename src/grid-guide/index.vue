@@ -2,9 +2,9 @@
 import '../common/style.scss'
 import { useElementSize, useParentElement } from '@vueuse/core'
 import { watchEffect } from 'vue'
-import type { ReactionProps } from '../common/utils'
-import { useReactionState } from '../common/utils'
-import { getIntegerProperty, getLengthProperty, getProperty } from '../graphics/utils'
+import { getIntegerProperty, getLengthProperty, getProperty } from '../common/property'
+import type { ReactionProps } from '../common/reaction'
+import { useReactionState } from '../common/reaction'
 
 defineOptions({
   name: 'RGridGuide',

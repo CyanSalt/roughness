@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 import { inject } from 'vue'
-import type { ComponentProps, ComponentRenderable, ComponentRenderFunctions } from '../common/utils'
-import { getComponentRenderFunctions } from '../common/utils'
+import type { ComponentProps, ComponentRenderable, ComponentRenderFunctions } from '../common/renderable'
+import { getComponentRenderFunctions } from '../common/renderable'
 import type RConfirm from './index.vue'
 
 type ResolveFunction = (value: boolean | PromiseLike<boolean>) => void
