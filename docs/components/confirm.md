@@ -167,5 +167,5 @@ import type { ComponentProps, ComponentRenderable } from 'roughness'
 export declare function useConfirm(): (
   renderable: ComponentRenderable<typeof RConfirm>,
   props?: ComponentProps<typeof RConfirm>,
-) => Promise<boolean>;
+) => Promise<boolean>
 ```

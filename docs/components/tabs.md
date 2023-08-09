@@ -145,9 +145,9 @@ import { RTabs } from 'roughness'
   </template>
   <template #body:tabs:description>
 
-  Tab keys or data. Recommended to use all lowercase letters and hyphens and underscores as keys.
+  Tab keys or data.
 
-  When specified as number, integer strings of `1...n` will be generated as keys.
+  See [List Rendering](/guide/specs#list-rendering).
 
   </template>
 

@@ -110,9 +110,9 @@ import { RList, RListItem } from 'roughness'
   </template>
   <template #body:items:description>
 
-  Item keys or data. Recommended to use all lowercase letters and hyphens and underscores as keys.
+  Item keys or data.
 
-  When specified as number, integer strings of `1...n` will be generated as keys.
+  See [List Rendering](/guide/specs#list-rendering).
 
   </template>
 

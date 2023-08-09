@@ -52,7 +52,7 @@ const chartOptions = computed(() => ({
 Roughness does not provide any chart component. We recommend you to use [`vue-chartjs`](https://vue-chartjs.org/), [`chart.js`](https://www.chartjs.org/) and [`chartjs-plugin-roughness`](https://www.npmjs.com/package/chartjs-plugin-roughness).
 
 ```shell
-npm install vue-chartjs chart.js chartjs-plugin-roughness
+npm i vue-chartjs chart.js chartjs-plugin-roughness
 ```
 
 ## Usage

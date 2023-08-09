@@ -291,5 +291,5 @@ import type { ComponentProps, ComponentRenderable } from 'roughness'
 export declare function useToast(): (
   renderable: ComponentRenderable<typeof RToast>,
   props?: ComponentProps<typeof RToast>,
-) => void;
+) => void
 ```
