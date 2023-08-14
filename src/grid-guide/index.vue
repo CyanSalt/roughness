@@ -109,8 +109,10 @@ watchEffect(() => {
     --r-grid-guide-color: rgb(255 255 255 / 10%);
   }
 }
-:global(:has(> .r-grid-guide.is-responsive)) {
-  position: relative;
-  z-index: 0;
+@layer base {
+  :global(:has(> .r-grid-guide.is-responsive)) {
+    position: relative;
+    z-index: 0;
+  }
 }
 </style>

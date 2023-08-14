@@ -30,11 +30,13 @@ defineSlots<{
 @use '../common/_partials';
 @use '../common/_reset';
 
-:where(a.r-link) {
-  @include reset.a;
-}
-:where(button.r-link) {
-  @include reset.button;
+@layer base {
+  a.r-link {
+    @include reset.a;
+  }
+  button.r-link {
+    @include reset.button;
+  }
 }
 .r-link {
   --r-link-underline-width: 2px;

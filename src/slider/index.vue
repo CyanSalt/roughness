@@ -149,8 +149,10 @@ watchEffect(() => {
     cursor: not-allowed;
   }
 }
-:where(.r-slider__input) {
-  @include reset.input-range;
+@layer base {
+  .r-slider__input {
+    @include reset.input-range;
+  }
 }
 .r-slider__input {
   position: absolute;

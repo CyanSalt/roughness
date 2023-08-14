@@ -118,8 +118,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --r-tab-anchor-border-color: var(--r-tab-anchor-active-color);
   }
 }
-:where(.r-tab-anchor__button) {
-  @include reset.button;
+@layer base {
+  .r-tab-anchor__button {
+    @include reset.button;
+  }
 }
 .r-tab-anchor__button {
   display: inline-block;

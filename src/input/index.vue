@@ -170,11 +170,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width: auto;
   }
 }
-:where(.r-input__input) {
-  @include reset.input;
-}
-:where(textarea.r-input__input) {
-  @include reset.textarea;
+@layer base {
+  .r-input__input {
+    @include reset.input;
+  }
+  textarea.r-input__input {
+    @include reset.textarea;
+  }
 }
 .r-input__input {
   width: 100%;

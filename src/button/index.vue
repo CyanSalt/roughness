@@ -99,11 +99,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 @use '../common/_reset';
 
-:where(.r-button) {
-  @include reset.button;
-}
-:where(a.r-button) {
-  text-decoration: none;
+@layer base {
+  .r-button {
+    @include reset.button;
+  }
+  a.r-button {
+    text-decoration: none;
+  }
 }
 .r-button {
   --r-button-color: var(--r-element-color);

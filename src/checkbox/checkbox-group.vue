@@ -57,7 +57,9 @@ provide(disabledInjection, $$(disabled))
 <style lang="scss" scoped>
 @use '../common/_reset';
 
-:where(.r-checkbox-group) {
-  @include reset.fieldset;
+@layer base {
+  .r-checkbox-group {
+    @include reset.fieldset;
+  }
 }
 </style>

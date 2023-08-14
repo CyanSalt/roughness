@@ -93,7 +93,9 @@ watchEffect(() => {
     height: 100%;
   }
 }
-:global(:where(:has(> .r-graphics.is-responsive))) {
-  position: relative;
+@layer base {
+  :global(:has(> .r-graphics.is-responsive)) {
+    position: relative;
+  }
 }
 </style>

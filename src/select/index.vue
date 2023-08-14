@@ -235,8 +235,10 @@ provide(labelsInjection, labels)
   flex: none;
   margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2 - 4px);
 }
-:where(.r-select__input) {
-  @include reset.input;
+@layer base {
+  .r-select__input {
+    @include reset.input;
+  }
 }
 .r-select__input {
   width: 100%;

@@ -97,8 +97,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss" scoped>
 @use '../common/_reset';
 
-:where(.r-toast) {
-  @include reset.popover;
+@layer base {
+  .r-toast {
+    @include reset.popover;
+  }
 }
 .r-toast {
   --r-toast-color: var(--r-element-color);

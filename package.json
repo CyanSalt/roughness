@@ -45,6 +45,7 @@
     "@cyansalt/tsconfig": "^2.1.1",
     "@release-it/conventional-changelog": "^7.0.0",
     "@types/lodash-es": "^4.17.7",
+    "@types/node": "^20.5.0",
     "@types/parse-unit": "^1.0.1",
     "@types/to-px": "^1.1.2",
     "@vitejs/plugin-vue": "^4.2.3",

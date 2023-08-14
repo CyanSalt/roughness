@@ -113,8 +113,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     text-decoration-line: line-through;
   }
 }
-:where(.r-switch__input) {
-  @include reset.input-checkbox;
+@layer base {
+  .r-switch__input {
+    @include reset.input-checkbox;
+  }
 }
 .r-switch__input {
   position: absolute;

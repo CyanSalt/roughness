@@ -130,8 +130,10 @@ watchEffect(() => {
     cursor: not-allowed;
   }
 }
-:where(.r-rate__input) {
-  @include reset.input-range;
+@layer base {
+  .r-rate__input {
+    @include reset.input-range;
+  }
 }
 .r-rate__input {
   position: absolute;

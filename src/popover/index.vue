@@ -189,8 +189,10 @@ const nestingGraphicsOptions = $computed(() => {
   position: relative;
   display: inline-block;
 }
-:where(.r-popover__anchor) {
-  @include reset.button;
+@layer base {
+  .r-popover__anchor {
+    @include reset.button;
+  }
 }
 .r-popover__anchor {
   display: block;

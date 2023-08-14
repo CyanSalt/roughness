@@ -119,8 +119,10 @@ const nestingGraphicsOptions = $computed(() => {
 <style lang="scss" scoped>
 @use '../common/_reset';
 
-:where(.r-dialog) {
-  @include reset.dialog;
+@layer base {
+  .r-dialog {
+    @include reset.dialog;
+  }
 }
 .r-dialog {
   max-width: min(90vw, 960px);

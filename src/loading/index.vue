@@ -27,8 +27,10 @@ defineOptions({
     opacity: 0.2;
   }
 }
-:global(:where(:has(> .r-loading))) {
-  position: relative;
+@layer base {
+  :global(:has(> .r-loading)) {
+    position: relative;
+  }
 }
 .r-loading__icon {
   position: relative;
