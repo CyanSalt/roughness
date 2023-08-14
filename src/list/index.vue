@@ -59,7 +59,7 @@ provide(listStyleInjection, $$(listStyle))
   </RSpace>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-list {
   --r-list-marker-color: var(--r-common-text-color);
   --r-list-marker-block-size: var(--r-common-line-height);

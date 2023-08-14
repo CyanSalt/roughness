@@ -84,7 +84,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </details>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-details {
   --r-details-summary-color: var(--r-common-text-color);
   --r-details-summary-marker-size: var(--r-common-line-height);

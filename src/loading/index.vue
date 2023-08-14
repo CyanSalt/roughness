@@ -14,7 +14,7 @@ defineOptions({
   </RSpace>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-loading {
   position: absolute;
   inset: 0;
@@ -28,7 +28,7 @@ defineOptions({
   }
 }
 @layer base {
-  :global(:has(> .r-loading)) {
+  :has(> .r-loading) {
     position: relative;
   }
 }

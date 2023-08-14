@@ -133,7 +133,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </RText>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-icon {
   --r-icon-color: var(--r-text-color);
   --r-icon-line-width: 2px;

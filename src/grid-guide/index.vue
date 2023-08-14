@@ -92,7 +92,7 @@ watchEffect(() => {
   ></canvas>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-grid-guide {
   --r-grid-guide-color: #f5f5f5;
   --r-grid-guide-cell-size: var(--r-common-font-size);
@@ -110,7 +110,7 @@ watchEffect(() => {
   }
 }
 @layer base {
-  :global(:has(> .r-grid-guide.is-responsive)) {
+  :has(> .r-grid-guide.is-responsive) {
     position: relative;
     z-index: 0;
   }

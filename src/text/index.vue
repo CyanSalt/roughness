@@ -27,7 +27,7 @@ defineSlots<{
   </component>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-text {
   --r-text-color: var(--r-element-color);
   color: var(--r-text-color);

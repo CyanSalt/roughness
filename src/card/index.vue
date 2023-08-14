@@ -92,7 +92,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </RSpace>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-card {
   --r-card-color: var(--r-element-color);
   --r-card-border-color: var(--r-card-color);

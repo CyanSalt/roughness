@@ -50,7 +50,7 @@ function toggle(open: boolean) {
   </RDialog>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-confirm__button {
   display: inline-flex;
 }

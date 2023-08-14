@@ -25,10 +25,6 @@
   --vp-c-brand-darker: #{color.scale(#61aff0, $lightness: -50%)};
 }
 
-.VPNav .title {
-  color: var(--r-common-primary-color);
-}
-
 .vp-doc .r-table {
   display: revert;
   tr {
@@ -39,7 +35,7 @@
   }
   th, td {
     border: revert;
-    font-size: inherit;
+    font-size: revert;
   }
   th {
     color: revert;
@@ -48,9 +44,6 @@
 }
 .vp-doc .r-alert {
   margin: 16px 0;
-}
-.vp-doc .r-divider {
-  border-color: var(--r-divider-color);
 }
 .vp-doc .r-list__item {
   margin-top: revert;

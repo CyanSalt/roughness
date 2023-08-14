@@ -90,7 +90,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </strong>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-alert {
   --r-alert-color: var(--r-element-color);
   --r-alert-line-color: var(--r-alert-color);

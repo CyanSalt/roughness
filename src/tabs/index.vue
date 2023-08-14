@@ -119,7 +119,7 @@ function activate(tab: Tab) {
   </RSpace>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-tabs__anchors {
   margin-block: 0;
   padding-inline: 0;

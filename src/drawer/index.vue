@@ -31,7 +31,7 @@ defineSlots<{
   </RDialog>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-drawer {
   &.left {
     right: 50%;

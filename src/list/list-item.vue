@@ -70,7 +70,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </li>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-list-item {
   position: relative;
   &::marker {

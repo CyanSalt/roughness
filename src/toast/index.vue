@@ -94,7 +94,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_reset';
 
 @layer base {

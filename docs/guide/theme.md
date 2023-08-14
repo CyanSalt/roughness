@@ -50,7 +50,7 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
   </RDetails>
 </template>
 
-<style scoped>
+<style>
 .my-details:hover {
   --r-details-summary-color: var(--r-common-error-color);
 }
@@ -62,7 +62,7 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
   Good luck.
 </RDetails>
 
-<style scoped>
+<style>
 .my-details:hover {
   --r-details-summary-color: var(--r-common-error-color);
 }

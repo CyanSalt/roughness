@@ -58,7 +58,7 @@ const style = $computed<HTMLAttributes['style']>(() => {
   </component>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-space {
   --r-space-gap-size: calc(1em - 4px);
   display: flex;

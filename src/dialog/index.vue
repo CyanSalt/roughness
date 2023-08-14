@@ -116,7 +116,7 @@ const nestingGraphicsOptions = $computed(() => {
   </dialog>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_reset';
 
 @layer base {

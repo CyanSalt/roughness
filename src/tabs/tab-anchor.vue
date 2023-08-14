@@ -99,7 +99,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </li>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_reset';
 
 .r-tab-anchor {

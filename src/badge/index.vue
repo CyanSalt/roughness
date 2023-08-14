@@ -50,7 +50,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </span>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_partials';
 
 .r-badge {

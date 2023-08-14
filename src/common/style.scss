@@ -13,48 +13,49 @@
   src: url('./fonts/CabinSketch-Bold.woff2') format('woff2');
 }
 
-:root {
-  --r-common-font-family: 'CabinSketch';
-  --r-common-font-size: 16px;
-  --r-common-small-font-size: calc(var(--r-common-font-size) - 4px);
-  --r-common-large-font-size: calc(var(--r-common-font-size) + 4px);
-  --r-common-line-height: calc(1em + 8px);
-  --r-common-box-padding-block: 0.5em;
-  --r-common-box-padding-inline: calc(1em + 4px);
+@layer roughness {
+  :root {
+    --r-common-font-family: 'CabinSketch';
+    --r-common-font-size: 16px;
+    --r-common-small-font-size: calc(var(--r-common-font-size) - 4px);
+    --r-common-large-font-size: calc(var(--r-common-font-size) + 4px);
+    --r-common-line-height: calc(1em + 8px);
+    --r-common-box-padding-block: 0.5em;
+    --r-common-box-padding-inline: calc(1em + 4px);
 
-  --r-common-text-color: #383a42;
-  --r-common-background-color: #fafafa;
-  --r-common-placeholder-color: #383a4240;
-  --r-common-comment-color: #383a4280;
-  --r-common-primary-color: #4078f2;
-  --r-common-info-color: #0184bc;
-  --r-common-success-color: #50a14f;
-  --r-common-warning-color: #c18401;
-  --r-common-error-color: #ca1243;
+    --r-element-color: var(--r-common-text-color);
+    --r-element-font-family: var(--r-common-font-family);
+    --r-element-font-size: var(--r-common-font-size);
+    --r-element-line-height: var(--r-common-line-height);
 
-  --r-element-color: var(--r-common-text-color);
-  --r-element-font-family: var(--r-common-font-family);
-  --r-element-font-size: var(--r-common-font-size);
-  --r-element-line-height: var(--r-common-line-height);
-}
+    --r-common-text-color: #383a42;
+    --r-common-background-color: #fafafa;
+    --r-common-placeholder-color: #383a4240;
+    --r-common-comment-color: #383a4280;
+    --r-common-primary-color: #4078f2;
+    --r-common-info-color: #0184bc;
+    --r-common-success-color: #50a14f;
+    --r-common-warning-color: #c18401;
+    --r-common-error-color: #ca1243;
+    &.dark {
+      --r-common-text-color: #abb2bf;
+      --r-common-background-color: #282c34;
+      --r-common-placeholder-color: #abb2bf60;
+      --r-common-comment-color: #abb2bf80;
+      --r-common-primary-color: #61aff0;
+      --r-common-info-color: #56b6c2;
+      --r-common-success-color: #98c379;
+      --r-common-warning-color: #e5c07b;
+      --r-common-error-color: #be5046;
+    }
+  }
 
-:root.dark {
-  --r-common-text-color: #abb2bf;
-  --r-common-background-color: #282c34;
-  --r-common-placeholder-color: #abb2bf60;
-  --r-common-comment-color: #abb2bf80;
-  --r-common-primary-color: #61aff0;
-  --r-common-info-color: #56b6c2;
-  --r-common-success-color: #98c379;
-  --r-common-warning-color: #e5c07b;
-  --r-common-error-color: #be5046;
-}
-
-[class^='r-'], [class*=' r-'] {
-  font-family: var(--r-element-font-family);
-  font-size: var(--r-element-font-size);
-  line-height: var(--r-element-line-height);
-  :root.dark & {
-    color-scheme: dark;
+  [class^='r-'], [class*=' r-'] {
+    font-family: var(--r-element-font-family);
+    font-size: var(--r-element-font-size);
+    line-height: var(--r-element-line-height);
+    :root.dark & {
+      color-scheme: dark;
+    }
   }
 }

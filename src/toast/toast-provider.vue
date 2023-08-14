@@ -42,7 +42,7 @@ provide(itemsInjection, items)
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-toast-provider {
   --r-toast-provider-base-size: calc(var(--r-common-line-height) + var(--r-common-box-padding-block) * 2);
   --r-toast-provider-gap-size: calc(1em - 4px);

@@ -104,7 +104,7 @@ const style = $computed(() => {
   </label>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_partials';
 @use '../common/_reset';
 

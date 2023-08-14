@@ -45,7 +45,7 @@ provide(itemsInjection, items)
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-confirm-provider {
   position: fixed;
   block-size: 0;

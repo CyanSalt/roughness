@@ -186,7 +186,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </table>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_reset';
 
 @layer base {

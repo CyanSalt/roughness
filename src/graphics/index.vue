@@ -82,7 +82,7 @@ watchEffect(() => {
   />
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-graphics {
   pointer-events: none;
   &.is-responsive {
@@ -94,7 +94,7 @@ watchEffect(() => {
   }
 }
 @layer base {
-  :global(:has(> .r-graphics.is-responsive)) {
+  :has(> .r-graphics.is-responsive) {
     position: relative;
   }
 }

@@ -143,7 +143,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </RSpace>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../common/_reset';
 
 .r-checkbox {

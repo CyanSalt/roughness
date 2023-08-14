@@ -82,7 +82,7 @@ provide(nameInjection, $$(name))
   </RSpace>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-form-item__label {
   --r-form-item-required-marker-size: 4px;
   --r-form-item-required-marker-color: var(--r-common-error-color);

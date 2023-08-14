@@ -41,7 +41,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   </span>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .r-divider {
   --r-divider-color: var(--r-common-text-color);
   --r-divider-gap-size: calc(1em - 4px);
@@ -49,7 +49,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   block-size: 1px + 2px * 2;
   margin-block: calc(var(--r-divider-gap-size) - 2px);
   margin-inline: auto;
-  /* background-color: var(--r-divider-color); */
   &.is-vertical {
     display: inline-block;
     block-size: var(--r-common-line-height);
