@@ -1,0 +1,12 @@
+{
+  "name": "@roughness/docs",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "chart.js": "^4.3.3",
+    "chartjs-plugin-roughness": "^1.0.6",
+    "gsap": "^3.12.2",
+    "vitepress": "^1.0.0-rc.4",
+    "vue-chartjs": "^5.2.0"
+  }
+}
