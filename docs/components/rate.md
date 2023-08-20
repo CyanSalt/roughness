@@ -112,7 +112,7 @@ let rate = ref(3)
 <RSpace overflow>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'border-color', 'control-size']"
+  :rows="['color', 'border-color', 'control-size', 'gap-size']"
 >
   <template #body:*:name="{ row }">--r-rate-{{ row }}</template>
 
@@ -156,6 +156,20 @@ let rate = ref(3)
   </template>
   <template #body:control-size:description>
     Size of the rate control.
+  </template>
+
+  <template #body:gap-size:values>
+
+  `<length>`
+
+  </template>
+  <template #body:gap-size:default>
+
+  `4px`
+
+  </template>
+  <template #body:gap-size:description>
+    Gap size of the rate control.
   </template>
 </RTable>
 </RSpace>

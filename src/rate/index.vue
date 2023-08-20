@@ -3,6 +3,7 @@ import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { watchEffect } from 'vue'
+import { getLengthProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
@@ -42,10 +43,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     'focus-within': focusedWithin,
     active,
   } = getReactionState()
-  const { width, height } = getSVGSize(svg)
-  const baseWidth = 48
-  const baseHeight = 45
-  const basePoints = [
+  const { height } = getSVGSize(svg)
+  const controlSize = height
+  const gapSize = getLengthProperty(svg, '--r-rate-gap-size') ?? 0
+  const shapePoints = [
     [24, 0],
     [30, 17],
     [48, 17],
@@ -57,17 +58,23 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     [0, 17],
     [18, 17],
   ]
+  const shapeStartX = Math.min(...shapePoints.map(point => point[0]))
+  const shapeStartY = Math.min(...shapePoints.map(point => point[1]))
+  const shapeEndX = Math.max(...shapePoints.map(point => point[0]))
+  const shapeEndY = Math.max(...shapePoints.map(point => point[1]))
+  const shapeWidth = shapeEndX - shapeStartX
+  const shapeHeight = shapeEndY - shapeStartY
+  const shapeOffsetX = shapeWidth > shapeHeight ? 0 : (shapeHeight - shapeWidth) / 2
+  const shapeOffsetY = shapeWidth > shapeHeight ? (shapeWidth - shapeHeight) / 2 : 0
   const padding = 2
-  const shapeSizeByWidth = (width - padding * 2) / 7
-  const shapeSizeByHeight = (height - padding * 2) * baseWidth / baseHeight
-  const shapeSize = Math.min(shapeSizeByWidth, shapeSizeByHeight)
   const cursorX = hoveredAt?.[0] ?? -Infinity
-  const activeIndex = hoveredAt ? Math.ceil((cursorX - padding) / (shapeSize * 1.5)) : internalModelValue
+  const activeIndex = hoveredAt ? Math.ceil(cursorX / (controlSize + gapSize)) : internalModelValue
+  const scale = (controlSize - padding * 2) / Math.max(shapeWidth, shapeHeight)
   for (let i = 0; i < 5; i += 1) {
-    const startX = padding + shapeSize * i * 1.5
-    const polygon = rc.polygon(basePoints.map(([x, y]) => [
-      startX + x * shapeSize / baseWidth,
-      padding + y * shapeSize / baseWidth,
+    const startX = (controlSize + gapSize) * i + padding
+    const polygon = rc.polygon(shapePoints.map(([x, y]) => [
+      startX + (x + shapeOffsetX - shapeStartX) * scale,
+      padding + (y + shapeOffsetY - shapeStartY) * scale,
     ]), {
       stroke: hoveredAt || focusedWithin || active || activeIndex > i ? 'var(--r-rate-color)' : 'var(--r-rate-border-color)',
       fill: activeIndex > i ? 'var(--r-rate-color)' : undefined,
@@ -84,16 +91,9 @@ const { elementX } = $(useMouseInElement($$(root)))
 
 watchEffect(() => {
   if (!root || !pressed) return
-  const width = root.clientWidth
-  const height = root.clientHeight
-
-  const baseWidth = 48
-  const baseHeight = 45
-  const padding = 2
-  const shapeSizeByWidth = (width - padding * 2) / 7
-  const shapeSizeByHeight = height - padding * 2 * baseWidth / baseHeight
-  const shapeSize = Math.min(shapeSizeByWidth, shapeSizeByHeight)
-  internalModelValue = Math.ceil((elementX - padding) / (shapeSize * 1.5))
+  const controlSize = root.clientHeight
+  const gapSize = getLengthProperty(root, '--r-rate-gap-size') ?? 0
+  internalModelValue = Math.ceil(elementX / (controlSize + gapSize))
   if (input) {
     input.focus()
   }
@@ -122,9 +122,10 @@ watchEffect(() => {
   --r-rate-color: var(--r-common-primary-color);
   --r-rate-border-color: var(--r-common-text-color);
   --r-rate-control-size: var(--r-common-line-height);
+  --r-rate-gap-size: 4px;
   display: inline-flex;
   block-size: var(--r-rate-control-size);
-  inline-size: calc((var(--r-rate-control-size) - 4px) * 7 * 48 / 45 + 4px);
+  inline-size: calc(var(--r-rate-control-size) * 5 + var(--r-rate-gap-size) * 4);
   cursor: pointer;
   &:has(> .r-rate__input:disabled) {
     cursor: not-allowed;

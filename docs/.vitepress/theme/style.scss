@@ -51,3 +51,6 @@
 .vp-doc .r-tab-anchor + .r-tab-anchor {
   margin-top: revert;
 }
+.vp-doc a:where([class^='r-'], [class*=' r-']) {
+  color: var(--r-element-color);
+}
