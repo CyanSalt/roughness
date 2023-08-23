@@ -14,9 +14,7 @@ const {
   responsive = true,
   reactions = (() => ['dark']) as never,
 } = defineProps<{
-  maxSections?: number,
   responsive?: boolean,
-  sectionCells?: number,
 } & ReactionProps>()
 
 const getReactionState = useReactionState(() => reactions)
