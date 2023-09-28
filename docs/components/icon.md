@@ -1,6 +1,12 @@
 <script lang="ts" setup>
-import icons from 'feather-icons/dist/icons.json'
-import { RAlert, RDetails, RIcon, RSpace, RTable, RText } from 'roughness'
+import { kebabCase } from 'lodash-es'
+import { CaseSensitive, icons, Regex, WholeWord } from 'lucide'
+import { defineIcons, RAlert, RDetails, RIcon, RInput, RSpace, RTable, RText } from 'roughness'
+import { ref } from 'vue'
+
+defineIcons(icons)
+
+let name = ref('pencil')
 </script>
 
 # Icon
@@ -9,7 +15,7 @@ No Picture, No Truth.
 
 <RAlert type="info">
 
-INFO<br>Roughness uses and redraws [Feather Icons](https://feathericons.com/).
+INFO<br>Roughness recommends using (and redraws) [Lucide Icons](https://lucide.dev/).
 
 </RAlert>
 
@@ -19,6 +25,48 @@ INFO<br>Roughness uses and redraws [Feather Icons](https://feathericons.com/).
 
 <RDetails>
   <template #summary>Show Code</template>
+
+```ts
+import { icons } from 'lucide'
+import { defineIcons } from 'roughness'
+
+defineIcons(icons)
+```
+
+```vue
+<script lang="ts" setup>
+import { CaseSensitive, Regex, WholeWord } from 'lucide'
+import { RIcon, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RSpace>
+    <RIcon :icon="CaseSensitive" />
+    <RIcon :icon="WholeWord" />
+    <RIcon :icon="Regex" />
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace>
+  <RIcon :icon="CaseSensitive" />
+  <RIcon :icon="WholeWord" />
+  <RIcon :icon="Regex" />
+</RSpace>
+
+### Batch Definition
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```ts
+import { icons } from 'lucide'
+import { defineIcons } from 'roughness'
+
+defineIcons(icons)
+```
 
 ```vue
 <script lang="ts" setup>
@@ -48,24 +96,19 @@ See [Text](/components/text).
 
 ## Usage
 
-<RDetails>
-  <template #summary>Show All Icons</template>
-  <RSpace :style="{ '--r-space-gap-size': '24px' }">
-    <template v-for="(graphics, name) in icons" :key="name">
-      <RSpace align="center">
-        <RIcon :name="name" />
-        <RText>{{ name }}</RText>
-      </RSpace>
-    </template>
-  </RSpace>
-</RDetails>
+<RSpace align="center">
+  <RInput v-model="name" />
+  <RIcon :name="name" />
+</RSpace>
+
+View all available icons [here](https://lucide.dev/icons/).
 
 ### Props
 
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'name', 'reactions', '...']"
+  :rows="['graphics-options', 'icon', 'name', 'reactions', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -82,6 +125,22 @@ See [Text](/components/text).
 
   </template>
 
+  <template #body:icon:type>
+
+  `string`
+
+  </template>
+  <template #body:icon:default>
+    <RText type="error">Required</RText>
+
+  *\* if `name` is empty*
+  </template>
+  <template #body:icon:description>
+
+  Icon imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
+
+  </template>
+
   <template #body:name:type>
 
   `string`
@@ -89,10 +148,12 @@ See [Text](/components/text).
   </template>
   <template #body:name:default>
     <RText type="error">Required</RText>
+
+  *if `icon` is empty*
   </template>
   <template #body:name:description>
 
-  Name of the icon in [Feather Icons](https://feathericons.com/).
+  Name of the icon in [Lucide Icons](https://lucide.dev/).
 
   </template>
 

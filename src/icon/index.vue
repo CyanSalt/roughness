@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import icons from 'feather-icons/dist/icons.json'
-import { chunk } from 'lodash-es'
+import { chunk, kebabCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
@@ -10,6 +9,8 @@ import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import RText from '../text/index.vue'
+import type { IconNode } from './utils'
+import { useIcons } from './utils'
 
 defineOptions({
   name: 'RIcon',
@@ -17,50 +18,49 @@ defineOptions({
 
 const {
   name,
+  icon,
   reactions = (() => ['']) as never,
   graphicsOptions,
 } = defineProps<{
-  name: string,
+  name?: string,
+  icon?: IconNode,
 } & GraphicsProps>()
 
-const svgAttrs: Partial<Record<keyof SVGSVGElement, string>> = {
-  viewBox: '0 0 24 24',
-}
+const definedIcons = useIcons()
 
-const elements = $computed<SVGElement[]>(() => {
-  if (typeof DOMParser !== 'function') return []
-  const parser = new DOMParser()
-  const root = parser.parseFromString(`<svg>${icons[name]}</svg>`, 'image/svg+xml')
-  const doc = root.documentElement as unknown as SVGSVGElement
-  return Array.from(doc.children as HTMLCollectionOf<SVGElement>)
+const renderedIcon = $computed(() => {
+  return icon ?? (name ? definedIcons[kebabCase(name)] : undefined)
 })
 
-function getSVGElementValue(element: SVGElement, property: string) {
-  return element.attributes.getNamedItem(property)?.value
-}
+const svgAttrs = $computed(() => {
+  if (!renderedIcon) return undefined
+  const { xmlns, viewBox } = renderedIcon[1]
+  return { xmlns, viewBox }
+})
 
-function getSVGElementValueAsNumber(element: SVGElement, property: string) {
-  const value = getSVGElementValue(element, property)
+function asNumber(value: string | number | undefined) {
   return value === undefined ? value : Number(value)
 }
 
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  if (!renderedIcon) return
   getReactionState()
   const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
   const options: Options = {
     stroke: 'var(--r-icon-color)',
     strokeWidth,
   }
-  for (const item of elements) {
-    switch (item.tagName) {
+  const children = renderedIcon[2] ?? []
+  for (const [tag, attrs] of children) {
+    switch (tag) {
       case 'ellipse': {
         const ellipse = rc.ellipse(
-          getSVGElementValueAsNumber(item, 'cx') ?? 0,
-          getSVGElementValueAsNumber(item, 'cy') ?? 0,
-          (getSVGElementValueAsNumber(item, 'rx') ?? 0) * 2,
-          (getSVGElementValueAsNumber(item, 'ry') ?? 0) * 2,
+          asNumber(attrs.cx) ?? 0,
+          asNumber(attrs.cy) ?? 0,
+          (asNumber(attrs.rx) ?? 0) * 2,
+          (asNumber(attrs.ry) ?? 0) * 2,
           options,
         )
         svg.appendChild(ellipse)
@@ -68,9 +68,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       }
       case 'circle': {
         const circle = rc.circle(
-          getSVGElementValueAsNumber(item, 'cx') ?? 0,
-          getSVGElementValueAsNumber(item, 'cy') ?? 0,
-          (getSVGElementValueAsNumber(item, 'r') ?? 0) * 2,
+          asNumber(attrs.cx) ?? 0,
+          asNumber(attrs.cy) ?? 0,
+          (asNumber(attrs.r) ?? 0) * 2,
           options,
         )
         svg.appendChild(circle)
@@ -78,29 +78,29 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       }
       case 'line': {
         const line = rc.line(
-          getSVGElementValueAsNumber(item, 'x1') ?? 0,
-          getSVGElementValueAsNumber(item, 'y1') ?? 0,
-          getSVGElementValueAsNumber(item, 'x2') ?? 0,
-          getSVGElementValueAsNumber(item, 'y2') ?? 0,
+          asNumber(attrs.x1) ?? 0,
+          asNumber(attrs.y1) ?? 0,
+          asNumber(attrs.x2) ?? 0,
+          asNumber(attrs.y2) ?? 0,
           options,
         )
         svg.appendChild(line)
         break
       }
       case 'path': {
-        const path = rc.path(getSVGElementValue(item, 'd') ?? '', options)
+        const path = rc.path(String(attrs.d ?? ''), options)
         svg.appendChild(path)
         break
       }
       case 'polygon': {
-        const points = getSVGElementValue(item, 'points') ?? ''
+        const points = String(attrs.points ?? '')
         const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
         const polygon = rc.polygon(positions, options)
         svg.appendChild(polygon)
         break
       }
       case 'polyline': {
-        const points = getSVGElementValue(item, 'points') ?? ''
+        const points = String(attrs.points ?? '')
         const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
         const linearPath = rc.linearPath(positions, options)
         svg.appendChild(linearPath)
@@ -108,10 +108,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       }
       case 'rect': {
         const rectangle = rc.rectangle(
-          getSVGElementValueAsNumber(item, 'x') ?? 0,
-          getSVGElementValueAsNumber(item, 'y') ?? 0,
-          getSVGElementValueAsNumber(item, 'width') ?? 0,
-          getSVGElementValueAsNumber(item, 'height') ?? 0,
+          asNumber(attrs.x) ?? 0,
+          asNumber(attrs.y) ?? 0,
+          asNumber(attrs.width) ?? 0,
+          asNumber(attrs.height) ?? 0,
           options,
         )
         svg.appendChild(rectangle)
