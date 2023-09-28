@@ -1,5 +1,28 @@
 
 
+## [0.1.0-beta.9](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.8...v0.1.0-beta.9) (2023-09-28)
+
+
+### Features
+
+* add badge ([ef29a12](https://github.com/CyanSalt/roughness/commit/ef29a12a63adfd4aaf9c1a200042c5dc32b6ceec))
+* add color-picker ([ecc3084](https://github.com/CyanSalt/roughness/commit/ecc30843295ac466c8a91dadbd8426b363b964f6))
+* add confirm ([1ac39d8](https://github.com/CyanSalt/roughness/commit/1ac39d8431e9b28451864b3c613b25258a455cd6))
+* add loading ([9fc2702](https://github.com/CyanSalt/roughness/commit/9fc2702709a48ae2d3ed928d5c53f409479f29a3))
+* add upload ([a5b8804](https://github.com/CyanSalt/roughness/commit/a5b8804327e10b603427558f2d5ab4872beb0fbb))
+* **rate:** support `--r-rate-gap-size` ([1a69562](https://github.com/CyanSalt/roughness/commit/1a69562786fd36336d16b6de7b468671c27b422d))
+* **text:** support `block` ([cbcbad5](https://github.com/CyanSalt/roughness/commit/cbcbad55b224cb9a8a997de595613d7013710aab))
+* use lucide icons ([6005af2](https://github.com/CyanSalt/roughness/commit/6005af2e44f91b086f806c836df6a366ffffd728))
+
+
+### Bug Fixes
+
+* **button, select:** loading ([faebf1e](https://github.com/CyanSalt/roughness/commit/faebf1ee6c3d7bf07dc4370da4bc8df0a069db49))
+* dark scheme for native elements ([8e159be](https://github.com/CyanSalt/roughness/commit/8e159be747024d93ea7082c82d1686f3f04897a3))
+* flush internal model in the last ([7c5e2f8](https://github.com/CyanSalt/roughness/commit/7c5e2f8cb3face19bb4be9586564451cb00be780))
+* **grid-guide:** remove useless props ([a717fdc](https://github.com/CyanSalt/roughness/commit/a717fdcc86f0fee163b51dc3fd0c6ae2a802a003))
+* **popover:** toggle only when trigger is `click` ([e3aa781](https://github.com/CyanSalt/roughness/commit/e3aa78106cdd974e8d126b614d7a3a01a6543894))
+
 ## [0.1.0-beta.8](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.7...v0.1.0-beta.8) (2023-07-27)
 
 
