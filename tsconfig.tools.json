@@ -5,10 +5,10 @@
     "**/*.js",
     "**/*.ts",
     "**/*.vue",
-    "**/.vitepress/**/*.cjs",
-    "**/.vitepress/**/*.js",
-    "**/.vitepress/**/*.ts",
-    "**/.vitepress/**/*.vue",
-    ".*.cjs"
+    "docs/.vitepress/**/*.cjs",
+    "docs/.vitepress/**/*.js",
+    "docs/.vitepress/**/*.ts",
+    "docs/.vitepress/**/*.vue",
+    ".eslintrc.cjs"
   ]
 }

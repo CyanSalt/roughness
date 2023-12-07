@@ -2,6 +2,10 @@
   "name": "@roughness/docs",
   "private": true,
   "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build"
+  },
   "devDependencies": {
     "chart.js": "^4.3.3",
     "chartjs-plugin-roughness": "^1.0.6",
