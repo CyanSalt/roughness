@@ -96,6 +96,7 @@ watchEffect(() => {
 @layer base {
   :has(> .r-graphics.is-responsive) {
     position: relative;
+    z-index: 0;
   }
 }
 </style>
