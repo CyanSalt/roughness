@@ -1,5 +1,13 @@
 
 
+## [0.1.0-beta.10](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.9...v0.1.0-beta.10) (2023-12-15)
+
+
+### Bug Fixes
+
+* add z-index to graphics container by default ([58415f8](https://github.com/CyanSalt/roughness/commit/58415f88493e0908494bb5b3c47e1d61aab2b0e0))
+* badge style ([11311b6](https://github.com/CyanSalt/roughness/commit/11311b6b803bfdacfe3a7b091a56f3d473fb6b93))
+
 ## [0.1.0-beta.9](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.8...v0.1.0-beta.9) (2023-09-28)
 
 
