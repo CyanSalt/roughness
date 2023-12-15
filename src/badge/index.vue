@@ -72,4 +72,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     padding-inline: var(--r-badge-padding-block);
   }
 }
+.r-badge__marker-content {
+  font-size: inherit;
+}
 </style>
