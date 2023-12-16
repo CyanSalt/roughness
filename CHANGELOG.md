@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.11](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.10...v0.1.0-beta.11) (2023-12-16)
+
+
+### Bug Fixes
+
+* icons in bundle ([e6bcc1e](https://github.com/CyanSalt/roughness/commit/e6bcc1ee5c363d2bb74c4164eddd86a01dd9d8df))
+
 ## [0.1.0-beta.10](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.9...v0.1.0-beta.10) (2023-12-15)
 
 
