@@ -35,22 +35,22 @@ defineSlots<{
     display: block;
   }
   &.primary {
-    --r-text-color: var(--r-common-primary-color);
+    --r-element-color: var(--r-common-primary-color);
   }
   &.info {
-    --r-text-color: var(--r-common-info-color);
+    --r-element-color: var(--r-common-info-color);
   }
   &.success {
-    --r-text-color: var(--r-common-success-color);
+    --r-element-color: var(--r-common-success-color);
   }
   &.warning {
-    --r-text-color: var(--r-common-warning-color);
+    --r-element-color: var(--r-common-warning-color);
   }
   &.error {
-    --r-text-color: var(--r-common-error-color);
+    --r-element-color: var(--r-common-error-color);
   }
   &.comment {
-    --r-text-color: var(--r-common-comment-color);
+    --r-element-color: var(--r-common-comment-color);
   }
   &.small {
     --r-element-font-size: var(--r-common-small-font-size);
