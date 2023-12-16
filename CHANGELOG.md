@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.12](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.11...v0.1.0-beta.12) (2023-12-16)
+
+
+### Bug Fixes
+
+* **text:** inherit color ([7e5c740](https://github.com/CyanSalt/roughness/commit/7e5c7406ec3f26a73daa529dc9fb2294fea8ff83))
+
 ## [0.1.0-beta.11](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.10...v0.1.0-beta.11) (2023-12-16)
 
 
