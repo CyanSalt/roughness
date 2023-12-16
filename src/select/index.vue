@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
+import { ChevronDown, Loader, X } from 'lucide'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, provide, reactive, ref } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
@@ -166,21 +167,21 @@ provide(labelsInjection, labels)
     >
     <RIcon
       v-if="loading"
-      name="loader"
+      :icon="Loader"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
     />
     <RIcon
       v-else-if="clearable && state"
       tag="a"
-      name="x"
+      :icon="X"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
       @click="clear"
     />
     <RIcon
       v-else
-      name="chevron-down"
+      :icon="ChevronDown"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
     />

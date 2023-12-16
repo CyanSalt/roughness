@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Check, X } from 'lucide'
 import type { ComponentPublicInstance } from 'vue'
 import RButton from '../button/index.vue'
 import RDialog from '../dialog/index.vue'
@@ -41,10 +42,10 @@ function toggle(open: boolean) {
     <slot></slot>
     <template #footer>
       <RButton class="r-confirm__button">
-        <RIcon name="x" />
+        <RIcon :icon="X" />
       </RButton>
       <RButton type="primary" value="confirm" class="r-confirm__button">
-        <RIcon name="check" />
+        <RIcon :icon="Check" />
       </RButton>
     </template>
   </RDialog>

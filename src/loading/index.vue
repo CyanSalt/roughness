@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Loader } from 'lucide'
 import '../common/style.scss'
 import RIcon from '../icon/index.vue'
 import RSpace from '../space/index.vue'
@@ -10,7 +11,7 @@ defineOptions({
 
 <template>
   <RSpace justify="center" align="center" class="r-loading">
-    <RIcon name="loader" class="r-loading__icon" />
+    <RIcon :icon="Loader" class="r-loading__icon" />
   </RSpace>
 </template>
 

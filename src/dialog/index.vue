@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { X } from 'lucide'
 import { watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { effectRef } from '../common/utils'
@@ -101,7 +102,7 @@ const nestingGraphicsOptions = $computed(() => {
             size="large"
             class="r-dialog__close"
           >
-            <RIcon name="x" size="large" />
+            <RIcon :icon="X" size="large" />
           </RLink>
         </RSpace>
       </template>
