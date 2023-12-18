@@ -151,7 +151,7 @@ provide(labelsInjection, labels)
 </script>
 
 <template>
-  <label v-on-click-outside.bubble="close" :class="['r-select', { 'is-loading': loading }]">
+  <label v-on-click-outside.bubble="close" :class="['r-select', { 'is-loading': loading, 'is-open': state }]">
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <input
       ref="input"
@@ -229,6 +229,9 @@ provide(labelsInjection, labels)
   &:has(.r-select__input:disabled) {
     cursor: not-allowed;
   }
+  &.is-open {
+    z-index: 1;
+  }
 }
 .r-select__icon {
   --r-icon-line-width: var(--r-select-border-width);
@@ -257,7 +260,6 @@ provide(labelsInjection, labels)
   position: absolute;
   inset-block-end: 0;
   inset-inline: 0;
-  z-index: 1;
   transform: translateY(100%);
 }
 .r-select__group {
