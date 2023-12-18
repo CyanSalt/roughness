@@ -44,6 +44,7 @@ import { RIcon, RSpace } from 'roughness'
     <RIcon :icon="CaseSensitive" />
     <RIcon :icon="WholeWord" />
     <RIcon :icon="Regex" />
+    <RIcon />
   </RSpace>
 </template>
 ```
@@ -54,6 +55,7 @@ import { RIcon, RSpace } from 'roughness'
   <RIcon :icon="CaseSensitive" />
   <RIcon :icon="WholeWord" />
   <RIcon :icon="Regex" />
+  <RIcon />
 </RSpace>
 
 ### Batch Definition
@@ -127,7 +129,7 @@ View all available icons [here](https://lucide.dev/icons/).
 
   <template #body:icon:type>
 
-  `string`
+  `import('lucide').IconNode`
 
   </template>
   <template #body:icon:default>

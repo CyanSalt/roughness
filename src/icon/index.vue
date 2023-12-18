@@ -33,7 +33,9 @@ const renderedIcon = $computed(() => {
 })
 
 const svgAttrs = $computed(() => {
-  if (!renderedIcon) return undefined
+  if (!renderedIcon) {
+    return { viewBox: '0 0 1 1' } // as placeholder
+  }
   const { xmlns, viewBox } = renderedIcon[1]
   return { xmlns, viewBox }
 })
