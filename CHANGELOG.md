@@ -1,5 +1,18 @@
 
 
+## [0.1.0-beta.13](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.12...v0.1.0-beta.13) (2023-12-18)
+
+
+### Features
+
+* add scope ([afbcec9](https://github.com/CyanSalt/roughness/commit/afbcec9b1f7104e4240d4856ffd3663fecf19b37))
+
+
+### Bug Fixes
+
+* **icon:** allow empty ([63d69f8](https://github.com/CyanSalt/roughness/commit/63d69f837536c838239d04e86dd0713be1d3e0be))
+* **select:** zIndex when dropping down ([59a5d6e](https://github.com/CyanSalt/roughness/commit/59a5d6e0b7877f5309026b7de98ba7c2a318570b))
+
 ## [0.1.0-beta.12](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.11...v0.1.0-beta.12) (2023-12-16)
 
 
