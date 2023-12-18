@@ -132,14 +132,11 @@ View all available icons [here](https://lucide.dev/icons/).
   `import('lucide').IconNode`
 
   </template>
-  <template #body:icon:default>
-    <RText type="error">Required</RText>
-
-  *\* if `name` is empty*
-  </template>
   <template #body:icon:description>
 
   Icon imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
+
+  `icon` has higher priority than `name`.
 
   </template>
 
@@ -147,11 +144,6 @@ View all available icons [here](https://lucide.dev/icons/).
 
   `string`
 
-  </template>
-  <template #body:name:default>
-    <RText type="error">Required</RText>
-
-  *if `icon` is empty*
   </template>
   <template #body:name:description>
 
