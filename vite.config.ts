@@ -19,7 +19,7 @@ export default defineConfig(async () => ({
           return [stripExtension(path.relative('src', file)), file]
         })),
       },
-      formats: ['es'],
+      formats: ['es' as const],
       fileName: (format, entryName) => {
         return entryName === 'index' ? '[name].js' : '[name].js'
       },

@@ -45,6 +45,7 @@ export default defineConfig({
               { text: 'Grid Guide', link: '/components/grid-guide' },
               { text: 'Icon', link: '/components/icon' },
               { text: 'Link', link: '/components/link' },
+              { text: 'Scope', link: '/components/scope' },
               { text: 'Space', link: '/components/space' },
               { text: 'Text', link: '/components/text' },
             ],
