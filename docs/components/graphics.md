@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import { RAlert, RButton, RDetails, RGraphics, RGraphicsConfig, RRate, RSpace, RTable, RText } from 'roughness'
+import { computedAsync } from '@vueuse/core'
+import { parse } from 'opentype.js'
+import { RAlert, RButton, RDetails, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RText } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { ref } from 'vue'
 
 function drawHeart(rc: RoughSVG, svg: SVGSVGElement) {
   const path = rc.path('M10 30a20 20 0 0 1 40 0 20 20 0 0 1 40 0q0 30-40 60-40-30-40-60z', {
@@ -15,6 +18,23 @@ function drawOcean(rc: RoughSVG, svg: SVGSVGElement) {
     fill: 'var(--r-common-primary-color)',
   })
   svg.appendChild(rectangle)
+}
+
+const font = computedAsync(() => {
+  return fetch('https://unpkg.com/@openfonts/noto-sans-sc_chinese-simplified/files/noto-sans-sc-chinese-simplified-400.woff')
+    .then(response => response.arrayBuffer())
+    .then(buffer => parse(buffer))
+}, null)
+
+const text = ref('群贤毕至')
+
+function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
+  if (!font.value) return
+  const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData()
+  const path = rc.path(pathData, {
+    fill: 'var(--r-common-text-color)',
+  })
+  svg.appendChild(path)
 }
 </script>
 
@@ -57,6 +77,56 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </RDetails>
 
 <RGraphics :responsive="false" width="100" height="100" @draw="drawHeart" />
+
+### Text Glyphs
+
+<RAlert type="comment">
+
+\* You need to install [`opentype.js`](https://www.npmjs.com/package/opentype.js) yourself.
+
+</RAlert>
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { computedAsync } from '@vueuse/core'
+import { parse } from 'opentype.js'
+import type { RoughSVG } from 'roughjs/bin/svg'
+import { RGraphics, RInput } from 'roughness'
+import { ref } from 'vue'
+
+const font = computedAsync(() => {
+  return fetch('https://unpkg.com/@openfonts/noto-sans-sc_chinese-simplified/files/noto-sans-sc-chinese-simplified-400.woff')
+    .then(response => response.arrayBuffer())
+    .then(buffer => parse(buffer))
+}, null)
+
+const text = ref('群贤毕至')
+
+function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  if (!font.value) return
+  const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData()
+  const path = rc.path(pathData)
+  svg.appendChild(path)
+}
+</script>
+
+<template>
+  <RSpace vertical align="start">
+    <RInput v-model="text" maxlength="5" />
+    <RGraphics :responsive="false" width="250" height="70" @draw="drawGlyphs" />
+  </RSpace>
+</template>
+```
+
+</RDetails>
+
+<RSpace vertical align="start">
+  <RInput v-model="text" maxlength="5" />
+  <RGraphics :responsive="false" width="250" height="70" @draw="drawGlyphs" />
+</RSpace>
 
 ### Responsive
 

@@ -56,7 +56,7 @@ import { RProgress, RSpace } from 'roughness'
 
 <RAlert type="comment">
 
-\* You need to install `gsap` yourself.
+\* You need to install [`gsap`](https://www.npmjs.com/package/gsap) yourself.
 
 </RAlert>
 
