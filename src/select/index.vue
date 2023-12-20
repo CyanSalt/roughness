@@ -173,10 +173,10 @@ provide(labelsInjection, labels)
     />
     <RIcon
       v-else-if="clearable && state"
-      tag="a"
       :icon="X"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
+      role="button"
       @click="clear"
     />
     <RIcon
