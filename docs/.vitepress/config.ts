@@ -81,7 +81,6 @@ export default defineConfig({
           {
             text: 'Feedback',
             items: [
-              { text: 'Alert', link: '/components/alert' },
               { text: 'Badge', link: '/components/badge' },
               { text: 'Confirm', link: '/components/confirm' },
               { text: 'Dialog', link: '/components/dialog' },

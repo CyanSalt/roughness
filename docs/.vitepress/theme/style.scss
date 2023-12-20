@@ -33,14 +33,20 @@
   th, td {
     border: revert;
     font-size: revert;
+    p {
+      margin: 0;
+    }
   }
   th {
     color: revert;
     background: revert;
   }
 }
-.vp-doc .r-alert {
+.vp-doc .r-card {
   margin: 16px 0;
+  p {
+    margin: 0;
+  }
 }
 .vp-doc .r-list__item {
   margin-top: revert;

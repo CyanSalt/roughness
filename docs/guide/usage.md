@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { RAlert } from 'roughness'
+import { RCard } from 'roughness'
 </script>
 
 # Usage
 
 Roughness supports Vue 3.
 
-<RAlert type="info">
+<RCard type="info">
 
-INFO<br>The examples here assume you are using a bundler such as [Vite](https://vitejs.dev/) or [Rspack](https://www.rspack.dev/), etc.
+The examples here assume you are using a bundler such as [Vite](https://vitejs.dev/) or [Rspack](https://www.rspack.dev/), etc.
 
-</RAlert>
+</RCard>
 
 ## Import On Demand
 

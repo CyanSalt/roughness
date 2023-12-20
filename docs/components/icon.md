@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { kebabCase } from 'lodash-es'
 import { CaseSensitive, icons, Regex, WholeWord } from 'lucide'
-import { defineIcons, RAlert, RDetails, RIcon, RInput, RSpace, RTable, RText } from 'roughness'
+import { defineIcons, RCard, RDetails, RIcon, RInput, RSpace, RTable, RText } from 'roughness'
 import { ref } from 'vue'
 
 defineIcons(icons)
@@ -13,11 +13,11 @@ let name = ref('pencil')
 
 No Picture, No Truth.
 
-<RAlert type="info">
+<RCard type="info">
 
-INFO<br>Roughness recommends using (and redraws) [Lucide Icons](https://lucide.dev/).
+Roughness recommends using (and redraws) [Lucide Icons](https://lucide.dev/).
 
-</RAlert>
+</RCard>
 
 ## Example
 

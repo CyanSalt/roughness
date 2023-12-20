@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computedAsync } from '@vueuse/core'
 import { parse } from 'opentype.js'
-import { RAlert, RButton, RDetails, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RText } from 'roughness'
+import { RButton, RCard, RDetails, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RText } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { ref } from 'vue'
 
@@ -42,11 +42,11 @@ function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
 
 Seeing is believing.
 
-<RAlert type="warning">
+<RCard type="warning">
 
-WARNING<br>In general, `RGraphics` components are only used inside the component library.
+In general, `RGraphics` components are only used inside the component library.
 
-</RAlert>
+</RCard>
 
 ## Example
 
@@ -80,11 +80,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 ### Text Glyphs
 
-<RAlert type="comment">
+<RCard type="comment">
 
-\* You need to install [`opentype.js`](https://www.npmjs.com/package/opentype.js) yourself.
+You need to install [`opentype.js`](https://www.npmjs.com/package/opentype.js) yourself.
 
-</RAlert>
+</RCard>
 
 <RDetails>
   <template #summary>Show Code</template>

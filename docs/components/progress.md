@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
-import { RAlert, RDetails, RProgress, RSlider, RSpace, RTable, RText } from 'roughness'
+import { RCard, RDetails, RProgress, RSlider, RSpace, RTable, RText } from 'roughness'
 import { reactive, ref, watch } from 'vue'
 
 let value = ref(0)
@@ -54,11 +54,11 @@ import { RProgress, RSpace } from 'roughness'
 
 ### Animation
 
-<RAlert type="comment">
+<RCard type="comment">
 
-\* You need to install [`gsap`](https://www.npmjs.com/package/gsap) yourself.
+You need to install [`gsap`](https://www.npmjs.com/package/gsap) yourself.
 
-</RAlert>
+</RCard>
 
 <RDetails>
   <template #summary>Show Code</template>
