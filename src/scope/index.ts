@@ -13,4 +13,6 @@ function normalizeAttrs(attrs: Record<string, unknown>) {
 
 export default defineComponent((props, context) => {
   return () => context.slots.default?.(normalizeAttrs(context.attrs))
+}, {
+  name: 'RScope',
 })
