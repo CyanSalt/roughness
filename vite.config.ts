@@ -20,9 +20,7 @@ export default defineConfig(async () => ({
         })),
       },
       formats: ['es' as const],
-      fileName: (format, entryName) => {
-        return entryName === 'index' ? '[name].js' : '[name].js'
-      },
+      fileName: () => '[name].js',
     },
     rollupOptions: {
       external: [

@@ -15,6 +15,10 @@ defineSlots<{
 const {
   options,
 } = defineProps<{
+  /**
+   * Options for Rough.js
+   * {@link https://github.com/rough-stuff/rough/wiki#options}
+   */
   options?: Options,
 }>()
 

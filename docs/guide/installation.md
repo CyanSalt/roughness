@@ -1,12 +1,12 @@
 # Installation
 
-### NPM
+## NPM
 
 ```shell
 npm i roughness
 ```
 
-### Using from CDN
+## Using from CDN
 
 You can use roughness directly from a CDN via HTML tags:
 

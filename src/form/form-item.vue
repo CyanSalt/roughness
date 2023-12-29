@@ -21,8 +21,11 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Whether the label of the form item is displayed as an inline box */
   labelInline?: boolean,
+  /** Field name of the form model */
   name?: string,
+  /** Whether the field is required */
   required?: boolean,
 } & GraphicsProps>()
 

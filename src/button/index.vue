@@ -27,12 +27,27 @@ const {
   reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Whether the button is displayed as block */
   block?: boolean,
   disabled?: boolean,
+  /** Whether the button is filled with its color */
   filled?: boolean,
+  /**
+   * The `type` attribute of `HTMLButtonElement`
+   * {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type}
+   */
   htmlType?: HTMLButtonElement['type'],
+  /**
+   * Whether the button is loading.
+   * It will be non-interactive in loading state
+   */
   loading?: boolean,
+  /** Whether the button is round */
   rounded?: boolean,
+  /**
+   * HTML tag for rendering the button
+   * @default 'button'
+   */
   tag?: 'button' | 'a' | (string & {}),
 } & ColorProps & SizeProps & GraphicsProps>()
 

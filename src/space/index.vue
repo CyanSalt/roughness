@@ -18,13 +18,33 @@ const {
   wrap = true,
   size,
 } = defineProps<{
+  /**
+   * Item axis arrangement.
+   * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/align-items}
+   */
   align?: 'start' | 'end' | 'center' | 'baseline' | 'stretch',
+  /**
+   * Item arrangement.
+   * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content}
+   */
   justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
+  /** Whether the space is displayed as an inline box */
   inline?: boolean,
+  /** Whether to show the scrollbar when the content overflows */
   overflow?: boolean,
+  /** Whether to reverse the layout */
   reverse?: boolean,
+  /**
+   * HTML tag for rendering the space
+   * @default 'div'
+   */
   tag?: string,
+  /** Whether to layout vertically */
   vertical?: boolean,
+  /**
+   * Whether to exceed the line break
+   * @default true
+   */
   wrap?: boolean,
 } & SizeProps>()
 

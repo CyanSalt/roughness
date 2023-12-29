@@ -4,7 +4,7 @@ import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, getLengthPropertyAsArray, getProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
-import type { ColorProps, SizeProps } from '../common/utils'
+import type { ColorProps } from '../common/utils'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -23,9 +23,14 @@ const {
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
+  /**
+   * Whether the color picker is loading.
+   * It will be non-interactive in loading state
+   */
   loading?: boolean,
+  /** Value of the color picker */
   modelValue?: string,
-} & ColorProps & SizeProps & GraphicsProps>()
+} & ColorProps & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,

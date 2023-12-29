@@ -18,8 +18,20 @@ const {
   reactions = (() => ['hover', 'focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Whether the anchor is active
+   * @private
+   */
   active?: boolean,
+  /**
+   * Which side of the content the anchor will show on
+   * @private
+   */
   side?: 'top' | 'bottom' | 'left' | 'right',
+  /**
+   * Tab key or data
+   * @private
+   */
   tab: T,
 } & GraphicsProps>()
 

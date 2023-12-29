@@ -3,6 +3,7 @@ import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { ChevronDown, Loader, X } from 'lucide'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { SelectHTMLAttributes } from 'vue'
 import { inject, provide, reactive, ref } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import type { CheckboxValue } from '../checkbox/utils'
@@ -31,13 +32,20 @@ const {
   reactions = (() => ['focus']) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Whether the select is clearable */
   clearable?: boolean,
   disabled?: boolean,
+  /**
+   * Whether the select is loading.
+   * It will be non-interactive in loading state
+   */
   loading?: boolean,
+  /** Value(s) of the selected item(s) */
   modelValue?: CheckboxValue[] | CheckboxValue | undefined,
+  /** Whether to support selecting multiple items */
   multiple?: boolean,
-  name?: string,
-  placeholder?: string,
+  name?: SelectHTMLAttributes['name'],
+  placeholder?: SelectHTMLAttributes['placeholder'],
 } & GraphicsProps>()
 
 const emit = defineEmits<{

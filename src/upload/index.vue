@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
@@ -22,10 +23,16 @@ const {
   reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
-  accept?: string,
+  accept?: InputHTMLAttributes['accept'],
+  /** Whether the upload is displayed as block */
   block?: boolean,
   disabled?: boolean,
+  /** Whether the upload is filled with its color */
   filled?: boolean,
+  /**
+   * Whether the upload is loading.
+   * It will be non-interactive in loading state
+   */
   loading?: boolean,
   multiple?: boolean,
 } & GraphicsProps>()

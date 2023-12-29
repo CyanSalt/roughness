@@ -23,9 +23,22 @@ const {
   reactions,
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Which side of the content the anchors will show on
+   * @default 'top'
+   */
   anchorSide?: 'top' | 'bottom' | 'left' | 'right',
+  /**
+   * Whether to display the tabs content
+   * @default true
+   */
   content?: boolean,
+  /** Currently active tab key */
   modelValue?: Tab | undefined,
+  /**
+   * Tab keys or data.
+   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   */
   tabs: T,
 } & GraphicsProps>()
 
@@ -63,7 +76,7 @@ watchEffect(() => {
   }
 })
 
-const renderedTabs = reactive<Set<Tab>>(new Set())
+const renderedTabs = reactive(new Set()) as Set<Tab>
 
 watchEffect(() => {
   if (internalModelValue && !renderedTabs.has(internalModelValue)) {
@@ -89,7 +102,7 @@ function activate(tab: Tab) {
       role="tablist"
     >
       <RTabAnchor
-        v-for="tab in tabs"
+        v-for="tab in (tabs as Tab[])"
         :key="keyOf(tab)"
         :active="tab === internalModelValue"
         :side="anchorSide"

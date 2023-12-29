@@ -14,6 +14,10 @@ const {
   responsive = true,
   reactions = (() => ['dark']) as never,
 } = defineProps<{
+  /**
+   * Whether to adjust the size to fit the parent element
+   * @default true
+   */
   responsive?: boolean,
 } & ReactionProps>()
 

@@ -22,8 +22,17 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Lower numeric bound of the range
+   * @default 0
+   */
   min?: number,
+  /**
+   * Upper numeric bound of the range
+   * @default 1
+   */
   max?: number,
+  /** Current numeric progress value */
   value: number,
 } & ColorProps & SizeProps & GraphicsProps>()
 

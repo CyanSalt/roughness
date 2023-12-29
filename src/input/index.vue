@@ -58,12 +58,17 @@ const {
   graphicsOptions,
   ...props
 } = defineProps<{
+  /**
+   * Line count of the input
+   * @default 1
+   */
   lines?: number,
+  /** Value of the input text */
   modelValue?: string | number,
   modelModifiers?: DirectiveBinding['modifiers'],
-  name?: string,
-  placeholder?: string,
-  type?: string,
+  name?: InputHTMLAttributes['name'],
+  placeholder?: InputHTMLAttributes['placeholder'],
+  type?: InputHTMLAttributes['type'],
 } & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{

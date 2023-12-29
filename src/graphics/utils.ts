@@ -5,6 +5,10 @@ import type { ReactionProps } from '../common/reaction'
 export const optionsInjection: InjectionKey<Ref<Options | undefined>> = Symbol('RGraphicsConfig#options')
 
 export interface GraphicsProps extends ReactionProps {
+  /**
+   * Options for Rough.js
+   * {@link https://github.com/rough-stuff/rough/wiki#options}
+   */
   graphicsOptions?: Options,
 }
 

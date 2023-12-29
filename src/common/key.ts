@@ -4,10 +4,10 @@ export interface RValue {
   [RKey]: string | number,
 }
 
-export function keyOf(value: unknown) {
+export function keyOf(value: string | number | RValue) {
   return String(
     typeof value === 'string' || typeof value === 'number'
       ? value
-      : (value as RValue)[RKey],
+      : value[RKey],
   )
 }

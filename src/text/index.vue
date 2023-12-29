@@ -12,7 +12,12 @@ const {
   type,
   size,
 } = defineProps<{
+  /** Whether the text is displayed as block */
   block?: boolean,
+  /**
+   * HTML tag for rendering the text
+   * @default 'span'
+   */
   tag?: string,
 } & ColorProps & SizeProps>()
 

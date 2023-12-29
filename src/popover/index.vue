@@ -22,11 +22,36 @@ const {
   reactions,
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Alignment of the popover content relative to the anchor.
+   * - `start`: Align to the left or top of the anchor, depending on the value of `side`
+   * - `end`: Align to the right or bottom of the anchor, depending on the value of `side`
+   * - `center`: Align to the center of the anchor
+   * - `stretch`: Align to both sides of the anchor at the same time
+   * @default 'start'
+   */
   align?: 'start' | 'end' | 'center' | 'stretch',
+  /**
+   * Whether to display the card footer
+   * @default false
+   */
   footer?: boolean,
+  /**
+   * Whether to display the card header
+   * @default false
+   */
   header?: boolean,
+  /** Whether to display the popover content */
   open?: boolean,
+  /**
+   * Which side of the anchor the popover will show on
+   * @default 'top'
+   */
   side?: 'top' | 'bottom' | 'left' | 'right',
+  /**
+   * How to trigger the display of popover content
+   * @default 'hover'
+   */
   trigger?: 'hover' | 'click' | 'manual',
 } & GraphicsProps>()
 

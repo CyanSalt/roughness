@@ -14,8 +14,11 @@ const {
   modelValue,
   multiple = true,
 } = defineProps<{
+  /** Whether to disable all checking items */
   disabled?: boolean,
+  /** Value(s) of the checked item(s) of the group */
   modelValue: CheckboxValue[] | CheckboxValue | undefined,
+  /** Whether to support checking multiple items */
   multiple?: boolean,
 }>()
 

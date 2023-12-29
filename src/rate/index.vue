@@ -21,6 +21,7 @@ const {
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
+  /** Value of the rate */
   modelValue?: number,
 } & GraphicsProps>()
 

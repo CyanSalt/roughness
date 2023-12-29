@@ -90,7 +90,7 @@ import { RCard, RSpace } from 'roughness'
 
   </template>
   <template #body:footer:description>
-    Whether to display the card header.
+    Whether to display the card footer.
   </template>
 
   <template #body:graphics-options:type>

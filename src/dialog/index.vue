@@ -22,10 +22,30 @@ const {
   reactions,
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Whether to display the close button
+   * @default true
+   */
   closable?: boolean,
+  /**
+   * Whether to display the card footer
+   * @default true
+   */
   footer?: boolean,
+  /**
+   * Whether to display the card header
+   * @default true
+   */
   header?: boolean,
+  /**
+   * Whether to display the dialog modal
+   * @default true
+   */
   open?: boolean,
+  /**
+   * When specified as `auto`, the dialog can be closed by clicking the backdrop
+   * @default 'auto'
+   */
   state?: 'auto' | 'manual',
 } & GraphicsProps>()
 

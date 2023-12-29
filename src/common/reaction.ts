@@ -13,6 +13,7 @@ export interface ReactionState {
 }
 
 export interface ReactionProps {
+  /** States that trigger graphics redrawing */
   reactions?: (keyof ReactionState)[],
 }
 

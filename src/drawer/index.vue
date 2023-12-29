@@ -9,6 +9,10 @@ defineOptions({
 const {
   side = 'right',
 } = defineProps<{
+  /**
+   * Which side of the page the drawer will show on
+   * @default 'right'
+   */
   side?: 'left' | 'right' | 'top' | 'bottom',
 }>()
 

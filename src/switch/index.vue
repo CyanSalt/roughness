@@ -21,6 +21,7 @@ const {
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
+  /** State of the switch */
   modelValue?: boolean,
 } & GraphicsProps>()
 

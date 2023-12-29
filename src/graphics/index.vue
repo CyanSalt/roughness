@@ -17,8 +17,20 @@ const {
   responsive = true,
   tag = 'svg',
 } = defineProps<{
+  /**
+   * Options for Rough.js
+   * {@link https://github.com/rough-stuff/rough/wiki#options}
+   */
   options?: Options,
+  /**
+   * Whether to adjust the size to fit the parent element
+   * @default true
+   */
   responsive?: boolean,
+  /**
+   * HTML tag for rendering the graphics
+   * {@link https://github.com/rough-stuff/rough/wiki#roughcanvas--roughsvg}
+   */
   tag?: T,
 }>()
 

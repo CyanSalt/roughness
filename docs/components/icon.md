@@ -129,12 +129,12 @@ View all available icons [here](https://lucide.dev/icons/).
 
   <template #body:icon:type>
 
-  `import('lucide').IconNode`
+  `[tag: string, attrs: SVGProps, children?: IconNodeChild[]]`
 
   </template>
   <template #body:icon:description>
 
-  Icon imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
+  Icon object conforming to the type constraint. It can be imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
 
   `icon` has higher priority than `name`.
 
@@ -147,7 +147,7 @@ View all available icons [here](https://lucide.dev/icons/).
   </template>
   <template #body:name:description>
 
-  Name of the icon in [Lucide Icons](https://lucide.dev/).
+  Name of the icon defined by `defineIcons`.
 
   </template>
 

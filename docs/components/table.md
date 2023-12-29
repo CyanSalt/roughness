@@ -142,22 +142,9 @@ const data = [
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['columns', 'graphics-options', 'header', 'reactions', 'rows']"
+  :rows="['columns', 'footer', 'graphics-options', 'header', 'reactions', 'rows']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
-
-  <template #body:graphics-options:type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-  <template #body:graphics-options:description>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </template>
 
   <template #body:columns:type>
 
@@ -172,6 +159,33 @@ const data = [
   Column keys or data.
 
   See [List Rendering](/guide/specs#list-rendering).
+
+  </template>
+
+  <template #body:footer:type>
+
+  `boolean`
+
+  </template>
+  <template #body:footer:default>
+
+  `false`
+
+  </template>
+  <template #body:footer:description>
+    Whether to display the table footer.
+  </template>
+
+  <template #body:graphics-options:type>
+
+  `import('roughjs/bin/core').Options`
+
+  </template>
+  <template #body:graphics-options:description>
+
+  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
+
+  See [Graphics Configuration](/components/graphics#component-prop).
 
   </template>
 

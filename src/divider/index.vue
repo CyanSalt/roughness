@@ -15,6 +15,7 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Whether to display vertical divider */
   vertical?: boolean,
 } & GraphicsProps>()
 

@@ -22,7 +22,9 @@ const {
   reactions = (() => ['']) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Name of the icon defined by `defineIcons` */
   name?: string,
+  /** Icon object conforming to the type constraint */
   icon?: IconNode,
 } & GraphicsProps>()
 

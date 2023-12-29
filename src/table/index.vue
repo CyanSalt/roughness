@@ -32,9 +32,25 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Column keys or data.
+   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   */
   columns: T,
+  /**
+   * Whether to display the table footer
+   * @default false
+   */
   footer?: boolean,
+  /**
+   * Whether to display the table header
+   * @default true
+   */
   header?: boolean,
+  /**
+   * Row keys or data.
+   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   */
   rows: U,
 } & GraphicsProps>()
 
@@ -152,20 +168,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <slot></slot>
     <thead v-if="header" ref="head">
       <tr>
-        <th v-for="column in columns" :key="keyOf(column)">
-          <slot :name="`header:${keyOf(column)}`" :column="(column as Column)">
-            <slot name="header:*" :column="(column as Column)">{{ startCase(keyOf(column)) }}</slot>
+        <th v-for="column in (columns as Column[])" :key="keyOf(column)">
+          <slot :name="`header:${keyOf(column)}`" :column="column">
+            <slot name="header:*" :column="column">{{ startCase(keyOf(column)) }}</slot>
           </slot>
         </th>
       </tr>
     </thead>
     <tbody ref="body">
-      <tr v-for="row in rows" :key="keyOf(row)">
-        <td v-for="column in columns" :key="keyOf(column)">
-          <slot :name="`body:${keyOf(row)}:${keyOf(column)}`" :row="(row as Row)" :column="(column as Column)">
-            <slot :name="`body:*:${keyOf(column)}`" :row="(row as Row)" :column="(column as Column)">
-              <slot :name="`body:${keyOf(row)}:*`" :row="(row as Row)" :column="(column as Column)">
-                <slot name="body:*:*" :row="(row as Row)" :column="(column as Column)">{{
+      <tr v-for="row in (rows as Row[])" :key="keyOf(row)">
+        <td v-for="column in (columns as Column[])" :key="keyOf(column)">
+          <slot :name="`body:${keyOf(row)}:${keyOf(column)}`" :row="row" :column="column">
+            <slot :name="`body:*:${keyOf(column)}`" :row="row" :column="column">
+              <slot :name="`body:${keyOf(row)}:*`" :row="row" :column="column">
+                <slot name="body:*:*" :row="row" :column="column">{{
                   isObjectLike(row) ? row[keyOf(column)] : undefined
                 }}</slot>
               </slot>
@@ -176,9 +192,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     </tbody>
     <tfoot v-if="footer" ref="foot">
       <tr>
-        <th v-for="column in columns" :key="keyOf(column)">
-          <slot :name="`footer:${keyOf(column)}`" :column="(column as Column)">
-            <slot name="footer:*" :column="(column as Column)"></slot>
+        <th v-for="column in (columns as Column[])" :key="keyOf(column)">
+          <slot :name="`footer:${keyOf(column)}`" :column="column">
+            <slot name="footer:*" :column="column"></slot>
           </slot>
         </th>
       </tr>

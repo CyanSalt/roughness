@@ -22,7 +22,17 @@ const {
   graphicsOptions,
   reactions = (() => []) as never,
 } = defineProps<{
+  /**
+   * Item keys or data.
+   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   */
   items?: T,
+  /**
+   * Marker style of the list.
+   * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type}
+   * When specified as `auto`, the list will be ordered and the markers will be drawn by the user agent
+   * @default 'disc'
+   */
   listStyle?: ListStyle,
 } & GraphicsProps>()
 
@@ -46,7 +56,7 @@ provide(listStyleInjection, $$(listStyle))
   >
     <slot>
       <RListItem
-        v-for="item in items"
+        v-for="item in (items as Item[])"
         :key="keyOf(item)"
         :reactions="reactions"
         :graphics-options="graphicsOptions"

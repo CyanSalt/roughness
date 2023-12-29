@@ -11,9 +11,9 @@ const {
   tag = 'a',
   type = 'primary',
 } = defineProps<{
+  /** HTML tag for rendering the link */
   tag?: 'a' | 'button' | (string & {}),
-  type?: ColorProps['type'],
-}>()
+} & ColorProps>()
 
 defineSlots<{
   default?: (props: {}) => any,

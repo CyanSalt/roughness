@@ -3,10 +3,12 @@ import type { ComputedGetter, ComputedSetter, Ref, WritableComputedOptions } fro
 import { ref, watch, watchEffect } from 'vue'
 
 export interface ColorProps {
+  /** Element style type */
   type?: 'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment' | (string & {}),
 }
 
 export interface SizeProps {
+  /** Element size type */
   size?: 'small' | 'large' | (string & {}),
 }
 

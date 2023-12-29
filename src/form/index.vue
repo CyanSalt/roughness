@@ -11,6 +11,7 @@ defineOptions({
 const {
   labelInline = undefined,
 } = defineProps<{
+  /** Whether the labels of the form items are displayed as inline boxes */
   labelInline?: boolean,
 }>()
 

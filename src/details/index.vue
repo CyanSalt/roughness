@@ -19,6 +19,7 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Whether the details are currently visible */
   open?: boolean,
 } & GraphicsProps>()
 

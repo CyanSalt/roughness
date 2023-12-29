@@ -27,10 +27,17 @@ const {
   reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Checked state of the checkbox */
   checked?: boolean,
   disabled?: boolean,
+  /**
+   * Indeterminate state of the checkbox
+   * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes}
+   */
   indeterminate?: boolean,
+  /** Item label when checked and displayed */
   label?: string,
+  /** Item value when checked in the CheckboxGroup */
   value?: CheckboxValue,
 } & GraphicsProps>()
 

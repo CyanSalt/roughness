@@ -22,8 +22,14 @@ const {
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
+  /** Whether to display the card footer */
   footer?: boolean,
+  /** Whether to display the card header */
   header?: boolean,
+  /**
+   * HTML tag for rendering the card
+   * @default 'article'
+   */
   tag?: string,
 } & ColorProps & GraphicsProps>()
 

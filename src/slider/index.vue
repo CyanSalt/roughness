@@ -24,9 +24,22 @@ const {
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
+  /**
+   * Upper numeric bound of the range
+   * @default 100
+   */
   max?: number,
+  /**
+   * Lower numeric bound of the range
+   * @default 0
+   */
   min?: number,
+  /** Value of the slider */
   modelValue?: number,
+  /**
+   * Minimum unit of the slider
+   * @default 1
+   */
   step?: number,
 } & GraphicsProps>()
 
