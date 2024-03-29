@@ -49,7 +49,7 @@ provide(itemsInjection, items)
   position: fixed;
   block-size: 0;
   inline-size: 0;
-  :deep(> .r-toast) {
+  & > .r-toast {
     transform: translate(-50%, calc(-50% - var(--r-toast-provider-index) * (var(--r-toast-provider-base-size) + var(--r-toast-provider-gap-size))));
   }
 }

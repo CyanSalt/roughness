@@ -42,7 +42,7 @@ defineSlots<{
     width: auto;
     height: auto;
     max-height: none;
-    :deep(.r-card) {
+    .r-card {
       height: 100%;
     }
   }
@@ -51,7 +51,7 @@ defineSlots<{
     width: auto;
     height: auto;
     max-height: none;
-    :deep(.r-card) {
+    .r-card {
       height: 100%;
     }
   }

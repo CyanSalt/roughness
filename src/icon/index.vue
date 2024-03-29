@@ -144,7 +144,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: inline-block;
   block-size: calc(1em + 4px);
   inline-size: calc(1em + 4px);
-  :deep(.r-graphics) {
+  .r-graphics {
     width: 100%;
     height: 100%;
   }
