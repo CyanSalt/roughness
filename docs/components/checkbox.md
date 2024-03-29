@@ -218,7 +218,7 @@ const treeValue = ref<string | undefined>()
 
 ### Checkbox Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['checked', 'graphics-options', 'indeterminate', 'label', 'reactions', 'value', '...']"
@@ -321,7 +321,7 @@ const treeValue = ref<string | undefined>()
 
 ### Checkbox Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:checked']"
@@ -341,7 +341,7 @@ const treeValue = ref<string | undefined>()
 
 ### Checkbox Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -356,7 +356,7 @@ const treeValue = ref<string | undefined>()
 
 ### Checkbox Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'checked-color', 'checked-width', 'control-size', '...']"
@@ -444,7 +444,7 @@ const treeValue = ref<string | undefined>()
 
 ### CheckboxGroup Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['disabled', 'model-value', 'multiple', '...']"
@@ -501,7 +501,7 @@ const treeValue = ref<string | undefined>()
 
 ### CheckboxGroup Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -516,7 +516,7 @@ const treeValue = ref<string | undefined>()
 
 ### CheckboxGroup Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -536,7 +536,7 @@ const treeValue = ref<string | undefined>()
 
 ### CheckboxGroup Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['...']"

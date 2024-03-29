@@ -117,7 +117,7 @@ View all available icons [here](https://lucide.dev/icons/).
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['filled', 'graphics-options', 'icon', 'name', 'reactions', '...']"
@@ -200,7 +200,7 @@ View all available icons [here](https://lucide.dev/icons/).
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'line-width', '...']"

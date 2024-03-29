@@ -123,7 +123,7 @@ function showBottom() {
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['side', '...']"
@@ -154,7 +154,7 @@ function showBottom() {
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['...']"
@@ -171,7 +171,7 @@ function showBottom() {
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['...']"

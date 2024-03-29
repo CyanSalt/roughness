@@ -99,7 +99,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['block', 'size', 'tag', 'type']"
@@ -160,7 +160,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -175,7 +175,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color']"

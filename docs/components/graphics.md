@@ -224,7 +224,7 @@ import { RButton } from 'roughness'
 
 ### GraphicsConfig Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['options']"
@@ -246,7 +246,7 @@ import { RButton } from 'roughness'
 
 ### Graphics Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['options', 'responsive', 'tag']"
@@ -298,7 +298,7 @@ import { RButton } from 'roughness'
 
 ### Graphics Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['draw']"

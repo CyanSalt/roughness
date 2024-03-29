@@ -72,7 +72,7 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
 
 All elements with `r-*` classes support the following style variables:
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['font-family', 'font-size', 'line-height']"
@@ -135,7 +135,7 @@ body {
 
 Common style properties are declared under the root node. Changing them will affect all components.
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['font-family', 'font-size', 'small-font-size', 'large-font-size', 'line-height', 'box-padding-block', 'box-padding-inline']"
@@ -250,7 +250,7 @@ Common style properties are declared under the root node. Changing them will aff
 
 The following properties (of colors) change with dark/light theme changes: {#color-styles}
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['text-color', 'background-color', 'primary-color', 'info-color', 'success-color', 'warning-color', 'error-color']"

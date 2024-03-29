@@ -67,7 +67,7 @@ let number = ref(5);
 </script>
 
 <template>
-  <RSpace overflow>
+  <RSpace>
     <RInput v-model.number="number" :style="{ 'margin-inline-start': `${number}em` }" />
   </RSpace>
 </template>
@@ -75,7 +75,7 @@ let number = ref(5);
 
 </RDetails>
 
-<RSpace overflow>
+<RSpace>
   <RInput v-model.number="number" :style="{ 'margin-inline-start': `${number}em` }" />
 </RSpace>
 
@@ -133,7 +133,7 @@ import { RInput, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'lines', 'model-value', 'reactions']"
@@ -198,7 +198,7 @@ import { RInput, RSpace } from 'roughness'
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -218,7 +218,7 @@ import { RInput, RSpace } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'border-dash']"

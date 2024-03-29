@@ -59,7 +59,7 @@ function select(value: File) {
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['block', 'filled', 'graphics-options', 'loading', 'reactions']"
@@ -143,7 +143,7 @@ function select(value: File) {
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['select']"
@@ -163,7 +163,7 @@ function select(value: File) {
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -178,7 +178,7 @@ function select(value: File) {
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'border-width', 'border-dash']"

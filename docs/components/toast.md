@@ -94,7 +94,7 @@ function add() {
 
 ### Toast Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['duration', 'graphics-options', 'open', 'reactions', 'size', 'type']"
@@ -186,7 +186,7 @@ function add() {
 
 ### Toast Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:open']"
@@ -206,7 +206,7 @@ function add() {
 
 ### Toast Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -221,7 +221,7 @@ function add() {
 
 ### Toast Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color']"
@@ -246,7 +246,7 @@ function add() {
 
 ### ToastProvider Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['base-size', 'gap-size']"

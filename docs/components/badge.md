@@ -45,7 +45,7 @@ import { RBadge, RButton } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'reactions']"
@@ -87,7 +87,7 @@ import { RBadge, RButton } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['marker', 'default']"
@@ -105,7 +105,7 @@ import { RBadge, RButton } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'padding-block', 'padding-inline']"

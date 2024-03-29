@@ -44,6 +44,7 @@ import { RTable, RText } from 'roughness'
 <RTable
   :columns="['name', 'age']"
   :rows="['html', 'js', 'css']"
+  data-example
 >
   <template #body:*:name="{ row }">{{ row.toUpperCase() }}</template>
   <template #body:html:age>
@@ -88,6 +89,7 @@ import { RTable } from 'roughness'
   :rows="['unified', 'western', 'eastern']"
   :header="false"
   footer
+  data-example
 >
   <template #body:*:name="{ row }">{{ row.toUpperCase() }}</template>
   <template #body:unified:name="{ row }">(unified)</template>
@@ -129,7 +131,7 @@ const data = [
 
 </RDetails>
 
-<RTable :columns="['z', 'element']" :rows="data">
+<RTable :columns="['z', 'element']" :rows="data" data-example>
   <template #body:1:element>
     <RText type="primary">He</RText>
   </template>
@@ -139,7 +141,7 @@ const data = [
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['columns', 'footer', 'graphics-options', 'header', 'reactions', 'rows']"
@@ -241,7 +243,7 @@ const data = [
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default', 'header:_column_', 'header:*', 'body:_row_:_column_', 'body:*:_column_', 'body:_row_:*', 'body:*:*', 'footer:_column_', 'footer:*']"
@@ -331,7 +333,7 @@ const data = [
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color']"

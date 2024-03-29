@@ -47,7 +47,7 @@ import { RPopover, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['align', 'open', 'side', 'trigger', '...']"
@@ -129,7 +129,7 @@ import { RPopover, RSpace } from 'roughness'
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:open']"
@@ -149,7 +149,7 @@ import { RPopover, RSpace } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['anchor', '...']"

@@ -82,7 +82,7 @@ let labelInline = ref(false)
 
 ### Form Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['label-inline']"
@@ -102,7 +102,7 @@ let labelInline = ref(false)
 
 ### Form Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -117,7 +117,7 @@ let labelInline = ref(false)
 
 ### FormItem Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'label-inline', 'name', 'reactions', 'required']"
@@ -191,7 +191,7 @@ let labelInline = ref(false)
 
 ### FormItem Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['label', 'default', 'message']"
@@ -214,7 +214,7 @@ let labelInline = ref(false)
 
 ### FormItem Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['required-marker-size', 'required-marker-color', '...']"

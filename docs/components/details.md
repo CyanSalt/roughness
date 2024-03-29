@@ -57,7 +57,7 @@ function toggle() {
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'open', 'reactions']"
@@ -117,7 +117,7 @@ function toggle() {
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:open']"
@@ -137,7 +137,7 @@ function toggle() {
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['summary', 'default']"
@@ -159,7 +159,7 @@ function toggle() {
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['summary-color', 'summary-marker-size', 'gap-size']"

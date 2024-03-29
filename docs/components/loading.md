@@ -35,7 +35,7 @@ import { RLoading, RText } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['...']"

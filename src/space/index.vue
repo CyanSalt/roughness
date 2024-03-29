@@ -11,7 +11,6 @@ const {
   align: userAlign,
   justify = 'start',
   inline = false,
-  overflow = false,
   reverse = false,
   tag = 'div',
   vertical = false,
@@ -30,8 +29,6 @@ const {
   justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly',
   /** Whether the space is displayed as an inline box */
   inline?: boolean,
-  /** Whether to show the scrollbar when the content overflows */
-  overflow?: boolean,
   /** Whether to reverse the layout */
   reverse?: boolean,
   /**
@@ -62,7 +59,6 @@ const style = $computed<HTMLAttributes['style']>(() => {
     'align-items': ['start', 'end'].includes(align) ? `flex-${align}` : align,
     'flex-direction': vertical ? (reverse ? 'column-reverse' : 'column') : (reverse ? 'row-reverse' : 'row'),
     'flex-wrap': wrap ? 'wrap' : undefined,
-    overflow: overflow ? 'overlay' : undefined,
   }
 })
 </script>

@@ -91,7 +91,7 @@ See also [Button](/components/button#tag).
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['tag', '...']"
@@ -124,7 +124,7 @@ See also [Button](/components/button#tag).
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -139,7 +139,7 @@ See also [Button](/components/button#tag).
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['underline-width', '...']"

@@ -94,7 +94,7 @@ watch(value, n => {
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'min', 'max', 'value', 'reactions', 'size', 'type']"
@@ -198,7 +198,7 @@ watch(value, n => {
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'block-size', 'inline-size', 'border-color', 'border-width', 'border-dash']"

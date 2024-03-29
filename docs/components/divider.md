@@ -50,7 +50,7 @@ import { RDivider, RText } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'reactions', 'vertical']"
@@ -106,7 +106,7 @@ import { RDivider, RText } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'gap-size']"

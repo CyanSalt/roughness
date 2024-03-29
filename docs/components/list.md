@@ -89,7 +89,7 @@ import { RList, RListItem } from 'roughness'
 
 ### List Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['items', 'list-style', '...']"
@@ -146,7 +146,7 @@ import { RList, RListItem } from 'roughness'
 
 ### List Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['_item_', '_*_', 'default']"
@@ -180,7 +180,7 @@ import { RList, RListItem } from 'roughness'
 
 ### List Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['marker-color', 'marker-block-size', 'marker-inline-size', '...']"
@@ -240,7 +240,7 @@ import { RList, RListItem } from 'roughness'
 
 ### ListItem Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'reactions']"
@@ -282,7 +282,7 @@ import { RList, RListItem } from 'roughness'
 
 ### ListItem Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"

@@ -213,7 +213,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['block', 'filled', 'graphics-options', 'html-type', 'loading', 'reactions', 'rounded', 'size', 'tag', 'type']"
@@ -358,7 +358,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -373,7 +373,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'border-width', 'border-dash']"

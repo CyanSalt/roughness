@@ -33,7 +33,7 @@ import { RGridGuide } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['reactions', 'responsive']"
@@ -76,7 +76,7 @@ import { RGridGuide } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'cell-size', 'section-cell-count']"

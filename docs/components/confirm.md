@@ -104,7 +104,7 @@ async function ask() {
 
 ### Confirm Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['...']"
@@ -121,7 +121,7 @@ async function ask() {
 
 ### Confirm Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['confirm', 'cancel', '...']"
@@ -146,7 +146,7 @@ async function ask() {
 
 ### Confirm Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"

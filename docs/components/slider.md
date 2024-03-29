@@ -35,7 +35,7 @@ let value = ref(62)
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'max', 'min', 'model-value', 'reactions', 'step']"
@@ -131,7 +131,7 @@ let value = ref(62)
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -151,7 +151,7 @@ let value = ref(62)
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'border-width', 'control-size', 'track-size']"

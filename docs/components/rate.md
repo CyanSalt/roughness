@@ -35,7 +35,7 @@ let rate = ref(3)
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'model-value', 'reactions']"
@@ -89,7 +89,7 @@ let rate = ref(3)
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -109,7 +109,7 @@ let rate = ref(3)
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'control-size', 'gap-size']"

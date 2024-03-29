@@ -200,7 +200,6 @@ provide(labelsInjection, labels)
         :multiple="multiple"
         vertical
         :wrap="false"
-        overflow
         class="r-select__group"
         @update:model-value="update"
       >
@@ -274,5 +273,6 @@ provide(labelsInjection, labels)
   max-block-size: calc(var(--r-select-dropdown-padding-block) * 2 + var(--r-common-line-height) * 5 + var(--r-space-gap-size) * 4);
   padding-block: var(--r-select-dropdown-padding-block);
   padding-inline: var(--r-select-dropdown-padding-inline);
+  overflow: auto;
 }
 </style>

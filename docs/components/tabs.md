@@ -58,7 +58,7 @@ import { RTabs } from 'roughness'
 
 ### Tabs Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['anchor-side', 'content', 'graphics-options', 'model-value', 'reactions', 'tabs', '...']"
@@ -161,7 +161,7 @@ import { RTabs } from 'roughness'
 
 ### Tabs Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -181,7 +181,7 @@ import { RTabs } from 'roughness'
 
 ### Tabs Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['anchor:_tab_', 'anchor:*', 'content:_tab_', 'content:*']"
@@ -226,7 +226,7 @@ import { RTabs } from 'roughness'
 
 ### TabAnchor Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['active-color', 'border-color', 'border-width', 'border-dash']"

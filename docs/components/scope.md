@@ -42,7 +42,7 @@ function performTimeConsumingOperation() {
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"

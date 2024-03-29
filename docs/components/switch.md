@@ -29,7 +29,7 @@ import { RSwitch } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['graphics-options', 'model-value', 'reactions', '...']"
@@ -93,7 +93,7 @@ import { RSwitch } from 'roughness'
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -113,7 +113,7 @@ import { RSwitch } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -128,7 +128,7 @@ import { RSwitch } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'control-size', 'track-color', 'handle-color', '...']"

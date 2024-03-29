@@ -97,29 +97,6 @@ import { RButton, RSpace } from 'roughness'
   <RButton>Patrick</RButton>
 </RSpace>
 
-### Overflow
-
-<RDetails>
-  <template #summary>Show Code</template>
-
-```vue
-<script lang="ts" setup>
-import { RButton, RSpace, RText } from 'roughness'
-</script>
-
-<template>
-  <RSpace overflow>
-    <RText tag="pre">A spectre is haunting Europe -- the spectre of Communism. All the Powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Czar, Metternich and Guizot, French Radicals and German police-spies.</RText>
-  </RSpace>
-</template>
-```
-
-</RDetails>
-
-<RSpace overflow>
-  <RText tag="pre">A spectre is haunting Europe -- the spectre of Communism. All the Powers of old Europe have entered into a holy alliance to exorcise this spectre: Pope and Czar, Metternich and Guizot, French Radicals and German police-spies.</RText>
-</RSpace>
-
 ### Size
 
 <RDetails>
@@ -169,10 +146,10 @@ import { RSpace, RText } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'justify', 'inline', 'overflow', 'reverse', 'size', 'tag', 'vertical', 'wrap']"
+  :rows="['align', 'justify', 'inline', 'reverse', 'size', 'tag', 'vertical', 'wrap']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -220,20 +197,6 @@ import { RSpace, RText } from 'roughness'
   </template>
   <template #body:inline:description>
     Whether the space is displayed as an inline box.
-  </template>
-
-  <template #body:overflow:type>
-
-  `boolean`
-
-  </template>
-  <template #body:overflow:default>
-
-  `false`
-
-  </template>
-  <template #body:overflow:description>
-    Whether to show the scrollbar when the content overflows.
   </template>
 
   <template #body:reverse:type>
@@ -305,7 +268,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -320,7 +283,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['gap-size']"

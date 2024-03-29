@@ -72,7 +72,7 @@ import { RCard, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['footer', 'graphics-options', 'header', 'reactions', 'type', '...']"
@@ -163,7 +163,7 @@ import { RCard, RSpace } from 'roughness'
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['title', 'header-end', 'default', 'footer']"
@@ -202,7 +202,7 @@ import { RCard, RSpace } from 'roughness'
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['color', 'border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline', '...']"

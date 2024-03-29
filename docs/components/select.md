@@ -132,7 +132,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 
 ### Props
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
   :rows="['clearable', 'graphics-options', 'loading', 'model-value', 'multiple', 'reactions']"
@@ -228,7 +228,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 
 ### Events
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['update:model-value']"
@@ -248,7 +248,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 
 ### Slots
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
   :rows="['default']"
@@ -263,7 +263,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 
 ### Styles
 
-<RSpace overflow>
+<RSpace>
 <RTable
   :columns="['name', 'values', 'default', 'description']"
   :rows="['border-color', 'border-width', 'border-dash', 'dropdown-border-width', 'dropdown-border-dash', 'dropdown-padding-block', 'dropdown-padding-inline']"
