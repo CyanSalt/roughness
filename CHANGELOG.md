@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.15](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.14...v0.1.0-beta.15) (2024-03-29)
+
+
+### Bug Fixes
+
+* **icon:** reduce roughness ([6a3aed6](https://github.com/CyanSalt/roughness/commit/6a3aed6b714f7ca4fb825f5c5e9ae7fc992aff0f))
+
 ## [0.1.0-beta.14](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.13...v0.1.0-beta.14) (2024-03-29)
 
 
