@@ -1,6 +1,6 @@
 {
   "name": "roughness",
-  "version": "0.1.0-beta.13",
+  "version": "0.1.0-beta.14",
   "description": "A Vue component library with hand-drawn appearance",
   "type": "module",
   "main": "dist/index.js",

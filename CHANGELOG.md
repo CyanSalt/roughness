@@ -1,5 +1,22 @@
 
 
+## [0.1.0-beta.14](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.13...v0.1.0-beta.14) (2024-03-29)
+
+
+### Features
+
+* **icon:** add filled prop ([f7c4a58](https://github.com/CyanSalt/roughness/commit/f7c4a58eec13c8c249c6ea941364b6a1e4b91168))
+* remove alert component ([e7e7077](https://github.com/CyanSalt/roughness/commit/e7e707742e468376d609d6c2afce992788efffa1))
+
+
+### Bug Fixes
+
+* loading reactions ([54f164b](https://github.com/CyanSalt/roughness/commit/54f164b8961248ce592dfc44d8eb6555d4308c1d))
+* missing scoped styles ([bc03a78](https://github.com/CyanSalt/roughness/commit/bc03a7834a040dc0cfb0ad70cd1c10e004165b32))
+* **scope:** add component name ([b92d399](https://github.com/CyanSalt/roughness/commit/b92d39981a24d63ca7198a80f0f48973d402457f))
+* **select:** page scroll when clearing ([9fe6a8e](https://github.com/CyanSalt/roughness/commit/9fe6a8e6126ec52317c3b96f024092f1af5d79e9))
+* **space:** drop overflow ([b2a81d8](https://github.com/CyanSalt/roughness/commit/b2a81d83355d184db5d0b5c4937c729e3b9450a1))
+
 ## [0.1.0-beta.13](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.12...v0.1.0-beta.13) (2023-12-18)
 
 
