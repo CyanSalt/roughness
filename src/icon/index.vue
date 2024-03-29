@@ -19,6 +19,7 @@ defineOptions({
 const {
   name,
   icon,
+  filled,
   reactions = (() => ['']) as never,
   graphicsOptions,
 } = defineProps<{
@@ -26,6 +27,8 @@ const {
   name?: string,
   /** Icon object conforming to the type constraint */
   icon?: IconNode,
+  /** Whether to fill the icon */
+  filled?: boolean,
 } & GraphicsProps>()
 
 const definedIcons = useIcons()
@@ -55,6 +58,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const options: Options = {
     stroke: 'var(--r-icon-color)',
     strokeWidth,
+    fill: filled ? 'var(--r-icon-color)' : undefined,
   }
   const children = renderedIcon[2] ?? []
   for (const [tag, attrs] of children) {

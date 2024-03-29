@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { kebabCase } from 'lodash-es'
-import { CaseSensitive, icons, Regex, WholeWord } from 'lucide'
+import { CaseSensitive, icons, Regex, Tv, WholeWord } from 'lucide'
 import { defineIcons, RCard, RDetails, RIcon, RInput, RSpace, RTable, RText } from 'roughness'
 import { ref } from 'vue'
 
@@ -40,22 +40,32 @@ import { RIcon, RSpace } from 'roughness'
 </script>
 
 <template>
-  <RSpace>
-    <RIcon :icon="CaseSensitive" />
-    <RIcon :icon="WholeWord" />
-    <RIcon :icon="Regex" />
-    <RIcon />
+  <RSpace vertical>
+    <RSpace>
+      <RIcon :icon="CaseSensitive" />
+      <RIcon :icon="WholeWord" />
+      <RIcon :icon="Regex" />
+      <RIcon />
+    </RSpace>
+    <RSpace>
+      <RIcon :icon="Tv" filled />
+    </RSpace>
   </RSpace>
 </template>
 ```
 
 </RDetails>
 
-<RSpace>
-  <RIcon :icon="CaseSensitive" />
-  <RIcon :icon="WholeWord" />
-  <RIcon :icon="Regex" />
-  <RIcon />
+<RSpace vertical>
+  <RSpace>
+    <RIcon :icon="CaseSensitive" />
+    <RIcon :icon="WholeWord" />
+    <RIcon :icon="Regex" />
+    <RIcon />
+  </RSpace>
+  <RSpace>
+    <RIcon :icon="Tv" filled />
+  </RSpace>
 </RSpace>
 
 ### Batch Definition
@@ -110,9 +120,20 @@ View all available icons [here](https://lucide.dev/icons/).
 <RSpace overflow>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'icon', 'name', 'reactions', '...']"
+  :rows="['filled', 'graphics-options', 'icon', 'name', 'reactions', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:filled:type>
+
+  `boolean`
+
+  </template>
+  <template #body:filled:description>
+
+  Whether to fill the icon.
+
+  </template>
 
   <template #body:graphics-options:type>
 
