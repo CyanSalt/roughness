@@ -140,6 +140,13 @@ View all available icons [here](https://lucide.dev/icons/).
   `import('roughjs/bin/core').Options`
 
   </template>
+
+  <template #body:graphics-options:default>
+
+  `{ roughness: 0.5, disableMultiStroke: true }`
+
+  </template>
+
   <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).

@@ -128,12 +128,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     }
   }
 }
+
+const iconGraphicsOptions = $computed(() => {
+  return {
+    roughness: 0.5,
+    disableMultiStroke: true,
+    ...graphicsOptions,
+  }
+})
 </script>
 
 <template>
   <RText class="r-icon">
     <RGraphics
-      :options="graphicsOptions"
+      :options="iconGraphicsOptions"
       :responsive="false"
       v-bind="svgAttrs"
       @draw="draw"
