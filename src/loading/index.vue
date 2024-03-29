@@ -7,11 +7,14 @@ import RSpace from '../space/index.vue'
 defineOptions({
   name: 'RLoading',
 })
+
+const reactions = ['time' as const]
+const graphicsOptions = { roughness: 2.5 }
 </script>
 
 <template>
   <RSpace justify="center" align="center" class="r-loading">
-    <RIcon :icon="Loader" class="r-loading__icon" />
+    <RIcon :icon="Loader" :reactions="reactions" :graphics-options="graphicsOptions" class="r-loading__icon" />
   </RSpace>
 </template>
 
