@@ -1,42 +1,32 @@
-<script lang="ts" setup generic="
-  T extends (string | number | RValue)[] | number,
-  U extends (string | number | RValue)[] | number
-"
->
+<script lang="ts" setup>
 import '../common/style.scss'
 import { useResizeObserver } from '@vueuse/core'
-import { isObjectLike, startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { onMounted, reactive } from 'vue'
-import type { RValue } from '../common/key'
+import { onMounted, provide, reactive } from 'vue'
+import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
-
-type Column = T extends (infer V)[] ? V : number
-type Row = U extends (infer V)[] ? V : number
+import RTableCell from './table-cell.vue'
+import RTableHeaderCell from './table-header-cell.vue'
+import type { TableColumnData } from './utils'
+import { columnsInjection } from './utils'
 
 defineOptions({
   name: 'RTable',
 })
 
 const {
-  columns,
   footer = false,
   header = true,
   rows,
   reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
-  /**
-   * Column keys or data.
-   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
-   */
-  columns: T,
   /**
    * Whether to display the table footer
    * @default false
@@ -51,16 +41,16 @@ const {
    * Row keys or data.
    * {@link https://roughness.vercel.app/guide/specs#list-rendering}
    */
-  rows: U,
+  rows: RValueOrKey[],
 } & GraphicsProps>()
 
-defineSlots<Record<
-  `header:${string}` | `footer:${string}`,
-  (props: { column: Column }) => any
-> & Record<
-  `body:${string}:${string}`,
-  (props: { row: Row, column: Column }) => any
->>()
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
+const columns = $ref<TableColumnData[]>([])
+
+provide(columnsInjection, $$(columns))
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()
@@ -168,35 +158,33 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <slot></slot>
     <thead v-if="header" ref="head">
       <tr>
-        <th v-for="column in (columns as Column[])" :key="keyOf(column)">
-          <slot :name="`header:${keyOf(column)}`" :column="column">
-            <slot name="header:*" :column="column">{{ startCase(keyOf(column)) }}</slot>
-          </slot>
-        </th>
+        <RTableHeaderCell
+          v-for="column in columns"
+          :key="column.name"
+          :name="column.name"
+          type="header"
+        >
+          <component :is="column.slots.header" v-if="column.slots.header"></component>
+        </RTableHeaderCell>
       </tr>
     </thead>
     <tbody ref="body">
-      <tr v-for="row in (rows as Row[])" :key="keyOf(row)">
-        <td v-for="column in (columns as Column[])" :key="keyOf(column)">
-          <slot :name="`body:${keyOf(row)}:${keyOf(column)}`" :row="row" :column="column">
-            <slot :name="`body:*:${keyOf(column)}`" :row="row" :column="column">
-              <slot :name="`body:${keyOf(row)}:*`" :row="row" :column="column">
-                <slot name="body:*:*" :row="row" :column="column">{{
-                  isObjectLike(row) ? row[keyOf(column)] : undefined
-                }}</slot>
-              </slot>
-            </slot>
-          </slot>
-        </td>
+      <tr v-for="row in rows" :key="keyOf(row)">
+        <RTableCell v-for="column in columns" :key="column.name" :row="row" :name="column.name">
+          <component :is="column.slots.default" v-if="column.slots.default" :row="row"></component>
+        </RTableCell>
       </tr>
     </tbody>
     <tfoot v-if="footer" ref="foot">
       <tr>
-        <th v-for="column in (columns as Column[])" :key="keyOf(column)">
-          <slot :name="`footer:${keyOf(column)}`" :column="column">
-            <slot name="footer:*" :column="column"></slot>
-          </slot>
-        </th>
+        <RTableHeaderCell
+          v-for="column in columns"
+          :key="column.name"
+          :name="column.name"
+          type="footer"
+        >
+          <component :is="column.slots.footer" v-if="column.slots.footer"></component>
+        </RTableHeaderCell>
       </tr>
     </tfoot>
   </table>
@@ -212,9 +200,5 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-table {
   --r-table-border-color: var(--r-common-text-color);
-  td, th {
-    padding-block: var(--r-common-box-padding-block);
-    padding-inline: var(--r-common-box-padding-inline);
-  }
 }
 </style>

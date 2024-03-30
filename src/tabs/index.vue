@@ -1,15 +1,14 @@
-<script lang="ts" setup generic="T extends (string | number | RValue)[] | number">
+<script lang="ts" setup>
 import '../common/style.scss'
-import { startCase } from 'lodash-es'
-import { reactive, watchEffect } from 'vue'
-import type { RValue } from '../common/key'
+import { provide, reactive, watchEffect } from 'vue'
+import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { effectRef } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
-
-type Tab = T extends (infer U)[] ? U : number
+import type { TabItemData } from './utils'
+import { itemsInjection } from './utils'
 
 defineOptions({
   name: 'RTabs',
@@ -19,7 +18,6 @@ const {
   anchorSide = 'top',
   content = true,
   modelValue,
-  tabs,
   reactions,
   graphicsOptions,
 } = defineProps<{
@@ -33,23 +31,21 @@ const {
    * @default true
    */
   content?: boolean,
-  /** Currently active tab key */
-  modelValue?: Tab | undefined,
-  /**
-   * Tab keys or data.
-   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
-   */
-  tabs: T,
+  /** Value of the active tab item in tabs */
+  modelValue?: RValueOrKey | undefined,
 } & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-defineSlots<Record<
-  `anchor:${string}` | `content:${string}`,
-  (props: { tab: Tab }) => any
->>()
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
+const items = $ref<TabItemData[]>([])
+
+provide(itemsInjection, $$(items))
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,
@@ -59,32 +55,26 @@ let internalModelValue = $(effectRef({
 })) as typeof modelValue
 
 watchEffect(() => {
-  if (typeof tabs === 'number') {
-    if (tabs === 0) {
-      internalModelValue = undefined
-    } else if (!internalModelValue || internalModelValue as number <= 0) {
-      internalModelValue = 1 as Tab
-    } else if (internalModelValue as number > tabs) {
-      internalModelValue = tabs as Tab
-    }
-  } else {
-    if (!tabs.length) {
-      internalModelValue = undefined
-    } else if (!internalModelValue || !tabs.includes(internalModelValue)) {
-      internalModelValue = tabs[0] as Tab
-    }
+  if (!items.length) {
+    internalModelValue = undefined
+  } else if (!internalModelValue || !items.some(item => item.value === internalModelValue)) {
+    internalModelValue = items[0].value
   }
 })
 
-const renderedTabs = reactive(new Set()) as Set<Tab>
+const renderedValues = reactive(new Set()) as Set<RValueOrKey>
 
 watchEffect(() => {
-  if (internalModelValue && !renderedTabs.has(internalModelValue)) {
-    renderedTabs.add(internalModelValue)
+  if (internalModelValue && !renderedValues.has(internalModelValue)) {
+    renderedValues.add(internalModelValue)
   }
 })
 
-function activate(tab: Tab) {
+const renderedItems = $computed(() => {
+  return items.filter(item => renderedValues.has(item.value))
+})
+
+function activate(tab: RValueOrKey) {
   internalModelValue = tab
 }
 </script>
@@ -102,33 +92,30 @@ function activate(tab: Tab) {
       role="tablist"
     >
       <RTabAnchor
-        v-for="tab in (tabs as Tab[])"
-        :key="keyOf(tab)"
-        :active="tab === internalModelValue"
+        v-for="tab in items"
+        :key="keyOf(tab.value)"
+        :active="tab.value === internalModelValue"
         :side="anchorSide"
-        :tab="tab"
+        :value="tab.value"
         :reactions="reactions"
         :graphics-options="graphicsOptions"
         @activate="activate"
       >
-        <slot :name="`anchor:${keyOf(tab)}`" :tab="tab">
-          <slot name="anchor:*" :tab="tab">{{ startCase(keyOf(tab)) }}</slot>
-        </slot>
+        <component :is="tab.slots.anchor" v-if="tab.slots.anchor"></component>
       </RTabAnchor>
     </RSpace>
     <template v-if="content">
       <div
-        v-for="tab in renderedTabs"
-        :key="keyOf(tab)"
-        :class="['r-tabs__content', { 'is-active': internalModelValue === tab }]"
+        v-for="tab in renderedItems"
+        :key="keyOf(tab.value)"
+        :class="['r-tabs__content', { 'is-active': internalModelValue === tab.value }]"
         role="tabpanel"
-        :aria-expanded="internalModelValue === tab"
+        :aria-expanded="internalModelValue === tab.value"
       >
-        <slot :name="`content:${keyOf(tab)}`" :tab="tab">
-          <slot name="content:*" :tab="tab"></slot>
-        </slot>
+        <component :is="tab.slots.default"></component>
       </div>
     </template>
+    <slot></slot>
   </RSpace>
 </template>
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RKey, RSpace, RTable, RText } from 'roughness'
+import { RDetails, RKey, RSpace, RTable, RTableColumn, RText } from 'roughness'
 
 const data = [
   { [RKey]: 1, z: 2, element: 'He' },
@@ -21,7 +21,7 @@ Tic, tac, toe.
 
 ```vue
 <script lang="ts" setup>
-import { RTable, RText } from 'roughness'
+import { RTable, RTableColumn, RText } from 'roughness'
 </script>
 
 <template>
@@ -29,12 +29,14 @@ import { RTable, RText } from 'roughness'
     :columns="['name', 'age']"
     :rows="['html', 'js', 'css']"
   >
-    <template #body:*:name="{ row }">{{ row.toUpperCase() }}</template>
-    <template #body:html:age>
-      <RText type="primary">30</RText>
-    </template>
-    <template #body:js:age>28</template>
-    <template #body:css:age>27</template>
+    <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
+    <RTableColumn v-slot="{ row }" name="age">
+      <template v-if="row === 'html'">
+        <RText type="primary">30</RText>
+      </template>
+      <template v-else-if="row === 'js'">28</template>
+      <template v-else-if="row === 'css'">27</template>
+    </RTableColumn>
   </RTable>
 </template>
 ```
@@ -46,12 +48,14 @@ import { RTable, RText } from 'roughness'
   :rows="['html', 'js', 'css']"
   data-example
 >
-  <template #body:*:name="{ row }">{{ row.toUpperCase() }}</template>
-  <template #body:html:age>
-    <RText type="primary">30</RText>
-  </template>
-  <template #body:js:age>28</template>
-  <template #body:css:age>27</template>
+  <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
+  <RTableColumn v-slot="{ row }" name="age">
+    <template v-if="row === 'html'">
+      <RText type="primary">30</RText>
+    </template>
+    <template v-else-if="row === 'js'">28</template>
+    <template v-else-if="row === 'css'">27</template>
+  </RTableColumn>
 </RTable>
 
 ### Header and Footer
@@ -61,23 +65,30 @@ import { RTable, RText } from 'roughness'
 
 ```vue
 <script lang="ts" setup>
-import { RTable } from 'roughness'
+import { RTable, RTableColumn } from 'roughness'
 </script>
 
 <template>
   <RTable
-    :columns="['name', 'life']"
     :rows="['unified', 'western', 'eastern']"
     :header="false"
     footer
   >
-    <template #body:*:name="{ row }">{{ row.toUpperCase() }}</template>
-    <template #body:unified:name="{ row }">(unified)</template>
-    <template #body:unified:life>27 BC–AD 395</template>
-    <template #body:western:life>AD 395–476/480</template>
-    <template #body:eastern:life>AD 395–1453</template>
-    <template #footer:name>Total</template>
-    <template #footer:life>1480</template>
+    <RTableColumn name="name">
+      <template #default="{ row }">
+        <template v-if="row === 'unified'">(unified)</template>
+        <template v-else>{{ row.toUpperCase() }}</template>
+      </template>
+      <template #footer>Total</template>
+    </RTableColumn>
+    <RTableColumn name="life">
+      <template #default="{ row }">
+        <template v-if="row === 'unified'">27 BC–AD 395</template>
+        <template v-else-if="row === 'western'">AD 395–476/480</template>
+        <template v-else-if="row === 'eastern'">AD 395–1453</template>
+      </template>
+      <template #footer>1480</template>
+    </RTableColumn>
   </RTable>
 </template>
 ```
@@ -85,19 +96,26 @@ import { RTable } from 'roughness'
 </RDetails>
 
 <RTable
-  :columns="['name', 'life']"
   :rows="['unified', 'western', 'eastern']"
   :header="false"
   footer
   data-example
 >
-  <template #body:*:name="{ row }">{{ row.toUpperCase() }}</template>
-  <template #body:unified:name="{ row }">(unified)</template>
-  <template #body:unified:life>27 BC–AD 395</template>
-  <template #body:western:life>AD 395–476/480</template>
-  <template #body:eastern:life>AD 395–1453</template>
-  <template #footer:name>Total</template>
-  <template #footer:life>1480</template>
+  <RTableColumn name="name">
+    <template #default="{ row }">
+      <template v-if="row === 'unified'">(unified)</template>
+      <template v-else>{{ row.toUpperCase() }}</template>
+    </template>
+    <template #footer>Total</template>
+  </RTableColumn>
+  <RTableColumn name="life">
+    <template #default="{ row }">
+      <template v-if="row === 'unified'">27 BC–AD 395</template>
+      <template v-else-if="row === 'western'">AD 395–476/480</template>
+      <template v-else-if="row === 'eastern'">AD 395–1453</template>
+    </template>
+    <template #footer>1480</template>
+  </RTableColumn>
 </RTable>
 
 ### Filled
@@ -111,7 +129,7 @@ See [Responsive Graphics](/components/graphics#responsive).
 
 ```vue
 <script lang="ts" setup>
-import { RKey, RTable, RText } from 'roughness'
+import { RKey, RTable, RTableColumn, RText } from 'roughness'
 
 const data = [
   { [RKey]: 1, z: 2, element: 'He' },
@@ -122,9 +140,13 @@ const data = [
 
 <template>
   <RTable :columns="['z', 'element']" :rows="data">
-    <template #body:1:element>
-      <RText type="primary">He</RText>
-    </template>
+    <RTableColumn name="z" />
+    <RTableColumn v-slot="{ row }" name="element">
+      <template v-if="row[RKey] === 1">
+        <RText type="primary">He</RText>
+      </template>
+      <template v-else>{{ row.element }}</template>
+    </RTableColumn>
   </RTable>
 </template>
 ```
@@ -132,9 +154,13 @@ const data = [
 </RDetails>
 
 <RTable :columns="['z', 'element']" :rows="data" data-example>
-  <template #body:1:element>
-    <RText type="primary">He</RText>
-  </template>
+  <RTableColumn name="z" />
+  <RTableColumn v-slot="{ row }" name="element">
+    <template v-if="row[RKey] === 1">
+      <RText type="primary">He</RText>
+    </template>
+    <template v-else>{{ row.element }}</template>
+  </RTableColumn>
 </RTable>
 
 ## Usage

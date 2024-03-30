@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSpace, RTable, RTabs, RText } from 'roughness'
+import { RDetails, RSpace, RTable, RTabItem, RTabs, RText } from 'roughness'
 </script>
 
 # Tabs
@@ -15,24 +15,24 @@ My brain has too many tabs open.
 
 ```vue
 <script lang="ts" setup>
-import { RTabs } from 'roughness'
+import { RTabItem, RTabs } from 'roughness'
 </script>
 
 <template>
-  <RTabs :tabs="['amazon', 'apple', 'meta']">
-    <template #content:amazon>The Amazon River in South America is the largest river by discharge volume of water in the world.</template>
-    <template #content:apple>An apple is a round, edible fruit produced by an apple tree.</template>
-    <template #content:meta>Meta is a prefix meaning "more comprehensive" or "transcending".</template>
+  <RTabs>
+    <RTabItem value="amazon">The Amazon River in South America is the largest river by discharge volume of water in the world.</RTabItem>
+    <RTabItem value="apple">An apple is a round, edible fruit produced by an apple tree.</RTabItem>
+    <RTabItem value="meta">Meta is a prefix meaning "more comprehensive" or "transcending".</RTabItem>
   </RTabs>
 </template>
 ```
 
 </RDetails>
 
-<RTabs :tabs="['amazon', 'apple', 'meta']">
-  <template #content:amazon>The Amazon River in South America is the largest river by discharge volume of water in the world.</template>
-  <template #content:apple>An apple is a round, edible fruit produced by an apple tree.</template>
-  <template #content:meta>Meta is a prefix meaning "more comprehensive" or "transcending".</template>
+<RTabs>
+  <RTabItem value="amazon">The Amazon River in South America is the largest river by discharge volume of water in the world.</RTabItem>
+  <RTabItem value="apple">An apple is a round, edible fruit produced by an apple tree.</RTabItem>
+  <RTabItem value="meta">Meta is a prefix meaning "more comprehensive" or "transcending".</RTabItem>
 </RTabs>
 
 ### Anchor Side
@@ -42,17 +42,27 @@ import { RTabs } from 'roughness'
 
 ```vue
 <script lang="ts" setup>
-import { RTabs } from 'roughness'
+import { RTabItem, RTabs } from 'roughness'
 </script>
 
 <template>
-  <RTabs :tabs="['installation', 'usage', 'theme', 'chart']" anchor-side="left" :content="false" />
+  <RTabs anchor-side="left" :content="false">
+    <RTabItem value="installation" />
+    <RTabItem value="usage" />
+    <RTabItem value="theme" />
+    <RTabItem value="chart" />
+  </RTabs>
 </template>
 ```
 
 </RDetails>
 
-<RTabs :tabs="['installation', 'usage', 'theme', 'chart']" anchor-side="left" :content="false" />
+<RTabs anchor-side="left" :content="false">
+  <RTabItem value="installation" />
+  <RTabItem value="usage" />
+  <RTabItem value="theme" />
+  <RTabItem value="chart" />
+</RTabs>
 
 ## Usage
 
@@ -61,7 +71,7 @@ import { RTabs } from 'roughness'
 <RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['anchor-side', 'content', 'graphics-options', 'model-value', 'reactions', 'tabs', '...']"
+  :rows="['anchor-side', 'content', 'graphics-options', 'model-value', 'reactions', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
 
@@ -94,12 +104,12 @@ import { RTabs } from 'roughness'
 
   <template #body:model-value:type>
 
-  `number` if `tabs` is `number`, `string` else.
+  `string | number | undefined`
 
   </template>
   <template #body:model-value:description>
 
-  Currently active tab key.
+  Value of the active tab item in tabs.
 
   </template>
 
@@ -132,22 +142,6 @@ import { RTabs } from 'roughness'
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
-
-  </template>
-
-  <template #body:tabs:type>
-
-  `(string | number | RValue)[] | number`
-
-  </template>
-  <template #body:tabs:default>
-    <RText type="error">Required</RText>.
-  </template>
-  <template #body:tabs:description>
-
-  Tab keys or data.
-
-  See [List Rendering](/guide/specs#list-rendering).
 
   </template>
 
@@ -184,41 +178,63 @@ import { RTabs } from 'roughness'
 <RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['anchor:_tab_', 'anchor:*', 'content:_tab_', 'content:*']"
+  :rows="['default']"
 >
-  <template #body:*:name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
-  <template #body:anchor:_tab_:description>
+  <template #body:default:description>
 
-  Anchor for tab corresponding to `[tab]`. Fallback to `anchor:*`.
+  Content of the tabs. You can render one or more TabItem by yourself.
+
+  </template>
+</RTable>
+</RSpace>
+
+### TabItem Props
+
+<RSpace>
+<RTable
+  :columns="['name', 'type', 'default', 'description']"
+  :rows="['value']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:value:type>
+
+  `string | number | RValue`
+
+  </template>
+  <template #body:value:default>
+    <RText type="error">Required</RText>
+  </template>
+  <template #body:content:description>
+
+  Tab item key or data.
+
+  See [List Rendering](/guide/specs#list-rendering).
+
+  </template>
+</RTable>
+</RSpace>
+
+### TabItem Slots
+
+<RSpace>
+<RTable
+  :columns="['name', 'parameters', 'description']"
+  :rows="['anchor', 'default']"
+>
+  <template #body:*:name="{ row }">{{ row }}</template>
+
+  <template #body:anchor:description>
+
+  Anchor of the tab item.
 
   </template>
 
-  <template #body:anchor:*:parameters>
+  <template #body:default:description>
 
-  `{ tab: string }`
-
-  </template>
-  <template #body:anchor:*:description>
-
-  Anchor for each tab. Defaults to `startCase(keyOf(tab))`.
-
-  </template>
-
-  <template #body:content:_tab_:description>
-
-  Content for tab corresponding to `[tab]`. Fallback to `content:*`.
-
-  </template>
-
-  <template #body:content:*:parameters>
-
-  `{ tab: string }`
-
-  </template>
-  <template #body:content:*:description>
-
-  Content for each tab.
+  Content of the tab item.
 
   </template>
 </RTable>

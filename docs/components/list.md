@@ -15,52 +15,31 @@ I always make a list before I go to the grocery store. Sometimes, I even remembe
 
 ```vue
 <script lang="ts" setup>
-import { RList } from 'roughness'
+import { RList, RListItem } from 'roughness'
 </script>
 
 <template>
-  <RList :items="['dog-food', 'cat-food', 'human-food']">
-    <template #human-food>
+  <RList>
+    <RListItem>Dog Food</RListItem>
+    <RListItem>Cat Food</RListItem>
+    <RListItem>
       <RText type="warning">Human Food</RText>
-    </template>
+    </RListItem>
   </RList>
 </template>
 ```
 
 </RDetails>
 
-<RList :items="['dog-food', 'cat-food', 'human-food']">
-  <template #human-food>
+<RList>
+  <RListItem>Dog Food</RListItem>
+  <RListItem>Cat Food</RListItem>
+  <RListItem>
     <RText type="warning">Human Food</RText>
-  </template>
+  </RListItem>
 </RList>
 
 ### List Style
-
-<RDetails>
-  <template #summary>Show Code</template>
-
-```vue
-<script lang="ts" setup>
-import { RList } from 'roughness'
-</script>
-
-<template>
-  <RList :items="2" list-style="square">
-    <template #1>How are you?</template>
-    <template #2>Fine, thank you.<br>And you?</template>
-  </RList>
-</template>
-```
-
-</RDetails>
-
-<RList :items="2" list-style="square">
-  <template #1>How are you?</template>
-  <template #2>Fine, thank you.<br>And you?</template>
-</RList>
-
-### Custom Items
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -71,19 +50,31 @@ import { RList, RListItem } from 'roughness'
 </script>
 
 <template>
-  <RList list-style="auto">
-    <RListItem>4142135623730951</RListItem>
-    <RListItem>23606797749979</RListItem>
-  </RList>
+  <RSpace vertical>
+    <RList list-style="square">
+      <RListItem>How are you?</RListItem>
+      <RListItem>Fine, thank you.<br>And you?</RListItem>
+    </RList>
+    <RList list-style="auto">
+      <RListItem>4142135623730951</RListItem>
+      <RListItem>23606797749979</RListItem>
+    </RList>
+  </RSpace>
 </template>
 ```
 
 </RDetails>
 
-<RList list-style="auto">
-  <RListItem>4142135623730951</RListItem>
-  <RListItem>23606797749979</RListItem>
-</RList>
+<RSpace vertical>
+  <RList list-style="square">
+    <RListItem>How are you?</RListItem>
+    <RListItem>Fine, thank you.<br>And you?</RListItem>
+  </RList>
+  <RList list-style="auto">
+    <RListItem>4142135623730951</RListItem>
+    <RListItem>23606797749979</RListItem>
+  </RList>
+</RSpace>
 
 ## Usage
 
@@ -92,29 +83,9 @@ import { RList, RListItem } from 'roughness'
 <RSpace>
 <RTable
   :columns="['name', 'type', 'default', 'description']"
-  :rows="['items', 'list-style', '...']"
+  :rows="['list-style', '...']"
 >
   <template #body:*:name="{ row }">{{ row }}</template>
-
-  <template #body:items:type>
-
-  `(string | number | RValue)[] | number`
-
-  </template>
-  <template #body:items:default>
-
-  <RText type="error">Required</RText>.
-
-  Or use [Custom Items](#custom-items).
-
-  </template>
-  <template #body:items:description>
-
-  Item keys or data.
-
-  See [List Rendering](/guide/specs#list-rendering).
-
-  </template>
 
   <template #body:list-style:type>
 
@@ -136,7 +107,7 @@ import { RList, RListItem } from 'roughness'
 
   <template #body:...:description>
 
-  See [ListItem Props](#listitem-props) and [Space Props](/components/space#props).
+  See [Space Props](/components/space#props).
 
   Unlike Space, the default value of List's `tag` is `ul` or `ol`.
 
@@ -149,30 +120,13 @@ import { RList, RListItem } from 'roughness'
 <RSpace>
 <RTable
   :columns="['name', 'parameters', 'description']"
-  :rows="['_item_', '_*_', 'default']"
+  :rows="['default']"
 >
-  <template #body:*:name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]').replace(/_\*_/g, '*') }}</template>
-
-  <template #body:_item_:description>
-
-  Content of the list item corresponding to `[item]`. Fallback to `*`.
-
-  </template>
-
-  <template #body:_*_:parameters>
-
-  `{ item: string }`
-
-  </template>
-  <template #body:_*_:description>
-
-  Content of each list item. Defaults to `startCase(keyOf(item))`.
-
-  </template>
+  <template #body:*:name="{ row }">{{ row }}</template>
 
   <template #body:default:description>
 
-  Content of the list. This will override all list item slots, you can render one or more ListItem by yourself.
+  Content of the list. You can render one or more ListItem by yourself.
 
   </template>
 </RTable>

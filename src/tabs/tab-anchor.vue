@@ -1,6 +1,8 @@
-<script lang="ts" setup generic="T">
+<script lang="ts" setup>
 import '../common/style.scss'
+import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { RValueOrKey } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
@@ -14,7 +16,7 @@ defineOptions({
 const {
   active = false,
   side = 'top',
-  tab,
+  value,
   reactions = (() => ['hover', 'focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
@@ -29,18 +31,26 @@ const {
    */
   side?: 'top' | 'bottom' | 'left' | 'right',
   /**
-   * Tab key or data
+   * Tab item value
    * @private
    */
-  tab: T,
+  value: RValueOrKey,
 } & GraphicsProps>()
 
 const emit = defineEmits<{
-  (event: 'activate', tab: T): void,
+  (event: 'activate', value: RValueOrKey): void,
 }>()
 
+defineSlots<{
+  default?: (props: {}) => any,
+}>()
+
+const content = $computed(() => {
+  return startCase(String(value))
+})
+
 function activate() {
-  emit('activate', tab)
+  emit('activate', value)
 }
 
 const getReactionState = useReactionState(() => reactions)
@@ -50,7 +60,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-tab-anchor-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-tab-anchor-border-dash')
-    ?.map(value => value ?? 0) ?? undefined
+    ?.map(item => item ?? 0) ?? undefined
   const padding = 2
   let startX: number
   let startY: number
@@ -106,7 +116,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <button type="button" class="r-tab-anchor__button" @click="activate">
-      <slot></slot>
+      <slot>{{ content }}</slot>
     </button>
   </li>
 </template>

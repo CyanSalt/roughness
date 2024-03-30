@@ -1,12 +1,12 @@
 import type { InjectionKey } from 'vue'
 import { inject } from 'vue'
-import type { ComponentProps, ComponentRenderable, ComponentRenderFunctions } from '../common/renderable'
+import type { ComponentProps, ComponentRenderable, ComponentSlots } from '../common/renderable'
 import { getComponentRenderFunctions } from '../common/renderable'
 import type RToast from './index.vue'
 
 export interface ToastItem {
   id: string,
-  slots: ComponentRenderFunctions<typeof RToast>,
+  slots: ComponentSlots<typeof RToast>,
   props?: ComponentProps<typeof RToast>,
 }
 

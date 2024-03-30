@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RKey, RList } from 'roughness'
+import { keyOf, RDetails, RKey, RTabItem, RTabs } from 'roughness'
 
 const data = [{ [RKey]: 'darwin', name: 'macOS' }, { [RKey]: 'win32', name: 'Windows' }]
 </script>
@@ -10,34 +10,9 @@ Most components of Roughness follow similar specifications. Understanding these 
 
 ## List Rendering
 
-For list rendering components (including `RList`, `RTable` and `RTabs`), the list prop used to control the rendered items can be in any of the following three forms:
+For list item components (including `RTableColumn` and `RTabItem`), the value of the unique key prop for each rendered item can be in any of the following forms:
 
-- `number`, which represents the number of items to render.
-     - In this case, slots will accept the ordinal numbers starting from `1`. See [`v-for` with a Range](https://vuejs.org/guide/essentials/list.html#v-for-with-a-range).
-
-    <RDetails>
-      <template #summary>Show Code</template>
-
-    ```vue
-    <script lang="ts" setup>
-    import { RList } from 'roughness'
-    </script>
-
-    <template>
-      <RList :items="2">
-        <template #*="{ item }">{{ item * 2 }}</template>
-      </RList>
-    </template>
-    ```
-
-    </RDetails>
-
-    <RList :items="2">
-      <template #*="{ item }">{{ item * 2 }}</template>
-    </RList>
-
-- `(string | number)[]`, where each item is the key of the rendered item. This means that keeping keys consistent can lead to better performance in list sorting, deletion, etc.
-     - In this case, slots will accept the keys of type `string | number`.
+- `string | number`, which is the key of the rendered item. This means that keeping keys consistent can lead to better performance in list sorting, deletion, etc.
      - Recommended to use all lowercase letters and hyphens and underscores as keys.
 
     <RDetails>
@@ -45,77 +20,53 @@ For list rendering components (including `RList`, `RTable` and `RTabs`), the lis
 
     ```vue
     <script lang="ts" setup>
-    import { RList } from 'roughness'
+    import { RTabItem, RTabs } from 'roughness'
     </script>
 
     <template>
-      <RList :items="['alice', 'bob']">
-        <template #*="{ item }">{{ item.toUpperCase() }}</template>
-      </RList>
+      <RTabs :content="false">
+        <RTabItem value="alice" />
+        <RTabItem value="bob" />
+      </RTabs>
     </template>
     ```
 
     </RDetails>
 
-    <RList :items="['alice', 'bob']">
-      <template #*="{ item }">{{ item.toUpperCase() }}</template>
-    </RList>
+    <RTabs :content="false">
+      <RTabItem value="alice" />
+      <RTabItem value="bob" />
+    </RTabs>
 
-- `RValue[]`. `RValue` refers to objects that implement `{ [import('roughness').RKey]: string | number }`, where the property value of `RKey` is the key of the rendered item. This allows you to map data directly to a list and pass it to the component.
-     - In this case, slots will accept the values of type `RValue`.
+- `RValue`. which refers to an object that implement `{ [import('roughness').RKey]: string | number }`, where the property value of `RKey` is the unique key of the rendered item. This allows you to map data directly to a list and pass it to the component.
+    - You can use the utility function `keyOf` to map an `RValue` to key that can be used for list rendering.
 
     <RDetails>
       <template #summary>Show Code</template>
 
     ```vue
     <script lang="ts" setup>
-    import { RKey, RList } from 'roughness'
+    import { keyOf, RKey, RTabItem, RTabs } from 'roughness'
 
     const data = [{ [RKey]: 'darwin', name: 'macOS' }, { [RKey]: 'win32', name: 'Windows' }]
     </script>
 
     <template>
-      <RList :items="data">
-        <template #*="{ item }">{{ item.name }}</template>
-      </RList>
+      <RTabs :content="false">
+        <RTabItem v-for="item in data" :key="keyOf(item)" :value="item">
+          <template #anchor>{{ item.name }}</template>
+        </RTabItem>
+      </RTabs>
     </template>
     ```
 
     </RDetails>
 
-    <RList :items="data">
-      <template #*="{ item }">{{ item.name }}</template>
-    </RList>
-
-## Slot Matching
-
-For list rendering components (including `RList`, `RTable` and `RTabs`), slots can either be defined individually using keys (from list items, ordinal numbers, or the `RKey` properties), or using the wildcard `*`.
-
-Taking `RList` as an example, the following codes are equivalent:
-
-```vue
-<template>
-  <RList :items="['elephant', 'hippo']">
-    <template #elephant>Tina</template>
-    <template #hippo>Tony</template>
-  </RList>
-</template>
-```
-
-```vue
-<template>
-  <RList :items="['elephant', 'hippo']">
-    <template #*="{ item }">
-      <template v-if="item === 'elephant'">Tina</template>
-      <template v-else-if="item === 'hippo'">Tony</template>
-    </template>
-  </RList>
-</template>
-```
-
-For complex components like `RTable`, where there may be multiple matches, slots are always **back-to-forward** matched, meaning slots will be preceded by `body:alice:nickname` over ` body:*:nickname` over `body:alice:*` over `body:*:*`.
-
-In different situations, the two methods may have their own advantages and disadvantages, and you can choose according to your own needs. More often, you can use them in combination to achieve the effect of custom + default rendering method.
+    <RTabs :content="false">
+      <RTabItem v-for="item in data" :key="keyOf(item)" :value="item">
+        <template #anchor>{{ item.name }}</template>
+      </RTabItem>
+    </RTabs>
 
 ## Controlled and Uncontrolled Components
 

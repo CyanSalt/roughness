@@ -37,6 +37,6 @@ export function getComponentRenderFunctions<T>(renderable: ComponentRenderable<T
       Object.entries<ComponentRenderableSlot>(renderable).map(
         ([name, slot]) => [name, getComponentRenderFunction(slot)],
       ),
-    ) as ComponentRenderFunctions<T>
-    : { default: getComponentRenderFunction(renderable) } as ComponentRenderFunctions<T>
+    ) as ComponentSlots<T>
+    : { default: getComponentRenderFunction(renderable) } as ComponentSlots<T>
 }
