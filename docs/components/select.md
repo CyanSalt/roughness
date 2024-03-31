@@ -78,8 +78,8 @@ import { RCheckbox, RSpace, RSelect } from 'roughness'
 
 <template>
   <RSpace>
-    <RSelect :model-value="['basic']" multiple disabled>
-      <RCheckbox value="basic" label="Basic User Info" />
+    <RSelect :model-value="[1]" multiple disabled>
+      <RCheckbox :value="1" label="Basic User Info" />
     </RSelect>
     <RSelect loading placeholder="Arsenal" />
   </RSpace>
@@ -89,8 +89,8 @@ import { RCheckbox, RSpace, RSelect } from 'roughness'
 </RDetails>
 
 <RSpace>
-  <RSelect :model-value="['basic']" multiple disabled>
-    <RCheckbox value="basic" label="Basic User Info" />
+  <RSelect :model-value="[1]" multiple disabled>
+    <RCheckbox :value="1" label="Basic User Info" />
   </RSelect>
   <RSelect loading placeholder="Arsenal" />
 </RSpace>
@@ -189,7 +189,7 @@ See [Checkbox Tree](/components/checkbox#tree).
     <RText type="error">Required</RText>
   </template>
   <template #body:model-value:description>
-    Value(s) of the selected item(s).
+    Key(s) or data of the selected item(s).
   </template>
 
   <template #body:multiple:type>

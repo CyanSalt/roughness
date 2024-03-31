@@ -3,6 +3,7 @@ import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { RValueOrKey } from '../common/key'
+import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
@@ -46,7 +47,7 @@ defineSlots<{
 }>()
 
 const content = $computed(() => {
-  return startCase(String(value))
+  return startCase(keyOf(value))
 })
 
 function activate() {

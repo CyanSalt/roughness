@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { provide } from 'vue'
+import type { RValueOrKey } from '../common/key'
 import RSpace from '../space/index.vue'
-import type { CheckboxValue } from './utils'
 import { disabledInjection, modelInjection, multipleInjection } from './utils'
 
 defineOptions({
@@ -16,8 +16,8 @@ const {
 } = defineProps<{
   /** Whether to disable all checking items */
   disabled?: boolean,
-  /** Value(s) of the checked item(s) of the group */
-  modelValue: CheckboxValue[] | CheckboxValue | undefined,
+  /** Key(s) or data of the checked item(s) of the group */
+  modelValue: RValueOrKey[] | RValueOrKey | undefined,
   /** Whether to support checking multiple items */
   multiple?: boolean,
 }>()

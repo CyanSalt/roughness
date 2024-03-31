@@ -6,8 +6,9 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import type { SelectHTMLAttributes } from 'vue'
 import { inject, provide, reactive, ref } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
-import type { CheckboxValue } from '../checkbox/utils'
 import { labelsInjection } from '../checkbox/utils'
+import type { RValueOrKey } from '../common/key'
+import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import { effectRef, sentenceCase } from '../common/utils'
@@ -40,8 +41,8 @@ const {
    * It will be non-interactive in loading state
    */
   loading?: boolean,
-  /** Value(s) of the selected item(s) */
-  modelValue?: CheckboxValue[] | CheckboxValue | undefined,
+  /** Key(s) or data of the selected item(s) */
+  modelValue?: RValueOrKey[] | RValueOrKey | undefined,
   /** Whether to support selecting multiple items */
   multiple?: boolean,
   name?: SelectHTMLAttributes['name'],
@@ -81,12 +82,17 @@ let internalModelValue = $(effectRef({
   },
 }))
 
-const labels = reactive(new Map<CheckboxValue, string>())
+const labels = reactive(new Map<string, string>())
+
+function labelOf(value: RValueOrKey) {
+  const key = keyOf(value)
+  return labels.get(key) ?? key
+}
 
 const displayText = $computed(() => {
   const text = Array.isArray(internalModelValue)
-    ? internalModelValue.map(value => labels.get(value) ?? value)
-    : (internalModelValue !== undefined ? labels.get(internalModelValue) ?? internalModelValue : internalModelValue)
+    ? internalModelValue.map(value => labelOf(value))
+    : (internalModelValue !== undefined ? labelOf(internalModelValue) : internalModelValue)
   return Array.isArray(text) ? text.join(', ') : text
 })
 

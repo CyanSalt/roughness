@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { keyOf, RDetails, RKey, RTabItem, RTabs } from 'roughness'
+import { keyOf, RCard, RDetails, RKey, RTabItem, RTabs } from 'roughness'
 
 const data = [{ [RKey]: 'darwin', name: 'macOS' }, { [RKey]: 'win32', name: 'Windows' }]
 </script>
@@ -10,7 +10,7 @@ Most components of Roughness follow similar specifications. Understanding these 
 
 ## List Rendering
 
-For list item components (including `RTableColumn` and `RTabItem`), the value of the unique key prop for each rendered item can be in any of the following forms:
+For list item components (including `RCheckbox`, `RTabItem` and `RTableColumn`), the value of the unique key prop for each rendered item can be in any of the following forms:
 
 - `string | number`, which is the key of the rendered item. This means that keeping keys consistent can lead to better performance in list sorting, deletion, etc.
      - Recommended to use all lowercase letters and hyphens and underscores as keys.
@@ -67,6 +67,12 @@ For list item components (including `RTableColumn` and `RTabItem`), the value of
         <template #anchor>{{ item.name }}</template>
       </RTabItem>
     </RTabs>
+
+<RCard type="warning">
+
+In order to cope with various situations, the order of list rendering is based on the mounting order of list items. Therefore, if you need to display list items according to conditions, it is recommended to use `v-show` instead of `v-if`.
+
+</RCard>
 
 ## Controlled and Uncontrolled Components
 

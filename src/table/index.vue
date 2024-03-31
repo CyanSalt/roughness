@@ -4,16 +4,16 @@ import { useResizeObserver } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { onMounted, provide, reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
+import { useList } from '../common/list'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RTableCell from './table-cell.vue'
 import RTableHeaderCell from './table-header-cell.vue'
-import type { TableColumnData } from './utils'
 import { columnsInjection } from './utils'
 
 defineOptions({
@@ -48,9 +48,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const columns = $ref<TableColumnData[]>([])
-
-provide(columnsInjection, $$(columns))
+const columns = useList(columnsInjection)
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()

@@ -4,6 +4,8 @@ import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, watchEffect } from 'vue'
+import type { RValueOrKey } from '../common/key'
+import { keyOf } from '../common/key'
 import { getLengthProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import { effectRef } from '../common/utils'
@@ -11,7 +13,6 @@ import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
-import type { CheckboxValue } from './utils'
 import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
 
 defineOptions({
@@ -37,8 +38,11 @@ const {
   indeterminate?: boolean,
   /** Item label when checked and displayed */
   label?: string,
-  /** Item value when checked in the CheckboxGroup */
-  value?: CheckboxValue,
+  /**
+   * Item key or data when checked in the CheckboxGroup
+   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   */
+  value?: RValueOrKey,
 } & GraphicsProps>()
 
 const emit = defineEmits<{
@@ -52,17 +56,18 @@ defineSlots<{
 const multiple = $(inject(multipleInjection, ref()))
 let model = $(inject(modelInjection, ref()))
 const disabledByGroup = $(inject(disabledInjection, ref()))
-const labels = inject(labelsInjection, new Map<CheckboxValue, string>())
+const labels = inject(labelsInjection, new Map<RValueOrKey, string>())
 
 const label = $computed(() => {
-  return userLabel ?? (typeof value === 'string' ? startCase(value) : undefined)
+  return userLabel ?? (typeof value === 'undefined' ? value : startCase(keyOf(value)))
 })
 
 watchEffect(onInvalidate => {
   if (value !== undefined && label !== undefined) {
-    labels.set(value, label)
+    const key = keyOf(value)
+    labels.set(key, label)
     onInvalidate(() => {
-      labels.delete(value)
+      labels.delete(key)
     })
   }
 })

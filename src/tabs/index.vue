@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { provide, reactive, watchEffect } from 'vue'
+import { reactive, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
+import { useList } from '../common/list'
 import { effectRef } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
-import type { TabItemData } from './utils'
 import { itemsInjection } from './utils'
 
 defineOptions({
@@ -43,9 +43,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const items = $ref<TabItemData[]>([])
-
-provide(itemsInjection, $$(items))
+const items = useList(itemsInjection)
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,

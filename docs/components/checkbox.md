@@ -259,7 +259,7 @@ const treeValue = ref<string | undefined>()
   </template>
   <template #body:label:default>
 
-  `startCase(value)` if `value` is `string`
+  `startCase(keyOf(value))` if value exists.
 
   </template>
   <template #body:label:description>
@@ -306,7 +306,11 @@ const treeValue = ref<string | undefined>()
 
   </template>
   <template #body:value:description>
-    Item value when checked in the CheckboxGroup.
+
+  Item key or data when checked in the CheckboxGroup.
+
+  See [List Rendering](/guide/specs#list-rendering).
+
   </template>
 
   <template #body:...:description>
@@ -474,7 +478,7 @@ const treeValue = ref<string | undefined>()
     <RText type="error">Required</RText>
   </template>
   <template #body:model-value:description>
-    Value(s) of the checked item(s) of the group.
+    Key(s) or data of the checked item(s) of the group.
   </template>
 
   <template #body:multiple:type>

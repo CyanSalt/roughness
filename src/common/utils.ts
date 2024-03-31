@@ -13,7 +13,7 @@ export interface SizeProps {
 }
 
 export function sentenceCase(text: string) {
-  return startCase(text).toLowerCase().replace(/\w/, matched => matched.toUpperCase())
+  return startCase(text).toLowerCase().replace(/^\w/, matched => matched.toUpperCase())
 }
 
 export function effectRef<T>(getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>) {
