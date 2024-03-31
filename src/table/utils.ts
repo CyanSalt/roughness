@@ -2,7 +2,7 @@ import type { InjectionKey } from 'vue'
 import type { ComponentSlots } from '../common/renderable'
 import type RTableColumn from './table-column.vue'
 
-export interface TableColumnData {
+interface TableColumnData {
   name: string,
   slots: ComponentSlots<typeof RTableColumn>,
 }

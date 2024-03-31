@@ -56,14 +56,14 @@ defineSlots<{
 const multiple = $(inject(multipleInjection, ref()))
 let model = $(inject(modelInjection, ref()))
 const disabledByGroup = $(inject(disabledInjection, ref()))
-const labels = inject(labelsInjection, new Map<RValueOrKey, string>())
+const labels = inject(labelsInjection, undefined)
 
 const label = $computed(() => {
   return userLabel ?? (typeof value === 'undefined' ? value : startCase(keyOf(value)))
 })
 
 watchEffect(onInvalidate => {
-  if (value !== undefined && label !== undefined) {
+  if (labels && value !== undefined && label !== undefined) {
     const key = keyOf(value)
     labels.set(key, label)
     onInvalidate(() => {

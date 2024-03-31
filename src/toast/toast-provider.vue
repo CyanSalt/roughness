@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { provide, reactive } from 'vue'
 import RToast from './index.vue'
-import type { ToastItem } from './utils'
+import type { ToastItemData } from './utils'
 import { itemsInjection } from './utils'
 
 defineOptions({
@@ -13,9 +13,9 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const items = reactive<ToastItem[]>([])
+const items = reactive<ToastItemData[]>([])
 
-function toggle(open: boolean, id: ToastItem['id']) {
+function toggle(open: boolean, id: ToastItemData['id']) {
   if (!open) {
     const index = items.findIndex(item => item.id === id)
     if (index !== -1) {

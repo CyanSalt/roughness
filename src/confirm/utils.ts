@@ -6,24 +6,25 @@ import type RConfirm from './index.vue'
 
 type ResolveFunction = (value: boolean | PromiseLike<boolean>) => void
 
-export interface ConfirmItem {
+export interface ConfirmItemData {
   id: string,
   props?: ComponentProps<typeof RConfirm>,
   slots: ComponentSlots<typeof RConfirm>,
   resolve: ResolveFunction,
 }
 
-export const itemsInjection: InjectionKey<ConfirmItem[]> = Symbol('RConfirmProvider#items')
+export const itemsInjection: InjectionKey<ConfirmItemData[]> = Symbol('RConfirmProvider#items')
 
 let base = 0n
 const generateId = () => String(++base)
 
 export function useConfirm() {
-  const items = inject(itemsInjection, [])
+  const items = inject(itemsInjection, undefined)
   return function (
     renderable: ComponentRenderable<typeof RConfirm>,
-    props?: ConfirmItem['props'],
+    props?: ConfirmItemData['props'],
   ) {
+    if (!items) return
     let resolve: (value: boolean | PromiseLike<boolean>) => void
     const promise = new Promise<boolean>(resolvePromise => {
       resolve = resolvePromise

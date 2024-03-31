@@ -74,6 +74,8 @@ In order to cope with various situations, the order of list rendering is based o
 
 </RCard>
 
+You can also use a similar mechanism in custom components using `useList` and `useListItem`.
+
 ## Controlled and Uncontrolled Components
 
 In Roughness, all components that support `v-model` also support not binding the properties and events, which means:

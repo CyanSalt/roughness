@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { provide, reactive } from 'vue'
 import RConfirm from './index.vue'
-import type { ConfirmItem } from './utils'
+import type { ConfirmItemData } from './utils'
 import { itemsInjection } from './utils'
 
 defineOptions({
@@ -13,9 +13,9 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const items = reactive<ConfirmItem[]>([])
+const items = reactive<ConfirmItemData[]>([])
 
-function resolve(id: ConfirmItem['id'], value: boolean) {
+function resolve(id: ConfirmItemData['id'], value: boolean) {
   const index = items.findIndex(item => item.id === id)
   if (index !== -1) {
     const item = items[index]

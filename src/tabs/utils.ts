@@ -3,7 +3,7 @@ import type { RValueOrKey } from '../common/key'
 import type { ComponentSlots } from '../common/renderable'
 import type RTabItem from './tab-item.vue'
 
-export interface TabItemData {
+interface TabItemData {
   value: RValueOrKey,
   slots: ComponentSlots<typeof RTabItem>,
 }
