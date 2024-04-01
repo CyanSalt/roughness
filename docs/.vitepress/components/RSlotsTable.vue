@@ -9,6 +9,8 @@ defineOptions({
 
 defineSlots<{
   name?: (props: {}) => any,
+  parameters?: (props: {}) => any,
+  description?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
 
@@ -29,12 +31,14 @@ const slots = useList(slotsInjection)
         :is="(row as SlotData).slots.parameters"
         v-if="(row as SlotData).slots.parameters"
       ></component>
+      <slot v-else name="parameters"></slot>
     </RTableColumn>
     <RTableColumn v-slot="{ row }" name="description">
       <component
         :is="(row as SlotData).slots.default"
         v-if="(row as SlotData).slots.default"
       ></component>
+      <slot v-else name="description"></slot>
     </RTableColumn>
     <slot></slot>
   </RTable>

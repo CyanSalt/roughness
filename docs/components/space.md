@@ -146,162 +146,180 @@ import { RSpace, RText } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'justify', 'inline', 'reverse', 'size', 'tag', 'vertical', 'wrap']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:align:type>
+  <RProp name="align">
+
+  <template #type>
 
   `'start' | 'end' | 'center' | 'baseline' | 'stretch'`
 
   </template>
-  <template #body:align:default>
+
+  <template #default-value>
 
   `stretch` if `vertical`, `'start'` else
 
   </template>
-  <template #body:align:description>
 
   [Item axis arrangement](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items).
 
-  </template>
+  </RProp>
 
-  <template #body:justify:type>
+  <RProp name="justify">
+
+  <template #type>
 
   `'start' | 'end' | 'center' | 'space-around' | 'space-between' | 'space-evenly'`
 
   </template>
-  <template #body:justify:default>
+
+  <template #default-value>
 
   `'start'`
 
   </template>
-  <template #body:justify:description>
 
   [Item arrangement](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content).
 
-  </template>
+  </RProp>
 
-  <template #body:inline:type>
+  <RProp name="inline">
 
-  `boolean`
-
-  </template>
-  <template #body:inline:default>
-
-  `false`
-
-  </template>
-  <template #body:inline:description>
-    Whether the space is displayed as an inline box.
-  </template>
-
-  <template #body:reverse:type>
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:reverse:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:reverse:description>
-    Whether to reverse the layout.
+
+  Whether the space is displayed as an inline box.
+
+  </RProp>
+
+  <RProp name="reverse">
+
+  <template #type>
+
+  `boolean`
+
   </template>
 
-  <template #body:size:type>
+  <template #default-value>
+
+  `false`
+
+  </template>
+
+  Whether to reverse the layout.
+
+  </RProp>
+
+  <RProp name="size">
+
+  <template #type>
 
   `string`, but usually `'small' | 'large'`
 
   </template>
-  <template #body:size:description>
-    Space size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-  </template>
 
-  <template #body:tag:type>
+  Space size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  </RProp>
+
+  <RProp name="tag">
+
+  <template #type>
 
   `string`
 
   </template>
-  <template #body:tag:default>
+
+  <template #default-value>
 
   `'div'`
 
   </template>
-  <template #body:tag:description>
-    HTML tag for rendering the space.
-  </template>
 
-  <template #body:vertical:type>
+  HTML tag for rendering the space.
+
+  </RProp>
+
+  <RProp name="vertical">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:vertical:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:vertical:description>
-    Whether to layout vertically.
-  </template>
 
-  <template #body:wrap:type>
+  Whether to layout vertically.
+
+  </RProp>
+
+  <RProp name="wrap">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:wrap:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:wrap:description>
-    Whether to exceed the line break.
-  </template>
-</RTable>
-</RSpace>
+
+  Whether to exceed the line break.
+
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the space.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['gap-size']"
->
-  <template #body:*:name="{ row }">--r-space-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:gap-size:values>
+  <template #name="{ value }">--r-space-{{ value }}</template>
+
+  <RStyle name="gap-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size:default>
+
+  <template #default-value>
 
   `calc(1em - 4px)`
 
   </template>
-  <template #body:gap-size:description>
-    Size of the space gap.
-  </template>
-</RTable>
-</RSpace>
+
+  Size of the space gap.
+
+  </RStyle>
+
+</RStylesTable>

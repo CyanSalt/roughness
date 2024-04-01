@@ -132,183 +132,196 @@ See [Checkbox Tree](/components/checkbox#tree).
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['clearable', 'graphics-options', 'loading', 'model-value', 'multiple', 'reactions']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:clearable:type>
+  <RProp name="clearable">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:clearable:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:clearable:description>
-    Whether the select is clearable.
-  </template>
 
-  <template #body:graphics-options:type>
+  Whether the select is clearable.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:loading:type>
+  <RProp name="loading">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:loading:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:loading:description>
-    Whether the select is loading. It will be non-interactive in loading state.
-  </template>
 
-  <template #body:model-value:type>
+  Whether the select is loading. It will be non-interactive in loading state.
+
+  </RProp>
+
+  <RProp name="model-value">
+
+  <template #type>
 
   `string | number | undefined` or `(string | number)[]`
 
   </template>
-  <template #body:model-value:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:model-value:description>
-    Key(s) or data of the selected item(s).
-  </template>
 
-  <template #body:multiple:type>
+  <template #default-value>
+    </template>
+
+  Key(s) or data of the selected item(s).
+
+  </RProp>
+
+  <RProp name="multiple">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:multiple:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:multiple:description>
-    Whether to support selecting multiple items.
-  </template>
 
-  <template #body:reactions:type>
+  Whether to support selecting multiple items.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when the selected item is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when the selected item is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the select dropdown.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'border-dash', 'dropdown-border-width', 'dropdown-border-dash', 'dropdown-padding-block', 'dropdown-padding-inline']"
->
-  <template #body:*:name="{ row }">--r-select-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:border-color:values>
+  <template #name="{ value }">--r-select-{{ value }}</template>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the select control border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the select control border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the select control border.
-  </template>
 
-  <template #body:border-dash:values>
+  Width of the select control border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash:default>
+
+  <template #default-value>
 
   `none`
 
   </template>
-  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the select border.
 
@@ -316,62 +329,78 @@ See [Checkbox Tree](/components/checkbox#tree).
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
+  </RStyle>
 
-  <template #body:dropdown-border-width:values>
+  <RStyle name="dropdown-border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:dropdown-border-width:default>
+
+  <template #default-value>
 
   `1px`
 
   </template>
-  <template #body:dropdown-border-width:description>
-    Width of the select dropdown border.
-  </template>
 
-  <template #body:dropdown-border-dash:values>
+  Width of the select dropdown border.
+
+  </RStyle>
+
+  <RStyle name="dropdown-border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:dropdown-border-dash:default>
+
+  <template #default-value>
 
   `none`
 
   </template>
-  <template #body:dropdown-border-dash:description>
-    List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the select dropdown border.
-  </template>
 
-  <template #body:dropdown-padding-block:values>
+  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the select dropdown border.
 
-  1-2 `<length>` or `<percentage>`
+  </RStyle>
 
-  </template>
-  <template #body:dropdown-padding-block:default>
+  <RStyle name="dropdown-padding-block">
 
-  `12px`
-
-  </template>
-  <template #body:dropdown-padding-block:description>
-    Vertical padding of the select dropdown.
-  </template>
-
-  <template #body:dropdown-padding-inline:values>
+  <template #values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:dropdown-padding-inline:default>
+
+  <template #default-value>
 
   `12px`
 
   </template>
-  <template #body:dropdown-padding-inline:description>
-    Horizontal padding of the select dropdown.
+
+  Vertical padding of the select dropdown.
+
+  </RStyle>
+
+  <RStyle name="dropdown-padding-inline">
+
+  <template #values>
+
+  1-2 `<length>` or `<percentage>`
+
   </template>
-</RTable>
-</RSpace>
+
+  <template #default-value>
+
+  `12px`
+
+  </template>
+
+  Horizontal padding of the select dropdown.
+
+  </RStyle>
+
+</RStylesTable>

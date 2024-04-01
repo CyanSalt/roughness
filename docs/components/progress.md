@@ -94,198 +94,230 @@ watch(value, n => {
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'min', 'max', 'value', 'reactions', 'size', 'type']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:max:type>
+  <RProp name="max">
+
+  <template #type>
 
   `<number>`
 
   </template>
-  <template #body:max:default>
+
+  <template #default-value>
 
   `1`
 
   </template>
-  <template #body:max:description>
-    Upper numeric bound of the range.
-  </template>
 
-  <template #body:min:type>
+  Upper numeric bound of the range.
+
+  </RProp>
+
+  <RProp name="min">
+
+  <template #type>
 
   `<number>`
 
   </template>
-  <template #body:min:default>
+
+  <template #default-value>
 
   `0`
 
   </template>
-  <template #body:min:description>
-    Lower numeric bound of the range.
-  </template>
 
-  <template #body:value:type>
+  Lower numeric bound of the range.
+
+  </RProp>
+
+  <RProp name="value">
+
+  <template #type>
 
   `<number>`
 
   </template>
-  <template #body:value:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:value:description>
-    Current numeric progress value.
-  </template>
 
-  <template #body:reactions:type>
+  <template #default-value>
+    </template>
+
+  Current numeric progress value.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:size:type>
+  <RProp name="size">
+
+  <template #type>
 
   `string`, but usually `'small' | 'large'`
 
   </template>
-  <template #body:size:description>
-    Progress size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-  </template>
 
-  <template #body:type:type>
+  Progress size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  </RProp>
+
+  <RProp name="type">
+
+  <template #type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
-  <template #body:type:description>
 
   Progress style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
   See also [Color Styles](/guide/theme#color-styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'block-size', 'inline-size', 'border-color', 'border-width', 'border-dash']"
->
-  <template #body:*:name="{ row }">--r-progress-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-progress-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-element-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
-  <template #body:color:description>
-    Color of the progress bar and its content.
-  </template>
 
-  <template #body:block-size:values>
+  Color of the progress bar and its content.
+
+  </RStyle>
+
+  <RStyle name="block-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:block-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:block-size:description>
-    Height of the progress bar.
-  </template>
 
-  <template #body:inline-size:values>
+  Height of the progress bar.
+
+  </RStyle>
+
+  <RStyle name="inline-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:inline-size:default>
+
+  <template #default-value>
 
   `calc(var(--r-common-line-height) * 10)`
 
   </template>
-  <template #body:inline-size:description>
-    Width of the progress bar.
-  </template>
 
-  <template #body:border-color:values>
+  Width of the progress bar.
+
+  </RStyle>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-button-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the progress bar border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the progress bar border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `1px`
 
   </template>
-  <template #body:border-width:description>
-    Width of the progress bar border.
-  </template>
 
-  <template #body:border-dash:values>
+  Width of the progress bar border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash:default>
+
+  <template #default-value>
 
   `none`
 
   </template>
-  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the progress bar border.
 
@@ -293,6 +325,6 @@ watch(value, n => {
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

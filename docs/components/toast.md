@@ -94,194 +94,203 @@ function add() {
 
 ### Toast Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['duration', 'graphics-options', 'open', 'reactions', 'size', 'type']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:duration:type>
+  <RProp name="duration">
+
+  <template #type>
 
   `number`
 
   </template>
-  <template #body:duration:default>
+
+  <template #default-value>
 
   `3000`
 
   </template>
-  <template #body:duration:description>
-    Duration of each toast display.
-  </template>
 
-  <template #body:graphics-options:type>
+  Duration of each toast display.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:open:type>
+  <RProp name="open">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:open:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:open:description>
-    Whether to display the toast.
-  </template>
 
-  <template #body:reactions:type>
+  Whether to display the toast.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:size:type>
+  <RProp name="size">
+
+  <template #type>
 
   `string`, but usually `'small' | 'large'`
 
   </template>
-  <template #body:size:description>
-    Toast size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-  </template>
 
-  <template #body:type:type>
+  Toast size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  </RProp>
+
+  <RProp name="type">
+
+  <template #type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
-  <template #body:type:description>
 
   Toast style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
   See also [Color Styles](/guide/theme#color-styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Toast Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:open']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:open:parameters>
+  <REvent name="update:open">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:open:description>
-    Callback function triggered when visibility of the toast is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when visibility of the toast is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Toast Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the toast.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Toast Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color']"
->
-  <template #body:*:name="{ row }">--r-toast-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-toast-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-element-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
-  <template #body:color:description>
-    Color of the toast text and border.
-  </template>
-</RTable>
-</RSpace>
+
+  Color of the toast text and border.
+
+  </RStyle>
+
+</RStylesTable>
 
 ### ToastProvider Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['base-size', 'gap-size']"
->
-  <template #body:*:name="{ row }">--r-toast-provider-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:base-size.values>
+  <template #name="{ value }">--r-toast-provider-{{ value }}</template>
+
+  <RStyle name="base-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:base-size.default>
+
+  <template #default-value>
 
   `calc(var(--r-common-line-height) + var(--r-common-box-padding-block) * 2)`
 
   </template>
-  <template #body:base-size:description>
-    Value to treat the size of a toast as when calculating the offset.
-  </template>
 
-  <template #body:gap-size.values>
+  Value to treat the size of a toast as when calculating the offset.
+
+  </RStyle>
+
+  <RStyle name="gap-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size.default>
+
+  <template #default-value>
 
   `12px`
 
   </template>
-  <template #body:gap-size:description>
-    Size of the gap between toasts as when calculating the offset.
-  </template>
-</RTable>
-</RSpace>
+
+  Size of the gap between toasts as when calculating the offset.
+
+  </RStyle>
+
+</RStylesTable>
 
 ### Compositions
 

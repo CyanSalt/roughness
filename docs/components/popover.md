@@ -47,24 +47,21 @@ import { RPopover, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['align', 'open', 'side', 'trigger', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:align:type>
+  <RProp name="align">
+
+  <template #type>
 
   `'start' | 'end' | 'center' | 'stretch'`
 
   </template>
-  <template #body:align:default>
+
+  <template #default-value>
 
   `'start'`
 
   </template>
-  <template #body:align:description>
 
   Alignment of the popover content relative to the anchor.
 
@@ -73,97 +70,102 @@ import { RPopover, RSpace } from 'roughness'
   - `center`: Align to the center of the anchor
   - `stretch`: Align to both sides of the anchor at the same time
 
-  </template>
+  </RProp>
 
-  <template #body:open:type>
+  <RProp name="open">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:open:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:open:description>
-    Whether to display the popover content.
-  </template>
 
-  <template #body:side:type>
+  Whether to display the popover content.
+
+  </RProp>
+
+  <RProp name="side">
+
+  <template #type>
 
   `'top' | 'bottom' | 'left' | 'right'`
 
   </template>
-  <template #body:side:default>
+
+  <template #default-value>
 
   `'top'`
 
   </template>
-  <template #body:side:description>
-    Which side of the anchor the popover will show on.
-  </template>
 
-  <template #body:trigger:type>
+  Which side of the anchor the popover will show on.
+
+  </RProp>
+
+  <RProp name="trigger">
+
+  <template #type>
 
   `'hover' | 'click'`
 
   </template>
-  <template #body:trigger:default>
+
+  <template #default-value>
 
   `'hover'`
 
   </template>
-  <template #body:trigger:description>
-    How to trigger the display of popover content.
-  </template>
 
-  <template #body:...:description>
+  How to trigger the display of popover content.
+
+  </RProp>
+
+  <RProp name="...">
 
   See [Card Props](/components/card#props).
 
   Unlike Card, the default value of Popover's `header` is `false`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:open']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:open:parameters>
+  <REvent name="update:open">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:open:description>
-    Callback function triggered when visibility of the popover is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when visibility of the popover is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['anchor', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:anchor:description>
+  <RSlot name="anchor">
     Anchor of the popover.
-  </template>
+  </RSlot>
 
-  <template #body:...:description>
+  <RSlot name="...">
 
   See [Card Slots](/components/card#slots).
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>

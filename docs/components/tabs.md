@@ -68,240 +68,246 @@ import { RTabItem, RTabs } from 'roughness'
 
 ### Tabs Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['anchor-side', 'content', 'graphics-options', 'model-value', 'reactions', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:content:type>
+  <RProp name="content">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:content:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:content:description>
-    Whether to display the tabs content.
-  </template>
 
-  <template #body:graphics-options:type>
+  Whether to display the tabs content.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:model-value:type>
+  <RProp name="model-value">
+
+  <template #type>
 
   `string | number | undefined`
 
   </template>
-  <template #body:model-value:description>
 
   Value of the active tab item in tabs.
 
-  </template>
+  </RProp>
 
-  <template #body:anchor-side:type>
+  <RProp name="anchor-side">
+
+  <template #type>
 
   `'top' | 'bottom' | 'left' | 'right'`
 
   </template>
-  <template #body:anchor-side:default>
+
+  <template #default-value>
 
   `'top'`
 
   </template>
-  <template #body:anchor-side:description>
-    Which side of the content the anchors will show on.
-  </template>
 
-  <template #body:reactions:type>
+  Which side of the content the anchors will show on.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['hover', 'focus-within', 'active']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Space Props](/components/space#props).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Tabs Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when the active tab is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when the active tab is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Tabs Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
 
   Content of the tabs. You can render one or more TabItem by yourself.
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### TabItem Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:value:type>
+  <RProp name="value">
+
+  <template #type>
 
   `string | number | RValue`
 
   </template>
-  <template #body:value:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:content:description>
+
+  <template #default-value>
+    </template>
+
+  </RProp>
+
+  <RProp name="content">
 
   Tab item key or data.
 
   See [List Rendering](/guide/specs#list-rendering).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### TabItem Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['anchor', 'default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:anchor:description>
+  <RSlot name="anchor">
 
   Anchor of the tab item.
 
-  </template>
+  </RSlot>
 
-  <template #body:default:description>
+  <RSlot name="default">
 
   Content of the tab item.
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### TabAnchor Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['active-color', 'border-color', 'border-width', 'border-dash']"
->
-  <template #body:*:name="{ row }">--r-tab-anchor-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:active-color:values>
+  <template #name="{ value }">--r-tab-anchor-{{ value }}</template>
+
+  <RStyle name="active-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:active-color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:active-color:description>
-    Color of the tab anchor and its border when active.
-  </template>
 
-  <template #body:border-color:values>
+  Color of the tab anchor and its border when active.
+
+  </RStyle>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the tab anchor border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the tab anchor border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the tab anchor border.
-  </template>
 
-  <template #body:border-dash:values>
+  Width of the tab anchor border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash:default>
+
+  <template #default-value>
 
   `8px` when hovered, `none` else
 
   </template>
-  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the tab anchor border.
 
@@ -309,6 +315,6 @@ import { RTabItem, RTabs } from 'roughness'
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

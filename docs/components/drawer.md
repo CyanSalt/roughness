@@ -123,66 +123,58 @@ function showBottom() {
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['side', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:side:type>
+  <RProp name="side">
+
+  <template #type>
 
   `'left' | 'right' | 'top' | 'bottom'`
 
   </template>
-  <template #body:side:default>
+
+  <template #default-value>
 
   `'right'`
 
   </template>
-  <template #body:side:description>
-    Which side of the page the drawer will show on.
-  </template>
 
-  <template #body:...:description>
+  Which side of the page the drawer will show on.
+
+  </RProp>
+
+  <RProp name="...">
 
   See [Dialog Props](/components/dialog#props).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:...:description>
+  <RSlot name="...">
 
   See [Dialog Slots](/components/dialog#slots).
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['...']"
->
-  <template #body:*:name="{ row }">--r-drawer-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  <template #name="{ value }">--r-drawer-{{ value }}</template>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Dialog Styles](/components/dialog#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

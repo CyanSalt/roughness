@@ -80,171 +80,166 @@ import { RList, RListItem } from 'roughness'
 
 ### List Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['list-style', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:list-style:type>
+  <RProp name="list-style">
+
+  <template #type>
 
   `'disc' | 'circle' | 'square' | 'auto'`
 
   </template>
-  <template #body:list-style:default>
+
+  <template #default-value>
 
   `'disc'`
 
   </template>
-  <template #body:list-style:description>
 
   Marker style of the list. See [`list-style-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
 
   When specified as `auto`, the list will be **ordered** and the markers will be drawn by the user agent.
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Space Props](/components/space#props).
 
   Unlike Space, the default value of List's `tag` is `ul` or `ol`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### List Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
 
   Content of the list. You can render one or more ListItem by yourself.
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### List Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['marker-color', 'marker-block-size', 'marker-inline-size', '...']"
->
-  <template #body:*:name="{ row }">--r-list-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:marker-color:values>
+  <template #name="{ value }">--r-list-{{ value }}</template>
+
+  <RStyle name="marker-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:marker-color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:marker-color:description>
-    Color of the list marker.
-  </template>
 
-  <template #body:marker-block-size:values>
+  Color of the list marker.
+
+  </RStyle>
+
+  <RStyle name="marker-block-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:marker-block-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:marker-block-size:description>
-    Area height of the list marker.
-  </template>
 
-  <template #body:marker-inline-size:values>
+  Area height of the list marker.
+
+  </RStyle>
+
+  <RStyle name="marker-inline-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:marker-inline-size:default>
+
+  <template #default-value>
 
   `1.5em`
 
   </template>
-  <template #body:marker-inline-size:description>
-    Area width of the list marker.
-  </template>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  Area width of the list marker.
+
+  </RStyle>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>
 
 ### ListItem Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'reactions']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### ListItem Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the list item.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>

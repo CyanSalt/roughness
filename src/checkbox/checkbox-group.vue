@@ -17,7 +17,7 @@ const {
   /** Whether to disable all checking items */
   disabled?: boolean,
   /** Key(s) or data of the checked item(s) of the group */
-  modelValue: RValueOrKey[] | RValueOrKey | undefined,
+  modelValue?: RValueOrKey[] | RValueOrKey | undefined,
   /** Whether to support checking multiple items */
   multiple?: boolean,
 }>()

@@ -25,10 +25,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
 </script>
 
 <template>
-  <RTable
-    :columns="['name', 'age']"
-    :rows="['html', 'js', 'css']"
-  >
+  <RTable :rows="['html', 'js', 'css']">
     <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
     <RTableColumn v-slot="{ row }" name="age">
       <template v-if="row === 'html'">
@@ -43,11 +40,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
 
 </RDetails>
 
-<RTable
-  :columns="['name', 'age']"
-  :rows="['html', 'js', 'css']"
-  data-example
->
+<RTable :rows="['html', 'js', 'css']" data-example>
   <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
   <RTableColumn v-slot="{ row }" name="age">
     <template v-if="row === 'html'">
@@ -139,7 +132,7 @@ const data = [
 </script>
 
 <template>
-  <RTable :columns="['z', 'element']" :rows="data">
+  <RTable :rows="data">
     <RTableColumn name="z" />
     <RTableColumn v-slot="{ row }" name="element">
       <template v-if="row[RKey] === 1">
@@ -153,7 +146,7 @@ const data = [
 
 </RDetails>
 
-<RTable :columns="['z', 'element']" :rows="data" data-example>
+<RTable :rows="data" data-example>
   <RTableColumn name="z" />
   <RTableColumn v-slot="{ row }" name="element">
     <template v-if="row[RKey] === 1">
@@ -167,217 +160,226 @@ const data = [
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['columns', 'footer', 'graphics-options', 'header', 'reactions', 'rows']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:columns:type>
+  <RProp name="columns">
+
+  <template #type>
 
   `(string | number | RValue)[] | number`
 
   </template>
-  <template #body:columns:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:columns:description>
+
+  <template #default-value>
+    </template>
 
   Column keys or data.
 
   See [List Rendering](/guide/specs#list-rendering).
 
-  </template>
+  </RProp>
 
-  <template #body:footer:type>
+  <RProp name="footer">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:footer:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:footer:description>
-    Whether to display the table footer.
-  </template>
 
-  <template #body:graphics-options:type>
+  Whether to display the table footer.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:header:type>
+  <RProp name="header">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:header:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:header:description>
-    Whether to display the table header.
-  </template>
 
-  <template #body:reactions:type>
+  Whether to display the table header.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:rows:type>
+  <RProp name="rows">
+
+  <template #type>
 
   `(string | number | RValue)[] | number`
 
   </template>
-  <template #body:rows:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:rows:description>
+
+  <template #default-value>
+    </template>
 
   Row keys or data.
 
   See [List Rendering](/guide/specs#list-rendering).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default', 'header:_column_', 'header:*', 'body:_row_:_column_', 'body:*:_column_', 'body:_row_:*', 'body:*:*', 'footer:_column_', 'footer:*']"
->
-  <template #body:*:name="{ row }">{{ row.replace(/_(\w+)_/g, '[$1]') }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
 
   Extra content for the table. For example `<caption>` or `<colgroup>`, etc.
 
-  </template>
+  </RSlot>
 
-  <template #body:header:_column_:description>
+  <RSlot name="header:_column_">
 
   Header cell in the column corresponding to `[column]`. Fallback to `header:*`.
 
-  </template>
+  </RSlot>
 
-  <template #body:header:*:parameters>
+  <RSlot name="header:*">
+
+  <template #parameters>
 
   `{ column: string }`
 
   </template>
-  <template #body:header:*:description>
 
   Header cell in each column. Defaults to `startCase(keyOf(column))`.
 
-  </template>
+  </RSlot>
 
-  <template #body:body:_row_:_column_:description>
+  <RSlot name="body:_row_:_column_">
 
   Body cell in the row corresponding to `[row]` and the column corresponding to `[column]`. Fallback to `body:*:[column]`:
 
-  </template>
+  </RSlot>
 
-  <template #body:body:*:_column_:parameters>
+  <RSlot name="body:*:_column_">
+
+  <template #parameters>
 
   `{ row: string }`
 
   </template>
-  <template #body:body:*:_column_:description>
 
   Body cell in the column corresponding to `[column]`. Fallback to `body:[row]:*`:
 
-  </template>
+  </RSlot>
 
-  <template #body:body:_row_:*:parameters>
+  <RSlot name="body:_row_:*">
+
+  <template #parameters>
 
   `{ column: string }`
 
   </template>
-  <template #body:body:_row_:*:description>
 
   Body cell in the row corresponding to `[row]`. Fallback to `body:*:*`:
 
-  </template>
+  </RSlot>
 
-  <template #body:body:*:*:parameters>
+  <RSlot name="body:*:*">
+
+  <template #parameters>
 
   `{ row: string, column: string }`
 
   </template>
-  <template #body:body:*:*:description>
 
   Body cell in each row and column. Defaults to `row[keyOf(column)]` if `row` is an object.
 
-  </template>
+  </RSlot>
 
-  <template #body:footer:_column_:description>
+  <RSlot name="footer:_column_">
 
   Footer cell in the column corresponding to `[column]`. Fallback to `footer:*`.
 
-  </template>
+  </RSlot>
 
-  <template #body:footer:*:parameters>
+  <RSlot name="footer:*">
+
+  <template #parameters>
 
   `{ column: string }`
 
   </template>
-  <template #body:footer:*:description>
 
   Footer cell in each column.
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color']"
->
-  <template #body:*:name="{ row }">--r-table-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:border-color:values>
+  <template #name="{ value }">--r-table-{{ value }}</template>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the table border.
-  </template>
-</RTable>
-</RSpace>
+
+  Color of the table border.
+
+  </RStyle>
+
+</RStylesTable>

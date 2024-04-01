@@ -82,178 +82,180 @@ let labelInline = ref(false)
 
 ### Form Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['label-inline']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:label-inline:type>
+  <RProp name="label-inline">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:label-inline:description>
-    Whether the labels of the form items are displayed as inline boxes.
-  </template>
-</RTable>
-</RSpace>
+
+  Whether the labels of the form items are displayed as inline boxes.
+
+  </RProp>
+
+</RPropsTable>
 
 ### Form Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the form.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### FormItem Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'label-inline', 'name', 'reactions', 'required']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:label-inline:type>
+  <RProp name="label-inline">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:label-inline:description>
-    Whether the label of the form item is displayed as an inline box.
-  </template>
 
-  <template #body:name:type>
+  Whether the label of the form item is displayed as an inline box.
+
+  </RProp>
+
+  <RProp name="name">
+
+  <template #type>
 
   `string`
 
   </template>
-  <template #body:name:description>
-    Field name of the form model.
-  </template>
 
-  <template #body:reactions:type>
+  Field name of the form model.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:required:type>
+  <RProp name="required">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:required:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:required:description>
-    Whether the field is required.
-  </template>
-</RTable>
-</RSpace>
+
+  Whether the field is required.
+
+  </RProp>
+
+</RPropsTable>
 
 ### FormItem Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['label', 'default', 'message']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:label:description>
+  <RSlot name="label">
     Label of the form item.
-  </template>
+  </RSlot>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the form item.
-  </template>
+  </RSlot>
 
-  <template #body:message:description>
+  <RSlot name="message">
     Footnote of the form item.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### FormItem Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['required-marker-size', 'required-marker-color', '...']"
->
-  <template #body:*:name="{ row }">--r-form-item-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:required-marker-size:values>
+  <template #name="{ value }">--r-form-item-{{ value }}</template>
+
+  <RStyle name="required-marker-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:required-marker-size:default>
+
+  <template #default-value>
 
   `4px`
 
   </template>
-  <template #body:required-marker-size:description>
-    Size of the marker when `required` is `true`.
-  </template>
 
-  <template #body:required-marker-color:values>
+  Size of the marker when `required` is `true`.
+
+  </RStyle>
+
+  <RStyle name="required-marker-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:required-marker-color:default>
+
+  <template #default-value>
 
   `var(--r-common-error-color)`
 
   </template>
-  <template #body:required-marker-color:description>
-    Color of the marker when `required` is `true`.
-  </template>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  Color of the marker when `required` is `true`.
+
+  </RStyle>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

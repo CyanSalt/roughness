@@ -117,136 +117,142 @@ View all available icons [here](https://lucide.dev/icons/).
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['filled', 'graphics-options', 'icon', 'name', 'reactions', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:filled:type>
+  <RProp name="filled">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:filled:description>
 
   Whether to fill the icon.
 
-  </template>
+  </RProp>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
 
-  <template #body:graphics-options:default>
+  <template #default-value>
 
   `{ roughness: 0.5, disableMultiStroke: true }`
 
   </template>
 
-  <template #body:graphics-options:description>
-
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:icon:type>
+  <RProp name="icon">
+
+  <template #type>
 
   `[tag: string, attrs: SVGProps, children?: IconNodeChild[]]`
 
   </template>
-  <template #body:icon:description>
 
   Icon object conforming to the type constraint. It can be imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
 
   `icon` has higher priority than `name`.
 
-  </template>
+  </RProp>
 
-  <template #body:name:type>
+  <RProp name="name">
+
+  <template #type>
 
   `string`
 
   </template>
-  <template #body:name:description>
 
   Name of the icon defined by `defineIcons`.
 
-  </template>
+  </RProp>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Text Props](/components/text#props).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'line-width', '...']"
->
-  <template #body:*:name="{ row }">--r-icon-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-icon-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-text-color)`
 
   </template>
-  <template #body:color:description>
-    Color of the icon.
-  </template>
 
-  <template #body:line-width:values>
+  Color of the icon.
+
+  </RStyle>
+
+  <RStyle name="line-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:line-width:default>
+
+  <template #default-value>
 
   `2px`
 
   </template>
-  <template #body:line-width:description>
-    Line width of the icon.
-  </template>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  Line width of the icon.
+
+  </RStyle>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Text Styles](/components/text#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

@@ -45,113 +45,116 @@ import { RBadge, RButton } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'reactions']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['marker', 'default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:marker:description>
+  <RSlot name="marker">
     Content of the badge marker.
-  </template>
-  <template #body:default:description>
+  </RSlot>
+
+  <RSlot name="default">
     Decorated content of the badge.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'padding-block', 'padding-inline']"
->
-  <template #body:*:name="{ row }">--r-badge-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-badge-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-common-error-color)`
 
   </template>
-  <template #body:color:description>
-    Color of the badge marker.
-  </template>
 
-  <template #body:padding-block:values>
+  Color of the badge marker.
+
+  </RStyle>
+
+  <RStyle name="padding-block">
+
+  <template #values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:padding-block:default>
+
+  <template #default-value>
 
   `calc(0.5em - 4px)`
 
   </template>
-  <template #body:padding-block:description>
-    Vertical padding of the badge marker.
-  </template>
 
-  <template #body:padding-inline:values>
+  Vertical padding of the badge marker.
+
+  </RStyle>
+
+  <RStyle name="padding-inline">
+
+  <template #values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:padding-inline:default>
+
+  <template #default-value>
 
   `calc(1em - 4px)`
 
   </template>
-  <template #body:padding-inline:description>
-    Horizontal padding of the badge marker.
-  </template>
-</RTable>
-</RSpace>
+
+  Horizontal padding of the badge marker.
+
+  </RStyle>
+
+</RStylesTable>

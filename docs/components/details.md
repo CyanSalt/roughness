@@ -57,155 +57,158 @@ function toggle() {
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'open', 'reactions']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:open:type>
+  <RProp name="open">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:open:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:open:description>
 
   Whether the details are currently visible.
 
   See [`open`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#open).
 
-  </template>
+  </RProp>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:open']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:open:parameters>
+  <REvent name="update:open">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:open:description>
-    Callback function triggered when visibility of the detail is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when visibility of the detail is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['summary', 'default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:summary:description>
+  <RSlot name="summary">
 
   Content of the summary.
 
   See [`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary).
 
-  </template>
-  <template #body:default:description>
+  </RSlot>
+
+  <RSlot name="default">
     Content of the details.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['summary-color', 'summary-marker-size', 'gap-size']"
->
-  <template #body:*:name="{ row }">--r-details-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:summary-color:values>
+  <template #name="{ value }">--r-details-{{ value }}</template>
+
+  <RStyle name="summary-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:summary-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:summary-color:description>
-    Color of summary text and marker.
-  </template>
 
-  <template #body:summary-marker-size:values>
+  Color of summary text and marker.
+
+  </RStyle>
+
+  <RStyle name="summary-marker-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:summary-marker-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:summary-marker-size:description>
-    Size of the block of summary marker.
-  </template>
 
-  <template #body:gap-size:values>
+  Size of the block of summary marker.
+
+  </RStyle>
+
+  <RStyle name="gap-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size:default>
+
+  <template #default-value>
 
   `12px`
 
   </template>
-  <template #body:gap-size:description>
-    Size of the gap between the summary and content.
-  </template>
-</RTable>
-</RSpace>
+
+  Size of the gap between the summary and content.
+
+  </RStyle>
+
+</RStylesTable>

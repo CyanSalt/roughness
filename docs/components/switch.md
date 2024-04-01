@@ -29,187 +29,200 @@ import { RSwitch } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'model-value', 'reactions', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:model-value:type>
+  <RProp name="model-value">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:model-value:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:model-value:description>
-    State of the switch.
-  </template>
 
-  <template #body:reactions:type>
+  State of the switch.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['focus-within', 'active']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Space Props](/components/space#props).
 
   Unlike Space, the default value of Switch's `tag` is `label`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when state is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when state is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Label of the switch.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'control-size', 'track-color', 'handle-color', '...']"
->
-  <template #body:*:name="{ row }">--r-switch-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:border-color:values>
+  <template #name="{ value }">--r-switch-{{ value }}</template>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the switch control border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the switch control border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the switch control border.
-  </template>
 
-  <template #body:control-size:values>
+  Width of the switch control border.
+
+  </RStyle>
+
+  <RStyle name="control-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:control-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size:description>
-    Size of the switch control.
-  </template>
 
-  <template #body:track-color:values>
+  Size of the switch control.
+
+  </RStyle>
+
+  <RStyle name="track-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:track-color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:track-color:description>
-    Color of the switch track when open.
-  </template>
 
-  <template #body:handle-color:values>
+  Color of the switch track when open.
+
+  </RStyle>
+
+  <RStyle name="handle-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:handle-color:default>
+
+  <template #default-value>
 
   `var(--r-common-background-color)`
 
   </template>
-  <template #body:handle-color:description>
-    Color of the switch handle.
-  </template>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  Color of the switch handle.
+
+  </RStyle>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

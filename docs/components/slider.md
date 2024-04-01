@@ -35,197 +35,225 @@ let value = ref(62)
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'max', 'min', 'model-value', 'reactions', 'step']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:max:type>
+  <RProp name="max">
+
+  <template #type>
 
   `<number>`
 
   </template>
-  <template #body:max:default>
+
+  <template #default-value>
 
   `100`
 
   </template>
-  <template #body:max:description>
-    Upper numeric bound of the range.
-  </template>
 
-  <template #body:min:type>
+  Upper numeric bound of the range.
+
+  </RProp>
+
+  <RProp name="min">
+
+  <template #type>
 
   `<number>`
 
   </template>
-  <template #body:min:default>
+
+  <template #default-value>
 
   `0`
 
   </template>
-  <template #body:min:description>
-    Lower numeric bound of the range.
-  </template>
 
-  <template #body:model-value:type>
+  Lower numeric bound of the range.
+
+  </RProp>
+
+  <RProp name="model-value">
+
+  <template #type>
 
   `number`
 
   </template>
-  <template #body:model-value:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:model-value:description>
-    Value of the slider.
-  </template>
 
-  <template #body:reactions:type>
+  <template #default-value>
+    </template>
+
+  Value of the slider.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['hover-at', 'focus-within', 'active']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:step:type>
+  <RProp name="step">
+
+  <template #type>
 
   `<number>`
 
   </template>
-  <template #body:step:default>
+
+  <template #default-value>
 
   `1`
 
   </template>
-  <template #body:step:description>
-    Minimum unit of the slider.
-  </template>
-</RTable>
-</RSpace>
+
+  Minimum unit of the slider.
+
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when the value is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when the value is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'border-color', 'border-width', 'control-size', 'track-size']"
->
-  <template #body:*:name="{ row }">--r-slider-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-slider-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:color:description>
-    Color of the slider track when active.
-  </template>
 
-  <template #body:border-color:values>
+  Color of the slider track when active.
+
+  </RStyle>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the slider control and track border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the slider control and track border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the slider control and track border.
-  </template>
 
-  <template #body:control-size:values>
+  Width of the slider control and track border.
+
+  </RStyle>
+
+  <RStyle name="control-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:control-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size:description>
-    Size of the slider control.
-  </template>
 
-  <template #body:track-size:values>
+  Size of the slider control.
+
+  </RStyle>
+
+  <RStyle name="track-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:track-size:default>
+
+  <template #default-value>
 
   `var(--r-common-font-size)`
 
   </template>
-  <template #body:track-size:description>
-    Size of the slider track.
-  </template>
-</RTable>
-</RSpace>
+
+  Size of the slider track.
+
+  </RStyle>
+
+</RStylesTable>

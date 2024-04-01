@@ -33,96 +33,106 @@ import { RGridGuide } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['reactions', 'responsive']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['dark']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:responsive:type>
+  <RProp name="responsive">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:responsive:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:responsive:description>
-    Whether to adjust the size to fit the parent element.
-  </template>
-</RTable>
-</RSpace>
+
+  Whether to adjust the size to fit the parent element.
+
+  </RProp>
+
+</RPropsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'cell-size', 'section-cell-count']"
->
-  <template #body:*:name="{ row }">--r-grid-guide-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-grid-guide-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `rgb(255 255 255 / 10%)` in dark theme, `#f5f5f5` else
 
   </template>
-  <template #body:color:description>
-    Color of the guide lines.
-  </template>
 
-  <template #body:cell-size:values>
+  Color of the guide lines.
+
+  </RStyle>
+
+  <RStyle name="cell-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:cell-size:default>
+
+  <template #default-value>
 
   `var(--r-common-font-size)`
 
   </template>
-  <template #body:cell-size:description>
-    Size of the grid cell.
-  </template>
 
-  <template #body:section-cell-count:values>
+  Size of the grid cell.
+
+  </RStyle>
+
+  <RStyle name="section-cell-count">
+
+  <template #values>
 
   `<integer>`
 
   </template>
-  <template #body:section-cell-count:default>
+
+  <template #default-value>
 
   `8`
 
   </template>
-  <template #body:section-cell-count:description>
-    Number of cells in one section dimension.
-  </template>
-</RTable>
-</RSpace>
+
+  Number of cells in one section dimension.
+
+  </RStyle>
+
+</RStylesTable>

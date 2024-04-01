@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computedAsync } from '@vueuse/core'
 import { parse } from 'opentype.js'
-import { RButton, RCard, RDetails, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RText } from 'roughness'
+import { RButton, RCard, RDetails, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn, RText } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { ref } from 'vue'
 
@@ -147,29 +147,34 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RTable
-    :columns="['continent', 'ocean']"
-    :rows="['color']"
-  >
-    <template #body:color:ocean>
-      <RGraphics @draw="draw" />
-    </template>
+  <RTable :rows="['color']">
+    <RTableColumn name="continent">
+      <template v-if="row === 'color'">
+        New Zealand
+      </template>
+    </RTableColumn>
+    <RTableColumn v-slot="{ row }" name="ocean">
+      <template v-if="row === 'color'">
+        <RGraphics @draw="draw" />
+      </template>
+    </RTableColumn>
   </RTable>
 </template>
 ```
 
 </RDetails>
 
-<RTable
-  :columns="['continent', 'ocean']"
-  :rows="['color']"
->
-  <template #body:color:continent>
-    New Zealand
-  </template>
-  <template #body:color:ocean>
-    <RGraphics @draw="drawOcean" />
-  </template>
+<RTable :rows="['color']" data-example>
+  <RTableColumn v-slot="{ row }" name="continent">
+    <template v-if="row === 'color'">
+      New Zealand
+    </template>
+  </RTableColumn>
+  <RTableColumn v-slot="{ row }" name="ocean">
+    <template v-if="row === 'color'">
+      <RGraphics @draw="drawOcean" />
+    </template>
+  </RTableColumn>
 </RTable>
 
 ### Configuration
@@ -224,94 +229,90 @@ import { RButton } from 'roughness'
 
 ### GraphicsConfig Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['options']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:options:type>
+  <RProp name="options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Graphics Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['options', 'responsive', 'tag']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:options:type>
+  <RProp name="options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
-  </template>
+  </RProp>
 
-  <template #body:responsive:type>
+  <RProp name="responsive">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:responsive:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:responsive:description>
-    Whether to adjust the size to fit the parent element.
-  </template>
 
-  <template #body:tag:type>
+  Whether to adjust the size to fit the parent element.
+
+  </RProp>
+
+  <RProp name="tag">
+
+  <template #type>
 
   `'canvas' | 'svg'`
 
   </template>
-  <template #body:tag:default>
+
+  <template #default-value>
 
   `'svg'`
 
   </template>
-  <template #body:tag:description>
 
   [HTML tag for rendering the graphics](https://github.com/rough-stuff/rough/wiki#roughcanvas--roughsvg).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Graphics Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['draw']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:draw:parameters>
+  <REvent name="draw">
+
+  <template #parameters>
 
   `(rc: import('roughjs/bin/canvas').RoughCanvas, element: HTMLCanvasElement)` or `(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement)`
 
   </template>
-  <template #body:draw:description>
-    Ready to start drawing.
-  </template>
-</RTable>
-</RSpace>
+
+  Ready to start drawing.
+
+  </REvent>
+
+</REventsTable>

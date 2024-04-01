@@ -225,7 +225,7 @@ const nestingGraphicsOptions = $computed(() => {
 }
 .r-popover__content {
   position: absolute;
-  z-index: 1;
+  z-index: var(--r-common-overlay-z-index);
   width: max-content;
 }
 </style>

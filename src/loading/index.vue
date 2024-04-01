@@ -38,6 +38,6 @@ const graphicsOptions = { roughness: 2.5 }
 }
 .r-loading__icon {
   position: relative;
-  z-index: 1;
+  z-index: var(--r-common-overlay-z-index);
 }
 </style>

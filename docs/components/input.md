@@ -133,137 +133,147 @@ import { RInput, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'lines', 'model-value', 'reactions']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:lines:type>
+  <RProp name="lines">
+
+  <template #type>
 
   `number`
 
   </template>
-  <template #body:lines:default>
+
+  <template #default-value>
 
   `1`
 
   </template>
-  <template #body:lines:description>
-    Line count of the input.
-  </template>
 
-  <template #body:model-value:type>
+  Line count of the input.
+
+  </RProp>
+
+  <RProp name="model-value">
+
+  <template #type>
 
   `string`
 
   </template>
-  <template #body:model-value:description>
-    Value of the input text.
-  </template>
 
-  <template #body:reactions:type>
+  Value of the input text.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when the value is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when the value is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'border-dash']"
->
-  <template #body:*:name="{ row }">--r-input-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:border-color:values>
+  <template #name="{ value }">--r-input-{{ value }}</template>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the input border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the input border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the input border.
-  </template>
 
-  <template #body:border-dash:values>
+  Width of the input border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash:default>
+
+  <template #default-value>
 
   `8px` when hovered, `none` else
 
   </template>
-  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the input border.
 
@@ -271,6 +281,6 @@ import { RInput, RSpace } from 'roughness'
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

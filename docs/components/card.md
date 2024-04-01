@@ -72,196 +72,209 @@ import { RCard, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['footer', 'graphics-options', 'header', 'reactions', 'type', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:footer:type>
+  <RProp name="footer">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:footer:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:footer:description>
-    Whether to display the card footer.
-  </template>
 
-  <template #body:graphics-options:type>
+  Whether to display the card footer.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:header:type>
+  <RProp name="header">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:header:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:header:description>
-    Whether to display the card header.
-  </template>
 
-  <template #body:reactions:type>
+  Whether to display the card header.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:type:type>
+  <RProp name="type">
+
+  <template #type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
-  <template #body:type:description>
 
   Card style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
   See also [Color Styles](/guide/theme#color-styles).
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Space Props](/components/space#props).
 
   Unlike Space, the default value of Card's `tag` is `article`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['title', 'header-end', 'default', 'footer']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:title:description>
+  <RSlot name="title">
 
   Content of the card title. When a reasonable `type` is specified, the uppercase form of `type` is displayed by default.
 
   Only available if the `header` is `true`.
 
-  </template>
+  </RSlot>
 
-  <template #body:header-end:description>
+  <RSlot name="header-end">
 
   Content of the card header after title.
 
   Only available if the `header` is `true`.
 
-  </template>
+  </RSlot>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the card.
-  </template>
+  </RSlot>
 
-  <template #body:footer:description>
+  <RSlot name="footer">
 
   Content of the card footer.
 
   Only available if the `footer` is `true`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'border-color', 'border-width', 'border-dash', 'padding-block', 'padding-inline', '...']"
->
-  <template #body:*:name="{ row }">--r-card-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-card-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:color:description>
-    Color of the card text.
-  </template>
 
-  <template #body:border-color:values>
+  Color of the card text.
+
+  </RStyle>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-card-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the card border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the card border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `1px`
 
   </template>
-  <template #body:border-width:description>
-    Width of the card border.
-  </template>
 
-  <template #body:border-dash:values>
+  Width of the card border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash:default>
+
+  <template #default-value>
 
   `none`
 
   </template>
-  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the button border.
 
@@ -269,41 +282,50 @@ import { RCard, RSpace } from 'roughness'
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
+  </RStyle>
 
-  <template #body:padding-block:values>
+  <RStyle name="padding-block">
+
+  <template #values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:padding-block:default>
+
+  <template #default-value>
 
   `calc(var(--r-common-box-padding-block) * 2)`
 
   </template>
-  <template #body:padding-block:description>
-    Vertical padding of the card.
-  </template>
 
-  <template #body:padding-inline:values>
+  Vertical padding of the card.
+
+  </RStyle>
+
+  <RStyle name="padding-inline">
+
+  <template #values>
 
   1-2 `<length>` or `<percentage>`
 
   </template>
-  <template #body:padding-inline:default>
+
+  <template #default-value>
 
   `var(--r-common-box-padding-inline)`
 
   </template>
-  <template #body:padding-inline:description>
-    Horizontal padding of the card.
-  </template>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  Horizontal padding of the card.
+
+  </RStyle>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

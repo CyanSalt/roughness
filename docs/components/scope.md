@@ -42,18 +42,16 @@ function performTimeConsumingOperation() {
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:parameters>
+  <RSlot name="default">
+
+  <template #parameters>
     Attributes of the scope.
   </template>
-  <template #body:default:description>
-    Content that needs to be render.
-  </template>
-</RTable>
-</RSpace>
+
+  Content that needs to be render.
+
+  </RSlot>
+
+</RSlotsTable>

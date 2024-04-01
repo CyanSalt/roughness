@@ -218,340 +218,357 @@ const treeValue = ref<string | undefined>()
 
 ### Checkbox Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['checked', 'graphics-options', 'indeterminate', 'label', 'reactions', 'value', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:checked:type>
+  <RProp name="checked">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:checked:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:checked:description>
-    Checked state of the checkbox.
-  </template>
 
-  <template #body:graphics-options:type>
+  Checked state of the checkbox.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:label:type>
+  <RProp name="label">
+
+  <template #type>
 
   `string`
 
   </template>
-  <template #body:label:default>
+
+  <template #default-value>
 
   `startCase(keyOf(value))` if value exists.
 
   </template>
-  <template #body:label:description>
-    Item label when checked and displayed, e.g. in Select.
-  </template>
 
-  <template #body:indeterminate:type>
+  Item label when checked and displayed, e.g. in Select.
+
+  </RProp>
+
+  <RProp name="indeterminate">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:indeterminate:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:indeterminate:description>
 
   [Indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) of the checkbox.
 
-  </template>
+  </RProp>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['focus-within', 'active']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:value:type>
+  <RProp name="value">
+
+  <template #type>
 
   `string | number`
 
   </template>
-  <template #body:value:description>
 
   Item key or data when checked in the CheckboxGroup.
 
   See [List Rendering](/guide/specs#list-rendering).
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Space Props](/components/space#props).
 
   Unlike Space, the default value of Checkbox's `tag` is `label`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Checkbox Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:checked']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:checked:parameters>
+  <REvent name="update:checked">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:checked:description>
-    Callback function triggered when checked state of the checkbox is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when checked state of the checkbox is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Checkbox Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Label of the checkbox.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Checkbox Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['border-color', 'border-width', 'checked-color', 'checked-width', 'control-size', '...']"
->
-  <template #body:*:name="{ row }">--r-checkbox-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:border-color:values>
+  <template #name="{ value }">--r-checkbox-{{ value }}</template>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the checkbox control border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the checkbox control border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the checkbox control border.
-  </template>
 
-  <template #body:checked-color:values>
+  Width of the checkbox control border.
+
+  </RStyle>
+
+  <RStyle name="checked-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:checked-color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:checked-color:description>
-    Color of the checkbox checked line.
-  </template>
 
-  <template #body:checked-width:values>
+  Color of the checkbox checked line.
+
+  </RStyle>
+
+  <RStyle name="checked-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:checked-width:default>
+
+  <template #default-value>
 
   `1px`
 
   </template>
-  <template #body:checked-width:description>
-    Width of the checkbox checked line.
-  </template>
 
-  <template #body:control-size:values>
+  Width of the checkbox checked line.
+
+  </RStyle>
+
+  <RStyle name="control-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:control-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size:description>
-    Size of the checkbox control.
-  </template>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  Size of the checkbox control.
+
+  </RStyle>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>
 
 ### CheckboxGroup Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['disabled', 'model-value', 'multiple', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:disabled:type>
+  <RProp name="disabled">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:disabled:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:disabled:description>
-    Whether to disable all checking items.
-  </template>
 
-  <template #body:model-value:type>
+  Whether to disable all checking items.
+
+  </RProp>
+
+  <RProp name="model-value">
+
+  <template #type>
 
   `string | number | undefined` or `(string | number)[]`
 
   </template>
-  <template #body:model-value:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:model-value:description>
-    Key(s) or data of the checked item(s) of the group.
-  </template>
 
-  <template #body:multiple:type>
+  <template #default-value>
+    </template>
+
+  Key(s) or data of the checked item(s) of the group.
+
+  </RProp>
+
+  <RProp name="multiple">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:multiple:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:multiple:description>
-    Whether to support checking multiple items.
-  </template>
 
-  <template #body:...:description>
+  Whether to support checking multiple items.
+
+  </RProp>
+
+  <RProp name="...">
 
   See [Space Props](/components/space#props).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### CheckboxGroup Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the checkbox group.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### CheckboxGroup Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when the checked items are changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when the checked items are changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### CheckboxGroup Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['...']"
->
-  <template #body:*:name="{ row }">--r-checkbox-group-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  <template #name="{ value }">--r-checkbox-group-{{ value }}</template>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

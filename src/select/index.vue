@@ -243,7 +243,7 @@ provide(labelsInjection, labels)
     cursor: not-allowed;
   }
   &.is-open {
-    z-index: 1;
+    z-index: var(--r-common-overlay-z-index);
   }
 }
 .r-select__icon {

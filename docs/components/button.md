@@ -213,226 +213,255 @@ import { RButton, RSpace } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'filled', 'graphics-options', 'html-type', 'loading', 'reactions', 'rounded', 'size', 'tag', 'type']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:block:type>
+  <RProp name="block">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:block:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:block:description>
-    Whether the button is displayed as block.
-  </template>
 
-  <template #body:filled:type>
+  Whether the button is displayed as block.
+
+  </RProp>
+
+  <RProp name="filled">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:filled:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:filled:description>
-    Whether the button is filled with its color.
-  </template>
 
-  <template #body:graphics-options:type>
+  Whether the button is filled with its color.
+
+  </RProp>
+
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:html-type:type>
+  <RProp name="html-type">
+
+  <template #type>
 
   `'submit' | 'reset' | 'button'`
 
   </template>
-  <template #body:html-type:description>
 
   [The `type` attribute of `HTMLButtonElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type).
 
-  </template>
+  </RProp>
 
-  <template #body:loading:type>
+  <RProp name="loading">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:loading:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:loading:description>
-    Whether the button is loading. It will be non-interactive in loading state.
-  </template>
 
-  <template #body:reactions:type>
+  Whether the button is loading. It will be non-interactive in loading state.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['hover', 'focus', 'active']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:rounded:type>
+  <RProp name="rounded">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:rounded:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:rounded:description>
-    Whether the button is round.
-  </template>
 
-  <template #body:size:type>
+  Whether the button is round.
+
+  </RProp>
+
+  <RProp name="size">
+
+  <template #type>
 
   `string`, but usually `'small' | 'large'`
 
   </template>
-  <template #body:size:description>
-    Button size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-  </template>
 
-  <template #body:tag:type>
+  Button size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  </RProp>
+
+  <RProp name="tag">
+
+  <template #type>
 
   `string`, but usually `'button' | 'a'`
 
   </template>
-  <template #body:tag:default>
+
+  <template #default-value>
 
   `'button'`
 
   </template>
-  <template #body:tag:description>
-    HTML tag for rendering the button.
-  </template>
 
-  <template #body:type:type>
+  HTML tag for rendering the button.
+
+  </RProp>
+
+  <RProp name="type">
+
+  <template #type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
-  <template #body:type:description>
 
   Button style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
   See also [Color Styles](/guide/theme#color-styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the button.
-  </template>
-</RTable>
-</RSpace>
+    </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'border-color', 'border-width', 'border-dash']"
->
-  <template #body:*:name="{ row }">--r-button-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-button-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-element-color)` for `default` `type`, other theme colors for other `type`
 
   </template>
-  <template #body:color:description>
-    Color of the button text.
-  </template>
 
-  <template #body:border-color:values>
+  Color of the button text.
+
+  </RStyle>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-button-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the button border.
-  </template>
 
-  <template #body:border-width:values>
+  Color of the button border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:border-width:default>
+
+  <template #default-value>
 
   `2px` when focused or active, `1px` else
 
   </template>
-  <template #body:border-width:description>
-    Width of the button border.
-  </template>
 
-  <template #body:border-dash:values>
+  Width of the button border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
 
   `<length> +` or `none`
 
   </template>
-  <template #body:border-dash:default>
+
+  <template #default-value>
 
   `8px` when hovered, `none` else
 
   </template>
-  <template #body:border-dash:description>
 
   List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the button border.
 
@@ -440,6 +469,6 @@ import { RButton, RSpace } from 'roughness'
 
   See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

@@ -68,60 +68,69 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
 }
 </style>
 
-### Styles
+### StylesReal
 
 All elements with `r-*` classes support the following style variables:
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['font-family', 'font-size', 'line-height']"
->
-  <template #body:*:name="{ row }">--r-element-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:font-family:values>
+  <template #name="{ value }">--r-element-{{ value }}</template>
+
+  <RStyle name="font-family">
+
+  <template #values>
 
   `<family-name> +`
 
   </template>
-  <template #body:font-family:default>
+
+  <template #default-value>
 
   `var(--r-common-font-family)`
 
   </template>
-  <template #body:font-family:description>
-    Font family of the element.
-  </template>
 
-  <template #body:font-size:values>
+  Font family of the element.
+
+  </RStyle>
+
+  <RStyle name="font-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:font-size:default>
+
+  <template #default-value>
 
   `var(--r-common-font-size)`
 
   </template>
-  <template #body:font-size:description>
-    Font size of the element.
-  </template>
 
-  <template #body:line-height:values>
+  Font size of the element.
+
+  </RStyle>
+
+  <RStyle name="line-height">
+
+  <template #values>
 
   `<number>` or `<length>` or `<percentage>` or `normal`
 
   </template>
-  <template #body:line-height:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:line-height:description>
-    Line height of the element.
-  </template>
-</RTable>
-</RSpace>
+
+  Line height of the element.
+
+  </RStyle>
+
+</RStylesTable>
 
 These are only valid for Roughness elements. If you want it to take effect for the entire page, you can define the following styles:
 
@@ -135,140 +144,185 @@ body {
 
 Common style properties are declared under the root node. Changing them will affect all components.
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['font-family', 'font-size', 'small-font-size', 'large-font-size', 'line-height', 'box-padding-block', 'box-padding-inline']"
->
-  <template #body:*:name="{ row }">--r-common-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:font-family:values>
+  <template #name="{ value }">--r-common-{{ value }}</template>
 
-  `<family-name> +`
-
-  </template>
-  <template #body:font-family:default>
-
-  `'CabinSketch'`
-
-  </template>
-  <template #body:font-family:description>
-    Font family of components.
-  </template>
-
-  <template #body:font-size:values>
-
-  `<length>`
-
-  </template>
-  <template #body:font-size:default>
-
-  `16px`
-
-  </template>
-  <template #body:font-size:description>
-    Font size of components.
-  </template>
-
-  <template #body:small-font-size:values>
-
-  `<length>`
-
-  </template>
-  <template #body:small-font-size:default>
-
-  `calc(var(--r-common-font-size) - 4px)`
-
-  </template>
-  <template #body:small-font-size:description>
-
-  Font size of components with `size="small"`.
-
-  Some browsers (such as Chrome on PC devices) have a minimum font size (`12px`) by default. In these environments, the font size cannot be lowered below that value.
-
-  </template>
-
-  <template #body:large-font-size:values>
-
-  `<length>`
-
-  </template>
-  <template #body:large-font-size:default>
-
-  `calc(var(--r-common-font-size) + 4px)`
-
-  </template>
-  <template #body:large-font-size:description>
-
-  Font size of components with `size="large"`.
-
-  </template>
-
-  <template #body:line-height:values>
-
-  `<number>` or `<length>` or `<percentage>` or `normal`
-
-  </template>
-  <template #body:line-height:default>
-
-  `calc(1em + 8px)`
-
-  </template>
-  <template #body:line-height:description>
-    Line height of components.
-  </template>
-
-  <template #body:box-padding-block:values>
-
-  1-2 `<length>` or `<percentage>`
-
-  </template>
-  <template #body:box-padding-block:default>
-
-  `0.5em`
-
-  </template>
-  <template #body:box-padding-block:description>
-    Vertical padding of components with rectangular boxes. Such as Button, or cells of Table.
-  </template>
-
-  <template #body:box-padding-inline:values>
-
-  1-2 `<length>` or `<percentage>`
-
-  </template>
-  <template #body:box-padding-inline:default>
-
-  `calc(1em + 4px)`
-
-  </template>
-  <template #body:box-padding-inline:description>
-    Horizontal padding of components with rectangular boxes. Such as Button, or cells of Table.
-  </template>
-</RTable>
-</RSpace>
-
-The following properties (of colors) change with dark/light theme changes: {#color-styles}
-
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['text-color', 'background-color', 'primary-color', 'info-color', 'success-color', 'warning-color', 'error-color']"
->
-  <template #body:*:name="{ row }">--r-common-{{ row }}</template>
-
-  <template #body:*:values>
+  <template #values>
 
   `<color>`
 
   </template>
 
-  <template #body:text-color:default>
+  <RStyle name="font-family">
+
+  <template #values>
+
+  `<family-name> +`
+
+  </template>
+
+  <template #default-value>
+
+  `'CabinSketch'`
+
+  </template>
+
+  Font family of components.
+
+  </RStyle>
+
+  <RStyle name="font-size">
+
+  <template #values>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `16px`
+
+  </template>
+
+  Font size of components.
+
+  </RStyle>
+
+  <RStyle name="small-font-size">
+
+  <template #values>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `calc(var(--r-common-font-size) - 4px)`
+
+  </template>
+
+  Font size of components with `size="small"`.
+
+  Some browsers (such as Chrome on PC devices) have a minimum font size (`12px`) by default. In these environments, the font size cannot be lowered below that value.
+
+  </RStyle>
+
+  <RStyle name="large-font-size">
+
+  <template #values>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `calc(var(--r-common-font-size) + 4px)`
+
+  </template>
+
+  Font size of components with `size="large"`.
+
+  </RStyle>
+
+  <RStyle name="line-height">
+
+  <template #values>
+
+  `<number>` or `<length>` or `<percentage>` or `normal`
+
+  </template>
+
+  <template #default-value>
+
+  `calc(1em + 8px)`
+
+  </template>
+
+  Line height of components.
+
+  </RStyle>
+
+  <RStyle name="box-padding-block">
+
+  <template #values>
+
+  1-2 `<length>` or `<percentage>`
+
+  </template>
+
+  <template #default-value>
+
+  `0.5em`
+
+  </template>
+
+  Vertical padding of components with rectangular boxes. Such as Button, or cells of Table.
+
+  </RStyle>
+
+  <RStyle name="box-padding-inline">
+
+  <template #values>
+
+  1-2 `<length>` or `<percentage>`
+
+  </template>
+
+  <template #default-value>
+
+  `calc(1em + 4px)`
+
+  </template>
+
+  Horizontal padding of components with rectangular boxes. Such as Button, or cells of Table.
+
+  </RStyle>
+
+  <RStyle name="overlay-z-index">
+
+  <template #values>
+
+  `<integer>`
+
+  </template>
+
+  <template #default-value>
+
+  `2`
+
+  </template>
+
+  Z-order of components at the top of the page. Such as Propover, or dropdown of Select.
+
+  </RStyle>
+
+</RStylesTable>
+
+The following properties (of colors) change with dark/light theme changes: {#color-styles}
+
+### Styles
+
+<RStylesTable>
+
+  <template #name="{ value }">--r-common-{{ value }}</template>
+
+  <template #values>
+
+  `<color>`
+
+  </template>
+
+  <RStyle name="text-color">
+
+  <template #default-value>
 
   `#abb2bf` in the dark mode, `#383a42` else
 
   </template>
-  <template #body:text-color:description>
 
   Color of foreground content such as text and borders. This is only valid for Roughness components. If you want it to take effect for the entire page, you can define the following styles:
 
@@ -278,92 +332,101 @@ The following properties (of colors) change with dark/light theme changes: {#col
   }
   ```
 
-  </template>
+  </RStyle>
 
-  <template #body:background-color:default>
+  <RStyle name="background-color">
+
+  <template #default-value>
 
   `#282c34` in the dark mode, `#fafafa` else
 
   </template>
-  <template #body:background-color:description>
 
   Color of background content such as backdrop and text stroke. This is only valid for Roughness components. If you want it to take effect for the entire page, you can define the following styles:
 
   ```css
   body {
-    background-color: var(--r-common-text-color);
+    background-color: var(--r-common-background-color);
   }
   ```
 
-  </template>
+  </RStyle>
 
-  <template #body:primary-color:default>
+  <RStyle name="primary-color">
+
+  <template #default-value>
 
   `#61aff0` in the dark mode, `#4078f2` else
 
   </template>
-  <template #body:primary-color:description>
 
   Color of the key content on the page. Components with `type="primary"` use this color.
 
-  </template>
+  </RStyle>
 
-  <template #body:info-color:default>
+  <RStyle name="info-color">
+
+  <template #default-value>
 
   `#56b6c2` in the dark mode, `#0184bc` else
 
   </template>
-  <template #body:info-color:description>
 
   Color of auxiliary information on the page. Components with `type="info"` use this color.
 
-  </template>
+  </RStyle>
 
-  <template #body:success-color:default>
+  <RStyle name="success-color">
+
+  <template #default-value>
 
   `#98c379` in the dark mode, `#50a14f` else
 
   </template>
-  <template #body:success-color:description>
 
   Color of success message. Components with `type="success"` use this color.
 
-  </template>
+  </RStyle>
 
-  <template #body:warning-color:default>
+  <RStyle name="warning-color">
+
+  <template #default-value>
 
   `#e5c07b` in the dark mode, `#c18401` else
 
   </template>
-  <template #body:warning-color:description>
 
   Color of warning message. Components with `type="warning"` use this color.
 
-  </template>
+  </RStyle>
 
-  <template #body:error-color:default>
+  <RStyle name="error-color">
+
+  <template #default-value>
 
   `#be5046` in the dark mode, `#ca1243` else
 
   </template>
-  <template #body:error-color:description>
 
   Color of error message. Components with `type="error"` use this color.
 
-  </template>
+  </RStyle>
 
-  <template #body:comment-color:default>
+  <RStyle name="comment-color">
+
+  <template #default-value>
 
   `#abb2bf80` in the dark mode, `#383a4280` else
 
   </template>
-  <template #body:comment-color:description>
 
   Color of comment message. Components with `type="comment"` use this color.
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>
+
+### StylesEnd
 
 ## Dark Mode
 

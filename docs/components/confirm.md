@@ -104,60 +104,45 @@ async function ask() {
 
 ### Confirm Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Dialog Props](/components/dialog#props).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Confirm Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['confirm', 'cancel', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:confirm:description>
+  <REvent name="confirm">
     Callback function triggered when the confirm button is clicked.
-  </template>
+  </REvent>
 
-  <template #body:cancel:description>
+  <REvent name="cancel">
     Callback function triggered when the confirm is closed for reasons other than the confirm button.
-  </template>
+  </REvent>
 
-  <template #body:...:description>
+  <REvent name="...">
 
   See [Dialog Events](/components/dialog#events).
 
-  </template>
-</RTable>
-</RSpace>
+  </REvent>
+
+</REventsTable>
 
 ### Confirm Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the confirm.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Compositions
 

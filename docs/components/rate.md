@@ -35,141 +35,153 @@ let rate = ref(3)
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'model-value', 'reactions']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:model-value:type>
+  <RProp name="model-value">
+
+  <template #type>
 
   `number`
 
   </template>
-  <template #body:model-value:default>
-    <RText type="error">Required</RText>
-  </template>
-  <template #body:model-value:description>
-    Value of the rate.
-  </template>
 
-  <template #body:reactions:type>
+  <template #default-value>
+    </template>
+
+  Value of the rate.
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `['hover-at', 'focus-within', 'active']`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:model-value']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:model-value:parameters>
+  <REvent name="update:model-value">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:model-value:description>
-    Callback function triggered when the value is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when the value is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'border-color', 'control-size', 'gap-size']"
->
-  <template #body:*:name="{ row }">--r-rate-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-rate-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:color:description>
-    Color of the rate control when active.
-  </template>
 
-  <template #body:border-color:values>
+  Color of the rate control when active.
+
+  </RStyle>
+
+  <RStyle name="border-color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:border-color:default>
+
+  <template #default-value>
 
   `var(--r-common-text-color)`
 
   </template>
-  <template #body:border-color:description>
-    Color of the rate control border.
-  </template>
 
-  <template #body:control-size:values>
+  Color of the rate control border.
+
+  </RStyle>
+
+  <RStyle name="control-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:control-size:default>
+
+  <template #default-value>
 
   `var(--r-common-line-height)`
 
   </template>
-  <template #body:control-size:description>
-    Size of the rate control.
-  </template>
 
-  <template #body:gap-size:values>
+  Size of the rate control.
+
+  </RStyle>
+
+  <RStyle name="gap-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size:default>
+
+  <template #default-value>
 
   `4px`
 
   </template>
-  <template #body:gap-size:description>
-    Gap size of the rate control.
-  </template>
-</RTable>
-</RSpace>
+
+  Gap size of the rate control.
+
+  </RStyle>
+
+</RStylesTable>

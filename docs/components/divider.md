@@ -50,95 +50,102 @@ import { RDivider, RText } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['graphics-options', 'reactions', 'vertical']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:graphics-options:type>
+  <RProp name="graphics-options">
+
+  <template #type>
 
   `import('roughjs/bin/core').Options`
 
   </template>
-  <template #body:graphics-options:description>
 
   [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
 
   See [Graphics Configuration](/components/graphics#component-prop).
 
-  </template>
+  </RProp>
 
-  <template #body:reactions:type>
+  <RProp name="reactions">
+
+  <template #type>
 
   `string[]`
 
   </template>
-  <template #body:reactions:default>
+
+  <template #default-value>
 
   `[]`
 
   </template>
-  <template #body:reactions:description>
 
   States that trigger graphics redrawing.
 
   See [Reactions](/guide/theme#reactions).
 
-  </template>
+  </RProp>
 
-  <template #body:vertical:type>
+  <RProp name="vertical">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:vertical:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:vertical:description>
-    Whether to display vertical divider.
-  </template>
-</RTable>
-</RSpace>
+
+  Whether to display vertical divider.
+
+  </RProp>
+
+</RPropsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color', 'gap-size']"
->
-  <template #body:*:name="{ row }">--r-divider-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-divider-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-common-primary-color)`
 
   </template>
-  <template #body:color:description>
-    Color of the divider.
-  </template>
 
-  <template #body:gap-size:values>
+  Color of the divider.
+
+  </RStyle>
+
+  <RStyle name="gap-size">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:gap-size:default>
+
+  <template #default-value>
 
   `12px`
 
   </template>
-  <template #body:gap-size:description>
-    Size of the divider gap.
-  </template>
-</RTable>
-</RSpace>
+
+  Size of the divider gap.
+
+  </RStyle>
+
+</RStylesTable>

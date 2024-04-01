@@ -91,82 +91,76 @@ See also [Button](/components/button#tag).
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['tag', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:tag:type>
+  <RProp name="tag">
+
+  <template #type>
 
   `string`, but usually `'a' | 'button'`
 
   </template>
-  <template #body:tag:default>
+
+  <template #default-value>
 
   `'a'`
 
   </template>
-  <template #body:tag:description>
-    HTML tag for rendering the link.
-  </template>
 
-  <template #body:...:description>
+  HTML tag for rendering the link.
+
+  </RProp>
+
+  <RProp name="...">
 
   See [Text Props](/components/text#props).
 
   Unlike Text, the default value of Link's `type` is `primary`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the link.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['underline-width', '...']"
->
-  <template #body:*:name="{ row }">--r-link-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:underline-width:values>
+  <template #name="{ value }">--r-link-{{ value }}</template>
+
+  <RStyle name="underline-width">
+
+  <template #values>
 
   `<length>`
 
   </template>
-  <template #body:underline-width:default>
+
+  <template #default-value>
 
   `3px` when focused or active, `2px` else
 
   </template>
-  <template #body:underline-width:description>
 
   Width of the link underline. Only visible when hovered, or with the `href` attribute.
 
-  </template>
+  </RStyle>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Text Styles](/components/text#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>

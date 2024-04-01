@@ -99,103 +99,106 @@ import { RSpace, RText } from 'roughness'
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['block', 'size', 'tag', 'type']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:block:type>
+  <RProp name="block">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:block:default>
+
+  <template #default-value>
 
   `false`
 
   </template>
-  <template #body:block:description>
-    Whether the text is displayed as block.
-  </template>
 
-  <template #body:size:type>
+  Whether the text is displayed as block.
+
+  </RProp>
+
+  <RProp name="size">
+
+  <template #type>
 
   `string`, but usually `'small' | 'large'`
 
   </template>
-  <template #body:size:description>
-    Text size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-  </template>
 
-  <template #body:tag:type>
+  Text size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+
+  </RProp>
+
+  <RProp name="tag">
+
+  <template #type>
 
   `string`
 
   </template>
-  <template #body:tag:default>
+
+  <template #default-value>
 
   `'span'`
 
   </template>
-  <template #body:tag:description>
-    HTML tag for rendering the text.
-  </template>
 
-  <template #body:type:type>
+  HTML tag for rendering the text.
+
+  </RProp>
+
+  <RProp name="type">
+
+  <template #type>
 
   `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
 
   </template>
-  <template #body:type:description>
 
   Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
 
   See also [Color Styles](/guide/theme#color-styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['default']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:default:description>
+  <RSlot name="default">
     Content of the text.
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['color']"
->
-  <template #body:*:name="{ row }">--r-text-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:color:values>
+  <template #name="{ value }">--r-text-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
 
   `<color>`
 
   </template>
-  <template #body:color:default>
+
+  <template #default-value>
 
   `var(--r-element-color)` for `default` `type`, other theme colors for other `type`.
 
   When `type` is `default`, it will also be inherited from ancestors.
 
   </template>
-  <template #body:color:description>
-    Color of text.
-  </template>
-</RTable>
-</RSpace>
+
+  Color of text.
+
+  </RStyle>
+
+</RStylesTable>

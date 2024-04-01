@@ -59,118 +59,114 @@ function show() {
 
 ### Props
 
-<RSpace>
-<RTable
-  :columns="['name', 'type', 'default', 'description']"
-  :rows="['closable', 'open', 'state', '...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RPropsTable>
 
-  <template #body:closable:type>
+  <RProp name="closable">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:closable:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:closable:description>
-    Whether to display the close button.
-  </template>
 
-  <template #body:open:type>
+  Whether to display the close button.
+
+  </RProp>
+
+  <RProp name="open">
+
+  <template #type>
 
   `boolean`
 
   </template>
-  <template #body:open:default>
+
+  <template #default-value>
 
   `true`
 
   </template>
-  <template #body:open:description>
-    Whether to display the dialog modal.
-  </template>
 
-  <template #body:state:type>
+  Whether to display the dialog modal.
+
+  </RProp>
+
+  <RProp name="state">
+
+  <template #type>
 
   `'auto' | 'manual'`
 
   </template>
-  <template #body:state:default>
+
+  <template #default-value>
 
   `'auto'`
 
   </template>
-  <template #body:state:description>
 
   When specified as `auto`, the dialog can be closed by clicking the backdrop.
 
-  </template>
+  </RProp>
 
-  <template #body:...:description>
+  <RProp name="...">
 
   See [Card Props](/components/card#props).
 
   Unlike Card, the default value of Dialog's `footer` is `true`.
 
-  </template>
-</RTable>
-</RSpace>
+  </RProp>
+
+</RPropsTable>
 
 ### Events
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['update:open']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<REventsTable>
 
-  <template #body:update:open:parameters>
+  <REvent name="update:open">
+
+  <template #parameters>
 
   `(value: boolean)`
 
   </template>
-  <template #body:update:open:description>
-    Callback function triggered when visibility of the dialog is changed.
-  </template>
-</RTable>
-</RSpace>
+
+  Callback function triggered when visibility of the dialog is changed.
+
+  </REvent>
+
+</REventsTable>
 
 ### Slots
 
-<RSpace>
-<RTable
-  :columns="['name', 'parameters', 'description']"
-  :rows="['...']"
->
-  <template #body:*:name="{ row }">{{ row }}</template>
+<RSlotsTable>
 
-  <template #body:...:description>
+  <RSlot name="...">
 
   See [Card Slots](/components/card#slots).
 
-  </template>
-</RTable>
-</RSpace>
+  </RSlot>
+
+</RSlotsTable>
 
 ### Styles
 
-<RSpace>
-<RTable
-  :columns="['name', 'values', 'default', 'description']"
-  :rows="['...']"
->
-  <template #body:*:name="{ row }">--r-dialog-{{ row }}</template>
+<RStylesTable>
 
-  <template #body:...:name>...</template>
-  <template #body:...:description>
+  <template #name="{ value }">--r-dialog-{{ value }}</template>
+
+  <RStyle name="...">
+
+  <template #name>...</template>
 
   See [Card Styles](/components/card#styles).
 
-  </template>
-</RTable>
-</RSpace>
+  </RStyle>
+
+</RStylesTable>
