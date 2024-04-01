@@ -7,18 +7,17 @@ import RSpace from '../space/index.vue'
 defineOptions({
   name: 'RLoading',
 })
-
-const reactions = ['time' as const]
-const graphicsOptions = { roughness: 2.5 }
 </script>
 
 <template>
   <RSpace justify="center" align="center" class="r-loading">
-    <RIcon :icon="Loader" :reactions="reactions" :graphics-options="graphicsOptions" class="r-loading__icon" />
+    <RIcon :icon="Loader" class="r-loading__icon" />
   </RSpace>
 </template>
 
 <style lang="scss">
+@use '../common/partials';
+
 .r-loading {
   position: absolute;
   inset: 0;
@@ -37,6 +36,7 @@ const graphicsOptions = { roughness: 2.5 }
   }
 }
 .r-loading__icon {
+  @include partials.loading-spinner();
   position: relative;
   z-index: var(--r-common-overlay-z-index);
 }

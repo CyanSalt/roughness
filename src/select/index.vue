@@ -183,7 +183,7 @@ provide(labelsInjection, labels)
       v-if="loading"
       :icon="Loader"
       :graphics-options="graphicsOptions"
-      class="r-select__icon"
+      class="r-select__icon r-select__loading-icon"
     />
     <RIcon
       v-else-if="clearable && state"
@@ -216,6 +216,7 @@ provide(labelsInjection, labels)
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
 @use '../common/_reset';
 
 .r-select {
@@ -251,6 +252,9 @@ provide(labelsInjection, labels)
   --r-element-font-size: calc(1em + 4px);
   flex: none;
   margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2 - 4px);
+  &.r-select__loading-icon {
+    @include partials.loading-spinner();
+  }
 }
 @layer base {
   .r-select__input {

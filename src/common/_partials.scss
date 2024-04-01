@@ -1,6 +1,12 @@
 @use 'sass:list';
 @use 'sass:math';
 
+@keyframes r-loading-spinner {
+  to {
+    transform: rotate(1rad);
+  }
+}
+
 @mixin stroke($color, $size: 1px) {
   $corner: math.div(math.$pi, 8);
   $shadows: ();
@@ -10,4 +16,8 @@
   }
   /* stylelint-disable-next-line order/order */
   text-shadow: $shadows;
+}
+
+@mixin loading-spinner() {
+  animation: r-loading-spinner 1s infinite steps(4);
 }

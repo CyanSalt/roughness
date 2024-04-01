@@ -1,4 +1,4 @@
-import { useCurrentElement, useFocus, useFocusWithin, useInterval, useMouseInElement, useMousePressed } from '@vueuse/core'
+import { useCurrentElement, useFocus, useFocusWithin, useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { MaybeRef, MaybeRefOrGetter } from 'vue'
 import { toValue } from 'vue'
 import { useDark } from './theme'
@@ -10,7 +10,6 @@ export interface ReactionState {
   'focus-within': boolean,
   active: boolean,
   dark: boolean,
-  time: number,
 }
 
 export interface ReactionProps {
@@ -27,7 +26,6 @@ export function useReactionState(
   const { focused } = useFocus(currentElement)
   const { focused: focusedWithin } = useFocusWithin(currentElement)
   const { pressed } = useMousePressed({ target: currentElement })
-  const counter = useInterval(200)
   const dark = useDark()
   return () => Object.fromEntries(toValue(reactions).map(reaction => {
     switch (reaction) {
@@ -43,8 +41,6 @@ export function useReactionState(
         return [reaction, pressed.value]
       case 'dark':
         return [reaction, dark.value]
-      case 'time':
-        return [reaction, counter.value]
       default:
         return [reaction, undefined]
     }
