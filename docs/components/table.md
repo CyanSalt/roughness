@@ -40,7 +40,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
 
 </RDetails>
 
-<RTable :rows="['html', 'js', 'css']" data-example>
+<RTable :rows="['html', 'js', 'css']">
   <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
   <RTableColumn v-slot="{ row }" name="age">
     <template v-if="row === 'html'">
@@ -92,7 +92,6 @@ import { RTable, RTableColumn } from 'roughness'
   :rows="['unified', 'western', 'eastern']"
   :header="false"
   footer
-  data-example
 >
   <RTableColumn name="name">
     <template #default="{ row }">
@@ -146,7 +145,7 @@ const data = [
 
 </RDetails>
 
-<RTable :rows="data" data-example>
+<RTable :rows="data">
   <RTableColumn name="z" />
   <RTableColumn v-slot="{ row }" name="element">
     <template v-if="row[RKey] === 1">

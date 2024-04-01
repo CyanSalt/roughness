@@ -164,7 +164,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 </RDetails>
 
-<RTable :rows="['color']" data-example>
+<RTable :rows="['color']">
   <RTableColumn v-slot="{ row }" name="continent">
     <template v-if="row === 'color'">
       New Zealand

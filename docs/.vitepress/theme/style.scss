@@ -22,9 +22,7 @@
 }
 
 .vp-doc .r-table {
-  &[data-example] {
-    display: revert;
-  }
+  display: revert;
   tr {
     border-top: revert;
     background-color: transparent;
