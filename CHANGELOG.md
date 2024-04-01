@@ -1,5 +1,17 @@
 
 
+## [0.1.0-beta.16](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.15...v0.1.0-beta.16) (2024-04-01)
+
+
+### Bug Fixes
+
+* expose internal utils ([ce1677e](https://github.com/CyanSalt/roughness/commit/ce1677e371675a2835389651374ff4ebccaacf42))
+* list rendering and default labels ([cbd14f1](https://github.com/CyanSalt/roughness/commit/cbd14f14973cce3da3d82fc39186c18c42bf6b6b))
+* loading animation ([02d27d8](https://github.com/CyanSalt/roughness/commit/02d27d8649f9e0a563d09c4815a279c985cdedaa))
+* overlay z-index and doc tables ([365f30f](https://github.com/CyanSalt/roughness/commit/365f30f88b5ad05242a22859d9aa5033cada6e45))
+* refactor list rendering components ([2f35d78](https://github.com/CyanSalt/roughness/commit/2f35d781d309cb5642ca942b848059018444dfe5))
+* **space:** default align ([c38632d](https://github.com/CyanSalt/roughness/commit/c38632dfd29caee58e18a3c4ef32140ac54dc8e9))
+
 ## [0.1.0-beta.15](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.14...v0.1.0-beta.15) (2024-03-29)
 
 
