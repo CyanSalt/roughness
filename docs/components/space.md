@@ -158,7 +158,7 @@ import { RSpace, RText } from 'roughness'
 
   <template #default-value>
 
-  `stretch` if `vertical`, `'start'` else
+  `stretch`
 
   </template>
 

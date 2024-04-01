@@ -8,7 +8,7 @@ defineOptions({
 })
 
 const {
-  align: userAlign,
+  align = 'stretch',
   justify = 'start',
   inline = false,
   reverse = false,
@@ -48,10 +48,6 @@ const {
 defineSlots<{
   default?: (props: {}) => any,
 }>()
-
-const align = $computed(() => {
-  return userAlign ?? (vertical ? 'stretch' : 'start')
-})
 
 const style = $computed<HTMLAttributes['style']>(() => {
   return {
