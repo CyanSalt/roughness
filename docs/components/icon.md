@@ -1,12 +1,10 @@
 <script lang="ts" setup>
 import { kebabCase } from 'lodash-es'
 import { CaseSensitive, icons, Regex, Tv, WholeWord } from 'lucide'
-import { defineIcons, RCard, RDetails, RIcon, RInput, RSpace, RTable, RText } from 'roughness'
+import { RCard, RDetails, RIcon, RInput, RSpace, RTable, RText } from 'roughness'
 import { ref } from 'vue'
 
-defineIcons(icons)
-
-let name = ref('pencil')
+let name = ref('Pencil')
 </script>
 
 # Icon
@@ -25,13 +23,6 @@ Roughness recommends using (and redraws) [Lucide Icons](https://lucide.dev/).
 
 <RDetails>
   <template #summary>Show Code</template>
-
-```ts
-import { icons } from 'lucide'
-import { defineIcons } from 'roughness'
-
-defineIcons(icons)
-```
 
 ```vue
 <script lang="ts" setup>
@@ -68,40 +59,6 @@ import { RIcon, RSpace } from 'roughness'
   </RSpace>
 </RSpace>
 
-### Batch Definition
-
-<RDetails>
-  <template #summary>Show Code</template>
-
-```ts
-import { icons } from 'lucide'
-import { defineIcons } from 'roughness'
-
-defineIcons(icons)
-```
-
-```vue
-<script lang="ts" setup>
-import { RIcon, RSpace } from 'roughness'
-</script>
-
-<template>
-  <RSpace>
-    <RIcon name="minus" />
-    <RIcon name="maximize-2" />
-    <RIcon name="x" />
-  </RSpace>
-</template>
-```
-
-</RDetails>
-
-<RSpace>
-  <RIcon name="minus" />
-  <RIcon name="maximize-2" />
-  <RIcon name="x" />
-</RSpace>
-
 ### Color and Size
 
 See [Text](/components/text).
@@ -110,7 +67,7 @@ See [Text](/components/text).
 
 <RSpace align="center">
   <RInput v-model="name" />
-  <RIcon :name="name" />
+  <RIcon :icon="icons[name]" />
 </RSpace>
 
 View all available icons [here](https://lucide.dev/icons/).
@@ -160,20 +117,6 @@ View all available icons [here](https://lucide.dev/icons/).
   </template>
 
   Icon object conforming to the type constraint. It can be imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
-
-  `icon` has higher priority than `name`.
-
-  </RProp>
-
-  <RProp name="name">
-
-  <template #type>
-
-  `string`
-
-  </template>
-
-  Name of the icon defined by `defineIcons`.
 
   </RProp>
 

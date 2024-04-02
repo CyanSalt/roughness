@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { chunk, kebabCase } from 'lodash-es'
+import { chunk } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
@@ -10,38 +10,28 @@ import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import RText from '../text/index.vue'
 import type { IconNode } from './utils'
-import { useIcons } from './utils'
 
 defineOptions({
   name: 'RIcon',
 })
 
 const {
-  name,
   icon,
   filled,
   reactions = (() => ['']) as never,
   graphicsOptions,
 } = defineProps<{
-  /** Name of the icon defined by `defineIcons` */
-  name?: string,
   /** Icon object conforming to the type constraint */
   icon?: IconNode,
   /** Whether to fill the icon */
   filled?: boolean,
 } & GraphicsProps>()
 
-const definedIcons = useIcons()
-
-const renderedIcon = $computed(() => {
-  return icon ?? (name ? definedIcons[kebabCase(name)] : undefined)
-})
-
 const svgAttrs = $computed(() => {
-  if (!renderedIcon) {
+  if (!icon) {
     return { viewBox: '0 0 1 1' } // as placeholder
   }
-  const { xmlns, viewBox } = renderedIcon[1]
+  const { xmlns, viewBox } = icon[1]
   return { xmlns, viewBox }
 })
 
@@ -52,7 +42,7 @@ function asNumber(value: string | number | undefined) {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  if (!renderedIcon) return
+  if (!icon) return
   getReactionState()
   const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
   const options: Options = {
@@ -60,7 +50,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     strokeWidth,
     fill: filled ? 'var(--r-icon-color)' : undefined,
   }
-  const children = renderedIcon[2] ?? []
+  const children = icon[2] ?? []
   for (const [tag, attrs] of children) {
     switch (tag) {
       case 'ellipse': {
