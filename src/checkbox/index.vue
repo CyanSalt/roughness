@@ -124,11 +124,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     svg.appendChild(rectangle)
   }
   if (internalChecked) {
+    // actual padding: [checkedPadding / 2, checkedPadding, checkedPadding * 3 / 2, checkedPadding]
+    const checkedPadding = padding + 2
     const checkedStrokeWidth = getLengthProperty(svg, '--r-checkbox-checked-width') ?? 0
     const linearPath = rc.linearPath([
-      [padding, height / 2],
-      [width / 2, height - padding],
-      [width - padding, padding],
+      [checkedPadding, checkedPadding / 2 + (height - checkedPadding * 2) * 2 / 3],
+      [checkedPadding + (width - checkedPadding * 2) / 3, height - checkedPadding * 3 / 2],
+      [width - checkedPadding, checkedPadding / 2 + (height - checkedPadding * 2) / 3],
     ], {
       stroke: 'var(--r-checkbox-checked-color)',
       strokeWidth: checkedStrokeWidth,
