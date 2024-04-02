@@ -164,7 +164,7 @@ Common style properties are declared under the root node. Changing them will aff
 
   <template #default-value>
 
-  `'CabinSketch'`
+  `'CabinSketch', cursive`
 
   </template>
 
