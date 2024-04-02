@@ -46,6 +46,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   getReactionState()
   const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
   const options: Options = {
+    roughness: 0.5,
+    disableMultiStroke: true,
     stroke: 'var(--r-icon-color)',
     strokeWidth,
     fill: filled ? 'var(--r-icon-color)' : undefined,
@@ -118,20 +120,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     }
   }
 }
-
-const iconGraphicsOptions = $computed(() => {
-  return {
-    roughness: 0.5,
-    disableMultiStroke: true,
-    ...graphicsOptions,
-  }
-})
 </script>
 
 <template>
   <RText class="r-icon">
     <RGraphics
-      :options="iconGraphicsOptions"
+      :options="graphicsOptions"
       :responsive="false"
       v-bind="svgAttrs"
       @draw="draw"
