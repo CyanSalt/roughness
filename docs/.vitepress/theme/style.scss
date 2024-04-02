@@ -56,4 +56,7 @@
 }
 .vp-doc a:where([class^='r-'], [class*=' r-']) {
   color: var(--r-element-color);
+  &:hover {
+    color: var(--r-element-color);
+  }
 }

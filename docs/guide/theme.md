@@ -68,7 +68,7 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
 }
 </style>
 
-### StylesReal
+### Styles
 
 All elements with `r-*` classes support the following style variables:
 
@@ -304,8 +304,6 @@ Common style properties are declared under the root node. Changing them will aff
 
 The following properties (of colors) change with dark/light theme changes: {#color-styles}
 
-### Styles
-
 <RStylesTable>
 
   <template #name="{ value }">--r-common-{{ value }}</template>
@@ -425,8 +423,6 @@ The following properties (of colors) change with dark/light theme changes: {#col
   </RStyle>
 
 </RStylesTable>
-
-### StylesEnd
 
 ## Dark Mode
 
