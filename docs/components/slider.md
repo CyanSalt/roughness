@@ -112,7 +112,7 @@ let value = ref(62)
 
   <template #default-value>
 
-  `['hover-at', 'focus-within', 'active']`
+  `['focus-within', 'active']`
 
   </template>
 
