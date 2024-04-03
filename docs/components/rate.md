@@ -76,7 +76,7 @@ let rate = ref(3)
 
   <template #default-value>
 
-  `['hover-at', 'focus-within', 'active']`
+  `['focus-within', 'active']`
 
   </template>
 

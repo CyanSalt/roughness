@@ -17,7 +17,7 @@ defineOptions({
 const {
   disabled = false,
   modelValue = 0,
-  reactions = (() => ['hover-at', 'focus-within', 'active']) as never,
+  reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
@@ -36,15 +36,17 @@ let internalModelValue = $(effectRef({
   },
 }))
 
+let root = $ref<HTMLLabelElement>()
+let input = $ref<HTMLInputElement>()
+
+const { pressed } = $(useMousePressed({ target: $$(root) }))
+const { elementX, isOutside } = $(useMouseInElement($$(root)))
+
 const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  const {
-    'hover-at': hoveredAt,
-    'focus-within': focusedWithin,
-    active,
-  } = getReactionState(reactions)
+  getReactionState(reactions)
   const { height } = getSVGSize(svg)
   const controlSize = height
   const gapSize = getLengthProperty(svg, '--r-rate-gap-size') ?? 0
@@ -69,8 +71,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const shapeOffsetX = shapeWidth > shapeHeight ? 0 : (shapeHeight - shapeWidth) / 2
   const shapeOffsetY = shapeWidth > shapeHeight ? (shapeWidth - shapeHeight) / 2 : 0
   const padding = 2
-  const cursorX = hoveredAt?.[0] ?? -Infinity
-  const activeIndex = hoveredAt ? Math.ceil(cursorX / (controlSize + gapSize)) : internalModelValue
+  const cursorX = !isOutside ? elementX : -Infinity
+  const activeIndex = !isOutside ? Math.ceil(cursorX / (controlSize + gapSize)) : internalModelValue
   const scale = (controlSize - padding * 2) / Math.max(shapeWidth, shapeHeight)
   for (let i = 0; i < 5; i += 1) {
     const startX = (controlSize + gapSize) * i + padding
@@ -78,18 +80,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       startX + (x + shapeOffsetX - shapeStartX) * scale,
       padding + (y + shapeOffsetY - shapeStartY) * scale,
     ]), {
-      stroke: hoveredAt || focusedWithin || active || activeIndex > i ? 'var(--r-rate-color)' : 'var(--r-rate-border-color)',
+      stroke: !isOutside || activeIndex > i ? 'var(--r-rate-color)' : 'var(--r-rate-border-color)',
       fill: activeIndex > i ? 'var(--r-rate-color)' : undefined,
     })
     svg.appendChild(polygon)
   }
 }
-
-let root = $ref<HTMLLabelElement>()
-let input = $ref<HTMLInputElement>()
-
-const { pressed } = $(useMousePressed({ target: $$(root) }))
-const { elementX } = $(useMouseInElement($$(root)))
 
 watchEffect(() => {
   if (!root || !pressed) return
@@ -131,6 +127,9 @@ watchEffect(() => {
   cursor: pointer;
   &:has(> .r-rate__input:disabled) {
     cursor: not-allowed;
+  }
+  &:focus-within, &:active {
+    --r-rate-border-color: var(--r-rate-color);
   }
 }
 @layer base {

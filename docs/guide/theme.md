@@ -70,7 +70,7 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
 }
 </style>
 
-The optional values for `reactions` include `hover`, `hover-at`, `focus`, `focus-within`, `active` and `dark`. You can also use the `will-draw` event if you wish to associate graphics drawing with custom effects.
+The optional values for `reactions` include `hover`, `focus`, `focus-within`, `active` and `dark`. You can also use the `will-draw` event if you wish to associate graphics drawing with custom effects.
 
 ```vue
 <script lang="ts" setup>
