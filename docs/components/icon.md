@@ -184,7 +184,25 @@ View all available icons [here](https://lucide.dev/icons/).
 
   </RStyle>
 
-  <RStyle name="line-width">
+  <RStyle name="stroke-color">
+
+  <template #values>
+
+  `<color>`
+
+  </template>
+
+  <template #default-value>
+
+  `var(--r-icon-color)`
+
+  </template>
+
+  Stroke line color of the icon.
+
+  </RStyle>
+
+  <RStyle name="stroke-width">
 
   <template #values>
 
@@ -198,7 +216,7 @@ View all available icons [here](https://lucide.dev/icons/).
 
   </template>
 
-  Line width of the icon.
+  Stroke line width of the icon.
 
   </RStyle>
 

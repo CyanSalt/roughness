@@ -259,7 +259,7 @@ provide(labelsInjection, labels)
   }
 }
 .r-select__icon {
-  --r-icon-line-width: var(--r-select-border-width);
+  --r-icon-stroke-width: var(--r-select-border-width);
   --r-element-font-size: calc(1em + 4px);
   flex: none;
   margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2 - 4px);

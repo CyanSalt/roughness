@@ -51,11 +51,11 @@ const getReactionState = useReactionState()
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
   getReactionState(reactions)
-  const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--r-icon-stroke-width') ?? 0
   const options: Options = {
     roughness: 0.5,
     disableMultiStroke: true,
-    stroke: 'var(--r-icon-color)',
+    stroke: 'var(--r-icon-stroke-color)',
     strokeWidth,
     fill: filled ? 'var(--r-icon-color)' : undefined,
   }
@@ -142,7 +142,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 .r-icon {
   --r-icon-color: var(--r-text-color);
-  --r-icon-line-width: 2px;
+  --r-icon-stroke-color: var(--r-icon-color);
+  --r-icon-stroke-width: 2px;
   display: inline-block;
   block-size: calc(1em + 4px);
   inline-size: calc(1em + 4px);
