@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Heart } from 'lucide'
 import { RDetails, RRate, RSpace, RTable } from 'roughness'
 import { ref } from 'vue'
 
@@ -10,6 +11,8 @@ let rate = ref(3)
 Only God can judge me.
 
 ## Example
+
+### Basic
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -31,25 +34,31 @@ let rate = ref(3)
 
 <RRate v-model="rate" />
 
+### Shape
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { Heart } from 'lucide'
+import { RRate } from 'roughness'
+</script>
+
+<template>
+  <RRate :shape="Heart" />
+</template>
+```
+
+</RDetails>
+
+<RRate :shape="Heart" />
+
 ## Usage
 
 ### Props
 
 <RPropsTable>
-
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
 
   <RProp name="model-value">
 
@@ -63,23 +72,21 @@ let rate = ref(3)
 
   </RProp>
 
-  <RProp name="reactions">
+  <RProp name="shape">
 
   <template #type>
 
-  `string[]`
+  `IconNode`
 
   </template>
 
   <template #default-value>
 
-  `['focus-within', 'active']`
+  `import('lucide').Star`
 
   </template>
 
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
+  Shape icon of the rate.
 
   </RProp>
 
@@ -98,14 +105,6 @@ let rate = ref(3)
   </template>
 
   Callback function triggered when the value is changed.
-
-  </REvent>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </REvent>
 
@@ -132,24 +131,6 @@ let rate = ref(3)
   </template>
 
   Color of the rate control when active.
-
-  </RStyle>
-
-  <RStyle name="border-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-text-color)`
-
-  </template>
-
-  Color of the rate control border.
 
   </RStyle>
 

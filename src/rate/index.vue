@@ -1,14 +1,12 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
-import type { RoughSVG } from 'roughjs/bin/svg'
+import { Star } from 'lucide'
 import { watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
-import { useReactionState } from '../common/reaction'
 import { effectRef } from '../common/utils'
-import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
-import { getSVGSize } from '../graphics/utils'
+import type { IconNode } from '../compositions'
+import RIcon from '../icon/index.vue'
 
 defineOptions({
   name: 'RRate',
@@ -17,17 +15,18 @@ defineOptions({
 const {
   disabled = false,
   modelValue = 0,
-  reactions = (() => ['focus-within', 'active']) as never,
-  graphicsOptions,
+  shape = Star,
 } = defineProps<{
   disabled?: boolean,
   /** Value of the rate */
   modelValue?: number,
-} & GraphicsProps>()
+  /** Shape icon of the rate */
+  shape?: IconNode,
+}>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,
@@ -42,56 +41,18 @@ let input = $ref<HTMLInputElement>()
 const { pressed } = $(useMousePressed({ target: $$(root) }))
 const { elementX, isOutside } = $(useMouseInElement($$(root)))
 
-const getReactionState = useReactionState()
-
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
-  const { height } = getSVGSize(svg)
-  const controlSize = height
-  const gapSize = getLengthProperty(svg, '--r-rate-gap-size') ?? 0
-  const shapePoints = [
-    [24, 0],
-    [30, 17],
-    [48, 17],
-    [34, 28],
-    [39, 45],
-    [24, 35],
-    [9, 45],
-    [14, 28],
-    [0, 17],
-    [18, 17],
-  ]
-  const shapeStartX = Math.min(...shapePoints.map(point => point[0]))
-  const shapeStartY = Math.min(...shapePoints.map(point => point[1]))
-  const shapeEndX = Math.max(...shapePoints.map(point => point[0]))
-  const shapeEndY = Math.max(...shapePoints.map(point => point[1]))
-  const shapeWidth = shapeEndX - shapeStartX
-  const shapeHeight = shapeEndY - shapeStartY
-  const shapeOffsetX = shapeWidth > shapeHeight ? 0 : (shapeHeight - shapeWidth) / 2
-  const shapeOffsetY = shapeWidth > shapeHeight ? (shapeWidth - shapeHeight) / 2 : 0
-  const padding = 2
-  const cursorX = !isOutside ? elementX : -Infinity
-  const activeIndex = !isOutside ? Math.ceil(cursorX / (controlSize + gapSize)) : internalModelValue
-  const scale = (controlSize - padding * 2) / Math.max(shapeWidth, shapeHeight)
-  for (let i = 0; i < 5; i += 1) {
-    const startX = (controlSize + gapSize) * i + padding
-    const polygon = rc.polygon(shapePoints.map(([x, y]) => [
-      startX + (x + shapeOffsetX - shapeStartX) * scale,
-      padding + (y + shapeOffsetY - shapeStartY) * scale,
-    ]), {
-      stroke: !isOutside || activeIndex > i ? 'var(--r-rate-color)' : 'var(--r-rate-border-color)',
-      fill: activeIndex > i ? 'var(--r-rate-color)' : undefined,
-    })
-    svg.appendChild(polygon)
-  }
-}
-
-watchEffect(() => {
-  if (!root || !pressed) return
+const targetModelValue: number = $computed(() => {
+  if (!root || isOutside) return 0
   const controlSize = root.clientHeight
   const gapSize = getLengthProperty(root, '--r-rate-gap-size') ?? 0
-  internalModelValue = Math.ceil(elementX / (controlSize + gapSize))
+  return Math.ceil(elementX / (controlSize + gapSize))
+})
+
+const filledCount = $computed(() => targetModelValue || internalModelValue)
+
+watchEffect(() => {
+  if (!pressed || !targetModelValue) return
+  internalModelValue = targetModelValue
   if (input) {
     input.focus()
   }
@@ -109,7 +70,13 @@ watchEffect(() => {
       max="5"
       class="r-rate__input"
     >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RIcon
+      v-for="n in 5"
+      :key="n"
+      :icon="shape"
+      :filled="n > 5 - filledCount"
+      class="r-rate__shape"
+    />
   </label>
 </template>
 
@@ -118,18 +85,14 @@ watchEffect(() => {
 
 .r-rate {
   --r-rate-color: var(--r-common-primary-color);
-  --r-rate-border-color: var(--r-common-text-color);
-  --r-rate-control-size: var(--r-common-line-height);
+  --r-rate-control-size: calc(var(--r-common-font-size) + 4px);
   --r-rate-gap-size: 4px;
   display: inline-flex;
-  block-size: var(--r-rate-control-size);
-  inline-size: calc(var(--r-rate-control-size) * 5 + var(--r-rate-gap-size) * 4);
+  flex-direction: row-reverse;
+  gap: var(--r-rate-gap-size);
   cursor: pointer;
   &:has(> .r-rate__input:disabled) {
     cursor: not-allowed;
-  }
-  &:focus-within, &:active {
-    --r-rate-border-color: var(--r-rate-color);
   }
 }
 @layer base {
@@ -142,5 +105,13 @@ watchEffect(() => {
   block-size: 0;
   inline-size: 0;
   opacity: 0;
+}
+.r-rate__shape {
+  font-size: var(--r-rate-control-size);
+  &.is-filled,
+  .r-rate:hover &,
+  .r-rate:focus-within & {
+    --r-icon-color: var(--r-rate-color);
+  }
 }
 </style>

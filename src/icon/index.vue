@@ -59,7 +59,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--r-icon-stroke-color)',
     strokeWidth,
     fill: filled ? 'var(--r-icon-color)' : undefined,
-    ...getFilledSizeOptions(strokeWidth),
+    ...getFilledSizeOptions(1),
   }
   for (const [tag, attrs] of children) {
     switch (tag) {

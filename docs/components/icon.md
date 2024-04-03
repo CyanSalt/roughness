@@ -110,7 +110,7 @@ View all available icons [here](https://lucide.dev/icons/).
 
   <template #type>
 
-  `[tag: string, attrs: SVGProps, children?: IconNodeChild[]]`
+  `IconNode`
 
   </template>
 
