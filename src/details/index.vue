@@ -45,11 +45,11 @@ function toggle(event: Event) {
 
 let summary = $ref<HTMLElement>()
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const options: Options = {
     stroke: 'var(--r-details-summary-color)',

@@ -80,11 +80,11 @@ watchEffect(() => {
   }
 })
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {

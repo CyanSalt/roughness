@@ -47,12 +47,12 @@ const disabled = $computed(() => {
   return Boolean(userDisabled || loading)
 })
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 let root = $ref<HTMLElement>()
 
 let color = $computed(() => {
-  getReactionState()
+  getReactionState(reactions)
   if (!root) return undefined
   let defaultColor = colord(getProperty(root, '--r-common-text-color'))
   const currentColor = colord(internalModelValue)
@@ -63,7 +63,7 @@ let color = $computed(() => {
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-color-picker-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-color-picker-border-dash')

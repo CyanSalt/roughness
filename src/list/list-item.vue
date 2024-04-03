@@ -24,13 +24,13 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 const listStyle = $(inject(listStyleInjection, ref()))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const options: Options = {
     stroke: 'var(--r-list-marker-color)',

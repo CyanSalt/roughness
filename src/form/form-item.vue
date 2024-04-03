@@ -48,11 +48,11 @@ const labelInline = $computed(() => {
 })
 
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const circle = rc.circle(width / 2, height / 2, Math.min(width, height) - padding * 2, {

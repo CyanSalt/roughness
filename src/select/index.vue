@@ -122,11 +122,11 @@ function clear() {
   internalModelValue = multiple ? [] : undefined
 }
 
-const getReactionState = useReactionState(() => reactions, $$(input))
+const getReactionState = useReactionState($$(input))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-select-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-border-dash')

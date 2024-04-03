@@ -36,7 +36,7 @@ let internalModelValue = $(effectRef({
   },
 }))
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
@@ -44,7 +44,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     'hover-at': hoveredAt,
     'focus-within': focusedWithin,
     active,
-  } = getReactionState()
+  } = getReactionState(reactions)
   const { height } = getSVGSize(svg)
   const controlSize = height
   const gapSize = getLengthProperty(svg, '--r-rate-gap-size') ?? 0

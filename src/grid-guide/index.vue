@@ -5,6 +5,7 @@ import { watchEffect } from 'vue'
 import { getIntegerProperty, getLengthProperty, getProperty } from '../common/property'
 import type { ReactionProps } from '../common/reaction'
 import { useReactionState } from '../common/reaction'
+import type { GraphicsEmits } from '../graphics/utils'
 
 defineOptions({
   name: 'RGridGuide',
@@ -21,7 +22,10 @@ const {
   responsive?: boolean,
 } & ReactionProps>()
 
-const getReactionState = useReactionState(() => reactions)
+const emit = defineEmits<{
+} & GraphicsEmits>()
+
+const getReactionState = useReactionState()
 
 const root = $ref<HTMLCanvasElement>()
 
@@ -31,13 +35,13 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
-function draw() {
-  if (!root) return
-  getReactionState()
+function draw(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
+  emit('will-draw')
+  getReactionState(reactions)
 
-  const cellSize = getLengthProperty(root, '--r-grid-guide-cell-size') ?? 0
-  const cellCount = getIntegerProperty(root, '--r-grid-guide-section-cell-count') ?? 1
-  const color = getProperty(root, '--r-grid-guide-color')
+  const cellSize = getLengthProperty(canvas, '--r-grid-guide-cell-size') ?? 0
+  const cellCount = getIntegerProperty(canvas, '--r-grid-guide-section-cell-count') ?? 1
+  const color = getProperty(canvas, '--r-grid-guide-color')
 
   const actualWidth = width * window.devicePixelRatio
   const actualHeight = height * window.devicePixelRatio
@@ -49,10 +53,9 @@ function draw() {
   const extraSections = 1
   const padding = Math.round(actualCellSize * (cellCount / 2 - 0.5))
 
-  root.width = actualWidth
-  root.height = actualHeight
+  canvas.width = actualWidth
+  canvas.height = actualHeight
 
-  const ctx = root.getContext('2d')!
   ctx.clearRect(0, 0, actualWidth, actualHeight)
   ctx.strokeStyle = color
   ctx.lineWidth = 1
@@ -82,7 +85,10 @@ function draw() {
 }
 
 watchEffect(() => {
-  draw()
+  if (!root) return
+  const ctx = root.getContext('2d')
+  if (!ctx) return
+  draw(ctx, root)
 })
 </script>
 

@@ -45,11 +45,11 @@ defineSlots<{
 
 const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-card-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-card-border-dash')

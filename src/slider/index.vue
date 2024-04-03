@@ -63,11 +63,11 @@ const ratio = $computed(() => {
   return (internalModelValue - min) / (max - min) || 0
 })
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-slider-border-width') ?? 0
   const trackSize = getLengthProperty(svg, '--r-slider-track-size') ?? 0

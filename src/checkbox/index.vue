@@ -103,11 +103,11 @@ const disabled = $computed(() => {
   return Boolean(userDisabled || disabledByGroup)
 })
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-checkbox-border-width') ?? 0
   const options: Options = {

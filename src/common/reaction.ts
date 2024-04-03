@@ -1,6 +1,5 @@
 import { useCurrentElement, useFocus, useFocusWithin, useMouseInElement, useMousePressed } from '@vueuse/core'
-import type { MaybeRef, MaybeRefOrGetter } from 'vue'
-import { toValue } from 'vue'
+import type { MaybeRef } from 'vue'
 import { useDark } from './theme'
 
 export interface ReactionState {
@@ -18,7 +17,6 @@ export interface ReactionProps {
 }
 
 export function useReactionState(
-  reactions: MaybeRefOrGetter<(keyof ReactionState)[]>,
   element?: MaybeRef<HTMLElement | null | undefined>,
 ) {
   const currentElement = element ?? useCurrentElement<HTMLElement>()
@@ -27,7 +25,7 @@ export function useReactionState(
   const { focused: focusedWithin } = useFocusWithin(currentElement)
   const { pressed } = useMousePressed({ target: currentElement })
   const dark = useDark()
-  return () => Object.fromEntries(toValue(reactions).map(reaction => {
+  return (reactions: (keyof ReactionState)[]) => Object.fromEntries(reactions.map(reaction => {
     switch (reaction) {
       case 'hover':
         return [reaction, !isOutside.value]

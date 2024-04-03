@@ -43,11 +43,11 @@ const ratio = $computed(() => {
   return (value - min) / (max - min) || 0
 })
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const strokeWidth = getLengthProperty(svg, '--r-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined

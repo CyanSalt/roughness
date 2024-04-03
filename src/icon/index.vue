@@ -46,11 +46,11 @@ function asNumber(value: string | number | undefined) {
   return value === undefined ? value : Number(value)
 }
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
   const options: Options = {
     roughness: 0.5,

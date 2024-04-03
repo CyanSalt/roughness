@@ -22,11 +22,11 @@ const {
 const emit = defineEmits<{
 } & GraphicsEmits>()
 
-const getReactionState = useReactionState(() => reactions)
+const getReactionState = useReactionState()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   emit('will-draw')
-  getReactionState()
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const line = rc.line(padding, padding, vertical ? padding : width - padding, vertical ? height - padding : padding, {
