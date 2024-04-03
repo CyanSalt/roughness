@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RRate, RSpace, RTable, RText } from 'roughness'
+import { RDetails, RRate, RSpace, RTable } from 'roughness'
 import { ref } from 'vue'
 
 let rate = ref(3)
@@ -58,9 +58,6 @@ let rate = ref(3)
   `number`
 
   </template>
-
-  <template #default-value>
-    </template>
 
   Value of the rate.
 

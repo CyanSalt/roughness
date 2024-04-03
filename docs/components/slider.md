@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSlider, RSpace, RTable, RText } from 'roughness'
+import { RDetails, RSlider, RSpace, RTable } from 'roughness'
 import { ref, watchEffect } from 'vue'
 
 const value = ref(62)
@@ -94,9 +94,6 @@ let value = ref(62)
   `number`
 
   </template>
-
-  <template #default-value>
-    </template>
 
   Value of the slider.
 

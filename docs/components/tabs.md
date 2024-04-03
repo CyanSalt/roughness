@@ -210,6 +210,10 @@ import { RTabItem, RTabs } from 'roughness'
 
   </template>
 
+  <template #default-value>
+    <RText type="error">Required</RText>
+  </template>
+
   Tab item key or data.
 
   See [List Rendering](/guide/specs#list-rendering).

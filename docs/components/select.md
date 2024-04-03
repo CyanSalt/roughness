@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RCheckbox, RDetails, RSelect, RSpace, RTable, RText } from 'roughness'
+import { RCheckbox, RDetails, RSelect, RSpace, RTable } from 'roughness'
 </script>
 
 # Select
@@ -191,9 +191,6 @@ See [Checkbox Tree](/components/checkbox#tree).
   `string | number | undefined` or `(string | number)[]`
 
   </template>
-
-  <template #default-value>
-    </template>
 
   Key(s) or data of the selected item(s).
 

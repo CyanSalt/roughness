@@ -504,9 +504,6 @@ const treeValue = ref<string | undefined>()
 
   </template>
 
-  <template #default-value>
-    </template>
-
   Key(s) or data of the checked item(s) of the group.
 
   </RProp>

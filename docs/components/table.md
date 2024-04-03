@@ -161,23 +161,6 @@ const data = [
 
 <RPropsTable>
 
-  <RProp name="columns">
-
-  <template #type>
-
-  `(string | number | RValue)[] | number`
-
-  </template>
-
-  <template #default-value>
-    </template>
-
-  Column keys or data.
-
-  See [List Rendering](/guide/specs#list-rendering).
-
-  </RProp>
-
   <RProp name="footer">
 
   <template #type>
@@ -257,7 +240,8 @@ const data = [
   </template>
 
   <template #default-value>
-    </template>
+    <RText type="error">Required</RText>
+  </template>
 
   Row keys or data.
 
