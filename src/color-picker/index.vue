@@ -52,8 +52,8 @@ const getReactionState = useReactionState()
 let root = $ref<HTMLElement>()
 
 let color = $computed(() => {
-  getReactionState(reactions)
   if (!root) return undefined
+  getReactionState(reactions)
   let defaultColor = colord(getProperty(root, '--r-common-text-color'))
   const currentColor = colord(internalModelValue)
   return currentColor

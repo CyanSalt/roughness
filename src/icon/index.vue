@@ -8,6 +8,7 @@ import { getLengthProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import { getFilledSizeOptions } from '../graphics/utils'
 import RText from '../text/index.vue'
 import type { IconNode } from './utils'
 
@@ -58,6 +59,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--r-icon-stroke-color)',
     strokeWidth,
     fill: filled ? 'var(--r-icon-color)' : undefined,
+    ...getFilledSizeOptions(strokeWidth),
   }
   for (const [tag, attrs] of children) {
     switch (tag) {
@@ -129,7 +131,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RText class="r-icon">
+  <RText :class="['r-icon', { 'is-filled': filled }]">
     <RGraphics
       :options="graphicsOptions"
       :responsive="false"

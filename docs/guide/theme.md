@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
+import { RButton, RProgress, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
 import { ref } from 'vue'
 
 const dark = useDark()
@@ -42,31 +42,25 @@ Obviously, you can also customize these CSS properties. For example:
 }
 ```
 
-Note that due to the limitations of HTML itself, modifying CSS dynamically cannot trigger Rough.js to redraw the background graphics in real time. If you wish to associate specific actions with the drawing of the graphics, you may use the `reactions` property: {#reactions}
+Note that due to the limitations of HTML itself, modifying CSS dynamically (except colors) cannot trigger Rough.js to redraw the background graphics in real time. If you wish to associate specific actions with the drawing of the graphics, you may use the `reactions` property: {#reactions}
 
 ```vue
 <template>
-  <RDetails :reactions="['hover']" class="my-details">
-    <template #summary>Beyond 99% sweat</template>
-    Good luck.
-  </RDetails>
+  <RProgress :reactions="['hover']" :value="0.99" class="my-progress">Sweat</RProgress>
 </template>
 
 <style>
-.my-details:hover {
-  --r-details-summary-color: var(--r-common-error-color);
+.my-progress:hover {
+  --r-progress-border-width: 2px;
 }
 </style>
 ```
 
-<RDetails :reactions="['hover']" class="my-details">
-  <template #summary>Beyond 99% sweat</template>
-  Good luck.
-</RDetails>
+<RProgress :reactions="['hover']" :value="0.99" class="my-progress">Sweat</RProgress>
 
 <style>
-.my-details:hover {
-  --r-details-summary-color: var(--r-common-error-color);
+.my-progress:hover {
+  --r-progress-border-width: 2px;
 }
 </style>
 
