@@ -22,7 +22,7 @@ const {
   graphicsOptions,
 } = defineProps<{
   /** Icon object conforming to the type constraint */
-  icon?: IconNode,
+  icon: IconNode,
   /** Whether to fill the icon */
   filled?: boolean,
 } & GraphicsProps>()
@@ -38,6 +38,10 @@ const svgAttrs = $computed(() => {
   return { xmlns, viewBox }
 })
 
+const children = $computed(() => {
+  return icon?.[2] ?? []
+})
+
 function asNumber(value: string | number | undefined) {
   return value === undefined ? value : Number(value)
 }
@@ -45,7 +49,6 @@ function asNumber(value: string | number | undefined) {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  if (!icon) return
   emit('will-draw')
   getReactionState()
   const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
@@ -56,7 +59,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     strokeWidth,
     fill: filled ? 'var(--r-icon-color)' : undefined,
   }
-  const children = icon[2] ?? []
   for (const [tag, attrs] of children) {
     switch (tag) {
       case 'ellipse': {

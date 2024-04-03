@@ -36,7 +36,6 @@ import { RIcon, RSpace } from 'roughness'
       <RIcon :icon="CaseSensitive" />
       <RIcon :icon="WholeWord" />
       <RIcon :icon="Regex" />
-      <RIcon />
     </RSpace>
     <RSpace>
       <RIcon :icon="Tv" filled />
@@ -52,7 +51,6 @@ import { RIcon, RSpace } from 'roughness'
     <RIcon :icon="CaseSensitive" />
     <RIcon :icon="WholeWord" />
     <RIcon :icon="Regex" />
-    <RIcon />
   </RSpace>
   <RSpace>
     <RIcon :icon="Tv" filled />
