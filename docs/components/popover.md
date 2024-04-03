@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RPopover, RSpace, RTable } from 'roughness'
+import { RButton, RDetails, RPopover, RSpace, RTable } from 'roughness'
 </script>
 
 # Popover
@@ -7,6 +7,8 @@ import { RDetails, RPopover, RSpace, RTable } from 'roughness'
 Should this text appear in a popover?
 
 ## Example
+
+### Basic
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -42,6 +44,43 @@ import { RPopover, RSpace } from 'roughness'
     And let him find out that Jerry stole his cheese
   </RPopover>
 </RSpace>
+
+### Dropdown
+
+<RDetails>
+  <template #summary>Show Code</template>
+
+```vue
+<script lang="ts" setup>
+import { RPopover, RSpace } from 'roughness'
+</script>
+
+<template>
+  <RPopover side="bottom">
+    <template #anchor>
+      <RButton>Hamburger</RButton>
+    </template>
+    <RSpace vertical>
+      <RButton>Nord</RButton>
+      <RButton>Mitte</RButton>
+      <RButton>Harburg</RButton>
+    </RSpace>
+  </RPopover>
+</template>
+```
+
+</RDetails>
+
+<RPopover side="bottom">
+  <template #anchor>
+    <RButton>Hamburger</RButton>
+  </template>
+  <RSpace vertical>
+    <RButton>Nord</RButton>
+    <RButton>Mitte</RButton>
+    <RButton>Harburg</RButton>
+  </RSpace>
+</RPopover>
 
 ## Usage
 
