@@ -88,20 +88,6 @@ import { RTabItem, RTabs } from 'roughness'
 
   </RProp>
 
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
   <RProp name="model-value">
 
   <template #type>
@@ -129,26 +115,6 @@ import { RTabItem, RTabs } from 'roughness'
   </template>
 
   Which side of the content the anchors will show on.
-
-  </RProp>
-
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['hover', 'focus-within', 'active']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </RProp>
 
@@ -202,6 +168,40 @@ import { RTabItem, RTabs } from 'roughness'
 
 <RPropsTable>
 
+  <RProp name="graphics-options">
+
+  <template #type>
+
+  `import('roughjs/bin/core').Options`
+
+  </template>
+
+  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
+
+  See [Graphics Configuration](/components/graphics#component-prop).
+
+  </RProp>
+
+  <RProp name="reactions">
+
+  <template #type>
+
+  `string[]`
+
+  </template>
+
+  <template #default-value>
+
+  `['hover', 'focus-within', 'active']`
+
+  </template>
+
+  States that trigger graphics redrawing.
+
+  See [Reactions](/guide/theme#reactions).
+
+  </RProp>
+
   <RProp name="value">
 
   <template #type>
@@ -209,13 +209,6 @@ import { RTabItem, RTabs } from 'roughness'
   `string | number | RValue`
 
   </template>
-
-  <template #default-value>
-    </template>
-
-  </RProp>
-
-  <RProp name="content">
 
   Tab item key or data.
 

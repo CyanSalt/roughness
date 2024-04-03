@@ -5,7 +5,7 @@ import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { useList } from '../common/list'
 import { effectRef } from '../common/utils'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
 import { itemsInjection } from './utils'
@@ -18,8 +18,6 @@ const {
   anchorSide = 'top',
   content = true,
   modelValue,
-  reactions,
-  graphicsOptions,
 } = defineProps<{
   /**
    * Which side of the content the anchors will show on
@@ -33,7 +31,7 @@ const {
   content?: boolean,
   /** Value of the active tab item in tabs */
   modelValue?: RValueOrKey | undefined,
-} & GraphicsProps>()
+}>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
@@ -99,8 +97,7 @@ function willDraw() {
         :active="tab.value === internalModelValue"
         :side="anchorSide"
         :value="tab.value"
-        :reactions="reactions"
-        :graphics-options="graphicsOptions"
+        v-bind="tab.props"
         @activate="activate"
         @will-draw="willDraw"
       >

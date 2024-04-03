@@ -3,6 +3,7 @@ import '../common/style.scss'
 import { useSlots } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { useListItem } from '../common/list'
+import type { GraphicsProps } from '../graphics/utils'
 import { itemsInjection } from './utils'
 
 defineOptions({
@@ -12,13 +13,15 @@ defineOptions({
 
 const {
   value,
+  reactions,
+  graphicsOptions,
 } = defineProps<{
   /**
    * Tab item key or data
    * {@link https://roughness.vercel.app/guide/specs#list-rendering}
    */
   value: RValueOrKey,
-}>()
+} & GraphicsProps>()
 
 defineSlots<{
   anchor?: (props: {}) => any,
@@ -27,5 +30,5 @@ defineSlots<{
 
 const slots = useSlots()
 
-useListItem(itemsInjection, () => ({ value, slots }))
+useListItem(itemsInjection, () => ({ value, props: { reactions, graphicsOptions }, slots }))
 </script>
