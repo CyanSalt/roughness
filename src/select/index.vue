@@ -147,6 +147,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
+  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-select-dropdown-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-dropdown-border-dash')
@@ -160,6 +162,11 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
     fillStyle: 'solid',
   })
   svg.appendChild(rectangle)
+}
+
+function willDrawIcon() {
+  emit('will-draw')
+  getReactionState(reactions)
 }
 
 provide(labelsInjection, labels)
@@ -185,6 +192,7 @@ provide(labelsInjection, labels)
       :icon="Loader"
       :graphics-options="graphicsOptions"
       class="r-select__icon r-select__loading-icon"
+      @will-draw="willDrawIcon"
     />
     <RIcon
       v-else-if="clearable && state"
@@ -193,12 +201,14 @@ provide(labelsInjection, labels)
       class="r-select__icon"
       role="button"
       @click="clear"
+      @will-draw="willDrawIcon"
     />
     <RIcon
       v-else
       :icon="ChevronDown"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
+      @will-draw="willDrawIcon"
     />
     <div v-show="state" class="r-select__dropdown">
       <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
