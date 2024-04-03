@@ -5,7 +5,6 @@ import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { useList } from '../common/list'
 import { effectRef } from '../common/utils'
-import type { GraphicsEmits } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
 import { itemsInjection } from './utils'
@@ -35,7 +34,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -73,10 +72,6 @@ const renderedItems = $computed(() => {
 function activate(tab: RValueOrKey) {
   internalModelValue = tab
 }
-
-function willDraw() {
-  emit('will-draw')
-}
 </script>
 
 <template>
@@ -99,7 +94,7 @@ function willDraw() {
         :value="tab.value"
         v-bind="tab.props"
         @activate="activate"
-        @will-draw="willDraw"
+        @will-draw="tab.emit('will-draw')"
       >
         <component :is="tab.slots.anchor" v-if="tab.slots.anchor"></component>
       </RTabAnchor>
