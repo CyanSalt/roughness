@@ -131,6 +131,14 @@ function toggle() {
 
   </REvent>
 
+  <REvent name="will-draw">
+
+  Associating effects before graphics drawing.
+
+  See [Reactions](/guide/theme#reactions).
+
+  </REvent>
+
 </REventsTable>
 
 ### Slots

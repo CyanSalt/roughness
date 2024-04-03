@@ -7,7 +7,7 @@ import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -40,7 +40,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'activate', value: RValueOrKey): void,
-}>()
+} & GraphicsEmits>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -57,6 +57,7 @@ function activate() {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-tab-anchor-border-width') ?? 0

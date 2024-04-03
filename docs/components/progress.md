@@ -209,6 +209,20 @@ watch(value, n => {
 
 </RPropsTable>
 
+### Events
+
+<REventsTable>
+
+  <REvent name="will-draw">
+
+  Associating effects before graphics drawing.
+
+  See [Reactions](/guide/theme#reactions).
+
+  </REvent>
+
+</REventsTable>
+
 ### Styles
 
 <RStylesTable>

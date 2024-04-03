@@ -7,7 +7,7 @@ import { useReactionState } from '../common/reaction'
 import type { ColorProps } from '../common/utils'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
@@ -34,7 +34,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-}>()
+} & GraphicsEmits>()
 
 let internalModelValue = $(effectRef({
   get: () => modelValue || '#000000',
@@ -62,6 +62,7 @@ let color = $computed(() => {
 })
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-color-picker-border-width') ?? 0

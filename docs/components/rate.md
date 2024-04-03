@@ -104,6 +104,14 @@ let rate = ref(3)
 
   </REvent>
 
+  <REvent name="will-draw">
+
+  Associating effects before graphics drawing.
+
+  See [Reactions](/guide/theme#reactions).
+
+  </REvent>
+
 </REventsTable>
 
 ### Styles

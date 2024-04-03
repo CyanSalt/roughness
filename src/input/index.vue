@@ -8,7 +8,7 @@ import { useReactionState } from '../common/reaction'
 import { effectRef, sentenceCase } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 interface InputProps {
@@ -73,7 +73,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-}>()
+} & GraphicsEmits>()
 
 const formItemName = $(inject(nameInjection, ref()))
 
@@ -100,6 +100,7 @@ let internalModelValue = $(effectRef({
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-input-border-width') ?? 0

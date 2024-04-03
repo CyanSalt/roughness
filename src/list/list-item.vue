@@ -4,7 +4,7 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref } from 'vue'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import { listStyleInjection } from './utils'
 
@@ -17,6 +17,9 @@ const {
   reactions = (() => []) as never,
 } = defineProps<GraphicsProps>()
 
+const emit = defineEmits<{
+} & GraphicsEmits>()
+
 defineSlots<{
   default?: (props: {}) => any,
 }>()
@@ -26,6 +29,7 @@ const getReactionState = useReactionState(() => reactions)
 const listStyle = $(inject(listStyleInjection, ref()))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const options: Options = {

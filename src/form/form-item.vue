@@ -5,7 +5,7 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, provide, ref } from 'vue'
 import { useReactionState } from '../common/reaction'
 import { RGraphics } from '../components'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import { labelInlineInjection, nameInjection } from './utils'
@@ -29,6 +29,9 @@ const {
   required?: boolean,
 } & GraphicsProps>()
 
+const emit = defineEmits<{
+} & GraphicsEmits>()
+
 defineSlots<{
   message?: (props: {}) => any,
   default?: (props: {}) => any,
@@ -48,6 +51,7 @@ const labelInline = $computed(() => {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const padding = 2

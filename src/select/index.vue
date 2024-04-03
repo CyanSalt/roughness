@@ -14,7 +14,7 @@ import { useReactionState } from '../common/reaction'
 import { effectRef, sentenceCase } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
@@ -51,7 +51,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-}>()
+} & GraphicsEmits>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -125,6 +125,7 @@ function clear() {
 const getReactionState = useReactionState(() => reactions, $$(input))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-select-border-width') ?? 0

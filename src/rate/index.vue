@@ -7,7 +7,7 @@ import { getLengthProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -27,7 +27,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-}>()
+} & GraphicsEmits>()
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,
@@ -39,6 +39,7 @@ let internalModelValue = $(effectRef({
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   const {
     'hover-at': hoveredAt,
     'focus-within': focusedWithin,

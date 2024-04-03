@@ -8,10 +8,6 @@ defineOptions({
   name: 'RGraphicsConfig',
 })
 
-defineSlots<{
-  default?: (props: {}) => any,
-}>()
-
 const {
   options,
 } = defineProps<{
@@ -20,6 +16,10 @@ const {
    * {@link https://github.com/rough-stuff/rough/wiki#options}
    */
   options?: Options,
+}>()
+
+defineSlots<{
+  default?: (props: {}) => any,
 }>()
 
 const configOptions = $(inject(optionsInjection, ref()))

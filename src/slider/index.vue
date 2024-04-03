@@ -7,7 +7,7 @@ import { getLengthProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -45,7 +45,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-}>()
+} & GraphicsEmits>()
 
 function round(value: number) {
   const rest = value % step
@@ -66,6 +66,7 @@ const ratio = $computed(() => {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-slider-border-width') ?? 0

@@ -5,7 +5,7 @@ import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import type { ColorProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
@@ -33,6 +33,9 @@ const {
   tag?: string,
 } & ColorProps & GraphicsProps>()
 
+const emit = defineEmits<{
+} & GraphicsEmits>()
+
 defineSlots<{
   title?: (props: {}) => any,
   'header-end'?: (props: {}) => any,
@@ -45,6 +48,7 @@ const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'commen
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-card-border-width') ?? 0

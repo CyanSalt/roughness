@@ -5,7 +5,7 @@ import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
@@ -39,7 +39,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'select', value: File | File[]): void,
-}>()
+} & GraphicsEmits>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -52,6 +52,7 @@ const disabled = $computed(() => {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-upload-border-width') ?? 0

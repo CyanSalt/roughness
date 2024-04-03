@@ -12,6 +12,10 @@ export interface GraphicsProps extends ReactionProps {
   graphicsOptions?: Options,
 }
 
+export interface GraphicsEmits {
+  (event: 'will-draw'): void,
+}
+
 export function getSVGSize(element: SVGSVGElement) {
   return {
     width: element.width.baseVal.value,

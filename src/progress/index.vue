@@ -5,7 +5,7 @@ import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import type { ColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -36,6 +36,9 @@ const {
   value: number,
 } & ColorProps & SizeProps & GraphicsProps>()
 
+const emit = defineEmits<{
+} & GraphicsEmits>()
+
 const ratio = $computed(() => {
   return (value - min) / (max - min) || 0
 })
@@ -43,6 +46,7 @@ const ratio = $computed(() => {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const strokeWidth = getLengthProperty(svg, '--r-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-progress-border-dash')

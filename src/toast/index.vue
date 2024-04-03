@@ -6,7 +6,7 @@ import { useReactionState } from '../common/reaction'
 import type { ColorProps, SizeProps } from '../common/utils'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -35,7 +35,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
-}>()
+} & GraphicsEmits>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -83,6 +83,7 @@ watchEffect(() => {
 const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  emit('will-draw')
   getReactionState()
   const { width, height } = getSVGSize(svg)
   const padding = 2

@@ -7,7 +7,7 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty } from '../common/property'
 import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
 import RText from '../text/index.vue'
 import type { IconNode } from './utils'
 
@@ -27,6 +27,9 @@ const {
   filled?: boolean,
 } & GraphicsProps>()
 
+const emit = defineEmits<{
+} & GraphicsEmits>()
+
 const svgAttrs = $computed(() => {
   if (!icon) {
     return { viewBox: '0 0 1 1' } // as placeholder
@@ -43,6 +46,7 @@ const getReactionState = useReactionState(() => reactions)
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   if (!icon) return
+  emit('will-draw')
   getReactionState()
   const strokeWidth = getLengthProperty(svg, '--r-icon-line-width') ?? 0
   const options: Options = {

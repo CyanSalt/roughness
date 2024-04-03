@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { RButton, RDetails, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
+import { ref } from 'vue'
 
 const dark = useDark()
+const flag = ref(false)
 </script>
 
 # Theme
@@ -67,6 +69,29 @@ Note that due to the limitations of HTML itself, modifying CSS dynamically canno
   --r-details-summary-color: var(--r-common-error-color);
 }
 </style>
+
+The optional values for `reactions` include `hover`, `hover-at`, `focus`, `focus-within`, `active` and `dark`. You can also use the `will-draw` event if you wish to associate graphics drawing with custom effects.
+
+```vue
+<script lang="ts" setup>
+import { RButton RSpace, RSwitch } from 'roughness'
+import { ref } from 'vue'
+
+const flag = ref(false)
+</script>
+
+<template>
+  <RSpace vertical align="start">
+    <RSwitch v-model="flag">Twinkle</RSwitch>
+    <RButton type="warning" @will-draw="() => flag">Little Star</RButton>
+  </RSpace>
+</template>
+```
+
+<RSpace vertical align="start">
+  <RSwitch v-model="flag">Twinkle</RSwitch>
+  <RButton type="warning" @will-draw="() => flag">Little Star</RButton>
+</RSpace>
 
 ### Styles
 
