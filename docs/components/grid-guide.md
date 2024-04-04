@@ -97,21 +97,21 @@ import { RGridGuide } from 'roughness'
 
   </RStyle>
 
-  <RStyle name="section-cell-count">
+  <RStyle name="section-size">
 
   <template #values>
 
-  `<integer>`
+  `<length>`
 
   </template>
 
   <template #default-value>
 
-  `8`
+  `calc(var(--r-grid-guide-cell-size) * 8)`
 
   </template>
 
-  Number of cells in one section dimension.
+  Size of the grid section.
 
   </RStyle>
 
