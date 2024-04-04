@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -12,21 +11,13 @@ defineOptions({
 
 const {
   vertical = false,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /** Whether to display vertical divider */
   vertical?: boolean,
 } & GraphicsProps>()
 
-const emit = defineEmits<{
-} & GraphicsEmits>()
-
-const getReactionState = useReactionState()
-
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const line = rc.line(padding, padding, vertical ? padding : width - padding, vertical ? height - padding : padding, {

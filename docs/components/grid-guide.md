@@ -35,26 +35,6 @@ import { RGridGuide } from 'roughness'
 
 <RPropsTable>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['dark']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
   <RProp name="responsive">
 
   <template #type>
@@ -74,20 +54,6 @@ import { RGridGuide } from 'roughness'
   </RProp>
 
 </RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </REvent>
-
-</REventsTable>
 
 ### Styles
 

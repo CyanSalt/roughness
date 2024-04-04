@@ -3,11 +3,10 @@ import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { watchEffect } from 'vue'
-import { getLengthProperty } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, useTransitionListener } from '../common/property'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -20,7 +19,6 @@ const {
   min = 0,
   modelValue = 0,
   step = 1,
-  reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
@@ -45,7 +43,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 function round(value: number) {
   const rest = value % step
@@ -63,11 +61,10 @@ const ratio = $computed(() => {
   return (internalModelValue - min) / (max - min) || 0
 })
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-slider-border-width') ?? 0
   const trackSize = getLengthProperty(svg, '--r-slider-track-size') ?? 0
@@ -129,7 +126,11 @@ watchEffect(() => {
 </script>
 
 <template>
-  <label ref="root" class="r-slider">
+  <label
+    ref="root"
+    class="r-slider"
+    @transitionrun="listener"
+  >
     <input
       ref="input"
       v-model.number="internalModelValue"
@@ -144,6 +145,7 @@ watchEffect(() => {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
 @use '../common/_reset';
 
 .r-slider {
@@ -156,6 +158,12 @@ watchEffect(() => {
   block-size: var(--r-slider-control-size);
   inline-size: 210px;
   cursor: pointer;
+  &::before {
+    @include partials.ghost();
+    border-top: var(--r-slider-border-width) solid;
+    border-right: var(--r-slider-track-size) solid;
+    transition: border-top 1ms, border-right 1ms !important;
+  }
   &:has(> .r-slider__input:focus), &:active {
     --r-slider-border-width: 2px;
   }

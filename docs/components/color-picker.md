@@ -84,26 +84,6 @@ let color = ref('')
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['hover', 'focus', 'active', 'dark']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
 </RPropsTable>
 
 ### Events
@@ -119,14 +99,6 @@ let color = ref('')
   </template>
 
   Callback function triggered when the color is changed.
-
-  </REvent>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </REvent>
 

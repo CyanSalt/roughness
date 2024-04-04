@@ -9,12 +9,11 @@ import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { effectRef, sentenceCase } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
@@ -30,7 +29,6 @@ const {
   multiple = false,
   name: userName,
   placeholder: userPlaceholder,
-  reactions = (() => ['focus']) as never,
   graphicsOptions,
 } = defineProps<{
   /** Whether the select is clearable */
@@ -51,7 +49,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -122,11 +120,10 @@ function clear() {
   internalModelValue = multiple ? [] : undefined
 }
 
-const getReactionState = useReactionState($$(input))
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-select-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-border-dash')
@@ -146,9 +143,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   svg.appendChild(rectangle)
 }
 
+const {
+  timestamp: dropdownTimestamp,
+  listener: dropdownListener,
+} = $(useTransitionListener('::before'))
+
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void dropdownTimestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-select-dropdown-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-dropdown-border-dash')
@@ -164,16 +165,15 @@ function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   svg.appendChild(rectangle)
 }
 
-function willDrawIcon() {
-  emit('will-draw')
-  getReactionState(reactions)
-}
-
 provide(labelsInjection, labels)
 </script>
 
 <template>
-  <label v-on-click-outside.bubble="close" :class="['r-select', { 'is-loading': loading, 'is-open': state }]">
+  <label
+    v-on-click-outside.bubble="close"
+    :class="['r-select', { 'is-loading': loading, 'is-open': state }]"
+    @transitionrun="listener"
+  >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <input
       ref="input"
@@ -192,7 +192,6 @@ provide(labelsInjection, labels)
       :icon="Loader"
       :graphics-options="graphicsOptions"
       class="r-select__icon r-select__loading-icon"
-      @will-draw="willDrawIcon"
     />
     <RIcon
       v-else-if="clearable && state"
@@ -201,16 +200,18 @@ provide(labelsInjection, labels)
       class="r-select__icon"
       role="button"
       @click="clear"
-      @will-draw="willDrawIcon"
     />
     <RIcon
       v-else
       :icon="ChevronDown"
       :graphics-options="graphicsOptions"
       class="r-select__icon"
-      @will-draw="willDrawIcon"
     />
-    <div v-show="state" class="r-select__dropdown">
+    <div
+      v-show="state"
+      class="r-select__dropdown"
+      @transitionrun="dropdownListener"
+    >
       <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
       <RCheckboxGroup
         v-model="internalModelValue"
@@ -245,6 +246,12 @@ provide(labelsInjection, labels)
   width: 210px;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-select-border-dash);
+    border-top: var(--r-select-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
   &:has(> .r-select__input:focus) {
     --r-select-border-width: 2px;
   }
@@ -289,6 +296,12 @@ provide(labelsInjection, labels)
   inset-block-end: 0;
   inset-inline: 0;
   transform: translateY(100%);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-select-dropdown-border-dash);
+    border-top: var(--r-select-dropdown-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
 }
 .r-select__group {
   max-block-size: calc(var(--r-select-dropdown-padding-block) * 2 + var(--r-common-line-height) * 5 + var(--r-space-gap-size) * 4);

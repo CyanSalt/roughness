@@ -1,5 +1,6 @@
 import unit from 'parse-unit'
 import toPX from 'to-px'
+import { ref } from 'vue'
 
 function transformValueToLength(element: Element, value: string) {
   const parts = unit(value)
@@ -27,4 +28,13 @@ export function getLengthPropertyAsArray(element: Element, property: string) {
   const values = value.split(/[,\s]+/).map(part => transformValueToLength(element, part))
   if (values.length === 1 && values[0] === null) return null
   return values
+}
+
+export function useTransitionListener(pseudoElement?: string) {
+  const timestamp = ref<number | undefined>()
+  const listener = function (event: TransitionEvent) {
+    if (typeof pseudoElement === 'string' && event.pseudoElement !== pseudoElement) return
+    timestamp.value = event.timeStamp
+  }
+  return { timestamp, listener }
 }

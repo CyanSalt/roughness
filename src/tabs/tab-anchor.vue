@@ -4,10 +4,9 @@ import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -18,7 +17,6 @@ const {
   active = false,
   side = 'top',
   value,
-  reactions = (() => ['hover', 'focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -40,7 +38,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'activate', value: RValueOrKey): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -54,11 +52,10 @@ function activate() {
   emit('activate', value)
 }
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-tab-anchor-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-tab-anchor-border-dash')
@@ -115,6 +112,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-tab-anchor', { 'is-active': active }]"
     role="tab"
     :aria-selected="active"
+    @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <button type="button" class="r-tab-anchor__button" @click="activate">
@@ -124,6 +122,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
 @use '../common/_reset';
 
 .r-tab-anchor {
@@ -132,6 +131,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-tab-anchor-border-width: 1px;
   --r-tab-anchor-border-dash: none;
   cursor: pointer;
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-tab-anchor-border-dash);
+    border-top: var(--r-tab-anchor-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
   &:hover {
     --r-tab-anchor-border-dash: 8px;
   }

@@ -3,10 +3,9 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useReactionState } from '../common/reaction'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -16,7 +15,6 @@ defineOptions({
 
 const {
   open = false,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /** Whether the details are currently visible */
@@ -25,7 +23,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   summary?: (props: {}) => any,
@@ -45,11 +43,7 @@ function toggle(event: Event) {
 
 let summary = $ref<HTMLElement>()
 
-const getReactionState = useReactionState()
-
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const options: Options = {
     stroke: 'var(--r-details-summary-color)',

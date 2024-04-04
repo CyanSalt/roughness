@@ -6,11 +6,10 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
-import { getLengthProperty } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, useTransitionListener } from '../common/property'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
@@ -25,7 +24,6 @@ const {
   indeterminate = false,
   label: userLabel,
   value,
-  reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   /** Checked state of the checkbox */
@@ -47,7 +45,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:checked', value: typeof checked): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -103,11 +101,10 @@ const disabled = $computed(() => {
   return Boolean(userDisabled || disabledByGroup)
 })
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-checkbox-border-width') ?? 0
   const options: Options = {
@@ -142,7 +139,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace tag="label" inline :wrap="false" class="r-checkbox">
+  <RSpace
+    tag="label"
+    inline
+    :wrap="false"
+    class="r-checkbox"
+    @transitionrun="listener"
+  >
     <input
       v-model="internalChecked"
       :type="multiple === false ? 'radio' : 'checkbox'"
@@ -159,6 +162,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
 @use '../common/_reset';
 
 .r-checkbox {
@@ -169,6 +173,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-checkbox-control-size: var(--r-common-line-height);
   position: relative;
   cursor: pointer;
+  &::before {
+    @include partials.ghost();
+    border-top: var(--r-checkbox-border-width) solid;
+    border-right: var(--r-checkbox-checked-width) solid;
+    transition: border-top 1ms, border-right 1ms !important;
+  }
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
     --r-checkbox-border-width: 2px;

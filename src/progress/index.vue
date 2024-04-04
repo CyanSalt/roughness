@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import type { ColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -19,7 +18,6 @@ const {
   value,
   type,
   size,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -36,18 +34,14 @@ const {
   value: number,
 } & ColorProps & SizeProps & GraphicsProps>()
 
-const emit = defineEmits<{
-} & GraphicsEmits>()
-
 const ratio = $computed(() => {
   return (value - min) / (max - min) || 0
 })
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const strokeWidth = getLengthProperty(svg, '--r-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined
@@ -98,6 +92,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     align="center"
     :class="['r-progress', type, size]"
     role="progressbar"
+    @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <span class="r-progress__content">
@@ -119,6 +114,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: inline-block;
   block-size: var(--r-progress-block-size);
   inline-size: var(--r-progress-inline-size);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-progress-border-dash);
+    border-top: var(--r-progress-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
   &.primary {
     --r-element-color: var(--r-common-primary-color);
   }

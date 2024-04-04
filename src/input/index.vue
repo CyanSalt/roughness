@@ -3,12 +3,11 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { inject, ref } from 'vue'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { effectRef, sentenceCase } from '../common/utils'
 import { nameInjection } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 interface InputProps {
@@ -54,7 +53,6 @@ const {
   name: userName,
   placeholder: userPlaceholder,
   type,
-  reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
   ...props
 } = defineProps<{
@@ -73,7 +71,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 const formItemName = $(inject(nameInjection, ref()))
 
@@ -97,11 +95,10 @@ let internalModelValue = $(effectRef({
   },
 }))
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-input-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-input-border-dash')
@@ -132,6 +129,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   <label
     :class="['r-input', { 'is-multiline': lines > 1 }]"
     :style="{ '--r-input-lines': lines > 1 ? lines : undefined }"
+    @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <textarea
@@ -155,6 +153,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
 @use '../common/_reset';
 
 .r-input {
@@ -164,6 +163,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   display: inline-flex;
   width: 210px;
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-input-border-dash);
+    border-top: var(--r-input-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms, line-height 1ms !important;
+  }
   &:has(> .r-input__input:hover:not(:read-only, :disabled)) {
     --r-input-border-dash: 8px;
   }

@@ -129,26 +129,6 @@ function select(value: File) {
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['hover', 'focus', 'active']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
 </RPropsTable>
 
 ### Events
@@ -164,14 +144,6 @@ function select(value: File) {
   </template>
 
   Callback function triggered when one or more files are selected.
-
-  </REvent>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </REvent>
 

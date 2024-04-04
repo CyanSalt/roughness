@@ -19,7 +19,6 @@ const {
   header = true,
   open = true,
   state = 'auto',
-  reactions,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -106,7 +105,6 @@ const nestingGraphicsOptions = $computed(() => {
     <RCard
       :header="header"
       :footer="footer"
-      :reactions="reactions"
       :graphics-options="nestingGraphicsOptions"
       tag="form"
       method="dialog"

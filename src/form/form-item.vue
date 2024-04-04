@@ -3,9 +3,8 @@ import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, provide, ref } from 'vue'
-import { useReactionState } from '../common/reaction'
 import { RGraphics } from '../components'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import { labelInlineInjection, nameInjection } from './utils'
@@ -18,7 +17,6 @@ const {
   labelInline: userLabelInline = undefined,
   name,
   required = false,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /** Whether the label of the form item is displayed as an inline box */
@@ -28,9 +26,6 @@ const {
   /** Whether the field is required */
   required?: boolean,
 } & GraphicsProps>()
-
-const emit = defineEmits<{
-} & GraphicsEmits>()
 
 defineSlots<{
   message?: (props: {}) => any,
@@ -48,11 +43,7 @@ const labelInline = $computed(() => {
 })
 
 
-const getReactionState = useReactionState()
-
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const circle = rc.circle(width / 2, height / 2, Math.min(width, height) - padding * 2, {

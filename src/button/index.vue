@@ -2,11 +2,10 @@
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import type { ColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
@@ -24,7 +23,6 @@ const {
   tag = 'button',
   type,
   size,
-  reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   /** Whether the button is displayed as block */
@@ -51,8 +49,6 @@ const {
   tag?: 'button' | 'a' | (string & {}),
 } & ColorProps & SizeProps & GraphicsProps>()
 
-const emit = defineEmits<GraphicsEmits>()
-
 defineSlots<{
   default?: (props: {}) => any,
 }>()
@@ -61,11 +57,10 @@ const disabled = $computed(() => {
   return Boolean(userDisabled || loading)
 })
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-button-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-button-border-dash')
@@ -106,6 +101,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :type="htmlType"
     :disabled="disabled"
     :class="['r-button', type, size, { 'is-filled': filled, 'is-block': block, 'is-loading': loading }]"
+    @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot></slot>
@@ -129,7 +125,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-button-color: var(--r-element-color);
   --r-button-border-color: var(--r-button-color);
   --r-button-border-width: 1px;
-  --r-button-border-dash: none;
+  --r-button-border-dash: unset;
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
@@ -137,6 +133,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   white-space: nowrap;
   text-align: center;
   text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-button-border-dash);
+    border-top: var(--r-button-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
   &:hover:not(.is-loading) {
     --r-button-border-dash: 8px;
   }

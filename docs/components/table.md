@@ -211,26 +211,6 @@ const data = [
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `[]`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
   <RProp name="rows">
 
   <template #type>
@@ -250,20 +230,6 @@ const data = [
   </RProp>
 
 </RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </REvent>
-
-</REventsTable>
 
 ### Slots
 

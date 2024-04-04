@@ -8,9 +8,8 @@ import { onMounted, reactive } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { useList } from '../common/list'
-import { useReactionState } from '../common/reaction'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RTableCell from './table-cell.vue'
 import RTableHeaderCell from './table-header-cell.vue'
@@ -24,7 +23,6 @@ const {
   footer = false,
   header = true,
   rows,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -43,9 +41,6 @@ const {
    */
   rows: RValueOrKey[],
 } & GraphicsProps>()
-
-const emit = defineEmits<{
-} & GraphicsEmits>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -108,11 +103,7 @@ onMounted(() => {
   calculateDimensions()
 })
 
-const getReactionState = useReactionState()
-
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const { x, y } = dimensions
   const options: Options = {

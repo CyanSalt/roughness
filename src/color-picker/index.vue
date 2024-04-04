@@ -2,12 +2,11 @@
 import '../common/style.scss'
 import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty, getLengthPropertyAsArray, getProperty } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, getProperty, useTransitionListener } from '../common/property'
 import type { ColorProps } from '../common/utils'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
@@ -19,7 +18,6 @@ const {
   disabled: userDisabled,
   loading = false,
   modelValue,
-  reactions = (() => ['hover', 'focus', 'active', 'dark']) as never,
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
@@ -34,7 +32,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 let internalModelValue = $(effectRef({
   get: () => modelValue || '#000000',
@@ -47,13 +45,13 @@ const disabled = $computed(() => {
   return Boolean(userDisabled || loading)
 })
 
-const getReactionState = useReactionState()
-
 let root = $ref<HTMLElement>()
+
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 let color = $computed(() => {
   if (!root) return undefined
-  getReactionState(reactions)
+  void timestamp
   let defaultColor = colord(getProperty(root, '--r-common-text-color'))
   const currentColor = colord(internalModelValue)
   return currentColor
@@ -62,8 +60,7 @@ let color = $computed(() => {
 })
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-color-picker-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-color-picker-border-dash')
@@ -97,6 +94,7 @@ const style = $computed(() => {
     ref="root"
     :class="['r-color-picker', { 'is-loading': loading }]"
     :style="style"
+    @transitionrun="listener"
   >
     <input
       v-model="internalModelValue"
@@ -123,11 +121,18 @@ const style = $computed(() => {
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-color-picker-color);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-color-picker-border-dash);
+    border-top: var(--r-color-picker-border-width) solid;
+    background-color: var(--r-common-text-color);
+    transition: border-spacing 1ms, border-top 1ms, background-color 1ms !important;
+  }
   &:hover:not(.is-loading) {
-    --r-button-border-dash: 8px;
+    --r-color-picker-border-dash: 8px;
   }
   &:focus, &:active {
-    --r-button-border-width: 2px;
+    --r-color-picker-border-width: 2px;
   }
   &:not(.is-loading) {
     cursor: pointer;

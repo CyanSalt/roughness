@@ -19,7 +19,6 @@ const {
   open = false,
   side = 'top',
   trigger = 'hover',
-  reactions,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -187,7 +186,6 @@ const nestingGraphicsOptions = $computed(() => {
       ref="content"
       :header="header"
       :footer="footer"
-      :reactions="reactions"
       :graphics-options="nestingGraphicsOptions"
       class="r-popover__content"
       :style="contentStyle"

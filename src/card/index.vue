@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import type { ColorProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
@@ -19,7 +18,6 @@ const {
   header = true,
   tag = 'article',
   type,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /** Whether to display the card footer */
@@ -33,9 +31,6 @@ const {
   tag?: string,
 } & ColorProps & GraphicsProps>()
 
-const emit = defineEmits<{
-} & GraphicsEmits>()
-
 defineSlots<{
   title?: (props: {}) => any,
   'header-end'?: (props: {}) => any,
@@ -45,11 +40,10 @@ defineSlots<{
 
 const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-card-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-card-border-dash')
@@ -71,7 +65,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace :tag="tag" vertical :wrap="false" :class="['r-card', type]">
+  <RSpace
+    :tag="tag"
+    vertical
+    :wrap="false"
+    :class="['r-card', type]"
+    @transitionrun="listener"
+  >
     <RGraphics :options="graphicsOptions" @draw="draw" />
     <RSpace
       v-if="header"
@@ -103,6 +103,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
+
 .r-card {
   --r-card-color: var(--r-element-color);
   --r-card-border-color: var(--r-card-color);
@@ -113,6 +115,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-block: var(--r-card-padding-block);
   padding-inline: var(--r-card-padding-inline);
   color: var(--r-card-color);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-card-border-dash);
+    border-top: var(--r-card-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
   &.primary {
     --r-element-color: var(--r-common-primary-color);
   }

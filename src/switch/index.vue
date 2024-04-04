@@ -2,11 +2,10 @@
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, useTransitionListener } from '../common/property'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -17,7 +16,6 @@ defineOptions({
 const {
   disabled = false,
   modelValue,
-  reactions = (() => ['focus-within', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   disabled?: boolean,
@@ -27,7 +25,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
-} & GraphicsEmits>()
+}>()
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,
@@ -36,11 +34,10 @@ let internalModelValue = $(effectRef({
   },
 }))
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-switch-border-width') ?? 0
   const padding = 2
@@ -81,7 +78,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <RSpace tag="label" inline :wrap="false" class="r-switch">
+  <RSpace
+    tag="label"
+    inline
+    :wrap="false"
+    class="r-switch"
+    @transitionrun="listener"
+  >
     <input
       v-model="internalModelValue"
       :disabled="disabled"
@@ -96,6 +99,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
 @use '../common/_reset';
 
 .r-switch {
@@ -106,6 +110,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-switch-handle-color: var(--r-common-background-color);
   position: relative;
   cursor: pointer;
+  &::before {
+    @include partials.ghost();
+    border-top: var(--r-switch-border-width) solid;
+    transition: border-top 1ms !important;
+  }
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
     --r-switch-border-width: 2px;

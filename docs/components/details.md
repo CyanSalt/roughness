@@ -93,26 +93,6 @@ function toggle() {
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `[]`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
 </RPropsTable>
 
 ### Events
@@ -128,14 +108,6 @@ function toggle() {
   </template>
 
   Callback function triggered when visibility of the detail is changed.
-
-  </REvent>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </REvent>
 

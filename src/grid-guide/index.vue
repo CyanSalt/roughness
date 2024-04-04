@@ -2,10 +2,7 @@
 import '../common/style.scss'
 import { useElementSize, useParentElement } from '@vueuse/core'
 import { watchEffect } from 'vue'
-import { getIntegerProperty, getLengthProperty, getProperty } from '../common/property'
-import type { ReactionProps } from '../common/reaction'
-import { useReactionState } from '../common/reaction'
-import type { GraphicsEmits } from '../graphics/utils'
+import { getIntegerProperty, getLengthProperty, getProperty, useTransitionListener } from '../common/property'
 
 defineOptions({
   name: 'RGridGuide',
@@ -13,21 +10,15 @@ defineOptions({
 
 const {
   responsive = true,
-  reactions = (() => ['dark']) as never,
 } = defineProps<{
   /**
    * Whether to adjust the size to fit the parent element
    * @default true
    */
   responsive?: boolean,
-} & ReactionProps>()
+}>()
 
-const emit = defineEmits<{
-} & GraphicsEmits>()
-
-const getReactionState = useReactionState()
-
-const root = $ref<HTMLCanvasElement>()
+const background = $ref<HTMLCanvasElement>()
 
 const parent = $(useParentElement())
 const container = $computed(() => (responsive ? parent : null))
@@ -35,9 +26,10 @@ const { width, height } = $(useElementSize($$(container), undefined, {
   box: 'border-box',
 }))
 
+const { timestamp, listener } = $(useTransitionListener('::before'))
+
 function draw(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
 
   const cellSize = getLengthProperty(canvas, '--r-grid-guide-cell-size') ?? 0
   const cellCount = getIntegerProperty(canvas, '--r-grid-guide-section-cell-count') ?? 1
@@ -85,27 +77,40 @@ function draw(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
 }
 
 watchEffect(() => {
-  if (!root) return
-  const ctx = root.getContext('2d')
+  if (!background) return
+  const ctx = background.getContext('2d')
   if (!ctx) return
-  draw(ctx, root)
+  draw(ctx, background)
 })
 </script>
 
 <template>
-  <canvas
-    ref="root"
+  <div
     :class="['r-grid-guide', { 'is-responsive': responsive }]"
-    aria-hidden="true"
-  ></canvas>
+    @transitionrun="listener"
+  >
+    <canvas
+      ref="background"
+      class="r-grid-guide__canvas"
+      aria-hidden="true"
+    ></canvas>
+  </div>
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
+
 .r-grid-guide {
   --r-grid-guide-color: #f5f5f5;
   --r-grid-guide-cell-size: var(--r-common-font-size);
   --r-grid-guide-section-cell-count: 8;
+  position: relative;
   pointer-events: none;
+  &::before {
+    @include partials.ghost();
+    color: var(--r-grid-guide-color);
+    transition: color 1ms !important;
+  }
   &.is-responsive {
     position: absolute;
     inset: 0;
@@ -122,5 +127,11 @@ watchEffect(() => {
     position: relative;
     z-index: 0;
   }
+}
+.r-grid-guide__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

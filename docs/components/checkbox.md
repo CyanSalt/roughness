@@ -288,26 +288,6 @@ const treeValue = ref<string | undefined>()
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['focus-within', 'active']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
   <RProp name="value">
 
   <template #type>
@@ -345,14 +325,6 @@ const treeValue = ref<string | undefined>()
   </template>
 
   Callback function triggered when checked state of the checkbox is changed.
-
-  </REvent>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </REvent>
 

@@ -2,11 +2,10 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { watchEffect } from 'vue'
-import { useReactionState } from '../common/reaction'
 import type { ColorProps, SizeProps } from '../common/utils'
 import { effectRef } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -18,7 +17,6 @@ const {
   open = true,
   type,
   size,
-  reactions = (() => []) as never,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -35,7 +33,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'update:open', value: typeof open): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -80,11 +78,7 @@ watchEffect(() => {
   }
 })
 
-const getReactionState = useReactionState()
-
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {

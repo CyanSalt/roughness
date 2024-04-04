@@ -174,26 +174,6 @@ import { RTabItem, RTabs } from 'roughness'
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['hover', 'focus-within', 'active']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
   <RProp name="value">
 
   <template #type>
@@ -213,20 +193,6 @@ import { RTabItem, RTabs } from 'roughness'
   </RProp>
 
 </RPropsTable>
-
-### TabItem Events
-
-<REventsTable>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </REvent>
-
-</REventsTable>
 
 ### TabItem Slots
 

@@ -124,26 +124,6 @@ import { RCard, RSpace } from 'roughness'
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `[]`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
   <RProp name="type">
 
   <template #type>
@@ -167,20 +147,6 @@ import { RCard, RSpace } from 'roughness'
   </RProp>
 
 </RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </REvent>
-
-</REventsTable>
 
 ### Slots
 

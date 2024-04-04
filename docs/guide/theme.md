@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { RButton, RProgress, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
+import { RButton, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
 import { ref } from 'vue'
 
 const dark = useDark()
-const flag = ref(false)
 </script>
 
 # Theme
@@ -41,51 +40,6 @@ Obviously, you can also customize these CSS properties. For example:
   --r-button-border-width: 2px;
 }
 ```
-
-Note that due to the limitations of HTML itself, modifying CSS dynamically (except colors) cannot trigger Rough.js to redraw the background graphics in real time. If you wish to associate specific actions with the drawing of the graphics, you may use the `reactions` property: {#reactions}
-
-```vue
-<template>
-  <RProgress :reactions="['hover']" :value="0.99" class="my-progress">Sweat</RProgress>
-</template>
-
-<style>
-.my-progress:hover {
-  --r-progress-border-width: 2px;
-}
-</style>
-```
-
-<RProgress :reactions="['hover']" :value="0.99" class="my-progress">Sweat</RProgress>
-
-<style>
-.my-progress:hover {
-  --r-progress-border-width: 2px;
-}
-</style>
-
-The optional values for `reactions` include `hover`, `focus`, `focus-within`, `active` and `dark`. You can also use the `will-draw` event if you wish to associate graphics drawing with custom effects.
-
-```vue
-<script lang="ts" setup>
-import { RButton RSpace, RSwitch } from 'roughness'
-import { ref } from 'vue'
-
-const flag = ref(false)
-</script>
-
-<template>
-  <RSpace vertical align="start">
-    <RSwitch v-model="flag">Twinkle</RSwitch>
-    <RButton type="warning" @will-draw="() => flag">Little Star</RButton>
-  </RSpace>
-</template>
-```
-
-<RSpace vertical align="start">
-  <RSwitch v-model="flag">Twinkle</RSwitch>
-  <RButton type="warning" @will-draw="() => flag">Little Star</RButton>
-</RSpace>
 
 ### Styles
 

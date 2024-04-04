@@ -1,19 +1,14 @@
 import type { Options } from 'roughjs/bin/core'
 import type { InjectionKey, Ref } from 'vue'
-import type { ReactionProps } from '../common/reaction'
 
 export const optionsInjection: InjectionKey<Ref<Options | undefined>> = Symbol('RGraphicsConfig#options')
 
-export interface GraphicsProps extends ReactionProps {
+export interface GraphicsProps {
   /**
    * Options for Rough.js
    * {@link https://github.com/rough-stuff/rough/wiki#options}
    */
   graphicsOptions?: Options,
-}
-
-export interface GraphicsEmits {
-  (event: 'will-draw'): void,
 }
 
 export function getSVGSize(element: SVGSVGElement) {

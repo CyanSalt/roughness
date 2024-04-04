@@ -94,7 +94,6 @@ function activate(tab: RValueOrKey) {
         :value="tab.value"
         v-bind="tab.props"
         @activate="activate"
-        @will-draw="tab.emit('will-draw')"
       >
         <component :is="tab.slots.anchor" v-if="tab.slots.anchor"></component>
       </RTabAnchor>

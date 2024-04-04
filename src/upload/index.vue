@@ -2,10 +2,9 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
-import { useReactionState } from '../common/reaction'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsEmits, GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
@@ -20,7 +19,6 @@ const {
   filled = false,
   loading = false,
   multiple = false,
-  reactions = (() => ['hover', 'focus', 'active']) as never,
   graphicsOptions,
 } = defineProps<{
   accept?: InputHTMLAttributes['accept'],
@@ -39,7 +37,7 @@ const {
 
 const emit = defineEmits<{
   (event: 'select', value: File | File[]): void,
-} & GraphicsEmits>()
+}>()
 
 defineSlots<{
   default?: (props: {}) => any,
@@ -49,11 +47,10 @@ const disabled = $computed(() => {
   return Boolean(userDisabled || loading)
 })
 
-const getReactionState = useReactionState()
+const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  emit('will-draw')
-  getReactionState(reactions)
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--r-upload-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--r-upload-border-dash')
@@ -86,7 +83,10 @@ function change(event: InputEvent) {
 </script>
 
 <template>
-  <label :class="['r-upload', { 'is-block': block }]">
+  <label
+    :class="['r-upload', { 'is-block': block }]"
+    @transitionrun="listener"
+  >
     <input
       type="file"
       :accept="accept"
@@ -115,6 +115,12 @@ function change(event: InputEvent) {
   color: var(--r-upload-color);
   text-align: center;
   cursor: pointer;
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-upload-border-dash);
+    border-top: var(--r-upload-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
   &:focus, &:active {
     --r-upload-border-width: 2px;
   }

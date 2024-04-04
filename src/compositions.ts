@@ -1,8 +1,6 @@
 export { useList, useListItem } from './common/list'
 export type { RValue } from './common/key'
 export { keyOf, RKey } from './common/key'
-export type { ReactionState } from './common/reaction'
-export { useReactionState } from './common/reaction'
 export type { ComponentProps, ComponentRenderable, ComponentSlots } from './common/renderable'
 export type { Colors } from './common/theme'
 export { darkColors, lightColors, useColors, useDark } from './common/theme'

@@ -63,26 +63,6 @@ import { RSwitch } from 'roughness'
 
   </RProp>
 
-  <RProp name="reactions">
-
-  <template #type>
-
-  `string[]`
-
-  </template>
-
-  <template #default-value>
-
-  `['focus-within', 'active']`
-
-  </template>
-
-  States that trigger graphics redrawing.
-
-  See [Reactions](/guide/theme#reactions).
-
-  </RProp>
-
   <RProp name="...">
 
   See [Space Props](/components/space#props).
@@ -106,14 +86,6 @@ import { RSwitch } from 'roughness'
   </template>
 
   Callback function triggered when state is changed.
-
-  </REvent>
-
-  <REvent name="will-draw">
-
-  Associating effects before graphics drawing.
-
-  See [Reactions](/guide/theme#reactions).
 
   </REvent>
 

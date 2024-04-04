@@ -7,6 +7,19 @@
   }
 }
 
+@mixin ghost() {
+  content: '';
+  position: absolute;
+  box-sizing: border-box;
+  block-size: 0;
+  inline-size: 0;
+  visibility: hidden;
+}
+
+@mixin loading-spinner() {
+  animation: r-loading-spinner 1s infinite steps(4);
+}
+
 @mixin stroke($color, $size: 1px) {
   $corner: math.div(math.$pi, 8);
   $shadows: ();
@@ -16,8 +29,4 @@
   }
   /* stylelint-disable-next-line order/order */
   text-shadow: $shadows;
-}
-
-@mixin loading-spinner() {
-  animation: r-loading-spinner 1s infinite steps(4);
 }
