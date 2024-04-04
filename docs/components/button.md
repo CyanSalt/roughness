@@ -107,7 +107,7 @@ import { RButton, RSpace } from 'roughness'
 
 See also [GraphicsConfig](/components/graphics#configuration).
 
-### Rounded
+### Round
 
 <RDetails>
   <template #summary>Show Code</template>
@@ -119,8 +119,8 @@ import { RButton, RSpace } from 'roughness'
 
 <template>
   <RSpace>
-    <RButton rounded>Enter the Pipe</RButton>
-    <RButton type="error" filled rounded>Eat the Mushroom</RButton>
+    <RButton round>Enter the Pipe</RButton>
+    <RButton type="error" filled round>Eat the Mushroom</RButton>
   </RSpace>
 </template>
 ```
@@ -128,8 +128,8 @@ import { RButton, RSpace } from 'roughness'
 </RDetails>
 
 <RSpace>
-  <RButton rounded>Enter the Pipe</RButton>
-  <RButton type="error" filled rounded>Eat the Mushroom</RButton>
+  <RButton round>Enter the Pipe</RButton>
+  <RButton type="error" filled round>Eat the Mushroom</RButton>
 </RSpace>
 
 ### State
@@ -295,7 +295,7 @@ import { RButton, RSpace } from 'roughness'
 
   </RProp>
 
-  <RProp name="rounded">
+  <RProp name="round">
 
   <template #type>
 

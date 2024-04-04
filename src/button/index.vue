@@ -19,7 +19,7 @@ const {
   filled = false,
   htmlType,
   loading = false,
-  rounded = false,
+  round = false,
   tag = 'button',
   type,
   size,
@@ -41,7 +41,7 @@ const {
    */
   loading?: boolean,
   /** Whether the button is round */
-  rounded?: boolean,
+  round?: boolean,
   /**
    * HTML tag for rendering the button
    * @default 'button'
@@ -73,7 +73,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ...getFilledSizeOptions(strokeWidth),
   }
   const padding = 2
-  if (rounded) {
+  if (round) {
     const ellipse = rc.ellipse(
       width / 2,
       height / 2,
