@@ -172,6 +172,7 @@ provide(labelsInjection, labels)
   <label
     v-on-click-outside.bubble="close"
     :class="['r-select', { 'is-loading': loading, 'is-open': state }]"
+    aria-haspopup="menu"
     @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
@@ -210,6 +211,7 @@ provide(labelsInjection, labels)
     <div
       v-show="state"
       class="r-select__dropdown"
+      role="menu"
       @transitionrun="dropdownListener"
     >
       <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
