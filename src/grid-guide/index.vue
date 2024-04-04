@@ -52,7 +52,7 @@ const {
     height: 100%;
   }
   :root.dark & {
-    --r-grid-guide-color: rgb(255 255 255 / 10%);
+    --r-grid-guide-color: rgb(255 255 255 / 4%);
   }
 }
 @layer base {
