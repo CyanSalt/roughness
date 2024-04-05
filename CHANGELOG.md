@@ -1,5 +1,32 @@
 
 
+## [0.1.0-beta.17](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.16...v0.1.0-beta.17) (2024-04-05)
+
+
+### Features
+
+* auto track style changes ([f8751ea](https://github.com/CyanSalt/roughness/commit/f8751ea09ecefb8c0b13befc8f92a4ed18cbeec2))
+* emit `will-draw` event ([5bc824b](https://github.com/CyanSalt/roughness/commit/5bc824b73739b6d72ed1f30264024e7b8db00325))
+* **grid-guide:** pure css implementation ([5d315b8](https://github.com/CyanSalt/roughness/commit/5d315b86af7eb8c7992aafbef27edf0c6f918cdb))
+* **icon:** separate color with stroke color ([7bbe9c3](https://github.com/CyanSalt/roughness/commit/7bbe9c3b5c800071c276eeb1987c81e502da6fe4))
+* **rate:** custom shape ([6c7102c](https://github.com/CyanSalt/roughness/commit/6c7102c0e06575a47371ae0439cdff20dd9117cf))
+
+
+### Bug Fixes
+
+* **button:** rename `rounded` ([fb40c23](https://github.com/CyanSalt/roughness/commit/fb40c2374f9a33322dd4441cd4ea63f0322adaf2))
+* **checkbox:** checked padding ([8b58ad1](https://github.com/CyanSalt/roughness/commit/8b58ad1ab0fb9c2303c20b3c3b14ab1f976b80a7))
+* fallback cursive font ([9a5c0be](https://github.com/CyanSalt/roughness/commit/9a5c0beba58c5ea235c4f4dff7c0f1ba5ebe793b))
+* **grid-guide:** aria ([57955df](https://github.com/CyanSalt/roughness/commit/57955df4b65ace327a6a8b1193ff7e96505dead6))
+* **grid-guide:** dark theme ([249e6d3](https://github.com/CyanSalt/roughness/commit/249e6d3f656f62d2bf16a1023e2313af0c74d8a9))
+* **icon:** make icon prop required ([9db99e3](https://github.com/CyanSalt/roughness/commit/9db99e3cc2141acd022a1ddfd4eb6f2ebd3f410a))
+* **icon:** options priority ([6bf1aa1](https://github.com/CyanSalt/roughness/commit/6bf1aa1358c1c49ba1671183934b513526a5f94f))
+* **icon:** remove batch defined icons ([c92efa0](https://github.com/CyanSalt/roughness/commit/c92efa0a5eebad7947fb93cc11c536bc4743f917))
+* **select:** a11y attrs ([41aab7d](https://github.com/CyanSalt/roughness/commit/41aab7dde706fb1a4639ccf0375b849a42d9caee))
+* **select:** icon style ([bc659b9](https://github.com/CyanSalt/roughness/commit/bc659b91b5fd848b181d74d1e78a2336bad68959))
+* **tabs:** move events to items ([8ba2126](https://github.com/CyanSalt/roughness/commit/8ba2126cf7b1bad0df8d762a69a47a77c4df2bef))
+* **tabs:** move props to item ([b11724f](https://github.com/CyanSalt/roughness/commit/b11724fecac041f71f14ecbdbe1c7d4d0fcd6cf6))
+
 ## [0.1.0-beta.16](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.15...v0.1.0-beta.16) (2024-04-01)
 
 
