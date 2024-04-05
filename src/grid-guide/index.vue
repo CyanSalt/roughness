@@ -17,7 +17,10 @@ const {
 </script>
 
 <template>
-  <div :class="['r-grid-guide', { 'is-responsive': responsive }]"></div>
+  <div
+    :class="['r-grid-guide', { 'is-responsive': responsive }]"
+    aria-hidden="true"
+  ></div>
 </template>
 
 <style lang="scss">
