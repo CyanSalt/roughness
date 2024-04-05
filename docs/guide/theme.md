@@ -441,11 +441,3 @@ import { darkColors, lightColors } from 'roughness'
 const context = canvas.getContext('2d')
 context.stroke = mix(lightColors.primaryColor, darkColors.primaryColor, 0.5)
 ```
-
-## Conflicts
-
-Roughness uses [CSS layering](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer), which means you can manage style priority with `@layer` rules before importing styles.
-
-```css
-@layer my-low-level-layer, roughness, my-high-level-layer;
-```
