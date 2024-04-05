@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.18](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.17...v0.1.0-beta.18) (2024-04-05)
+
+
+### Bug Fixes
+
+* style layer ([8b94535](https://github.com/CyanSalt/roughness/commit/8b94535e5b5162bace3b6736f6b0f493524ff100))
+
 ## [0.1.0-beta.17](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.16...v0.1.0-beta.17) (2024-04-05)
 
 
