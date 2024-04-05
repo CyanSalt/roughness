@@ -1,5 +1,12 @@
 
 
+## [0.1.0-beta.19](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.18...v0.1.0-beta.19) (2024-04-05)
+
+
+### Bug Fixes
+
+* remove root layer ([b7d7880](https://github.com/CyanSalt/roughness/commit/b7d7880762bb8f362eff2ae3b2a010f042334930))
+
 ## [0.1.0-beta.18](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.17...v0.1.0-beta.18) (2024-04-05)
 
 
