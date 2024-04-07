@@ -20,9 +20,27 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <template>
   <RGraphics
     :responsive="false"
-    width="261.76"
-    height="226.69"
+    viewBox="0 0 261.76 226.69"
     class="home-hero-image"
     @draw="draw"
   ></RGraphics>
 </template>
+
+<style lang="scss" scoped>
+.home-hero-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 192px;
+  height: 192px;
+  transform: translate(-50%, -50%);
+  @media (min-width: 960px) {
+    width: 320px;
+    height: 320px;
+  }
+  @media (min-width: 640px) {
+    width: 256px;
+    height: 256px;
+  }
+}
+</style>
