@@ -125,7 +125,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-button-color: var(--r-element-color);
   --r-button-border-color: var(--r-button-color);
   --r-button-border-width: 1px;
-  --r-button-border-dash: unset;
+  --r-button-border-dash: none;
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
