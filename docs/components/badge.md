@@ -13,7 +13,7 @@ Brezhnev was dressed for burial in his Marshal's uniform along with his medals.
 
 ```vue
 <script lang="ts" setup>
-import { RBadge, RButton } from 'roughness'
+import { RBadge, RButton, RSpace } from 'roughness'
 </script>
 
 <template>
