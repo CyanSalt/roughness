@@ -17,9 +17,15 @@ const {
   round?: boolean,
 } & GraphicsProps>()
 
+
 function hash(str: string) {
-  // eslint-disable-next-line no-bitwise
-  return str.split('').reduce((code, char) => (code ^ char.charCodeAt(0)) * -5, 5) >>> 2
+  let code = 0
+  for (let i = 0, len = str.length; i < len; i++) {
+    const chr = str.charCodeAt(i)
+    // eslint-disable-next-line no-bitwise
+    code = ((code << 5) - code + chr) | 0
+  }
+  return code
 }
 
 const code = $computed(() => hash(name))
