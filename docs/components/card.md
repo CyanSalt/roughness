@@ -256,7 +256,7 @@ import { RCard, RSpace } from 'roughness'
 
   </template>
 
-  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the button border.
+  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the card border.
 
   An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
 

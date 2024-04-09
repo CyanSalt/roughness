@@ -109,7 +109,47 @@ const name = ref('Cameron')
 
   </template>
 
-  Border color of the avatar.
+  Color of the avatar border.
+
+  </RStyle>
+
+  <RStyle name="border-width">
+
+  <template #values>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `1px`
+
+  </template>
+
+  Width of the avatar border.
+
+  </RStyle>
+
+  <RStyle name="border-dash">
+
+  <template #values>
+
+  `<length> +` or `none`
+
+  </template>
+
+  <template #default-value>
+
+  `none`
+
+  </template>
+
+  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the avatar border.
+
+  An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+
+  See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
 
   </RStyle>
 

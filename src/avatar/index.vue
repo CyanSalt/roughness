@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -48,6 +49,9 @@ const color = $computed(() => {
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
+  const strokeWidth = getLengthProperty(svg, '--r-avatar-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-avatar-border-dash')
+    ?.map(value => value ?? 0) ?? undefined
   const scaleX = width / 10
   const scaleY = height / 10
   for (const pixel of pixels) {
@@ -71,6 +75,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       height - padding * 2,
       {
         stroke: 'var(--r-avatar-border-color)',
+        strokeWidth,
+        strokeLineDash,
       },
     )
     svg.appendChild(ellipse)
@@ -82,6 +88,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       height - padding * 2,
       {
         stroke: 'var(--r-avatar-border-color)',
+        strokeWidth,
+        strokeLineDash,
       },
     )
     svg.appendChild(rectangle)
@@ -96,10 +104,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
+
 .r-avatar {
   --r-avatar-size: 2em;
   --r-avatar-border-color: var(--r-common-comment-color);
+  --r-avatar-border-width: 1px;
+  --r-avatar-border-dash: none;
   block-size: var(--r-avatar-size);
   inline-size: var(--r-avatar-size);
+  &::before {
+    @include partials.ghost();
+    border-spacing: var(--r-avatar-border-dash);
+    border-top: var(--r-avatar-border-width) solid;
+    transition: border-spacing 1ms, border-top 1ms !important;
+  }
 }
 </style>
