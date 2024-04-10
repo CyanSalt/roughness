@@ -20,4 +20,5 @@ export function useListItem<T>(injection: InjectionKey<T[]>, source: MaybeRefOrG
       }
     })
   })
+  return list
 }

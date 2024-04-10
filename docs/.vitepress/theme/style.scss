@@ -42,7 +42,7 @@
     background: revert;
   }
 }
-.vp-doc .r-card:not(.r-dialog__card, .r-popover__content) {
+.vp-doc .r-card:not(.r-dialog__card, .r-popover__content, .r-carousel-item > .r-card) {
   margin: 16px 0;
   p {
     margin: 0;
