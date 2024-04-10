@@ -69,7 +69,6 @@ export default defineConfig({
             items: [
               { text: 'Avatar', link: '/components/avatar' },
               { text: 'Card', link: '/components/card' },
-              { text: 'Carousel', link: '/components/carousel' },
               { text: 'List', link: '/components/list' },
               { text: 'Table', link: '/components/table' },
             ],
