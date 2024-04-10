@@ -5,8 +5,8 @@ import { Star } from 'lucide'
 import { watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
 import { effectRef } from '../common/utils'
-import type { IconNode } from '../compositions'
 import RIcon from '../icon/index.vue'
+import type { IconNode } from '../icon/utils'
 
 defineOptions({
   name: 'RRate',
