@@ -1,5 +1,24 @@
 
 
+## [0.1.0-beta.20](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.19...v0.1.0-beta.20) (2024-04-11)
+
+
+### Features
+
+* add avatar ([b4d6f34](https://github.com/CyanSalt/roughness/commit/b4d6f347de868ad5ae42c2566853148f94fef853))
+* add carousel ([8098693](https://github.com/CyanSalt/roughness/commit/809869313ec64eeb540289d2816ca936b7fecbf2))
+* add qr-code ([58ee2fa](https://github.com/CyanSalt/roughness/commit/58ee2fa9ec2124c6c1c14a5eb44de0de5c2aa123))
+* **avatar:** border style ([a4e593e](https://github.com/CyanSalt/roughness/commit/a4e593e68766e7eff6e84954b1b0acc5f07341f2))
+* remove carousel ([25bd3e7](https://github.com/CyanSalt/roughness/commit/25bd3e782ba2b07cd76ad7db6a2ee9996a44ef75))
+
+
+### Bug Fixes
+
+* **avatar:** empty name ([852a3d2](https://github.com/CyanSalt/roughness/commit/852a3d26f2bc9172ae61152dc9b5786d8f15a0a1))
+* **button:** default dash ([6d50173](https://github.com/CyanSalt/roughness/commit/6d501734a1beab7f664b3c7d818732dcbfaab61f))
+* reduce css size ([b40d149](https://github.com/CyanSalt/roughness/commit/b40d1494922ddc7d8c16d8d3922499b5288639df))
+* writing mode ([a6580f6](https://github.com/CyanSalt/roughness/commit/a6580f671d16807ba08e5db0dd5490ea6da7b831))
+
 ## [0.1.0-beta.19](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.18...v0.1.0-beta.19) (2024-04-05)
 
 
