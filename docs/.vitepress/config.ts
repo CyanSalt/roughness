@@ -70,6 +70,7 @@ export default defineConfig({
               { text: 'Avatar', link: '/components/avatar' },
               { text: 'Card', link: '/components/card' },
               { text: 'List', link: '/components/list' },
+              { text: 'QR Code', link: '/components/qr-code' },
               { text: 'Table', link: '/components/table' },
             ],
           },
