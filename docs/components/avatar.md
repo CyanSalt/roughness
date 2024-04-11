@@ -16,7 +16,7 @@ The way of water has no beginning and no end.
 
 ```vue
 <script lang="ts" setup>
-import { RAvatar, RSpace } from 'roughness'
+import { RAvatar, RInput, RSpace } from 'roughness'
 import { ref } from 'vue'
 
 const name = ref('Cameron')

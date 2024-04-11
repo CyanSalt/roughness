@@ -162,7 +162,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-input-border-dash: none;
   --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   display: inline-flex;
-  width: 210px;
+  inline-size: 210px;
   &::before {
     @include partials.ghost();
     border-spacing: var(--r-input-border-dash);
@@ -178,7 +178,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &.is-multiline {
     display: flex;
-    width: auto;
+    inline-size: auto;
   }
 }
 @layer base {
@@ -190,7 +190,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-input__input {
-  width: 100%;
+  inline-size: 100%;
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-common-text-color);
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);

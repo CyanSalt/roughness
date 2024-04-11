@@ -134,8 +134,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-switch__control {
   flex: none;
-  width: calc(var(--r-switch-control-size) * 2);
-  height: var(--r-switch-control-size);
+  block-size: var(--r-switch-control-size);
+  inline-size: calc(var(--r-switch-control-size) * 2);
   .r-switch__input:disabled + & {
     opacity: 0.8;
   }

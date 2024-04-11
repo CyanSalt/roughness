@@ -51,8 +51,8 @@ const {
     position: absolute;
     inset: 0;
     z-index: -1;
-    width: 100%;
-    height: 100%;
+    block-size: 100%;
+    inline-size: 100%;
   }
   :root.dark & {
     --r-grid-guide-color: rgb(255 255 255 / 4%);

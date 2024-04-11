@@ -245,7 +245,7 @@ provide(labelsInjection, labels)
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
-  width: 210px;
+  inline-size: 210px;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2);
   &::before {
@@ -282,7 +282,7 @@ provide(labelsInjection, labels)
   }
 }
 .r-select__input {
-  width: 100%;
+  inline-size: 100%;
   color: var(--r-common-text-color);
   cursor: inherit;
   &:disabled {

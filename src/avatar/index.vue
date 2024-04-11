@@ -6,6 +6,10 @@ import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
+defineOptions({
+  name: 'RAvatar',
+})
+
 const {
   name,
   round,

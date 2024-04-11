@@ -154,8 +154,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     transition: border-top 1ms !important;
   }
   .r-graphics {
-    width: 100%;
-    height: 100%;
+    block-size: 100%;
+    inline-size: 100%;
   }
 }
 </style>
