@@ -1,5 +1,18 @@
 
 
+## [0.1.0-beta.21](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.20...v0.1.0-beta.21) (2024-04-12)
+
+
+### Features
+
+* variable inheritance ([e14bcc3](https://github.com/CyanSalt/roughness/commit/e14bcc3d54d6e867382ad16d9f85165d11a41ab7))
+
+
+### Bug Fixes
+
+* color and size ([e427c95](https://github.com/CyanSalt/roughness/commit/e427c95f961eed3353e182ad932021b50f276b89))
+* **graphics:** default line color ([efa82f5](https://github.com/CyanSalt/roughness/commit/efa82f514141941503904770193e07102e261950))
+
 ## [0.1.0-beta.20](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.19...v0.1.0-beta.20) (2024-04-11)
 
 
