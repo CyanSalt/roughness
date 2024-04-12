@@ -11,13 +11,13 @@ npm i roughness
 You can use roughness directly from a CDN via HTML tags:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/roughness/dist/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/roughness/dist/style.css">
 
 <script type="importmap">
 {
   "imports": {
-    "roughness": "https://unpkg.com/roughness",
-    "vue": "https://unpkg.com/vue/dist/vue.esm-browser.prod.js"
+    "roughness": "https://cdn.jsdelivr.net/npm/roughness/dist/index.js",
+    "vue": "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js"
   }
 }
 </script>

@@ -26,7 +26,7 @@ A Vue component library with hand-drawn appearance.
 npm i roughness
 ```
 
-Or from a CDN like [unpkg](https://www.unpkg.com/) via HTML.
+Or from a CDN like [jsdelivr](https://www.jsdelivr.com/) via HTML.
 
 ## Documentation
 

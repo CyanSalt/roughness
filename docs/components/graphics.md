@@ -21,7 +21,7 @@ function drawOcean(rc: RoughSVG, svg: SVGSVGElement) {
 }
 
 const font = computedAsync(() => {
-  return fetch('https://unpkg.com/@openfonts/noto-sans-sc_chinese-simplified/files/noto-sans-sc-chinese-simplified-400.woff')
+  return fetch('https://cdn.jsdelivr.net/npm/@openfonts/noto-sans-sc_chinese-simplified/files/noto-sans-sc-chinese-simplified-400.woff')
     .then(response => response.arrayBuffer())
     .then(buffer => parse(buffer))
 }, null)
@@ -98,7 +98,7 @@ import { RGraphics, RInput } from 'roughness'
 import { ref } from 'vue'
 
 const font = computedAsync(() => {
-  return fetch('https://unpkg.com/@openfonts/noto-sans-sc_chinese-simplified/files/noto-sans-sc-chinese-simplified-400.woff')
+  return fetch('https://cdn.jsdelivr.net/npm/@openfonts/noto-sans-sc_chinese-simplified/files/noto-sans-sc-chinese-simplified-400.woff')
     .then(response => response.arrayBuffer())
     .then(buffer => parse(buffer))
 }, null)
