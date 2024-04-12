@@ -316,3 +316,29 @@ import { RButton } from 'roughness'
   </REvent>
 
 </REventsTable>
+
+### Graphics Styles
+
+<RStylesTable>
+
+  <template #name="{ value }">--r-graphics-{{ value }}</template>
+
+  <RStyle name="stroke-color">
+
+  <template #values>
+
+  `<color>`
+
+  </template>
+
+  <template #default-value>
+
+  `var(--r-common-text-color)`
+
+  </template>
+
+  Color of the graphics lines by default.
+
+  </RStyle>
+
+</RStylesTable>

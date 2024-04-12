@@ -50,6 +50,7 @@ const configOptions = $(inject(optionsInjection, ref()))
 
 const nestingOptions = $computed<Options>(() => {
   return {
+    stroke: 'var(--r-graphics-stroke-color)',
     ...configOptions,
     ...options,
   }
@@ -96,6 +97,7 @@ watchEffect(() => {
 
 <style lang="scss">
 .r-graphics {
+  --r-graphics-stroke-color: var(--r-common-text-color);
   pointer-events: none;
   &.is-responsive {
     position: absolute;
