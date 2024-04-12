@@ -20,6 +20,7 @@ const {
 defineSlots<{
   header?: (props: {}) => any,
   default?: (props: { row: RValueOrKey }) => any,
+  footer?: (props: {}) => any,
 }>()
 
 const slots = useSlots()

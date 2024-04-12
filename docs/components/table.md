@@ -157,7 +157,7 @@ const data = [
 
 ## Usage
 
-### Props
+### Table Props
 
 <RPropsTable>
 
@@ -215,7 +215,7 @@ const data = [
 
   <template #type>
 
-  `(string | number | RValue)[] | number`
+  `RValueOrKey[]`
 
   </template>
 
@@ -231,97 +231,20 @@ const data = [
 
 </RPropsTable>
 
-### Slots
+### Table Slots
+
 
 <RSlotsTable>
 
   <RSlot name="default">
 
-  Extra content for the table. For example `<caption>` or `<colgroup>`, etc.
-
-  </RSlot>
-
-  <RSlot name="header:_column_">
-
-  Header cell in the column corresponding to `[column]`. Fallback to `header:*`.
-
-  </RSlot>
-
-  <RSlot name="header:*">
-
-  <template #parameters>
-
-  `{ column: string }`
-
-  </template>
-
-  Header cell in each column. Defaults to `startCase(keyOf(column))`.
-
-  </RSlot>
-
-  <RSlot name="body:_row_:_column_">
-
-  Body cell in the row corresponding to `[row]` and the column corresponding to `[column]`. Fallback to `body:*:[column]`:
-
-  </RSlot>
-
-  <RSlot name="body:*:_column_">
-
-  <template #parameters>
-
-  `{ row: string }`
-
-  </template>
-
-  Body cell in the column corresponding to `[column]`. Fallback to `body:[row]:*`:
-
-  </RSlot>
-
-  <RSlot name="body:_row_:*">
-
-  <template #parameters>
-
-  `{ column: string }`
-
-  </template>
-
-  Body cell in the row corresponding to `[row]`. Fallback to `body:*:*`:
-
-  </RSlot>
-
-  <RSlot name="body:*:*">
-
-  <template #parameters>
-
-  `{ row: string, column: string }`
-
-  </template>
-
-  Body cell in each row and column. Defaults to `row[keyOf(column)]` if `row` is an object.
-
-  </RSlot>
-
-  <RSlot name="footer:_column_">
-
-  Footer cell in the column corresponding to `[column]`. Fallback to `footer:*`.
-
-  </RSlot>
-
-  <RSlot name="footer:*">
-
-  <template #parameters>
-
-  `{ column: string }`
-
-  </template>
-
-  Footer cell in each column.
+  Content for the table. You can also add `<caption>` or `<colgroup>` in addition to one or more TableColumn.
 
   </RSlot>
 
 </RSlotsTable>
 
-### Styles
+### Table Styles
 
 <RStylesTable>
 
@@ -337,7 +260,7 @@ const data = [
 
   <template #default-value>
 
-  `var(--r-common-color)`
+  `var(--r-common-text-color)`
 
   </template>
 
@@ -346,3 +269,55 @@ const data = [
   </RStyle>
 
 </RStylesTable>
+
+### TableColumn Props
+
+<RPropsTable>
+
+  <RProp name="name">
+
+  <template #type>
+
+  `string`
+
+  </template>
+
+  <template #default-value>
+    <RText type="error">Required</RText>
+  </template>
+
+  Column name.
+
+  </RProp>
+
+</RPropsTable>
+
+### TableColumn Slots
+
+<RSlotsTable>
+
+  <RSlot name="header">
+
+  Header cell in the column. Defaults to `startCase(keyOf(column))`.
+
+  </RSlot>
+
+  <RSlot name="default">
+
+  <template #parameters>
+
+  `{ row: RValueOrKey }`
+
+  </template>
+
+  Body cell in each row of the column. Defaults to `row[name]` if `row` is an object.
+
+  </RSlot>
+
+  <RSlot name="footer">
+
+  Footer cell in the column.
+
+  </RSlot>
+
+</RSlotsTable>

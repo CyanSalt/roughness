@@ -178,7 +178,7 @@ import { RTabItem, RTabs } from 'roughness'
 
   <template #type>
 
-  `string | number | RValue`
+  `RValueOrKey`
 
   </template>
 
