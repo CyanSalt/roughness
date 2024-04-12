@@ -52,8 +52,8 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-upload-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-upload-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-upload-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-upload-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(
@@ -62,10 +62,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-upload-border-color)',
+      stroke: 'var(--R-upload-border-color)',
       strokeWidth,
       strokeLineDash,
-      fill: filled ? 'var(--r-upload-color)' : undefined,
+      fill: filled ? 'var(--R-upload-color)' : undefined,
       ...getFilledSizeOptions(strokeWidth),
     },
   )
@@ -105,24 +105,24 @@ function change(event: InputEvent) {
 @use '../common/_partials';
 
 .r-upload {
-  --r-upload-color: var(--r-common-color);
-  --r-upload-border-color: var(--r-upload-color);
-  --r-upload-border-width: 1px;
-  --r-upload-border-dash: 8px;
+  --R-upload-color: var(--r-upload-color, var(--r-common-color));
+  --R-upload-border-color: var(--r-upload-border-color, var(--R-upload-color));
+  --R-upload-border-width: var(--r-upload-border-width, 1px);
+  --R-upload-border-dash: var(--r-upload-border-dash, 8px);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  color: var(--r-upload-color);
+  color: var(--R-upload-color);
   text-align: center;
   cursor: pointer;
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-upload-border-dash);
-    border-top: var(--r-upload-border-width) solid;
+    border-spacing: var(--R-upload-border-dash);
+    border-top: var(--R-upload-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:focus, &:active {
-    --r-upload-border-width: 2px;
+    --R-upload-border-width: var(--r-upload-border-width, 2px);
   }
   &:disabled:not(.is-loading) {
     opacity: 0.8;

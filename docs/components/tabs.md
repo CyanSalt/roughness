@@ -218,7 +218,7 @@ import { RTabItem, RTabs } from 'roughness'
 
   <template #name="{ value }">--r-tab-anchor-{{ value }}</template>
 
-  <RStyle name="active-color">
+  <RStyle name="color">
 
   <template #values>
 
@@ -228,29 +228,11 @@ import { RTabItem, RTabs } from 'roughness'
 
   <template #default-value>
 
-  `var(--r-common-primary-color)`
+  `var(--r-common-primary-color)` if active, `var(--r-common-color)` else
 
   </template>
 
-  Color of the tab anchor and its border when active.
-
-  </RStyle>
-
-  <RStyle name="border-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-color)`
-
-  </template>
-
-  Color of the tab anchor border.
+  Color of the tab anchor text and border.
 
   </RStyle>
 

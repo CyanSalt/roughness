@@ -66,8 +66,8 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-slider-border-width') ?? 0
-  const trackSize = getLengthProperty(svg, '--r-slider-track-size') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--R-slider-border-width') ?? 0
+  const trackSize = getLengthProperty(svg, '--R-slider-track-size') ?? 0
   const padding = 2
   const rectangle = rc.rectangle(
     padding,
@@ -75,7 +75,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     trackSize - padding * 2,
     {
-      stroke: 'var(--r-slider-border-color)',
+      stroke: 'var(--R-slider-border-color)',
       strokeWidth,
     },
   )
@@ -87,7 +87,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     trackSize - padding * 2,
     {
       strokeWidth: 0,
-      fill: 'var(--r-slider-color)',
+      fill: 'var(--R-slider-color)',
       ...getFilledSizeOptions(strokeWidth),
     },
   )
@@ -98,7 +98,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     height - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-slider-border-color)',
+      stroke: 'var(--R-slider-border-color)',
       strokeWidth,
       fill: 'var(--r-common-background-color)',
       fillStyle: 'solid',
@@ -149,23 +149,23 @@ watchEffect(() => {
 @use '../common/_reset';
 
 .r-slider {
-  --r-slider-color: var(--r-common-primary-color);
-  --r-slider-border-color: var(--r-common-color);
-  --r-slider-border-width: 1px;
-  --r-slider-control-size: var(--r-common-line-height);
-  --r-slider-track-size: var(--r-common-font-size);
+  --R-slider-color: var(--r-slider-color, var(--r-common-primary-color));
+  --R-slider-border-color: var(--r-slider-border-color, var(--r-common-color));
+  --R-slider-border-width: var(--r-slider-border-width, 1px);
+  --R-slider-control-size: var(--r-slider-control-size, var(--r-common-line-height));
+  --R-slider-track-size: var(--r-slider-track-size, var(--r-common-font-size));
   display: inline-flex;
-  block-size: var(--r-slider-control-size);
+  block-size: var(--R-slider-control-size);
   inline-size: 210px;
   cursor: pointer;
   &::before {
     @include partials.ghost();
-    border-top: var(--r-slider-border-width) solid;
-    border-right: var(--r-slider-track-size) solid;
+    border-top: var(--R-slider-border-width) solid;
+    border-right: var(--R-slider-track-size) solid;
     transition: border-top 1ms, border-right 1ms !important;
   }
   &:has(> .r-slider__input:focus), &:active {
-    --r-slider-border-width: 2px;
+    --R-slider-border-width: var(--r-slider-border-width, 2px);
   }
   &:has(> .r-slider__input:disabled) {
     cursor: not-allowed;

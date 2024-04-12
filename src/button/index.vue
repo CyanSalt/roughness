@@ -62,14 +62,14 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-button-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-button-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-button-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-button-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const options: Options = {
-    stroke: 'var(--r-button-border-color)',
+    stroke: 'var(--R-button-border-color)',
     strokeWidth,
     strokeLineDash,
-    fill: filled ? 'var(--r-button-color)' : undefined,
+    fill: filled ? 'var(--R-button-color)' : undefined,
     ...getFilledSizeOptions(strokeWidth),
   }
   const padding = 2
@@ -122,28 +122,28 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-button {
-  --r-button-color: var(--r-element-color);
-  --r-button-border-color: var(--r-button-color);
-  --r-button-border-width: 1px;
-  --r-button-border-dash: none;
+  --R-button-color: var(--r-button-color, var(--r-element-color));
+  --R-button-border-color: var(--r-button-border-color, var(--R-button-color));
+  --R-button-border-width: var(--r-button-border-width, 1px);
+  --R-button-border-dash: var(--r-button-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  color: var(--r-button-color);
+  color: var(--R-button-color);
   white-space: nowrap;
   text-align: center;
-  text-decoration-thickness: calc(var(--r-button-border-width) + 1px);
+  text-decoration-thickness: calc(var(--R-button-border-width) + 1px);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-button-border-dash);
-    border-top: var(--r-button-border-width) solid;
+    border-spacing: var(--R-button-border-dash);
+    border-top: var(--R-button-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:hover:not(.is-loading) {
-    --r-button-border-dash: 8px;
+    --R-button-border-dash: var(--r-button-border-dash, 8px);
   }
   &:focus, &:active {
-    --r-button-border-width: 2px;
+    --R-button-border-width: var(--r-button-border-width, 2px);
   }
   &:not(.is-loading) {
     cursor: pointer;

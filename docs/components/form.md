@@ -194,6 +194,24 @@ let labelInline = ref(false)
 
   <template #name="{ value }">--r-form-item-{{ value }}</template>
 
+  <RStyle name="label-inline-size">
+
+  <template #values>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `105px`
+
+  </template>
+
+  Size of the label when `label-inline` is `true`.
+
+  </RStyle>
+
   <RStyle name="required-marker-size">
 
   <template #values>

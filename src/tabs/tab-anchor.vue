@@ -57,8 +57,8 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-tab-anchor-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-tab-anchor-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-tab-anchor-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-tab-anchor-border-dash')
     ?.map(item => item ?? 0) ?? undefined
   const padding = 2
   let startX: number
@@ -98,7 +98,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     endX,
     endY,
     {
-      stroke: 'var(--r-tab-anchor-border-color)',
+      stroke: 'var(--R-tab-anchor-color)',
       strokeWidth,
       strokeLineDash,
     },
@@ -126,25 +126,24 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-tab-anchor {
-  --r-tab-anchor-active-color: var(--r-common-primary-color);
-  --r-tab-anchor-border-color: var(--r-common-color);
-  --r-tab-anchor-border-width: 1px;
-  --r-tab-anchor-border-dash: none;
+  --R-tab-anchor-color: var(--r-tab-anchor-color, var(--r-common-color));
+  --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 1px);
+  --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, none);
   cursor: pointer;
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-tab-anchor-border-dash);
-    border-top: var(--r-tab-anchor-border-width) solid;
+    border-spacing: var(--R-tab-anchor-border-dash);
+    border-top: var(--R-tab-anchor-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:hover {
-    --r-tab-anchor-border-dash: 8px;
+    --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, 8px);
   }
   &:has(.r-tab-anchor__button:focus), &:active {
-    --r-tab-anchor-border-width: 2px;
+    --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 2px);
   }
   &.is-active {
-    --r-tab-anchor-border-color: var(--r-tab-anchor-active-color);
+    --R-tab-anchor-color: var(--r-tab-anchor-color, var(--r-common-primary-color));
   }
 }
 @layer base {
@@ -156,8 +155,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  .r-tab-anchor.is-active & {
-    color: var(--r-tab-anchor-active-color);
-  }
+  color: var(--R-tab-anchor-color);
 }
 </style>

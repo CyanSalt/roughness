@@ -39,15 +39,15 @@ defineSlots<{
   }
 }
 .r-link {
-  --r-link-underline-width: 2px;
+  --R-link-underline-width: var(--r-link-underline-width, 2px);
   cursor: pointer;
   &[href], &:hover {
     text-decoration-line: underline;
     text-decoration-style: dashed;
-    text-decoration-thickness: var(--r-link-underline-width);
+    text-decoration-thickness: var(--R-link-underline-width);
   }
   &:focus, &:active {
-    --r-link-underline-width: 3px;
+    --R-link-underline-width: var(--r-link-underline-width, 3px);
   }
 }
 button.r-link {

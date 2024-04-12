@@ -100,15 +100,15 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-input-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-input-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-input-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-input-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   if (lines > 1) {
     const lineHeight = getLengthProperty(svg, 'line-height') ?? 0
     for (let offset = lineHeight - padding; offset < height; offset += lineHeight) {
       const line = rc.line(padding, offset, width - padding, offset, {
-        stroke: 'var(--r-input-border-color)',
+        stroke: 'var(--R-input-border-color)',
         strokeWidth,
         strokeLineDash,
       })
@@ -116,7 +116,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     }
   } else {
     const line = rc.line(padding, height - padding, width - padding, height - padding, {
-      stroke: 'var(--r-input-border-color)',
+      stroke: 'var(--R-input-border-color)',
       strokeWidth,
       strokeLineDash,
     })
@@ -128,7 +128,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <template>
   <label
     :class="['r-input', { 'is-multiline': lines > 1 }]"
-    :style="{ '--r-input-lines': lines > 1 ? lines : undefined }"
+    :style="{ '--R-input-lines': lines > 1 ? lines : undefined }"
     @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
@@ -157,24 +157,25 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-input {
-  --r-input-border-color: var(--r-common-color);
-  --r-input-border-width: 1px;
-  --r-input-border-dash: none;
+  --R-input-border-color: var(--r-input-border-color, var(--r-common-color));
+  --R-input-border-width: var(--r-input-border-width, 1px);
+  --R-input-border-dash: var(--r-input-border-dash, none);
+  --R-input-inline-size: var(--r-input-inline-size, 210px);
   --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   display: inline-flex;
   inline-size: 210px;
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-input-border-dash);
-    border-top: var(--r-input-border-width) solid;
+    border-spacing: var(--R-input-border-dash);
+    border-top: var(--R-input-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms, line-height 1ms !important;
   }
   &:has(> .r-input__input:hover:not(:read-only, :disabled)) {
-    --r-input-border-dash: 8px;
+    --R-input-border-dash: var(--r-input-border-dash, 8px);
   }
   &:has(> .r-input__input:focus),
   &:active {
-    --r-input-border-width: 2px;
+    --R-input-border-width: var(--r-input-border-width, 2px);
   }
   &.is-multiline {
     display: flex;
@@ -193,7 +194,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   inline-size: 100%;
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--r-common-color);
-  text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
+  text-decoration-thickness: calc(var(--R-input-border-width) + 1px);
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
@@ -204,6 +205,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 textarea.r-input__input {
-  height: calc(var(--r-input-lines) * var(--r-element-line-height));
+  height: calc(var(--R-input-lines) * var(--r-element-line-height));
 }
 </style>

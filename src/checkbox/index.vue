@@ -106,11 +106,11 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-checkbox-border-width') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--R-checkbox-border-width') ?? 0
   const options: Options = {
-    stroke: 'var(--r-checkbox-border-color)',
+    stroke: 'var(--R-checkbox-border-color)',
     strokeWidth,
-    fill: indeterminate ? 'var(--r-checkbox-border-color)' : undefined,
+    fill: indeterminate ? 'var(--R-checkbox-border-color)' : undefined,
     ...getFilledSizeOptions(strokeWidth),
   }
   const padding = 2
@@ -124,13 +124,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   if (internalChecked) {
     // actual padding: [checkedPadding / 2, checkedPadding, checkedPadding * 3 / 2, checkedPadding]
     const checkedPadding = padding + 2
-    const checkedStrokeWidth = getLengthProperty(svg, '--r-checkbox-checked-width') ?? 0
+    const checkedStrokeWidth = getLengthProperty(svg, '--R-checkbox-checked-width') ?? 0
     const linearPath = rc.linearPath([
       [checkedPadding, checkedPadding / 2 + (height - checkedPadding * 2) * 2 / 3],
       [checkedPadding + (width - checkedPadding * 2) / 3, height - checkedPadding * 3 / 2],
       [width - checkedPadding, checkedPadding / 2 + (height - checkedPadding * 2) / 3],
     ], {
-      stroke: 'var(--r-checkbox-checked-color)',
+      stroke: 'var(--R-checkbox-checked-color)',
       strokeWidth: checkedStrokeWidth,
     })
     svg.appendChild(linearPath)
@@ -166,22 +166,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-checkbox {
-  --r-checkbox-border-color: var(--r-common-color);
-  --r-checkbox-border-width: 1px;
-  --r-checkbox-checked-color: var(--r-common-primary-color);
-  --r-checkbox-checked-width: 2px;
-  --r-checkbox-control-size: var(--r-common-line-height);
+  --R-checkbox-border-color: var(--r-checkbox-border-color, var(--r-common-color));
+  --R-checkbox-border-width: var(--r-checkbox-border-width, 1px);
+  --R-checkbox-checked-color: var(--r-checkbox-checked-color, var(--r-common-primary-color));
+  --R-checkbox-checked-width: var(--r-checkbox-checked-width, 2px);
+  --R-checkbox-control-size: var(--r-checkbox-control-size, var(--r-common-line-height));
   position: relative;
   cursor: pointer;
   &::before {
     @include partials.ghost();
-    border-top: var(--r-checkbox-border-width) solid;
-    border-right: var(--r-checkbox-checked-width) solid;
+    border-top: var(--R-checkbox-border-width) solid;
+    border-right: var(--R-checkbox-checked-width) solid;
     transition: border-top 1ms, border-right 1ms !important;
   }
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
-    --r-checkbox-border-width: 2px;
+    --R-checkbox-border-width: var(--r-checkbox-border-width, 2px);
   }
   &:has(> .r-checkbox__input:disabled) {
     cursor: not-allowed;
@@ -198,8 +198,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-checkbox__control {
   flex: none;
-  block-size: var(--r-checkbox-control-size);
-  inline-size: var(--r-checkbox-control-size);
+  block-size: var(--R-checkbox-control-size);
+  inline-size: var(--R-checkbox-control-size);
   .r-checkbox__input:disabled + & {
     opacity: 0.8;
   }

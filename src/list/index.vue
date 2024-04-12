@@ -44,10 +44,10 @@ provide(listStyleInjection, $$(listStyle))
 
 <style lang="scss">
 .r-list {
-  --r-list-marker-color: var(--r-common-color);
-  --r-list-marker-block-size: var(--r-common-line-height);
-  --r-list-marker-inline-size: 1.5em;
-  padding-inline-start: var(--r-list-marker-inline-size);
+  --R-list-marker-color: var(--r-list-marker-color, var(--r-common-color));
+  --R-list-marker-block-size: var(--r-list-marker-block-size, var(--r-common-line-height));
+  --R-list-marker-inline-size: var(--r-list-marker-inline-size, 1.5em);
+  padding-inline-start: var(--R-list-marker-inline-size);
 }
 ul.r-list {
   list-style-type: none;

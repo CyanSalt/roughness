@@ -48,7 +48,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const padding = 2
   const circle = rc.circle(width / 2, height / 2, Math.min(width, height) - padding * 2, {
     strokeWidth: 0,
-    fill: 'var(--r-form-item-required-marker-color)',
+    fill: 'var(--R-form-item-required-marker-color)',
     fillStyle: 'solid',
   })
   svg.appendChild(circle)
@@ -82,14 +82,15 @@ provide(nameInjection, $$(name))
 
 <style lang="scss">
 .r-form-item__label {
-  --r-form-item-required-marker-size: 4px;
-  --r-form-item-required-marker-color: var(--r-common-error-color);
+  --R-form-item-label-inline-size: var(--r-form-item-label-inline-size, 105px);
+  --R-form-item-required-marker-size: var(--r-form-item-required-marker-size, 4px);
+  --R-form-item-required-marker-color: var(--r-form-item-required-marker-color, var(--r-common-error-color));
   position: relative;
   box-sizing: border-box;
   padding-block-start: var(--r-common-box-padding-block);
   padding-inline-end: var(--r-common-box-padding-inline);
   .r-form-item.is-label-inline > & {
-    inline-size: 105px;
+    inline-size: var(--R-form-item-label-inline-size);
     padding-block-end: var(--r-common-box-padding-block);
     text-align: end;
   }
@@ -99,8 +100,8 @@ provide(nameInjection, $$(name))
   inset-block-start: calc(var(--r-common-box-padding-block) + var(--r-common-line-height) / 2);
   inset-inline-end: calc(var(--r-common-box-padding-inline) / 2);
   display: inline-block;
-  block-size: calc(var(--r-form-item-required-marker-size) + 4px);
-  inline-size: calc(var(--r-form-item-required-marker-size) + 4px);
+  block-size: calc(var(--R-form-item-required-marker-size) + 4px);
+  inline-size: calc(var(--R-form-item-required-marker-size) + 4px);
   transform: translate(50%, -50%);
 }
 .r-form-item__content {

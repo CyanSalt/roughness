@@ -82,7 +82,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
-    stroke: 'var(--r-toast-color)',
+    stroke: 'var(--R-toast-color)',
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',
   })
@@ -106,14 +106,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-toast {
-  --r-toast-color: var(--r-element-color);
+  --R-toast-color: var(--r-toast-color, var(--r-element-color));
   position: fixed;
   inset: unset;
   inset-block-start: 75%;
   inset-inline-start: 50%;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  color: var(--r-toast-color);
+  color: var(--R-toast-color);
   transform: translate(-50%, -50%);
   &.primary {
     --r-element-color: var(--r-common-primary-color);

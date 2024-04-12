@@ -62,8 +62,8 @@ let color = $computed(() => {
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-color-picker-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-color-picker-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-color-picker-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-color-picker-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(
@@ -72,10 +72,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-color-picker-color)',
+      stroke: 'var(--R-color-picker-color)',
       strokeWidth,
       strokeLineDash,
-      fill: 'var(--r-color-picker-current-color)',
+      fill: 'var(--R-color-picker-current-color)',
     },
   )
   svg.appendChild(rectangle)
@@ -83,8 +83,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 const style = $computed(() => {
   return {
-    '--r-color-picker-current-color': internalModelValue,
-    '--r-color-picker-color': color,
+    '--R-color-picker-current-color': internalModelValue,
+    '--R-color-picker-color': `var(--r-color-picker-color, ${color})`,
   }
 })
 </script>
@@ -113,25 +113,25 @@ const style = $computed(() => {
 @use '../common/_reset';
 
 .r-color-picker {
-  --r-color-picker-color: var(--r-common-color);
-  --r-color-picker-border-width: 1px;
-  --r-color-picker-border-dash: none;
+  --R-color-picker-color: var(--r-color-picker-color, var(--r-common-color));
+  --R-color-picker-border-width: var(--r-color-picker-border-width, 1px);
+  --R-color-picker-border-dash: var(--r-color-picker-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
-  color: var(--r-color-picker-color);
+  color: var(--R-color-picker-color);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-color-picker-border-dash);
-    border-top: var(--r-color-picker-border-width) solid;
+    border-spacing: var(--R-color-picker-border-dash);
+    border-top: var(--R-color-picker-border-width) solid;
     background-color: var(--r-common-color);
     transition: border-spacing 1ms, border-top 1ms, background-color 1ms !important;
   }
   &:hover:not(.is-loading) {
-    --r-color-picker-border-dash: 8px;
+    --R-color-picker-border-dash: var(--r-color-picker-border-dash, 8px);
   }
   &:focus, &:active {
-    --r-color-picker-border-width: 2px;
+    --R-color-picker-border-width: var(--r-color-picker-border-width, 2px);
   }
   &:not(.is-loading) {
     cursor: pointer;

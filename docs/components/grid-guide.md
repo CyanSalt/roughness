@@ -17,16 +17,16 @@ import { RGridGuide } from 'roughness'
 </script>
 
 <template>
-  <section :style="{ height: '240px' }">
-    <RGridGuide :style="{ '--r-grid-guide-color': 'var(--r-common-primary-color)' }" />
+  <section :style="{ '--r-grid-guide-color': 'var(--r-common-primary-color)', height: '240px' }">
+    <RGridGuide />
   </section>
 </template>
 ```
 
 </RDetails>
 
-<section :style="{ height: '240px' }">
-  <RGridGuide :style="{ '--r-grid-guide-color': 'var(--r-common-primary-color)' }" />
+<section :style="{ '--r-grid-guide-color': 'var(--r-common-primary-color)', height: '240px' }">
+  <RGridGuide />
 </section>
 
 ## Usage

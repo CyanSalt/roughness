@@ -34,8 +34,8 @@ defineSlots<{
 
 <style lang="scss">
 .r-text {
-  --r-text-color: var(--r-element-color);
-  color: var(--r-text-color);
+  --R-text-color: var(--r-text-color, var(--r-element-color));
+  color: var(--R-text-color);
   &.is-block {
     display: block;
   }

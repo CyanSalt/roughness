@@ -59,8 +59,8 @@ const color = $computed(() => {
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-avatar-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-avatar-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-avatar-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-avatar-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const scaleX = width / 10
   const scaleY = height / 10
@@ -71,7 +71,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       scaleX,
       scaleY,
       {
-        stroke: 'var(--r-avatar-pixel-color)',
+        stroke: 'var(--R-avatar-pixel-color)',
       },
     )
     svg.appendChild(rectangle)
@@ -84,7 +84,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       width - padding * 2,
       height - padding * 2,
       {
-        stroke: 'var(--r-avatar-border-color)',
+        stroke: 'var(--R-avatar-border-color)',
         strokeWidth,
         strokeLineDash,
       },
@@ -97,7 +97,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       width - padding * 2,
       height - padding * 2,
       {
-        stroke: 'var(--r-avatar-border-color)',
+        stroke: 'var(--R-avatar-border-color)',
         strokeWidth,
         strokeLineDash,
       },
@@ -108,7 +108,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <span class="r-avatar" :style="{ '--r-avatar-pixel-color': color }">
+  <span class="r-avatar" :style="{ '--R-avatar-pixel-color': color }">
     <RGraphics :graphics-options="graphicsOptions" @draw="draw"></RGraphics>
   </span>
 </template>
@@ -117,16 +117,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-avatar {
-  --r-avatar-size: 2em;
-  --r-avatar-border-color: var(--r-common-color);
-  --r-avatar-border-width: 1px;
-  --r-avatar-border-dash: none;
-  block-size: var(--r-avatar-size);
-  inline-size: var(--r-avatar-size);
+  --R-avatar-size: var(--r-avatar-size, 2em);
+  --R-avatar-border-color: var(--r-avatar-border-color, var(--r-common-color));
+  --R-avatar-border-width: var(--r-avatar-border-width, 1px);
+  --R-avatar-border-dash: var(--r-avatar-border-dash, none);
+  block-size: var(--R-avatar-size);
+  inline-size: var(--R-avatar-size);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-avatar-border-dash);
-    border-top: var(--r-avatar-border-width) solid;
+    border-spacing: var(--R-avatar-border-dash);
+    border-top: var(--R-avatar-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
 }

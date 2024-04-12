@@ -72,9 +72,9 @@ const style = $computed<HTMLAttributes['style']>(() => {
 
 <style lang="scss">
 .r-space {
-  --r-space-gap-size: calc(1em - 4px);
+  --R-space-gap-size: var(--r-space-gap-size, calc(1em - 4px));
   display: flex;
-  gap: var(--r-space-gap-size);
+  gap: var(--R-space-gap-size);
   &.is-inline {
     display: inline-flex;
   }

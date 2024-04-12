@@ -32,11 +32,11 @@ In dark and light mode, in addition to the foreground and background colors, the
 
 Most components support specific CSS custom properties. You can find them in the documentation related to components, such as [Button Styles](/components/button#styles).
 
-Obviously, you can also customize these CSS properties. For example:
+Generally, components use CSS properties with names in the format `--R-*` internally, but you should avoid modifying these properties; instead, these properties can be controlled through properties with the same name in lowercase:
 
 ```css
 /* Render thicker borders for all buttons */
-.r-button {
+:root {
   --r-button-border-width: 2px;
 }
 ```

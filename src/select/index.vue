@@ -125,8 +125,8 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-select-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-select-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-select-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(
@@ -135,7 +135,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-select-border-color)',
+      stroke: 'var(--R-select-border-color)',
       strokeWidth,
       strokeLineDash,
     },
@@ -151,12 +151,12 @@ const {
 function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
   void dropdownTimestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-select-dropdown-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-select-dropdown-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-select-dropdown-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-select-dropdown-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
-    stroke: 'var(--r-select-border-color)',
+    stroke: 'var(--R-select-border-color)',
     strokeWidth,
     strokeLineDash,
     fill: 'var(--r-common-background-color)',
@@ -234,13 +234,13 @@ provide(labelsInjection, labels)
 @use '../common/_reset';
 
 .r-select {
-  --r-select-border-color: var(--r-common-color);
-  --r-select-border-width: 1px;
-  --r-select-border-dash: none;
-  --r-select-dropdown-border-width: 1px;
-  --r-select-dropdown-border-dash: none;
-  --r-select-dropdown-padding-block: calc(1em - 4px);
-  --r-select-dropdown-padding-inline: calc(1em - 4px);
+  --R-select-border-color: var(--r-select-border-color, var(--r-common-color));
+  --R-select-border-width: var(--r-select-border-width, 1px);
+  --R-select-border-dash: var(--r-select-border-dash, none);
+  --R-select-dropdown-border-width: var(--r-select-dropdown-border-width, 1px);
+  --R-select-dropdown-border-dash: var(--r-select-dropdown-border-dash, none);
+  --R-select-dropdown-padding-block: var(--r-select-dropdown-padding-block, calc(1em - 4px));
+  --R-select-dropdown-padding-inline: var(--r-select-dropdown-padding-inline, calc(1em - 4px));
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -250,12 +250,12 @@ provide(labelsInjection, labels)
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-select-border-dash);
-    border-top: var(--r-select-border-width) solid;
+    border-spacing: var(--R-select-border-dash);
+    border-top: var(--R-select-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:has(> .r-select__input:focus) {
-    --r-select-border-width: 2px;
+    --R-select-border-width: var(--r-select-border-width, 2px);
   }
   &:not(.is-loading) {
     cursor: pointer;
@@ -268,7 +268,7 @@ provide(labelsInjection, labels)
   }
 }
 .r-select__icon {
-  --r-icon-stroke-width: var(--r-select-border-width);
+  --R-icon-stroke-width: var(--R-select-border-width);
   --r-element-font-size: calc(1em + 4px);
   flex: none;
   margin-inline-start: calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2 - 4px);
@@ -300,15 +300,15 @@ provide(labelsInjection, labels)
   transform: translateY(100%);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-select-dropdown-border-dash);
-    border-top: var(--r-select-dropdown-border-width) solid;
+    border-spacing: var(--R-select-dropdown-border-dash);
+    border-top: var(--R-select-dropdown-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
 }
 .r-select__group {
-  max-block-size: calc(var(--r-select-dropdown-padding-block) * 2 + var(--r-common-line-height) * 5 + var(--r-space-gap-size) * 4);
-  padding-block: var(--r-select-dropdown-padding-block);
-  padding-inline: var(--r-select-dropdown-padding-inline);
+  max-block-size: calc(var(--R-select-dropdown-padding-block) * 2 + var(--r-common-line-height) * 5 + var(--r-space-gap-size) * 4);
+  padding-block: var(--R-select-dropdown-padding-block);
+  padding-inline: var(--R-select-dropdown-padding-inline);
   overflow: auto;
 }
 </style>

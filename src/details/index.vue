@@ -46,8 +46,8 @@ let summary = $ref<HTMLElement>()
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const options: Options = {
-    stroke: 'var(--r-details-summary-color)',
-    fill: 'var(--r-details-summary-color)',
+    stroke: 'var(--R-details-summary-color)',
+    fill: 'var(--R-details-summary-color)',
   }
   const padding = 2
   const points: Point[] = internalOpen ? [
@@ -82,15 +82,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss">
 .r-details {
-  --r-details-summary-color: var(--r-common-color);
-  --r-details-summary-marker-size: var(--r-common-line-height);
-  --r-details-gap-size: calc(1em - 4px);
+  --R-details-summary-color: var(--r-details-summary-color, var(--r-common-color));
+  --R-details-summary-marker-size: var(--r-details-summary-marker-size, var(--r-common-line-height));
+  --R-details-gap-size: var(--r-details-gap-size, calc(1em - 4px));
 }
 .r-details__summary {
   display: flex;
   align-items: center;
-  margin-block-end: var(--r-details-gap-size);
-  color: var(--r-details-summary-color);
+  margin-block-end: var(--R-details-gap-size);
+  color: var(--R-details-summary-color);
   cursor: pointer;
   // for Safari
   &::-webkit-details-marker {
@@ -102,8 +102,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-details__summary-marker {
   flex: none;
-  block-size: var(--r-details-summary-marker-size);
-  inline-size: var(--r-details-summary-marker-size);
+  block-size: var(--R-details-summary-marker-size);
+  inline-size: var(--R-details-summary-marker-size);
   pointer-events: none;
 }
 </style>

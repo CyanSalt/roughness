@@ -28,7 +28,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-badge-color)',
+      stroke: 'var(--R-badge-color)',
     },
   )
   svg.appendChild(ellipse)
@@ -49,9 +49,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-badge {
-  --r-badge-color: var(--r-common-error-color);
-  --r-badge-padding-block: calc(0.5em - 4px);
-  --r-badge-padding-inline: calc(1em - 4px);
+  --R-badge-color: var(--r-badge-color, var(--r-common-error-color));
+  --R-badge-padding-block: var(--r-badge-padding-block, calc(0.5em - 4px));
+  --R-badge-padding-inline: var(--r-badge-padding-inline, calc(1em - 4px));
   position: relative;
 }
 .r-badge__marker {
@@ -59,12 +59,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   position: absolute;
   inset-block-start: 0;
   inset-inline-end: 0;
-  padding-block: var(--r-badge-padding-block);
-  padding-inline: var(--r-badge-padding-inline);
-  color: var(--r-badge-color);
+  padding-block: var(--R-badge-padding-block);
+  padding-inline: var(--R-badge-padding-inline);
+  color: var(--R-badge-color);
   transform: translate(50%, -50%);
   &:has(> .r-badge__marker-content:empty) {
-    padding-inline: var(--r-badge-padding-block);
+    padding-inline: var(--R-badge-padding-block);
   }
 }
 .r-badge__marker-content {

@@ -45,8 +45,8 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-card-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-card-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-card-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-card-border-dash')
     ?.map(value => value ?? 0) ?? undefined
   const padding = 2
   const rectangle = rc.rectangle(
@@ -55,7 +55,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-card-border-color)',
+      stroke: 'var(--R-card-border-color)',
       strokeWidth,
       strokeLineDash,
     },
@@ -106,19 +106,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-card {
-  --r-card-color: var(--r-element-color);
-  --r-card-border-color: var(--r-card-color);
-  --r-card-border-width: 1px;
-  --r-card-border-dash: none;
-  --r-card-padding-block: calc(var(--r-common-box-padding-block) * 2);
-  --r-card-padding-inline: var(--r-common-box-padding-inline);
-  padding-block: var(--r-card-padding-block);
-  padding-inline: var(--r-card-padding-inline);
-  color: var(--r-card-color);
+  --R-card-color: var(--r-card-color, var(--r-element-color));
+  --R-card-border-color: var(--r-card-border-color, var(--R-card-color));
+  --R-card-border-width: var(--r-card-border-width, 1px);
+  --R-card-border-dash: var(--r-card-border-dash, none);
+  --R-card-padding-block: var(--r-card-padding-block, calc(var(--r-common-box-padding-block) * 2));
+  --R-card-padding-inline: var(--r-card-padding-inline, var(--r-common-box-padding-inline));
+  padding-block: var(--R-card-padding-block);
+  padding-inline: var(--R-card-padding-inline);
+  color: var(--R-card-color);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-card-border-dash);
-    border-top: var(--r-card-border-width) solid;
+    border-spacing: var(--R-card-border-dash);
+    border-top: var(--R-card-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &.primary {

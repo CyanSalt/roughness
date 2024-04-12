@@ -21,7 +21,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const padding = 2
   const line = rc.line(padding, padding, vertical ? padding : width - padding, vertical ? height - padding : padding, {
-    stroke: 'var(--r-divider-color)',
+    stroke: 'var(--R-divider-color)',
   })
   svg.appendChild(line)
 }
@@ -39,18 +39,18 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss">
 .r-divider {
-  --r-divider-color: var(--r-common-color);
-  --r-divider-gap-size: calc(1em - 4px);
+  --R-divider-color: var(--r-divider-color, var(--r-common-color));
+  --R-divider-gap-size: var(--r-divider-gap-size, calc(1em - 4px));
   display: block;
   block-size: 1px + 2px * 2;
-  margin-block: calc(var(--r-divider-gap-size) - 2px);
+  margin-block: calc(var(--R-divider-gap-size) - 2px);
   margin-inline: auto;
   &.is-vertical {
     display: inline-block;
     block-size: var(--r-common-line-height);
     inline-size: 1px + 2px * 2;
     margin-block: auto;
-    margin-inline: calc(var(--r-divider-gap-size) - 2px);
+    margin-inline: calc(var(--R-divider-gap-size) - 2px);
     vertical-align: middle;
   }
 }

@@ -42,8 +42,8 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
-  const strokeWidth = getLengthProperty(svg, '--r-progress-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--r-progress-border-dash')
+  const strokeWidth = getLengthProperty(svg, '--R-progress-border-width') ?? 0
+  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined
   const { width, height } = getSVGSize(svg)
   const padding = 2
@@ -53,7 +53,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
-      stroke: 'var(--r-progress-border-color)',
+      stroke: 'var(--R-progress-border-color)',
       strokeWidth,
       strokeLineDash,
     },
@@ -65,7 +65,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     (width - padding * 2) * ratio,
     height - padding * 2,
     {
-      stroke: 'var(--r-progress-color)',
+      stroke: 'var(--R-progress-color)',
       strokeWidth,
       strokeLineDash,
     },
@@ -78,7 +78,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     height - padding * 2,
     {
       strokeWidth: 0,
-      fill: 'var(--r-progress-color)',
+      fill: 'var(--R-progress-color)',
       ...getFilledSizeOptions(0),
     },
   )
@@ -105,19 +105,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-progress {
-  --r-progress-color: var(--r-element-color);
-  --r-progress-block-size: var(--r-common-line-height);
-  --r-progress-inline-size: calc(var(--r-progress-block-size) * 10);
-  --r-progress-border-color: var(--r-common-color);
-  --r-progress-border-width: 1px;
-  --r-progress-border-dash: none;
+  --R-progress-color: var(--r-progress-color, var(--r-element-color));
+  --R-progress-block-size: var(--r-progress-block-size, var(--r-common-line-height));
+  --R-progress-inline-size: var(--r-progress-inline-size, calc(var(--R-progress-block-size) * 10));
+  --R-progress-border-color: var(--r-progress-border-color, var(--r-common-color));
+  --R-progress-border-width: var(--r-progress-border-width, 1px);
+  --R-progress-border-dash: var(--r-progress-border-dash, none);
   display: inline-block;
-  block-size: var(--r-progress-block-size);
-  inline-size: var(--r-progress-inline-size);
+  block-size: var(--R-progress-block-size);
+  inline-size: var(--R-progress-inline-size);
   &::before {
     @include partials.ghost();
-    border-spacing: var(--r-progress-border-dash);
-    border-top: var(--r-progress-border-width) solid;
+    border-spacing: var(--R-progress-border-dash);
+    border-top: var(--R-progress-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &.primary {
@@ -149,6 +149,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-element-font-size: calc(1em - 2px);
   @include partials.stroke(var(--r-common-background-color), 3px);
   padding-inline: var(--r-common-box-padding-inline);
-  color: var(--r-progress-color);
+  color: var(--R-progress-color);
 }
 </style>

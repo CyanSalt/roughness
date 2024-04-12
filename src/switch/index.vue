@@ -39,18 +39,18 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--r-switch-border-width') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--R-switch-border-width') ?? 0
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
-    stroke: 'var(--r-switch-border-color)',
+    stroke: 'var(--R-switch-border-color)',
     strokeWidth,
-    fill: internalModelValue ? 'var(--r-switch-track-color)' : undefined,
+    fill: internalModelValue ? 'var(--R-switch-track-color)' : undefined,
     ...getFilledSizeOptions(strokeWidth),
   })
   svg.appendChild(rectangle)
   const handleOptions: Options = {
-    stroke: 'var(--r-switch-border-color)',
-    fill: 'var(--r-switch-handle-color)',
+    stroke: 'var(--R-switch-border-color)',
+    fill: 'var(--R-switch-handle-color)',
     fillStyle: 'solid',
   }
   const handleSize = (height - 2 * padding) * 3 / 4
@@ -103,21 +103,21 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-switch {
-  --r-switch-border-color: var(--r-common-color);
-  --r-switch-border-width: 1px;
-  --r-switch-control-size: var(--r-common-line-height);
-  --r-switch-track-color: var(--r-common-primary-color);
-  --r-switch-handle-color: var(--r-common-background-color);
+  --R-switch-border-color: var(--r-switch-border-color, var(--r-common-color));
+  --R-switch-border-width: var(--r-switch-border-width, 1px);
+  --R-switch-control-size: var(--r-switch-control-size, var(--r-common-line-height));
+  --R-switch-track-color: var(--r-switch-track-color, var(--r-common-primary-color));
+  --R-switch-handle-color: var(--r-switch-handle-color, var(--r-common-background-color));
   position: relative;
   cursor: pointer;
   &::before {
     @include partials.ghost();
-    border-top: var(--r-switch-border-width) solid;
+    border-top: var(--R-switch-border-width) solid;
     transition: border-top 1ms !important;
   }
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
-    --r-switch-border-width: 2px;
+    --R-switch-border-width: var(--r-switch-border-width, 2px);
   }
   &:has(> .r-checkbox__input:disabled) {
     cursor: not-allowed;
@@ -134,8 +134,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-switch__control {
   flex: none;
-  block-size: var(--r-switch-control-size);
-  inline-size: calc(var(--r-switch-control-size) * 2);
+  block-size: var(--R-switch-control-size);
+  inline-size: calc(var(--R-switch-control-size) * 2);
   .r-switch__input:disabled + & {
     opacity: 0.8;
   }

@@ -34,7 +34,7 @@ provide(itemsInjection, items)
       v-for="(item, index) in items"
       :key="item.id"
       v-bind="item.props"
-      :style="{ '--r-toast-provider-index': index }"
+      :style="{ '--R-toast-provider-index': index }"
       @update:open="toggle($event, item.id)"
     >
       <component :is="item.slots.default"></component>
@@ -44,13 +44,13 @@ provide(itemsInjection, items)
 
 <style lang="scss">
 .r-toast-provider {
-  --r-toast-provider-base-size: calc(var(--r-common-line-height) + var(--r-common-box-padding-block) * 2);
-  --r-toast-provider-gap-size: calc(1em - 4px);
+  --R-toast-provider-base-size: var(--r-toast-provider-base-size, calc(var(--r-common-line-height) + var(--r-common-box-padding-block) * 2));
+  --R-toast-provider-gap-size: var(--r-toast-provider-gap-size, calc(1em - 4px));
   position: fixed;
   block-size: 0;
   inline-size: 0;
   & > .r-toast {
-    transform: translate(-50%, calc(-50% - var(--r-toast-provider-index) * (var(--r-toast-provider-base-size) + var(--r-toast-provider-gap-size))));
+    transform: translate(-50%, calc(-50% - var(--R-toast-provider-index) * (var(--R-toast-provider-base-size) + var(--R-toast-provider-gap-size))));
   }
 }
 </style>

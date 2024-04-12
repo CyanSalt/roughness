@@ -107,7 +107,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const { x, y } = dimensions
   const options: Options = {
-    stroke: 'var(--r-table-border-color)',
+    stroke: 'var(--R-table-border-color)',
   }
   const padding = 2
   // Outline
@@ -192,6 +192,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-table {
-  --r-table-border-color: var(--r-common-color);
+  --R-table-border-color: var(--r-table-border-color, var(--r-common-color));
 }
 </style>

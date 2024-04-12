@@ -83,7 +83,7 @@ import { RSpace, RText } from 'roughness'
 <template>
   <RSpace>
     <RText tag="h1" type="error">Statement on the second meeting of the International Health Regulations (2005) Emergency Committee regarding the outbreak of novel coronavirus (2019-nCoV)</RText>
-    <RText tag="small">Who really cares?</RText>
+    <RText tag="del">Who really cares?</RText>
   </RSpace>
 </template>
 ```
@@ -92,7 +92,7 @@ import { RSpace, RText } from 'roughness'
 
 <RSpace>
   <RText tag="h1" type="error">Statement on the second meeting of the International Health Regulations (2005) Emergency Committee regarding the outbreak of novel coronavirus (2019-nCoV)</RText>
-  <RText tag="small">Who really cares?</RText>
+  <RText tag="del">Who really cares?</RText>
 </RSpace>
 
 ## Usage

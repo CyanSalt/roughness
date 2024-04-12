@@ -263,4 +263,22 @@ import { RInput, RSpace } from 'roughness'
 
   </RStyle>
 
+  <RStyle name="inline-size">
+
+  <template #values>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `210px`
+
+  </template>
+
+  Size of the input.
+
+  </RStyle>
+
 </RStylesTable>

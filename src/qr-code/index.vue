@@ -35,8 +35,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
         cellSize,
         {
           roughness: 0.5,
-          stroke: 'var(--r-qr-code-color)',
-          fill: 'var(--r-qr-code-color)',
+          stroke: 'var(--R-qr-code-color)',
+          fill: 'var(--R-qr-code-color)',
           fillStyle: 'solid',
         },
       )
@@ -56,9 +56,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-qr-code {
-  --r-qr-code-color: var(--r-common-color);
-  --r-qr-code-size: 8em;
-  block-size: var(--r-qr-code-size);
-  inline-size: var(--r-qr-code-size);
+  --R-qr-code-color: var(--r-qr-code-color, var(--r-common-color));
+  --R-qr-code-size: var(--r-qr-code-size, 8em);
+  block-size: var(--R-qr-code-size);
+  inline-size: var(--R-qr-code-size);
 }
 </style>

@@ -46,13 +46,13 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
-  const strokeWidth = getLengthProperty(svg, '--r-icon-stroke-width') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--R-icon-stroke-width') ?? 0
   const options: Options = {
     roughness: 0.5,
     disableMultiStroke: true,
-    stroke: 'var(--r-icon-stroke-color)',
+    stroke: 'var(--R-icon-stroke-color)',
     strokeWidth,
-    fill: filled ? 'var(--r-icon-color)' : undefined,
+    fill: filled ? 'var(--R-icon-color)' : undefined,
     ...getFilledSizeOptions(1),
   }
   for (const [tag, attrs] of children) {
@@ -142,15 +142,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-icon {
-  --r-icon-color: var(--r-text-color);
-  --r-icon-stroke-color: var(--r-icon-color);
-  --r-icon-stroke-width: 2px;
+  --R-icon-color: var(--r-icon-color, var(--r-text-color));
+  --R-icon-stroke-color: var(--r-icon-stroke-color, var(--R-icon-color));
+  --R-icon-stroke-width: var(--r-icon-stroke-width, 2px);
   display: inline-block;
   block-size: calc(1em + 4px);
   inline-size: calc(1em + 4px);
   &::before {
     @include partials.ghost();
-    border-top: var(--r-icon-stroke-width) solid;
+    border-top: var(--R-icon-stroke-width) solid;
     transition: border-top 1ms !important;
   }
   .r-graphics {

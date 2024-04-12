@@ -24,14 +24,14 @@ const listStyle = $(inject(listStyleInjection, ref()))
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const options: Options = {
-    stroke: 'var(--r-list-marker-color)',
-    fill: 'var(--r-list-marker-color)',
+    stroke: 'var(--R-list-marker-color)',
+    fill: 'var(--R-list-marker-color)',
   }
   let offsetY = 0
   switch (listStyle) {
     case 'disc': {
       const circle = rc.circle(width / 2, height / 2 + offsetY, width / 4, {
-        stroke: 'var(--r-list-marker-color)',
+        stroke: 'var(--R-list-marker-color)',
       })
       svg.appendChild(circle)
       break
@@ -69,16 +69,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-list-item {
   position: relative;
   &::marker {
-    inline-size: var(--r-list-marker-inline-size);
+    inline-size: var(--R-list-marker-inline-size);
   }
 }
 .r-list-item__marker {
   position: absolute;
   inset-block: 0;
-  inset-inline-start: calc(0px - var(--r-list-marker-inline-size));
+  inset-inline-start: calc(0px - var(--R-list-marker-inline-size));
   display: inline-block;
-  block-size: var(--r-list-marker-block-size);
-  inline-size: var(--r-list-marker-inline-size);
+  block-size: var(--R-list-marker-block-size);
+  inline-size: var(--R-list-marker-inline-size);
   pointer-events: none;
 }
 </style>

@@ -44,7 +44,7 @@ const { elementX, isOutside } = $(useMouseInElement($$(root)))
 const targetModelValue: number = $computed(() => {
   if (!root || isOutside) return 0
   const controlSize = root.clientHeight
-  const gapSize = getLengthProperty(root, '--r-rate-gap-size') ?? 0
+  const gapSize = getLengthProperty(root, '--R-rate-gap-size') ?? 0
   return Math.ceil(elementX / (controlSize + gapSize))
 })
 
@@ -84,12 +84,12 @@ watchEffect(() => {
 @use '../common/_reset';
 
 .r-rate {
-  --r-rate-color: var(--r-common-primary-color);
-  --r-rate-control-size: calc(1em + 4px);
-  --r-rate-gap-size: 4px;
+  --R-rate-color: var(--r-rate-color, var(--r-common-primary-color));
+  --R-rate-control-size: var(--r-rate-control-size, calc(1em + 4px));
+  --R-rate-gap-size: var(--r-rate-gap-size, 4px);
   display: inline-flex;
   flex-direction: row-reverse;
-  gap: var(--r-rate-gap-size);
+  gap: var(--R-rate-gap-size);
   cursor: pointer;
   &:has(> .r-rate__input:disabled) {
     cursor: not-allowed;
@@ -107,11 +107,11 @@ watchEffect(() => {
   opacity: 0;
 }
 .r-rate__shape {
-  font-size: var(--r-rate-control-size);
+  font-size: var(--R-rate-control-size);
   &.is-filled,
   .r-rate:hover &,
   .r-rate:focus-within & {
-    --r-icon-color: var(--r-rate-color);
+    --R-icon-color: var(--R-rate-color);
   }
 }
 </style>
