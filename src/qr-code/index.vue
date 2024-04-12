@@ -56,7 +56,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-qr-code {
-  --r-qr-code-color: var(--r-common-text-color);
+  --r-qr-code-color: var(--r-common-color);
   --r-qr-code-size: 8em;
   block-size: var(--r-qr-code-size);
   inline-size: var(--r-qr-code-size);

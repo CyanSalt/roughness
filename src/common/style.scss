@@ -24,12 +24,12 @@
     --r-common-box-padding-inline: calc(1em + 4px);
     --r-common-overlay-z-index: 2;
 
-    --r-element-color: var(--r-common-text-color);
+    --r-element-color: var(--r-common-color);
     --r-element-font-family: var(--r-common-font-family);
     --r-element-font-size: var(--r-common-font-size);
     --r-element-line-height: var(--r-common-line-height);
 
-    --r-common-text-color: #383a42;
+    --r-common-color: #383a42;
     --r-common-background-color: #fafafa;
     --r-common-placeholder-color: #383a4240;
     --r-common-comment-color: #383a4280;
@@ -39,7 +39,7 @@
     --r-common-warning-color: #c18401;
     --r-common-error-color: #ca1243;
     &.dark {
-      --r-common-text-color: #abb2bf;
+      --r-common-color: #abb2bf;
       --r-common-background-color: #282c34;
       --r-common-placeholder-color: #abb2bf60;
       --r-common-comment-color: #abb2bf80;

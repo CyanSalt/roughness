@@ -103,7 +103,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-switch {
-  --r-switch-border-color: var(--r-common-text-color);
+  --r-switch-border-color: var(--r-common-color);
   --r-switch-border-width: 1px;
   --r-switch-control-size: var(--r-common-line-height);
   --r-switch-track-color: var(--r-common-primary-color);

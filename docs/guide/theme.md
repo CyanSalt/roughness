@@ -287,7 +287,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  <RStyle name="text-color">
+  <RStyle name="color">
 
   <template #default-value>
 
@@ -299,7 +299,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   ```css
   body {
-    color: var(--r-common-text-color);
+    color: var(--r-common-color);
   }
   ```
 

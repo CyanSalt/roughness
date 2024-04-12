@@ -108,7 +108,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --r-progress-color: var(--r-element-color);
   --r-progress-block-size: var(--r-common-line-height);
   --r-progress-inline-size: calc(var(--r-progress-block-size) * 10);
-  --r-progress-border-color: var(--r-common-text-color);
+  --r-progress-border-color: var(--r-common-color);
   --r-progress-border-width: 1px;
   --r-progress-border-dash: none;
   display: inline-block;

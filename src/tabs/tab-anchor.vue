@@ -127,7 +127,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-tab-anchor {
   --r-tab-anchor-active-color: var(--r-common-primary-color);
-  --r-tab-anchor-border-color: var(--r-common-text-color);
+  --r-tab-anchor-border-color: var(--r-common-color);
   --r-tab-anchor-border-width: 1px;
   --r-tab-anchor-border-dash: none;
   cursor: pointer;

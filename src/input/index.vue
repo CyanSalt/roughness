@@ -157,7 +157,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-input {
-  --r-input-border-color: var(--r-common-text-color);
+  --r-input-border-color: var(--r-common-color);
   --r-input-border-width: 1px;
   --r-input-border-dash: none;
   --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
@@ -192,7 +192,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-input__input {
   inline-size: 100%;
   padding-inline: var(--r-common-box-padding-inline);
-  color: var(--r-common-text-color);
+  color: var(--r-common-color);
   text-decoration-thickness: calc(var(--r-input-border-width) + 1px);
   &:disabled {
     opacity: 0.8;

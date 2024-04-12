@@ -234,7 +234,7 @@ provide(labelsInjection, labels)
 @use '../common/_reset';
 
 .r-select {
-  --r-select-border-color: var(--r-common-text-color);
+  --r-select-border-color: var(--r-common-color);
   --r-select-border-width: 1px;
   --r-select-border-dash: none;
   --r-select-dropdown-border-width: 1px;
@@ -283,7 +283,7 @@ provide(labelsInjection, labels)
 }
 .r-select__input {
   inline-size: 100%;
-  color: var(--r-common-text-color);
+  color: var(--r-common-color);
   cursor: inherit;
   &:disabled {
     opacity: 0.8;

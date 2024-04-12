@@ -171,7 +171,7 @@ let value = ref(62)
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

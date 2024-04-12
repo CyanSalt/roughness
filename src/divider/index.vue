@@ -39,7 +39,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss">
 .r-divider {
-  --r-divider-color: var(--r-common-text-color);
+  --r-divider-color: var(--r-common-color);
   --r-divider-gap-size: calc(1em - 4px);
   display: block;
   block-size: 1px + 2px * 2;

@@ -166,7 +166,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-checkbox {
-  --r-checkbox-border-color: var(--r-common-text-color);
+  --r-checkbox-border-color: var(--r-common-color);
   --r-checkbox-border-width: 1px;
   --r-checkbox-checked-color: var(--r-common-primary-color);
   --r-checkbox-checked-width: 2px;

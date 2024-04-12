@@ -52,7 +52,7 @@ const { timestamp, listener } = $(useTransitionListener('::before'))
 let color = $computed(() => {
   if (!root) return undefined
   void timestamp
-  let defaultColor = colord(getProperty(root, '--r-common-text-color'))
+  let defaultColor = colord(getProperty(root, '--r-common-color'))
   const currentColor = colord(internalModelValue)
   return currentColor
     .lighten((defaultColor.toHsl().l - currentColor.toHsl().l) / 100)
@@ -114,7 +114,7 @@ const style = $computed(() => {
 
 .r-color-picker {
   --r-color-picker-current-color: var(--r-element-color);
-  --r-color-picker-color: var(--r-common-text-color);
+  --r-color-picker-color: var(--r-common-color);
   --r-color-picker-border-width: 1px;
   --r-color-picker-border-dash: none;
   display: inline-block;
@@ -125,7 +125,7 @@ const style = $computed(() => {
     @include partials.ghost();
     border-spacing: var(--r-color-picker-border-dash);
     border-top: var(--r-color-picker-border-width) solid;
-    background-color: var(--r-common-text-color);
+    background-color: var(--r-common-color);
     transition: border-spacing 1ms, border-top 1ms, background-color 1ms !important;
   }
   &:hover:not(.is-loading) {

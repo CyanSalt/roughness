@@ -4,7 +4,7 @@
   --vp-font-family-base: var(--r-common-font-family);
   --vp-c-bg: var(--r-common-background-color);
   --vp-c-bg-soft: var(--vp-c-bg-alt);
-  --vp-c-text-1: var(--r-common-text-color);
+  --vp-c-text-1: var(--r-common-color);
   --vp-c-brand-1: var(--r-common-primary-color);
   --vp-c-brand-2: #{color.scale(#4078f2, $lightness: 25%)};
   --vp-c-brand-3: #{color.scale(#4078f2, $lightness: 50%)};

@@ -356,7 +356,7 @@ const treeValue = ref<string | undefined>()
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

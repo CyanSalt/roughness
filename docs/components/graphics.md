@@ -32,7 +32,7 @@ function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
   if (!font.value) return
   const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData()
   const path = rc.path(pathData, {
-    fill: 'var(--r-common-text-color)',
+    fill: 'var(--r-common-color)',
   })
   svg.appendChild(path)
 }
@@ -333,7 +333,7 @@ import { RButton } from 'roughness'
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

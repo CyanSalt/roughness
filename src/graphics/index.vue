@@ -97,7 +97,7 @@ watchEffect(() => {
 
 <style lang="scss">
 .r-graphics {
-  --r-graphics-stroke-color: var(--r-common-text-color);
+  --r-graphics-stroke-color: var(--r-common-color);
   pointer-events: none;
   &.is-responsive {
     position: absolute;

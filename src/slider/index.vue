@@ -150,7 +150,7 @@ watchEffect(() => {
 
 .r-slider {
   --r-slider-color: var(--r-common-primary-color);
-  --r-slider-border-color: var(--r-common-text-color);
+  --r-slider-border-color: var(--r-common-color);
   --r-slider-border-width: 1px;
   --r-slider-control-size: var(--r-common-line-height);
   --r-slider-track-size: var(--r-common-font-size);

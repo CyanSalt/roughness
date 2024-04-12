@@ -260,7 +260,7 @@ See [Checkbox Tree](/components/checkbox#tree).
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

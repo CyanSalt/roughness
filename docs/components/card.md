@@ -198,7 +198,7 @@ import { RCard, RSpace } from 'roughness'
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

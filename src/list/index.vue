@@ -44,7 +44,7 @@ provide(listStyleInjection, $$(listStyle))
 
 <style lang="scss">
 .r-list {
-  --r-list-marker-color: var(--r-common-text-color);
+  --r-list-marker-color: var(--r-common-color);
   --r-list-marker-block-size: var(--r-common-line-height);
   --r-list-marker-inline-size: 1.5em;
   padding-inline-start: var(--r-list-marker-inline-size);

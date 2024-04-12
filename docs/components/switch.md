@@ -117,7 +117,7 @@ import { RSwitch } from 'roughness'
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

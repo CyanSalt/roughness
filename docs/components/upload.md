@@ -175,7 +175,7 @@ function select(value: File) {
 
   <template #default-value>
 
-  `var(--r-common-text-color)`
+  `var(--r-common-color)`
 
   </template>
 

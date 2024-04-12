@@ -132,7 +132,7 @@ let color = ref('')
 
   <template #default-value>
 
-  `var(--r-common-text-color)` if the value is not set, `var(--r-common-text-color)` in adjusting hue and saturation to be the same as the value else.
+  `var(--r-common-color)` if the value is not set, `var(--r-common-color)` in adjusting hue and saturation to be the same as the value else.
 
   </template>
 

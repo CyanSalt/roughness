@@ -192,6 +192,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-table {
-  --r-table-border-color: var(--r-common-text-color);
+  --r-table-border-color: var(--r-common-color);
 }
 </style>
