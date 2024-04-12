@@ -115,6 +115,34 @@ body {
 }
 ```
 
+The following properties (of colors) are effective for the **text content**:
+
+<RStylesTable>
+
+  <template #name="{ value }">--r-element-{{ value }}</template>
+
+  <RStyle name="color">
+
+  <template #values>
+
+  `<color>`
+
+  </template>
+
+  <template #default-value>
+
+  `var(--r-common-color)`
+
+  </template>
+
+  Color of the element. Usually it will be changed by the `type` property of components.
+
+  See also [Color Styles](#color-styles).
+
+  </RStyle>
+
+</RStylesTable>
+
 Common style properties are declared under the root node. Changing them will affect all components.
 
 <RStylesTable>

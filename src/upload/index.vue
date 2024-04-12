@@ -105,7 +105,7 @@ function change(event: InputEvent) {
 @use '../common/_partials';
 
 .r-upload {
-  --r-upload-color: var(--r-element-color);
+  --r-upload-color: var(--r-common-color);
   --r-upload-border-color: var(--r-upload-color);
   --r-upload-border-width: 1px;
   --r-upload-border-dash: 8px;

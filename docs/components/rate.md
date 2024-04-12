@@ -144,7 +144,7 @@ import { RRate } from 'roughness'
 
   <template #default-value>
 
-  `var(--r-common-line-height)`
+  `calc(1em + 4px)`
 
   </template>
 

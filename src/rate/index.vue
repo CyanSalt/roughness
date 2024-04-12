@@ -85,7 +85,7 @@ watchEffect(() => {
 
 .r-rate {
   --r-rate-color: var(--r-common-primary-color);
-  --r-rate-control-size: calc(var(--r-common-font-size) + 4px);
+  --r-rate-control-size: calc(1em + 4px);
   --r-rate-gap-size: 4px;
   display: inline-flex;
   flex-direction: row-reverse;

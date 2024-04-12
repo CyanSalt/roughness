@@ -113,7 +113,6 @@ const style = $computed(() => {
 @use '../common/_reset';
 
 .r-color-picker {
-  --r-color-picker-current-color: var(--r-element-color);
   --r-color-picker-color: var(--r-common-color);
   --r-color-picker-border-width: 1px;
   --r-color-picker-border-dash: none;

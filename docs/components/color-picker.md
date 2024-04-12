@@ -110,18 +110,6 @@ let color = ref('')
 
   <template #name="{ value }">--r-color-picker-{{ value }}</template>
 
-  <RStyle name="current-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  Value of the color picker.
-
-  </RStyle>
-
   <RStyle name="color">
 
   <template #values>

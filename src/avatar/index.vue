@@ -118,7 +118,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-avatar {
   --r-avatar-size: 2em;
-  --r-avatar-border-color: var(--r-common-comment-color);
+  --r-avatar-border-color: var(--r-common-color);
   --r-avatar-border-width: 1px;
   --r-avatar-border-dash: none;
   block-size: var(--r-avatar-size);

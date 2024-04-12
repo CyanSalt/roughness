@@ -105,7 +105,7 @@ const name = ref('Cameron')
 
   <template #default-value>
 
-  `var(--r-common-comment-color)`
+  `var(--r-common-color)`
 
   </template>
 
