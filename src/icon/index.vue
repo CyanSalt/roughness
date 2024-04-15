@@ -142,7 +142,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-icon {
-  --R-icon-color: var(--r-icon-color, var(--r-text-color));
+  --R-icon-color: var(--r-icon-color, var(--R-text-color));
   --R-icon-stroke-color: var(--r-icon-stroke-color, var(--R-icon-color));
   --R-icon-stroke-width: var(--r-icon-stroke-width, 2px);
   display: inline-block;

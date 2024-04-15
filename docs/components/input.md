@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 let number = ref(5);
 let poem = ref('Because I could not stop for Death,\nHe kindly stopped for me;\nThe carriage held but just ourselves\nAnd Immortality. ')
+let email = ref('java.lang.NullPointerException')
 </script>
 
 # Input
@@ -113,12 +114,15 @@ import { RInput, RSpace } from 'roughness'
 ```vue
 <script lang="ts" setup>
 import { RInput, RSpace } from 'roughness'
+import { ref } from 'vue'
 
+let email = ref('java.lang.NullPointerException')
 </script>
 
 <template>
   <RSpace vertical>
     <RInput type="date" />
+    <RInput v-model="email" type="email" />
   </RSpace>
 </template>
 ```
@@ -127,6 +131,7 @@ import { RInput, RSpace } from 'roughness'
 
 <RSpace vertical>
   <RInput type="date" />
+  <RInput v-model="email" type="email" />
 </RSpace>
 
 ## Usage

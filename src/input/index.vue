@@ -19,6 +19,7 @@ interface InputProps {
   checked?: InputHTMLAttributes['checked'],
   crossorigin?: InputHTMLAttributes['crossorigin'],
   disabled?: InputHTMLAttributes['disabled'],
+  enterKeyHint?: InputHTMLAttributes['enterKeyHint'],
   form?: InputHTMLAttributes['form'],
   formaction?: InputHTMLAttributes['formaction'],
   formenctype?: InputHTMLAttributes['formenctype'],
@@ -33,12 +34,15 @@ interface InputProps {
   min?: InputHTMLAttributes['min'],
   minlength?: InputHTMLAttributes['minlength'],
   multiple?: InputHTMLAttributes['multiple'],
+  name?: InputHTMLAttributes['name'],
   pattern?: InputHTMLAttributes['pattern'],
+  placeholder?: InputHTMLAttributes['placeholder'],
   readonly?: InputHTMLAttributes['readonly'],
   required?: InputHTMLAttributes['required'],
   size?: InputHTMLAttributes['size'],
   src?: InputHTMLAttributes['src'],
   step?: InputHTMLAttributes['step'],
+  type?: InputHTMLAttributes['type'],
   width?: InputHTMLAttributes['width'],
 }
 
@@ -64,9 +68,6 @@ const {
   /** Value of the input text */
   modelValue?: string | number,
   modelModifiers?: DirectiveBinding['modifiers'],
-  name?: InputHTMLAttributes['name'],
-  placeholder?: InputHTMLAttributes['placeholder'],
-  type?: InputHTMLAttributes['type'],
 } & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
@@ -176,6 +177,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &:has(> .r-input__input:focus),
   &:active {
     --R-input-border-width: var(--r-input-border-width, 2px);
+  }
+  &:has(> .r-input__input:user-invalid) {
+    --R-input-border-color: var(--r-input-border-color, var(--r-common-error-color));
   }
   &.is-multiline {
     display: flex;

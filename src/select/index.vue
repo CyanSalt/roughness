@@ -3,7 +3,7 @@ import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { ChevronDown, Loader, X } from 'lucide'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import type { SelectHTMLAttributes } from 'vue'
+import type { InputHTMLAttributes, SelectHTMLAttributes } from 'vue'
 import { inject, provide, reactive, ref } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import { labelsInjection } from '../checkbox/utils'
@@ -21,6 +21,17 @@ defineOptions({
   name: 'RSelect',
 })
 
+interface SelectProps {
+  autocomplete?: SelectHTMLAttributes['autocomplete'] & InputHTMLAttributes['autocomplete'],
+  autofocus?: SelectHTMLAttributes['autofocus'] & InputHTMLAttributes['autofocus'],
+  disabled?: SelectHTMLAttributes['disabled'] & InputHTMLAttributes['disabled'],
+  form?: SelectHTMLAttributes['form'] & InputHTMLAttributes['form'],
+  multiple?: SelectHTMLAttributes['multiple'] & InputHTMLAttributes['multiple'],
+  name?: SelectHTMLAttributes['name'] & InputHTMLAttributes['name'],
+  required?: SelectHTMLAttributes['required'] & InputHTMLAttributes['required'],
+  size?: SelectHTMLAttributes['size'] & InputHTMLAttributes['size'],
+}
+
 const {
   clearable = false,
   disabled = false,
@@ -30,6 +41,7 @@ const {
   name: userName,
   placeholder: userPlaceholder,
   graphicsOptions,
+  ...props
 } = defineProps<{
   /** Whether the select is clearable */
   clearable?: boolean,
@@ -43,9 +55,8 @@ const {
   modelValue?: RValueOrKey[] | RValueOrKey | undefined,
   /** Whether to support selecting multiple items */
   multiple?: boolean,
-  name?: SelectHTMLAttributes['name'],
   placeholder?: SelectHTMLAttributes['placeholder'],
-} & GraphicsProps>()
+} & SelectProps & GraphicsProps>()
 
 const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
@@ -183,6 +194,7 @@ provide(labelsInjection, labels)
       readonly
       :name="name"
       :placeholder="placeholder"
+      v-bind="props"
       class="r-select__input"
       @click="toggle"
       @keydown.enter="toggle"
