@@ -216,91 +216,15 @@ const treeValue = ref<string | undefined>()
 
 ## Usage
 
-### Checkbox Props
+<RUsage file="src/checkbox/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="checked">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  Checked state of the checkbox.
-
-  </RProp>
-
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="label">
-
-  <template #type>
-
-  `string`
-
-  </template>
-
-  <template #default-value>
-
-  `startCase(keyOf(value))` if value exists.
-
-  </template>
-
-  Item label when checked and displayed, e.g. in Select.
-
-  </RProp>
-
-  <RProp name="indeterminate">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  [Indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) of the checkbox.
-
-  </RProp>
-
-  <RProp name="value">
-
-  <template #type>
-
-  `string | number`
-
-  </template>
-
-  Item key or data when checked in the CheckboxGroup.
-
-  See [List Rendering](/guide/specs#list-rendering).
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -310,193 +234,29 @@ const treeValue = ref<string | undefined>()
 
   </RProp>
 
-</RPropsTable>
-
-### Checkbox Events
-
-<REventsTable>
-
-  <REvent name="update:checked">
-
-  <template #parameters>
-
-  `(value: boolean)`
-
   </template>
 
-  Callback function triggered when checked state of the checkbox is changed.
-
-  </REvent>
-
-</REventsTable>
-
-### Checkbox Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Label of the checkbox.
-  </RSlot>
-
-</RSlotsTable>
-
-### Checkbox Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-checkbox-{{ value }}</template>
-
-  <RStyle name="border-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-color)`
-
-  </template>
-
-  Color of the checkbox control border.
-
-  </RStyle>
-
-  <RStyle name="border-width">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `2px` when focused or active, `1px` else
-
-  </template>
-
-  Width of the checkbox control border.
-
-  </RStyle>
-
-  <RStyle name="checked-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-primary-color)`
-
-  </template>
-
-  Color of the checkbox checked line.
-
-  </RStyle>
-
-  <RStyle name="checked-width">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `1px`
-
-  </template>
-
-  Width of the checkbox checked line.
-
-  </RStyle>
-
-  <RStyle name="control-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-line-height)`
-
-  </template>
-
-  Size of the checkbox control.
-
-  </RStyle>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
 
-### CheckboxGroup Props
+</RUsage>
 
-<RPropsTable>
+<RUsage file="src/checkbox/checkbox-group.vue" styles>
 
-  <RProp name="disabled">
+  <template #title="{ title }">
 
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  Whether to disable all checking items.
-
-  </RProp>
-
-  <RProp name="model-value">
-
-  <template #type>
-
-  `string | number | undefined` or `(string | number)[]`
-
-  </template>
-
-  Key(s) or data of the checked item(s) of the group.
-
-  </RProp>
-
-  <RProp name="multiple">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `true`
-
-  </template>
-
-  Whether to support checking multiple items.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -504,48 +264,16 @@ const treeValue = ref<string | undefined>()
 
   </RProp>
 
-</RPropsTable>
-
-### CheckboxGroup Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Content of the checkbox group.
-  </RSlot>
-
-</RSlotsTable>
-
-### CheckboxGroup Events
-
-<REventsTable>
-
-  <REvent name="update:model-value">
-
-  <template #parameters>
-
-  `(value: boolean)`
-
   </template>
 
-  Callback function triggered when the checked items are changed.
-
-  </REvent>
-
-</REventsTable>
-
-### CheckboxGroup Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-checkbox-group-{{ value }}</template>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

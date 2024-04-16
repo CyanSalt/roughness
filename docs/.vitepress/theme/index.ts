@@ -10,6 +10,7 @@ import RSlot from '../components/RSlot.vue'
 import RSlotsTable from '../components/RSlotsTable.vue'
 import RStyle from '../components/RStyle.vue'
 import RStylesTable from '../components/RStylesTable.vue'
+import RUsage from '../components/RUsage.vue'
 import '../../../src/common/style.scss'
 import './style.scss'
 
@@ -26,6 +27,7 @@ export default {
     ])
   },
   enhanceApp({ app }) {
+    app.component('RUsage', RUsage)
     app.component('RProp', RProp)
     app.component('RPropsTable', RPropsTable)
     app.component('REvent', REvent)

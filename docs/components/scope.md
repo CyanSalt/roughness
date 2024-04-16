@@ -40,18 +40,24 @@ function performTimeConsumingOperation() {
 
 ## Usage
 
-### Slots
+<RUsage file="src/scope/index.ts" slots>
 
-<RSlotsTable>
+  <template #title="{ title }">
+
+  ### {{ title }}
+
+  </template>
+
+  <template #slots>
 
   <RSlot name="default">
 
-  <template #parameters>
-    Attributes of the scope.
-  </template>
+  <template #type>Attributes of the scope.</template>
 
   Content that needs to be render.
 
   </RSlot>
 
-</RSlotsTable>
+  </template>
+
+</RUsage>

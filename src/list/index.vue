@@ -13,15 +13,15 @@ const {
   listStyle = 'disc',
 } = defineProps<{
   /**
-   * Marker style of the list.
-   * {@link https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type}
-   * When specified as `auto`, the list will be ordered and the markers will be drawn by the user agent
+   * Marker style of the list. See [`list-style-type`]{@link https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type}.
+   * When specified as `auto`, the list will be ordered and the markers will be drawn by the user agent.
    * @default 'disc'
    */
   listStyle?: ListStyle,
 }>()
 
 defineSlots<{
+  /** Content of the list. You can render one or more ListItem by yourself. */
   default?: (props: {}) => any,
 }>()
 
@@ -44,8 +44,14 @@ provide(listStyleInjection, $$(listStyle))
 
 <style lang="scss">
 .r-list {
+  // Color of the list marker.
+  // @type {<color>}
   --R-list-marker-color: var(--r-list-marker-color, var(--r-common-color));
+  // Area height of the list marker.
+  // @type {<length>}
   --R-list-marker-block-size: var(--r-list-marker-block-size, var(--r-common-line-height));
+  // Area width of the list marker.
+  // @type {<length>}
   --R-list-marker-inline-size: var(--r-list-marker-inline-size, 1.5em);
   padding-inline-start: var(--R-list-marker-inline-size);
 }

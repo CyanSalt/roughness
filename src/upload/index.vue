@@ -3,6 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -12,36 +13,53 @@ defineOptions({
   name: 'RUpload',
 })
 
+interface InputProps {
+  /** @ignore */
+  accept?: InputHTMLAttributes['accept'],
+  /** @ignore */
+  capture?: InputHTMLAttributes['capture'],
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  multiple?: InputHTMLAttributes['multiple'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+}
+
 const {
-  accept,
   block = false,
   disabled: userDisabled,
   filled = false,
   loading = false,
   multiple = false,
+  name: userName,
   graphicsOptions,
+  ...props
 } = defineProps<{
-  accept?: InputHTMLAttributes['accept'],
-  /** Whether the upload is displayed as block */
+  /** Whether the upload is displayed as block. */
   block?: boolean,
-  disabled?: boolean,
-  /** Whether the upload is filled with its color */
+  /** Whether the upload is filled with its color. */
   filled?: boolean,
   /**
    * Whether the upload is loading.
-   * It will be non-interactive in loading state
+   * It will be non-interactive in loading state.
    */
   loading?: boolean,
-  multiple?: boolean,
-} & GraphicsProps>()
+} & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when one or more files are selected. */
   (event: 'select', value: File | File[]): void,
 }>()
 
 defineSlots<{
+  /** Content of the upload. */
   default?: (props: {}) => any,
 }>()
+
+const name = $(useName($$(userName)))
 
 const disabled = $computed(() => {
   return Boolean(userDisabled || loading)
@@ -88,10 +106,11 @@ function change(event: InputEvent) {
     @transitionrun="listener"
   >
     <input
-      type="file"
-      :accept="accept"
       :disabled="disabled"
       :multiple="multiple"
+      :name="name"
+      v-bind="props"
+      type="file"
       class="r-upload__input"
       @change="change"
     >
@@ -105,9 +124,20 @@ function change(event: InputEvent) {
 @use '../common/_partials';
 
 .r-upload {
+  // Color of the upload text.
+  // @type {<color>}
   --R-upload-color: var(--r-upload-color, var(--r-common-color));
+  // Color of the upload border.
+  // @type {<color>}
   --R-upload-border-color: var(--r-upload-border-color, var(--R-upload-color));
+  // Width of the upload border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-upload-border-width: var(--r-upload-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
   --R-upload-border-dash: var(--r-upload-border-dash, 8px);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);

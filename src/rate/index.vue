@@ -2,9 +2,11 @@
 import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import { Star } from 'lucide'
+import type { InputHTMLAttributes } from 'vue'
 import { watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
 import { effectRef } from '../common/utils'
+import { useName } from '../form/utils'
 import RIcon from '../icon/index.vue'
 import type { IconNode } from '../icon/utils'
 
@@ -12,21 +14,33 @@ defineOptions({
   name: 'RRate',
 })
 
+interface InputProps {
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+}
+
 const {
-  disabled = false,
   modelValue = 0,
+  name: userName,
   shape = Star,
+  ...props
 } = defineProps<{
-  disabled?: boolean,
-  /** Value of the rate */
+  /** Value of the rate. */
   modelValue?: number,
-  /** Shape icon of the rate */
+  /** Shape icon of the rate. */
   shape?: IconNode,
-}>()
+} & InputProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the value is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
+
+const name = $(useName($$(userName)))
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,
@@ -64,7 +78,8 @@ watchEffect(() => {
     <input
       ref="input"
       v-model.number="internalModelValue"
-      :disabled="disabled"
+      :name="name"
+      v-bind="props"
       type="range"
       min="1"
       max="5"
@@ -84,8 +99,14 @@ watchEffect(() => {
 @use '../common/_reset';
 
 .r-rate {
+  // Color of the rate control when active.
+  // @type {<color>}
   --R-rate-color: var(--r-rate-color, var(--r-common-primary-color));
+  // Size of the rate control.
+  // @type {<length>}
   --R-rate-control-size: var(--r-rate-control-size, calc(1em + 4px));
+  // Gap size of the rate control.
+  // @type {<length>}
   --R-rate-gap-size: var(--r-rate-gap-size, 4px);
   display: inline-flex;
   flex-direction: row-reverse;

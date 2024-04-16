@@ -20,22 +20,35 @@ const {
   type,
   graphicsOptions,
 } = defineProps<{
-  /** Whether to display the card footer */
+  /** Whether to display the card footer. */
   footer?: boolean,
-  /** Whether to display the card header */
+  /** Whether to display the card header. */
   header?: boolean,
   /**
-   * HTML tag for rendering the card
+   * HTML tag for rendering the card.
    * @default 'article'
    */
   tag?: string,
 } & ColorProps & GraphicsProps>()
 
 defineSlots<{
+  /**
+   * Content of the card title. When a reasonable `type` is specified, the uppercase form of `type` is displayed by default.
+   * Only available if the `header` is `true`.
+   */
   title?: (props: {}) => any,
+  /**
+   * Content of the card header after title.
+   * Only available if the `header` is `true`.
+   */
   'header-end'?: (props: {}) => any,
-  footer?: (props: {}) => any,
+  /** Content of the card. */
   default?: (props: {}) => any,
+  /**
+   * Content of the card footer.
+   * Only available if the `footer` is `true`.
+   */
+  footer?: (props: {}) => any,
 }>()
 
 const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
@@ -106,11 +119,25 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-card {
+  // Color of the card text.
+  // @type {<color>}
   --R-card-color: var(--r-card-color, var(--r-element-color));
+  // Color of the card border.
+  // @type {<color>}
   --R-card-border-color: var(--r-card-border-color, var(--R-card-color));
+  // Width of the card border.
+  // @type {<length>}
   --R-card-border-width: var(--r-card-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
   --R-card-border-dash: var(--r-card-border-dash, none);
+  // Vertical padding of the card.
+  // @type {<'padding-top'>{1,2}}
   --R-card-padding-block: var(--r-card-padding-block, calc(var(--r-common-box-padding-block) * 2));
+  // Horizontal padding of the card.
+  // @type {<'padding-top'>{1,2}}
   --R-card-padding-inline: var(--r-card-padding-inline, var(--r-common-box-padding-inline));
   padding-block: var(--R-card-padding-block);
   padding-inline: var(--R-card-padding-inline);

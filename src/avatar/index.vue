@@ -15,9 +15,9 @@ const {
   round,
   graphicsOptions,
 } = defineProps<{
-  /** Unique key to generate color and pixels */
+  /** Unique key to generate color and pixels. */
   name: string,
-  /** Whether the avatar is round */
+  /** Whether the avatar is round. */
   round?: boolean,
 } & GraphicsProps>()
 
@@ -117,9 +117,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-avatar {
+  // Size of the avatar.
+  // @type {<length>}
   --R-avatar-size: var(--r-avatar-size, 2em);
+  // Color of the avatar border.
+  // @type {<color>}
   --R-avatar-border-color: var(--r-avatar-border-color, var(--r-common-color));
+  // Width of the avatar border.
+  // @type {<length>}
   --R-avatar-border-width: var(--r-avatar-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
   --R-avatar-border-dash: var(--r-avatar-border-dash, none);
   block-size: var(--R-avatar-size);
   inline-size: var(--R-avatar-size);

@@ -12,13 +12,14 @@ const {
   options,
 } = defineProps<{
   /**
-   * Options for Rough.js
-   * {@link https://github.com/rough-stuff/rough/wiki#options}
+   * [Options for Rough.js]{@link https://github.com/rough-stuff/rough/wiki#options}.
+   * @type {import('roughjs/bin/core').Options}
    */
   options?: Options,
 }>()
 
 defineSlots<{
+  /** Context scope of the config */
   default?: (props: {}) => any,
 }>()
 

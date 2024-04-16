@@ -227,118 +227,22 @@ import { RButton } from 'roughness'
 
 ## Usage
 
-### GraphicsConfig Props
+<RUsage file="src/graphics/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
+</RUsage>
 
-  </RProp>
+<RUsage file="src/graphics/graphics-config.vue">
 
-</RPropsTable>
+  <template #title="{ title }">
 
-### Graphics Props
-
-<RPropsTable>
-
-  <RProp name="options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  </RProp>
-
-  <RProp name="responsive">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `true`
-
-  </template>
-
-  Whether to adjust the size to fit the parent element.
-
-  </RProp>
-
-  <RProp name="tag">
-
-  <template #type>
-
-  `'canvas' | 'svg'`
-
-  </template>
-
-  <template #default-value>
-
-  `'svg'`
-
-  </template>
-
-  [HTML tag for rendering the graphics](https://github.com/rough-stuff/rough/wiki#roughcanvas--roughsvg).
-
-  </RProp>
-
-</RPropsTable>
-
-### Graphics Events
-
-<REventsTable>
-
-  <REvent name="draw">
-
-  <template #parameters>
-
-  `(rc: import('roughjs/bin/canvas').RoughCanvas, element: HTMLCanvasElement)` or `(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement)`
-
-  </template>
-
-  Ready to start drawing.
-
-  </REvent>
-
-</REventsTable>
-
-### Graphics Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-graphics-{{ value }}</template>
-
-  <RStyle name="stroke-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-color)`
-
-  </template>
-
-  Color of the graphics lines by default.
-
-  </RStyle>
-
-</RStylesTable>
+</RUsage>

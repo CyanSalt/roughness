@@ -11,11 +11,12 @@ const {
   tag = 'a',
   type = 'primary',
 } = defineProps<{
-  /** HTML tag for rendering the link */
+  /** HTML tag for rendering the link. */
   tag?: 'a' | 'button' | (string & {}),
 } & ColorProps>()
 
 defineSlots<{
+  /** Content of the link. */
   default?: (props: {}) => any,
 }>()
 </script>
@@ -39,6 +40,9 @@ defineSlots<{
   }
 }
 .r-link {
+  // Width of the link underline. Only visible when hovered, or with the `href` attribute.
+  // @type {<length>}
+  // @default 2px `3px` when focused or active
   --R-link-underline-width: var(--r-link-underline-width, 2px);
   cursor: pointer;
   &[href], &:hover {

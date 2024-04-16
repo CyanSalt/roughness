@@ -121,27 +121,15 @@ function showBottom() {
 
 ## Usage
 
-### Props
+<RUsage file="src/drawer/index.vue" styles>
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="side">
-
-  <template #type>
-
-  `'left' | 'right' | 'top' | 'bottom'`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `'right'`
-
-  </template>
-
-  Which side of the page the drawer will show on.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -149,11 +137,9 @@ function showBottom() {
 
   </RProp>
 
-</RPropsTable>
+  </template>
 
-### Slots
-
-<RSlotsTable>
+  <template #slots>
 
   <RSlot name="...">
 
@@ -161,20 +147,16 @@ function showBottom() {
 
   </RSlot>
 
-</RSlotsTable>
+  </template>
 
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-drawer-{{ value }}</template>
+  <template #styles>
 
   <RStyle name="...">
 
-  <template #name>...</template>
-
-  See [Dialog Styles](/components/dialog#styles).
+  See [Dialog Slots](/components/dialog#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

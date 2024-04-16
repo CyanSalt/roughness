@@ -9,7 +9,7 @@ defineOptions({
 
 defineSlots<{
   name?: (props: {}) => any,
-  parameters?: (props: {}) => any,
+  type?: (props: {}) => any,
   description?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
@@ -27,12 +27,12 @@ const slots = useList(slotsInjection)
         ></component>
         <slot v-else name="name" :value="(row as SlotData).name">{{ (row as SlotData).name }}</slot>
       </RTableColumn>
-      <RTableColumn v-slot="{ row }" name="parameters">
+      <RTableColumn v-slot="{ row }" name="type">
         <component
-          :is="(row as SlotData).slots.parameters"
-          v-if="(row as SlotData).slots.parameters"
+          :is="(row as SlotData).slots.type"
+          v-if="(row as SlotData).slots.type"
         ></component>
-        <slot v-else name="parameters"></slot>
+        <slot v-else name="type"></slot>
       </RTableColumn>
       <RTableColumn v-slot="{ row }" name="description">
         <component

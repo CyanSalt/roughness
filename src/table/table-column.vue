@@ -13,13 +13,16 @@ defineOptions({
 const {
   name,
 } = defineProps<{
-  /** Column name */
+  /** Column name. */
   name: string,
 }>()
 
 defineSlots<{
+  /** Header cell in the column. Defaults to `startCase(keyOf(column))`. */
   header?: (props: {}) => any,
+  /** Body cell in each row of the column. Defaults to `row[name]` if `row` is an object. */
   default?: (props: { row: RValueOrKey }) => any,
+  /** Footer cell in the column. */
   footer?: (props: {}) => any,
 }>()
 

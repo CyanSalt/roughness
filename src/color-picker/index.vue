@@ -2,9 +2,10 @@
 import '../common/style.scss'
 import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, getProperty, useTransitionListener } from '../common/property'
-import type { ColorProps } from '../common/utils'
 import { effectRef } from '../common/utils'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -14,25 +15,38 @@ defineOptions({
   name: 'RColorPicker',
 })
 
+interface InputProps {
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+}
+
 const {
   disabled: userDisabled,
   loading = false,
   modelValue,
+  name: userName,
   graphicsOptions,
+  ...props
 } = defineProps<{
-  disabled?: boolean,
   /**
    * Whether the color picker is loading.
-   * It will be non-interactive in loading state
+   * It will be non-interactive in loading state.
    */
   loading?: boolean,
-  /** Value of the color picker */
+  /** Value of the color picker. */
   modelValue?: string,
-} & ColorProps & GraphicsProps>()
+} & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the color is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
+
+const name = $(useName($$(userName)))
 
 let internalModelValue = $(effectRef({
   get: () => modelValue || '#000000',
@@ -99,6 +113,8 @@ const style = $computed(() => {
     <input
       v-model="internalModelValue"
       :disabled="disabled"
+      :name="name"
+      v-bind="props"
       type="color"
       class="r-color-picker__input"
     >
@@ -113,8 +129,19 @@ const style = $computed(() => {
 @use '../common/_reset';
 
 .r-color-picker {
+  // Color of the color picker text and border.
+  // @type {<color>}
+  // @default var(--r-common-color) `var(--r-common-color)` in adjusting hue and saturation to be the same as the value if set
   --R-color-picker-color: var(--r-color-picker-color, var(--r-common-color));
+  // Width of the color picker border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-color-picker-border-width: var(--r-color-picker-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
+  // @default none `8px` when hovered
   --R-color-picker-border-dash: var(--r-color-picker-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);

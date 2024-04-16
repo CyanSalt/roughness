@@ -27,41 +27,15 @@ import { RSwitch } from 'roughness'
 
 ## Usage
 
-### Props
+<RUsage file="src/switch/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="model-value">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  State of the switch.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -71,138 +45,16 @@ import { RSwitch } from 'roughness'
 
   </RProp>
 
-</RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="update:model-value">
-
-  <template #parameters>
-
-  `(value: boolean)`
-
   </template>
 
-  Callback function triggered when state is changed.
-
-  </REvent>
-
-</REventsTable>
-
-### Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Label of the switch.
-  </RSlot>
-
-</RSlotsTable>
-
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-switch-{{ value }}</template>
-
-  <RStyle name="border-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-color)`
-
-  </template>
-
-  Color of the switch control border.
-
-  </RStyle>
-
-  <RStyle name="border-width">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `2px` when focused or active, `1px` else
-
-  </template>
-
-  Width of the switch control border.
-
-  </RStyle>
-
-  <RStyle name="control-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-line-height)`
-
-  </template>
-
-  Size of the switch control.
-
-  </RStyle>
-
-  <RStyle name="track-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-primary-color)`
-
-  </template>
-
-  Color of the switch track when open.
-
-  </RStyle>
-
-  <RStyle name="handle-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-background-color)`
-
-  </template>
-
-  Color of the switch handle.
-
-  </RStyle>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

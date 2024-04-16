@@ -10,6 +10,7 @@ defineOptions({
 })
 
 defineSlots<{
+  /** Context scope of the provider. */
   default?: (props: {}) => any,
 }>()
 
@@ -44,7 +45,11 @@ provide(itemsInjection, items)
 
 <style lang="scss">
 .r-toast-provider {
+  // Value to treat the size of a toast as when calculating the offset.
+  // @type {<length>}
   --R-toast-provider-base-size: var(--r-toast-provider-base-size, calc(var(--r-common-line-height) + var(--r-common-box-padding-block) * 2));
+  // Size of the gap between toasts as when calculating the offset.
+  // @type {<length>}
   --R-toast-provider-gap-size: var(--r-toast-provider-gap-size, calc(1em - 4px));
   position: fixed;
   block-size: 0;

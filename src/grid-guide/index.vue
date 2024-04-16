@@ -9,7 +9,7 @@ const {
   responsive = true,
 } = defineProps<{
   /**
-   * Whether to adjust the size to fit the parent element
+   * Whether to adjust the size to fit the parent element.
    * @default true
    */
   responsive?: boolean,
@@ -27,8 +27,15 @@ const {
 @use '../common/_partials';
 
 .r-grid-guide {
+  // Color of the guide lines.
+  // @type {<color>}
+  // @default #f5f5f5 `rgb(255 255 255 / 4%)` in dark theme
   --R-grid-guide-color: var(--r-grid-guide-color, #f5f5f5);
+  // Size of the grid cell.
+  // @type {<length>}
   --R-grid-guide-cell-size: var(--r-grid-guide-cell-size, var(--r-common-font-size));
+  // Size of the grid section.
+  // @type {<length>}
   --R-grid-guide-section-size: var(--r-grid-guide-section-size, calc(var(--R-grid-guide-cell-size) * 8));
   position: relative;
   background-image:

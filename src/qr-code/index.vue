@@ -14,7 +14,7 @@ const {
   data,
   graphicsOptions,
 } = defineProps<{
-  /** Symbol data of QR Code */
+  /** Symbol data of QR Code. */
   data: BitMatrix,
 } & GraphicsProps>()
 
@@ -56,7 +56,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-qr-code {
+  // Color of the QR Code cells.
+  // @type {<color>}
   --R-qr-code-color: var(--r-qr-code-color, var(--r-common-color));
+  // Size of the QR Code.
+  // @type {<length>}
   --R-qr-code-size: var(--r-qr-code-size, 8em);
   block-size: var(--R-qr-code-size);
   inline-size: var(--R-qr-code-size);

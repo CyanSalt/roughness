@@ -21,18 +21,23 @@ const {
   graphicsOptions,
 } = defineProps<{
   /**
-   * Lower numeric bound of the range
+   * Lower numeric bound of the range.
    * @default 0
    */
   min?: number,
   /**
-   * Upper numeric bound of the range
+   * Upper numeric bound of the range.
    * @default 1
    */
   max?: number,
-  /** Current numeric progress value */
+  /** Current numeric progress value. */
   value: number,
 } & ColorProps & SizeProps & GraphicsProps>()
+
+defineSlots<{
+  /** Text displayed on the progress */
+  default?: (props: {}) => any,
+}>()
 
 const ratio = $computed(() => {
   return (value - min) / (max - min) || 0
@@ -105,11 +110,25 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-progress {
+  // Color of the progress bar and its content.
+  // @type {<color>}
   --R-progress-color: var(--r-progress-color, var(--r-element-color));
+  // Height of the progress bar.
+  // @type {<length>}
   --R-progress-block-size: var(--r-progress-block-size, var(--r-common-line-height));
+  // Width of the progress bar.
+  // @type {<length>}
   --R-progress-inline-size: var(--r-progress-inline-size, calc(var(--R-progress-block-size) * 10));
+  // Color of the progress bar border.
+  // @type {<length>}
   --R-progress-border-color: var(--r-progress-border-color, var(--r-common-color));
+  // Width of the progress bar border.
+  // @type {<length>}
   --R-progress-border-width: var(--r-progress-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
   --R-progress-border-dash: var(--r-progress-border-dash, none);
   display: inline-block;
   block-size: var(--R-progress-block-size);

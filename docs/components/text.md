@@ -97,108 +97,12 @@ import { RSpace, RText } from 'roughness'
 
 ## Usage
 
-### Props
+<RUsage file="src/text/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="block">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  Whether the text is displayed as block.
-
-  </RProp>
-
-  <RProp name="size">
-
-  <template #type>
-
-  `string`, but usually `'small' | 'large'`
-
-  </template>
-
-  Text size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-
-  </RProp>
-
-  <RProp name="tag">
-
-  <template #type>
-
-  `string`
-
-  </template>
-
-  <template #default-value>
-
-  `'span'`
-
-  </template>
-
-  HTML tag for rendering the text.
-
-  </RProp>
-
-  <RProp name="type">
-
-  <template #type>
-
-  `string`, but usually `'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment'`
-
-  </template>
-
-  Text style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
-
-  See also [Color Styles](/guide/theme#color-styles).
-
-  </RProp>
-
-</RPropsTable>
-
-### Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Content of the text.
-  </RSlot>
-
-</RSlotsTable>
-
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-text-{{ value }}</template>
-
-  <RStyle name="color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-element-color)` for `default` `type`, other theme colors for other `type`.
-
-  When `type` is `default`, it will also be inherited from ancestors.
-
-  </template>
-
-  Color of text.
-
-  </RStyle>
-
-</RStylesTable>
+</RUsage>

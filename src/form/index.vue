@@ -11,11 +11,12 @@ defineOptions({
 const {
   labelInline = undefined,
 } = defineProps<{
-  /** Whether the labels of the form items are displayed as inline boxes */
+  /** Whether the labels of the form items are displayed as inline boxes. */
   labelInline?: boolean,
 }>()
 
 defineSlots<{
+  /** Content of the form. */
   default?: (props: {}) => any,
 }>()
 

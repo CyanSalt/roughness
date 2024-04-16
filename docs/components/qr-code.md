@@ -58,82 +58,12 @@ const data = computed(() => {
 
 ## Usage
 
-### Props
+<RUsage file="src/qr-code/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="data">
-
-  <template #type>
-
-  `BitMatrix`
-
-  </template>
-
-  <template #default-value>
-    <RText type="error">Required</RText>
-  </template>
-
-  Symbol data of QR Code.
-
-  </RProp>
-
-</RPropsTable>
-
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-qr-code-{{ value }}</template>
-
-  <RStyle name="color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-comment-color)`
-
-  </template>
-
-  Color of the QR Code cells.
-
-  </RStyle>
-
-  <RStyle name="size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `8em`
-
-  </template>
-
-  Size of the QR Code.
-
-  </RStyle>
-
-</RStylesTable>
+</RUsage>

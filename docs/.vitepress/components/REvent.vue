@@ -15,7 +15,7 @@ const { name } = defineProps<{
 
 defineSlots<{
   name?: (props: {}) => any,
-  parameters?: (props: {}) => any,
+  type?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
 

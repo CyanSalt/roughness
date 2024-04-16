@@ -19,17 +19,21 @@ const {
   required = false,
   graphicsOptions,
 } = defineProps<{
-  /** Whether the label of the form item is displayed as an inline box */
+  /** Whether the label of the form item is displayed as an inline box. */
   labelInline?: boolean,
-  /** Field name of the form model */
+  /** Field name of the form model. */
   name?: string,
-  /** Whether the field is required */
+  /** Whether the field is required. */
   required?: boolean,
 } & GraphicsProps>()
 
 defineSlots<{
-  message?: (props: {}) => any,
+  /** Label of the form item. */
+  label?: (props: {}) => any,
+  /** Content of the form item. */
   default?: (props: {}) => any,
+  /** Footnote of the form item. */
+  message?: (props: {}) => any,
 }>()
 
 const label = $computed(() => {
@@ -82,8 +86,14 @@ provide(nameInjection, $$(name))
 
 <style lang="scss">
 .r-form-item__label {
+  // Size of the label when `label-inline` is `true`.
+  // @type {<length>}
   --R-form-item-label-inline-size: var(--r-form-item-label-inline-size, 105px);
+  // Size of the marker when `required` is `true`.
+  // @type {<length>}
   --R-form-item-required-marker-size: var(--r-form-item-required-marker-size, 4px);
+  // Color of the marker when `required` is `true`.
+  // @type {<color>}
   --R-form-item-required-marker-color: var(--r-form-item-required-marker-color, var(--r-common-error-color));
   position: relative;
   box-sizing: border-box;

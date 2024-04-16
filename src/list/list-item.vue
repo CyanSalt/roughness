@@ -16,6 +16,7 @@ const {
 } = defineProps<GraphicsProps>()
 
 defineSlots<{
+  /** Content of the list item. */
   default?: (props: {}) => any,
 }>()
 

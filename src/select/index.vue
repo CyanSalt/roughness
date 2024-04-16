@@ -4,14 +4,14 @@ import { vOnClickOutside } from '@vueuse/components'
 import { ChevronDown, Loader, X } from 'lucide'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes, SelectHTMLAttributes } from 'vue'
-import { inject, provide, reactive, ref } from 'vue'
+import { provide, reactive } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { effectRef, sentenceCase } from '../common/utils'
-import { nameInjection } from '../form/utils'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -22,13 +22,23 @@ defineOptions({
 })
 
 interface SelectProps {
+  /** @ignore */
   autocomplete?: SelectHTMLAttributes['autocomplete'] & InputHTMLAttributes['autocomplete'],
+  /** @ignore */
   autofocus?: SelectHTMLAttributes['autofocus'] & InputHTMLAttributes['autofocus'],
+  /** @ignore */
   disabled?: SelectHTMLAttributes['disabled'] & InputHTMLAttributes['disabled'],
+  /** @ignore */
   form?: SelectHTMLAttributes['form'] & InputHTMLAttributes['form'],
+  /** @ignore */
   multiple?: SelectHTMLAttributes['multiple'] & InputHTMLAttributes['multiple'],
+  /** @ignore */
   name?: SelectHTMLAttributes['name'] & InputHTMLAttributes['name'],
+  /** @ignore */
+  placeholder?: SelectHTMLAttributes['placeholder'],
+  /** @ignore */
   required?: SelectHTMLAttributes['required'] & InputHTMLAttributes['required'],
+  /** @ignore */
   size?: SelectHTMLAttributes['size'] & InputHTMLAttributes['size'],
 }
 
@@ -43,34 +53,30 @@ const {
   graphicsOptions,
   ...props
 } = defineProps<{
-  /** Whether the select is clearable */
+  /** Whether the select is clearable. */
   clearable?: boolean,
-  disabled?: boolean,
   /**
    * Whether the select is loading.
-   * It will be non-interactive in loading state
+   * It will be non-interactive in loading state.
    */
   loading?: boolean,
-  /** Key(s) or data of the selected item(s) */
+  /** Key(s) or data of the selected item(s). */
   modelValue?: RValueOrKey[] | RValueOrKey | undefined,
-  /** Whether to support selecting multiple items */
+  /** Whether to support selecting multiple items. */
   multiple?: boolean,
-  placeholder?: SelectHTMLAttributes['placeholder'],
 } & SelectProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the selected item is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
 defineSlots<{
+  /** Content of the select dropdown. */
   default?: (props: {}) => any,
 }>()
 
-const formItemName = $(inject(nameInjection, ref()))
-
-const name = $computed(() => {
-  return userName ?? formItemName
-})
+const name = $(useName($$(userName)))
 
 const placeholder = $computed(() => {
   return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`select-${name}`) : undefined)
@@ -246,12 +252,29 @@ provide(labelsInjection, labels)
 @use '../common/_reset';
 
 .r-select {
+  // Color of the select control border.
+  // @type {<color>}
   --R-select-border-color: var(--r-select-border-color, var(--r-common-color));
+  // Width of the select control border.
+  // @type {<length>}
+  // @default 1px `2px` when focused
   --R-select-border-width: var(--r-select-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
   --R-select-border-dash: var(--r-select-border-dash, none);
+  // Width of the select dropdown border.
+  // @type {<length>}
   --R-select-dropdown-border-width: var(--r-select-dropdown-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the dropdown border.
+  // @type {<length>+ | none}
   --R-select-dropdown-border-dash: var(--r-select-dropdown-border-dash, none);
+  // Vertical padding of the select dropdown.
+  // @type {<'padding-top'>{1,2}}
   --R-select-dropdown-padding-block: var(--r-select-dropdown-padding-block, calc(1em - 4px));
+  // Horizontal padding of the select dropdown.
+  // @type {<'padding-top'>{1,2}}
   --R-select-dropdown-padding-inline: var(--r-select-dropdown-padding-inline, calc(1em - 4px));
   position: relative;
   display: inline-flex;

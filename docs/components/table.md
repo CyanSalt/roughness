@@ -157,167 +157,22 @@ const data = [
 
 ## Usage
 
-### Table Props
+<RUsage file="src/table/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="footer">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
+</RUsage>
 
-  `false`
+<RUsage file="src/table/table-column.vue">
 
-  </template>
+  <template #title="{ title }">
 
-  Whether to display the table footer.
-
-  </RProp>
-
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="header">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `true`
-
-  </template>
-
-  Whether to display the table header.
-
-  </RProp>
-
-  <RProp name="rows">
-
-  <template #type>
-
-  `RValueOrKey[]`
-
-  </template>
-
-  <template #default-value>
-    <RText type="error">Required</RText>
-  </template>
-
-  Row keys or data.
-
-  See [List Rendering](/guide/specs#list-rendering).
-
-  </RProp>
-
-</RPropsTable>
-
-### Table Slots
-
-
-<RSlotsTable>
-
-  <RSlot name="default">
-
-  Content for the table. You can also add `<caption>` or `<colgroup>` in addition to one or more TableColumn.
-
-  </RSlot>
-
-</RSlotsTable>
-
-### Table Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-table-{{ value }}</template>
-
-  <RStyle name="border-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-text-color)`
-
-  </template>
-
-  Color of the table border.
-
-  </RStyle>
-
-</RStylesTable>
-
-### TableColumn Props
-
-<RPropsTable>
-
-  <RProp name="name">
-
-  <template #type>
-
-  `string`
-
-  </template>
-
-  <template #default-value>
-    <RText type="error">Required</RText>
-  </template>
-
-  Column name.
-
-  </RProp>
-
-</RPropsTable>
-
-### TableColumn Slots
-
-<RSlotsTable>
-
-  <RSlot name="header">
-
-  Header cell in the column. Defaults to `startCase(keyOf(column))`.
-
-  </RSlot>
-
-  <RSlot name="default">
-
-  <template #parameters>
-
-  `{ row: RValueOrKey }`
-
-  </template>
-
-  Body cell in each row of the column. Defaults to `row[name]` if `row` is an object.
-
-  </RSlot>
-
-  <RSlot name="footer">
-
-  Footer cell in the column.
-
-  </RSlot>
-
-</RSlotsTable>
+</RUsage>

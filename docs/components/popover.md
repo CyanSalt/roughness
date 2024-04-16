@@ -84,122 +84,25 @@ import { RPopover, RSpace } from 'roughness'
 
 ## Usage
 
-### Props
+<RUsage file="src/popover/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="align">
-
-  <template #type>
-
-  `'start' | 'end' | 'center' | 'stretch'`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `'start'`
-
-  </template>
-
-  Alignment of the popover content relative to the anchor.
-
-  - `start`: Align to the left or top of the anchor, depending on the value of `side`
-  - `end`: Align to the right or bottom of the anchor, depending on the value of `side`
-  - `center`: Align to the center of the anchor
-  - `stretch`: Align to both sides of the anchor at the same time
-
-  </RProp>
-
-  <RProp name="open">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  Whether to display the popover content.
-
-  </RProp>
-
-  <RProp name="side">
-
-  <template #type>
-
-  `'top' | 'bottom' | 'left' | 'right'`
-
-  </template>
-
-  <template #default-value>
-
-  `'top'`
-
-  </template>
-
-  Which side of the anchor the popover will show on.
-
-  </RProp>
-
-  <RProp name="trigger">
-
-  <template #type>
-
-  `'hover' | 'click'`
-
-  </template>
-
-  <template #default-value>
-
-  `'hover'`
-
-  </template>
-
-  How to trigger the display of popover content.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
   See [Card Props](/components/card#props).
 
-  Unlike Card, the default value of Popover's `header` is `false`.
-
   </RProp>
-
-</RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="update:open">
-
-  <template #parameters>
-
-  `(value: boolean)`
 
   </template>
 
-  Callback function triggered when visibility of the popover is changed.
-
-  </REvent>
-
-</REventsTable>
-
-### Slots
-
-<RSlotsTable>
-
-  <RSlot name="anchor">
-    Anchor of the popover.
-  </RSlot>
+  <template #slots>
 
   <RSlot name="...">
 
@@ -207,4 +110,6 @@ import { RPopover, RSpace } from 'roughness'
 
   </RSlot>
 
-</RSlotsTable>
+  </template>
+
+</RUsage>

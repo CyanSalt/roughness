@@ -89,78 +89,32 @@ See also [Button](/components/button#tag).
 
 ## Usage
 
-### Props
+<RUsage file="src/link/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="tag">
-
-  <template #type>
-
-  `string`, but usually `'a' | 'button'`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `'a'`
-
-  </template>
-
-  HTML tag for rendering the link.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
   See [Text Props](/components/text#props).
 
-  Unlike Text, the default value of Link's `type` is `primary`.
-
   </RProp>
 
-</RPropsTable>
-
-### Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Content of the link.
-  </RSlot>
-
-</RSlotsTable>
-
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-link-{{ value }}</template>
-
-  <RStyle name="underline-width">
-
-  <template #values>
-
-  `<length>`
-
   </template>
 
-  <template #default-value>
-
-  `3px` when focused or active, `2px` else
-
-  </template>
-
-  Width of the link underline. Only visible when hovered, or with the `href` attribute.
-
-  </RStyle>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Text Styles](/components/text#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

@@ -15,7 +15,9 @@ const {
 } & GraphicsProps>()
 
 defineSlots<{
+  /** Content of the badge marker. */
   marker?: (props: {}) => any,
+  /** Decorated content of the badge. */
   default?: (props: {}) => any,
 }>()
 
@@ -49,8 +51,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-badge {
+  // Color of the badge marker.
+  // @type {<color>}
   --R-badge-color: var(--r-badge-color, var(--r-common-error-color));
+  // Vertical padding of the badge marker.
+  // @type {<'padding-top'>{1,2}}
   --R-badge-padding-block: var(--r-badge-padding-block, calc(0.5em - 4px));
+  // Horizontal padding of the badge marker.
+  // @type {<'padding-top'>{1,2}}
   --R-badge-padding-inline: var(--r-badge-padding-inline, calc(1em - 4px));
   position: relative;
 }

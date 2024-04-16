@@ -3,11 +3,13 @@ import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { InputHTMLAttributes } from 'vue'
 import { inject, ref, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { effectRef } from '../common/utils'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -18,38 +20,56 @@ defineOptions({
   name: 'RCheckbox',
 })
 
+interface InputProps {
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+  /** @ignore */
+  required?: InputHTMLAttributes['required'],
+}
+
 const {
   checked = false,
   disabled: userDisabled,
   indeterminate = false,
   label: userLabel,
+  name: userName,
   value,
   graphicsOptions,
+  ...props
 } = defineProps<{
-  /** Checked state of the checkbox */
+  /** Checked state of the checkbox. */
   checked?: boolean,
-  disabled?: boolean,
   /**
-   * Indeterminate state of the checkbox
-   * {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes}
+   * [Indeterminate state]({@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes}) of the checkbox.
    */
   indeterminate?: boolean,
-  /** Item label when checked and displayed */
+  /**
+   * Item label when checked and displayed, e.g. in Select.
+   * @default undefined `startCase(keyOf(value))` if value exists.
+   */
   label?: string,
   /**
-   * Item key or data when checked in the CheckboxGroup
-   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   * Item key or data when checked in the CheckboxGroup.
+   * See [List Rendering]{@link https://roughness.vercel.app/guide/specs#list-rendering}.
    */
   value?: RValueOrKey,
-} & GraphicsProps>()
+} & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when checked state of the checkbox is changed. */
   (event: 'update:checked', value: typeof checked): void,
 }>()
 
 defineSlots<{
+  /** Label of the checkbox. */
   default?: (props: {}) => any,
 }>()
+
+const name = $(useName($$(userName)))
 
 const multiple = $(inject(multipleInjection, ref()))
 let model = $(inject(modelInjection, ref()))
@@ -151,7 +171,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       :type="multiple === false ? 'radio' : 'checkbox'"
       :value="value"
       :disabled="disabled"
+      :name="name"
       .indeterminate="indeterminate"
+      v-bind="props"
       class="r-checkbox__input"
     >
     <span class="r-checkbox__control">
@@ -166,10 +188,21 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-checkbox {
+  // Color of the checkbox control border.
+  // @type {<color>}
   --R-checkbox-border-color: var(--r-checkbox-border-color, var(--r-common-color));
+  // Width of the checkbox control border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-checkbox-border-width: var(--r-checkbox-border-width, 1px);
+  // Color of the checkbox checked line.
+  // @type {<color>}
   --R-checkbox-checked-color: var(--r-checkbox-checked-color, var(--r-common-primary-color));
+  // Width of the checkbox checked line.
+  // @type {<length>}
   --R-checkbox-checked-width: var(--r-checkbox-checked-width, 2px);
+  // Size of the checkbox control.
+  // @type {<length>}
   --R-checkbox-control-size: var(--r-checkbox-control-size, var(--r-common-line-height));
   position: relative;
   cursor: pointer;

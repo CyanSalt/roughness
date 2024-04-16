@@ -25,31 +25,31 @@ const {
   size,
   graphicsOptions,
 } = defineProps<{
-  /** Whether the button is displayed as block */
+  /** Whether the button is displayed as block. */
   block?: boolean,
-  disabled?: boolean,
-  /** Whether the button is filled with its color */
+  /** @ignore */
+  disabled?: HTMLButtonElement['disabled'],
+  /** Whether the button is filled with its color. */
   filled?: boolean,
   /**
-   * The `type` attribute of `HTMLButtonElement`
-   * {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type}
+   * [The `type` attribute of `HTMLButtonElement`]{@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement#htmlbuttonelement.type}.
    */
   htmlType?: HTMLButtonElement['type'],
   /**
-   * Whether the button is loading.
-   * It will be non-interactive in loading state
+   * Whether the button is loading. It will be non-interactive in loading state.
    */
   loading?: boolean,
-  /** Whether the button is round */
+  /** Whether the button is round. */
   round?: boolean,
   /**
-   * HTML tag for rendering the button
+   * HTML tag for rendering the button.
    * @default 'button'
    */
   tag?: 'button' | 'a' | (string & {}),
 } & ColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
+  /** Content of the button. */
   default?: (props: {}) => any,
 }>()
 
@@ -122,9 +122,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-button {
+  // Color of the button text.
+  // @type {<color>}
+  // @default var(--r-element-color)
   --R-button-color: var(--r-button-color, var(--r-element-color));
+  // Color of the button border.
+  // @type {<color>}
   --R-button-border-color: var(--r-button-border-color, var(--R-button-color));
+  // Width of the button border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-button-border-width: var(--r-button-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
+  // @default none `8px` when hovered
   --R-button-border-dash: var(--r-button-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);

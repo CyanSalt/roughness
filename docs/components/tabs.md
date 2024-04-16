@@ -66,57 +66,15 @@ import { RTabItem, RTabs } from 'roughness'
 
 ## Usage
 
-### Tabs Props
+<RUsage file="src/tabs/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="content">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `true`
-
-  </template>
-
-  Whether to display the tabs content.
-
-  </RProp>
-
-  <RProp name="model-value">
-
-  <template #type>
-
-  `string | number | undefined`
-
-  </template>
-
-  Value of the active tab item in tabs.
-
-  </RProp>
-
-  <RProp name="anchor-side">
-
-  <template #type>
-
-  `'top' | 'bottom' | 'left' | 'right'`
-
-  </template>
-
-  <template #default-value>
-
-  `'top'`
-
-  </template>
-
-  Which side of the content the anchors will show on.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -124,156 +82,26 @@ import { RTabItem, RTabs } from 'roughness'
 
   </RProp>
 
-</RPropsTable>
+  </template>
 
-### Tabs Events
+</RUsage>
 
-<REventsTable>
+<RUsage file="src/tabs/tab-item.vue">
 
-  <REvent name="update:model-value">
+  <template #title="{ title }">
 
-  <template #parameters>
-
-  `(value: boolean)`
+  ### {{ title }}
 
   </template>
 
-  Callback function triggered when the active tab is changed.
+</RUsage>
 
-  </REvent>
+<RUsage file="src/tabs/tab-anchor.vue" :props="false" :events="false" :slots="false">
 
-</REventsTable>
+  <template #title="{ title }">
 
-### Tabs Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-
-  Content of the tabs. You can render one or more TabItem by yourself.
-
-  </RSlot>
-
-</RSlotsTable>
-
-### TabItem Props
-
-<RPropsTable>
-
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="value">
-
-  <template #type>
-
-  `RValueOrKey`
-
-  </template>
-
-  <template #default-value>
-    <RText type="error">Required</RText>
-  </template>
-
-  Tab item key or data.
-
-  See [List Rendering](/guide/specs#list-rendering).
-
-  </RProp>
-
-</RPropsTable>
-
-### TabItem Slots
-
-<RSlotsTable>
-
-  <RSlot name="anchor">
-
-  Anchor of the tab item.
-
-  </RSlot>
-
-  <RSlot name="default">
-
-  Content of the tab item.
-
-  </RSlot>
-
-</RSlotsTable>
-
-### TabAnchor Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-tab-anchor-{{ value }}</template>
-
-  <RStyle name="color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-primary-color)` if active, `var(--r-common-color)` else
-
-  </template>
-
-  Color of the tab anchor text and border.
-
-  </RStyle>
-
-  <RStyle name="border-width">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `2px` when focused or active, `1px` else
-
-  </template>
-
-  Width of the tab anchor border.
-
-  </RStyle>
-
-  <RStyle name="border-dash">
-
-  <template #values>
-
-  `<length> +` or `none`
-
-  </template>
-
-  <template #default-value>
-
-  `8px` when hovered, `none` else
-
-  </template>
-
-  List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the tab anchor border.
-
-  An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
-
-  See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-
-  </RStyle>
-
-</RStylesTable>
+</RUsage>

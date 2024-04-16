@@ -9,7 +9,7 @@ defineOptions({
 
 defineSlots<{
   name?: (props: {}) => any,
-  values?: (props: {}) => any,
+  type?: (props: {}) => any,
   'default-value'?: (props: {}) => any,
   description?: (props: {}) => any,
   default?: (props: {}) => any,
@@ -28,12 +28,12 @@ const styles = useList(stylesInjection)
         ></component>
         <slot v-else name="name" :value="(row as StyleData).name">{{ (row as StyleData).name }}</slot>
       </RTableColumn>
-      <RTableColumn v-slot="{ row }" name="values">
+      <RTableColumn v-slot="{ row }" name="type">
         <component
-          :is="(row as StyleData).slots.values"
-          v-if="(row as StyleData).slots.values"
+          :is="(row as StyleData).slots.type"
+          v-if="(row as StyleData).slots.type"
         ></component>
-        <slot v-else name="values"></slot>
+        <slot v-else name="type"></slot>
       </RTableColumn>
       <RTableColumn v-slot="{ row }" name="default-value">
         <component

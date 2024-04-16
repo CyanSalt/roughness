@@ -14,19 +14,21 @@ const {
   modelValue,
   multiple = true,
 } = defineProps<{
-  /** Whether to disable all checking items */
+  /** Whether to disable all checking items. */
   disabled?: boolean,
-  /** Key(s) or data of the checked item(s) of the group */
+  /** Key(s) or data of the checked item(s) of the group. */
   modelValue?: RValueOrKey[] | RValueOrKey | undefined,
-  /** Whether to support checking multiple items */
+  /** Whether to support checking multiple items. */
   multiple?: boolean,
 }>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the checked items are changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
 defineSlots<{
+  /** Content of the checkbox group. */
   default?: (props: {}) => any,
 }>()
 

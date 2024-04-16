@@ -10,6 +10,7 @@ defineOptions({
 })
 
 defineSlots<{
+  /** Context scope of the provider. */
   default?: (props: {}) => any,
 }>()
 

@@ -26,23 +26,24 @@ const {
   graphicsOptions,
 } = defineProps<{
   /**
-   * Whether to display the table footer
+   * Whether to display the table footer.
    * @default false
    */
   footer?: boolean,
   /**
-   * Whether to display the table header
+   * Whether to display the table header.
    * @default true
    */
   header?: boolean,
   /**
    * Row keys or data.
-   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   * See [List Rendering]{@link https://roughness.vercel.app/guide/specs#list-rendering}.
    */
   rows: RValueOrKey[],
 } & GraphicsProps>()
 
 defineSlots<{
+  /** Content for the table. You can also add `<caption>` or `<colgroup>` in addition to one or more TableColumn. */
   default?: (props: {}) => any,
 }>()
 
@@ -192,6 +193,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-table {
+  // Color of the table border.
+  // @type {<color>}
   --R-table-border-color: var(--r-table-border-color, var(--r-common-color));
 }
 </style>

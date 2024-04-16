@@ -20,22 +20,24 @@ const {
   graphicsOptions,
 } = defineProps<{
   /**
-   * Duration of each toast display
+   * Duration of each toast display.
    * @default 3000
    */
   duration?: number,
   /**
-   * Whether to display the toast
+   * Whether to display the toast.
    * @default true
    */
   open?: boolean,
 } & ColorProps & SizeProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when visibility of the toast is changed. */
   (event: 'update:open', value: typeof open): void,
 }>()
 
 defineSlots<{
+  /** Content of the toast. */
   default?: (props: {}) => any,
 }>()
 
@@ -106,6 +108,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
 }
 .r-toast {
+  // Color of the toast text and border.
+  // @type {<color>}
   --R-toast-color: var(--r-toast-color, var(--r-element-color));
   position: fixed;
   inset: unset;

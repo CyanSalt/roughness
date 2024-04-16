@@ -11,12 +11,16 @@ defineOptions({
 })
 
 const emit = defineEmits<{
+  /** Callback function triggered when the confirm button is clicked. */
   (event: 'confirm'): void,
+  /** Callback function triggered when the confirm is closed for reasons other than the confirm button. */
   (event: 'cancel'): void,
 }>()
 
 defineSlots<{
+  /** Title of the confirm. */
   title?: (props: {}) => any,
+  /** Content of the confirm. */
   default?: (props: {}) => any,
 }>()
 

@@ -78,29 +78,15 @@ import { RList, RListItem } from 'roughness'
 
 ## Usage
 
-### List Props
+<RUsage file="src/list/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="list-style">
-
-  <template #type>
-
-  `'disc' | 'circle' | 'square' | 'auto'`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `'disc'`
-
-  </template>
-
-  Marker style of the list. See [`list-style-type`](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type).
-
-  When specified as `auto`, the list will be **ordered** and the markers will be drawn by the user agent.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -110,116 +96,26 @@ import { RList, RListItem } from 'roughness'
 
   </RProp>
 
-</RPropsTable>
-
-### List Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-
-  Content of the list. You can render one or more ListItem by yourself.
-
-  </RSlot>
-
-</RSlotsTable>
-
-### List Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-list-{{ value }}</template>
-
-  <RStyle name="marker-color">
-
-  <template #values>
-
-  `<color>`
-
   </template>
 
-  <template #default-value>
-
-  `var(--r-common-primary-color)`
-
-  </template>
-
-  Color of the list marker.
-
-  </RStyle>
-
-  <RStyle name="marker-block-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-line-height)`
-
-  </template>
-
-  Area height of the list marker.
-
-  </RStyle>
-
-  <RStyle name="marker-inline-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `1.5em`
-
-  </template>
-
-  Area width of the list marker.
-
-  </RStyle>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
 
-### ListItem Props
+</RUsage>
 
-<RPropsTable>
+<RUsage file="src/list/list-item.vue">
 
-  <RProp name="graphics-options">
+  <template #title="{ title }">
 
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-</RPropsTable>
-
-### ListItem Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Content of the list item.
-  </RSlot>
-
-</RSlotsTable>
+</RUsage>

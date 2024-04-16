@@ -10,15 +10,18 @@ const {
   side = 'right',
 } = defineProps<{
   /**
-   * Which side of the page the drawer will show on
+   * Which side of the page the drawer will show on.
    * @default 'right'
    */
   side?: 'left' | 'right' | 'top' | 'bottom',
 }>()
 
 defineSlots<{
+  /** @ignore */
   title?: (props: {}) => any,
+  /** @ignore */
   default?: (props: {}) => any,
+  /** @ignore */
   footer?: (props: {}) => any,
 }>()
 </script>

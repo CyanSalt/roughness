@@ -2,8 +2,10 @@
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { effectRef } from '../common/utils'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -13,19 +15,33 @@ defineOptions({
   name: 'RSwitch',
 })
 
+interface InputProps {
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+  /** @ignore */
+  required?: InputHTMLAttributes['required'],
+}
+
 const {
-  disabled = false,
   modelValue,
+  name: userName,
   graphicsOptions,
+  ...props
 } = defineProps<{
-  disabled?: boolean,
-  /** State of the switch */
+  /** State of the switch. */
   modelValue?: boolean,
-} & GraphicsProps>()
+} & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when state is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
+
+const name = $(useName($$(userName)))
 
 let internalModelValue = $(effectRef({
   get: () => modelValue,
@@ -87,7 +103,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   >
     <input
       v-model="internalModelValue"
-      :disabled="disabled"
+      :name="name"
+      v-bind="props"
       type="checkbox"
       class="r-switch__input"
     >
@@ -103,10 +120,21 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-switch {
+  // Color of the switch control border.
+  // @type {<color>}
   --R-switch-border-color: var(--r-switch-border-color, var(--r-common-color));
+  // Width of the switch control border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-switch-border-width: var(--r-switch-border-width, 1px);
+  // Size of the switch control.
+  // @type {<length>}
   --R-switch-control-size: var(--r-switch-control-size, var(--r-common-line-height));
+  // Color of the switch track when open.
+  // @type {<color>}
   --R-switch-track-color: var(--r-switch-track-color, var(--r-common-primary-color));
+  // Color of the switch handle.
+  // @type {<color>}
   --R-switch-handle-color: var(--r-switch-handle-color, var(--r-common-background-color));
   position: relative;
   cursor: pointer;

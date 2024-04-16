@@ -18,23 +18,28 @@ const {
   tag = 'svg',
 } = defineProps<{
   /**
-   * Options for Rough.js
-   * {@link https://github.com/rough-stuff/rough/wiki#options}
+   * [Options for Rough.js]{@link https://github.com/rough-stuff/rough/wiki#options}.
+   * @type {import('roughjs/bin/core').Options}
    */
   options?: Options,
   /**
-   * Whether to adjust the size to fit the parent element
+   * Whether to adjust the size to fit the parent element.
    * @default true
    */
   responsive?: boolean,
   /**
-   * HTML tag for rendering the graphics
-   * {@link https://github.com/rough-stuff/rough/wiki#roughcanvas--roughsvg}
+   * [HTML tag for rendering the graphics]{@link https://github.com/rough-stuff/rough/wiki#roughcanvas--roughsvg}.
+   * @type {'canvas' | 'svg'}
    */
   tag?: T,
 }>()
 
 const emit = defineEmits<{
+  /**
+   * Ready to start drawing.
+   * @type {(rc: import('roughjs/bin/canvas').RoughCanvas, element: HTMLCanvasElement)}
+   * @type {(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement)}
+   */
   (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
 }>()
 
@@ -97,6 +102,8 @@ watchEffect(() => {
 
 <style lang="scss">
 .r-graphics {
+  // Color of the graphics lines by default.
+  // @type {<color>}
   --R-graphics-stroke-color: var(--r-graphics-stroke-color, var(--r-common-color));
   pointer-events: none;
   &.is-responsive {

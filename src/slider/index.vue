@@ -2,9 +2,11 @@
 import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import type { InputHTMLAttributes } from 'vue'
 import { watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { effectRef } from '../common/utils'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -13,37 +15,49 @@ defineOptions({
   name: 'RSlider',
 })
 
+interface InputProps {
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+}
+
 const {
-  disabled = false,
   max = 100,
   min = 0,
   modelValue = 0,
+  name: userName,
   step = 1,
   graphicsOptions,
+  ...props
 } = defineProps<{
-  disabled?: boolean,
   /**
-   * Upper numeric bound of the range
+   * Upper numeric bound of the range.
    * @default 100
    */
   max?: number,
   /**
-   * Lower numeric bound of the range
+   * Lower numeric bound of the range.
    * @default 0
    */
   min?: number,
-  /** Value of the slider */
+  /** Value of the slider. */
   modelValue?: number,
   /**
-   * Minimum unit of the slider
+   * Minimum unit of the slider.
    * @default 1
    */
   step?: number,
-} & GraphicsProps>()
+} & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the value is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
+
+const name = $(useName($$(userName)))
 
 function round(value: number) {
   const rest = value % step
@@ -134,10 +148,11 @@ watchEffect(() => {
     <input
       ref="input"
       v-model.number="internalModelValue"
-      :disabled="disabled"
-      type="range"
       :min="min"
       :max="max"
+      :name="name"
+      v-bind="props"
+      type="range"
       class="r-slider__input"
     >
     <RGraphics :options="graphicsOptions" @draw="draw" />
@@ -149,10 +164,21 @@ watchEffect(() => {
 @use '../common/_reset';
 
 .r-slider {
+  // Color of the slider track when active.
+  // @type {<color>}
   --R-slider-color: var(--r-slider-color, var(--r-common-primary-color));
+  // Color of the slider control and track border.
+  // @type {<color>}
   --R-slider-border-color: var(--r-slider-border-color, var(--r-common-color));
+  // Width of the slider control and track border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-slider-border-width: var(--r-slider-border-width, 1px);
+  // Size of the slider control.
+  // @type {<length>}
   --R-slider-control-size: var(--r-slider-control-size, var(--r-common-line-height));
+  // Size of the slider track.
+  // @type {<length>}
   --R-slider-track-size: var(--r-slider-track-size, var(--r-common-font-size));
   display: inline-flex;
   block-size: var(--R-slider-control-size);

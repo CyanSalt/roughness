@@ -1,54 +1,86 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import type { DirectiveBinding, InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
-import { inject, ref } from 'vue'
+import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { effectRef, sentenceCase } from '../common/utils'
-import { nameInjection } from '../form/utils'
+import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
-interface InputProps {
-  accept?: InputHTMLAttributes['accept'],
-  alt?: InputHTMLAttributes['alt'],
-  autocomplete?: InputHTMLAttributes['autocomplete'],
-  autofocus?: InputHTMLAttributes['autofocus'],
-  capture?: InputHTMLAttributes['capture'],
-  checked?: InputHTMLAttributes['checked'],
-  crossorigin?: InputHTMLAttributes['crossorigin'],
-  disabled?: InputHTMLAttributes['disabled'],
-  enterKeyHint?: InputHTMLAttributes['enterKeyHint'],
-  form?: InputHTMLAttributes['form'],
-  formaction?: InputHTMLAttributes['formaction'],
-  formenctype?: InputHTMLAttributes['formenctype'],
-  formmethod?: InputHTMLAttributes['formmethod'],
-  formnovalidate?: InputHTMLAttributes['formnovalidate'],
-  formtarget?: InputHTMLAttributes['formtarget'],
-  height?: InputHTMLAttributes['height'],
-  indeterminate?: InputHTMLAttributes['indeterminate'],
-  list?: InputHTMLAttributes['list'],
-  max?: InputHTMLAttributes['max'],
-  maxlength?: InputHTMLAttributes['maxlength'],
-  min?: InputHTMLAttributes['min'],
-  minlength?: InputHTMLAttributes['minlength'],
-  multiple?: InputHTMLAttributes['multiple'],
-  name?: InputHTMLAttributes['name'],
-  pattern?: InputHTMLAttributes['pattern'],
-  placeholder?: InputHTMLAttributes['placeholder'],
-  readonly?: InputHTMLAttributes['readonly'],
-  required?: InputHTMLAttributes['required'],
-  size?: InputHTMLAttributes['size'],
-  src?: InputHTMLAttributes['src'],
-  step?: InputHTMLAttributes['step'],
-  type?: InputHTMLAttributes['type'],
-  width?: InputHTMLAttributes['width'],
-}
-
 defineOptions({
   name: 'RInput',
 })
+
+interface InputProps {
+  /** @ignore */
+  accept?: InputHTMLAttributes['accept'],
+  /** @ignore */
+  alt?: InputHTMLAttributes['alt'],
+  /** @ignore */
+  autocomplete?: InputHTMLAttributes['autocomplete'],
+  /** @ignore */
+  autofocus?: InputHTMLAttributes['autofocus'],
+  /** @ignore */
+  capture?: InputHTMLAttributes['capture'],
+  /** @ignore */
+  checked?: InputHTMLAttributes['checked'],
+  /** @ignore */
+  crossorigin?: InputHTMLAttributes['crossorigin'],
+  /** @ignore */
+  disabled?: InputHTMLAttributes['disabled'],
+  /** @ignore */
+  enterkeyhint?: InputHTMLAttributes['enterKeyHint'],
+  /** @ignore */
+  form?: InputHTMLAttributes['form'],
+  /** @ignore */
+  formaction?: InputHTMLAttributes['formaction'],
+  /** @ignore */
+  formenctype?: InputHTMLAttributes['formenctype'],
+  /** @ignore */
+  formmethod?: InputHTMLAttributes['formmethod'],
+  /** @ignore */
+  formnovalidate?: InputHTMLAttributes['formnovalidate'],
+  /** @ignore */
+  formtarget?: InputHTMLAttributes['formtarget'],
+  /** @ignore */
+  height?: InputHTMLAttributes['height'],
+  /** @ignore */
+  indeterminate?: InputHTMLAttributes['indeterminate'],
+  /** @ignore */
+  list?: InputHTMLAttributes['list'],
+  /** @ignore */
+  max?: InputHTMLAttributes['max'],
+  /** @ignore */
+  maxlength?: InputHTMLAttributes['maxlength'],
+  /** @ignore */
+  min?: InputHTMLAttributes['min'],
+  /** @ignore */
+  minlength?: InputHTMLAttributes['minlength'],
+  /** @ignore */
+  multiple?: InputHTMLAttributes['multiple'],
+  /** @ignore */
+  name?: InputHTMLAttributes['name'],
+  /** @ignore */
+  pattern?: InputHTMLAttributes['pattern'],
+  /** @ignore */
+  placeholder?: InputHTMLAttributes['placeholder'],
+  /** @ignore */
+  readonly?: InputHTMLAttributes['readonly'],
+  /** @ignore */
+  required?: InputHTMLAttributes['required'],
+  /** @ignore */
+  size?: InputHTMLAttributes['size'],
+  /** @ignore */
+  src?: InputHTMLAttributes['src'],
+  /** @ignore */
+  step?: InputHTMLAttributes['step'],
+  /** @ignore */
+  type?: InputHTMLAttributes['type'],
+  /** @ignore */
+  width?: InputHTMLAttributes['width'],
+}
 
 const {
   lines = 1,
@@ -61,24 +93,25 @@ const {
   ...props
 } = defineProps<{
   /**
-   * Line count of the input
+   * Line count of the input.
    * @default 1
    */
   lines?: number,
-  /** Value of the input text */
+  /** Value of the input text. */
   modelValue?: string | number,
-  modelModifiers?: DirectiveBinding['modifiers'],
+  /**
+   * Modifiers for `v-model` directive.
+   * See [Handling `v-model` modifiers]{@link https://vuejs.org/guide/components/v-model.html#handling-v-model-modifiers}.
+   */
+  modelModifiers?: { number?: boolean },
 } & InputProps & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the value is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const formItemName = $(inject(nameInjection, ref()))
-
-const name = $computed(() => {
-  return userName ?? formItemName
-})
+const name = $(useName($$(userName)))
 
 const placeholder = $computed(() => {
   return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`enter-${name}`) : undefined)
@@ -158,9 +191,21 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-input {
+  // Color of the input border.
+  // @type {<color>}
   --R-input-border-color: var(--r-input-border-color, var(--r-common-color));
+  // Width of the input border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-input-border-width: var(--r-input-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
+  // @default none `8px` when hovered
   --R-input-border-dash: var(--r-input-border-dash, none);
+  // Size of the input.
+  // @type {<length>}
   --R-input-inline-size: var(--r-input-inline-size, 210px);
   --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   display: inline-flex;

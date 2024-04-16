@@ -102,9 +102,15 @@ async function ask() {
 
 ## Usage
 
-### Confirm Props
+<RUsage file="src/confirm/index.vue" props>
 
-<RPropsTable>
+  <template #title="{ title }">
+
+  ### {{ title }}
+
+  </template>
+
+  <template #props>
 
   <RProp name="...">
 
@@ -112,19 +118,9 @@ async function ask() {
 
   </RProp>
 
-</RPropsTable>
+  </template>
 
-### Confirm Events
-
-<REventsTable>
-
-  <REvent name="confirm">
-    Callback function triggered when the confirm button is clicked.
-  </REvent>
-
-  <REvent name="cancel">
-    Callback function triggered when the confirm is closed for reasons other than the confirm button.
-  </REvent>
+  <template #events>
 
   <REvent name="...">
 
@@ -132,17 +128,19 @@ async function ask() {
 
   </REvent>
 
-</REventsTable>
+  </template>
 
-### Confirm Slots
+</RUsage>
 
-<RSlotsTable>
+<RUsage file="src/confirm/confirm-provider.vue">
 
-  <RSlot name="default">
-    Content of the confirm.
-  </RSlot>
+  <template #title="{ title }">
 
-</RSlotsTable>
+  ### {{ title }}
+
+  </template>
+
+</RUsage>
 
 ### Compositions
 

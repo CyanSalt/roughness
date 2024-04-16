@@ -56,118 +56,12 @@ import { RRate } from 'roughness'
 
 ## Usage
 
-### Props
+<RUsage file="src/rate/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="model-value">
-
-  <template #type>
-
-  `number`
+  ### {{ title }}
 
   </template>
 
-  Value of the rate.
-
-  </RProp>
-
-  <RProp name="shape">
-
-  <template #type>
-
-  `IconNode`
-
-  </template>
-
-  <template #default-value>
-
-  `import('lucide').Star`
-
-  </template>
-
-  Shape icon of the rate.
-
-  </RProp>
-
-</RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="update:model-value">
-
-  <template #parameters>
-
-  `(value: boolean)`
-
-  </template>
-
-  Callback function triggered when the value is changed.
-
-  </REvent>
-
-</REventsTable>
-
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-rate-{{ value }}</template>
-
-  <RStyle name="color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-primary-color)`
-
-  </template>
-
-  Color of the rate control when active.
-
-  </RStyle>
-
-  <RStyle name="control-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `calc(1em + 4px)`
-
-  </template>
-
-  Size of the rate control.
-
-  </RStyle>
-
-  <RStyle name="gap-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `4px`
-
-  </template>
-
-  Gap size of the rate control.
-
-  </RStyle>
-
-</RStylesTable>
+</RUsage>

@@ -22,39 +22,45 @@ const {
   graphicsOptions,
 } = defineProps<{
   /**
-   * Whether to display the close button
+   * Whether to display the close button.
    * @default true
    */
   closable?: boolean,
   /**
-   * Whether to display the card footer
+   * Whether to display the card footer.
    * @default true
+   * @ignore
    */
   footer?: boolean,
   /**
-   * Whether to display the card header
+   * Whether to display the card header.
    * @default true
+   * @ignore
    */
   header?: boolean,
   /**
-   * Whether to display the dialog modal
+   * Whether to display the dialog modal.
    * @default true
    */
   open?: boolean,
   /**
-   * When specified as `auto`, the dialog can be closed by clicking the backdrop
+   * When specified as `auto`, the dialog can be closed by clicking the backdrop.
    * @default 'auto'
    */
   state?: 'auto' | 'manual',
 } & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when visibility of the dialog is changed. */
   (event: 'update:open', value: typeof open): void,
 }>()
 
 defineSlots<{
+  /** @ignore */
   title?: (props: {}) => any,
+  /** @ignore */
   default?: (props: {}) => any,
+  /** @ignore */
   footer?: (props: {}) => any,
 }>()
 

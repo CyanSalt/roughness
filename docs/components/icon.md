@@ -70,53 +70,15 @@ See [Text](/components/text).
 
 View all available icons [here](https://lucide.dev/icons/).
 
-### Props
+<RUsage file="src/icon/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="filled">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  Whether to fill the icon.
-
-  </RProp>
-
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
-
-  </template>
-
-  <template #default-value>
-
-  `{ roughness: 0.5, disableMultiStroke: true }`
-
-  </template>
-
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="icon">
-
-  <template #type>
-
-  `IconNode`
-
-  </template>
-
-  Icon object conforming to the type constraint. It can be imported from [`lucide`](https://lucide.dev/guide/packages/lucide).
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -124,74 +86,16 @@ View all available icons [here](https://lucide.dev/icons/).
 
   </RProp>
 
-</RPropsTable>
-
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-icon-{{ value }}</template>
-
-  <RStyle name="color">
-
-  <template #values>
-
-  `<color>`
-
   </template>
 
-  <template #default-value>
-
-  `var(--r-text-color)`
-
-  </template>
-
-  Color of the icon.
-
-  </RStyle>
-
-  <RStyle name="stroke-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-icon-color)`
-
-  </template>
-
-  Stroke line color of the icon.
-
-  </RStyle>
-
-  <RStyle name="stroke-width">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `2px`
-
-  </template>
-
-  Stroke line width of the icon.
-
-  </RStyle>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Text Styles](/components/text#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

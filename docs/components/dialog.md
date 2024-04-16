@@ -57,63 +57,15 @@ function show() {
 
 ## Usage
 
-### Props
+<RUsage file="src/dialog/index.vue" styles>
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="closable">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  <template #default-value>
-
-  `true`
-
-  </template>
-
-  Whether to display the close button.
-
-  </RProp>
-
-  <RProp name="open">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `true`
-
-  </template>
-
-  Whether to display the dialog modal.
-
-  </RProp>
-
-  <RProp name="state">
-
-  <template #type>
-
-  `'auto' | 'manual'`
-
-  </template>
-
-  <template #default-value>
-
-  `'auto'`
-
-  </template>
-
-  When specified as `auto`, the dialog can be closed by clicking the backdrop.
-
-  </RProp>
+  <template #props>
 
   <RProp name="...">
 
@@ -123,29 +75,9 @@ function show() {
 
   </RProp>
 
-</RPropsTable>
-
-### Events
-
-<REventsTable>
-
-  <REvent name="update:open">
-
-  <template #parameters>
-
-  `(value: boolean)`
-
   </template>
 
-  Callback function triggered when visibility of the dialog is changed.
-
-  </REvent>
-
-</REventsTable>
-
-### Slots
-
-<RSlotsTable>
+  <template #slots>
 
   <RSlot name="...">
 
@@ -153,20 +85,16 @@ function show() {
 
   </RSlot>
 
-</RSlotsTable>
+  </template>
 
-### Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-dialog-{{ value }}</template>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Card Styles](/components/card#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

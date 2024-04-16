@@ -33,9 +33,15 @@ import { RLoading, RText } from 'roughness'
 
 ## Usage
 
-### Props
+<RUsage file="src/loading/index.vue" props>
 
-<RPropsTable>
+  <template #title="{ title }">
+
+  ### {{ title }}
+
+  </template>
+
+  <template #props>
 
   <RProp name="...">
 
@@ -43,4 +49,6 @@ import { RLoading, RText } from 'roughness'
 
   </RProp>
 
-</RPropsTable>
+  </template>
+
+</RUsage>

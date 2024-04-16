@@ -80,180 +80,32 @@ let labelInline = ref(false)
 
 ## Usage
 
-### Form Props
+<RUsage file="src/form/index.vue">
 
-<RPropsTable>
+  <template #title="{ title }">
 
-  <RProp name="label-inline">
-
-  <template #type>
-
-  `boolean`
+  ### {{ title }}
 
   </template>
 
-  Whether the labels of the form items are displayed as inline boxes.
+</RUsage>
 
-  </RProp>
+<RUsage file="src/form/form-item.vue">
 
-</RPropsTable>
+  <template #title="{ title }">
 
-### Form Slots
-
-<RSlotsTable>
-
-  <RSlot name="default">
-    Content of the form.
-  </RSlot>
-
-</RSlotsTable>
-
-### FormItem Props
-
-<RPropsTable>
-
-  <RProp name="graphics-options">
-
-  <template #type>
-
-  `import('roughjs/bin/core').Options`
+  ### {{ title }}
 
   </template>
 
-  [Options for Rough.js](https://github.com/rough-stuff/rough/wiki#options).
-
-  See [Graphics Configuration](/components/graphics#component-prop).
-
-  </RProp>
-
-  <RProp name="label-inline">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  Whether the label of the form item is displayed as an inline box.
-
-  </RProp>
-
-  <RProp name="name">
-
-  <template #type>
-
-  `string`
-
-  </template>
-
-  Field name of the form model.
-
-  </RProp>
-
-  <RProp name="required">
-
-  <template #type>
-
-  `boolean`
-
-  </template>
-
-  <template #default-value>
-
-  `false`
-
-  </template>
-
-  Whether the field is required.
-
-  </RProp>
-
-</RPropsTable>
-
-### FormItem Slots
-
-<RSlotsTable>
-
-  <RSlot name="label">
-    Label of the form item.
-  </RSlot>
-
-  <RSlot name="default">
-    Content of the form item.
-  </RSlot>
-
-  <RSlot name="message">
-    Footnote of the form item.
-  </RSlot>
-
-</RSlotsTable>
-
-### FormItem Styles
-
-<RStylesTable>
-
-  <template #name="{ value }">--r-form-item-{{ value }}</template>
-
-  <RStyle name="label-inline-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `105px`
-
-  </template>
-
-  Size of the label when `label-inline` is `true`.
-
-  </RStyle>
-
-  <RStyle name="required-marker-size">
-
-  <template #values>
-
-  `<length>`
-
-  </template>
-
-  <template #default-value>
-
-  `4px`
-
-  </template>
-
-  Size of the marker when `required` is `true`.
-
-  </RStyle>
-
-  <RStyle name="required-marker-color">
-
-  <template #values>
-
-  `<color>`
-
-  </template>
-
-  <template #default-value>
-
-  `var(--r-common-error-color)`
-
-  </template>
-
-  Color of the marker when `required` is `true`.
-
-  </RStyle>
+  <template #styles>
 
   <RStyle name="...">
-
-  <template #name>...</template>
 
   See [Space Styles](/components/space#styles).
 
   </RStyle>
 
-</RStylesTable>
+  </template>
+
+</RUsage>

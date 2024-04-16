@@ -16,14 +16,16 @@ const {
   graphicsOptions,
 } = defineProps<{
   /**
-   * Tab item key or data
-   * {@link https://roughness.vercel.app/guide/specs#list-rendering}
+   * Tab item key or data.
+   * See [List Rendering]{@link https://roughness.vercel.app/guide/specs#list-rendering}.
    */
   value: RValueOrKey,
 } & GraphicsProps>()
 
 defineSlots<{
+  /** Anchor of the tab item. */
   anchor?: (props: {}) => any,
+  /** Content of the tab item. */
   default?: (props: {}) => any,
 }>()
 

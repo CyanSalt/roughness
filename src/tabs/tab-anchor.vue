@@ -20,27 +20,29 @@ const {
   graphicsOptions,
 } = defineProps<{
   /**
-   * Whether the anchor is active
+   * Whether the anchor is active.
    * @private
    */
   active?: boolean,
   /**
-   * Which side of the content the anchor will show on
+   * Which side of the content the anchor will show on.
    * @private
    */
   side?: 'top' | 'bottom' | 'left' | 'right',
   /**
-   * Tab item value
+   * Tab item value.
    * @private
    */
   value: RValueOrKey,
 } & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the anchor is activated. */
   (event: 'activate', value: RValueOrKey): void,
 }>()
 
 defineSlots<{
+  /** Content of the anchor. */
   default?: (props: {}) => any,
 }>()
 
@@ -126,8 +128,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_reset';
 
 .r-tab-anchor {
+  // Color of the tab anchor text and border.
+  // @type {<color>}
+  // @default var(--r-common-color) `var(--r-common-primary-color)` if active
   --R-tab-anchor-color: var(--r-tab-anchor-color, var(--r-common-color));
+  // Width of the tab anchor border.
+  // @type {<length>}
+  // @default 1px `2px` when focused or active
   --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 1px);
+  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
+  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
+  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
+  // @type {<length>+ | none}
+  // @default none `8px` when hovered
   --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, none);
   cursor: pointer;
   &::before {

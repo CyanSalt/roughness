@@ -17,16 +17,25 @@ const {
   open = false,
   graphicsOptions,
 } = defineProps<{
-  /** Whether the details are currently visible */
+  /**
+   * Whether the details are currently visible.
+   * See [`open`]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#open}
+   */
   open?: boolean,
 } & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when visibility of the detail is changed. */
   (event: 'update:open', value: typeof open): void,
 }>()
 
 defineSlots<{
+  /**
+   * Content of the summary.
+   * See [`summary`]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary}.
+   */
   summary?: (props: {}) => any,
+  /** Content of the details. */
   default?: (props: {}) => any,
 }>()
 
@@ -82,8 +91,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss">
 .r-details {
+  // Color of summary text and marker.
+  // @type {<color>}
   --R-details-summary-color: var(--r-details-summary-color, var(--r-common-color));
+  // Size of the block of summary marker.
+  // @type {<length>}
   --R-details-summary-marker-size: var(--r-details-summary-marker-size, var(--r-common-line-height));
+  // Size of the gap between the summary and content.
+  // @type {<length>}
   --R-details-gap-size: var(--r-details-gap-size, calc(1em - 4px));
 }
 .r-details__summary {

@@ -5,8 +5,9 @@ export const optionsInjection: InjectionKey<Ref<Options | undefined>> = Symbol('
 
 export interface GraphicsProps {
   /**
-   * Options for Rough.js
-   * {@link https://github.com/rough-stuff/rough/wiki#options}
+   * [Options for Rough.js]{@link https://github.com/rough-stuff/rough/wiki#options}.
+   * See [Graphics Configuration]{@link https://roughness.vercel.app/components/graphics.html#component-prop}.
+   * @type {import('roughjs/bin/core').Options}
    */
   graphicsOptions?: Options,
 }

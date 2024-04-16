@@ -22,6 +22,7 @@ const {
 } & ColorProps & SizeProps>()
 
 defineSlots<{
+  /** Content of the text. */
   default?: (props: {}) => any,
 }>()
 </script>
@@ -34,6 +35,8 @@ defineSlots<{
 
 <style lang="scss">
 .r-text {
+  // Color of text.
+  // @type {<color>}
   --R-text-color: var(--r-text-color, var(--r-element-color));
   color: var(--R-text-color);
   &.is-block {

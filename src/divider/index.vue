@@ -13,7 +13,7 @@ const {
   vertical = false,
   graphicsOptions,
 } = defineProps<{
-  /** Whether to display vertical divider */
+  /** Whether to display vertical divider. */
   vertical?: boolean,
 } & GraphicsProps>()
 
@@ -39,7 +39,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss">
 .r-divider {
+  // Color of the divider.
+  // @type {<color>}
   --R-divider-color: var(--r-divider-color, var(--r-common-color));
+  // Size of the divider gap.
+  // @type {<length>}
   --R-divider-gap-size: var(--r-divider-gap-size, calc(1em - 4px));
   display: block;
   block-size: 1px + 2px * 2;

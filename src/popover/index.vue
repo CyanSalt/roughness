@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { refDebounced, useMouseInElement } from '@vueuse/core'
-import type { HTMLAttributes } from 'vue'
+import type { CSSProperties } from 'vue'
 import { watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { effectRef } from '../common/utils'
@@ -31,36 +31,47 @@ const {
    */
   align?: 'start' | 'end' | 'center' | 'stretch',
   /**
-   * Whether to display the card footer
+   * Whether to display the card footer.
    * @default false
+   * @ignore
    */
   footer?: boolean,
   /**
-   * Whether to display the card header
+   * Whether to display the card header.
    * @default false
+   * @ignore
    */
   header?: boolean,
-  /** Whether to display the popover content */
+  /** Whether to display the popover content. */
   open?: boolean,
   /**
-   * Which side of the anchor the popover will show on
+   * Which side of the anchor the popover will show on.
    * @default 'top'
    */
   side?: 'top' | 'bottom' | 'left' | 'right',
   /**
-   * How to trigger the display of popover content
+   * How to trigger the display of popover content.
    * @default 'hover'
    */
   trigger?: 'hover' | 'click' | 'manual',
 } & GraphicsProps>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when visibility of the popover is changed. */
   (event: 'update:open', value: typeof open): void,
 }>()
 
 defineSlots<{
+  /** Anchor of the popover. */
   anchor?: (props: {}) => any,
+  /** @ignore */
+  title?: (props: {}) => any,
+  /** @ignore */
+  'header-end'?: (props: {}) => any,
+  /** @ignore */
   default?: (props: {}) => any,
+  /** @ignore */
+  footer?: (props: {}) => any,
 }>()
 
 let internalOpen = $(effectRef({
@@ -96,7 +107,7 @@ watchEffect(() => {
 })
 
 const contentStyle = $computed(() => {
-  let style: HTMLAttributes['style'] = {}
+  let style: CSSProperties = {}
   let translateX = '0'
   let translateY = '0'
   switch (side) {

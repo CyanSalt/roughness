@@ -20,9 +20,12 @@ const {
   filled,
   graphicsOptions,
 } = defineProps<{
-  /** Icon object conforming to the type constraint */
+  /**
+   * Icon object conforming to the type constraint.
+   * @type {IconNode}
+   */
   icon: IconNode,
-  /** Whether to fill the icon */
+  /** Whether to fill the icon. */
   filled?: boolean,
 } & GraphicsProps>()
 
@@ -142,8 +145,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 
 .r-icon {
+  // Color of the icon.
+  // @type {<color>}
   --R-icon-color: var(--r-icon-color, var(--R-text-color));
+  // Stroke line color of the icon.
+  // @type {<color>}
   --R-icon-stroke-color: var(--r-icon-stroke-color, var(--R-icon-color));
+  // Stroke line width of the icon.
+  // @type {<length>}
   --R-icon-stroke-width: var(--r-icon-stroke-width, 2px);
   display: inline-block;
   block-size: calc(1em + 4px);

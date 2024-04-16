@@ -19,24 +19,26 @@ const {
   modelValue,
 } = defineProps<{
   /**
-   * Which side of the content the anchors will show on
+   * Which side of the content the anchors will show on.
    * @default 'top'
    */
   anchorSide?: 'top' | 'bottom' | 'left' | 'right',
   /**
-   * Whether to display the tabs content
+   * Whether to display the tabs content.
    * @default true
    */
   content?: boolean,
-  /** Value of the active tab item in tabs */
+  /** Value of the active tab item in tabs. */
   modelValue?: RValueOrKey | undefined,
 }>()
 
 const emit = defineEmits<{
+  /** Callback function triggered when the active tab is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
 defineSlots<{
+  /** Content of the tabs. You can render one or more TabItem by yourself. */
   default?: (props: {}) => any,
 }>()
 
