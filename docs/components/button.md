@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable } from 'roughness'
+import { RButton, RSpace } from 'roughness'
 </script>
 
 # Button
@@ -10,8 +10,7 @@ My first name is Belly.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -31,7 +30,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RButton>Normal</RButton>
@@ -45,8 +44,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Size
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -62,7 +60,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace align="center">
   <RButton size="small">Small</RButton>
@@ -72,8 +70,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Filled
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -93,7 +90,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RButton filled>Normal</RButton>
@@ -109,8 +106,7 @@ See also [GraphicsConfig](/components/graphics#configuration).
 
 ### Round
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -125,7 +121,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RButton round>Enter the Pipe</RButton>
@@ -134,8 +130,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### State
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -151,7 +146,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RButton disabled>Train AlphaGo</RButton>
@@ -161,8 +156,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Block
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -177,7 +171,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RButton block>Switch Account</RButton>
@@ -186,8 +180,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Tag
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -202,7 +195,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RButton tag="a" type="primary" filled>Remote Bomb</RButton>

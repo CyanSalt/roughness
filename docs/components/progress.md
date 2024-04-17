@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import gsap from 'gsap'
-import { RCard, RDetails, RProgress, RSlider, RSpace, RTable, RText } from 'roughness'
+import { RProgress, RSlider, RSpace } from 'roughness'
 import { reactive, ref, watch } from 'vue'
 
 let value = ref(0)
@@ -19,8 +19,7 @@ Deadline tomorrow.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -40,7 +39,7 @@ import { RProgress, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RProgress :value="0.1" />
@@ -54,14 +53,13 @@ import { RProgress, RSpace } from 'roughness'
 
 ### Animation
 
-<RCard type="comment">
+::: info
 
 You need to install [`gsap`](https://www.npmjs.com/package/gsap) yourself.
 
-</RCard>
+:::
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -85,7 +83,7 @@ watch(value, n => {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RProgress :value="tweened.number" />

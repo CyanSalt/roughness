@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable, RText } from 'roughness'
+import { RButton, RDetails, RSpace, RText } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(true)
@@ -15,8 +15,7 @@ The devil is in the details.
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -42,7 +41,7 @@ function toggle() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RDetails v-model:open="open">

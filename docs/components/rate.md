@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Heart } from 'lucide'
-import { RDetails, RRate, RSpace, RTable } from 'roughness'
+import { RRate } from 'roughness'
 import { ref } from 'vue'
 
 let rate = ref(3)
@@ -14,8 +14,7 @@ Only God can judge me.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -30,14 +29,13 @@ let rate = ref(3)
 </template>
 ```
 
-</RDetails>
+:::
 
 <RRate v-model="rate" />
 
 ### Shape
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -50,7 +48,7 @@ import { RRate } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RRate :shape="Heart" />
 

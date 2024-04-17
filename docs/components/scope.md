@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RLink, RScope, RSpace, RTable } from 'roughness'
+import { RLink, RScope } from 'roughness'
 
 function performTimeConsumingOperation() {
   return 1
@@ -12,8 +12,7 @@ function performTimeConsumingOperation() {
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -32,7 +31,7 @@ function performTimeConsumingOperation() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RScope v-slot="{ result }" :result="performTimeConsumingOperation()">
   Result is: <RLink :href="`#result-${result}`">{{ result }}</RLink>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RPopover, RSpace, RTable } from 'roughness'
+import { RButton, RPopover, RSpace } from 'roughness'
 </script>
 
 # Popover
@@ -10,8 +10,7 @@ Should this text appear in a popover?
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -32,7 +31,7 @@ import { RPopover, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RPopover>
@@ -47,8 +46,7 @@ import { RPopover, RSpace } from 'roughness'
 
 ### Dropdown
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -69,7 +67,7 @@ import { RPopover, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RPopover side="bottom">
   <template #anchor>

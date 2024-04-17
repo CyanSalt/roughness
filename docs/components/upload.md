@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSpace, RTable, RText, RUpload } from 'roughness'
+import { RSpace, RText, RUpload } from 'roughness'
 import { ref } from 'vue'
 
 let file = ref<File>()
@@ -20,8 +20,7 @@ Upload your days, download your life.
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -48,7 +47,7 @@ function select(value: File) {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical align="start">
   <RUpload :loading="loading" @select="select">Drop or Select File</RUpload>

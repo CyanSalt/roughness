@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computedAsync } from '@vueuse/core'
 import { parse } from 'opentype.js'
-import { RButton, RCard, RDetails, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn, RText } from 'roughness'
+import { RButton, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { ref } from 'vue'
 
@@ -42,18 +42,17 @@ function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
 
 Seeing is believing.
 
-<RCard type="warning">
+::: warning
 
 In general, `RGraphics` components are only used inside the component library.
 
-</RCard>
+:::
 
 ## Example
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -74,20 +73,19 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RGraphics :responsive="false" width="100" height="100" @draw="drawHeart" />
 
 ### Text Glyphs
 
-<RCard type="comment">
+::: info
 
 You need to install [`opentype.js`](https://www.npmjs.com/package/opentype.js) yourself.
 
-</RCard>
+:::
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -121,7 +119,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical align="start">
   <RInput v-model="text" maxlength="5" />
@@ -130,8 +128,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 ### Responsive
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -162,7 +159,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RTable :rows="['color']">
   <RTableColumn v-slot="{ row }" name="continent">
@@ -179,8 +176,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 ### Configuration
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -197,7 +193,7 @@ import { RButton, RGraphicsConfig } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RGraphicsConfig :options="{ fillStyle: 'solid' }">
   <RSpace vertical align="start">
@@ -208,8 +204,7 @@ import { RButton, RGraphicsConfig } from 'roughness'
 
 Additionally, almost all components with graphics support the `graphics-options` prop:{#component-prop}
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -221,7 +216,7 @@ import { RButton } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Psychological Shadow</RButton>
 

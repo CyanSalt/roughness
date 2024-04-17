@@ -89,6 +89,9 @@ importers:
       '@babel/types':
         specifier: ^7.24.0
         version: 7.24.0
+      '@types/markdown-it':
+        specifier: ^14.0.1
+        version: 14.0.1
       '@vue-macros/api':
         specifier: ^0.9.5
         version: 0.9.5(vue@3.4.21)
@@ -1585,6 +1588,13 @@ packages:
 
   /@types/markdown-it@13.0.7:
     resolution: {integrity: sha512-U/CBi2YUUcTHBt5tjO2r5QV/x0Po6nsYwQU4Y04fBS6vfoImaiZ6f8bi3CjTCxBPQSO1LMyUqkByzi8AidyxfA==}
+    dependencies:
+      '@types/linkify-it': 3.0.5
+      '@types/mdurl': 1.0.5
+    dev: true
+
+  /@types/markdown-it@14.0.1:
+    resolution: {integrity: sha512-6WfOG3jXR78DW8L5cTYCVVGAsIFZskRHCDo5tbqa+qtKVt4oDRVH7hyIWu1SpDQJlmIoEivNQZ5h+AGAOrgOtQ==}
     dependencies:
       '@types/linkify-it': 3.0.5
       '@types/mdurl': 1.0.5

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RColorPicker, RDetails, RSpace, RTable, RText } from 'roughness'
+import { RColorPicker } from 'roughness'
 import { ref } from 'vue'
 
 let color = ref('')
@@ -11,8 +11,7 @@ The orange, yellow and green seem one colour, which descends pretty uniformly fr
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -27,7 +26,7 @@ let color = ref('')
 </template>
 ```
 
-</RDetails>
+:::
 
 <RColorPicker v-model="color" />
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSpace, RTable, RText } from 'roughness'
+import { RSpace, RText } from 'roughness'
 </script>
 
 # Text
@@ -10,8 +10,7 @@ The secret of being boring is to say everything.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -31,7 +30,7 @@ import { RSpace, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RText>Normal</RText>
@@ -45,8 +44,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Size
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -62,7 +60,7 @@ import { RSpace, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace align="center">
   <RText size="small">Small</RText>
@@ -72,8 +70,7 @@ import { RSpace, RText } from 'roughness'
 
 ### Tag
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -88,7 +85,7 @@ import { RSpace, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RText tag="h1" type="error">Statement on the second meeting of the International Health Regulations (2005) Emergency Committee regarding the outbreak of novel coronavirus (2019-nCoV)</RText>

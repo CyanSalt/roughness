@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { keyOf, RCard, RDetails, RKey, RTabItem, RTabs } from 'roughness'
+import { keyOf, RDetails, RKey, RTabItem, RTabs } from 'roughness'
 
 const data = [{ [RKey]: 'darwin', name: 'macOS' }, { [RKey]: 'win32', name: 'Windows' }]
 </script>
@@ -68,7 +68,7 @@ For list item components (including `RCarouselItem`, `RCheckbox`, `RTabItem` and
       </RTabItem>
     </RTabs>
 
-<RCard type="warning">
+::: warning
 
 In order to cope with various situations, the order of list rendering is based on the mounting order of list items. Therefore, if you need to display list items according to conditions, it is recommended to use `v-show` instead of `v-if`.
 
@@ -76,7 +76,7 @@ In order to cope with various situations, the order of list rendering is based o
 
 In addition, `RTableColumn` will be also rendered in a similar way although it only supports `name` in `string`.
 
-</RCard>
+:::
 
 You can also use a similar mechanism in custom components using `useList` and `useListItem`.
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RBadge, RDetails, RLink, RSpace, RTable, RText } from 'roughness'
+import { RBadge, RLink, RSpace } from 'roughness'
 </script>
 
 # Badge
@@ -8,12 +8,11 @@ Brezhnev was dressed for burial in his Marshal's uniform along with his medals.
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
-import { RBadge, RButton, RSpace } from 'roughness'
+import { RBadge, RLink, RSpace } from 'roughness'
 </script>
 
 <template>
@@ -29,7 +28,7 @@ import { RBadge, RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RBadge>

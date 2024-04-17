@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RLoading, RSpace, RTable, RText } from 'roughness'
+import { RLoading, RText } from 'roughness'
 </script>
 
 # Loading
@@ -8,8 +8,7 @@ Just a moment...
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -24,7 +23,7 @@ import { RLoading, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RText>
   <RLoading />

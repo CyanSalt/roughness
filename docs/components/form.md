@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RCheckbox, RDetails, RForm, RFormItem, RInput, RRate, RSpace, RSelect, RSwitch, RTable, RText } from 'roughness'
+import { RCheckbox, RForm, RFormItem, RInput, RRate, RSelect, RSwitch, RText } from 'roughness'
 import { ref } from 'vue'
 
 let label = ref<string>('Label')
@@ -13,8 +13,7 @@ Power takes many forms.
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -51,7 +50,7 @@ let labelInline = ref(false)
 </template>
 ```
 
-</RDetails>
+:::
 
 <RForm :label-inline="labelInline">
   <RFormItem name="label-inline">

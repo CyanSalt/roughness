@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSpace, RTable, RTabItem, RTabs, RText } from 'roughness'
+import { RTabItem, RTabs } from 'roughness'
 </script>
 
 # Tabs
@@ -10,8 +10,7 @@ My brain has too many tabs open.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -27,7 +26,7 @@ import { RTabItem, RTabs } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RTabs>
   <RTabItem value="amazon">The Amazon River in South America is the largest river by discharge volume of water in the world.</RTabItem>
@@ -37,8 +36,7 @@ import { RTabItem, RTabs } from 'roughness'
 
 ### Anchor Side
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -55,7 +53,7 @@ import { RTabItem, RTabs } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RTabs anchor-side="left" :content="false">
   <RTabItem value="installation" />

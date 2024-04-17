@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable, RText, RToast, useToast } from 'roughness'
+import { RButton, RToast, useToast } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(false)
@@ -25,8 +25,7 @@ It is not bread. It is toast.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -46,15 +45,14 @@ function toggle() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="toggle">Toggle</RButton>
 <RToast v-model:open="open">Clunk!</RToast>
 
 ### Composition
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -86,7 +84,7 @@ function add() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="add">Add</RButton>
 

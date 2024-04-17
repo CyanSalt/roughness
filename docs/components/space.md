@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RSpace, RTable, RText } from 'roughness'
+import { RButton, RSpace, RText } from 'roughness'
 </script>
 
 # Space
@@ -10,8 +10,7 @@ We need to keep our distance.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -27,7 +26,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace :style="{ 'max-width': '600px' }">
   <RButton>Rocket to the moon</RButton>
@@ -37,8 +36,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Direction
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -58,7 +56,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RSpace reverse>
@@ -72,8 +70,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### From Center
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -89,7 +86,7 @@ import { RButton, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace justify="center">
   <RButton>Squidward</RButton>
@@ -99,8 +96,7 @@ import { RButton, RSpace } from 'roughness'
 
 ### Size
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -125,7 +121,7 @@ import { RSpace, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RSpace size="small">

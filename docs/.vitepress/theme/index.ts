@@ -12,6 +12,7 @@ import RStyle from '../components/RStyle.vue'
 import RStylesTable from '../components/RStylesTable.vue'
 import RUsage from '../components/RUsage.vue'
 import '../../../src/common/style.scss'
+import { markdownPlugin } from '../markdown/roughness-runtime'
 import './style.scss'
 
 export default {
@@ -27,6 +28,7 @@ export default {
     ])
   },
   enhanceApp({ app }) {
+    app.use(markdownPlugin)
     app.component('RUsage', RUsage)
     app.component('RProp', RProp)
     app.component('RPropsTable', RPropsTable)

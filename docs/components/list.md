@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RList, RListItem, RSpace, RTable, RText } from 'roughness'
+import { RList, RListItem, RSpace, RText } from 'roughness'
 </script>
 
 # List
@@ -10,8 +10,7 @@ I always make a list before I go to the grocery store. Sometimes, I even remembe
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -29,7 +28,7 @@ import { RList, RListItem } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RList>
   <RListItem>Dog Food</RListItem>
@@ -41,8 +40,7 @@ import { RList, RListItem } from 'roughness'
 
 ### List Style
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -63,7 +61,7 @@ import { RList, RListItem } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RList list-style="square">

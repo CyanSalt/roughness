@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RInput, RSpace, RTable } from 'roughness'
+import { RInput, RSpace } from 'roughness'
 import { ref } from 'vue'
 
 let number = ref(5);
@@ -15,8 +15,7 @@ It was never the leader of Russia.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -28,14 +27,13 @@ import { RInput } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RInput placeholder="Where is the quick fox?" />
 
 ### Multiline
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -50,14 +48,13 @@ let poem = ref('Because I could not stop for Death,\nHe kindly stopped for me;\n
 </template>
 ```
 
-</RDetails>
+:::
 
 <RInput v-model="poem" :lines="5" />
 
 ### Number
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -74,7 +71,7 @@ let number = ref(5);
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RInput v-model.number="number" :style="{ 'margin-inline-start': `${number}em` }" />
@@ -82,8 +79,7 @@ let number = ref(5);
 
 ### Disabled
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -99,7 +95,7 @@ import { RInput, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RInput model-value="If you remix, transform, or build upon the material, you may not distribute the modified material." readonly />
@@ -108,8 +104,7 @@ import { RInput, RSpace } from 'roughness'
 
 ### Types
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -127,7 +122,7 @@ let email = ref('java.lang.NullPointerException')
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RInput type="date" />

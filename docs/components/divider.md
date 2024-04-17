@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RDivider, RSpace, RTable, RText } from 'roughness'
+import { RDivider, RText } from 'roughness'
 </script>
 
 # Divider
@@ -10,8 +10,7 @@ The LORD caused the sea to go back by a strong east wind all the night, and made
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -23,14 +22,13 @@ import { RDivider } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RDivider />
 
 ### Vertical
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -42,7 +40,7 @@ import { RDivider, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RText>Cowherd<RDivider vertical />Weaver Girl</RText>
 

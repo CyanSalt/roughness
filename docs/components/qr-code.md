@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import qrcode from 'qrcode'
-import { RCard, RDetails, RInput, RQRCode, RSpace, RTable, RText } from 'roughness'
+import { RInput, RQRCode, RSpace } from 'roughness'
 import { computed, ref } from 'vue'
 
 const text = ref('Disquisitiones Arithmeticae')
@@ -18,14 +18,13 @@ The fundamental theorem must certainly be regarded as one of the most elegant of
 
 ## Example
 
-<RCard type="comment">
+::: info
 
 You need to install [`qrcode`](https://www.npmjs.com/package/qrcode) yourself.
 
-</RCard>
+:::
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -49,7 +48,7 @@ const data = computed(() => {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RQRCode :data="data" />

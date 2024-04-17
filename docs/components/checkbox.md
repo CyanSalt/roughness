@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RCheckbox, RCheckboxGroup, RDetails, RSpace, RTable, RText } from 'roughness'
+import { RCheckbox, RCheckboxGroup, RSpace, RText } from 'roughness'
 import { ref } from 'vue'
 
 const checked = ref(true)
@@ -16,8 +16,7 @@ Check-ch-check-check-check-ch-check it out. What-wha-what-what-what's it all abo
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -35,7 +34,7 @@ const checked = ref(true)
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RCheckbox v-model:checked="checked">Are you OK, Indian MI fans?</RCheckbox>
@@ -44,8 +43,7 @@ const checked = ref(true)
 
 ### Group
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -68,7 +66,7 @@ const values = ref<string[]>([])
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RCheckboxGroup v-model="values" vertical>
@@ -82,8 +80,7 @@ const values = ref<string[]>([])
 
 ### Radio
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -106,7 +103,7 @@ const value = ref<string | undefined>()
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RCheckboxGroup v-model="value" :multiple="false">
@@ -120,8 +117,7 @@ const value = ref<string | undefined>()
 
 ### State
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -141,7 +137,7 @@ import { RCheckbox, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RCheckbox checked disabled>I can't move.</RCheckbox>
@@ -154,8 +150,7 @@ import { RCheckbox, RSpace } from 'roughness'
 
 ### Tree
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -190,7 +185,7 @@ const treeValue = ref<string | undefined>()
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RCheckboxGroup v-model="treeValue" vertical :multiple="false">

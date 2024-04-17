@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RAvatar, RDetails, RInput, RSpace, RTable, RText } from 'roughness'
+import { RAvatar, RInput, RSpace } from 'roughness'
 import { ref } from 'vue'
 
 const name = ref('Cameron')
@@ -11,8 +11,7 @@ The way of water has no beginning and no end.
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -31,7 +30,7 @@ const name = ref('Cameron')
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace align="center">
   <RAvatar :name="name" />

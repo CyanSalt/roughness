@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RLink, RSpace, RTable } from 'roughness'
+import { RLink, RSpace } from 'roughness'
 </script>
 
 # Link
@@ -10,8 +10,7 @@ The blood moon rises once again. Please be careful, Link...
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -25,7 +24,7 @@ import { RLink, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RLink>This way, sir.</RLink>
@@ -37,8 +36,7 @@ See [Text](/components/text).
 
 ### With `href` attribute
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -53,7 +51,7 @@ import { RLink, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RLink href="https://en.wikipedia.org/wiki/Telephone">Start</RLink>
@@ -62,8 +60,7 @@ import { RLink, RSpace } from 'roughness'
 
 ### As Button
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -78,7 +75,7 @@ import { RLink, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RLink tag="button" type="primary">Confirm cancelling</RLink>

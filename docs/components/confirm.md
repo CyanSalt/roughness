@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RConfirm, RDetails, RSpace, RTable, RText, RToast, useConfirm, useToast } from 'roughness'
+import { RButton, RConfirm, RToast, useConfirm, useToast } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(false)
@@ -30,8 +30,7 @@ The nuke will be launched after 10s. Are you sure?
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -51,15 +50,14 @@ function show() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="show">Show</RButton>
 <RConfirm v-model:open="open">Are you sure you want to cancel?</RConfirm>
 
 ### Composition
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -96,7 +94,7 @@ async function ask() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="ask">Ask</RButton>
 

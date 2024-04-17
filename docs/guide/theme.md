@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RSpace, RSwitch, RTable, RText, useDark } from 'roughness'
+import { RButton, RSpace, RSwitch, useDark } from 'roughness'
 import { ref } from 'vue'
 
 const dark = useDark()

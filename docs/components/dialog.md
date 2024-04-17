@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RDialog, RSpace, RTable, RText } from 'roughness'
+import { RButton, RDialog } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(false)
@@ -15,8 +15,7 @@ Uno stile tutto cose e tutto pensiero, scevro di ogni pretensione e di ogni mani
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -43,7 +42,7 @@ function show() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="show">I Have a Dream</RButton>
 <RDialog v-model:open="open">

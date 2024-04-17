@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSlider, RSpace, RTable } from 'roughness'
+import { RSlider } from 'roughness'
 import { ref, watchEffect } from 'vue'
 
 const value = ref(62)
@@ -11,8 +11,7 @@ Caution: Slippery
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -27,7 +26,7 @@ let value = ref(62)
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSlider v-model="value" />
 

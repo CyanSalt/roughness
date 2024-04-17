@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RCard, RDetails, RSpace, RTable, RText } from 'roughness'
+import { RCard, RSpace } from 'roughness'
 </script>
 
 # Card
@@ -10,8 +10,7 @@ Sawatdee Card!
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -29,7 +28,7 @@ import { RCard } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RCard>
   <template #title>A Tranquil Night</template>
@@ -41,8 +40,7 @@ import { RCard } from 'roughness'
 
 ### Alert
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -59,7 +57,7 @@ import { RCard, RSpace } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace vertical>
   <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RCheckbox, RDetails, RSelect, RSpace, RTable } from 'roughness'
+import { RCheckbox, RSelect, RSpace } from 'roughness'
 </script>
 
 # Select
@@ -10,8 +10,7 @@ We never choose anything at all. Things happen. Or not.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -28,7 +27,7 @@ import { RCheckbox, RSelect } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSelect placeholder="Test engineer rank">
   <RCheckbox value="stable" />
@@ -39,8 +38,7 @@ import { RCheckbox, RSelect } from 'roughness'
 
 ### Multiple
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -57,7 +55,7 @@ import { RCheckbox, RSelect } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSelect multiple placeholder="Exodia">
   <RCheckbox value="Right Arm" />
@@ -68,8 +66,7 @@ import { RCheckbox, RSelect } from 'roughness'
 
 ### State
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -86,7 +83,7 @@ import { RCheckbox, RSpace, RSelect } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSpace>
   <RSelect :model-value="[1]" multiple disabled>
@@ -97,8 +94,7 @@ import { RCheckbox, RSpace, RSelect } from 'roughness'
 
 ### Clearable
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -115,7 +111,7 @@ import { RCheckbox, RSelect } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSelect clearable placeholder="Blue time">
   <RCheckbox value="Spring" />

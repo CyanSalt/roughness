@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RKey, RSpace, RTable, RTableColumn, RText } from 'roughness'
+import { RKey, RSpace, RTable, RTableColumn, RText } from 'roughness'
 
 const data = [
   { [RKey]: 1, z: 2, element: 'He' },
@@ -16,8 +16,7 @@ Tic, tac, toe.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -38,7 +37,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RTable :rows="['html', 'js', 'css']">
   <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
@@ -53,8 +52,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
 
 ### Header and Footer
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -86,7 +84,7 @@ import { RTable, RTableColumn } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RTable
   :rows="['unified', 'western', 'eastern']"
@@ -116,8 +114,7 @@ See [Responsive Graphics](/components/graphics#responsive).
 
 ### Data Driven
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -143,7 +140,7 @@ const data = [
 </template>
 ```
 
-</RDetails>
+:::
 
 <RTable :rows="data">
   <RTableColumn name="z" />

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RDetails, RDrawer, RSpace, RTable, RText } from 'roughness'
+import { RButton, RDrawer } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(false)
@@ -23,8 +23,7 @@ There is a time machine hidden in the drawer.
 
 ### Basic
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -59,7 +58,7 @@ function show() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="show">Show Lyrics</RButton>
 <RDrawer v-model:open="open">
@@ -81,8 +80,7 @@ function show() {
 
 ### Side
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -108,7 +106,7 @@ function showBottom() {
 </template>
 ```
 
-</RDetails>
+:::
 
 <RButton @click="showBottom">Cookie Jar</RButton>
 <RDrawer v-model:open="bottomOpen" side="bottom">

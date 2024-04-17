@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.24.0",
+    "@types/markdown-it": "^14.0.1",
     "@vue-macros/api": "^0.9.5",
     "@vue-macros/common": "^1.10.2",
     "chart.js": "^4.3.3",

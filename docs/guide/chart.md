@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import 'chartjs-plugin-roughness'
 import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js'
-import { RDetails, useColors } from 'roughness'
+import { useColors } from 'roughness'
 import { computed } from 'vue'
 import { Bar } from 'vue-chartjs'
 
@@ -69,8 +69,7 @@ Chart.defaults.font.family = '\'CabinSketch\', cursive'
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -121,6 +120,6 @@ const chartOptions = computed(() => ({
 </template>
 ```
 
-</RDetails>
+:::
 
 <Bar :data="chartData" :options="chartOptions" />

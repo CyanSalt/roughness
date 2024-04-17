@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RDetails, RSpace, RSwitch, RTable } from 'roughness'
+import { RSwitch } from 'roughness'
 </script>
 
 # Switch
@@ -8,8 +8,7 @@ Everybody 1-2-Switch!
 
 ## Example
 
-<RDetails>
-  <template #summary>Show Code</template>
+::: details Show Code
 
 ```vue
 <script lang="ts" setup>
@@ -21,7 +20,7 @@ import { RSwitch } from 'roughness'
 </template>
 ```
 
-</RDetails>
+:::
 
 <RSwitch>Airplane Mode</RSwitch>
 
