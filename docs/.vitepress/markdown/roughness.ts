@@ -1,19 +1,30 @@
 import type MarkdownIt from 'markdown-it'
 import type { RenderRule } from 'markdown-it/lib/renderer.mjs'
+import type Token from 'markdown-it/lib/token.mjs'
 
 export default function (md: MarkdownIt) {
   const defaultRule: RenderRule = function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options)
   }
   // `<RLink />` as link
+  const isPermalinkOpen = (token: Token | undefined) => {
+    return token !== undefined
+      && token.type === 'link_open'
+      && token.attrGet('class') === 'header-anchor'
+  }
   const renderLinkOpen = md.renderer.rules.link_open ?? defaultRule
   const renderLinkClose = md.renderer.rules.link_close ?? defaultRule
   md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-    tokens[idx].tag = 'RLink'
+    // Skip permalinks
+    if (!isPermalinkOpen(tokens[idx])) {
+      tokens[idx].tag = 'RLink'
+    }
     return renderLinkOpen(tokens, idx, options, env, self)
   }
   md.renderer.rules.link_close = function (tokens, idx, options, env, self) {
-    tokens[idx].tag = 'RLink'
+    if (!isPermalinkOpen(tokens[idx - 2])) {
+      tokens[idx].tag = 'RLink'
+    }
     return renderLinkClose(tokens, idx, options, env, self)
   }
   // `<RDetails />` as container_details
