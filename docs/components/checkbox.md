@@ -5,7 +5,6 @@ import { ref } from 'vue'
 const checked = ref(true)
 const values = ref<string[]>([])
 const value = ref<string | undefined>()
-const treeValue = ref<string | undefined>()
 </script>
 
 # Checkbox
@@ -155,14 +154,11 @@ import { RCheckbox, RSpace } from 'roughness'
 ```vue
 <script lang="ts" setup>
 import { RCheckbox, RCheckboxGroup } from 'roughness'
-import { ref } from 'vue'
-
-const treeValue = ref<string | undefined>()
 </script>
 
 <template>
   <RSpace vertical>
-    <RCheckboxGroup v-model="treeValue" vertical :multiple="false">
+    <RCheckboxGroup vertical :multiple="false">
       <RCheckbox value="Peggy's Family">
         <RSpace vertical>
           <RText>Peggy's Family</RText>
@@ -180,7 +176,6 @@ const treeValue = ref<string | undefined>()
         </RSpace>
       </RCheckbox>
     </RCheckboxGroup>
-    <RText>{{ treeValue ?? 'Nobody' }} is going hiking.</RText>
   </RSpace>
 </template>
 ```
@@ -188,7 +183,7 @@ const treeValue = ref<string | undefined>()
 :::
 
 <RSpace vertical>
-  <RCheckboxGroup v-model="treeValue" vertical :multiple="false">
+  <RCheckboxGroup vertical :multiple="false">
     <RCheckbox value="Peggy's Family">
       <RSpace vertical>
         <RText>Peggy's Family</RText>
@@ -206,7 +201,6 @@ const treeValue = ref<string | undefined>()
       </RSpace>
     </RCheckbox>
   </RCheckboxGroup>
-  <RText>{{ treeValue ?? 'Nobody' }} is going hiking.</RText>
 </RSpace>
 
 ## Usage

@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import { provide } from 'vue'
 import type { RValueOrKey } from '../common/key'
+import { effectRef } from '../common/utils'
 import RSpace from '../space/index.vue'
 import { disabledInjection, modelInjection, multipleInjection } from './utils'
 
@@ -32,7 +33,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const model = $computed({
+const model = $(effectRef({
   get: () => {
     return multiple ? (
       Array.isArray(modelValue) ? modelValue : (modelValue === undefined ? [] : [modelValue])
@@ -43,7 +44,7 @@ const model = $computed({
   set: value => {
     emit('update:modelValue', value)
   },
-})
+}))
 
 provide(multipleInjection, $$(multiple))
 provide(modelInjection, $$(model))
