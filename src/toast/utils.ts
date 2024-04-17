@@ -1,12 +1,12 @@
 import type { InjectionKey } from 'vue'
 import { inject } from 'vue'
-import type { ComponentProps, ComponentRenderable, ComponentSlots } from '../common/renderable'
-import { getComponentRenderFunctions } from '../common/renderable'
+import type { ComponentProps, ComponentRenderable, SlotsLike } from '../common/renderable'
+import { toSlotsLike } from '../common/renderable'
 import type RToast from './index.vue'
 
 export interface ToastItemData {
   id: string,
-  slots: ComponentSlots<typeof RToast>,
+  slots: SlotsLike<typeof RToast>,
   props?: ComponentProps<typeof RToast>,
 }
 
@@ -24,7 +24,7 @@ export function useToast() {
     if (!items) return
     items.unshift({
       id: generateId(),
-      slots: getComponentRenderFunctions(renderable),
+      slots: toSlotsLike(renderable),
       props,
     })
   }

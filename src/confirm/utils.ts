@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 import { inject } from 'vue'
-import type { ComponentProps, ComponentRenderable, ComponentSlots } from '../common/renderable'
-import { getComponentRenderFunctions } from '../common/renderable'
+import type { ComponentProps, ComponentRenderable, SlotsLike } from '../common/renderable'
+import { toSlotsLike } from '../common/renderable'
 import type RConfirm from './index.vue'
 
 type ResolveFunction = (value: boolean | PromiseLike<boolean>) => void
@@ -9,7 +9,7 @@ type ResolveFunction = (value: boolean | PromiseLike<boolean>) => void
 export interface ConfirmItemData {
   id: string,
   props?: ComponentProps<typeof RConfirm>,
-  slots: ComponentSlots<typeof RConfirm>,
+  slots: SlotsLike<typeof RConfirm>,
   resolve: ResolveFunction,
 }
 
@@ -32,7 +32,7 @@ export function useConfirm() {
     items.unshift({
       id: generateId(),
       props,
-      slots: getComponentRenderFunctions(renderable),
+      slots: toSlotsLike(renderable),
       resolve: resolve!,
     })
     return promise
