@@ -4,7 +4,7 @@ import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, getProperty, useTransitionListener } from '../common/property'
-import { effectRef } from '../common/utils'
+import { useModel } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -48,7 +48,7 @@ const emit = defineEmits<{
 
 const name = $(useName($$(userName)))
 
-let internalModelValue = $(effectRef({
+let internalModelValue = $(useModel({
   get: () => modelValue || '#000000',
   set: value => {
     emit('update:modelValue', value)

@@ -85,9 +85,11 @@ You can also use a similar mechanism in custom components using `useList` and `u
 In Roughness, all components that support `v-model` also support not binding the properties and events, which means:
 
 - You can completely not bind the property and event, and the value will be controlled internally. At this time, the component can still maintain the value correctly, for example, when it is used in form submission;
-- You can bind the property only (which could be static), then the value will be used as the **default value** of the one inside the component. The property inside the component will be updated when the bound value is updated;
-- You can bind the event only. It will be triggered normally when the property inside the component is updated;
+- You can just bind the property (which could be static), then the value will be used as the **default value** of the one inside the component. The property inside the component will be updated when the bound value is updated;
+- You can just bind the event. It will be triggered normally when the property inside the component is updated;
 - You can bind both the property and the event through `v-model` at the same time, and the property inside the component will be synchronized with the bound value.
+
+You can also use a similar mechanism in custom components using `useModel`.
 
 ## Renderable
 

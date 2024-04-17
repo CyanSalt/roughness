@@ -21,7 +21,7 @@ export function sentenceCase(text: string) {
   return startCase(text).toLowerCase().replace(/^\w/, matched => matched.toUpperCase())
 }
 
-export function effectRef<T>(getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>) {
+export function useModel<T>(getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>) {
   let getter: ComputedGetter<T>
   let setter: ComputedSetter<T> | undefined
   if (typeof getterOrOptions === 'function') {
@@ -30,12 +30,19 @@ export function effectRef<T>(getterOrOptions: ComputedGetter<T> | WritableComput
     getter = getterOrOptions.get
     setter = getterOrOptions.set
   }
-  let value = ref(getter()) as Ref<T>
+  let value = ref() as Ref<T>
+  let sealed = false
   watchEffect(() => {
+    sealed = true
     value.value = getter()
-  }, { flush: 'post' })
+    sealed = false
+  }, { flush: 'sync' })
   if (setter) {
-    watch(value, setter)
+    watch(value, updated => {
+      if (!sealed) {
+        setter(updated)
+      }
+    }, { flush: 'sync' })
   }
   return value
 }

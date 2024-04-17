@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import { effectRef, sentenceCase } from '../common/utils'
+import { useModel, sentenceCase } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -117,7 +117,7 @@ const placeholder = $computed(() => {
   return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`enter-${name}`) : undefined)
 })
 
-let internalModelValue = $(effectRef({
+let internalModelValue = $(useModel({
   get: () => {
     return typeof modelValue === 'number' ? String(modelValue) : modelValue
   },

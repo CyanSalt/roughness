@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { watchEffect } from 'vue'
 import type { ColorProps, SizeProps } from '../common/utils'
-import { effectRef } from '../common/utils'
+import { useModel } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -41,7 +41,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $(effectRef({
+let internalOpen = $(useModel({
   get: () => open,
   set: value => {
     emit('update:open', internalOpen)

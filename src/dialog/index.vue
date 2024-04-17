@@ -3,7 +3,7 @@ import '../common/style.scss'
 import { X } from 'lucide'
 import { watchEffect } from 'vue'
 import RCard from '../card/index.vue'
-import { effectRef } from '../common/utils'
+import { useModel } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 import RLink from '../link/index.vue'
@@ -64,7 +64,7 @@ defineSlots<{
   footer?: (props: {}) => any,
 }>()
 
-let internalOpen = $(effectRef({
+let internalOpen = $(useModel({
   get: () => open,
   set: value => {
     emit('update:open', value)
