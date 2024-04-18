@@ -28,6 +28,26 @@ In dark and light mode, in addition to the foreground and background colors, the
   </RSpace>
 </RSpace>
 
+## Fonts
+
+You can load one or more fonts of your choice by any means and specify the font name(s) with the custom property.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cabin-sketch/latin.css">
+
+<style>
+:root {
+  --r-common-font-family: 'Cabin Sketch', cursive;
+}
+</style>
+```
+
+::: tip
+
+It is recommended to always add `cursive` or other fallback font at the end of the list, which could be useful for non-Latin (such as CJK) environments, for example browser translation.
+
+:::
+
 ## Customizing Theme
 
 Most components support specific CSS custom properties. You can find them in the documentation related to components, such as [Button Styles](/components/button#styles).
@@ -157,17 +177,7 @@ Common style properties are declared under the root node. Changing them will aff
 
   </template>
 
-  Font family of components. You can load one or more fonts of your choice by any means and specify the font name(s) with this property.
-
-  ```html
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cabin-sketch/latin.css">
-
-  <style>
-  :root {
-    --r-common-font-family: 'Cabin Sketch', cursive;
-  }
-  </style>
-  ```
+  Font family of components.
 
   </RStyle>
 
