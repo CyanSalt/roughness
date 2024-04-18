@@ -146,10 +146,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-icon {
   // Color of the icon.
-  // @type {<color>}
   --R-icon-color: var(--r-icon-color, var(--R-text-color));
   // Stroke line color of the icon.
-  // @type {<color>}
   --R-icon-stroke-color: var(--r-icon-stroke-color, var(--R-icon-color));
   // Stroke line width of the icon.
   // @type {<length>}

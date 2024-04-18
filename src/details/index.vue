@@ -92,7 +92,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 .r-details {
   // Color of summary text and marker.
-  // @type {<color>}
   --R-details-summary-color: var(--r-details-summary-color, var(--r-common-color));
   // Size of the block of summary marker.
   // @type {<length>}

@@ -109,7 +109,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-toast {
   // Color of the toast text and border.
-  // @type {<color>}
   --R-toast-color: var(--r-toast-color, var(--r-element-color));
   position: fixed;
   inset: unset;

@@ -52,7 +52,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-badge {
   // Color of the badge marker.
-  // @type {<color>}
   --R-badge-color: var(--r-badge-color, var(--r-common-error-color));
   // Vertical padding of the badge marker.
   // @type {<'padding-top'>{1,2}}

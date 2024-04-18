@@ -45,7 +45,6 @@ provide(listStyleInjection, $$(listStyle))
 <style lang="scss">
 .r-list {
   // Color of the list marker.
-  // @type {<color>}
   --R-list-marker-color: var(--r-list-marker-color, var(--r-common-color));
   // Area height of the list marker.
   // @type {<length>}

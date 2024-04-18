@@ -194,7 +194,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-table {
   // Color of the table border.
-  // @type {<color>}
   --R-table-border-color: var(--r-table-border-color, var(--r-common-color));
 }
 </style>

@@ -103,7 +103,6 @@ watchEffect(() => {
 <style lang="scss">
 .r-graphics {
   // Color of the graphics lines by default.
-  // @type {<color>}
   --R-graphics-stroke-color: var(--r-graphics-stroke-color, var(--r-common-color));
   pointer-events: none;
   &.is-responsive {

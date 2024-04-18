@@ -130,18 +130,15 @@ const style = $computed(() => {
 
 .r-color-picker {
   // Color of the color picker text and border.
-  // @type {<color>}
-  // @default var(--r-common-color) `var(--r-common-color)` in adjusting hue and saturation to be the same as the value if set
+  // @default var(--r-common-color) in adjusting hue and saturation to be the same as the value if set
   --R-color-picker-color: var(--r-color-picker-color, var(--r-common-color));
   // Width of the color picker border.
   // @type {<length>}
-  // @default 1px `2px` when focused or active
   --R-color-picker-border-width: var(--r-color-picker-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   // @type {<length>+ | none}
-  // @default none `8px` when hovered
   --R-color-picker-border-dash: var(--r-color-picker-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
@@ -155,9 +152,11 @@ const style = $computed(() => {
     transition: border-spacing 1ms, border-top 1ms, background-color 1ms !important;
   }
   &:hover:not(.is-loading) {
+    // @default 8px when hovered
     --R-color-picker-border-dash: var(--r-color-picker-border-dash, 8px);
   }
   &:focus, &:active {
+    // @default 2px when focused or active
     --R-color-picker-border-width: var(--r-color-picker-border-width, 2px);
   }
   &:not(.is-loading) {

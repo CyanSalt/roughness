@@ -93,7 +93,6 @@ provide(nameInjection, $$(name))
   // @type {<length>}
   --R-form-item-required-marker-size: var(--r-form-item-required-marker-size, 4px);
   // Color of the marker when `required` is `true`.
-  // @type {<color>}
   --R-form-item-required-marker-color: var(--r-form-item-required-marker-color, var(--r-common-error-color));
   position: relative;
   box-sizing: border-box;

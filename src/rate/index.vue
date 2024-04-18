@@ -100,7 +100,6 @@ watchEffect(() => {
 
 .r-rate {
   // Color of the rate control when active.
-  // @type {<color>}
   --R-rate-color: var(--r-rate-color, var(--r-common-primary-color));
   // Size of the rate control.
   // @type {<length>}

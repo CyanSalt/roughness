@@ -125,14 +125,11 @@ function change(event: InputEvent) {
 
 .r-upload {
   // Color of the upload text.
-  // @type {<color>}
   --R-upload-color: var(--r-upload-color, var(--r-common-color));
   // Color of the upload border.
-  // @type {<color>}
   --R-upload-border-color: var(--r-upload-border-color, var(--R-upload-color));
   // Width of the upload border.
   // @type {<length>}
-  // @default 1px `2px` when focused or active
   --R-upload-border-width: var(--r-upload-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
@@ -152,6 +149,7 @@ function change(event: InputEvent) {
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:focus, &:active {
+    // @default 2px when focused or active
     --R-upload-border-width: var(--r-upload-border-width, 2px);
   }
   &:disabled:not(.is-loading) {

@@ -121,7 +121,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // @type {<length>}
   --R-avatar-size: var(--r-avatar-size, 2em);
   // Color of the avatar border.
-  // @type {<color>}
   --R-avatar-border-color: var(--r-avatar-border-color, var(--r-common-color));
   // Width of the avatar border.
   // @type {<length>}

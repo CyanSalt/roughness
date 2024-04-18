@@ -120,10 +120,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-card {
   // Color of the card text.
-  // @type {<color>}
   --R-card-color: var(--r-card-color, var(--r-element-color));
   // Color of the card border.
-  // @type {<color>}
   --R-card-border-color: var(--r-card-border-color, var(--R-card-color));
   // Width of the card border.
   // @type {<length>}

@@ -40,7 +40,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 .r-divider {
   // Color of the divider.
-  // @type {<color>}
   --R-divider-color: var(--r-divider-color, var(--r-common-color));
   // Size of the divider gap.
   // @type {<length>}

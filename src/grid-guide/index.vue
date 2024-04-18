@@ -28,8 +28,6 @@ const {
 
 .r-grid-guide {
   // Color of the guide lines.
-  // @type {<color>}
-  // @default #f5f5f5 `rgb(255 255 255 / 4%)` in dark theme
   --R-grid-guide-color: var(--r-grid-guide-color, #f5f5f5);
   // Size of the grid cell.
   // @type {<length>}
@@ -62,6 +60,7 @@ const {
     inline-size: 100%;
   }
   :root.dark & {
+    // @default rgb(255 255 255 / 4%) in dark theme
     --R-grid-guide-color: var(--r-grid-guide-color, rgb(255 255 255 / 4%));
   }
 }

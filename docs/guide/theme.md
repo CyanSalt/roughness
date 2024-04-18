@@ -47,13 +47,11 @@ All elements with `r-*` classes support the following style variables:
 
 <RStylesTable>
 
-  <template #name="{ value }">--r-element-{{ value }}</template>
+  <RStyle name="--r-element-font-family">
 
-  <RStyle name="font-family">
+  <template #type>
 
-  <template #values>
-
-  `<family-name> +`
+  `<family-name>+`
 
   </template>
 
@@ -67,9 +65,9 @@ All elements with `r-*` classes support the following style variables:
 
   </RStyle>
 
-  <RStyle name="font-size">
+  <RStyle name="--r-element-font-size">
 
-  <template #values>
+  <template #type>
 
   `<length>`
 
@@ -85,11 +83,11 @@ All elements with `r-*` classes support the following style variables:
 
   </RStyle>
 
-  <RStyle name="line-height">
+  <RStyle name="--r-element-line-height">
 
-  <template #values>
+  <template #type>
 
-  `<number>` or `<length>` or `<percentage>` or `normal`
+  `<number> | <length> | <percentage> | normal`
 
   </template>
 
@@ -119,11 +117,9 @@ The following properties (of colors) are effective for the **text content**:
 
 <RStylesTable>
 
-  <template #name="{ value }">--r-element-{{ value }}</template>
+  <RStyle name="--r-element-color">
 
-  <RStyle name="color">
-
-  <template #values>
+  <template #type>
 
   `<color>`
 
@@ -147,19 +143,11 @@ Common style properties are declared under the root node. Changing them will aff
 
 <RStylesTable>
 
-  <template #name="{ value }">--r-common-{{ value }}</template>
+  <RStyle name="--r-common-font-family">
 
-  <template #values>
+  <template #type>
 
-  `<color>`
-
-  </template>
-
-  <RStyle name="font-family">
-
-  <template #values>
-
-  `<family-name> +`
+  `<family-name>+`
 
   </template>
 
@@ -173,9 +161,9 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="font-size">
+  <RStyle name="--r-common-font-size">
 
-  <template #values>
+  <template #type>
 
   `<length>`
 
@@ -191,9 +179,9 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="small-font-size">
+  <RStyle name="--r-common-small-font-size">
 
-  <template #values>
+  <template #type>
 
   `<length>`
 
@@ -211,9 +199,9 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="large-font-size">
+  <RStyle name="--r-common-large-font-size">
 
-  <template #values>
+  <template #type>
 
   `<length>`
 
@@ -229,11 +217,11 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="line-height">
+  <RStyle name="--r-common-line-height">
 
-  <template #values>
+  <template #type>
 
-  `<number>` or `<length>` or `<percentage>` or `normal`
+  `<number> | <length> | <percentage> | normal`
 
   </template>
 
@@ -247,11 +235,11 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="box-padding-block">
+  <RStyle name="--r-common-box-padding-block">
 
-  <template #values>
+  <template #type>
 
-  1-2 `<length>` or `<percentage>`
+  `<'padding-top'>`
 
   </template>
 
@@ -265,11 +253,11 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="box-padding-inline">
+  <RStyle name="--r-common-box-padding-inline">
 
-  <template #values>
+  <template #type>
 
-  1-2 `<length>` or `<percentage>`
+  `<'padding-top'>`
 
   </template>
 
@@ -283,9 +271,9 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
-  <RStyle name="overlay-z-index">
+  <RStyle name="--r-common-overlay-z-index">
 
-  <template #values>
+  <template #type>
 
   `<integer>`
 
@@ -307,15 +295,13 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
 <RStylesTable>
 
-  <template #name="{ value }">--r-common-{{ value }}</template>
-
-  <template #values>
+  <template #type>
 
   `<color>`
 
   </template>
 
-  <RStyle name="color">
+  <RStyle name="--r-common-color">
 
   <template #default-value>
 
@@ -333,7 +319,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="background-color">
+  <RStyle name="--r-common-background-color">
 
   <template #default-value>
 
@@ -351,7 +337,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="primary-color">
+  <RStyle name="--r-common-primary-color">
 
   <template #default-value>
 
@@ -363,7 +349,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="info-color">
+  <RStyle name="--r-common-info-color">
 
   <template #default-value>
 
@@ -375,7 +361,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="success-color">
+  <RStyle name="--r-common-success-color">
 
   <template #default-value>
 
@@ -387,7 +373,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="warning-color">
+  <RStyle name="--r-common-warning-color">
 
   <template #default-value>
 
@@ -399,7 +385,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="error-color">
+  <RStyle name="--r-common-error-color">
 
   <template #default-value>
 
@@ -411,7 +397,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
-  <RStyle name="comment-color">
+  <RStyle name="--r-common-comment-color">
 
   <template #default-value>
 

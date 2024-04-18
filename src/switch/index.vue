@@ -121,20 +121,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-switch {
   // Color of the switch control border.
-  // @type {<color>}
   --R-switch-border-color: var(--r-switch-border-color, var(--r-common-color));
   // Width of the switch control border.
   // @type {<length>}
-  // @default 1px `2px` when focused or active
   --R-switch-border-width: var(--r-switch-border-width, 1px);
   // Size of the switch control.
   // @type {<length>}
   --R-switch-control-size: var(--r-switch-control-size, var(--r-common-line-height));
   // Color of the switch track when open.
-  // @type {<color>}
   --R-switch-track-color: var(--r-switch-track-color, var(--r-common-primary-color));
   // Color of the switch handle.
-  // @type {<color>}
   --R-switch-handle-color: var(--r-switch-handle-color, var(--r-common-background-color));
   position: relative;
   cursor: pointer;
@@ -145,6 +141,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &:focus-within,
   &:not(:has(> .r-checkbox__input:disabled)):active {
+    // @default 2px when focused or active
     --R-switch-border-width: var(--r-switch-border-width, 2px);
   }
   &:has(> .r-checkbox__input:disabled) {

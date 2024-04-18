@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import { useModel, sentenceCase } from '../common/utils'
+import { sentenceCase, useModel } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -192,17 +192,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-input {
   // Color of the input border.
-  // @type {<color>}
   --R-input-border-color: var(--r-input-border-color, var(--r-common-color));
   // Width of the input border.
   // @type {<length>}
-  // @default 1px `2px` when focused or active
   --R-input-border-width: var(--r-input-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   // @type {<length>+ | none}
-  // @default none `8px` when hovered
   --R-input-border-dash: var(--r-input-border-dash, none);
   // Size of the input.
   // @type {<length>}
@@ -217,13 +214,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     transition: border-spacing 1ms, border-top 1ms, line-height 1ms !important;
   }
   &:has(> .r-input__input:hover:not(:read-only, :disabled)) {
+    // @default 8px when hovered
     --R-input-border-dash: var(--r-input-border-dash, 8px);
   }
   &:has(> .r-input__input:focus),
   &:active {
+    // @default 2px when focused or active
     --R-input-border-width: var(--r-input-border-width, 2px);
   }
   &:has(> .r-input__input:user-invalid) {
+    // @default var(--r-common-error-color) if invalid
     --R-input-border-color: var(--r-input-border-color, var(--r-common-error-color));
   }
   &.is-multiline {

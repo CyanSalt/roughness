@@ -123,21 +123,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-button {
   // Color of the button text.
-  // @type {<color>}
-  // @default var(--r-element-color)
   --R-button-color: var(--r-button-color, var(--r-element-color));
   // Color of the button border.
-  // @type {<color>}
   --R-button-border-color: var(--r-button-border-color, var(--R-button-color));
   // Width of the button border.
   // @type {<length>}
-  // @default 1px `2px` when focused or active
   --R-button-border-width: var(--r-button-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   // @type {<length>+ | none}
-  // @default none `8px` when hovered
   --R-button-border-dash: var(--r-button-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
@@ -153,9 +148,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:hover:not(.is-loading) {
+    // @default 8px when hovered
     --R-button-border-dash: var(--r-button-border-dash, 8px);
   }
   &:focus, &:active {
+    // @default 2px when focused or active
     --R-button-border-width: var(--r-button-border-width, 2px);
   }
   &:not(.is-loading) {

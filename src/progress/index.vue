@@ -111,7 +111,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-progress {
   // Color of the progress bar and its content.
-  // @type {<color>}
   --R-progress-color: var(--r-progress-color, var(--r-element-color));
   // Height of the progress bar.
   // @type {<length>}

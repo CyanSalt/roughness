@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { Spec } from 'comment-parser'
 import { RText } from '../../../src'
+import type { CSSVar } from '../loaders/sfc.data'
 import { data } from '../loaders/sfc.data'
 import MarkdownBlock from './MarkdownBlock.vue'
 import REvent from './REvent.vue'
@@ -54,16 +55,61 @@ function title(text: string) {
 
 function type(tags: Spec[] | undefined) {
   const specs = tags?.filter(tag => tag.tag === 'type')
-  return specs?.length > 1 ? specs.map(spec => spec?.type) : specs?.[0]?.type
+  return specs && specs.length > 1 ? specs.map(spec => spec?.type) : specs?.[0]?.type
 }
 
-function defaultValue(tags: Spec[] | undefined) {
-  const spec = tags?.find(tag => tag.tag === 'default')
-  return spec ? (spec.description ? `${spec.description}, ${inlineCode(spec.name)} else` : inlineCode(spec.name)) : undefined
+function defaultValue(tags: Spec[] | undefined, value: string) {
+  const specs = tags?.filter(tag => tag.tag === 'default')
+  if (!specs?.length) return inlineCode(value)
+  return [
+    ...specs.map(spec => `${inlineCode(spec.name)} ${spec.description}`),
+    `${inlineCode(value)} else`,
+  ].join(', ')
 }
 
 function ignore(tags: Spec[] | undefined) {
   return tags?.some(tag => tag.tag === 'ignore')
+}
+
+function concat<T>(arr1: T[] | undefined, arr2: T[] | undefined) {
+  return arr1 || arr2 ? [...(arr1 ?? []), ...(arr2 ?? [])] : undefined
+}
+
+function filterVars(cssVars: CSSVar[]) {
+  return cssVars.filter(cssVar => {
+    const matches = cssVar.defaultValue.match(/^var\((?<name>--r-[a-z-]+)\s*,\s*(?<default>.+)\)$/)
+    return matches && cssVar.name === `--R-${matches.groups!.name.slice(4)}`
+  })
+}
+
+function uniqueVars(cssVars: CSSVar[]) {
+  const processed = cssVars.reduce((map, cssVar) => {
+    if (map.has(cssVar.name)) {
+      const existing = map.get(cssVar.name)!
+      map.set(cssVar.name, {
+        ...existing,
+        tags: concat(existing.tags, cssVar.tags),
+        description: concat(existing.description, cssVar.description),
+      })
+    } else {
+      map.set(cssVar.name, cssVar)
+    }
+    return map
+  }, new Map<string, CSSVar>())
+  return Array.from(processed.values())
+}
+
+function publicName(nameOrValue: string) {
+  return nameOrValue.replace(/--R-/g, '--r-')
+}
+
+function guessType(name: string) {
+  if (/-color$/.test(name)) return '<color>'
+}
+
+function fallback(value: string) {
+  const matches = value.match(/^var\([^,]+,\s*(?<default>.+)\)$/)
+  return matches ? publicName(matches.groups!.default) : value
 }
 
 function inlineCode(text: string | string[] | undefined) {
@@ -167,15 +213,15 @@ function paragraph(text: string | undefined) {
     </slot>
     <RStylesTable>
       <template
-        v-for="cssVar in result?.cssVars ?? []"
+        v-for="cssVar in uniqueVars(filterVars(result?.cssVars ?? []))"
         :key="cssVar.name"
       >
-        <RStyle v-if="!ignore(cssVar.tags)" :name="cssVar.name">
-          <template v-if="type(cssVar.tags)" #type>
-            <MarkdownBlock inline :source="inlineCode(type(cssVar.tags))" />
+        <RStyle v-if="!ignore(cssVar.tags)" :name="publicName(cssVar.name)">
+          <template #type>
+            <MarkdownBlock inline :source="inlineCode(type(cssVar.tags) ?? guessType(cssVar.name))" />
           </template>
           <template #default-value>
-            <MarkdownBlock inline :source="defaultValue(cssVar.tags) ?? inlineCode(cssVar.defaultValue)" />
+            <MarkdownBlock inline :source="defaultValue(cssVar.tags, fallback(cssVar.defaultValue))" />
           </template>
           <template v-if="cssVar.description">
             <MarkdownBlock

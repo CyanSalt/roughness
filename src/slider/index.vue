@@ -165,14 +165,11 @@ watchEffect(() => {
 
 .r-slider {
   // Color of the slider track when active.
-  // @type {<color>}
   --R-slider-color: var(--r-slider-color, var(--r-common-primary-color));
   // Color of the slider control and track border.
-  // @type {<color>}
   --R-slider-border-color: var(--r-slider-border-color, var(--r-common-color));
   // Width of the slider control and track border.
   // @type {<length>}
-  // @default 1px `2px` when focused or active
   --R-slider-border-width: var(--r-slider-border-width, 1px);
   // Size of the slider control.
   // @type {<length>}
@@ -191,6 +188,7 @@ watchEffect(() => {
     transition: border-top 1ms, border-right 1ms !important;
   }
   &:has(> .r-slider__input:focus), &:active {
+    // @default 2px when focused or active
     --R-slider-border-width: var(--r-slider-border-width, 2px);
   }
   &:has(> .r-slider__input:disabled) {

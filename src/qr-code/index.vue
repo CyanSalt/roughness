@@ -57,7 +57,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 .r-qr-code {
   // Color of the QR Code cells.
-  // @type {<color>}
   --R-qr-code-color: var(--r-qr-code-color, var(--r-common-color));
   // Size of the QR Code.
   // @type {<length>}

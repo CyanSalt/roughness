@@ -18,17 +18,17 @@ import {
 } from '@vue-macros/common'
 import type { Spec } from 'comment-parser'
 import { parse as parseComment } from 'comment-parser'
-import type { Comment, Rule } from 'postcss'
+import type { Comment, Node as CSSNode } from 'postcss'
 import scss from 'postcss-scss'
 import { defineLoader } from 'vitepress'
 
 const root = path.join(import.meta.dirname, '../../..')
 
-interface Options {
+export interface Options {
   name: string | undefined,
 }
 
-interface PropLike {
+export interface PropLike {
   name: string,
   type: string | string[] | undefined,
   defaultValue: string | string[] | undefined,
@@ -36,14 +36,14 @@ interface PropLike {
   description: string[] | undefined,
 }
 
-interface EmitLike {
+export interface EmitLike {
   name: string,
   type: string[],
   tags: Spec[] | undefined,
   description: string[] | undefined,
 }
 
-interface CSSVar {
+export interface CSSVar {
   name: string,
   defaultValue: string,
   tags: Spec[] | undefined,
@@ -148,37 +148,34 @@ function processOptions(expr: ObjectExpression): Options {
   }
 }
 
+function getLeadingComments(node: CSSNode) {
+  let comments: Comment[] = []
+  for (let current = node.prev(); current?.type === 'comment'; current = current.prev()) {
+    comments.unshift(current)
+  }
+  return comments
+}
+
 function parseCssVars(sfc: SFC) {
   const cssVars: CSSVar[] = []
   for (const style of sfc.styles) {
     const ast = scss.parse(style.content)
-    const rootRules = ast.nodes.filter((node): node is Rule => node.type === 'rule')
-    for (const rule of rootRules) {
-      let comments: Comment[] = []
-      for (const node of rule.nodes) {
-        if (node.type === 'comment') {
-          comments.push(node)
-        } else {
-          const annotations = comments.length
-            ? parseComment(`/**\n${comments.map(comment => ` * ${comment.text}`).join('\n')}\n */`, {
-              spacing: 'preserve',
-            })
-            : undefined
-          comments = []
-          if (node.type === 'decl') {
-            const matches = node.value.match(/var\((?<name>--r-[a-z-]+)\s*,\s*(?<default>[^;]+)\)/)
-            if (matches && node.prop === `--R-${matches.groups!.name.slice(4)}`) {
-              cssVars.push({
-                name: matches.groups!.name,
-                defaultValue: matches.groups!.default.replace(/--R-/g, '--r-'),
-                tags: annotations?.flatMap(annotation => annotation.tags),
-                description: annotations?.flatMap(annotation => annotation.description),
-              })
-            }
-          }
-        }
+    ast.walkDecls(decl => {
+      const comments = getLeadingComments(decl)
+      const annotations = comments.length
+        ? parseComment(`/**\n${comments.map(comment => ` * ${comment.text}`).join('\n')}\n */`, {
+          spacing: 'preserve',
+        })
+        : undefined
+      if (decl.prop.startsWith('--')) {
+        cssVars.push({
+          name: decl.prop,
+          defaultValue: decl.value,
+          tags: annotations?.flatMap(annotation => annotation.tags),
+          description: annotations?.flatMap(annotation => annotation.description),
+        })
       }
-    }
+    })
   }
   return cssVars
 }

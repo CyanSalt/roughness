@@ -10,7 +10,7 @@ import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import { useModel, sentenceCase } from '../common/utils'
+import { sentenceCase, useModel } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -253,11 +253,9 @@ provide(labelsInjection, labels)
 
 .r-select {
   // Color of the select control border.
-  // @type {<color>}
   --R-select-border-color: var(--r-select-border-color, var(--r-common-color));
   // Width of the select control border.
   // @type {<length>}
-  // @default 1px `2px` when focused
   --R-select-border-width: var(--r-select-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
@@ -271,10 +269,10 @@ provide(labelsInjection, labels)
   // @type {<length>+ | none}
   --R-select-dropdown-border-dash: var(--r-select-dropdown-border-dash, none);
   // Vertical padding of the select dropdown.
-  // @type {<'padding-top'>{1,2}}
+  // @type {<'padding-top'>}
   --R-select-dropdown-padding-block: var(--r-select-dropdown-padding-block, calc(1em - 4px));
   // Horizontal padding of the select dropdown.
-  // @type {<'padding-top'>{1,2}}
+  // @type {<'padding-top'>}
   --R-select-dropdown-padding-inline: var(--r-select-dropdown-padding-inline, calc(1em - 4px));
   position: relative;
   display: inline-flex;
@@ -290,6 +288,7 @@ provide(labelsInjection, labels)
     transition: border-spacing 1ms, border-top 1ms !important;
   }
   &:has(> .r-select__input:focus) {
+    // @default 2px when focused
     --R-select-border-width: var(--r-select-border-width, 2px);
   }
   &:not(.is-loading) {
