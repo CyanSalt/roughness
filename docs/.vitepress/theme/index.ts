@@ -13,6 +13,8 @@ import RStylesTable from '../components/RStylesTable.vue'
 import RUsage from '../components/RUsage.vue'
 import '../../../src/common/style.scss'
 import { markdownPlugin } from '../markdown/roughness-runtime'
+
+import '@fontsource/cabin-sketch/latin.css'
 import './style.scss'
 
 export default {

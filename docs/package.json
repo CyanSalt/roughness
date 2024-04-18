@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "@babel/types": "^7.24.0",
+    "@fontsource/cabin-sketch": "^5.0.18",
     "@types/markdown-it": "^14.0.1",
     "@vue-macros/api": "^0.9.5",
     "@vue-macros/common": "^1.10.2",

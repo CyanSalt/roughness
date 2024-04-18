@@ -1,21 +1,9 @@
 @use 'sass:color';
 @use 'sass:math';
 
-@font-face {
-  font-family: 'CabinSketch';
-  font-weight: normal;
-  src: url('./fonts/CabinSketch.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'CabinSketch';
-  font-weight: bold;
-  src: url('./fonts/CabinSketch-Bold.woff2') format('woff2');
-}
-
 @layer base {
   :root {
-    --r-common-font-family: 'CabinSketch', cursive;
+    --r-common-font-family: cursive;
     --r-common-font-size: 16px;
     --r-common-small-font-size: calc(var(--r-common-font-size) - 4px);
     --r-common-large-font-size: calc(var(--r-common-font-size) + 4px);

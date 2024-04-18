@@ -7,7 +7,7 @@ import { Bar } from 'vue-chartjs'
 
 Chart.register(BarElement, CategoryScale, LinearScale)
 
-Chart.defaults.font.family = '\'CabinSketch\', cursive'
+Chart.defaults.font.family = '\'Cabin Sketch\', cursive'
 
 const colors = useColors()
 
@@ -64,7 +64,7 @@ import { BarElement, CategoryScale, Chart, LinearScale } from 'chart.js'
 // for bar charts
 Chart.register(BarElement, CategoryScale, LinearScale)
 
-Chart.defaults.font.family = '\'CabinSketch\', cursive'
+Chart.defaults.font.family = '\'Cabin Sketch\', cursive'
 ```
 
 ## Example

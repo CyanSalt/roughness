@@ -153,11 +153,21 @@ Common style properties are declared under the root node. Changing them will aff
 
   <template #default-value>
 
-  `'CabinSketch', cursive`
+  `cursive`
 
   </template>
 
-  Font family of components.
+  Font family of components. You can load one or more fonts of your choice by any means and specify the font name(s) with this property.
+
+  ```html
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cabin-sketch/latin.css">
+
+  <style>
+  :root {
+    --r-common-font-family: 'Cabin Sketch', cursive;
+  }
+  </style>
+  ```
 
   </RStyle>
 

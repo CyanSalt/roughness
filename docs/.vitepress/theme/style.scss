@@ -1,6 +1,7 @@
 @use 'sass:color';
 
 :root {
+  --r-common-font-family: 'Cabin Sketch', cursive;
   --vp-font-family-base: var(--r-common-font-family);
   --vp-c-bg: var(--r-common-background-color);
   --vp-c-bg-soft: var(--vp-c-bg-alt);
