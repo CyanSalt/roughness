@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
-import type { RoughSVG } from 'roughjs/bin/svg'
+import { Asterisk } from 'lucide'
 import { inject, provide, ref } from 'vue'
-import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize } from '../graphics/utils'
+import RIcon from '../icon/index.vue'
 import RSpace from '../space/index.vue'
 import { labelInlineInjection, nameInjection } from './utils'
 
@@ -17,7 +15,6 @@ const {
   labelInline: userLabelInline = undefined,
   name,
   required = false,
-  graphicsOptions,
 } = defineProps<{
   /** Whether the label of the form item is displayed as an inline box. */
   labelInline?: boolean,
@@ -25,7 +22,7 @@ const {
   name?: string,
   /** Whether the field is required. */
   required?: boolean,
-} & GraphicsProps>()
+}>()
 
 defineSlots<{
   /** Label of the form item. */
@@ -46,18 +43,6 @@ const labelInline = $computed(() => {
   return userLabelInline ?? formLabelInline ?? true
 })
 
-
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  const { width, height } = getSVGSize(svg)
-  const padding = 2
-  const circle = rc.circle(width / 2, height / 2, Math.min(width, height) - padding * 2, {
-    strokeWidth: 0,
-    fill: 'var(--R-form-item-required-marker-color)',
-    fillStyle: 'solid',
-  })
-  svg.appendChild(circle)
-}
-
 provide(nameInjection, $$(name))
 </script>
 
@@ -70,9 +55,12 @@ provide(nameInjection, $$(name))
     role="group"
   >
     <label class="r-form-item__label">
-      <span v-if="required" class="r-form-item__required-marker">
-        <RGraphics :options="graphicsOptions" @draw="draw" />
-      </span>
+      <RIcon
+        v-if="required"
+        :icon="Asterisk"
+        type="error"
+        class="r-form-item__required-marker"
+      />
       <slot name="label">{{ label }}</slot>
     </label>
     <RSpace vertical :wrap="false" class="r-form-item__container">
@@ -89,11 +77,6 @@ provide(nameInjection, $$(name))
   // Size of the label when `label-inline` is `true`.
   // @type {<length>}
   --R-form-item-label-inline-size: var(--r-form-item-label-inline-size, 105px);
-  // Size of the marker when `required` is `true`.
-  // @type {<length>}
-  --R-form-item-required-marker-size: var(--r-form-item-required-marker-size, 4px);
-  // Color of the marker when `required` is `true`.
-  --R-form-item-required-marker-color: var(--r-form-item-required-marker-color, var(--r-common-error-color));
   position: relative;
   box-sizing: border-box;
   padding-block-start: var(--r-common-box-padding-block);
@@ -109,8 +92,6 @@ provide(nameInjection, $$(name))
   inset-block-start: calc(var(--r-common-box-padding-block) + var(--r-common-line-height) / 2);
   inset-inline-end: calc(var(--r-common-box-padding-inline) / 2);
   display: inline-block;
-  block-size: calc(var(--R-form-item-required-marker-size) + 4px);
-  inline-size: calc(var(--R-form-item-required-marker-size) + 4px);
   transform: translate(50%, -50%);
 }
 .r-form-item__content {
