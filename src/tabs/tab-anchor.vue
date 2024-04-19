@@ -158,7 +158,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     --R-tab-anchor-color: var(--r-tab-anchor-color, var(--r-common-primary-color));
   }
 }
-@layer base {
+@layer roughness__base {
   .r-tab-anchor__button {
     @include reset.button;
   }

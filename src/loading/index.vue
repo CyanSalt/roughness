@@ -30,7 +30,7 @@ defineOptions({
     opacity: 0.2;
   }
 }
-@layer base {
+@layer roughness__base {
   :has(> .r-loading) {
     position: relative;
   }

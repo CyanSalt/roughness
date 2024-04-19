@@ -144,7 +144,7 @@ const nestingGraphicsOptions = $computed(() => {
 <style lang="scss">
 @use '../common/_reset';
 
-@layer base {
+@layer roughness__base {
   .r-dialog {
     @include reset.dialog;
   }

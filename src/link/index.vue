@@ -31,7 +31,7 @@ defineSlots<{
 @use '../common/_partials';
 @use '../common/_reset';
 
-@layer base {
+@layer roughness__base {
   a.r-link {
     @include reset.a;
   }

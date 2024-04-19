@@ -195,7 +195,7 @@ watchEffect(() => {
     cursor: not-allowed;
   }
 }
-@layer base {
+@layer roughness__base {
   .r-slider__input {
     @include reset.input-range;
   }

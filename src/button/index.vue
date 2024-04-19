@@ -113,7 +113,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 @use '../common/_reset';
 
-@layer base {
+@layer roughness__base {
   .r-button {
     @include reset.button;
   }

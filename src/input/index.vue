@@ -231,7 +231,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     inline-size: auto;
   }
 }
-@layer base {
+@layer roughness__base {
   .r-input__input {
     @include reset.input;
   }

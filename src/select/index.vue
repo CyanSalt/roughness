@@ -310,7 +310,7 @@ provide(labelsInjection, labels)
     @include partials.loading-spinner();
   }
 }
-@layer base {
+@layer roughness__base {
   .r-select__input {
     @include reset.input;
   }

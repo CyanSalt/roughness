@@ -115,7 +115,7 @@ watchEffect(() => {
     cursor: not-allowed;
   }
 }
-@layer base {
+@layer roughness__base {
   .r-rate__input {
     @include reset.input-range;
   }

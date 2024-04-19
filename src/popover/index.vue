@@ -223,7 +223,7 @@ const nestingGraphicsOptions = $computed(() => {
   position: relative;
   display: inline-block;
 }
-@layer base {
+@layer roughness__base {
   .r-popover__anchor {
     @include reset.button;
   }

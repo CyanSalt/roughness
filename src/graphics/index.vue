@@ -113,7 +113,7 @@ watchEffect(() => {
     inline-size: 100%;
   }
 }
-@layer base {
+@layer roughness__base {
   :has(> .r-graphics.is-responsive) {
     position: relative;
     z-index: 0;

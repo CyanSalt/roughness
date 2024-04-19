@@ -64,7 +64,7 @@ const {
     --R-grid-guide-color: var(--r-grid-guide-color, rgb(255 255 255 / 4%));
   }
 }
-@layer base {
+@layer roughness__base {
   :has(> .r-grid-guide.is-responsive) {
     position: relative;
     z-index: 0;

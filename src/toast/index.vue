@@ -102,7 +102,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_reset';
 
-@layer base {
+@layer roughness__base {
   .r-toast {
     @include reset.popover;
   }

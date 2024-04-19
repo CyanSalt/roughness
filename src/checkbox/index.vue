@@ -219,7 +219,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     text-decoration-line: line-through;
   }
 }
-@layer base {
+@layer roughness__base {
   .r-checkbox__input {
     @include reset.input-checkbox;
   }

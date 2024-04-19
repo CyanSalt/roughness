@@ -63,7 +63,7 @@ provide(disabledInjection, $$(disabled))
 <style lang="scss">
 @use '../common/_reset';
 
-@layer base {
+@layer roughness__base {
   .r-checkbox-group {
     @include reset.fieldset;
   }
