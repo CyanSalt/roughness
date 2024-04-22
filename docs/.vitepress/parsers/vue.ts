@@ -1,5 +1,3 @@
-import * as fs from 'node:fs'
-import * as path from 'node:path'
 import type { LVal, Node, ObjectExpression, ObjectProperty } from '@babel/types'
 import type { TSFile } from '@vue-macros/api'
 import { handleTSEmitsDefinition, handleTSPropsDefinition } from '@vue-macros/api'
@@ -18,11 +16,8 @@ import {
 } from '@vue-macros/common'
 import type { Spec } from 'comment-parser'
 import { parse as parseComment } from 'comment-parser'
-import type { Comment, Node as CSSNode } from 'postcss'
-import scss from 'postcss-scss'
-import { defineLoader } from 'vitepress'
-
-const root = path.join(import.meta.dirname, '../../..')
+import type { CSSVar } from './scss'
+import { parse as parseSCSS } from './scss'
 
 export interface Options {
   name: string | undefined,
@@ -43,14 +38,7 @@ export interface EmitLike {
   description: string[] | undefined,
 }
 
-export interface CSSVar {
-  name: string,
-  defaultValue: string,
-  tags: Spec[] | undefined,
-  description: string[] | undefined,
-}
-
-export interface AnalyzeResult {
+export interface Result {
   options?: Options,
   props?: PropLike[],
   emits?: EmitLike[],
@@ -148,36 +136,8 @@ function processOptions(expr: ObjectExpression): Options {
   }
 }
 
-function getLeadingComments(node: CSSNode) {
-  let comments: Comment[] = []
-  for (let current = node.prev(); current?.type === 'comment'; current = current.prev()) {
-    comments.unshift(current)
-  }
-  return comments
-}
-
 function parseCssVars(sfc: SFC) {
-  const cssVars: CSSVar[] = []
-  for (const style of sfc.styles) {
-    const ast = scss.parse(style.content)
-    ast.walkDecls(decl => {
-      const comments = getLeadingComments(decl)
-      const annotations = comments.length
-        ? parseComment(`/**\n${comments.map(comment => ` * ${comment.text}`).join('\n')}\n */`, {
-          spacing: 'preserve',
-        })
-        : undefined
-      if (decl.prop.startsWith('--')) {
-        cssVars.push({
-          name: decl.prop,
-          defaultValue: decl.value,
-          tags: annotations?.flatMap(annotation => annotation.tags),
-          description: annotations?.flatMap(annotation => annotation.description),
-        })
-      }
-    })
-  }
-  return cssVars
+  return sfc.styles.flatMap(style => parseSCSS(style.content).cssVars)
 }
 
 async function analyzeSFC(s: MagicString, sfc: SFC) {
@@ -191,7 +151,7 @@ async function analyzeSFC(s: MagicString, sfc: SFC) {
     content: scriptSetup.content,
     ast: program.body,
   }
-  const result: AnalyzeResult = {
+  const result: Result = {
     cssVars: parseCssVars(sfc),
   }
   for (const node of program.body) {
@@ -285,26 +245,8 @@ async function analyzeSFC(s: MagicString, sfc: SFC) {
   return result
 }
 
-export interface DataItem {
-  file: string,
-  result: AnalyzeResult | undefined,
+export async function parse(code: string, file: string) {
+  const s = new MagicString(code)
+  const sfc = parseSFC(code, file)
+  return analyzeSFC(s, sfc)
 }
-
-declare const data: DataItem[]
-export { data }
-
-export default defineLoader({
-  watch: ['../../../src/**/*.vue'],
-  async load(watchedFiles): Promise<DataItem[]> {
-    return Promise.all(watchedFiles.map(async file => {
-      const code = await fs.promises.readFile(file, 'utf8')
-      const s = new MagicString(code)
-      const sfc = parseSFC(code, file)
-      const result = await analyzeSFC(s, sfc)
-      return {
-        file: path.relative(root, file),
-        result,
-      }
-    }))
-  },
-})

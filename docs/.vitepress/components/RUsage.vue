@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { Spec } from 'comment-parser'
 import { RText } from '../../../src'
-import type { CSSVar } from '../loaders/sfc.data'
-import { data } from '../loaders/sfc.data'
+import { data } from '../loaders/vue.data'
+import type { CSSVar } from '../parser/scss'
 import MarkdownBlock from './MarkdownBlock.vue'
 import REvent from './REvent.vue'
 import REventsTable from './REventsTable.vue'
