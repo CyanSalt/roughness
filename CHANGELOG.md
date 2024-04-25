@@ -1,5 +1,23 @@
 
 
+## [0.1.0-beta.22](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.21...v0.1.0-beta.22) (2024-04-25)
+
+
+### Features
+
+* expose `useModel` ([8ec4036](https://github.com/CyanSalt/roughness/commit/8ec40366f60b80e861e4b7efbfa8b40ff288cdfd))
+* externalize fonts ([c3b8133](https://github.com/CyanSalt/roughness/commit/c3b813364c0a724e33fc6c29c3fcc83df5569d2b))
+* **form-item:** asterisk icon ([bdd1b41](https://github.com/CyanSalt/roughness/commit/bdd1b4149dc35cfc35bf57a1ceb2b976566f9499))
+
+
+### Bug Fixes
+
+* **checkbox-group:** local state ([dc58163](https://github.com/CyanSalt/roughness/commit/dc5816330865247f09f1d7daa7f7bf541b30f124))
+* import path ([fe8521f](https://github.com/CyanSalt/roughness/commit/fe8521fed70e4be958356462a7f02c27604a1dd0))
+* **input:** user-invalid style ([a60e266](https://github.com/CyanSalt/roughness/commit/a60e266199614177d2bbf6cd0b6abb24b07cb8b1))
+* rename base layer to avoid conflict ([d3fd72d](https://github.com/CyanSalt/roughness/commit/d3fd72d0b2d78445249a7e02a6eab780f6aacbf8))
+* renderable type ([d2cc13d](https://github.com/CyanSalt/roughness/commit/d2cc13dddda352181d2aaa76ccc568f11d72145a))
+
 ## [0.1.0-beta.21](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.20...v0.1.0-beta.21) (2024-04-12)
 
 
