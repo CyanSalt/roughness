@@ -21,7 +21,7 @@ export function sentenceCase(text: string) {
   return startCase(text).toLowerCase().replace(/^\w/, matched => matched.toUpperCase())
 }
 
-export function useModel<T>(getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>) {
+export function useLocal<T>(getterOrOptions: ComputedGetter<T> | WritableComputedOptions<T>) {
   let getter: ComputedGetter<T>
   let setter: ComputedSetter<T> | undefined
   if (typeof getterOrOptions === 'function') {

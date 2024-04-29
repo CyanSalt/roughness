@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -39,7 +39,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $(useModel({
+let internalOpen = $(useLocal({
   get: () => open,
   set: value => {
     emit('update:open', value)

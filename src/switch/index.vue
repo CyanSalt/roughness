@@ -4,7 +4,7 @@ import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -43,7 +43,7 @@ const emit = defineEmits<{
 
 const name = $(useName($$(userName)))
 
-let internalModelValue = $(useModel({
+let internalModelValue = $(useLocal({
   get: () => modelValue,
   set: value => {
     emit('update:modelValue', value)

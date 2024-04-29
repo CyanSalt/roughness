@@ -5,7 +5,7 @@ import { refDebounced, useMouseInElement } from '@vueuse/core'
 import type { CSSProperties } from 'vue'
 import { watchEffect } from 'vue'
 import RCard from '../card/index.vue'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
 
 defineOptions({
@@ -74,7 +74,7 @@ defineSlots<{
   footer?: (props: {}) => any,
 }>()
 
-let internalOpen = $(useModel({
+let internalOpen = $(useLocal({
   get: () => open,
   set: value => {
     emit('update:open', value)

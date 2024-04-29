@@ -10,7 +10,7 @@ import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import { sentenceCase, useModel } from '../common/utils'
+import { sentenceCase, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -90,7 +90,7 @@ const defaultModelValue: typeof modelValue = $computed<typeof modelValue>(() => 
   )
 })
 
-let internalModelValue = $(useModel({
+let internalModelValue = $(useLocal({
   get: () => defaultModelValue,
   set: value => {
     emit('update:modelValue', value)

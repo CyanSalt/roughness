@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { provide } from 'vue'
 import type { RValueOrKey } from '../common/key'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import RSpace from '../space/index.vue'
 import { disabledInjection, modelInjection, multipleInjection } from './utils'
 
@@ -33,7 +33,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const model = $(useModel({
+const model = $(useLocal({
   get: () => {
     return multiple ? (
       Array.isArray(modelValue) ? modelValue : (modelValue === undefined ? [] : [modelValue])

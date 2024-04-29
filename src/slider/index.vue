@@ -5,7 +5,7 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -64,7 +64,7 @@ function round(value: number) {
   return rest >= step / 2 ? value - rest + step : value - rest
 }
 
-let internalModelValue = $(useModel({
+let internalModelValue = $(useLocal({
   get: () => round(modelValue),
   set: value => {
     emit('update:modelValue', value)

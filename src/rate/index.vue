@@ -5,7 +5,7 @@ import { Star } from 'lucide'
 import type { InputHTMLAttributes } from 'vue'
 import { watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RIcon from '../icon/index.vue'
 import type { IconNode } from '../icon/utils'
@@ -42,7 +42,7 @@ const emit = defineEmits<{
 
 const name = $(useName($$(userName)))
 
-let internalModelValue = $(useModel({
+let internalModelValue = $(useLocal({
   get: () => modelValue,
   set: value => {
     emit('update:modelValue', value)

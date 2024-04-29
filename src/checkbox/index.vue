@@ -8,7 +8,7 @@ import { inject, ref, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, useTransitionListener } from '../common/property'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -90,7 +90,7 @@ watchEffect(onInvalidate => {
   }
 })
 
-let internalChecked = $(useModel({
+let internalChecked = $(useLocal({
   get: () => {
     return typeof multiple === 'boolean' ? (
       Array.isArray(model)

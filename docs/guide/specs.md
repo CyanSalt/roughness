@@ -89,7 +89,7 @@ In Roughness, all components that support `v-model` also support not binding the
 - You can just bind the event. It will be triggered normally when the property inside the component is updated;
 - You can bind both the property and the event through `v-model` at the same time, and the property inside the component will be synchronized with the bound value.
 
-You can also use a similar mechanism in custom components using `useModel`.
+You can also use a similar mechanism in custom components using `useLocal`.
 
 ## Renderable
 

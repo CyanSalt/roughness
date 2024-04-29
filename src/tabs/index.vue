@@ -4,7 +4,7 @@ import { reactive, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { useList } from '../common/list'
-import { useModel } from '../common/utils'
+import { useLocal } from '../common/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
 import { itemsInjection } from './utils'
@@ -44,7 +44,7 @@ defineSlots<{
 
 const items = useList(itemsInjection)
 
-let internalModelValue = $(useModel({
+let internalModelValue = $(useLocal({
   get: () => modelValue,
   set: value => {
     emit('update:modelValue', value)
