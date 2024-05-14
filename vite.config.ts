@@ -37,6 +37,7 @@ export default defineConfig(async () => ({
     dts({
       entryRoot: 'src',
       cleanVueFileName: true,
+      staticImport: true,
     }),
   ],
 }))
