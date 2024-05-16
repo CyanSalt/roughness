@@ -20,7 +20,7 @@
     "release:beta-as-latest": "pnpm run release --preRelease=beta --npm.tag=latest",
     "docs:dev": "pnpm -F docs dev",
     "docs:build": "pnpm -F docs build",
-    "lint:script": "eslint --ignore-path .gitignore --ext .cjs,.js,.ts,.vue --cache --fix .",
+    "lint:script": "eslint --cache --fix './**/*.{cjs,js,ts,vue}'",
     "lint:style": "stylelint --ignore-path .gitignore --cache --fix ./**/*.{css,vue}",
     "lint": "pnpm run lint:script && pnpm run lint:style"
   },
@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/CyanSalt/roughness#readme",
   "devDependencies": {
-    "@cyansalt/eslint-config-preset": "^1.18.0",
+    "@cyansalt/eslint-config": "^4.0.0",
     "@cyansalt/stylelint-config-preset": "^1.4.4",
     "@cyansalt/tsconfig": "^2.2.1",
     "@release-it/conventional-changelog": "^8.0.1",

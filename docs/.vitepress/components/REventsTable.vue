@@ -46,7 +46,7 @@ const events = useList(eventsInjection)
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .r-events-table {
   overflow: auto;
   .r-table {

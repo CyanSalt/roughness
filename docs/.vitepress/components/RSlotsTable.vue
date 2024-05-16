@@ -46,7 +46,7 @@ const slots = useList(slotsInjection)
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .r-slots-table {
   overflow: auto;
   .r-table {

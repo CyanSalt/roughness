@@ -54,7 +54,7 @@ const styles = useList(stylesInjection)
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .r-styles-table {
   overflow: auto;
   .r-table {

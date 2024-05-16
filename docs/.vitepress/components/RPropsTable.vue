@@ -54,7 +54,7 @@ const props = useList(propsInjection)
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .r-props-table {
   overflow: auto;
   .r-table {
