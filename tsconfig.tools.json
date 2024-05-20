@@ -1,14 +1,11 @@
 {
   "extends": "./tsconfig",
   "include": [
-    "**/*.cjs",
     "**/*.js",
     "**/*.ts",
     "**/*.vue",
-    "docs/.vitepress/**/*.cjs",
     "docs/.vitepress/**/*.js",
     "docs/.vitepress/**/*.ts",
-    "docs/.vitepress/**/*.vue",
-    ".eslintrc.cjs"
+    "docs/.vitepress/**/*.vue"
   ]
 }
