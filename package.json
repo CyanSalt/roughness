@@ -41,7 +41,7 @@
   "homepage": "https://github.com/CyanSalt/roughness#readme",
   "devDependencies": {
     "@cyansalt/eslint-config": "^4.0.0",
-    "@cyansalt/stylelint-config": "^4.0.1",
+    "@cyansalt/stylelint-config": "^4.0.2",
     "@cyansalt/tsconfig": "^2.2.1",
     "@release-it/conventional-changelog": "^8.0.1",
     "@types/lodash-es": "^4.17.12",
