@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { X } from 'lucide'
-import { watchEffect } from 'vue'
+import { useSlots, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
@@ -15,8 +15,8 @@ defineOptions({
 
 const {
   closable = true,
-  footer = true,
-  header = true,
+  footer: userFooter = undefined,
+  header: userHeader = undefined,
   open = true,
   state = 'auto',
   graphicsOptions,
@@ -28,13 +28,13 @@ const {
   closable?: boolean,
   /**
    * Whether to display the card footer.
-   * @default true
+   * Will be enabled automatically when the slot is passed.
    * @ignore
    */
   footer?: boolean,
   /**
    * Whether to display the card header.
-   * @default true
+   * Will be enabled automatically when any header slot is passed.
    * @ignore
    */
   header?: boolean,
@@ -70,6 +70,21 @@ let internalOpen = $(useLocal({
     emit('update:open', value)
   },
 }))
+
+const slots = useSlots()
+
+const header = $computed(() => {
+  if (userHeader !== undefined) return userHeader
+  if (slots.title) return true
+  if (slots['header-end'] || closable) return true
+  return false
+})
+
+const footer = $computed(() => {
+  if (userFooter !== undefined) return userFooter
+  if (slots.footer) return true
+  return false
+})
 
 let root = $ref<HTMLDialogElement>()
 

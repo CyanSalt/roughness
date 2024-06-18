@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { useSlots } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import type { ColorProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
@@ -14,15 +15,21 @@ defineOptions({
 })
 
 const {
-  footer = false,
-  header = true,
+  footer: userFooter = undefined,
+  header: userHeader = undefined,
   tag = 'article',
   type,
   graphicsOptions,
 } = defineProps<{
-  /** Whether to display the card footer. */
+  /**
+   * Whether to display the card footer.
+   * Will be enabled automatically when the slot is passed.
+   */
   footer?: boolean,
-  /** Whether to display the card header. */
+  /**
+   * Whether to display the card header.
+   * Will be enabled automatically when any header slot is passed.
+   */
   header?: boolean,
   /**
    * HTML tag for rendering the card.
@@ -52,6 +59,25 @@ defineSlots<{
 }>()
 
 const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
+
+const slots = useSlots()
+
+const defaultTitle = $computed(() => {
+  return COLORED_TYPES.includes(type!) ? type!.toUpperCase() : undefined
+})
+
+const header = $computed(() => {
+  if (userHeader !== undefined) return userHeader
+  if (slots.title || defaultTitle) return true
+  if (slots['header-end']) return true
+  return false
+})
+
+const footer = $computed(() => {
+  if (userFooter !== undefined) return userFooter
+  if (slots.footer) return true
+  return false
+})
 
 const { timestamp, listener } = $(useTransitionListener('::before'))
 
@@ -94,9 +120,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-card__header"
     >
       <RText tag="strong" class="r-card__title">
-        <slot name="title">
-          <template v-if="COLORED_TYPES.includes(type!)">{{ type!.toUpperCase() }}</template>
-        </slot>
+        <slot name="title">{{ defaultTitle }}</slot>
       </RText>
       <slot name="header-end"></slot>
     </RSpace>

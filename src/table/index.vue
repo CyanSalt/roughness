@@ -20,14 +20,14 @@ defineOptions({
 })
 
 const {
-  footer = false,
+  footer: userFooter = undefined,
   header = true,
   rows,
   graphicsOptions,
 } = defineProps<{
   /**
    * Whether to display the table footer.
-   * @default false
+   * Will be enabled automatically when the slot of any column is passed.
    */
   footer?: boolean,
   /**
@@ -48,6 +48,12 @@ defineSlots<{
 }>()
 
 const columns = useList(columnsInjection)
+
+const footer = $computed(() => {
+  if (userFooter !== undefined) return userFooter
+  if (columns.some(column => column.slots.footer)) return true
+  return false
+})
 
 let head = $ref<HTMLTableSectionElement>()
 let body = $ref<HTMLTableSectionElement>()

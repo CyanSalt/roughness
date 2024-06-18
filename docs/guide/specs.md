@@ -24,7 +24,7 @@ For list item components (including `RCarouselItem`, `RCheckbox`, `RTabItem` and
     </script>
 
     <template>
-      <RTabs :content="false">
+      <RTabs>
         <RTabItem value="alice" />
         <RTabItem value="bob" />
       </RTabs>
@@ -33,7 +33,7 @@ For list item components (including `RCarouselItem`, `RCheckbox`, `RTabItem` and
 
     </RDetails>
 
-    <RTabs :content="false">
+    <RTabs>
       <RTabItem value="alice" />
       <RTabItem value="bob" />
     </RTabs>
@@ -52,7 +52,7 @@ For list item components (including `RCarouselItem`, `RCheckbox`, `RTabItem` and
     </script>
 
     <template>
-      <RTabs :content="false">
+      <RTabs>
         <RTabItem v-for="item in data" :key="keyOf(item)" :value="item">
           <template #anchor>{{ item.name }}</template>
         </RTabItem>
@@ -62,7 +62,7 @@ For list item components (including `RCarouselItem`, `RCheckbox`, `RTabItem` and
 
     </RDetails>
 
-    <RTabs :content="false">
+    <RTabs>
       <RTabItem v-for="item in data" :key="keyOf(item)" :value="item">
         <template #anchor>{{ item.name }}</template>
       </RTabItem>

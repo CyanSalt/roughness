@@ -44,7 +44,7 @@ import { RTabItem, RTabs } from 'roughness'
 </script>
 
 <template>
-  <RTabs anchor-side="left" :content="false">
+  <RTabs anchor-side="left">
     <RTabItem value="installation" />
     <RTabItem value="usage" />
     <RTabItem value="theme" />
@@ -55,7 +55,7 @@ import { RTabItem, RTabs } from 'roughness'
 
 :::
 
-<RTabs anchor-side="left" :content="false">
+<RTabs anchor-side="left">
   <RTabItem value="installation" />
   <RTabItem value="usage" />
   <RTabItem value="theme" />

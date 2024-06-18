@@ -15,7 +15,7 @@ defineOptions({
 
 const {
   anchorSide = 'top',
-  content = true,
+  content: userContent = undefined,
   modelValue,
 } = defineProps<{
   /**
@@ -25,7 +25,7 @@ const {
   anchorSide?: 'top' | 'bottom' | 'left' | 'right',
   /**
    * Whether to display the tabs content.
-   * @default true
+   * Will be enabled automatically when the slot of any item is passed.
    */
   content?: boolean,
   /** Value of the active tab item in tabs. */
@@ -43,6 +43,12 @@ defineSlots<{
 }>()
 
 const items = useList(itemsInjection)
+
+const content = $computed(() => {
+  if (userContent !== undefined) return userContent
+  if (items.some(item => item.slots.default)) return true
+  return false
+})
 
 let internalModelValue = $(useLocal({
   get: () => modelValue,

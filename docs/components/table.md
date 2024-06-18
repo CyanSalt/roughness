@@ -63,7 +63,6 @@ import { RTable, RTableColumn } from 'roughness'
   <RTable
     :rows="['unified', 'western', 'eastern']"
     :header="false"
-    footer
   >
     <RTableColumn name="name">
       <template #default="{ row }">
@@ -89,7 +88,6 @@ import { RTable, RTableColumn } from 'roughness'
 <RTable
   :rows="['unified', 'western', 'eastern']"
   :header="false"
-  footer
 >
   <RTableColumn name="name">
     <template #default="{ row }">
