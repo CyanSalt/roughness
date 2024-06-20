@@ -16,8 +16,8 @@ You can use roughness directly from a CDN via HTML tags:
 <script type="importmap">
 {
   "imports": {
-    "roughness": "https://cdn.jsdelivr.net/npm/roughness/dist/index.js",
-    "vue": "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.prod.js"
+    "roughness": "https://cdn.jsdelivr.net/npm/roughness",
+    "vue": "https://cdn.jsdelivr.net/npm/vue"
   }
 }
 </script>
