@@ -1,6 +1,6 @@
 @mixin a {
   text-decoration: none;
-  &:focus {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }
@@ -10,7 +10,7 @@
   padding: 0;
   border: none;
   background-color: transparent;
-  &:focus {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }
@@ -31,7 +31,7 @@
   appearance: none;
   border: none;
   background-color: transparent;
-  &:focus {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }
@@ -39,7 +39,7 @@
 @mixin input-checkbox {
   appearance: none;
   margin: 0;
-  &:focus {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }
@@ -47,7 +47,7 @@
 @mixin input-range {
   appearance: none;
   margin: 0;
-  &:focus {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }
@@ -63,7 +63,7 @@
 @mixin textarea {
   background: none;
   resize: none;
-  &:focus {
+  &:focus, &:focus-visible {
     outline: none;
   }
 }

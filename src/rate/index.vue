@@ -130,7 +130,7 @@ watchEffect(() => {
   font-size: var(--R-rate-control-size);
   &.is-filled,
   .r-rate:hover &,
-  .r-rate:focus-within & {
+  .r-rate__input:focus-visible + & {
     --R-icon-color: var(--R-rate-color);
   }
 }

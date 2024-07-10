@@ -151,7 +151,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     // @default 8px when hovered
     --R-button-border-dash: var(--r-button-border-dash, 8px);
   }
-  &:focus, &:active {
+  &:focus-visible, &:active {
     // @default 2px when focused or active
     --R-button-border-width: var(--r-button-border-width, 2px);
   }

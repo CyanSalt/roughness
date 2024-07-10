@@ -139,12 +139,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     border-top: var(--R-switch-border-width) solid;
     transition: border-top 1ms !important;
   }
-  &:focus-within,
-  &:not(:has(> .r-checkbox__input:disabled)):active {
+  &:has(> .r-switch__input:focus-visible),
+  &:not(:has(> .r-switch__input:disabled)):active {
     // @default 2px when focused or active
     --R-switch-border-width: var(--r-switch-border-width, 2px);
   }
-  &:has(> .r-checkbox__input:disabled) {
+  &:has(> .r-switch__input:disabled) {
     cursor: not-allowed;
     text-decoration-line: line-through;
   }

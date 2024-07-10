@@ -61,3 +61,8 @@
     color: var(--r-element-color);
   }
 }
+.vp-doc button:where([class^='r-'], [class*=' r-']) {
+  &:focus-visible {
+    outline: none;
+  }
+}

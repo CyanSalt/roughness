@@ -187,7 +187,7 @@ watchEffect(() => {
     border-right: var(--R-slider-track-size) solid;
     transition: border-top 1ms, border-right 1ms !important;
   }
-  &:has(> .r-slider__input:focus), &:active {
+  &:has(> .r-slider__input:focus-visible), &:active {
     // @default 2px when focused or active
     --R-slider-border-width: var(--r-slider-border-width, 2px);
   }

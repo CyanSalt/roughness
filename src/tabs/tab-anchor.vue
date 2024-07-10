@@ -149,7 +149,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     // @default 8px when hovered
     --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, 8px);
   }
-  &:has(.r-tab-anchor__button:focus), &:active {
+  &:has(.r-tab-anchor__button:focus-visible), &:active {
     // @default 2px when focused or active
     --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 2px);
   }

@@ -49,7 +49,7 @@ defineSlots<{
     text-decoration-style: dashed;
     text-decoration-thickness: var(--R-link-underline-width);
   }
-  &:focus, &:active {
+  &:focus-visible, &:active {
     // @default 3px when focused or active
     --R-link-underline-width: var(--r-link-underline-width, 3px);
   }

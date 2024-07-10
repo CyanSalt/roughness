@@ -287,7 +287,7 @@ provide(labelsInjection, labels)
     border-top: var(--R-select-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
-  &:has(> .r-select__input:focus) {
+  &:has(> .r-select__input:focus-visible) {
     // @default 2px when focused
     --R-select-border-width: var(--r-select-border-width, 2px);
   }

@@ -148,7 +148,7 @@ function change(event: InputEvent) {
     border-top: var(--R-upload-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
-  &:focus, &:active {
+  &:focus-visible, &:active {
     // @default 2px when focused or active
     --R-upload-border-width: var(--r-upload-border-width, 2px);
   }

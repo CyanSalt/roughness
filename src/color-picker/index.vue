@@ -155,7 +155,7 @@ const style = $computed(() => {
     // @default 8px when hovered
     --R-color-picker-border-dash: var(--r-color-picker-border-dash, 8px);
   }
-  &:focus, &:active {
+  &:focus-visible, &:active {
     // @default 2px when focused or active
     --R-color-picker-border-width: var(--r-color-picker-border-width, 2px);
   }

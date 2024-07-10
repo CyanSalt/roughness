@@ -209,7 +209,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     border-right: var(--R-checkbox-checked-width) solid;
     transition: border-top 1ms, border-right 1ms !important;
   }
-  &:focus-within,
+  &:has(> .r-checkbox__input:focus-visible),
   &:not(:has(> .r-checkbox__input:disabled)):active {
     // @default 2px when focused or active
     --R-checkbox-border-width: var(--r-checkbox-border-width, 2px);
