@@ -69,7 +69,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-block: var(--R-badge-padding-block);
   padding-inline: var(--R-badge-padding-inline);
   color: var(--R-badge-color);
-  transform: translate(50%, -50%);
+  transform: translate(75%, -25%);
   &:has(> .r-badge__marker-content:empty) {
     padding-inline: var(--R-badge-padding-block);
   }
