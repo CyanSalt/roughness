@@ -2,11 +2,13 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { refDebounced, useMouseInElement } from '@vueuse/core'
+import { Redo } from 'lucide'
 import type { CSSProperties } from 'vue'
 import { useSlots, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
+import RIcon from '../icon/index.vue'
 
 defineOptions({
   name: 'RPopover',
@@ -121,6 +123,111 @@ watchEffect(() => {
   }
 })
 
+const arrowStyle = $computed(() => {
+  let style: CSSProperties = {}
+  let rotate = '0'
+  let scaleY = '1'
+  let translateX = '0'
+  let translateY = '0'
+  switch (side) {
+    case 'top':
+      rotate = '0.75turn'
+      break
+    case 'left':
+      rotate = '0.5turn'
+      break
+    case 'bottom':
+      rotate = '0.25turn'
+      break
+  }
+  switch (side) {
+    case 'top':
+      style.bottom = '0'
+      translateY = '50%'
+      break
+    case 'bottom':
+      style.top = '0'
+      translateY = '-50%'
+      break
+    case 'left':
+      style.right = '0'
+      translateX = '50%'
+      break
+    case 'right':
+      style.left = '0'
+      translateX = '-50%'
+      break
+  }
+  switch (side) {
+    case 'top':
+      switch (align) {
+        case 'start':
+          style['inset-inline-start'] = '0'
+          break
+        case 'end':
+          style['inset-inline-end'] = '0'
+          scaleY = '-1'
+          break
+        case 'center':
+        case 'stretch':
+          style.left = '50%'
+          translateX = '-50%'
+          break
+      }
+      break
+    case 'bottom':
+      switch (align) {
+        case 'start':
+          style['inset-inline-start'] = '0'
+          scaleY = '-1'
+          break
+        case 'end':
+          style['inset-inline-end'] = '0'
+          break
+        case 'center':
+        case 'stretch':
+          style.left = '50%'
+          translateX = '-50%'
+          break
+      }
+      break
+    case 'left':
+      switch (align) {
+        case 'start':
+          style['inset-block-start'] = '0'
+          scaleY = '-1'
+          break
+        case 'end':
+          style['inset-block-end'] = '0'
+          break
+        case 'center':
+        case 'stretch':
+          style.top = '50%'
+          translateY = '-50%'
+          break
+      }
+      break
+    case 'right':
+      switch (align) {
+        case 'start':
+          style['inset-block-start'] = '0'
+          break
+        case 'end':
+          style['inset-block-end'] = '0'
+          scaleY = '-1'
+          break
+        case 'center':
+        case 'stretch':
+          style.top = '50%'
+          translateY = '-50%'
+          break
+      }
+      break
+  }
+  style.transform = `translate(${translateX}, ${translateY}) rotate(${rotate}) scaleY(${scaleY})`
+  return style
+})
+
 const contentStyle = $computed(() => {
   let style: CSSProperties = {}
   let translateX = '0'
@@ -148,18 +255,17 @@ const contentStyle = $computed(() => {
     case 'bottom':
       switch (align) {
         case 'start':
-          style.left = '0'
+          style['inset-inline-start'] = '0'
           break
         case 'end':
-          style.right = '0'
+          style['inset-inline-end'] = '0'
           break
         case 'center':
           style.left = '50%'
           translateX = '-50%'
           break
         case 'stretch':
-          style.left = '0'
-          style.right = '0'
+          style['inset-inline'] = '0'
           break
       }
       break
@@ -167,18 +273,17 @@ const contentStyle = $computed(() => {
     case 'right':
       switch (align) {
         case 'start':
-          style.top = '0'
+          style['inset-block-start'] = '0'
           break
         case 'end':
-          style.bottom = '0'
+          style['inset-block-end'] = '0'
           break
         case 'center':
           style.top = '50%'
           translateX = '-50%'
           break
         case 'stretch':
-          style.top = '0'
-          style.bottom = '0'
+          style['inset-block'] = '0'
           break
       }
       break
@@ -224,6 +329,7 @@ const nestingGraphicsOptions = $computed(() => {
         <slot name="title"></slot>
       </template>
       <slot></slot>
+      <RIcon :icon="Redo" class="r-popover__arrow" :style="arrowStyle" />
       <template #footer>
         <slot name="footer"></slot>
       </template>
@@ -251,5 +357,8 @@ const nestingGraphicsOptions = $computed(() => {
   position: absolute;
   z-index: var(--r-common-overlay-z-index);
   inline-size: max-content;
+}
+.r-popover__arrow {
+  position: absolute;
 }
 </style>
