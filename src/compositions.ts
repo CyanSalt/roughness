@@ -1,4 +1,5 @@
-export { useList, useListItem } from './common/list'
+export type { ListItemProps } from './common/list'
+export { RListRenderer, useList, useListItem } from './common/list'
 export type { RValue, RValueOrKey } from './common/key'
 export { keyOf, RKey } from './common/key'
 export type { ComponentProps, ComponentRenderable, ComponentSlots } from './common/renderable'

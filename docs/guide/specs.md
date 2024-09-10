@@ -68,17 +68,13 @@ For list item components (including `RCarouselItem`, `RCheckbox`, `RTabItem` and
       </RTabItem>
     </RTabs>
 
-::: warning
+::: info
 
-In order to cope with various situations, the order of list rendering is based on the mounting order of list items. Therefore, if you need to display list items according to conditions, it is recommended to use `v-show` instead of `v-if`.
-
-<br>
-
-In addition, `RTableColumn` will be also rendered in a similar way although it only supports `name` in `string`.
+`RTableColumn` will be also rendered in a similar way although it only supports `name` in `string`.
 
 :::
 
-You can also use a similar mechanism in custom components using `useList` and `useListItem`.
+You can also use a similar mechanism in custom components using `useList` and `useListItem`. To keep the rendering order, just declare and pass `rIndex` of `ListItemProps` inside child components.
 
 ## Controlled and Uncontrolled Components
 

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { RTable, RTableColumn, useList } from '../../../src'
+import { useSlots } from 'vue'
+import { RListRenderer, RTable, RTableColumn, useList } from '../../../src'
 import type { StyleData } from './context'
 import { stylesInjection } from './context'
 
@@ -14,6 +15,8 @@ defineSlots<{
   description?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
+
+const slots = useSlots()
 
 const styles = useList(stylesInjection)
 </script>
@@ -49,7 +52,7 @@ const styles = useList(stylesInjection)
         ></component>
         <slot v-else name="description"></slot>
       </RTableColumn>
-      <slot></slot>
+      <RListRenderer include="RStyle" :render="slots.default" />
     </RTable>
   </div>
 </template>

@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import { useSlots } from 'vue'
 import type { RValueOrKey } from '../common/key'
+import type { ListItemProps } from '../common/list'
 import { useListItem } from '../common/list'
 import { columnsInjection } from './utils'
 
@@ -12,10 +13,11 @@ defineOptions({
 
 const {
   name,
+  rIndex,
 } = defineProps<{
   /** Column name. */
   name: string,
-}>()
+} & ListItemProps>()
 
 defineSlots<{
   /** Header cell in the column. Defaults to `startCase(keyOf(column))`. */
@@ -28,5 +30,9 @@ defineSlots<{
 
 const slots = useSlots()
 
-useListItem(columnsInjection, () => ({ name, slots }))
+useListItem(columnsInjection, () => ({
+  name,
+  slots,
+  rIndex,
+}))
 </script>

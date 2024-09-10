@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { reactive, watchEffect } from 'vue'
+import { reactive, useSlots, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
-import { useList } from '../common/list'
+import { RListRenderer, useList } from '../common/list'
 import { useLocal } from '../common/utils'
 import RSpace from '../space/index.vue'
 import RTabAnchor from './tab-anchor.vue'
@@ -41,6 +41,8 @@ defineSlots<{
   /** Content of the tabs. You can render one or more TabItem by yourself. */
   default?: (props: {}) => any,
 }>()
+
+const slots = useSlots()
 
 const items = useList(itemsInjection)
 
@@ -117,7 +119,7 @@ function activate(tab: RValueOrKey) {
         <component :is="tab.slots.default"></component>
       </div>
     </template>
-    <slot></slot>
+    <RListRenderer include="RTabItem" :render="slots.default" />
   </RSpace>
 </template>
 

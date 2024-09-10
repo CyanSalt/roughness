@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useSlots } from 'vue'
+import type { ListItemProps } from '../../../src'
 import { RKey, useListItem } from '../../../src'
 import { eventsInjection } from './context'
 
@@ -8,10 +9,10 @@ defineOptions({
   render: () => {},
 })
 
-const { name } = defineProps<{
+const { name, rIndex } = defineProps<{
   /** Slot name */
   name: string,
-}>()
+} & ListItemProps>()
 
 defineSlots<{
   name?: (props: {}) => any,
@@ -21,5 +22,10 @@ defineSlots<{
 
 const slots = useSlots()
 
-useListItem(eventsInjection, () => ({ name, slots, [RKey]: name }))
+useListItem(eventsInjection, () => ({
+  name,
+  slots,
+  [RKey]: name,
+  rIndex,
+}))
 </script>

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { RTable, RTableColumn, useList } from '../../../src'
+import { useSlots } from 'vue'
+import { RListRenderer, RTable, RTableColumn, useList } from '../../../src'
 import type { SlotData } from './context'
 import { slotsInjection } from './context'
 
@@ -13,6 +14,8 @@ defineSlots<{
   description?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
+
+const tableSlots = useSlots()
 
 const slots = useList(slotsInjection)
 </script>
@@ -41,7 +44,7 @@ const slots = useList(slotsInjection)
         ></component>
         <slot v-else name="description"></slot>
       </RTableColumn>
-      <slot></slot>
+      <RListRenderer include="RSlot" :render="tableSlots.default" />
     </RTable>
   </div>
 </template>
