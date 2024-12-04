@@ -113,6 +113,13 @@ export default defineConfig({
     outline: [2, 3],
   },
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
     plugins: [
       reactivityTransform(),
     ],

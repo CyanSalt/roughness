@@ -10,7 +10,7 @@ import {
   isCallOf,
   isIdentifierOf,
   isLiteralType,
-  MagicString,
+  MagicStringAST,
   parseSFC,
   resolveLiteral,
 } from '@vue-macros/common'
@@ -75,7 +75,7 @@ function getJSDocAnnotations(node: Node) {
   }))
 }
 
-function sortedBy<T extends string, U extends { [P in T]: string | number }>(key: T) {
+function sortedBy<T extends string, U extends Record<T, string | number>>(key: T) {
   return (a: U, b: U) => {
     return a[key] === b[key] ? 0 : (a[key] > b[key] ? 1 : -1)
   }
@@ -140,7 +140,7 @@ function parseCssVars(sfc: SFC) {
   return sfc.styles.flatMap(style => parseSCSS(style.content).cssVars)
 }
 
-async function analyzeSFC(s: MagicString, sfc: SFC) {
+async function analyzeSFC(s: MagicStringAST, sfc: SFC) {
   const program = sfc.getSetupAst()
   if (!program) return
   const scriptSetup = sfc.scriptSetup!
@@ -246,7 +246,7 @@ async function analyzeSFC(s: MagicString, sfc: SFC) {
 }
 
 export async function parse(code: string, file: string) {
-  const s = new MagicString(code)
+  const s = new MagicStringAST(code)
   const sfc = parseSFC(code, file)
   return analyzeSFC(s, sfc)
 }
