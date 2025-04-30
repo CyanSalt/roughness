@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RButton, RConfirm, RToast, useConfirm, useToast } from 'roughness'
+import { RButton, RConfirm, useConfirm, useToast } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(false)
@@ -34,7 +34,7 @@ The nuke will be launched after 10s. Are you sure?
 
 ```vue
 <script lang="ts" setup>
-import { RButton, RToast } from 'roughness'
+import { RButton } from 'roughness'
 import { ref } from 'vue'
 
 let open = ref(false)

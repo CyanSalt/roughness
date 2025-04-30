@@ -2,7 +2,7 @@
 import { RInput, RSpace } from 'roughness'
 import { ref } from 'vue'
 
-let number = ref(5);
+let number = ref(5)
 let poem = ref('Because I could not stop for Death,\nHe kindly stopped for me;\nThe carriage held but just ourselves\nAnd Immortality. ')
 let email = ref('java.lang.NullPointerException')
 </script>
@@ -61,7 +61,7 @@ let poem = ref('Because I could not stop for Death,\nHe kindly stopped for me;\n
 import { RInput } from 'roughness'
 import { ref } from 'vue'
 
-let number = ref(5);
+let number = ref(5)
 </script>
 
 <template>

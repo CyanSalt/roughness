@@ -1,3 +1,4 @@
+import path from 'node:path'
 import config from '@cyansalt/eslint-config'
 
 export default config({
@@ -5,7 +6,7 @@ export default config({
     {
       languageOptions: {
         parserOptions: {
-          project: './tsconfig.tools.json',
+          project: path.resolve(import.meta.dirname, './tsconfig.tools.json'),
           extraFileExtensions: ['.vue'],
         },
         globals: {
@@ -20,6 +21,16 @@ export default config({
         'vue/no-undef-properties': 'error',
         'vue/match-component-file-name': 'off',
         'vue-scoped-css/enforce-style-type': ['error', { allows: ['plain'] }],
+      },
+    },
+    {
+      files: [
+        // Unit test
+        'docs/**/cache/*.vue',
+      ],
+      rules: {
+        'vue/max-len': 'off',
+        'vue/no-static-inline-styles': 'off',
       },
     },
   ],

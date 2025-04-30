@@ -103,10 +103,12 @@ const font = computedAsync(() => {
 
 const text = ref('群贤毕至')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
   if (!font.value) return
   const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData()
-  const path = rc.path(pathData)
+  const path = rc.path(pathData, {
+    fill: 'var(--r-common-color)',
+  })
   svg.appendChild(path)
 }
 </script>

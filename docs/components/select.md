@@ -70,7 +70,7 @@ import { RCheckbox, RSelect } from 'roughness'
 
 ```vue
 <script lang="ts" setup>
-import { RCheckbox, RSpace, RSelect } from 'roughness'
+import { RCheckbox, RSelect, RSpace } from 'roughness'
 </script>
 
 <template>
