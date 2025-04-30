@@ -20,7 +20,8 @@ const {
   /**
    * Options for `annotate`
    * See [Configuring the Annotation]{@link https://github.com/rough-stuff/rough-notation?tab=readme-ov-file#configuring-the-annotation}.
-   * @default { type: 'highlight' }
+   * @default
+   * { type: 'highlight' }
    */
   annotationConfig?: Record<string, unknown>,
   /**

@@ -44,7 +44,7 @@ const {
   /** Checked state of the checkbox. */
   checked?: boolean,
   /**
-   * [Indeterminate state]({@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes}) of the checkbox.
+   * [Indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes) of the checkbox.
    */
   indeterminate?: boolean,
   /**

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Spec } from 'comment-parser'
-import { RText } from '../../../src'
+import { RScope, RText } from '../../../src'
 import { data } from '../loaders/vue.data'
 import type { CSSVar } from '../parser/scss'
 import MarkdownBlock from './MarkdownBlock.vue'
@@ -58,12 +58,12 @@ function type(tags: Spec[] | undefined) {
   return specs && specs.length > 1 ? specs.map(spec => spec?.type) : specs?.[0]?.type
 }
 
-function defaultValue(tags: Spec[] | undefined, value: string) {
+function defaultValue(tags: Spec[] | undefined, value?: string) {
   const specs = tags?.filter(tag => tag.tag === 'default')
-  if (!specs?.length) return inlineCode(value)
+  if (!specs?.length) return value ? inlineCode(value) : undefined
   return [
-    ...specs.map(spec => `${inlineCode(spec.name)} ${spec.description}`),
-    `${inlineCode(value)} else`,
+    ...specs.map(spec => (spec.name ? `${inlineCode(spec.name)} ${spec.description}` : inlineCode(spec.description))),
+    ...(value ? [`${inlineCode(value)} else`] : []),
   ].join(', ')
 }
 
@@ -113,7 +113,7 @@ function fallback(value: string) {
 }
 
 function inlineCode(text: string | string[] | undefined) {
-  if (!text) return undefined
+  if (!text) return text
   if (Array.isArray(text)) {
     return text.map(item => inlineCode(item)).join('\n\n')
   }
@@ -144,6 +144,9 @@ function paragraph(text: string | undefined) {
           <template #default-value>
             <RText v-if="prop.required" type="error">Required</RText>
             <MarkdownBlock v-else-if="prop.defaultValue" inline :source="inlineCode(prop.defaultValue)" />
+            <RScope v-else v-slot="{ defaults }" :defaults="defaultValue(prop.tags)" :tags="prop.tags">
+              <MarkdownBlock v-if="defaults" inline :source="defaults" />
+            </RScope>
           </template>
           <template v-if="prop.description">
             <MarkdownBlock
