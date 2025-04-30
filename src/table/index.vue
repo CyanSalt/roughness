@@ -49,7 +49,7 @@ defineSlots<{
 
 const slots = useSlots()
 
-const columns = useList(columnsInjection)
+const columns = $(useList(columnsInjection))
 
 const footer = $computed(() => {
   if (userFooter !== undefined) return userFooter

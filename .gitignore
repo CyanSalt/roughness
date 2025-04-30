@@ -3,6 +3,7 @@ node_modules
 dist
 cache
 .*cache
+.temp
 
 # Log files
 npm-debug.log*

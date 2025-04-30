@@ -18,7 +18,7 @@ defineSlots<{
 
 const slots = useSlots()
 
-const styles = useList(stylesInjection)
+const styles = $(useList(stylesInjection))
 </script>
 
 <template>

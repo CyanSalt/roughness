@@ -18,7 +18,7 @@ defineSlots<{
 
 const slots = useSlots()
 
-const props = useList(propsInjection)
+const props = $(useList(propsInjection))
 </script>
 
 <template>

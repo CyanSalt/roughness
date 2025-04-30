@@ -44,7 +44,7 @@ defineSlots<{
 
 const slots = useSlots()
 
-const items = useList(itemsInjection)
+const items = $(useList(itemsInjection))
 
 const content = $computed(() => {
   if (userContent !== undefined) return userContent

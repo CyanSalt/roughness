@@ -29,17 +29,13 @@ const {
   filled?: boolean,
 } & GraphicsProps>()
 
-const svgAttrs = $computed(() => {
-  if (!icon) {
-    return { viewBox: '0 0 1 1' } // as placeholder
-  }
-  const { xmlns, viewBox } = icon[1]
-  return { xmlns, viewBox }
-})
-
-const children = $computed(() => {
-  return icon?.[2] ?? []
-})
+/**
+ * @see {@link lucide/dist/esm/defaultAttributes.js}
+ */
+const svgAttrs = {
+  xmlns: 'http://www.w3.org/2000/svg',
+  viewBox: '0 0 24 24',
+}
 
 function asNumber(value: string | number | undefined) {
   return value === undefined ? value : Number(value)
@@ -58,7 +54,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: filled ? 'var(--R-icon-color)' : undefined,
     ...getFilledSizeOptions(1),
   }
-  for (const [tag, attrs] of children) {
+  for (const [tag, attrs] of icon ?? []) {
     switch (tag) {
       case 'ellipse': {
         const ellipse = rc.ellipse(
