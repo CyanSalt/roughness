@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import { Check, X } from 'lucide'
 import type { ComponentPublicInstance } from 'vue'
+import { useSlots } from 'vue'
 import RButton from '../button/index.vue'
 import RDialog from '../dialog/index.vue'
 import RIcon from '../icon/index.vue'
@@ -9,6 +10,24 @@ import RIcon from '../icon/index.vue'
 defineOptions({
   name: 'RConfirm',
 })
+
+const {
+  closable = false,
+  state = 'manual',
+} = defineProps<{
+  /**
+   * Whether to display the close button.
+   * @default false
+   * @ignore
+   */
+  closable?: boolean,
+  /**
+   * When specified as `auto`, the dialog can be closed by clicking the backdrop.
+   * @default 'auto'
+   * @ignore
+   */
+  state?: 'auto' | 'manual',
+}>()
 
 const emit = defineEmits<{
   /** Callback function triggered when the confirm button is clicked. */
@@ -23,6 +42,8 @@ defineSlots<{
   /** Content of the confirm. */
   default?: (props: {}) => any,
 }>()
+
+const slots = useSlots()
 
 let root = $ref<ComponentPublicInstance>()
 
@@ -39,8 +60,14 @@ function toggle(open: boolean) {
 </script>
 
 <template>
-  <RDialog ref="root" class="r-confirm" @update:open="toggle">
-    <template #title>
+  <RDialog
+    ref="root"
+    :closable="closable"
+    :state="state"
+    class="r-confirm"
+    @update:open="toggle"
+  >
+    <template v-if="slots.title" #title>
       <slot name="title"></slot>
     </template>
     <slot></slot>
