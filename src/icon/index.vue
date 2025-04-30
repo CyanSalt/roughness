@@ -1,15 +1,13 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { chunk } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
-import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions } from '../graphics/utils'
+import { drawSVGNode, getFilledSizeOptions, SVGNode } from '../graphics/utils'
 import RText from '../text/index.vue'
-import type { IconNode } from './utils'
+import { IconNode } from './utils'
 
 defineOptions({
   name: 'RIcon',
@@ -22,26 +20,41 @@ const {
 } = defineProps<{
   /**
    * Icon object conforming to the type constraint.
-   * @type {IconNode}
    */
   icon: IconNode,
   /** Whether to fill the icon. */
   filled?: boolean,
 } & GraphicsProps>()
 
+const { timestamp, listener } = $(useTransitionListener('::before'))
+
+function isSVGNodeList(node: IconNode): node is SVGNode[] {
+  return !icon.length || Array.isArray(icon[0])
+}
+
 /**
  * @see {@link lucide/dist/esm/defaultAttributes.js}
  */
-const svgAttrs = {
+const defaultAttrs = {
   xmlns: 'http://www.w3.org/2000/svg',
   viewBox: '0 0 24 24',
 }
 
-function asNumber(value: string | number | undefined) {
-  return value === undefined ? value : Number(value)
-}
+const rootNode = $computed<SVGNode>(() => {
+  if (!icon || isSVGNodeList(icon)) {
+    return ['svg', defaultAttrs, icon]
+  }
+  return icon
+})
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const svgAttrs = $computed(() => {
+  const { xmlns, viewBox } = rootNode[1]
+  return { xmlns, viewBox }
+})
+
+const children = $computed(() => {
+  return rootNode[2] ?? []
+})
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
@@ -54,71 +67,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: filled ? 'var(--R-icon-color)' : undefined,
     ...getFilledSizeOptions(1),
   }
-  for (const [tag, attrs] of icon ?? []) {
-    switch (tag) {
-      case 'ellipse': {
-        const ellipse = rc.ellipse(
-          asNumber(attrs.cx) ?? 0,
-          asNumber(attrs.cy) ?? 0,
-          (asNumber(attrs.rx) ?? 0) * 2,
-          (asNumber(attrs.ry) ?? 0) * 2,
-          options,
-        )
-        svg.appendChild(ellipse)
-        break
-      }
-      case 'circle': {
-        const circle = rc.circle(
-          asNumber(attrs.cx) ?? 0,
-          asNumber(attrs.cy) ?? 0,
-          (asNumber(attrs.r) ?? 0) * 2,
-          options,
-        )
-        svg.appendChild(circle)
-        break
-      }
-      case 'line': {
-        const line = rc.line(
-          asNumber(attrs.x1) ?? 0,
-          asNumber(attrs.y1) ?? 0,
-          asNumber(attrs.x2) ?? 0,
-          asNumber(attrs.y2) ?? 0,
-          options,
-        )
-        svg.appendChild(line)
-        break
-      }
-      case 'path': {
-        const path = rc.path(String(attrs.d ?? ''), options)
-        svg.appendChild(path)
-        break
-      }
-      case 'polygon': {
-        const points = String(attrs.points ?? '')
-        const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
-        const polygon = rc.polygon(positions, options)
-        svg.appendChild(polygon)
-        break
-      }
-      case 'polyline': {
-        const points = String(attrs.points ?? '')
-        const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
-        const linearPath = rc.linearPath(positions, options)
-        svg.appendChild(linearPath)
-        break
-      }
-      case 'rect': {
-        const rectangle = rc.rectangle(
-          asNumber(attrs.x) ?? 0,
-          asNumber(attrs.y) ?? 0,
-          asNumber(attrs.width) ?? 0,
-          asNumber(attrs.height) ?? 0,
-          options,
-        )
-        svg.appendChild(rectangle)
-        break
-      }
-    }
+  for (const child of children) {
+    drawSVGNode(rc, svg, child, options)
   }
 }
 </script>

@@ -34,6 +34,7 @@ export default defineConfig({
           { text: 'Theme', link: '/guide/theme' },
           { text: 'Specs', link: '/guide/specs' },
           { text: 'Chart', link: '/guide/chart' },
+          { text: 'Diagram', link: '/guide/diagram' },
         ],
       },
       {
@@ -49,6 +50,7 @@ export default defineConfig({
               { text: 'Grid Guide', link: '/components/grid-guide' },
               { text: 'Icon', link: '/components/icon' },
               { text: 'Link', link: '/components/link' },
+              { text: 'Picture', link: '/components/picture' },
               { text: 'Scope', link: '/components/scope' },
               { text: 'Space', link: '/components/space' },
               { text: 'Text', link: '/components/text' },
