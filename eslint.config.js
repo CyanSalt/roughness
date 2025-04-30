@@ -6,6 +6,7 @@ export default config({
       languageOptions: {
         parserOptions: {
           project: './tsconfig.tools.json',
+          extraFileExtensions: ['.vue'],
         },
         globals: {
           ToggleEvent: 'readonly',

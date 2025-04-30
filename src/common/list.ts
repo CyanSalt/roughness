@@ -67,9 +67,7 @@ export const RListRenderer: FunctionalComponent<{
   const filtered = filterVNodes(nodes, node => !include || node.type['name'] === include)
   for (const node of filtered) {
     componentIndex += 1
-    if (!node.props) {
-      node.props = {}
-    }
+    node.props ??= {}
     node.props.rIndex = componentIndex
   }
   return nodes
