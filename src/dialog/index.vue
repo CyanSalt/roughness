@@ -168,7 +168,8 @@ const nestingGraphicsOptions = $computed(() => {
   max-inline-size: min(90vi, 960px);
   color: var(--r-element-color);
   &::backdrop {
-    background-color: rgb(0 0 0 / 50%);
+    background-color: var(--r-common-background-color);
+    opacity: 0.5;
   }
 }
 .r-dialog__close {
