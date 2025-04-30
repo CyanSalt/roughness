@@ -5,6 +5,9 @@ import { ref, watchEffect } from 'vue'
 
 mermaid.initialize({
   startOnLoad: false,
+  themeVariables: {
+    fontFamily: 'var(--r-common-font-family)',
+  },
 })
 
 let container = ref<HTMLElement>()
