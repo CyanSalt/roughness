@@ -21,6 +21,7 @@ export default defineConfig(async () => ({
       },
       formats: ['es' as const],
       fileName: () => '[name].js',
+      cssFileName: 'style',
     },
     rollupOptions: {
       external: [
