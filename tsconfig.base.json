@@ -1,0 +1,10 @@
+{
+  "extends": "@cyansalt/tsconfig/tsconfig.lib.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "checkJs": true
+  }
+}

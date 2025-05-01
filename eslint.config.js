@@ -6,7 +6,12 @@ export default config({
     {
       languageOptions: {
         parserOptions: {
-          project: path.resolve(import.meta.dirname, './tsconfig.tools.json'),
+          project: [
+            './docs/tsconfig.json',
+            './docs/tsconfig.test.json',
+            './tsconfig.app.json',
+            './tsconfig.node.json',
+          ].map(file => path.resolve(import.meta.dirname, file)),
           extraFileExtensions: ['.vue'],
         },
         globals: {

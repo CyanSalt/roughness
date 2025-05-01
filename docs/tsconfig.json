@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": ".typescript"
+  },
+  "include": [
+    ".vitepress/**/*"
+  ],
+  "exclude": [
+    ".vitepress/cache",
+    ".vitepress/dist",
+    ".vitepress/config.ts"
+  ]
+}
