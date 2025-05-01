@@ -357,6 +357,18 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </RStyle>
 
+  <RStyle name="--r-common-placeholder-color">
+
+  <template #default-value>
+
+  `#abb2bf60` in the dark mode, `#383a4240` else
+
+  </template>
+
+  Color of the placeholder of form components, such as `RInput` or `RSelect`.
+
+  </RStyle>
+
   <RStyle name="--r-common-primary-color">
 
   <template #default-value>
@@ -426,6 +438,18 @@ The following properties (of colors) change with dark/light theme changes: {#col
   </template>
 
   Color of comment message. Components with `type="comment"` use this color.
+
+  </RStyle>
+
+  <RStyle name="--r-common-stroke-text-shadow">
+
+  <template #default-value>
+
+  `var(--r-common-background-color)` with size of `3px` in every direction
+
+  </template>
+
+  Stroke style of text when the backdrop is in fill mode.
 
   </RStyle>
 
