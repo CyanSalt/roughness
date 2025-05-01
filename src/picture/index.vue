@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watch } from 'vue'
+import { SVGAttributes, watch } from 'vue'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { drawSVGNode, parseSVGNode, SVGNode } from '../graphics/utils'
@@ -12,11 +12,16 @@ defineOptions({
 })
 
 const {
+  attrs,
   tag = 'div',
   graphicsOptions,
 } = defineProps<{
   /**
-   * HTML tag for rendering the space.
+   * Additional attributes for SVG element.
+   */
+  attrs: SVGAttributes & Record<string, string | number | undefined>,
+  /**
+   * HTML tag for rendering the picture.
    * @default 'div'
    */
   tag?: string,
@@ -41,7 +46,10 @@ useMutationObserver($$(source), entries => {
 }, { attributes: true, characterData: true, childList: true, subtree: true })
 
 const svgAttrs = $computed(() => {
-  return node?.[1]
+  return {
+    ...node?.[1],
+    ...attrs,
+  }
 })
 
 const children = $computed(() => {
@@ -57,15 +65,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <component :is="tag" class="r-picture">
-    <span ref="source" class="r-picture__source">
-      <slot></slot>
-    </span>
     <RGraphics
       :options="graphicsOptions"
       :responsive="false"
       v-bind="svgAttrs"
       @draw="draw"
     />
+    <span ref="source" class="r-picture__source">
+      <slot></slot>
+    </span>
   </component>
 </template>
 

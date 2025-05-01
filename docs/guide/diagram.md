@@ -7,10 +7,12 @@ const colors = useColors()
 
 mermaid.initialize({
   startOnLoad: false,
+  theme: 'base',
   themeVariables: {
     fontFamily: 'var(--r-common-font-family)',
     primaryColor: colors.value.primaryColor,
-    textColor: colors.value.textColor,
+    primaryTextColor: colors.value.textColor,
+    lineColor: colors.value.textColor,
   },
 })
 
@@ -37,12 +39,6 @@ watchEffect(async () => {
 })
 </script>
 
-<style lang="scss">
-#graph-1 .label {
-  text-shadow: var(--r-common-stroke-text-shadow);
-}
-</style>
-
 # Diagram
 
 Roughness does not provide any diagram component, but you can integrate [Mermaid](https://mermaid.js.org/) with it easily.
@@ -61,10 +57,12 @@ const colors = useColors()
 
 mermaid.initialize({
   startOnLoad: false,
+  theme: 'base',
   themeVariables: {
     fontFamily: 'var(--r-common-font-family)',
     primaryColor: colors.value.primaryColor,
-    textColor: colors.value.textColor,
+    primaryTextColor: colors.value.textColor,
+    lineColor: colors.value.textColor,
   },
 })
 ```
@@ -105,18 +103,44 @@ watchEffect(async () => {
 <template>
   <RSpace vertical>
     <RInput v-model="graph" :lines="5" />
-    <RPicture>
+    <RPicture :attrs="{ id: undefined, class: 'r-mermaid' }">
       <span ref="container"></span>
     </RPicture>
   </RSpace>
 </template>
+
+<style lang="scss">
+.r-mermaid .label {
+  text-shadow: var(--r-common-stroke-text-shadow);
+}
+.r-mermaid .label text, .r-mermaid span {
+  fill: var(--r-common-color);
+  color: var(--r-common-color);
+}
+.r-mermaid p {
+  margin: 0;
+}
+</style>
 ```
 
 :::
 
 <RSpace vertical>
   <RInput v-model="graph" :lines="5" />
-  <RPicture>
+  <RPicture :attrs="{ id: undefined, class: 'r-mermaid' }">
     <span ref="container"></span>
   </RPicture>
 </RSpace>
+
+<style lang="scss">
+.r-mermaid .label {
+  text-shadow: var(--r-common-stroke-text-shadow);
+}
+.r-mermaid .label text, .r-mermaid span {
+  fill: var(--r-common-color);
+  color: var(--r-common-color);
+}
+.r-mermaid p {
+  margin: 0;
+}
+</style>

@@ -6,8 +6,9 @@ export function useDark() {
     let dark = false
     // for SSR
     if (typeof document !== 'undefined') {
-      useMutationObserver(document.documentElement, () => {
-        dark = document.documentElement.classList.contains('dark')
+      dark = document.documentElement.classList.contains('dark')
+      useMutationObserver(document.documentElement, entries => {
+        dark = (entries[0].target as HTMLElement).classList.contains('dark')
         trigger()
       }, {
         attributes: true,
