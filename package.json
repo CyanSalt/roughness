@@ -22,7 +22,8 @@
     "docs:build": "pnpm -F docs build",
     "lint:script": "eslint --cache --fix './**/*.{cjs,js,ts,vue}'",
     "lint:style": "stylelint --ignore-path .gitignore --cache --fix ./**/*.{css,vue}",
-    "lint": "pnpm run lint:script && pnpm run lint:style"
+    "lint": "pnpm run lint:script && pnpm run lint:style",
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
   },
   "homepage": "https://github.com/CyanSalt/roughness#readme",
   "devDependencies": {
+    "@babel/types": "7.27.0",
     "@cyansalt/eslint-config": "^4.3.1",
     "@cyansalt/stylelint-config": "^4.1.0",
     "@cyansalt/tsconfig": "^2.2.1",
@@ -49,6 +51,7 @@
     "@types/parse-unit": "^1.0.3",
     "@types/to-px": "^1.1.4",
     "@vitejs/plugin-vue": "^5.2.3",
+    "@vue-macros/common": "1.15.0",
     "@vue-macros/reactivity-transform": "3.0.0-beta.10",
     "@vueuse/components": "^13.1.0",
     "@vueuse/core": "^13.1.0",
@@ -66,6 +69,7 @@
     "typescript": "^5.8.3",
     "vite": "^6.3.4",
     "vite-plugin-dts": "^4.5.3",
+    "vitest": "^3.1.2",
     "vue": "^3.5.13"
   },
   "peerDependencies": {

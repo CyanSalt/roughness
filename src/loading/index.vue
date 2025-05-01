@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Loader } from 'lucide'
 import '../common/style.scss'
+import { Loader } from 'lucide'
 import RIcon from '../icon/index.vue'
 import RSpace from '../space/index.vue'
 

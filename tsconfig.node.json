@@ -6,6 +6,7 @@
   "include": [
     "*.config.js",
     "*.config.ts",
-    "docs/.vitepress/config.ts"
+    "docs/.vitepress/config.ts",
+    "tests"
   ]
 }

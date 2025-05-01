@@ -4,16 +4,13 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
-    "test": "vitest"
+    "build": "vitepress build"
   },
   "devDependencies": {
-    "@babel/types": "^7.27.0",
     "@fontsource/cabin-sketch": "^5.2.5",
     "@types/line-column": "^1.0.2",
     "@types/markdown-it": "^14.1.2",
     "@vue-macros/api": "^0.12.0",
-    "@vue-macros/common": "^1.16.1",
     "chart.js": "^4.4.9",
     "chartjs-plugin-roughness": "^1.0.6",
     "comment-parser": "^1.4.1",
@@ -29,7 +26,6 @@
     "rough-notation": "^0.5.1",
     "svg2roughjs": "^3.2.1",
     "vitepress": "^1.6.3",
-    "vitest": "^3.1.2",
     "vue-chartjs": "^5.3.2"
   }
 }

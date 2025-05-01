@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@babel/types':
+        specifier: 7.27.0
+        version: 7.27.0
       '@cyansalt/eslint-config':
         specifier: ^4.3.1
         version: 4.3.1(@babel/core@7.26.0)(eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.31.1(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.25.1(jiti@2.4.2)))(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
@@ -35,6 +38,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^5.2.3
         version: 5.2.3(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(sass-embedded@1.87.0)(stylus@0.57.0))(vue@3.5.13(typescript@5.8.3))
+      '@vue-macros/common':
+        specifier: 1.15.0
+        version: 1.15.0(rollup@4.40.1)(vue@3.5.13(typescript@5.8.3))
       '@vue-macros/reactivity-transform':
         specifier: 3.0.0-beta.10
         version: 3.0.0-beta.10(vue@3.5.13(typescript@5.8.3))
@@ -86,15 +92,15 @@ importers:
       vite-plugin-dts:
         specifier: ^4.5.3
         version: 4.5.3(@types/node@22.15.3)(rollup@4.40.1)(typescript@5.8.3)(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(sass-embedded@1.87.0)(stylus@0.57.0))
+      vitest:
+        specifier: ^3.1.2
+        version: 3.1.2(@types/node@22.15.3)(jiti@2.4.2)(sass-embedded@1.87.0)(stylus@0.57.0)
       vue:
         specifier: ^3.5.13
         version: 3.5.13(typescript@5.8.3)
 
   docs:
     devDependencies:
-      '@babel/types':
-        specifier: ^7.27.0
-        version: 7.27.0
       '@fontsource/cabin-sketch':
         specifier: ^5.2.5
         version: 5.2.5
@@ -107,9 +113,6 @@ importers:
       '@vue-macros/api':
         specifier: ^0.12.0
         version: 0.12.0(rollup@4.40.1)(vue@3.5.13(typescript@5.8.3))
-      '@vue-macros/common':
-        specifier: ^1.16.1
-        version: 1.16.1(vue@3.5.13(typescript@5.8.3))
       chart.js:
         specifier: ^4.4.9
         version: 4.4.9
@@ -155,9 +158,6 @@ importers:
       vitepress:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.23.4)(@types/node@22.15.3)(postcss@8.5.3)(qrcode@1.5.4)(sass-embedded@1.87.0)(search-insights@2.17.3)(stylus@0.57.0)(typescript@5.8.3)
-      vitest:
-        specifier: ^3.1.2
-        version: 3.1.2(@types/node@22.15.3)(jiti@2.4.2)(sass-embedded@1.87.0)(stylus@0.57.0)
       vue-chartjs:
         specifier: ^5.3.2
         version: 5.3.2(chart.js@4.4.9)(vue@3.5.13(typescript@5.8.3))
@@ -290,12 +290,16 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
 
-  '@babel/helper-string-parser@7.25.9':
-    resolution: {integrity: sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==}
+  '@babel/helper-string-parser@7.27.1':
+    resolution: {integrity: sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.25.9':
     resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/helper-validator-identifier@7.27.1':
+    resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-option@7.25.9':
@@ -321,6 +325,10 @@ packages:
 
   '@babel/types@7.27.0':
     resolution: {integrity: sha512-H45s8fVLYjbhFH62dIJ3WtmJ6RSPt/3DRO0ZcT2SUiYiQyz3BLVb9ADEnLl91m74aQPS3AzzeajZHYOalWe3bg==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/types@7.27.1':
+    resolution: {integrity: sha512-+EzkxvLNfiUeKMgy/3luqfsCWFRXLb7U6wNQTk60tovuckwB15B191tJWvpp4HjiQWdJkCxO3Wbvc6jlk3Xb2Q==}
     engines: {node: '>=6.9.0'}
 
   '@braintree/sanitize-url@7.1.1':
@@ -1656,15 +1664,6 @@ packages:
 
   '@vue-macros/common@1.15.0':
     resolution: {integrity: sha512-yg5VqW7+HRfJGimdKvFYzx8zorHUYo0hzPwuraoC1DWa7HHazbTMoVsHDvk3JHa1SGfSL87fRnzmlvgjEHhszA==}
-    engines: {node: '>=16.14.0'}
-    peerDependencies:
-      vue: ^2.7.0 || ^3.2.25
-    peerDependenciesMeta:
-      vue:
-        optional: true
-
-  '@vue-macros/common@1.16.1':
-    resolution: {integrity: sha512-Pn/AWMTjoMYuquepLZP813BIcq8DTZiNCoaceuNlvaYuOTd8DqBZWc5u0uOMQZMInwME1mdSmmBAcTluiV9Jtg==}
     engines: {node: '>=16.14.0'}
     peerDependencies:
       vue: ^2.7.0 || ^3.2.25
@@ -3619,10 +3618,6 @@ packages:
     resolution: {integrity: sha512-C9sgUzVZtUtzCBoMdYtwrIRQ4IucGRFGgdhkjL7PXsVfPYmTuWtewqzk7dlipaCMWH/gOYehW9rgMoa4Oebtpw==}
     engines: {node: '>=16.14.0'}
 
-  magic-string-ast@0.7.1:
-    resolution: {integrity: sha512-ub9iytsEbT7Yw/Pd29mSo/cNQpaEu67zR1VVcXDiYjSFwzeBxNdTd0FMnSslLQXiRj8uGPzwsaoefrMD5XAmdw==}
-    engines: {node: '>=16.14.0'}
-
   magic-string-ast@0.9.1:
     resolution: {integrity: sha512-18dv2ZlSSgJ/jDWlZGKfnDJx56ilNlYq9F7NnwuWTErsmYmqJ2TWE4l1o2zlUHBYUGBy3tIhPCC1gxq8M5HkMA==}
     engines: {node: '>=20.18.0'}
@@ -5287,7 +5282,7 @@ snapshots:
 
   '@babel/code-frame@7.26.2':
     dependencies:
-      '@babel/helper-validator-identifier': 7.25.9
+      '@babel/helper-validator-identifier': 7.27.1
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
@@ -5354,14 +5349,16 @@ snapshots:
     dependencies:
       '@babel/core': 7.26.0
       '@babel/helper-module-imports': 7.25.9
-      '@babel/helper-validator-identifier': 7.25.9
+      '@babel/helper-validator-identifier': 7.27.1
       '@babel/traverse': 7.27.0
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/helper-string-parser@7.25.9': {}
+  '@babel/helper-string-parser@7.27.1': {}
 
   '@babel/helper-validator-identifier@7.25.9': {}
+
+  '@babel/helper-validator-identifier@7.27.1': {}
 
   '@babel/helper-validator-option@7.25.9': {}
 
@@ -5394,8 +5391,13 @@ snapshots:
 
   '@babel/types@7.27.0':
     dependencies:
-      '@babel/helper-string-parser': 7.25.9
-      '@babel/helper-validator-identifier': 7.25.9
+      '@babel/helper-string-parser': 7.27.1
+      '@babel/helper-validator-identifier': 7.27.1
+
+  '@babel/types@7.27.1':
+    dependencies:
+      '@babel/helper-string-parser': 7.27.1
+      '@babel/helper-validator-identifier': 7.27.1
 
   '@braintree/sanitize-url@7.1.1': {}
 
@@ -6642,7 +6644,7 @@ snapshots:
 
   '@vue-macros/api@0.12.0(rollup@4.40.1)(vue@3.5.13(typescript@5.8.3))':
     dependencies:
-      '@babel/types': 7.27.0
+      '@babel/types': 7.27.1
       '@vue-macros/common': 1.15.0(rollup@4.40.1)(vue@3.5.13(typescript@5.8.3))
       oxc-resolver: 2.1.1
     transitivePeerDependencies:
@@ -6661,17 +6663,6 @@ snapshots:
       vue: 3.5.13(typescript@5.8.3)
     transitivePeerDependencies:
       - rollup
-
-  '@vue-macros/common@1.16.1(vue@3.5.13(typescript@5.8.3))':
-    dependencies:
-      '@vue/compiler-sfc': 3.5.13
-      ast-kit: 1.4.3
-      local-pkg: 1.1.1
-      magic-string-ast: 0.7.1
-      pathe: 2.0.3
-      picomatch: 4.0.2
-    optionalDependencies:
-      vue: 3.5.13(typescript@5.8.3)
 
   '@vue-macros/common@3.0.0-beta.10(vue@3.5.13(typescript@5.8.3))':
     dependencies:
@@ -8891,10 +8882,6 @@ snapshots:
   macos-release@3.3.0: {}
 
   magic-string-ast@0.6.3:
-    dependencies:
-      magic-string: 0.30.17
-
-  magic-string-ast@0.7.1:
     dependencies:
       magic-string: 0.30.17
 
