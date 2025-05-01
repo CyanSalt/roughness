@@ -165,8 +165,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 .r-progress__content {
   --r-element-font-size: calc(1em - 2px);
-  @include partials.stroke(var(--r-common-background-color), 3px);
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--R-progress-color);
+  text-shadow: var(--r-common-stroke-text-shadow);
 }
 </style>

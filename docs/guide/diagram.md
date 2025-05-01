@@ -1,12 +1,16 @@
 <script lang="ts" setup>
 import mermaid from 'mermaid'
-import { RInput, RPicture, RSpace } from 'roughness'
+import { RInput, RPicture, RSpace, useColors } from 'roughness'
 import { ref, watchEffect } from 'vue'
+
+const colors = useColors()
 
 mermaid.initialize({
   startOnLoad: false,
   themeVariables: {
     fontFamily: 'var(--r-common-font-family)',
+    primaryColor: colors.value.primaryColor,
+    textColor: colors.value.textColor,
   },
 })
 
@@ -33,12 +37,36 @@ watchEffect(async () => {
 })
 </script>
 
+<style lang="scss">
+#graph-1 .label {
+  text-shadow: var(--r-common-stroke-text-shadow);
+}
+</style>
+
 # Diagram
 
 Roughness does not provide any diagram component, but you can integrate [Mermaid](https://mermaid.js.org/) with it easily.
 
 ```shell
 npm i mermaid
+```
+
+## Usage
+
+```js
+import mermaid from 'mermaid'
+import { useColors } from 'roughness'
+
+const colors = useColors()
+
+mermaid.initialize({
+  startOnLoad: false,
+  themeVariables: {
+    fontFamily: 'var(--r-common-font-family)',
+    primaryColor: colors.value.primaryColor,
+    textColor: colors.value.textColor,
+  },
+})
 ```
 
 ## Example
@@ -50,10 +78,6 @@ npm i mermaid
 import mermaid from 'mermaid'
 import { RInput, RPicture, RSpace } from 'roughness'
 import { ref, watchEffect } from 'vue'
-
-mermaid.initialize({
-  startOnLoad: false,
-})
 
 let container = ref<HTMLElement>()
 

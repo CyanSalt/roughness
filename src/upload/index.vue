@@ -158,7 +158,7 @@ function change(event: InputEvent) {
     text-decoration-line: line-through;
   }
   &.is-filled:not(:disabled) {
-    @include partials.stroke(var(--r-common-background-color), 3px);
+    text-shadow: var(--r-common-stroke-text-shadow);
   }
   &.is-block {
     display: block;

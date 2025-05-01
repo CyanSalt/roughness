@@ -1,5 +1,6 @@
 @use 'sass:color';
 @use 'sass:math';
+@use './_partials';
 
 @layer roughness__base {
   :root {
@@ -26,6 +27,7 @@
     --r-common-success-color: #50a14f;
     --r-common-warning-color: #c18401;
     --r-common-error-color: #ca1243;
+    --r-common-stroke-text-shadow: #{partials.stroke(var(--r-common-background-color), 3px)};
     &.dark {
       --r-common-color: #abb2bf;
       --r-common-background-color: #282c34;
