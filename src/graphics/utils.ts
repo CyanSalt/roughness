@@ -29,9 +29,11 @@ export function getFilledSizeOptions(strokeWidth: number) {
   }
 }
 
+export type SVGAttrs = SVGAttributes & Record<string, string | number | undefined>
+
 export type SVGNode = [
   tag: string,
-  attrs: SVGAttributes & Record<string, string | number | undefined>,
+  attrs: SVGAttrs,
   children?: SVGNode[],
 ]
 
@@ -40,12 +42,22 @@ function asNumber(value: string | number | undefined) {
 }
 
 function getComputedStyleAttrs(element: SVGElement) {
-  const properties = ['fill', 'stroke', 'stroke-width']
+  const properties = ['fill', 'stroke', 'stroke-width'] as const
   const style = getComputedStyle(element)
   return Object.fromEntries(properties.map(property => [property, style.getPropertyValue(property)])) as {
     fill: string,
     stroke: string,
     'stroke-width': string,
+  }
+}
+
+function applyMarkerAttrs(element: SVGElement, attrs: SVGAttrs) {
+  const properties = ['marker-start', 'marker-mid', 'marker-end'] as const
+  for (const property of properties) {
+    const value = attrs[property]
+    if (value) {
+      element.setAttribute(property, value)
+    }
   }
 }
 
@@ -111,11 +123,13 @@ export function drawSVGNode(
         asNumber(attrs.y2) ?? 0,
         options,
       )
+      applyMarkerAttrs(line, attrs)
       parent.appendChild(line)
       break
     }
     case 'path': {
       const path = rc.path(String(attrs.d ?? ''), options)
+      applyMarkerAttrs(path, attrs)
       parent.appendChild(path)
       break
     }
@@ -130,6 +144,7 @@ export function drawSVGNode(
       const points = String(attrs.points ?? '')
       const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
       const linearPath = rc.linearPath(positions, options)
+      applyMarkerAttrs(linearPath, attrs)
       parent.appendChild(linearPath)
       break
     }

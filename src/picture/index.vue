@@ -2,9 +2,9 @@
 import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { SVGAttributes, watch } from 'vue'
+import { watch } from 'vue'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
+import type { GraphicsProps, SVGAttrs } from '../graphics/utils'
 import { drawSVGNode, parseSVGNode, SVGNode } from '../graphics/utils'
 
 defineOptions({
@@ -19,7 +19,7 @@ const {
   /**
    * Additional attributes for SVG element.
    */
-  attrs: SVGAttributes & Record<string, string | number | undefined>,
+  attrs?: SVGAttrs,
   /**
    * HTML tag for rendering the picture.
    * @default 'div'
