@@ -77,21 +77,33 @@ export function parseSVGNode(element: SVGElement): SVGNode {
   return [tag, attrs, children]
 }
 
+export interface DrawSVGNodeOptions {
+  solid?: boolean,
+  graphicsOptions?: Options,
+}
+
 export function drawSVGNode(
   rc: RoughSVG,
   parent: Element,
   node: SVGNode,
-  graphicsOptions?: Options,
+  options?: DrawSVGNodeOptions,
 ) {
   const [tag, rawAttrs, children] = node
   const { xmlns, fill, stroke, 'stroke-width': strokeWidth, ...attrs } = rawAttrs
-  const options: Options = {
-    ...graphicsOptions,
+  const graphicsOptions: Options = {
+    ...options?.graphicsOptions,
     ...Object.fromEntries([
       ['fill', fill],
       ['stroke', stroke],
       ['stroke-width', strokeWidth],
     ].filter(([key, value]) => value)),
+  }
+  if (
+    options?.solid
+    && !(graphicsOptions.stroke && graphicsOptions.stroke !== 'none')
+    && (graphicsOptions.fill && graphicsOptions.fill !== 'none')
+  ) {
+    graphicsOptions.stroke = graphicsOptions.fill
   }
   switch (tag) {
     case 'ellipse': {
@@ -100,7 +112,7 @@ export function drawSVGNode(
         asNumber(attrs.cy) ?? 0,
         (asNumber(attrs.rx) ?? 0) * 2,
         (asNumber(attrs.ry) ?? 0) * 2,
-        options,
+        graphicsOptions,
       )
       parent.appendChild(ellipse)
       break
@@ -110,7 +122,7 @@ export function drawSVGNode(
         asNumber(attrs.cx) ?? 0,
         asNumber(attrs.cy) ?? 0,
         (asNumber(attrs.r) ?? 0) * 2,
-        options,
+        graphicsOptions,
       )
       parent.appendChild(circle)
       break
@@ -121,14 +133,14 @@ export function drawSVGNode(
         asNumber(attrs.y1) ?? 0,
         asNumber(attrs.x2) ?? 0,
         asNumber(attrs.y2) ?? 0,
-        options,
+        graphicsOptions,
       )
       applyMarkerAttrs(line, attrs)
       parent.appendChild(line)
       break
     }
     case 'path': {
-      const path = rc.path(String(attrs.d ?? ''), options)
+      const path = rc.path(String(attrs.d ?? ''), graphicsOptions)
       applyMarkerAttrs(path, attrs)
       parent.appendChild(path)
       break
@@ -136,14 +148,14 @@ export function drawSVGNode(
     case 'polygon': {
       const points = String(attrs.points ?? '')
       const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
-      const polygon = rc.polygon(positions, options)
+      const polygon = rc.polygon(positions, graphicsOptions)
       parent.appendChild(polygon)
       break
     }
     case 'polyline': {
       const points = String(attrs.points ?? '')
       const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
-      const linearPath = rc.linearPath(positions, options)
+      const linearPath = rc.linearPath(positions, graphicsOptions)
       applyMarkerAttrs(linearPath, attrs)
       parent.appendChild(linearPath)
       break
@@ -154,7 +166,7 @@ export function drawSVGNode(
         asNumber(attrs.y) ?? 0,
         asNumber(attrs.width) ?? 0,
         asNumber(attrs.height) ?? 0,
-        options,
+        graphicsOptions,
       )
       parent.appendChild(rectangle)
       break

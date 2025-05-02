@@ -12,10 +12,15 @@ defineOptions({
 })
 
 const {
+  solid = true,
   attrs,
   tag = 'div',
   graphicsOptions,
 } = defineProps<{
+  /**
+   * Whether to add strokes to shapes that have a fill but no stroke
+   */
+  solid?: boolean,
   /**
    * Additional attributes for SVG element.
    */
@@ -58,13 +63,14 @@ const children = $computed(() => {
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   for (const child of children) {
-    drawSVGNode(rc, svg, child)
+    drawSVGNode(rc, svg, child, { solid })
   }
 }
 </script>
 
 <template>
   <component :is="tag" class="r-picture">
+    <!-- Must go before source to make id (e.g. <symbol> or <marker>) work -->
     <RGraphics
       :options="graphicsOptions"
       :responsive="false"
