@@ -68,7 +68,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ...getFilledSizeOptions(1),
   }
   for (const child of children) {
-    drawSVGNode(rc, svg, child, options)
+    drawSVGNode(rc, svg, child, {
+      graphicsOptions: options,
+    })
   }
 }
 </script>
