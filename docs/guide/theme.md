@@ -34,7 +34,7 @@ You can load one or more fonts of your choice by any means and specify the font 
 
 ```css
 :root {
-  --r-common-font-family: 'Cabin Sketch', cursive;
+  --r-common-font-family: cursive;
 }
 ```
 
@@ -61,6 +61,8 @@ Due to the character set, CJK fonts are usually very large. Please learn about [
 Always add `cursive` or other fallback font at the end of the list, which could be useful for non-Latin (such as CJK) environments, for example browser translation.
 
 :::
+
+We also recommend using [Annotation Mono](https://qwerasd205.github.io/AnnotationMono/) as a monospaced font for displaying code, etc. For important elements such as titles, you can use [Cabin Sketch](https://fonts.google.com/specimen/Cabin+Sketch).
 
 ## Customizing Theme
 
