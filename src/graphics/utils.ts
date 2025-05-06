@@ -91,8 +91,9 @@ export function drawSVGNode(
     ...Object.fromEntries([
       ['fill', fill],
       ['stroke', stroke],
-      ['stroke-width', strokeWidth],
+      ['strokeWidth', strokeWidth],
     ].filter(([key, value]) => value)),
+    ...(strokeWidth ? getFilledSizeOptions(Number(strokeWidth)) : undefined),
   }
   if (
     options?.solid

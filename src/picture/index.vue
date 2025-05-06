@@ -84,6 +84,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+.r-picture {
+  display: contents;
+}
 .r-picture__source {
   position: absolute;
   inset: 0;

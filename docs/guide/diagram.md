@@ -110,12 +110,13 @@ watchEffect(async () => {
 </template>
 
 <style lang="scss">
-.r-mermaid .label {
-  text-shadow: var(--r-common-stroke-text-shadow);
-}
-.r-mermaid .label text, .r-mermaid span {
+.r-mermaid text,
+.r-mermaid .label,
+.r-mermaid .label text,
+.r-mermaid span {
   fill: var(--r-common-color);
   color: var(--r-common-color);
+  text-shadow: var(--r-common-stroke-text-shadow);
 }
 .r-mermaid p {
   margin: 0;
@@ -133,12 +134,13 @@ watchEffect(async () => {
 </RSpace>
 
 <style lang="scss">
-.r-mermaid .label {
-  text-shadow: var(--r-common-stroke-text-shadow);
-}
-.r-mermaid .label text, .r-mermaid span {
+.r-mermaid text,
+.r-mermaid .label,
+.r-mermaid .label text,
+.r-mermaid span {
   fill: var(--r-common-color);
   color: var(--r-common-color);
+  text-shadow: var(--r-common-stroke-text-shadow);
 }
 .r-mermaid p {
   margin: 0;
