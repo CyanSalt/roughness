@@ -1,7 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import { RConfirmProvider, RGridGuide, RToastProvider } from '../../../src'
-import HomeHeroImage from '../components/HomeHeroImage.vue'
 import REvent from '../components/REvent.vue'
 import REventsTable from '../components/REventsTable.vue'
 import RProp from '../components/RProp.vue'
@@ -14,7 +13,6 @@ import RUsage from '../components/RUsage.vue'
 import '../../../src/common/style.scss'
 import { markdownPlugin } from '../markdown/roughness-runtime'
 
-import '@fontsource/cabin-sketch/latin.css'
 import './style.scss'
 
 export default {
@@ -23,7 +21,6 @@ export default {
     return h(RConfirmProvider, () => [
       h(RToastProvider, () => [
         h(DefaultTheme.Layout, null, {
-          'home-hero-image': () => h(HomeHeroImage),
           'layout-bottom': () => h(RGridGuide),
         }),
       ]),

@@ -1,7 +1,7 @@
 @use 'sass:color';
 
 :root {
-  --r-common-font-family: 'Cabin Sketch', cursive;
+  --r-common-font-family: 'Xiaolai SC', cursive;
   --vp-font-family-base: var(--r-common-font-family);
   --vp-c-bg: var(--r-common-background-color);
   --vp-c-bg-soft: var(--vp-c-bg-alt);
@@ -20,6 +20,19 @@
   --vp-c-divider: #abb2bf40;
   --vp-c-brand-2: #{color.scale(#61aff0, $lightness: 25%)};
   --vp-c-brand-3: #{color.scale(#61aff0, $lightness: 50%)};
+}
+
+.VPHero .image-src {
+  width: 192px;
+  height: 192px;
+  @media (min-width: 960px) {
+    width: 320px;
+    height: 320px;
+  }
+  @media (min-width: 640px) {
+    width: 256px;
+    height: 256px;
+  }
 }
 
 .vp-doc .r-table {

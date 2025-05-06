@@ -101,9 +101,6 @@ importers:
 
   docs:
     devDependencies:
-      '@fontsource/cabin-sketch':
-        specifier: ^5.2.5
-        version: 5.2.5
       '@types/line-column':
         specifier: ^1.0.2
         version: 1.0.2
@@ -783,9 +780,6 @@ packages:
   '@eslint/plugin-kit@0.2.8':
     resolution: {integrity: sha512-ZAoA40rNMPwSm+AeHpCq8STiNAwzWLJuP8Xv4CHIc9wv/PSuExjMrmjfYNj682vW0OOiZ1HKxzvjQr9XZIisQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@fontsource/cabin-sketch@5.2.5':
-    resolution: {integrity: sha512-E/wpX1RA2t54FKqUYrAI9Lx1H24SWG2+sb8prc+I30TBnWTFyss6aRpY25px0KKc2t2T++S6PGmVFK/WyyBXhg==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -5730,8 +5724,6 @@ snapshots:
     dependencies:
       '@eslint/core': 0.13.0
       levn: 0.4.1
-
-  '@fontsource/cabin-sketch@5.2.5': {}
 
   '@humanfs/core@0.19.1': {}
 

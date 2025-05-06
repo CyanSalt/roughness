@@ -32,19 +32,33 @@ In dark and light mode, in addition to the foreground and background colors, the
 
 You can load one or more fonts of your choice by any means and specify the font name(s) with the custom property.
 
+```css
+:root {
+  --r-common-font-family: 'Cabin Sketch', cursive;
+}
+```
+
+It is recommended to use [小赖字体 / 小賴字體 / シャオライ / Xiaolai Font](https://github.com/lxgw/kose-font) for CJK (Chinese, Japanese and Korean) characters.
+
+::: warning
+
+Due to the character set, CJK fonts are usually very large. Please learn about [中文网字计划](https://chinese-font.netlify.app/zh-cn/).
+
+:::
+
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/cabin-sketch/latin.css">
+<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/xiaolai/dist/Xiaolai/result.css" />
 
 <style>
 :root {
-  --r-common-font-family: 'Cabin Sketch', cursive;
+  --r-common-font-family: 'Xiaolai SC', cursive;
 }
 </style>
 ```
 
 ::: tip
 
-It is recommended to always add `cursive` or other fallback font at the end of the list, which could be useful for non-Latin (such as CJK) environments, for example browser translation.
+Always add `cursive` or other fallback font at the end of the list, which could be useful for non-Latin (such as CJK) environments, for example browser translation.
 
 :::
 

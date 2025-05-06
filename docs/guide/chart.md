@@ -7,7 +7,7 @@ import { Bar } from 'vue-chartjs'
 
 Chart.register(BarElement, CategoryScale, LinearScale)
 
-Chart.defaults.font.family = '\'Cabin Sketch\', cursive'
+Chart.defaults.font.family = '\'Xiaolai SC\', cursive'
 
 const colors = useColors()
 

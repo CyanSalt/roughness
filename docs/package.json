@@ -7,7 +7,6 @@
     "build": "vitepress build"
   },
   "devDependencies": {
-    "@fontsource/cabin-sketch": "^5.2.5",
     "@types/line-column": "^1.0.2",
     "@types/markdown-it": "^14.1.2",
     "@vue-macros/api": "^0.12.0",

@@ -12,6 +12,10 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/CyanSalt/roughness
+  image:
+    light: /r.svg
+    dark: /r-dark.svg
+    alt: Roughness
 
 features:
   - title: Hand-drawn Style
