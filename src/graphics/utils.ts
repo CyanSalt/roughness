@@ -51,13 +51,9 @@ function getComputedStyleAttrs(element: SVGElement) {
   }
 }
 
-function applyMarkerAttrs(element: SVGElement, attrs: SVGAttrs) {
-  const properties = ['marker-start', 'marker-mid', 'marker-end'] as const
-  for (const property of properties) {
-    const value = attrs[property]
-    if (value) {
-      element.setAttribute(property, value)
-    }
+function applyElementAttrs(element: Element, attrs: SVGAttrs) {
+  for (const [key, value] of Object.entries(attrs)) {
+    element.setAttribute(key, String(value))
   }
 }
 
@@ -107,6 +103,7 @@ export function drawSVGNode(
   }
   switch (tag) {
     case 'ellipse': {
+      const { cx, cy, rx, ry, ...others } = attrs
       const ellipse = rc.ellipse(
         asNumber(attrs.cx) ?? 0,
         asNumber(attrs.cy) ?? 0,
@@ -114,60 +111,68 @@ export function drawSVGNode(
         (asNumber(attrs.ry) ?? 0) * 2,
         graphicsOptions,
       )
+      applyElementAttrs(ellipse, others)
       parent.appendChild(ellipse)
       break
     }
     case 'circle': {
+      const { cx, c1, r, ...others } = attrs
       const circle = rc.circle(
         asNumber(attrs.cx) ?? 0,
         asNumber(attrs.cy) ?? 0,
         (asNumber(attrs.r) ?? 0) * 2,
         graphicsOptions,
       )
+      applyElementAttrs(circle, others)
       parent.appendChild(circle)
       break
     }
     case 'line': {
+      const { x1, y1, x2, y2, ...others } = attrs
       const line = rc.line(
-        asNumber(attrs.x1) ?? 0,
-        asNumber(attrs.y1) ?? 0,
-        asNumber(attrs.x2) ?? 0,
-        asNumber(attrs.y2) ?? 0,
+        asNumber(x1) ?? 0,
+        asNumber(y1) ?? 0,
+        asNumber(x2) ?? 0,
+        asNumber(y2) ?? 0,
         graphicsOptions,
       )
-      applyMarkerAttrs(line, attrs)
+      applyElementAttrs(line, others)
       parent.appendChild(line)
       break
     }
     case 'path': {
-      const path = rc.path(String(attrs.d ?? ''), graphicsOptions)
-      applyMarkerAttrs(path, attrs)
+      const { d, ...others } = attrs
+      const path = rc.path(String(d ?? ''), graphicsOptions)
+      applyElementAttrs(path, others)
       parent.appendChild(path)
       break
     }
     case 'polygon': {
-      const points = String(attrs.points ?? '')
-      const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
+      const { points, ...others } = attrs
+      const positions = chunk(String(points ?? '').split(/[\s,]/).filter(Boolean).map(Number), 2) as Point[]
       const polygon = rc.polygon(positions, graphicsOptions)
+      applyElementAttrs(polygon, others)
       parent.appendChild(polygon)
       break
     }
     case 'polyline': {
-      const points = String(attrs.points ?? '')
-      const positions = chunk((points.match(/\d+(?:\.\d+)?/g) ?? []).map(Number), 2) as Point[]
+      const { points, ...others } = attrs
+      const positions = chunk(String(points ?? '').split(/[\s,]/).filter(Boolean).map(Number), 2) as Point[]
       const linearPath = rc.linearPath(positions, graphicsOptions)
-      applyMarkerAttrs(linearPath, attrs)
+      applyElementAttrs(linearPath, others)
       parent.appendChild(linearPath)
       break
     }
     case 'rect': {
+      const { x, y, width, height, ...others } = attrs
       const rectangle = rc.rectangle(
-        asNumber(attrs.x) ?? 0,
-        asNumber(attrs.y) ?? 0,
-        asNumber(attrs.width) ?? 0,
-        asNumber(attrs.height) ?? 0,
+        asNumber(x) ?? 0,
+        asNumber(y) ?? 0,
+        asNumber(width) ?? 0,
+        asNumber(height) ?? 0,
         graphicsOptions,
       )
+      applyElementAttrs(rectangle, others)
       parent.appendChild(rectangle)
       break
     }
@@ -178,9 +183,7 @@ export function drawSVGNode(
     }
     default: {
       const svg = document.createElementNS(xmlns ?? 'http://www.w3.org/2000/svg', tag)
-      for (const [key, value] of Object.entries(attrs)) {
-        svg.setAttribute(key, String(value))
-      }
+      applyElementAttrs(svg, attrs)
       parent.appendChild(svg)
       if (children) {
         for (const child of children) {
