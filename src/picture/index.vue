@@ -46,8 +46,10 @@ watch($$(source), value => {
   }
 }, { immediate: true })
 
-useMutationObserver($$(source), entries => {
-  load(entries[0].target as HTMLElement)
+useMutationObserver($$(source), () => {
+  if (source) {
+    load(source)
+  }
 }, { attributes: true, characterData: true, childList: true, subtree: true })
 
 const svgAttrs = $computed(() => {

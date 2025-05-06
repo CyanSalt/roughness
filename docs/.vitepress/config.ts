@@ -34,7 +34,6 @@ export default defineConfig({
           { text: 'Usage', link: '/guide/usage' },
           { text: 'Theme', link: '/guide/theme' },
           { text: 'Specs', link: '/guide/specs' },
-          { text: 'Chart', link: '/guide/chart' },
           { text: 'Diagram', link: '/guide/diagram' },
         ],
       },
