@@ -1,4 +1,32 @@
+# Changelog
 
+## [0.1.0-beta.23](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.22...v0.1.0-beta.23) (2025-05-07)
+
+### Features
+
+* add RMark ([0417911](https://github.com/CyanSalt/roughness/commit/0417911518b46edf50d2e810c6a7e5c94717298a))
+* add RPicture and diagram docs ([72ac16c](https://github.com/CyanSalt/roughness/commit/72ac16cf0dda19ded91fef8f230fc461057ff72c))
+* better default value of slot visibility ([904a654](https://github.com/CyanSalt/roughness/commit/904a654861e17a74f97b0852b869aed0b4eb42ab))
+* **popover:** add arrow ([a5d3c26](https://github.com/CyanSalt/roughness/commit/a5d3c26da5a2b8583232a03f35376bd9f1d7b4a9))
+
+### Bug Fixes
+
+* badge position ([2cd5646](https://github.com/CyanSalt/roughness/commit/2cd56466a76ea7249d4fe7afd2a66478b251e2cd))
+* css file name ([4f47738](https://github.com/CyanSalt/roughness/commit/4f4773819e23283a78a82086c65d141e3abb91f4))
+* dialog background ([8b94586](https://github.com/CyanSalt/roughness/commit/8b94586e85507555ff4e3e52dad898c21eb7dfed))
+* docs ([3904f34](https://github.com/CyanSalt/roughness/commit/3904f347beed2d847a611a0a79feec63d7ec6a7f))
+* icon options ([7f57878](https://github.com/CyanSalt/roughness/commit/7f5787896c0312a75d5303fa7e2a30ba068eaa50))
+* line markers ([ea08863](https://github.com/CyanSalt/roughness/commit/ea08863aaac494c8b21c61e72a82d468a3ee0663))
+* make confirm unclosable by default ([d296d57](https://github.com/CyanSalt/roughness/commit/d296d5728c8174cd9ca73b26bdd8b607f45d2606))
+* picture layout ([bfe2ba1](https://github.com/CyanSalt/roughness/commit/bfe2ba101b62ccfc64121bbb03c9cb6e5a543a0d))
+* picture mutations ([1c9b0d9](https://github.com/CyanSalt/roughness/commit/1c9b0d9825a1c41c95b273e17eb1ffb4077b4a04))
+* rendering order ([5b5af53](https://github.com/CyanSalt/roughness/commit/5b5af532ba8adf771e574ce8bd5bf45e18083726))
+* solid picture by default ([5d5c14f](https://github.com/CyanSalt/roughness/commit/5d5c14f2c42c1dafe38d8c1051424921e7ec6180))
+* support picture[#attrs](https://github.com/CyanSalt/roughness/issues/attrs) ([76107c1](https://github.com/CyanSalt/roughness/commit/76107c1c30a5676014b41a86e10e59edd09a1e13))
+* svg attrs ([c4cbdf5](https://github.com/CyanSalt/roughness/commit/c4cbdf5252d3ca36fde1f5c1343de6cbc1732df0))
+* type dest ([f3824b9](https://github.com/CyanSalt/roughness/commit/f3824b94c99a772befbd0c34cd2f15a9304152d0))
+* type errors ([c777969](https://github.com/CyanSalt/roughness/commit/c77796918844eeab9a631770c711c484650e0b79))
+* use :focus-visible ([915a370](https://github.com/CyanSalt/roughness/commit/915a3702e2ca04e6418ef8695c15a973c6df2606))
 
 ## [0.1.0-beta.22](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.21...v0.1.0-beta.22) (2024-04-25)
 
