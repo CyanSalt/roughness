@@ -85,7 +85,8 @@ export function drawSVGNode(
   options?: DrawSVGNodeOptions,
 ) {
   const [tag, rawAttrs, children] = node
-  const { xmlns, fill, stroke, 'stroke-width': strokeWidth, ...attrs } = rawAttrs
+  const { xmlns, fill, stroke, 'stroke-width': rawStrokeWidth, ...attrs } = rawAttrs
+  const strokeWidth = stroke && stroke !== 'none' ? rawStrokeWidth : undefined
   const graphicsOptions: Options = {
     ...options?.graphicsOptions,
     ...Object.fromEntries([
