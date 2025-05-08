@@ -10,7 +10,7 @@ import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import { sentenceCase, useLocal } from '../common/utils'
+import { isTruthyBooleanish, sentenceCase, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -116,7 +116,7 @@ let input = $ref<HTMLInputElement>()
 let state = $ref(false)
 
 function toggle() {
-  if (disabled || loading) return
+  if (isTruthyBooleanish(disabled) || loading) return
   state = !state
 }
 

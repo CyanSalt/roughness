@@ -3,6 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
+import { isTruthyBooleanish } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -62,7 +63,7 @@ defineSlots<{
 const name = $(useName($$(userName)))
 
 const disabled = $computed(() => {
-  return Boolean(userDisabled || loading)
+  return isTruthyBooleanish(userDisabled) || loading
 })
 
 const { timestamp, listener } = $(useTransitionListener('::before'))

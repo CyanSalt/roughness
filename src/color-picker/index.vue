@@ -4,7 +4,7 @@ import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, getProperty, useTransitionListener } from '../common/property'
-import { useLocal } from '../common/utils'
+import { isTruthyBooleanish, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -56,7 +56,7 @@ let internalModelValue = $(useLocal({
 }))
 
 const disabled = $computed(() => {
-  return Boolean(userDisabled || loading)
+  return isTruthyBooleanish(userDisabled) || loading
 })
 
 let root = $ref<HTMLElement>()

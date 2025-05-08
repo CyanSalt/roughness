@@ -8,7 +8,7 @@ import { inject, ref, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, useTransitionListener } from '../common/property'
-import { useLocal } from '../common/utils'
+import { isTruthyBooleanish, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -118,7 +118,7 @@ let internalChecked = $(useLocal({
 }))
 
 const disabled = $computed(() => {
-  return Boolean(userDisabled || disabledByGroup)
+  return isTruthyBooleanish(userDisabled) || Boolean(disabledByGroup)
 })
 
 const { timestamp, listener } = $(useTransitionListener('::before'))

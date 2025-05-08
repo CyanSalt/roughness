@@ -4,6 +4,7 @@ import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import type { ColorProps, SizeProps } from '../common/utils'
+import { isTruthyBooleanish } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -54,7 +55,7 @@ defineSlots<{
 }>()
 
 const disabled = $computed(() => {
-  return Boolean(userDisabled || loading)
+  return isTruthyBooleanish(userDisabled) || loading
 })
 
 const { timestamp, listener } = $(useTransitionListener('::before'))
@@ -147,11 +148,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     border-top: var(--R-button-border-width) solid;
     transition: border-spacing 1ms, border-top 1ms !important;
   }
-  &:hover:not(.is-loading) {
+  &:hover:not(:disabled) {
     // @default 8px when hovered
     --R-button-border-dash: var(--r-button-border-dash, 8px);
   }
-  &:focus-visible, &:active {
+  &:focus-visible:not(:disabled), &:active:not(:disabled) {
     // @default 2px when focused or active
     --R-button-border-width: var(--r-button-border-width, 2px);
   }

@@ -46,3 +46,12 @@ export function useLocal<T>(getterOrOptions: ComputedGetter<T> | WritableCompute
   }
   return value
 }
+
+export function isTruthyBooleanish(value: boolean | string | null | undefined) {
+  // '', '1', 'true', true, 'disabled' -> true
+  // 'false', false, undefined, null -> false
+  return value !== undefined
+    && value !== null
+    && value !== false
+    && value !== 'false'
+}
