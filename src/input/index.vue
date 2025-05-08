@@ -217,8 +217,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     // @default 8px when hovered
     --R-input-border-dash: var(--r-input-border-dash, 8px);
   }
-  &:has(> .r-input__input:focus-visible),
-  &:active {
+  &:has(> .r-input__input:focus-visible:not(:disabled)),
+  &:active:not(:has(> .r-input__input:disabled)) {
     // @default 2px when focused or active
     --R-input-border-width: var(--r-input-border-width, 2px);
   }
