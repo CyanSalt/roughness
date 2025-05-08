@@ -80,7 +80,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       height / 2,
       width - padding * 2,
       height - padding * 2,
-      options,
+      {
+        ...options,
+        disableMultiStroke: Boolean(strokeLineDash),
+      },
     )
     svg.appendChild(ellipse)
   } else {

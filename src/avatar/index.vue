@@ -87,6 +87,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
         stroke: 'var(--R-avatar-border-color)',
         strokeWidth,
         strokeLineDash,
+        disableMultiStroke: Boolean(strokeLineDash),
       },
     )
     svg.appendChild(ellipse)
