@@ -109,7 +109,7 @@ let internalChecked = $(useLocal({
         } else if (!currentValue && currentChecked) {
           model = Array.isArray(model) ? model.filter(item => item !== value) : []
         }
-      } else if (currentValue) {
+      } else if (currentValue as unknown === value) {
         model = value
       }
     }

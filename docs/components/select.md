@@ -19,7 +19,7 @@ import { RCheckbox, RSelect } from 'roughness'
 
 <template>
   <RSelect placeholder="Test engineer rank">
-    <RCheckbox value="stable" />
+    <RCheckbox value="" label="Stable" />
     <RCheckbox value="beta" />
     <RCheckbox value="dev" />
     <RCheckbox value="canary" />
@@ -30,7 +30,7 @@ import { RCheckbox, RSelect } from 'roughness'
 :::
 
 <RSelect placeholder="Test engineer rank">
-  <RCheckbox value="stable" />
+  <RCheckbox value="" label="Stable" />
   <RCheckbox value="beta" />
   <RCheckbox value="dev" />
   <RCheckbox value="canary" />
