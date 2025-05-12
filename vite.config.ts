@@ -37,6 +37,7 @@ export default defineConfig(async () => ({
     reactivityTransform(),
     dts({
       entryRoot: 'src',
+      tsconfigPath: './tsconfig.app.json',
       cleanVueFileName: true,
       staticImport: true,
     }),
