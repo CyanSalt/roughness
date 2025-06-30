@@ -17,7 +17,6 @@
   "scripts": {
     "prepack": "vite build",
     "release": "release-it",
-    "release:beta-as-latest": "pnpm run release --preRelease=beta --npm.tag=latest",
     "docs:dev": "pnpm -F docs dev",
     "docs:build": "pnpm -F docs build",
     "lint:script": "eslint --cache --fix './**/*.{cjs,js,ts,vue}'",
