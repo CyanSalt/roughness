@@ -61,6 +61,12 @@ provide(listStyleInjection, $$(listStyle))
   initial-value: 0px;
 }
 
+@property --R-list-marker-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-list {
   // Color of the list marker.
   --R-list-marker-color: var(--r-list-marker-color, var(--r-common-color));
@@ -68,6 +74,8 @@ provide(listStyleInjection, $$(listStyle))
   --R-list-marker-block-size: var(--r-list-marker-block-size, var(--r-common-line-height));
   // Area width of the list marker.
   --R-list-marker-inline-size: var(--r-list-marker-inline-size, 1.5em);
+  // Width of the list marker border.
+  --R-list-marker-border-width: var(--r-list-marker-border-width, var(--r-common-stroke-width));
   padding-inline-start: var(--R-list-marker-inline-size);
 }
 ul.r-list {

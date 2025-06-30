@@ -271,11 +271,65 @@ Common style properties are declared under the root node. Changing them will aff
 
   </RStyle>
 
+  <RStyle name="--r-common-stroke-width">
+
+  <template #type>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `1px`
+
+  </template>
+
+  Line width of stroked components.
+
+  </RStyle>
+
+  <RStyle name="--r-common-emphasized-stroke-width">
+
+  <template #type>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `calc(var(--r-common-stroke-width) + 1px)`
+
+  </template>
+
+  Line width of stroked components when active.
+
+  </RStyle>
+
+  <RStyle name="--r-common-text-stroke-width">
+
+  <template #type>
+
+  `<length>`
+
+  </template>
+
+  <template #default-value>
+
+  `calc(var(--r-common-stroke-width) + 1px)`
+
+  </template>
+
+  Line width of stroked components when displayed as text.
+
+  </RStyle>
+
   <RStyle name="--r-common-box-padding-block">
 
   <template #type>
 
-  `<'padding-top'>`
+  `<length-percentage>`
 
   </template>
 
@@ -293,7 +347,7 @@ Common style properties are declared under the root node. Changing them will aff
 
   <template #type>
 
-  `<'padding-top'>`
+  `<length-percentage>`
 
   </template>
 

@@ -79,6 +79,9 @@
   &:hover {
     color: var(--r-element-color);
   }
+  &:not([href], :hover) {
+    text-decoration: none;
+  }
 }
 .vp-doc button:where([class^='r-'], [class*=' r-']) {
   &:focus-visible {

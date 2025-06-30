@@ -221,11 +221,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Color of the checkbox control border.
   --R-checkbox-border-color: var(--r-checkbox-border-color, var(--r-common-color));
   // Width of the checkbox control border.
-  --R-checkbox-border-width: var(--r-checkbox-border-width, 1px);
+  --R-checkbox-border-width: var(--r-checkbox-border-width, var(--r-common-stroke-width));
   // Color of the checkbox checked line.
   --R-checkbox-checked-color: var(--r-checkbox-checked-color, var(--r-common-primary-color));
   // Width of the checkbox checked line.
-  --R-checkbox-checked-width: var(--r-checkbox-checked-width, 2px);
+  --R-checkbox-checked-width: var(--r-checkbox-checked-width, var(--r-common-text-stroke-width));
   // Size of the checkbox control.
   --R-checkbox-control-size: var(--r-checkbox-control-size, var(--r-common-line-height));
   position: relative;
@@ -241,7 +241,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   &:has(> .r-checkbox__input:focus-visible),
   &:not(:has(> .r-checkbox__input:disabled)):active {
     // @default 2px when focused or active
-    --R-checkbox-border-width: var(--r-checkbox-border-width, 2px);
+    --R-checkbox-border-width: var(--r-checkbox-border-width, var(--r-common-emphasized-stroke-width));
   }
   &:has(> .r-checkbox__input:disabled) {
     cursor: not-allowed;

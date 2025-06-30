@@ -184,7 +184,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Color of the card border.
   --R-card-border-color: var(--r-card-border-color, var(--R-card-color));
   // Width of the card border.
-  --R-card-border-width: var(--r-card-border-width, 1px);
+  --R-card-border-width: var(--r-card-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).

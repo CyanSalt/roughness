@@ -9,6 +9,10 @@
     --r-common-small-font-size: calc(var(--r-common-font-size) - 4px);
     --r-common-large-font-size: calc(var(--r-common-font-size) + 4px);
     --r-common-line-height: calc(1em + 8px);
+    --r-common-stroke-width: 1px;
+    --r-common-emphasized-stroke-width: calc(var(--r-common-stroke-width) + 1px);
+    --r-common-text-stroke-width: calc(var(--r-common-stroke-width) + 1px);
+    --r-common-stroke-dash: 8px;
     --r-common-box-padding-block: 0.5em;
     --r-common-box-padding-inline: calc(1em + 4px);
     --r-common-overlay-z-index: 2;

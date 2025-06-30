@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -21,8 +22,12 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
+const { timestamp, listener } = $(useTransitionListener('::before'))
+
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  void timestamp
   const { width, height } = getSVGSize(svg)
+  const strokeWidth = getLengthProperty(svg, '--R-badge-border-width') ?? 0
   const padding = 2
   const ellipse = rc.ellipse(
     width / 2,
@@ -30,6 +35,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     width - padding * 2,
     height - padding * 2,
     {
+      strokeWidth,
       stroke: 'var(--R-badge-color)',
     },
   )
@@ -38,7 +44,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <span class="r-badge">
+  <span class="r-badge" @transitionrun="listener">
     <sup class="r-badge__marker">
       <RGraphics :options="graphicsOptions" @draw="draw" />
       <span class="r-badge__marker-content"><slot name="marker"></slot></span>
@@ -68,6 +74,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   initial-value: 0px;
 }
 
+@property --R-badge-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-badge {
   // Color of the badge marker.
   --R-badge-color: var(--r-badge-color, var(--r-common-error-color));
@@ -75,7 +87,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --R-badge-padding-block: var(--r-badge-padding-block, calc((1em - 4px) / 2 - 4px));
   // Horizontal padding of the badge marker.
   --R-badge-padding-inline: var(--r-badge-padding-inline, calc((1em - 4px) - 4px));
+  // Width of the badge marker border.
+  --R-badge-border-width: var(--r-badge-border-width, var(--r-common-stroke-width));
   position: relative;
+  &::before {
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-badge-border-width: border-top-width,
+    ));
+  }
 }
 .r-badge__marker {
   --r-element-font-size: calc(1em - 4px);

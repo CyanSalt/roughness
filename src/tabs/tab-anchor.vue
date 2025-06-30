@@ -149,7 +149,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Color of the tab anchor text and border.
   --R-tab-anchor-color: var(--r-tab-anchor-color, var(--r-common-color));
   // Width of the tab anchor border.
-  --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 1px);
+  --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
@@ -164,11 +164,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &:hover {
     // @default 8px when hovered
-    --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, 8px);
+    --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, var(--r-common-stroke-dash));
   }
   &:has(.r-tab-anchor__button:focus-visible), &:active {
     // @default 2px when focused or active
-    --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 2px);
+    --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, var(--r-common-emphasized-stroke-width));
   }
   &.is-active {
     // @default var(--r-common-primary-color) if active

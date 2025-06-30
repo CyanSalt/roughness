@@ -297,13 +297,13 @@ provide(labelsInjection, labels)
   // Color of the select control border.
   --R-select-border-color: var(--r-select-border-color, var(--r-common-color));
   // Width of the select control border.
-  --R-select-border-width: var(--r-select-border-width, 1px);
+  --R-select-border-width: var(--r-select-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-select-border-dash: var(--r-select-border-dash, none);
   // Width of the select dropdown border.
-  --R-select-dropdown-border-width: var(--r-select-dropdown-border-width, 1px);
+  --R-select-dropdown-border-width: var(--r-select-dropdown-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the dropdown border.
   --R-select-dropdown-border-dash: var(--r-select-dropdown-border-dash, none);
   // Vertical padding of the select dropdown.
@@ -326,7 +326,7 @@ provide(labelsInjection, labels)
   }
   &:has(> .r-select__input:focus-visible) {
     // @default 2px when focused
-    --R-select-border-width: var(--r-select-border-width, 2px);
+    --R-select-border-width: var(--r-select-border-width, var(--r-common-emphasized-stroke-width));
   }
   &:not(.is-loading) {
     cursor: pointer;

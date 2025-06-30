@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize } from '../graphics/utils'
+import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 defineOptions({
   name: 'RDivider',
@@ -17,11 +18,17 @@ const {
   vertical?: boolean,
 } & GraphicsProps>()
 
+const { timestamp, listener } = $(useTransitionListener('::before'))
+
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  void timestamp
   const { width, height } = getSVGSize(svg)
+  const strokeWidth = getLengthProperty(svg, '--R-divider-line-width') ?? 0
   const padding = 2
   const line = rc.line(padding, padding, vertical ? padding : width - padding, vertical ? height - padding : padding, {
     stroke: 'var(--R-divider-color)',
+    strokeWidth,
+    ...getFilledSizeOptions(strokeWidth),
   })
   svg.appendChild(line)
 }
@@ -32,12 +39,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-divider', { 'is-vertical': vertical }]"
     role="separator"
     :aria-orientation="vertical ? 'vertical' : 'horizontal'"
+    @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />
   </span>
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
+
 @property --R-divider-color {
   syntax: '<color>';
   inherits: true;
@@ -53,12 +63,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-divider {
   // Color of the divider.
   --R-divider-color: var(--r-divider-color, var(--r-common-color));
+  // Width of the divider.
+  --R-divider-line-width: var(--r-divider-line-width, var(--r-common-stroke-width));
   // Size of the divider gap.
   --R-divider-gap-size: var(--r-divider-gap-size, calc(1em - 4px));
   display: block;
   block-size: 1px + 2px * 2;
   margin-block: calc(var(--R-divider-gap-size) - 2px);
   margin-inline: auto;
+  &::before {
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-divider-line-width: border-top-width,
+    ));
+  }
   &.is-vertical {
     display: inline-block;
     block-size: var(--r-common-line-height);

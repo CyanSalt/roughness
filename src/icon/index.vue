@@ -116,7 +116,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Stroke line color of the icon.
   --R-icon-stroke-color: var(--r-icon-stroke-color, var(--R-icon-color));
   // Stroke line width of the icon.
-  --R-icon-stroke-width: var(--r-icon-stroke-width, 2px);
+  --R-icon-stroke-width: var(--r-icon-stroke-width, var(--r-common-text-stroke-width));
   display: inline-block;
   block-size: calc(1em + 4px);
   inline-size: calc(1em + 4px);

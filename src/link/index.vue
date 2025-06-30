@@ -47,7 +47,7 @@ defineSlots<{
 }
 .r-link {
   // Width of the link underline. Only visible when hovered, or with the `href` attribute.
-  --R-link-underline-width: var(--r-link-underline-width, 2px);
+  --R-link-underline-width: var(--r-link-underline-width, var(--r-common-text-stroke-width));
   cursor: pointer;
   &[href], &:hover {
     text-decoration-line: underline;
@@ -56,7 +56,7 @@ defineSlots<{
   }
   &:focus-visible, &:active {
     // @default 3px when focused or active
-    --R-link-underline-width: var(--r-link-underline-width, 3px);
+    --R-link-underline-width: var(--r-link-underline-width, calc(var(--r-common-text-stroke-width) + 1px));
   }
 }
 button.r-link {

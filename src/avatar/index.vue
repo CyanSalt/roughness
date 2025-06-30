@@ -154,7 +154,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Color of the avatar border.
   --R-avatar-border-color: var(--r-avatar-border-color, var(--r-common-color));
   // Width of the avatar border.
-  --R-avatar-border-width: var(--r-avatar-border-width, 1px);
+  --R-avatar-border-width: var(--r-avatar-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).

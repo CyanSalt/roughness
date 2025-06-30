@@ -56,6 +56,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-switch-border-width') ?? 0
+  const handleStrokeWidth = getLengthProperty(svg, '--R-switch-handle-border-width') ?? 0
   const padding = 2
   const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
     stroke: 'var(--R-switch-border-color)',
@@ -65,9 +66,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   })
   svg.appendChild(rectangle)
   const handleOptions: Options = {
+    strokeWidth: handleStrokeWidth,
     stroke: 'var(--R-switch-border-color)',
     fill: 'var(--R-switch-handle-color)',
     fillStyle: 'solid',
+    ...getFilledSizeOptions(handleStrokeWidth),
   }
   const handleSize = (height - 2 * padding) * 3 / 4
   const handleMargin = (height - handleSize) / 2
@@ -149,29 +152,39 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   initial-value: currentColor;
 }
 
+@property --R-switch-handle-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-switch {
   // Color of the switch control border.
   --R-switch-border-color: var(--r-switch-border-color, var(--r-common-color));
   // Width of the switch control border.
-  --R-switch-border-width: var(--r-switch-border-width, 1px);
+  --R-switch-border-width: var(--r-switch-border-width, var(--r-common-stroke-width));
   // Size of the switch control.
   --R-switch-control-size: var(--r-switch-control-size, var(--r-common-line-height));
   // Color of the switch track when open.
   --R-switch-track-color: var(--r-switch-track-color, var(--r-common-primary-color));
   // Color of the switch handle.
   --R-switch-handle-color: var(--r-switch-handle-color, var(--r-common-background-color));
+  // Width of the switch handle border.
+  --R-switch-handle-border-width: var(--r-switch-handle-border-width, var(--r-common-stroke-width));
   position: relative;
   cursor: pointer;
   &::before {
     border-top-style: solid;
+    border-right-style: solid;
     @include partials.transition-runner((
       --R-switch-border-width: border-top-width,
+      --R-switch-handle-border-width: border-right-width,
     ));
   }
   &:has(> .r-switch__input:focus-visible),
   &:not(:has(> .r-switch__input:disabled)):active {
     // @default 2px when focused or active
-    --R-switch-border-width: var(--r-switch-border-width, 2px);
+    --R-switch-border-width: var(--r-switch-border-width, var(--r-common-emphasized-stroke-width));
   }
   &:has(> .r-switch__input:disabled) {
     cursor: not-allowed;

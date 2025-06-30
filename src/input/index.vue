@@ -218,7 +218,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Color of the input border.
   --R-input-border-color: var(--r-input-border-color, var(--r-common-color));
   // Width of the input border.
-  --R-input-border-width: var(--r-input-border-width, 1px);
+  --R-input-border-width: var(--r-input-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
@@ -237,12 +237,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   &:has(> .r-input__input:hover:not(:read-only, :disabled)) {
     // @default 8px when hovered
-    --R-input-border-dash: var(--r-input-border-dash, 8px);
+    --R-input-border-dash: var(--r-input-border-dash, var(--r-common-stroke-dash));
   }
   &:has(> .r-input__input:focus-visible:not(:disabled)),
   &:active:not(:has(> .r-input__input:disabled)) {
     // @default 2px when focused or active
-    --R-input-border-width: var(--r-input-border-width, 2px);
+    --R-input-border-width: var(--r-input-border-width, var(--r-common-emphasized-stroke-width));
   }
   &:has(> .r-input__input:user-invalid) {
     // @default var(--r-common-error-color) if invalid
