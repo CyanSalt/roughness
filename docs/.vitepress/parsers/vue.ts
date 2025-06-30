@@ -26,6 +26,7 @@ export interface Options {
 export interface PropLike {
   name: string,
   type: string | string[] | undefined,
+  required: boolean,
   defaultValue: string | string[] | undefined,
   tags: Spec[] | undefined,
   description: string[] | undefined,

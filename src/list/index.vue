@@ -43,14 +43,30 @@ provide(listStyleInjection, $$(listStyle))
 </template>
 
 <style lang="scss">
+@property --R-list-marker-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-list-marker-block-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-list-marker-inline-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-list {
   // Color of the list marker.
   --R-list-marker-color: var(--r-list-marker-color, var(--r-common-color));
   // Area height of the list marker.
-  // @type {<length>}
   --R-list-marker-block-size: var(--r-list-marker-block-size, var(--r-common-line-height));
   // Area width of the list marker.
-  // @type {<length>}
   --R-list-marker-inline-size: var(--r-list-marker-inline-size, 1.5em);
   padding-inline-start: var(--R-list-marker-inline-size);
 }

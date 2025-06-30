@@ -117,6 +117,30 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 @use '../common/_reset';
 
+@property --R-button-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-button-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-button-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-button-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
 @layer roughness__base {
   .r-button {
     @include reset.button;
@@ -131,12 +155,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // Color of the button border.
   --R-button-border-color: var(--r-button-border-color, var(--R-button-color));
   // Width of the button border.
-  // @type {<length>}
   --R-button-border-width: var(--r-button-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-button-border-dash: var(--r-button-border-dash, none);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
@@ -146,10 +168,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   text-align: center;
   text-decoration-thickness: calc(var(--R-button-border-width) + 1px);
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-button-border-dash);
-    border-top: var(--R-button-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-button-border-width: border-top-width,
+      --R-button-border-dash: border-spacing,
+    ));
   }
   &:hover:not(:disabled) {
     // @default 8px when hovered

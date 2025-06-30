@@ -124,18 +124,40 @@ function change(event: InputEvent) {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-upload-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-upload-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-upload-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-upload-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
 .r-upload {
   // Color of the upload text.
   --R-upload-color: var(--r-upload-color, var(--r-common-color));
   // Color of the upload border.
   --R-upload-border-color: var(--r-upload-border-color, var(--R-upload-color));
   // Width of the upload border.
-  // @type {<length>}
   --R-upload-border-width: var(--r-upload-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-upload-border-dash: var(--r-upload-border-dash, 8px);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
@@ -144,10 +166,11 @@ function change(event: InputEvent) {
   text-align: center;
   cursor: pointer;
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-upload-border-dash);
-    border-top: var(--R-upload-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-upload-border-width: border-top-width,
+      --R-upload-border-dash: border-spacing,
+    ));
   }
   &:focus-visible, &:active {
     // @default 2px when focused or active

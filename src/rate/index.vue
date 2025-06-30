@@ -98,14 +98,30 @@ watchEffect(() => {
 <style lang="scss">
 @use '../common/_reset';
 
+@property --R-rate-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-rate-control-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-rate-gap-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-rate {
   // Color of the rate control when active.
   --R-rate-color: var(--r-rate-color, var(--r-common-primary-color));
   // Size of the rate control.
-  // @type {<length>}
   --R-rate-control-size: var(--r-rate-control-size, calc(1em + 4px));
   // Gap size of the rate control.
-  // @type {<length>}
   --R-rate-gap-size: var(--r-rate-gap-size, 4px);
   display: inline-flex;
   flex-direction: row-reverse;

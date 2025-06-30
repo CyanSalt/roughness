@@ -26,14 +26,30 @@ const {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-grid-guide-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-grid-guide-cell-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-grid-guide-section-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-grid-guide {
   // Color of the guide lines.
   --R-grid-guide-color: var(--r-grid-guide-color, #f5f5f5);
   // Size of the grid cell.
-  // @type {<length>}
   --R-grid-guide-cell-size: var(--r-grid-guide-cell-size, var(--r-common-font-size));
   // Size of the grid section.
-  // @type {<length>}
   --R-grid-guide-section-size: var(--r-grid-guide-section-size, calc(var(--R-grid-guide-cell-size) * 8));
   position: relative;
   background-image:

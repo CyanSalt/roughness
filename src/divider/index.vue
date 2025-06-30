@@ -38,11 +38,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@property --R-divider-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-divider-gap-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-divider {
   // Color of the divider.
   --R-divider-color: var(--r-divider-color, var(--r-common-color));
   // Size of the divider gap.
-  // @type {<length>}
   --R-divider-gap-size: var(--r-divider-gap-size, calc(1em - 4px));
   display: block;
   block-size: 1px + 2px * 2;

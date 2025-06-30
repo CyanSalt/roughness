@@ -251,28 +251,64 @@ provide(labelsInjection, labels)
 @use '../common/_partials';
 @use '../common/_reset';
 
+@property --R-select-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-select-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-select-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
+@property --R-select-dropdown-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-select-dropdown-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
+@property --R-select-dropdown-padding-block {
+  syntax: '<length-percentage>+';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-select-dropdown-padding-inline {
+  syntax: '<length-percentage>+';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-select {
   // Color of the select control border.
   --R-select-border-color: var(--r-select-border-color, var(--r-common-color));
   // Width of the select control border.
-  // @type {<length>}
   --R-select-border-width: var(--r-select-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-select-border-dash: var(--r-select-border-dash, none);
   // Width of the select dropdown border.
-  // @type {<length>}
   --R-select-dropdown-border-width: var(--r-select-dropdown-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the dropdown border.
-  // @type {<length>+ | none}
   --R-select-dropdown-border-dash: var(--r-select-dropdown-border-dash, none);
   // Vertical padding of the select dropdown.
-  // @type {<'padding-top'>}
   --R-select-dropdown-padding-block: var(--r-select-dropdown-padding-block, calc(1em - 4px));
   // Horizontal padding of the select dropdown.
-  // @type {<'padding-top'>}
   --R-select-dropdown-padding-inline: var(--r-select-dropdown-padding-inline, calc(1em - 4px));
   position: relative;
   display: inline-flex;
@@ -282,10 +318,11 @@ provide(labelsInjection, labels)
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2);
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-select-border-dash);
-    border-top: var(--R-select-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-select-border-width: border-top-width,
+      --R-select-border-dash: border-spacing,
+    ));
   }
   &:has(> .r-select__input:focus-visible) {
     // @default 2px when focused
@@ -333,10 +370,11 @@ provide(labelsInjection, labels)
   inset-inline: 0;
   transform: translateY(100%);
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-select-dropdown-border-dash);
-    border-top: var(--R-select-dropdown-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-select-dropdown-border-width: border-top-width,
+      --R-select-dropdown-border-dash: border-spacing,
+    ));
   }
 }
 .r-select__group {

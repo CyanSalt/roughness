@@ -1,5 +1,6 @@
 @use 'sass:list';
 @use 'sass:math';
+@use 'sass:string';
 
 @keyframes r-loading-spinner {
   to {
@@ -14,6 +15,18 @@
   block-size: 0;
   inline-size: 0;
   visibility: hidden;
+}
+
+@mixin transition-runner($properties) {
+  @include ghost();
+  $transition: ();
+  @each $property, $proxy in $properties {
+    #{$proxy}: var(#{$property});
+    // stylelint-disable-next-line scss/no-duplicate-dollar-variables
+    $transition: list.append($transition, #{string.unquote($proxy)} 1ms, $separator: comma);
+  }
+  // stylelint-disable-next-line order/order
+  transition: $transition !important;
 }
 
 @mixin loading-spinner() {

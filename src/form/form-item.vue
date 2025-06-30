@@ -73,9 +73,14 @@ provide(nameInjection, $$(name))
 </template>
 
 <style lang="scss">
+@property --R-form-item-label-inline-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-form-item__label {
   // Size of the label when `label-inline` is `true`.
-  // @type {<length>}
   --R-form-item-label-inline-size: var(--r-form-item-label-inline-size, 105px);
   position: relative;
   box-sizing: border-box;

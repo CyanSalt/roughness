@@ -119,14 +119,42 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 @use '../common/_reset';
 
+@property --R-switch-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-switch-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-switch-control-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-switch-track-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-switch-handle-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
 .r-switch {
   // Color of the switch control border.
   --R-switch-border-color: var(--r-switch-border-color, var(--r-common-color));
   // Width of the switch control border.
-  // @type {<length>}
   --R-switch-border-width: var(--r-switch-border-width, 1px);
   // Size of the switch control.
-  // @type {<length>}
   --R-switch-control-size: var(--r-switch-control-size, var(--r-common-line-height));
   // Color of the switch track when open.
   --R-switch-track-color: var(--r-switch-track-color, var(--r-common-primary-color));
@@ -135,9 +163,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   position: relative;
   cursor: pointer;
   &::before {
-    @include partials.ghost();
-    border-top: var(--R-switch-border-width) solid;
-    transition: border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-switch-border-width: border-top-width,
+    ));
   }
   &:has(> .r-switch__input:focus-visible),
   &:not(:has(> .r-switch__input:disabled)):active {

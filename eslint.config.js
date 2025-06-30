@@ -22,6 +22,7 @@ export default config({
     {
       files: ['src/**/*'],
       rules: {
+        'galaxy/valid-vue-reactivity-transform-props': 'off',
         'vue/no-undef-components': 'error',
         'vue/no-undef-properties': 'error',
         'vue/match-component-file-name': 'off',

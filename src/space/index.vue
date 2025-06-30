@@ -70,9 +70,14 @@ const style = $computed<CSSProperties>(() => {
 </template>
 
 <style lang="scss">
+@property --R-space-gap-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-space {
   // Size of the space gap.
-  // @type {<length>}
   --R-space-gap-size: var(--r-space-gap-size, calc(1em - 4px));
   display: flex;
   gap: var(--R-space-gap-size);

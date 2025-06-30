@@ -195,6 +195,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_reset';
 
+@property --R-table-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
 @layer roughness__base {
   .r-table {
     @include reset.table;

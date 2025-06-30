@@ -31,6 +31,12 @@ defineSlots<{
 @use '../common/_partials';
 @use '../common/_reset';
 
+@property --R-link-underline-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 @layer roughness__base {
   a.r-link {
     @include reset.a;
@@ -41,7 +47,6 @@ defineSlots<{
 }
 .r-link {
   // Width of the link underline. Only visible when hovered, or with the `href` attribute.
-  // @type {<length>}
   --R-link-underline-width: var(--r-link-underline-width, 2px);
   cursor: pointer;
   &[href], &:hover {

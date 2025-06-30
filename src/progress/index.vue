@@ -109,34 +109,66 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-progress-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-progress-block-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-progress-inline-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-progress-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-progress-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-progress-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
 .r-progress {
   // Color of the progress bar and its content.
   --R-progress-color: var(--r-progress-color, var(--r-element-color));
   // Height of the progress bar.
-  // @type {<length>}
   --R-progress-block-size: var(--r-progress-block-size, var(--r-common-line-height));
   // Width of the progress bar.
-  // @type {<length>}
   --R-progress-inline-size: var(--r-progress-inline-size, calc(var(--R-progress-block-size) * 10));
   // Color of the progress bar border.
-  // @type {<length>}
   --R-progress-border-color: var(--r-progress-border-color, var(--r-common-color));
   // Width of the progress bar border.
-  // @type {<length>}
   --R-progress-border-width: var(--r-progress-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-progress-border-dash: var(--r-progress-border-dash, none);
   display: inline-block;
   block-size: var(--R-progress-block-size);
   inline-size: var(--R-progress-inline-size);
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-progress-border-dash);
-    border-top: var(--R-progress-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-progress-border-width: border-top-width,
+      --R-progress-border-dash: border-spacing,
+    ));
   }
   &.primary {
     --r-element-color: var(--r-common-primary-color);

@@ -85,6 +85,12 @@ watchEffect(() => {
 </template>
 
 <style lang="scss">
+@property --R-mark-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
 .r-mark {
   // Color of the mark annotation.
   --R-mark-color: var(--r-mark-color, #ffd54f);

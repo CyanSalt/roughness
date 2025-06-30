@@ -127,23 +127,40 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 @use '../common/_reset';
 
+@property --R-tab-anchor-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-tab-anchor-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-tab-anchor-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
 .r-tab-anchor {
   // Color of the tab anchor text and border.
   --R-tab-anchor-color: var(--r-tab-anchor-color, var(--r-common-color));
   // Width of the tab anchor border.
-  // @type {<length>}
   --R-tab-anchor-border-width: var(--r-tab-anchor-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-tab-anchor-border-dash: var(--r-tab-anchor-border-dash, none);
   cursor: pointer;
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-tab-anchor-border-dash);
-    border-top: var(--R-tab-anchor-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-tab-anchor-border-width: border-top-width,
+      --R-tab-anchor-border-dash: border-spacing,
+    ));
   }
   &:hover {
     // @default 8px when hovered

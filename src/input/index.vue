@@ -85,7 +85,7 @@ interface InputProps {
 const {
   lines = 1,
   modelValue,
-  modelModifiers = (() => ({})) as never,
+  modelModifiers = {},
   name: userName,
   placeholder: userPlaceholder,
   type,
@@ -190,28 +190,50 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 @use '../common/_partials';
 @use '../common/_reset';
 
+@property --R-input-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-input-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-input-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
+@property --R-input-inline-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-input {
   // Color of the input border.
   --R-input-border-color: var(--r-input-border-color, var(--r-common-color));
   // Width of the input border.
-  // @type {<length>}
   --R-input-border-width: var(--r-input-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-input-border-dash: var(--r-input-border-dash, none);
   // Size of the input.
-  // @type {<length>}
   --R-input-inline-size: var(--r-input-inline-size, 210px);
   --r-element-line-height: calc(var(--r-common-box-padding-block) * 2 + var(--r-common-line-height));
   display: inline-flex;
   inline-size: 210px;
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-input-border-dash);
-    border-top: var(--R-input-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms, line-height 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-input-border-width: border-top-width,
+      --R-input-border-dash: border-spacing,
+    ));
   }
   &:has(> .r-input__input:hover:not(:read-only, :disabled)) {
     // @default 8px when hovered

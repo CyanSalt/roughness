@@ -92,21 +92,39 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-icon-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-icon-stroke-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-icon-stroke-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-icon {
   // Color of the icon.
   --R-icon-color: var(--r-icon-color, var(--R-text-color));
   // Stroke line color of the icon.
   --R-icon-stroke-color: var(--r-icon-stroke-color, var(--R-icon-color));
   // Stroke line width of the icon.
-  // @type {<length>}
   --R-icon-stroke-width: var(--r-icon-stroke-width, 2px);
   display: inline-block;
   block-size: calc(1em + 4px);
   inline-size: calc(1em + 4px);
   &::before {
-    @include partials.ghost();
-    border-top: var(--R-icon-stroke-width) solid;
-    transition: border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-icon-stroke-width: border-top-width,
+    ));
   }
   .r-graphics {
     block-size: 100%;

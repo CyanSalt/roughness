@@ -2,7 +2,7 @@
 import type { Spec } from 'comment-parser'
 import { RScope, RText } from '../../../src'
 import { data } from '../loaders/vue.data'
-import type { CSSVar } from '../parser/scss'
+import type { CSSVar } from '../parsers/scss'
 import MarkdownBlock from './MarkdownBlock.vue'
 import REvent from './REvent.vue'
 import REventsTable from './REventsTable.vue'
@@ -99,12 +99,15 @@ function uniqueVars(cssVars: CSSVar[]) {
   return Array.from(processed.values())
 }
 
-function publicName(nameOrValue: string) {
-  return nameOrValue.replace(/--R-/g, '--r-')
+function syntax(declaration: Record<string, string> | undefined) {
+  if (!declaration) return undefined
+  const expr = declaration.syntax
+  if (!expr) return expr
+  return /^(['"])(.+)\1$/.test(expr) ? expr.slice(1, -1) : expr
 }
 
-function guessType(name: string) {
-  if (/-color$/.test(name)) return '<color>'
+function publicName(nameOrValue: string) {
+  return nameOrValue.replace(/--R-/g, '--r-')
 }
 
 function fallback(value: string) {
@@ -221,7 +224,7 @@ function paragraph(text: string | undefined) {
       >
         <RStyle v-if="!ignore(cssVar.tags)" :name="publicName(cssVar.name)">
           <template #type>
-            <MarkdownBlock inline :source="inlineCode(type(cssVar.tags) ?? guessType(cssVar.name))" />
+            <MarkdownBlock inline :source="inlineCode(syntax(cssVar.declaration))" />
           </template>
           <template #default-value>
             <MarkdownBlock inline :source="defaultValue(cssVar.tags, fallback(cssVar.defaultValue))" />

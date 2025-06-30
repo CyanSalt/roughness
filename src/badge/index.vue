@@ -50,15 +50,31 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-badge-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-badge-padding-block {
+  syntax: '<length-percentage>+';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-badge-padding-inline {
+  syntax: '<length-percentage>+';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-badge {
   // Color of the badge marker.
   --R-badge-color: var(--r-badge-color, var(--r-common-error-color));
   // Vertical padding of the badge marker.
-  // @type {<'padding-top'>{1,2}}
-  --R-badge-padding-block: var(--r-badge-padding-block, calc(0.5em - 4px));
+  --R-badge-padding-block: var(--r-badge-padding-block, calc((1em - 4px) / 2 - 4px));
   // Horizontal padding of the badge marker.
-  // @type {<'padding-top'>{1,2}}
-  --R-badge-padding-inline: var(--r-badge-padding-inline, calc(1em - 4px));
+  --R-badge-padding-inline: var(--r-badge-padding-inline, calc((1em - 4px) - 4px));
   position: relative;
 }
 .r-badge__marker {

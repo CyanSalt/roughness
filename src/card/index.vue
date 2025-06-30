@@ -142,33 +142,66 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-card-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-card-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-card-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-card-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
+@property --R-card-padding-block {
+  syntax: '<length-percenatage>+';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-card-padding-inline {
+  syntax: '<length-percenatage>+';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-card {
   // Color of the card text.
   --R-card-color: var(--r-card-color, var(--r-element-color));
   // Color of the card border.
   --R-card-border-color: var(--r-card-border-color, var(--R-card-color));
   // Width of the card border.
-  // @type {<length>}
   --R-card-border-width: var(--r-card-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-card-border-dash: var(--r-card-border-dash, none);
   // Vertical padding of the card.
-  // @type {<'padding-top'>{1,2}}
   --R-card-padding-block: var(--r-card-padding-block, calc(var(--r-common-box-padding-block) * 2));
   // Horizontal padding of the card.
-  // @type {<'padding-top'>{1,2}}
   --R-card-padding-inline: var(--r-card-padding-inline, var(--r-common-box-padding-inline));
   padding-block: var(--R-card-padding-block);
   padding-inline: var(--R-card-padding-inline);
   color: var(--R-card-color);
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-card-border-dash);
-    border-top: var(--R-card-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-card-border-width: border-top-width,
+      --R-card-border-dash: border-spacing,
+    ));
   }
   &.primary {
     --r-element-color: var(--r-common-primary-color);

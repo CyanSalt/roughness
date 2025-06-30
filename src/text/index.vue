@@ -34,6 +34,12 @@ defineSlots<{
 </template>
 
 <style lang="scss">
+@property --R-text-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
 .r-text {
   // Color of text.
   --R-text-color: var(--r-text-color, var(--r-element-color));

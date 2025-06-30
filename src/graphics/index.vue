@@ -101,6 +101,12 @@ watchEffect(() => {
 </template>
 
 <style lang="scss">
+@property --R-graphics-stroke-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
 .r-graphics {
   // Color of the graphics lines by default.
   --R-graphics-stroke-color: var(--r-graphics-stroke-color, var(--r-common-color));

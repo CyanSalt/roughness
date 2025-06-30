@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
+import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -57,7 +57,10 @@ const color = $computed(() => {
   return `hsl(${hue}deg 95% 45%)`
 })
 
+const { timestamp, listener } = $(useTransitionListener('::before'))
+
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
+  void timestamp
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-avatar-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-avatar-border-dash')
@@ -109,7 +112,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </script>
 
 <template>
-  <span class="r-avatar" :style="{ '--R-avatar-pixel-color': color }">
+  <span
+    class="r-avatar"
+    :style="{ '--R-avatar-pixel-color': color }"
+    @transitionrun="listener"
+  >
     <RGraphics :graphics-options="graphicsOptions" @draw="draw"></RGraphics>
   </span>
 </template>
@@ -117,27 +124,49 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <style lang="scss">
 @use '../common/_partials';
 
+@property --R-avatar-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-avatar-border-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-avatar-border-width {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-avatar-border-dash {
+  syntax: '<length>+ | none';
+  inherits: true;
+  initial-value: none;
+}
+
 .r-avatar {
   // Size of the avatar.
-  // @type {<length>}
   --R-avatar-size: var(--r-avatar-size, 2em);
   // Color of the avatar border.
   --R-avatar-border-color: var(--r-avatar-border-color, var(--r-common-color));
   // Width of the avatar border.
-  // @type {<length>}
   --R-avatar-border-width: var(--r-avatar-border-width, 1px);
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  // @type {<length>+ | none}
   --R-avatar-border-dash: var(--r-avatar-border-dash, none);
   block-size: var(--R-avatar-size);
   inline-size: var(--R-avatar-size);
   &::before {
-    @include partials.ghost();
-    border-spacing: var(--R-avatar-border-dash);
-    border-top: var(--R-avatar-border-width) solid;
-    transition: border-spacing 1ms, border-top 1ms !important;
+    border-top-style: solid;
+    @include partials.transition-runner((
+      --R-avatar-border-width: border-top-width,
+      --R-avatar-border-dash: border-spacing,
+    ));
   }
 }
 </style>

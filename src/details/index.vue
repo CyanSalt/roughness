@@ -90,14 +90,30 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
+@property --R-details-summary-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: currentColor;
+}
+
+@property --R-details-summary-marker-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --R-details-gap-size {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+
 .r-details {
   // Color of summary text and marker.
   --R-details-summary-color: var(--r-details-summary-color, var(--r-common-color));
   // Size of the block of summary marker.
-  // @type {<length>}
   --R-details-summary-marker-size: var(--r-details-summary-marker-size, var(--r-common-line-height));
   // Size of the gap between the summary and content.
-  // @type {<length>}
   --R-details-gap-size: var(--r-details-gap-size, calc(1em - 4px));
 }
 .r-details__summary {
