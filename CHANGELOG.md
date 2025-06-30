@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.1.0](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.23...v0.1.0) (2025-06-30)
+
+### Bug Fixes
+
+* active disabled input ([90359d9](https://github.com/CyanSalt/roughness/commit/90359d92ac682eaa6cad94255e910e9f56a11e9c))
+* booleanish html attrs ([c80fe39](https://github.com/CyanSalt/roughness/commit/c80fe398c68230b3749029021886d8dfaa4b8778))
+* disable multistroke on dashed ellipse ([84b8f2e](https://github.com/CyanSalt/roughness/commit/84b8f2ed8371fe7829defc9842665ba1fb6a3519))
+* picture stroke width ([33d52ea](https://github.com/CyanSalt/roughness/commit/33d52ea3438fb30f0fdabd665f10392665039301))
+* tsconfig path ([b590300](https://github.com/CyanSalt/roughness/commit/b59030048afdff75b599f27bf33401936904473e))
+* v-model of radio ([9ea9b77](https://github.com/CyanSalt/roughness/commit/9ea9b773384f1393c038b339dd31a6fdcf3ba7a3))
+
 ## [0.1.0-beta.23](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.22...v0.1.0-beta.23) (2025-05-07)
 
 ### Features
