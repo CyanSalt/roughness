@@ -25,7 +25,7 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/installation', activeMatch: '^/guide/' },
       { text: 'Components', link: '/components/button', activeMatch: '^/components/' },
-    ],
+      { text: 'Proposals', link: '/proposals/table', activeMatch: '^/proposals/' },],
     sidebar: [
       {
         text: 'Guide',
@@ -98,6 +98,13 @@ export default defineConfig({
               { text: 'Popover', link: '/components/popover' },
               { text: 'Progress', link: '/components/progress' },
               { text: 'Toast', link: '/components/toast' },
+            ],
+          },
+          {
+            text: 'Proposals',
+            items: [
+              // { text: 'Tabs', link: '../proposals/tabs' },
+              { text: 'Table', link: '/proposals/table' },
             ],
           },
         ],
