@@ -140,7 +140,7 @@ async function ask() {
 
 </RUsage>
 
-### Compositions
+### Composables
 
 ```ts
 import type { ComponentProps, ComponentRenderable } from 'roughness'
