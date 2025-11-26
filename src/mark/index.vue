@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useResizeObserver } from '@vueuse/core'
-import { triggerRef, watchEffect } from 'vue'
+import { triggerRef, useTemplateRef, watchEffect } from 'vue'
 import { RoughAnnotation } from './utils'
 
 defineOptions({
@@ -41,7 +41,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let target = $ref<HTMLElement>()
+let target = $(useTemplateRef<HTMLElement>('target'))
 
 let flag = $ref<never>()
 

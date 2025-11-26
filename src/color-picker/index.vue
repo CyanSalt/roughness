@@ -3,6 +3,7 @@ import '../common/style.scss'
 import { colord } from 'colord'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
+import { useTemplateRef } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, getProperty, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
@@ -59,7 +60,7 @@ const disabled = $computed(() => {
   return isTruthyBooleanish(userDisabled) || loading
 })
 
-let root = $ref<HTMLElement>()
+let root = $(useTemplateRef<HTMLElement>('root'))
 
 const { timestamp, listener } = $(useTransitionListener('::before'))
 

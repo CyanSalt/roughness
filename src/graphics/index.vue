@@ -5,7 +5,7 @@ import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, ref, watchEffect } from 'vue'
+import { inject, ref, useTemplateRef, watchEffect } from 'vue'
 import { optionsInjection } from './utils'
 
 defineOptions({
@@ -43,7 +43,7 @@ const emit = defineEmits<{
   (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
 }>()
 
-let root = $ref<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>()
+let root = $(useTemplateRef<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>('root'))
 
 const parent = $(useParentElement())
 const container = $computed(() => (responsive ? parent : root))

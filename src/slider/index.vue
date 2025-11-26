@@ -3,7 +3,7 @@ import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
-import { watchEffect } from 'vue'
+import { useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
@@ -121,8 +121,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   svg.appendChild(controlRect)
 }
 
-let root = $ref<HTMLLabelElement>()
-let input = $ref<HTMLInputElement>()
+let root = $(useTemplateRef<HTMLLabelElement>('root'))
+let input = $(useTemplateRef<HTMLInputElement>('input'))
 
 const { pressed } = $(useMousePressed({ target: $$(root) }))
 const { elementX } = $(useMouseInElement($$(root)))

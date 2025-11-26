@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watch } from 'vue'
+import { useTemplateRef, watch } from 'vue'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps, SVGAttrs } from '../graphics/utils'
 import { drawSVGNode, parseSVGNode, SVGNode } from '../graphics/utils'
@@ -32,7 +32,7 @@ const {
   tag?: string,
 } & GraphicsProps>()
 
-let source = $ref<HTMLElement>()
+let source = $(useTemplateRef<HTMLElement>('source'))
 let node = $ref<SVGNode>()
 
 function load(container: HTMLElement) {

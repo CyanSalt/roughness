@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { Check, X } from 'lucide'
 import type { ComponentPublicInstance } from 'vue'
-import { useSlots } from 'vue'
+import { useSlots, useTemplateRef } from 'vue'
 import RButton from '../button/index.vue'
 import RDialog from '../dialog/index.vue'
 import RIcon from '../icon/index.vue'
@@ -45,7 +45,7 @@ defineSlots<{
 
 const slots = useSlots()
 
-let root = $ref<ComponentPublicInstance>()
+let root = $(useTemplateRef<ComponentPublicInstance>('root'))
 
 function toggle(open: boolean) {
   if (!open) {

@@ -4,7 +4,7 @@ import { useResizeObserver } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { onMounted, reactive, useSlots } from 'vue'
+import { onMounted, reactive, useSlots, useTemplateRef } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { RListRenderer, useList } from '../common/list'
@@ -58,9 +58,9 @@ const footer = $computed(() => {
   return false
 })
 
-let head = $ref<HTMLTableSectionElement>()
-let body = $ref<HTMLTableSectionElement>()
-let foot = $ref<HTMLTableSectionElement>()
+let head = $(useTemplateRef<HTMLTableSectionElement>('head'))
+let body = $(useTemplateRef<HTMLTableSectionElement>('body'))
+let foot = $(useTemplateRef<HTMLTableSectionElement>('foot'))
 
 interface TableDimensions {
   x: number[],
@@ -72,13 +72,13 @@ let dimensions = reactive<TableDimensions>({
   y: [],
 })
 
-function getFirstRow(section: HTMLTableSectionElement | undefined) {
+function getFirstRow(section: HTMLTableSectionElement | null | undefined) {
   return section?.children?.[0]?.matches('tr')
     ? Array.from(section.children[0].children).filter(el => el.matches('td, th'))
     : null
 }
 
-function getFirstColumn(section: HTMLTableSectionElement | undefined) {
+function getFirstColumn(section: HTMLTableSectionElement | null | undefined) {
   return section?.children
     ? Array.from(section.children).filter(el => el.matches('tr')).flatMap(el => {
       return el.children[0]?.matches('td, th') ? [el.children[0]] : []
@@ -97,7 +97,7 @@ function calculateDimensions() {
   dimensions.y = firstColumn.map(el => el.clientHeight)
 }
 
-function observeDimensions(section: Ref<HTMLTableSectionElement | undefined>) {
+function observeDimensions(section: Ref<HTMLTableSectionElement | null | undefined>) {
   return useResizeObserver(section, (entries) => {
     if (entries.length) {
       calculateDimensions()

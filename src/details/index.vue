@@ -3,6 +3,7 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { useTemplateRef } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
@@ -51,7 +52,7 @@ function toggle(event: Event) {
   internalOpen = (event.target as HTMLDetailsElement).open
 }
 
-let summary = $ref<HTMLElement>()
+let summary = $(useTemplateRef<HTMLElement>('summary'))
 
 const { timestamp, listener } = $(useTransitionListener('::before'))
 

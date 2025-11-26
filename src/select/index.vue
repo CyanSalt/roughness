@@ -4,7 +4,7 @@ import { vOnClickOutside } from '@vueuse/components'
 import { ChevronDown, Loader, X } from 'lucide'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes, SelectHTMLAttributes } from 'vue'
-import { provide, reactive } from 'vue'
+import { provide, reactive, useTemplateRef } from 'vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
@@ -111,7 +111,7 @@ const displayText = $computed(() => {
   return Array.isArray(text) ? text.join(', ') : text
 })
 
-let input = $ref<HTMLInputElement>()
+let input = $(useTemplateRef<HTMLInputElement>('input'))
 
 let state = $ref(false)
 

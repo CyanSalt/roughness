@@ -4,7 +4,7 @@ import { vOnClickOutside } from '@vueuse/components'
 import { refDebounced, useMouseInElement } from '@vueuse/core'
 import { Redo } from 'lucide'
 import type { CSSProperties } from 'vue'
-import { useSlots, watchEffect } from 'vue'
+import { useSlots, useTemplateRef, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
@@ -110,8 +110,8 @@ function close() {
   }
 }
 
-let anchor = $ref<HTMLElement>()
-let content = $ref<HTMLElement>()
+let anchor = $(useTemplateRef<HTMLElement>('anchor'))
+let content = $(useTemplateRef<HTMLElement>('content'))
 const { isOutside: isOutsideAnchor } = $(useMouseInElement($$(anchor)))
 const { isOutside: isOutsideContent } = $(useMouseInElement($$(content)))
 const isOutside = $computed<boolean>(() => isOutsideAnchor && isOutsideContent)

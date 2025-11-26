@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { X } from 'lucide'
-import { useSlots, watchEffect } from 'vue'
+import { useSlots, useTemplateRef, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
@@ -86,7 +86,7 @@ const footer = $computed(() => {
   return false
 })
 
-let root = $ref<HTMLDialogElement>()
+let root = $(useTemplateRef<HTMLDialogElement>('root'))
 
 watchEffect(() => {
   if (!root) return

@@ -3,7 +3,7 @@ import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import { Star } from 'lucide'
 import type { InputHTMLAttributes } from 'vue'
-import { watchEffect } from 'vue'
+import { useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
 import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
@@ -49,8 +49,8 @@ let internalModelValue = $(useLocal({
   },
 }))
 
-let root = $ref<HTMLLabelElement>()
-let input = $ref<HTMLInputElement>()
+let root = $(useTemplateRef<HTMLLabelElement>('root'))
+let input = $(useTemplateRef<HTMLInputElement>('input'))
 
 const { pressed } = $(useMousePressed({ target: $$(root) }))
 const { elementX, isOutside } = $(useMouseInElement($$(root)))

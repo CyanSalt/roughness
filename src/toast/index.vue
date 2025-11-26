@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { watchEffect } from 'vue'
+import { useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import type { ColorProps, SizeProps } from '../common/utils'
 import { useLocal } from '../common/utils'
@@ -64,7 +64,7 @@ watchEffect(onInvalidate => {
   }
 })
 
-let root = $ref<HTMLElement>()
+let root = $(useTemplateRef<HTMLElement>('root'))
 
 watchEffect(() => {
   if (!root) return
