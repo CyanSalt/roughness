@@ -5,7 +5,6 @@ import { DEFINE_EMITS, DEFINE_OPTIONS, DEFINE_PROPS, isCallOf, resolveObjectExpr
 export function getOptions(sfc: SFC) {
   const scriptSetup = sfc.getSetupAst()
   if (scriptSetup) {
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
     const defineOptions = scriptSetup.body.find((node): node is ExpressionStatement & {
       expression: CallExpression,
     } => {
@@ -39,7 +38,6 @@ export function getOptions(sfc: SFC) {
 export function getProps(sfc: SFC) {
   const scriptSetup = sfc.getSetupAst()
   if (scriptSetup) {
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
     const defineProps = scriptSetup.body.find((node): node is ExpressionStatement & {
       expression: CallExpression,
     } => {
@@ -71,7 +69,6 @@ export function getProps(sfc: SFC) {
 export function getEvents(sfc: SFC) {
   const scriptSetup = sfc.getSetupAst()
   if (scriptSetup) {
-    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
     const defineEmits = scriptSetup.body.find((node): node is ExpressionStatement & {
       expression: CallExpression,
     } => {
@@ -100,7 +97,6 @@ export function getEvents(sfc: SFC) {
   return undefined
 }
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export function getMembers(defs: ArrayExpression | ObjectExpression | TSTypeLiteral | undefined) {
   switch (defs?.type) {
     case 'TSTypeLiteral':

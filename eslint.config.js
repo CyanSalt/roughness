@@ -1,4 +1,3 @@
-import path from 'node:path'
 import config from '@cyansalt/eslint-config'
 
 export default config({
@@ -11,7 +10,7 @@ export default config({
             './docs/tsconfig.test.json',
             './tsconfig.app.json',
             './tsconfig.node.json',
-          ].map(file => path.resolve(import.meta.dirname, file)),
+          ],
           extraFileExtensions: ['.vue'],
         },
         globals: {
