@@ -43,7 +43,7 @@
     "@babel/types": "7.27.0",
     "@cyansalt/eslint-config": "^4.3.1",
     "@cyansalt/stylelint-config": "^4.1.0",
-    "@cyansalt/tsconfig": "^2.2.1",
+    "@cyansalt/tsconfig": "^3.0.0",
     "@release-it/conventional-changelog": "^10.0.1",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^22.15.3",

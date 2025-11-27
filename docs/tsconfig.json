@@ -1,14 +1,12 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "@cyansalt/tsconfig",
   "compilerOptions": {
-    "outDir": ".typescript"
+    "composite": true
   },
   "include": [
-    ".vitepress/**/*"
-  ],
-  "exclude": [
-    ".vitepress/cache",
-    ".vitepress/dist",
-    ".vitepress/config.ts"
+    ".vitepress/components",
+    ".vitepress/markdown/roughness-runtime.ts",
+    ".vitepress/theme",
+    ".vitepress/env.d.ts"
   ]
 }

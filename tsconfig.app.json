@@ -1,7 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "@cyansalt/tsconfig",
   "compilerOptions": {
-    "outDir": ".typescript"
+    "composite": true
   },
   "include": [
     "src"

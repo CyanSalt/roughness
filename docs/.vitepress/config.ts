@@ -124,7 +124,7 @@ export default defineConfig({
       },
     },
     plugins: [
-      reactivityTransform(),
+      reactivityTransform() as never,
     ],
     resolve: {
       alias: [

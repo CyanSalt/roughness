@@ -1,12 +1,16 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "@cyansalt/tsconfig",
   "compilerOptions": {
-    "outDir": ".typescript.node"
+    "composite": true
   },
   "include": [
+    "tests",
+    "docs/tests",
     "*.config.js",
     "*.config.ts",
-    "docs/.vitepress/config.ts",
-    "tests"
+    "docs/.vitepress/loaders",
+    "docs/.vitepress/markdown",
+    "docs/.vitepress/parsers",
+    "docs/.vitepress/config.ts"
   ]
 }

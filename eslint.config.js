@@ -7,7 +7,6 @@ export default config({
         parserOptions: {
           project: [
             './docs/tsconfig.json',
-            './docs/tsconfig.test.json',
             './tsconfig.app.json',
             './tsconfig.node.json',
           ],
