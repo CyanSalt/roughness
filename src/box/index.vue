@@ -66,25 +66,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
-@use '../common/_partials';
-
-@property --R-box-border-color {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: currentColor;
-}
-
-@property --R-box-border-width {
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --R-box-border-dash {
-  syntax: '<length>+ | none';
-  inherits: true;
-  initial-value: none;
-}
+@use './_partials';
 
 .r-box {
   // Color of the box border.
@@ -95,39 +77,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-box-border-dash: var(--r-box-border-dash, none);
-  &::before {
-    border-top-style: solid;
-    @include partials.transition-runner((
-      --R-box-border-width: border-top-width,
-      --R-box-border-dash: border-spacing,
-    ));
-  }
-  &.is-filled {
-    text-shadow: var(--r-common-stroke-text-shadow);
-  }
-  &.primary {
-    --r-element-color: var(--r-common-primary-color);
-  }
-  &.info {
-    --r-element-color: var(--r-common-info-color);
-  }
-  &.success {
-    --r-element-color: var(--r-common-success-color);
-  }
-  &.warning {
-    --r-element-color: var(--r-common-warning-color);
-  }
-  &.error {
-    --r-element-color: var(--r-common-error-color);
-  }
-  &.comment {
-    --r-element-color: var(--r-common-comment-color);
-  }
-  &.small {
-    --r-element-font-size: var(--r-common-small-font-size);
-  }
-  &.large {
-    --r-element-font-size: var(--r-common-large-font-size);
-  }
+  // ^^^ for docs only
+  @include partials.box();
 }
 </style>
