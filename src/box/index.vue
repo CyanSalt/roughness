@@ -66,7 +66,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
-@use './_partials';
+@use './_partials' as box;
 
 .r-box {
   // Color of the box border.
@@ -78,6 +78,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-box-border-dash: var(--r-box-border-dash, none);
   // ^^^ for docs only
-  @include partials.box();
+  @include box.box();
 }
 </style>

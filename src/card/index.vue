@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useSlots } from 'vue'
-import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
+import { computed, useSlots } from 'vue'
+import { useTransitionListener } from '../common/property'
 import type { LegacyColorProps } from '../common/utils'
+import { useDrawBox } from '../composables'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
 
@@ -62,44 +62,30 @@ const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'commen
 
 const slots = useSlots()
 
-const defaultTitle = $computed(() => {
+const defaultTitle = computed(() => {
   return COLORED_TYPES.includes(type!) ? type!.toUpperCase() : undefined
 })
 
-const header = $computed(() => {
+const header = computed(() => {
   if (userHeader !== undefined) return userHeader
-  if (slots.title || defaultTitle) return true
+  if (slots.title || defaultTitle.value) return true
   if (slots['header-end']) return true
   return false
 })
 
-const footer = $computed(() => {
+const footer = computed(() => {
   if (userFooter !== undefined) return userFooter
   if (slots.footer) return true
   return false
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const drawBox = useDrawBox()
+
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--R-card-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-card-border-dash')
-    ?.map(value => value ?? 0) ?? undefined
-  const padding = 2
-  const rectangle = rc.rectangle(
-    padding,
-    padding,
-    width - padding * 2,
-    height - padding * 2,
-    {
-      stroke: 'var(--R-card-border-color)',
-      strokeWidth,
-      strokeLineDash,
-    },
-  )
-  svg.appendChild(rectangle)
+  void timestamp.value
+  drawBox(rc, svg)
 }
 </script>
 
@@ -140,7 +126,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 </template>
 
 <style lang="scss">
-@use '../common/_partials';
+@use '../box/_partials' as box;
 
 @property --R-card-color {
   syntax: '<color>';
@@ -152,18 +138,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   syntax: '<color>';
   inherits: true;
   initial-value: currentColor;
-}
-
-@property --R-card-border-width {
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 0px;
-}
-
-@property --R-card-border-dash {
-  syntax: '<length>+ | none';
-  inherits: true;
-  initial-value: none;
 }
 
 @property --R-card-padding-block {
@@ -183,44 +157,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   --R-card-color: var(--r-card-color, var(--r-element-color));
   // Color of the card border.
   --R-card-border-color: var(--r-card-border-color, var(--R-card-color));
-  // Width of the card border.
-  --R-card-border-width: var(--r-card-border-width, var(--r-common-stroke-width));
-  // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.
-  // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
-  // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
-  --R-card-border-dash: var(--r-card-border-dash, none);
   // Vertical padding of the card.
   --R-card-padding-block: var(--r-card-padding-block, calc(var(--r-common-box-padding-block) * 2));
   // Horizontal padding of the card.
   --R-card-padding-inline: var(--r-card-padding-inline, var(--r-common-box-padding-inline));
+  // Box styles
+  --r-box-border-color: var(--R-card-border-color);
   padding-block: var(--R-card-padding-block);
   padding-inline: var(--R-card-padding-inline);
   color: var(--R-card-color);
-  &::before {
-    border-top-style: solid;
-    @include partials.transition-runner((
-      --R-card-border-width: border-top-width,
-      --R-card-border-dash: border-spacing,
-    ));
-  }
-  &.primary {
-    --r-element-color: var(--r-common-primary-color);
-  }
-  &.info {
-    --r-element-color: var(--r-common-info-color);
-  }
-  &.success {
-    --r-element-color: var(--r-common-success-color);
-  }
-  &.warning {
-    --r-element-color: var(--r-common-warning-color);
-  }
-  &.error {
-    --r-element-color: var(--r-common-error-color);
-  }
-  &.comment {
-    --r-element-color: var(--r-common-comment-color);
-  }
+  @include box.box();
 }
 .r-card__header, .r-card__footer {
   flex: none;
