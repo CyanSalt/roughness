@@ -17,7 +17,7 @@ async function ask() {
     default: () => 'Let\'s go for a walk outside!',
   })
   toast(result ? 'Hooray!' : 'OK...', {
-    type: result ? 'success' : 'comment',
+    color: result ? 'success' : 'comment',
   })
 }
 </script>
@@ -84,7 +84,7 @@ async function ask() {
     default: () => 'Let\'s go for a walk outside!',
   })
   toast(result ? 'Hooray!' : 'OK...', {
-    type: result ? 'success' : 'comment',
+    color: result ? 'success' : 'comment',
   })
 }
 </script>

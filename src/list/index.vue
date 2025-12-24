@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { provide } from 'vue'
+import { computed, provide, toRef } from 'vue'
 import RSpace from '../space/index.vue'
 import type { ListStyle } from './utils'
 import { listStyleInjection } from './utils'
@@ -25,11 +25,11 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const tag = $computed(() => {
+const tag = computed(() => {
   return listStyle === 'auto' ? 'ol' : 'ul'
 })
 
-provide(listStyleInjection, $$(listStyle))
+provide(listStyleInjection, toRef(() => listStyle))
 </script>
 
 <template>

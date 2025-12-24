@@ -12,7 +12,7 @@ const toast = useToast()
 
 function add() {
   toast('Yummy!', {
-    type: ['primary', 'info', 'success', 'warning', 'error', 'comment'][Math.floor(Math.random() * 6)],
+    color: ['primary', 'info', 'success', 'warning', 'error', 'comment'][Math.floor(Math.random() * 6)],
   })
 }
 </script>
@@ -74,7 +74,7 @@ const toast = useToast()
 
 function add() {
   toast('Yummy!', {
-    type: ['primary', 'info', 'success', 'warning', 'error', 'comment'][Math.floor(Math.random() * 6)],
+    color: ['primary', 'info', 'success', 'warning', 'error', 'comment'][Math.floor(Math.random() * 6)],
   })
 }
 </script>

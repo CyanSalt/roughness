@@ -1,11 +1,11 @@
 <script lang="ts" setup generic="const T extends 'canvas' | 'svg' = 'svg'">
 import '../common/style.scss'
-import { useElementSize, useParentElement } from '@vueuse/core'
+import { useCurrentElement, useElementSize, useParentElement } from '@vueuse/core'
 import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { inject, ref, useTemplateRef, watchEffect } from 'vue'
+import { computed, inject, ref, watchEffect } from 'vue'
 import { optionsInjection } from './utils'
 
 defineOptions({
@@ -43,58 +43,56 @@ const emit = defineEmits<{
   (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
 }>()
 
-let root = $(useTemplateRef<T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement>('root'))
-
-const parent = $(useParentElement())
-const container = $computed(() => (responsive ? parent : root))
-const { width, height } = $(useElementSize($$(container), undefined, {
+const root = useCurrentElement<(T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement) | null>()
+const parent = useParentElement()
+const container = computed(() => (responsive ? parent.value : root.value))
+const { width, height } = useElementSize(container, undefined, {
   box: 'border-box',
-}))
+})
 
-const configOptions = $(inject(optionsInjection, ref()))
+const configOptions = inject(optionsInjection, ref())
 
-const nestingOptions = $computed<Options>(() => {
+const nestingOptions = computed<Options>(() => {
   return {
     stroke: 'var(--R-graphics-stroke-color)',
-    ...configOptions,
+    ...configOptions.value,
     ...options,
   }
 })
 
-const rc = $computed(() => {
-  if (!root) return null
+const rc = computed(() => {
+  if (!root.value) return null
   return (
-    root instanceof HTMLCanvasElement
-      ? rough.canvas(root, { options: nestingOptions })
-      : rough.svg(root, { options: nestingOptions })
+    root.value instanceof HTMLCanvasElement
+      ? rough.canvas(root.value, { options: nestingOptions.value })
+      : rough.svg(root.value, { options: nestingOptions.value })
   ) as T extends 'canvas' ? RoughCanvas : RoughSVG
 })
 
 watchEffect(() => {
-  if (!root || !rc) return
+  if (!root.value || !rc.value) return
   if (responsive) {
-    if (root instanceof HTMLCanvasElement) {
-      root.width = width
-      root.height = height
+    if (root.value instanceof HTMLCanvasElement) {
+      root.value.width = width.value
+      root.value.height = height.value
     } else {
-      root.setAttribute('width', String(width))
-      root.setAttribute('height', String(height))
+      root.value.setAttribute('width', String(width.value))
+      root.value.setAttribute('height', String(height.value))
     }
   }
-  if (root instanceof HTMLCanvasElement) {
-    const context = root.getContext('2d')!
-    context.clearRect(0, 0, width, height)
+  if (root.value instanceof HTMLCanvasElement) {
+    const context = root.value.getContext('2d')!
+    context.clearRect(0, 0, width.value, height.value)
   } else {
-    root.innerHTML = ''
+    root.value.innerHTML = ''
   }
-  emit('draw', rc, root)
+  emit('draw', rc.value, root.value)
 })
 </script>
 
 <template>
   <component
     :is="(tag as T)"
-    ref="root"
     :class="['r-graphics', { 'is-responsive': responsive }]"
     aria-hidden="true"
   />

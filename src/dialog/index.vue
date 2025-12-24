@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { X } from 'lucide'
-import { useSlots, useTemplateRef, watchEffect } from 'vue'
+import { computed, useSlots, useTemplateRef, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
@@ -64,36 +64,36 @@ defineSlots<{
   footer?: (props: {}) => any,
 }>()
 
-let internalOpen = $(useLocal({
+const internalOpen = useLocal({
   get: () => open,
   set: value => {
     emit('update:open', value)
   },
-}))
+})
 
 const slots = useSlots()
 
-const header = $computed(() => {
+const header = computed(() => {
   if (userHeader !== undefined) return userHeader
   if (slots.title) return true
   if (slots['header-end'] || closable) return true
   return false
 })
 
-const footer = $computed(() => {
+const footer = computed(() => {
   if (userFooter !== undefined) return userFooter
   if (slots.footer) return true
   return false
 })
 
-let root = $(useTemplateRef<HTMLDialogElement>('root'))
+const root = useTemplateRef<HTMLDialogElement>('root')
 
 watchEffect(() => {
-  if (!root) return
-  if (internalOpen) {
-    root.showModal()
+  if (!root.value) return
+  if (internalOpen.value) {
+    root.value.showModal()
   } else {
-    root.close()
+    root.value.close()
   }
 })
 
@@ -104,10 +104,10 @@ function clickBackdrop(event: MouseEvent) {
 }
 
 function close() {
-  internalOpen = false
+  internalOpen.value = false
 }
 
-const nestingGraphicsOptions = $computed(() => {
+const nestingGraphicsOptions = computed(() => {
   return {
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',

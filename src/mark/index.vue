@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useResizeObserver } from '@vueuse/core'
-import { triggerRef, useTemplateRef, watchEffect } from 'vue'
+import { ref, shallowRef, triggerRef, useTemplateRef, watchEffect } from 'vue'
 import { RoughAnnotation } from './utils'
 
 defineOptions({
@@ -41,24 +41,24 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let target = $(useTemplateRef<HTMLElement>('target'))
+const target = useTemplateRef<HTMLElement>('target')
 
-let flag = $ref<never>()
+const flag = ref<never>()
 
-useResizeObserver($$(target), () => {
-  triggerRef($$(flag))
+useResizeObserver(target, () => {
+  triggerRef(flag)
 })
 
-let currentAnnotation = $shallowRef<RoughAnnotation>()
+const currentAnnotation = shallowRef<RoughAnnotation>()
 watchEffect(onInvalidate => {
-  if (target) {
-    void flag
-    const annotation = annotate(target, {
+  if (target.value) {
+    void flag.value
+    const annotation = annotate(target.value, {
       type: 'highlight',
       ...annotationConfig,
       color: 'var(--R-mark-color)',
     })
-    currentAnnotation = annotation
+    currentAnnotation.value = annotation
     onInvalidate(() => {
       annotation.remove()
     })
@@ -66,11 +66,11 @@ watchEffect(onInvalidate => {
 })
 
 watchEffect(() => {
-  if (currentAnnotation) {
+  if (currentAnnotation.value) {
     if (open) {
-      currentAnnotation.show()
+      currentAnnotation.value.show()
     } else {
-      currentAnnotation.hide()
+      currentAnnotation.value.hide()
     }
   }
 })

@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
+import { computed } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { sentenceCase, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
@@ -111,13 +112,13 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-const placeholder = $computed(() => {
-  return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`enter-${name}`) : undefined)
+const placeholder = computed(() => {
+  return userPlaceholder ?? (typeof name.value === 'string' ? sentenceCase(`enter-${name.value}`) : undefined)
 })
 
-let internalModelValue = $(useLocal({
+const internalModelValue = useLocal({
   get: () => {
     return typeof modelValue === 'number' ? String(modelValue) : modelValue
   },
@@ -127,12 +128,12 @@ let internalModelValue = $(useLocal({
       : value
     emit('update:modelValue', currentValue)
   },
-}))
+})
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-input-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-input-border-dash')

@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import { Asterisk } from 'lucide'
-import { inject, provide, ref } from 'vue'
+import { computed, inject, provide, ref, toRef } from 'vue'
 import RIcon from '../icon/index.vue'
 import RSpace from '../space/index.vue'
 import { labelInlineInjection, nameInjection } from './utils'
@@ -33,17 +33,17 @@ defineSlots<{
   message?: (props: {}) => any,
 }>()
 
-const label = $computed(() => {
+const label = computed(() => {
   return typeof name === 'string' ? startCase(name) : undefined
 })
 
-const formLabelInline = $(inject(labelInlineInjection, ref()))
+const formLabelInline = inject(labelInlineInjection, ref())
 
-const labelInline = $computed(() => {
-  return userLabelInline ?? formLabelInline ?? true
+const labelInline = computed(() => {
+  return userLabelInline ?? formLabelInline.value ?? true
 })
 
-provide(nameInjection, $$(name))
+provide(nameInjection, toRef(() => name))
 </script>
 
 <template>

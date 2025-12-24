@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { useCurrentElement } from '@vueuse/core'
 import { Check, X } from 'lucide'
-import type { ComponentPublicInstance } from 'vue'
-import { useSlots, useTemplateRef } from 'vue'
+import { useSlots } from 'vue'
 import RButton from '../button/index.vue'
 import RDialog from '../dialog/index.vue'
 import RIcon from '../icon/index.vue'
@@ -45,11 +45,11 @@ defineSlots<{
 
 const slots = useSlots()
 
-let root = $(useTemplateRef<ComponentPublicInstance>('root'))
+const root = useCurrentElement<HTMLDialogElement | null>()
 
 function toggle(open: boolean) {
   if (!open) {
-    const el = root?.$el as HTMLDialogElement | undefined
+    const el = root.value
     if (el?.returnValue === 'confirm') {
       emit('confirm')
     } else {
@@ -61,7 +61,6 @@ function toggle(open: boolean) {
 
 <template>
   <RDialog
-    ref="root"
     :closable="closable"
     :state="state"
     class="r-confirm"

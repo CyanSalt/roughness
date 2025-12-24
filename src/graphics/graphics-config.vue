@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
-import { inject, provide, ref } from 'vue'
+import { computed, inject, provide, ref } from 'vue'
 import { optionsInjection } from './utils'
 
 defineOptions({
@@ -23,16 +23,16 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const configOptions = $(inject(optionsInjection, ref()))
+const configOptions = inject(optionsInjection, ref())
 
-const nestingOptions = $computed<Options>(() => {
+const nestingOptions = computed<Options>(() => {
   return {
-    ...configOptions,
+    ...configOptions.value,
     ...options,
   }
 })
 
-provide(optionsInjection, $$(nestingOptions))
+provide(optionsInjection, nestingOptions)
 </script>
 
 <template>
