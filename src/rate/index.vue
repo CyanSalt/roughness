@@ -3,7 +3,7 @@ import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import { Star } from 'lucide'
 import type { InputHTMLAttributes } from 'vue'
-import { useTemplateRef, watchEffect } from 'vue'
+import { computed, useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
 import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
@@ -40,35 +40,35 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-let internalModelValue = $(useLocal({
+const internalModelValue = useLocal({
   get: () => modelValue,
   set: value => {
     emit('update:modelValue', value)
   },
-}))
-
-let root = $(useTemplateRef<HTMLLabelElement>('root'))
-let input = $(useTemplateRef<HTMLInputElement>('input'))
-
-const { pressed } = $(useMousePressed({ target: $$(root) }))
-const { elementX, isOutside } = $(useMouseInElement($$(root)))
-
-const targetModelValue: number = $computed(() => {
-  if (!root || isOutside) return 0
-  const controlSize = root.clientHeight
-  const gapSize = getLengthProperty(root, '--R-rate-gap-size') ?? 0
-  return Math.ceil(elementX / (controlSize + gapSize))
 })
 
-const filledCount = $computed(() => targetModelValue || internalModelValue)
+const root = useTemplateRef<HTMLLabelElement>('root')
+const input = useTemplateRef<HTMLInputElement>('input')
+
+const { pressed } = useMousePressed({ target: root })
+const { elementX, isOutside } = useMouseInElement(root)
+
+const targetModelValue = computed(() => {
+  if (!root.value || isOutside.value) return 0
+  const controlSize = root.value.clientHeight
+  const gapSize = getLengthProperty(root.value, '--R-rate-gap-size') ?? 0
+  return Math.ceil(elementX.value / (controlSize + gapSize))
+})
+
+const filledCount = computed(() => targetModelValue.value || internalModelValue.value)
 
 watchEffect(() => {
-  if (!pressed || !targetModelValue) return
-  internalModelValue = targetModelValue
-  if (input) {
-    input.focus()
+  if (!pressed.value || !targetModelValue.value) return
+  internalModelValue.value = targetModelValue.value
+  if (input.value) {
+    input.value.focus()
   }
 })
 </script>
