@@ -42,3 +42,33 @@
   }
   @return $shadows;
 }
+
+@mixin colored-element() {
+  &.primary {
+    --r-element-color: var(--r-common-primary-color);
+  }
+  &.info {
+    --r-element-color: var(--r-common-info-color);
+  }
+  &.success {
+    --r-element-color: var(--r-common-success-color);
+  }
+  &.warning {
+    --r-element-color: var(--r-common-warning-color);
+  }
+  &.error {
+    --r-element-color: var(--r-common-error-color);
+  }
+  &.comment {
+    --r-element-color: var(--r-common-comment-color);
+  }
+}
+
+@mixin sized-element() {
+  &.small {
+    --r-element-font-size: var(--r-common-small-font-size);
+  }
+  &.large {
+    --r-element-font-size: var(--r-common-large-font-size);
+  }
+}

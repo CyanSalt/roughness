@@ -34,6 +34,8 @@ defineSlots<{
 </template>
 
 <style lang="scss">
+@use '../common/_partials';
+
 @property --R-text-color {
   syntax: '<color>';
   inherits: true;
@@ -44,32 +46,10 @@ defineSlots<{
   // Color of text.
   --R-text-color: var(--r-text-color, var(--r-element-color));
   color: var(--R-text-color);
+  @include partials.colored-element();
+  @include partials.sized-element();
   &.is-block {
     display: block;
-  }
-  &.primary {
-    --r-element-color: var(--r-common-primary-color);
-  }
-  &.info {
-    --r-element-color: var(--r-common-info-color);
-  }
-  &.success {
-    --r-element-color: var(--r-common-success-color);
-  }
-  &.warning {
-    --r-element-color: var(--r-common-warning-color);
-  }
-  &.error {
-    --r-element-color: var(--r-common-error-color);
-  }
-  &.comment {
-    --r-element-color: var(--r-common-comment-color);
-  }
-  &.small {
-    --r-element-font-size: var(--r-common-small-font-size);
-  }
-  &.large {
-    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 </style>

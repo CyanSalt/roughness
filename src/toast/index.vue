@@ -146,35 +146,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--R-toast-color);
   transform: translate(-50%, -50%);
+  @include partials.colored-element();
+  @include partials.sized-element();
   &::before {
     border-top-style: solid;
     @include partials.transition-runner((
       --R-toast-border-width: border-top-width,
     ));
-  }
-  &.primary {
-    --r-element-color: var(--r-common-primary-color);
-  }
-  &.info {
-    --r-element-color: var(--r-common-info-color);
-  }
-  &.success {
-    --r-element-color: var(--r-common-success-color);
-  }
-  &.warning {
-    --r-element-color: var(--r-common-warning-color);
-  }
-  &.error {
-    --r-element-color: var(--r-common-error-color);
-  }
-  &.comment {
-    --r-element-color: var(--r-common-comment-color);
-  }
-  &.small {
-    --r-element-font-size: var(--r-common-small-font-size);
-  }
-  &.large {
-    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 </style>
