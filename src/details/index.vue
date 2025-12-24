@@ -66,15 +66,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: 'var(--R-details-summary-color)',
     ...getFilledSizeOptions(1),
   }
-  const padding = 2
+  const epsilon = 2
   const points: Point[] = internalOpen.value ? [
-    [padding, height / 8 + padding],
-    [width - padding, height / 8 + padding],
-    [width / 2, height - padding],
+    [epsilon, height / 8 + epsilon],
+    [width - epsilon, height / 8 + epsilon],
+    [width / 2, height - epsilon],
   ] : [
-    [width / 8 + padding, padding],
-    [width / 8 + padding, height - padding],
-    [width - padding, height / 2],
+    [width / 8 + epsilon, epsilon],
+    [width / 8 + epsilon, height - epsilon],
+    [width - epsilon, height / 2],
   ]
   const polygon = rc.polygon(points, options)
   svg.appendChild(polygon)

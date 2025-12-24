@@ -82,12 +82,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-slider-border-width') ?? 0
   const trackSize = getLengthProperty(svg, '--R-slider-track-size') ?? 0
-  const padding = 2
+  const epsilon = 2
   const rectangle = rc.rectangle(
-    padding,
-    (height - trackSize) / 2 + padding,
-    width - padding * 2,
-    trackSize - padding * 2,
+    epsilon,
+    (height - trackSize) / 2 + epsilon,
+    width - epsilon * 2,
+    trackSize - epsilon * 2,
     {
       stroke: 'var(--R-slider-border-color)',
       strokeWidth,
@@ -95,10 +95,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   )
   svg.appendChild(rectangle)
   const barRect = rc.rectangle(
-    padding,
-    (height - trackSize) / 2 + padding,
-    height / 2 - padding + (width - height + padding * 2) * ratio.value,
-    trackSize - padding * 2,
+    epsilon,
+    (height - trackSize) / 2 + epsilon,
+    height / 2 - epsilon + (width - height + epsilon * 2) * ratio.value,
+    trackSize - epsilon * 2,
     {
       strokeWidth: 0,
       fill: 'var(--R-slider-color)',
@@ -107,10 +107,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   )
   svg.appendChild(barRect)
   const controlRect = rc.rectangle(
-    (width - height) * ratio.value + padding,
-    padding,
-    height - padding * 2,
-    height - padding * 2,
+    (width - height) * ratio.value + epsilon,
+    epsilon,
+    height - epsilon * 2,
+    height - epsilon * 2,
     {
       stroke: 'var(--R-slider-border-color)',
       strokeWidth,

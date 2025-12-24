@@ -57,8 +57,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-switch-border-width') ?? 0
   const handleStrokeWidth = getLengthProperty(svg, '--R-switch-handle-border-width') ?? 0
-  const padding = 2
-  const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
+  const epsilon = 2
+  const rectangle = rc.rectangle(epsilon, epsilon, width - epsilon * 2, height - epsilon * 2, {
     stroke: 'var(--R-switch-border-color)',
     strokeWidth,
     fill: internalModelValue ? 'var(--R-switch-track-color)' : undefined,
@@ -72,7 +72,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fillStyle: 'solid',
     ...getFilledSizeOptions(handleStrokeWidth),
   }
-  const handleSize = (height - 2 * padding) * 3 / 4
+  const handleSize = (height - 2 * epsilon) * 3 / 4
   const handleMargin = (height - handleSize) / 2
   if (internalModelValue) {
     const handleRectangle = rc.rectangle(

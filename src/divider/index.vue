@@ -24,8 +24,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-divider-line-width') ?? 0
-  const padding = 2
-  const line = rc.line(padding, padding, vertical ? padding : width - padding, vertical ? height - padding : padding, {
+  const epsilon = 2
+  const line = rc.line(epsilon, epsilon, vertical ? epsilon : width - epsilon, vertical ? height - epsilon : epsilon, {
     stroke: 'var(--R-divider-color)',
     strokeWidth,
     ...getFilledSizeOptions(strokeWidth),

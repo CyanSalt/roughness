@@ -138,11 +138,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const strokeWidth = getLengthProperty(svg, '--R-input-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-input-border-dash')
     ?.map(value => value ?? 0) ?? undefined
-  const padding = 2
+  const epsilon = 2
   if (lines > 1) {
     const lineHeight = getLengthProperty(svg, 'line-height') ?? 0
-    for (let offset = lineHeight - padding; offset < height; offset += lineHeight) {
-      const line = rc.line(padding, offset, width - padding, offset, {
+    for (let offset = lineHeight - epsilon; offset < height; offset += lineHeight) {
+      const line = rc.line(epsilon, offset, width - epsilon, offset, {
         stroke: 'var(--R-input-border-color)',
         strokeWidth,
         strokeLineDash,
@@ -150,7 +150,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       svg.appendChild(line)
     }
   } else {
-    const line = rc.line(padding, height - padding, width - padding, height - padding, {
+    const line = rc.line(epsilon, height - epsilon, width - epsilon, height - epsilon, {
       stroke: 'var(--R-input-border-color)',
       strokeWidth,
       strokeLineDash,
