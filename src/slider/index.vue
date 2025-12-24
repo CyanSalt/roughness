@@ -3,7 +3,7 @@ import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
-import { useTemplateRef, watchEffect } from 'vue'
+import { computed, useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
@@ -57,28 +57,28 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
 function round(value: number) {
   const rest = value % step
   return rest >= step / 2 ? value - rest + step : value - rest
 }
 
-let internalModelValue = $(useLocal({
+const internalModelValue = useLocal({
   get: () => round(modelValue),
   set: value => {
     emit('update:modelValue', value)
   },
-}))
-
-const ratio = $computed(() => {
-  return (internalModelValue - min) / (max - min) || 0
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const ratio = computed(() => {
+  return (internalModelValue.value - min) / (max - min) || 0
+})
+
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-slider-border-width') ?? 0
   const trackSize = getLengthProperty(svg, '--R-slider-track-size') ?? 0
@@ -97,7 +97,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const barRect = rc.rectangle(
     padding,
     (height - trackSize) / 2 + padding,
-    height / 2 - padding + (width - height + padding * 2) * ratio,
+    height / 2 - padding + (width - height + padding * 2) * ratio.value,
     trackSize - padding * 2,
     {
       strokeWidth: 0,
@@ -107,7 +107,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   )
   svg.appendChild(barRect)
   const controlRect = rc.rectangle(
-    (width - height) * ratio + padding,
+    (width - height) * ratio.value + padding,
     padding,
     height - padding * 2,
     height - padding * 2,
@@ -121,20 +121,20 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   svg.appendChild(controlRect)
 }
 
-let root = $(useTemplateRef<HTMLLabelElement>('root'))
-let input = $(useTemplateRef<HTMLInputElement>('input'))
+const root = useTemplateRef<HTMLLabelElement>('root')
+const input = useTemplateRef<HTMLInputElement>('input')
 
-const { pressed } = $(useMousePressed({ target: $$(root) }))
-const { elementX } = $(useMouseInElement($$(root)))
+const { pressed } = useMousePressed({ target: root })
+const { elementX } = useMouseInElement(root)
 
 watchEffect(() => {
-  if (!root || !pressed) return
-  const width = root.clientWidth
-  const height = root.clientHeight
-  const currentRatio = Math.min(Math.max(elementX - height / 2, 0), width - height) / (width - height)
-  internalModelValue = round(currentRatio * (max - min) + min)
-  if (input) {
-    input.focus()
+  if (!root.value || !pressed.value) return
+  const width = root.value.clientWidth
+  const height = root.value.clientHeight
+  const currentRatio = Math.min(Math.max(elementX.value - height / 2, 0), width - height) / (width - height)
+  internalModelValue.value = round(currentRatio * (max - min) + min)
+  if (input.value) {
+    input.value.focus()
   }
 })
 </script>
