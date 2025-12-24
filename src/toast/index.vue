@@ -42,21 +42,21 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $(useLocal({
+const internalOpen = useLocal({
   get: () => open,
   set: value => {
-    emit('update:open', internalOpen)
+    emit('update:open', value)
   },
-}))
+})
 
 function toggle(event: ToggleEvent) {
-  internalOpen = event.newState === 'open'
+  internalOpen.value = event.newState === 'open'
 }
 
 watchEffect(onInvalidate => {
-  if (internalOpen && Number.isFinite(duration)) {
+  if (internalOpen.value && Number.isFinite(duration)) {
     const timeout = setTimeout(() => {
-      internalOpen = false
+      internalOpen.value = false
     }, duration)
     onInvalidate(() => {
       clearTimeout(timeout)
@@ -64,15 +64,15 @@ watchEffect(onInvalidate => {
   }
 })
 
-let root = $(useTemplateRef<HTMLElement>('root'))
+const root = useTemplateRef<HTMLElement>('root')
 
 watchEffect(() => {
-  if (!root) return
+  if (!root.value) return
   try {
     if (internalOpen) {
-      root.showPopover()
+      root.value.showPopover()
     } else {
-      root.hidePopover()
+      root.value.hidePopover()
     }
   } catch (err) {
     if (!(err instanceof DOMException)) {
@@ -81,10 +81,10 @@ watchEffect(() => {
   }
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-toast-border-width') ?? 0
   const padding = 2
@@ -101,7 +101,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <div
-    ref="root"
     popover="manual"
     :class="['r-toast', color, size]"
     @toggle="toggle"

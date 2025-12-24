@@ -1,15 +1,18 @@
 {
   "extends": "@cyansalt/tsconfig",
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "noEmit": false,
+    "outDir": "dist"
   },
   "include": [
     "tests",
     "docs/tests",
+    "package.json",
     "*.config.js",
     "*.config.ts",
     "docs/.vitepress/loaders",
-    "docs/.vitepress/markdown",
+    "docs/.vitepress/markdown/roughness.ts",
     "docs/.vitepress/parsers",
     "docs/.vitepress/config.ts"
   ]

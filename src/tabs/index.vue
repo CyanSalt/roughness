@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { reactive, useSlots, watchEffect } from 'vue'
+import { computed, reactive, useSlots, watchEffect } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { RListRenderer, useList } from '../common/list'
@@ -44,43 +44,43 @@ defineSlots<{
 
 const slots = useSlots()
 
-const items = $(useList(itemsInjection))
+const items = useList(itemsInjection)
 
-const content = $computed(() => {
+const content = computed(() => {
   if (userContent !== undefined) return userContent
-  if (items.some(item => item.slots.default)) return true
+  if (items.value.some(item => item.slots.default)) return true
   return false
 })
 
-let internalModelValue = $(useLocal({
+const internalModelValue = useLocal({
   get: () => modelValue,
   set: value => {
     emit('update:modelValue', value)
   },
-})) as typeof modelValue
+})
 
 watchEffect(() => {
-  if (!items.length) {
-    internalModelValue = undefined
-  } else if (!internalModelValue || !items.some(item => item.value === internalModelValue)) {
-    internalModelValue = items[0].value
+  if (!items.value.length) {
+    internalModelValue.value = undefined
+  } else if (!internalModelValue.value || !items.value.some(item => item.value === internalModelValue.value)) {
+    internalModelValue.value = items.value[0].value
   }
 })
 
 const renderedValues = reactive(new Set()) as Set<RValueOrKey>
 
 watchEffect(() => {
-  if (internalModelValue && !renderedValues.has(internalModelValue)) {
-    renderedValues.add(internalModelValue)
+  if (internalModelValue.value && !renderedValues.has(internalModelValue.value)) {
+    renderedValues.add(internalModelValue.value)
   }
 })
 
-const renderedItems = $computed(() => {
-  return items.filter(item => renderedValues.has(item.value))
+const renderedItems = computed(() => {
+  return items.value.filter(item => renderedValues.has(item.value))
 })
 
 function activate(tab: RValueOrKey) {
-  internalModelValue = tab
+  internalModelValue.value = tab
 }
 </script>
 

@@ -51,7 +51,6 @@
     "@types/to-px": "^1.1.4",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue-macros/common": "1.15.0",
-    "@vue-macros/reactivity-transform": "3.0.0-beta.10",
     "@vueuse/components": "^13.1.0",
     "@vueuse/core": "^13.1.0",
     "colord": "^2.9.3",

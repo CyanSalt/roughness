@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { computed } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
@@ -46,7 +47,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const content = $computed(() => {
+const content = computed(() => {
   return startCase(keyOf(value))
 })
 
@@ -54,10 +55,10 @@ function activate() {
   emit('activate', value)
 }
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-tab-anchor-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-tab-anchor-border-dash')

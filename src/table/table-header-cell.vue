@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
+import { computed } from 'vue'
 
 defineOptions({
   name: 'RTableHeaderCell',
@@ -25,7 +26,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const content = $computed(() => {
+const content = computed(() => {
   return type === 'header' ? startCase(String(name)) : undefined
 })
 </script>
