@@ -28,7 +28,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
     <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
     <RTableColumn v-slot="{ row }" name="age">
       <template v-if="row === 'html'">
-        <RText type="primary">30</RText>
+        <RText color="primary">30</RText>
       </template>
       <template v-else-if="row === 'js'">28</template>
       <template v-else-if="row === 'css'">27</template>
@@ -43,7 +43,7 @@ import { RTable, RTableColumn, RText } from 'roughness'
   <RTableColumn v-slot="{ row }" name="name">{{ row.toUpperCase() }}</RTableColumn>
   <RTableColumn v-slot="{ row }" name="age">
     <template v-if="row === 'html'">
-      <RText type="primary">30</RText>
+      <RText color="primary">30</RText>
     </template>
     <template v-else-if="row === 'js'">28</template>
     <template v-else-if="row === 'css'">27</template>
@@ -130,7 +130,7 @@ const data = [
     <RTableColumn name="z" />
     <RTableColumn v-slot="{ row }" name="element">
       <template v-if="row[RKey] === 1">
-        <RText type="primary">He</RText>
+        <RText color="primary">He</RText>
       </template>
       <template v-else>{{ row.element }}</template>
     </RTableColumn>
@@ -144,7 +144,7 @@ const data = [
   <RTableColumn name="z" />
   <RTableColumn v-slot="{ row }" name="element">
     <template v-if="row[RKey] === 1">
-      <RText type="primary">He</RText>
+      <RText color="primary">He</RText>
     </template>
     <template v-else>{{ row.element }}</template>
   </RTableColumn>

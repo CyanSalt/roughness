@@ -17,7 +17,7 @@ const size = $computed(() => {
   }
 })
 
-const type = $computed(() => {
+const color = $computed(() => {
   switch (theme) {
     case 'brand': return 'primary'
     default: return undefined
@@ -30,7 +30,7 @@ const isExternal = $computed(() => href && EXTERNAL_URL_RE.test(href))
 <template>
   <RButton
     :tag="tag"
-    :type="type"
+    :color="color"
     :size="size"
     :href="href"
     :target="isExternal ? '_blank' : undefined"

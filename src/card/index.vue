@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed, useSlots } from 'vue'
 import { useTransitionListener } from '../common/property'
-import type { LegacyColorProps } from '../common/utils'
+import { ColorProps } from '../common/utils'
 import { useDrawBox } from '../composables'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -18,7 +18,7 @@ const {
   footer: userFooter = undefined,
   header: userHeader = undefined,
   tag = 'article',
-  type,
+  color,
   graphicsOptions,
 } = defineProps<{
   /**
@@ -36,7 +36,7 @@ const {
    * @default 'article'
    */
   tag?: string,
-} & LegacyColorProps & GraphicsProps>()
+} & ColorProps & GraphicsProps>()
 
 defineSlots<{
   /**
@@ -58,12 +58,12 @@ defineSlots<{
   footer?: (props: {}) => any,
 }>()
 
-const COLORED_TYPES = ['primary', 'info', 'success', 'warning', 'error', 'comment']
+const SEMANTIC_COLORS = ['primary', 'info', 'success', 'warning', 'error', 'comment']
 
 const slots = useSlots()
 
 const defaultTitle = computed(() => {
-  return COLORED_TYPES.includes(type!) ? type!.toUpperCase() : undefined
+  return SEMANTIC_COLORS.includes(color!) ? color!.toUpperCase() : undefined
 })
 
 const header = computed(() => {
@@ -94,7 +94,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :tag="tag"
     vertical
     :wrap="false"
-    :class="['r-card', type]"
+    :class="['r-card', color]"
     @transitionrun="listener"
   >
     <RGraphics :options="graphicsOptions" @draw="draw" />

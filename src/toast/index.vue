@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
-import type { LegacyColorProps, SizeProps } from '../common/utils'
+import type { ColorProps, SizeProps } from '../common/utils'
 import { useLocal } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -16,7 +16,7 @@ defineOptions({
 const {
   duration = 3000,
   open = true,
-  type,
+  color,
   size,
   graphicsOptions,
 } = defineProps<{
@@ -30,7 +30,7 @@ const {
    * @default true
    */
   open?: boolean,
-} & LegacyColorProps & SizeProps & GraphicsProps>()
+} & ColorProps & SizeProps & GraphicsProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when visibility of the toast is changed. */
@@ -103,7 +103,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   <div
     ref="root"
     popover="manual"
-    :class="['r-toast', type, size]"
+    :class="['r-toast', color, size]"
     @toggle="toggle"
     @transitionrun="listener"
   >

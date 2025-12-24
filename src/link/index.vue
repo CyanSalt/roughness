@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import type { LegacyColorProps } from '../common/utils'
+import type { ColorProps } from '../common/utils'
 import RText from '../text/index.vue'
 
 defineOptions({
@@ -9,11 +9,11 @@ defineOptions({
 
 const {
   tag = 'a',
-  type = 'primary',
+  color = 'primary',
 } = defineProps<{
   /** HTML tag for rendering the link. */
   tag?: 'a' | 'button' | (string & {}),
-} & LegacyColorProps>()
+} & ColorProps>()
 
 defineSlots<{
   /** Content of the link. */
@@ -22,7 +22,7 @@ defineSlots<{
 </script>
 
 <template>
-  <RText :tag="tag" :type="type" class="r-link">
+  <RText :tag="tag" :color="color" class="r-link">
     <slot></slot>
   </RText>
 </template>

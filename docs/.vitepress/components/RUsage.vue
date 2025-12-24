@@ -145,7 +145,7 @@ function paragraph(text: string | undefined) {
             <MarkdownBlock inline :source="inlineCode(type(prop.tags) ?? prop.type)" />
           </template>
           <template #default-value>
-            <RText v-if="prop.required" type="error">Required</RText>
+            <RText v-if="prop.required" color="error">Required</RText>
             <MarkdownBlock v-else-if="prop.defaultValue" inline :source="inlineCode(prop.defaultValue)" />
             <RScope v-else v-slot="{ defaults }" :defaults="defaultValue(prop.tags)" :tags="prop.tags">
               <MarkdownBlock v-if="defaults" inline :source="defaults" />

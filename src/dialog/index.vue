@@ -137,7 +137,7 @@ const nestingGraphicsOptions = $computed(() => {
           <RLink
             v-if="closable"
             tag="button"
-            type="default"
+            color="default"
             size="large"
             class="r-dialog__close"
           >

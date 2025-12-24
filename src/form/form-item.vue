@@ -58,7 +58,7 @@ provide(nameInjection, $$(name))
       <RIcon
         v-if="required"
         :icon="Asterisk"
-        type="error"
+        color="error"
         class="r-form-item__required-marker"
       />
       <slot name="label">{{ label }}</slot>
