@@ -3,7 +3,6 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed } from 'vue'
 import RBox from '../box/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -15,7 +14,7 @@ const {
 } = defineProps<{
   /** Unique key to generate color and pixels. */
   name: string,
-} & GraphicsProps>()
+}>()
 
 
 function hash(str: string) {
