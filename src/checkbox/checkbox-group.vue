@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { provide } from 'vue'
+import { provide, toRef } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { useLocal } from '../common/utils'
 import RSpace from '../space/index.vue'
@@ -33,7 +33,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const model = $(useLocal({
+const model = useLocal({
   get: () => {
     return multiple ? (
       Array.isArray(modelValue) ? modelValue : (modelValue === undefined ? [] : [modelValue])
@@ -44,11 +44,11 @@ const model = $(useLocal({
   set: value => {
     emit('update:modelValue', value)
   },
-}))
+})
 
-provide(multipleInjection, $$(multiple))
-provide(modelInjection, $$(model))
-provide(disabledInjection, $$(disabled))
+provide(multipleInjection, toRef(() => multiple))
+provide(modelInjection, model)
+provide(disabledInjection, toRef(() => disabled))
 </script>
 
 <template>

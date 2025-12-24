@@ -1,18 +1,17 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
-import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
-import { inject, ref, watchEffect } from 'vue'
+import { computed, inject, ref, watchEffect } from 'vue'
+import RBox from '../box/index.vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
-import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
+import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
 
@@ -69,81 +68,67 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-const multiple = $(inject(multipleInjection, ref()))
-let model = $(inject(modelInjection, ref()))
-const disabledByGroup = $(inject(disabledInjection, ref()))
+const multiple = inject(multipleInjection, ref())
+const model = inject(modelInjection, ref())
+const disabledByGroup = inject(disabledInjection, ref())
 const labels = inject(labelsInjection, undefined)
 
-const label = $computed(() => {
+const label = computed(() => {
   return userLabel ?? (typeof value === 'undefined' ? value : startCase(keyOf(value)))
 })
 
 watchEffect(onInvalidate => {
-  if (labels && value !== undefined && label !== undefined) {
+  if (labels && value !== undefined && label.value !== undefined) {
     const key = keyOf(value)
-    labels.set(key, label)
+    labels.set(key, label.value)
     onInvalidate(() => {
       labels.delete(key)
     })
   }
 })
 
-let internalChecked = $(useLocal({
+const internalChecked = useLocal({
   get: () => {
-    return typeof multiple === 'boolean' ? (
-      Array.isArray(model)
-        ? model.includes(value!)
-        : model === value
+    return typeof multiple.value === 'boolean' ? (
+      Array.isArray(model.value)
+        ? model.value.includes(value!)
+        : model.value === value
     ) : checked
   },
   set: currentValue => {
-    if (typeof multiple === 'boolean') {
-      if (multiple) {
-        const currentChecked = Array.isArray(model)
-          ? model.includes(value!)
-          : model === value
+    if (typeof multiple.value === 'boolean') {
+      if (multiple.value) {
+        const currentChecked = Array.isArray(model.value)
+          ? model.value.includes(value!)
+          : model.value === value
         if (currentValue && !currentChecked) {
-          model = Array.isArray(model) ? model.concat(value!) : [value!]
+          model.value = Array.isArray(model.value) ? model.value.concat(value!) : [value!]
         } else if (!currentValue && currentChecked) {
-          model = Array.isArray(model) ? model.filter(item => item !== value) : []
+          model.value = Array.isArray(model.value) ? model.value.filter(item => item !== value) : []
         }
       } else if (currentValue as unknown === value) {
-        model = value
+        model.value = value
       }
     }
     emit('update:checked', currentValue)
   },
-}))
-
-const disabled = $computed(() => {
-  return isTruthyBooleanish(userDisabled) || Boolean(disabledByGroup)
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const disabled = computed(() => {
+  return isTruthyBooleanish(userDisabled) || Boolean(disabledByGroup.value)
+})
+
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--R-checkbox-border-width') ?? 0
-  const options: Options = {
-    stroke: 'var(--R-checkbox-border-color)',
-    strokeWidth,
-    fill: indeterminate ? 'var(--R-checkbox-border-color)' : undefined,
-    ...getFilledSizeOptions(strokeWidth),
-  }
-  const padding = 2
-  if (multiple === false) {
-    const ellipse = rc.ellipse(width / 2, height / 2, width - padding * 2, height - padding * 2, options)
-    svg.appendChild(ellipse)
-  } else {
-    const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, options)
-    svg.appendChild(rectangle)
-  }
-  if (internalChecked) {
+  void timestamp.value
+  if (internalChecked.value) {
+    const { width, height } = getSVGSize(svg)
+    const epsilon = 2
     // actual padding: [checkedPadding / 2, checkedPadding, checkedPadding * 3 / 2, checkedPadding]
-    const checkedPadding = padding + 2
+    const checkedPadding = epsilon + 2
     const checkedStrokeWidth = getLengthProperty(svg, '--R-checkbox-checked-width') ?? 0
     const linearPath = rc.linearPath([
       [checkedPadding, checkedPadding / 2 + (height - checkedPadding * 2) * 2 / 3],
@@ -176,9 +161,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       v-bind="props"
       class="r-checkbox__input"
     >
-    <span class="r-checkbox__control">
-      <RGraphics :options="graphicsOptions" @draw="draw" />
-    </span>
+    <RBox
+      :round="multiple === false"
+      :filled="indeterminate"
+      :graphics-options="graphicsOptions"
+      class="r-checkbox__control"
+      @draw="draw"
+    />
     <slot>{{ label }}</slot>
   </RSpace>
 </template>
@@ -232,10 +221,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   cursor: pointer;
   &::before {
     border-top-style: solid;
-    border-right-style: solid;
     @include partials.transition-runner((
-      --R-checkbox-border-width: border-top-width,
-      --R-checkbox-checked-width: border-right-width,
+      --R-checkbox-checked-width: border-top-width,
     ));
   }
   &:has(> .r-checkbox__input:focus-visible),
@@ -257,6 +244,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   position: absolute;
 }
 .r-checkbox__control {
+  --r-box-border-width: var(--R-checkbox-border-width);
+  --r-box-border-color: var(--R-checkbox-border-color);
   flex: none;
   block-size: var(--R-checkbox-control-size);
   inline-size: var(--R-checkbox-control-size);
