@@ -100,7 +100,7 @@ function showBottom() {
     <template #title>This site eats cookies.</template>
     We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
     <template #footer>
-      <RButton type="primary">Accept</RButton>
+      <RButton color="primary">Accept</RButton>
     </template>
   </RDrawer>
 </template>
@@ -113,7 +113,7 @@ function showBottom() {
   <template #title>This site eats cookies.</template>
   We eat cookies to fill our bellies. By using our site you agree to our cookie policy.
   <template #footer>
-    <RButton type="primary">Accept</RButton>
+    <RButton color="primary">Accept</RButton>
   </template>
 </RDrawer>
 

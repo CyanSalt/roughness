@@ -72,10 +72,10 @@ function toggle(open: boolean) {
     </template>
     <slot></slot>
     <template #footer>
-      <RButton class="r-confirm__button">
+      <RButton type="submit" class="r-confirm__button">
         <RIcon :icon="X" />
       </RButton>
-      <RButton type="primary" value="confirm" class="r-confirm__button">
+      <RButton type="submit" color="primary" value="confirm" class="r-confirm__button">
         <RIcon :icon="Check" />
       </RButton>
     </template>

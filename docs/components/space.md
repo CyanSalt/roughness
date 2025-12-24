@@ -21,7 +21,7 @@ import { RButton, RSpace } from 'roughness'
   <RSpace :style="{ 'max-width': '600px' }">
     <RButton>Rocket to the moon</RButton>
     <RButton>Bring newton back to life</RButton>
-    <RButton type="warning">Single loop of Never Gonna Give You Up</RButton>
+    <RButton color="warning">Single loop of Never Gonna Give You Up</RButton>
   </RSpace>
 </template>
 ```
@@ -31,7 +31,7 @@ import { RButton, RSpace } from 'roughness'
 <RSpace :style="{ 'max-width': '600px' }">
   <RButton>Rocket to the moon</RButton>
   <RButton>Bring newton back to life</RButton>
-  <RButton type="warning">Single loop of Never Gonna Give You Up</RButton>
+  <RButton color="warning">Single loop of Never Gonna Give You Up</RButton>
 </RSpace>
 
 ### Direction
@@ -80,7 +80,7 @@ import { RButton, RSpace } from 'roughness'
 <template>
   <RSpace justify="center">
     <RButton>Squidward</RButton>
-    <RButton type="warning">SpongeBob</RButton>
+    <RButton color="warning">SpongeBob</RButton>
     <RButton>Patrick</RButton>
   </RSpace>
 </template>
@@ -90,7 +90,7 @@ import { RButton, RSpace } from 'roughness'
 
 <RSpace justify="center">
   <RButton>Squidward</RButton>
-  <RButton type="warning">SpongeBob</RButton>
+  <RButton color="warning">SpongeBob</RButton>
   <RButton>Patrick</RButton>
 </RSpace>
 

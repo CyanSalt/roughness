@@ -131,7 +131,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       --R-box-border-dash: border-spacing,
     ));
   }
-  &.is-filled:not(:disabled) {
+  &.is-filled {
     text-shadow: var(--r-common-stroke-text-shadow);
   }
   &.primary {

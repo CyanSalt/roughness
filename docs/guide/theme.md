@@ -19,12 +19,12 @@ In dark and light mode, in addition to the foreground and background colors, the
   </RSpace>
   <RSpace>
     <RButton filled>Normal</RButton>
-    <RButton type="primary" filled>Primary</RButton>
-    <RButton type="info" filled>Info</RButton>
-    <RButton type="success" filled>Success</RButton>
-    <RButton type="warning" filled>Warning</RButton>
-    <RButton type="error" filled>Error</RButton>
-    <RButton type="comment" filled>Comment</RButton>
+    <RButton color="primary" filled>Primary</RButton>
+    <RButton color="info" filled>Info</RButton>
+    <RButton color="success" filled>Success</RButton>
+    <RButton color="warning" filled>Warning</RButton>
+    <RButton color="error" filled>Error</RButton>
+    <RButton color="comment" filled>Comment</RButton>
   </RSpace>
 </RSpace>
 
