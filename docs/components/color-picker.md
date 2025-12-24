@@ -40,4 +40,14 @@ let color = ref('')
 
   </template>
 
+  <template #props>
+
+  <RProp name="...">
+
+  See [Box Props](/components/box#props).
+
+  </RProp>
+
+  </template>
+
 </RUsage>

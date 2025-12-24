@@ -1,15 +1,13 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { useCurrentElement } from '@vueuse/core'
 import { colord } from 'colord'
-import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
-import { useTemplateRef } from 'vue'
-import { getLengthProperty, getLengthPropertyAsArray, getProperty, useTransitionListener } from '../common/property'
+import { computed } from 'vue'
+import RBox from '../box/index.vue'
+import { getProperty, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
-import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize } from '../graphics/utils'
 import RLoading from '../loading/index.vue'
 
 defineOptions({
@@ -30,7 +28,6 @@ const {
   loading = false,
   modelValue,
   name: userName,
-  graphicsOptions,
   ...props
 } = defineProps<{
   /**
@@ -40,73 +37,52 @@ const {
   loading?: boolean,
   /** Value of the color picker. */
   modelValue?: string,
-} & InputProps & GraphicsProps>()
+} & InputProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when the color is changed. */
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-let internalModelValue = $(useLocal({
+const internalModelValue = useLocal({
   get: () => modelValue || '#000000',
   set: value => {
     emit('update:modelValue', value)
   },
-}))
+})
 
-const disabled = $computed(() => {
+const disabled = computed(() => {
   return isTruthyBooleanish(userDisabled) || loading
 })
 
-let root = $(useTemplateRef<HTMLElement>('root'))
+const root = useCurrentElement<HTMLElement | null>()
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
-let color = $computed(() => {
-  if (!root) return undefined
-  void timestamp
-  let defaultColor = colord(getProperty(root, '--r-common-color'))
-  const currentColor = colord(internalModelValue)
+let color = computed(() => {
+  if (!root.value) return undefined
+  void timestamp.value
+  let defaultColor = colord(getProperty(root.value, '--r-common-color'))
+  const currentColor = colord(internalModelValue.value)
   return currentColor
     .lighten((defaultColor.toHsl().l - currentColor.toHsl().l) / 100)
     .toHex()
 })
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--R-color-picker-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-color-picker-border-dash')
-    ?.map(value => value ?? 0) ?? undefined
-  const padding = 2
-  const rectangle = rc.rectangle(
-    padding,
-    padding,
-    width - padding * 2,
-    height - padding * 2,
-    {
-      stroke: 'var(--R-color-picker-color)',
-      strokeWidth,
-      strokeLineDash,
-      fill: 'var(--R-color-picker-current-color)',
-    },
-  )
-  svg.appendChild(rectangle)
-}
-
-const style = $computed(() => {
+const style = computed(() => {
   return {
-    '--R-color-picker-current-color': internalModelValue,
-    '--R-color-picker-color': `var(--r-color-picker-color, ${color})`,
+    '--R-color-picker-current-color': internalModelValue.value,
+    '--R-color-picker-color': `var(--r-color-picker-color, ${color.value})`,
   }
 })
 </script>
 
 <template>
-  <label
-    ref="root"
+  <RBox
+    as="label"
+    filled
     :class="['r-color-picker', { 'is-loading': loading }]"
     :style="style"
     @transitionrun="listener"
@@ -119,10 +95,9 @@ const style = $computed(() => {
       type="color"
       class="r-color-picker__input"
     >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
     <slot>{{ internalModelValue }}</slot>
     <RLoading v-if="loading" class="r-button__loading" />
-  </label>
+  </RBox>
 </template>
 
 <style lang="scss">
@@ -157,15 +132,16 @@ const style = $computed(() => {
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-color-picker-border-dash: var(--r-color-picker-border-dash, none);
+  // Box styles
+  --r-box-border-color: var(--R-color-picker-color);
+  --r-box-border-width: var(--R-color-picker-border-width);
+  --r-box-border-dash: var(--R-color-picker-border-dash);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);
   color: var(--R-color-picker-color);
   &::before {
-    border-top-style: solid;
     @include partials.transition-runner((
-      --R-color-picker-border-width: border-top-width,
-      --R-color-picker-border-dash: border-spacing,
       --r-common-color: background-color,
     ));
   }
