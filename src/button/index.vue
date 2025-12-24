@@ -104,9 +104,9 @@ const disabled = computed(() => {
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-button-border-dash: var(--r-button-border-dash, none);
   // Box styles
-  --R-box-border-color: var(--R-button-border-color);
-  --R-box-border-width: var(--R-button-border-width);
-  --R-box-border-dash: var(--R-button-border-dash);
+  --r-box-border-color: var(--R-button-border-color);
+  --r-box-border-width: var(--R-button-border-width);
+  --r-box-border-dash: var(--R-button-border-dash);
   display: inline-block;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline);

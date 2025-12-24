@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
+import { useTransitionListener } from '../common/property'
 import { ColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
+import { useDrawBox } from './utils'
 
 defineOptions({
   name: 'RBox',
@@ -41,44 +40,16 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
+const drawBox = useDrawBox({
+  filled: () => filled,
+  round: () => round,
+})
+
 const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   void timestamp.value
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--R-box-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-box-border-dash')
-    ?.map(value => value ?? 0) ?? undefined
-  const options: Options = {
-    stroke: 'var(--R-box-border-color)',
-    strokeWidth,
-    strokeLineDash,
-    fill: filled ? 'var(--R-box-border-color)' : undefined,
-    ...getFilledSizeOptions(strokeWidth),
-  }
-  const epsilon = 2
-  if (round) {
-    const ellipse = rc.ellipse(
-      width / 2,
-      height / 2,
-      width - epsilon * 2,
-      height - epsilon * 2,
-      {
-        ...options,
-        disableMultiStroke: Boolean(strokeLineDash),
-      },
-    )
-    svg.appendChild(ellipse)
-  } else {
-    const rectangle = rc.rectangle(
-      epsilon,
-      epsilon,
-      width - epsilon * 2,
-      height - epsilon * 2,
-      options,
-    )
-    svg.appendChild(rectangle)
-  }
+  drawBox(rc, svg)
   emit('draw', rc, svg)
 }
 </script>

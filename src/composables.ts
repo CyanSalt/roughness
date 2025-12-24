@@ -6,6 +6,8 @@ export type { ComponentProps, ComponentRenderable, ComponentSlots } from './comm
 export type { Colors } from './common/theme'
 export { darkColors, lightColors, useColors, useDark } from './common/theme'
 export { useLocal } from './common/utils'
+export type { DrawBoxProps } from './box/utils'
+export { useDrawBox } from './box/utils'
 export { useConfirm } from './confirm/utils'
 export type { IconNode } from './icon/utils'
 export type { RoughAnnotation } from './mark/utils'
