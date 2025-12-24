@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { computed } from 'vue'
 import RBox from '../box/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -27,7 +28,7 @@ function hash(str: string) {
   return code
 }
 
-const code = $computed(() => hash(name))
+const code = computed(() => hash(name))
 
 /**
  * Inspired by minidenticons
@@ -45,10 +46,10 @@ function getPixels(seed: number) {
     })
 }
 
-const pixels = $computed(() => getPixels(code))
-const color = $computed(() => {
+const pixels = computed(() => getPixels(code.value))
+const color = computed(() => {
   const colors = 9
-  const hue = (code % colors) * (360 / colors)
+  const hue = (code.value % colors) * (360 / colors)
   return `hsl(${hue}deg 95% 45%)`
 })
 
@@ -56,7 +57,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
   const scaleX = width / 10
   const scaleY = height / 10
-  for (const pixel of pixels) {
+  for (const pixel of pixels.value) {
     const rectangle = rc.rectangle(
       (pixel.x + 2.5) * scaleX,
       (pixel.y + 2.5) * scaleY,

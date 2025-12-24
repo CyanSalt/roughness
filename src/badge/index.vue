@@ -22,10 +22,10 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-badge-border-width') ?? 0
   const padding = 2

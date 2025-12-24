@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { computed } from 'vue'
 import RBox from '../box/index.vue'
 import { isTruthyBooleanish } from '../common/utils'
 import RLoading from '../loading/index.vue'
@@ -34,11 +35,11 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const type = $computed(() => {
+const type = computed(() => {
   return as === 'button' ? 'button' : undefined
 })
 
-const disabled = $computed(() => {
+const disabled = computed(() => {
   return isTruthyBooleanish(userDisabled) || loading
 })
 </script>
