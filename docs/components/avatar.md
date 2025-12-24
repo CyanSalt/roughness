@@ -48,4 +48,24 @@ const name = ref('Cameron')
 
   </template>
 
+  <template #props>
+
+  <RProp name="...">
+
+  See [Box Props](/components/box#props).
+
+  </RProp>
+
+  </template>
+
+  <template #styles>
+
+  <RStyle name="...">
+
+  See [Box Styles](/components/box#styles).
+
+  </RStyle>
+
+  </template>
+
 </RUsage>
