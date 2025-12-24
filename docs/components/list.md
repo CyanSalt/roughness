@@ -22,7 +22,7 @@ import { RList, RListItem } from 'roughness'
     <RListItem>Dog Food</RListItem>
     <RListItem>Cat Food</RListItem>
     <RListItem>
-      <RText type="warning">Human Food</RText>
+      <RText color="warning">Human Food</RText>
     </RListItem>
   </RList>
 </template>
@@ -34,7 +34,7 @@ import { RList, RListItem } from 'roughness'
   <RListItem>Dog Food</RListItem>
   <RListItem>Cat Food</RListItem>
   <RListItem>
-    <RText type="warning">Human Food</RText>
+    <RText color="warning">Human Food</RText>
   </RListItem>
 </RList>
 

@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import type { LegacyColorProps, SizeProps } from '../common/utils'
+import type { ColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -16,7 +16,7 @@ const {
   max = 1,
   min = 0,
   value,
-  type,
+  color,
   size,
   graphicsOptions,
 } = defineProps<{
@@ -32,7 +32,7 @@ const {
   max?: number,
   /** Current numeric progress value. */
   value: number,
-} & LegacyColorProps & SizeProps & GraphicsProps>()
+} & ColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
   /** Text displayed on the progress */
@@ -95,7 +95,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   <RSpace
     inline
     align="center"
-    :class="['r-progress', type, size]"
+    :class="['r-progress', color, size]"
     role="progressbar"
     @transitionrun="listener"
   >

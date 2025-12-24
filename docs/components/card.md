@@ -49,10 +49,10 @@ import { RCard, RSpace } from 'roughness'
 
 <template>
   <RSpace vertical>
-    <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>
-    <RCard type="success">You successfully failed.</RCard>
-    <RCard type="warning" size="small">No programmer can see warnings.</RCard>
-    <RCard type="error" size="large">You threw tantrums on me!</RCard>
+    <RCard color="info">For every minute in Africa, 60 seconds pass.</RCard>
+    <RCard color="success">You successfully failed.</RCard>
+    <RCard color="warning" size="small">No programmer can see warnings.</RCard>
+    <RCard color="error" size="large">You threw tantrums on me!</RCard>
   </RSpace>
 </template>
 ```
@@ -60,10 +60,10 @@ import { RCard, RSpace } from 'roughness'
 :::
 
 <RSpace vertical>
-  <RCard type="info">For every minute in Africa, 60 seconds pass.</RCard>
-  <RCard type="success">You successfully failed.</RCard>
-  <RCard type="warning" size="small">No programmer can see warnings.</RCard>
-  <RCard type="error" size="large">You threw tantrums on me!</RCard>
+  <RCard color="info">For every minute in Africa, 60 seconds pass.</RCard>
+  <RCard color="success">You successfully failed.</RCard>
+  <RCard color="warning" size="small">No programmer can see warnings.</RCard>
+  <RCard color="error" size="large">You threw tantrums on me!</RCard>
 </RSpace>
 
 ## Usage

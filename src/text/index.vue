@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import type { LegacyColorProps, SizeProps } from '../common/utils'
+import type { ColorProps, SizeProps } from '../common/utils'
 
 defineOptions({
   name: 'RText',
@@ -9,7 +9,7 @@ defineOptions({
 const {
   block = false,
   tag = 'span',
-  type,
+  color,
   size,
 } = defineProps<{
   /** Whether the text is displayed as block */
@@ -19,7 +19,7 @@ const {
    * @default 'span'
    */
   tag?: string,
-} & LegacyColorProps & SizeProps>()
+} & ColorProps & SizeProps>()
 
 defineSlots<{
   /** Content of the text. */
@@ -28,7 +28,7 @@ defineSlots<{
 </script>
 
 <template>
-  <component :is="tag" :class="['r-text', type, size, { 'is-block': block }]">
+  <component :is="tag" :class="['r-text', color, size, { 'is-block': block }]">
     <slot></slot>
   </component>
 </template>

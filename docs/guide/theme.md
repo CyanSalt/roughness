@@ -447,7 +447,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  Color of the key content on the page. Components with `type="primary"` use this color.
+  Color of the key content on the page. Components with `color="primary"` use this color.
 
   </RStyle>
 
@@ -459,7 +459,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  Color of auxiliary information on the page. Components with `type="info"` use this color.
+  Color of auxiliary information on the page. Components with `color="info"` use this color.
 
   </RStyle>
 
@@ -471,7 +471,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  Color of success message. Components with `type="success"` use this color.
+  Color of success message. Components with `color="success"` use this color.
 
   </RStyle>
 
@@ -483,7 +483,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  Color of warning message. Components with `type="warning"` use this color.
+  Color of warning message. Components with `color="warning"` use this color.
 
   </RStyle>
 
@@ -495,7 +495,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  Color of error message. Components with `type="error"` use this color.
+  Color of error message. Components with `color="error"` use this color.
 
   </RStyle>
 
@@ -507,7 +507,7 @@ The following properties (of colors) change with dark/light theme changes: {#col
 
   </template>
 
-  Color of comment message. Components with `type="comment"` use this color.
+  Color of comment message. Components with `color="comment"` use this color.
 
   </RStyle>
 

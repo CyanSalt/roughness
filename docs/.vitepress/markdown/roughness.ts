@@ -44,7 +44,7 @@ export default function (md: MarkdownIt) {
   md.renderer.rules.container_details_close = renderRDetails
   md.renderer.rules.container_details_open = renderRDetails
   // `<RCard />` as container_(info|tip|warning|danger)
-  const createRCardRenderer = (name: string, type: string): RenderRule => function (tokens, idx, options, env, self) {
+  const createRCardRenderer = (name: string, color: string): RenderRule => function (tokens, idx, options, env, self) {
     const token = tokens[idx]
     const info = token.info.trim().slice(name.length).trim()
     const attrs = md.renderer.renderAttrs(token)
@@ -52,7 +52,7 @@ export default function (md: MarkdownIt) {
       const title = md.renderInline(info, {
         references: env.references,
       })
-      return `<RCard type="${type}" ${attrs}>${title ? `<template #title>${title}</title>` : ''}\n`
+      return `<RCard color="${color}" ${attrs}>${title ? `<template #title>${title}</title>` : ''}\n`
     } else {
       return `</RCard>\n`
     }

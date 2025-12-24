@@ -29,12 +29,12 @@ import { RProgress, RSpace } from 'roughness'
 <template>
   <RSpace vertical>
     <RProgress :value="0.1" />
-    <RProgress :value="0.4" type="primary">Primary</RProgress>
-    <RProgress :value="0.1" type="info">Info</RProgress>
-    <RProgress :value="0.5" type="success">Success</RProgress>
-    <RProgress :value="0.9" type="warning">Warning</RProgress>
-    <RProgress :value="0.2" type="error">Error</RProgress>
-    <RProgress :value="0.6" type="comment">Comment</RProgress>
+    <RProgress :value="0.4" color="primary">Primary</RProgress>
+    <RProgress :value="0.1" color="info">Info</RProgress>
+    <RProgress :value="0.5" color="success">Success</RProgress>
+    <RProgress :value="0.9" color="warning">Warning</RProgress>
+    <RProgress :value="0.2" color="error">Error</RProgress>
+    <RProgress :value="0.6" color="comment">Comment</RProgress>
   </RSpace>
 </template>
 ```
@@ -43,12 +43,12 @@ import { RProgress, RSpace } from 'roughness'
 
 <RSpace vertical>
   <RProgress :value="0.1" />
-  <RProgress :value="0.4" type="primary">Primary</RProgress>
-  <RProgress :value="0.1" type="info">Info</RProgress>
-  <RProgress :value="0.5" type="success">Success</RProgress>
-  <RProgress :value="0.9" type="warning">Warning</RProgress>
-  <RProgress :value="0.2" type="error">Error</RProgress>
-  <RProgress :value="0.6" type="comment">Comment</RProgress>
+  <RProgress :value="0.4" color="primary">Primary</RProgress>
+  <RProgress :value="0.1" color="info">Info</RProgress>
+  <RProgress :value="0.5" color="success">Success</RProgress>
+  <RProgress :value="0.9" color="warning">Warning</RProgress>
+  <RProgress :value="0.2" color="error">Error</RProgress>
+  <RProgress :value="0.6" color="comment">Comment</RProgress>
 </RSpace>
 
 ### Animation

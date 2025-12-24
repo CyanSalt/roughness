@@ -46,7 +46,7 @@ import { RLink, RSpace } from 'roughness'
 <template>
   <RSpace>
     <RLink href="https://en.wikipedia.org/wiki/Telephone">Start</RLink>
-    <RLink type="error" href="https://en.wikipedia.org/wiki/Nuclear_weapon">End</RLink>
+    <RLink color="error" href="https://en.wikipedia.org/wiki/Nuclear_weapon">End</RLink>
   </RSpace>
 </template>
 ```
@@ -55,7 +55,7 @@ import { RLink, RSpace } from 'roughness'
 
 <RSpace>
   <RLink href="https://en.wikipedia.org/wiki/Telephone">Start</RLink>
-  <RLink type="error" href="https://en.wikipedia.org/wiki/Nuclear_weapon">End</RLink>
+  <RLink color="error" href="https://en.wikipedia.org/wiki/Nuclear_weapon">End</RLink>
 </RSpace>
 
 ### As Button
@@ -69,8 +69,8 @@ import { RLink, RSpace } from 'roughness'
 
 <template>
   <RSpace>
-    <RLink tag="button" type="primary">Confirm cancelling</RLink>
-    <RLink tag="button" type="error">Cancel confirming</RLink>
+    <RLink tag="button" color="primary">Confirm cancelling</RLink>
+    <RLink tag="button" color="error">Cancel confirming</RLink>
   </RSpace>
 </template>
 ```
@@ -78,8 +78,8 @@ import { RLink, RSpace } from 'roughness'
 :::
 
 <RSpace>
-  <RLink tag="button" type="primary">Confirm cancelling</RLink>
-  <RLink tag="button" type="error">Cancel confirming</RLink>
+  <RLink tag="button" color="primary">Confirm cancelling</RLink>
+  <RLink tag="button" color="error">Cancel confirming</RLink>
 </RSpace>
 
 See also [Button](/components/button#tag).
