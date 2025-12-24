@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import type { ColorProps, SizeProps } from '../common/utils'
+import type { LegacyColorProps, SizeProps } from '../common/utils'
 
 defineOptions({
   name: 'RText',
@@ -19,7 +19,7 @@ const {
    * @default 'span'
    */
   tag?: string,
-} & ColorProps & SizeProps>()
+} & LegacyColorProps & SizeProps>()
 
 defineSlots<{
   /** Content of the text. */

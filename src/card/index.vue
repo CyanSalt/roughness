@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { useSlots } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import type { ColorProps } from '../common/utils'
+import type { LegacyColorProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
@@ -36,7 +36,7 @@ const {
    * @default 'article'
    */
   tag?: string,
-} & ColorProps & GraphicsProps>()
+} & LegacyColorProps & GraphicsProps>()
 
 defineSlots<{
   /**

@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import type { ColorProps, SizeProps } from '../common/utils'
+import type { LegacyColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -32,7 +32,7 @@ const {
   max?: number,
   /** Current numeric progress value. */
   value: number,
-} & ColorProps & SizeProps & GraphicsProps>()
+} & LegacyColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
   /** Text displayed on the progress */

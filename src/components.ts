@@ -1,5 +1,6 @@
 export { default as RAvatar } from './avatar/index.vue'
 export { default as RBadge } from './badge/index.vue'
+export { default as RBox } from './box/index.vue'
 export { default as RButton } from './button/index.vue'
 export { default as RCard } from './card/index.vue'
 export { default as RCheckbox } from './checkbox/index.vue'

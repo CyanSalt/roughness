@@ -2,12 +2,20 @@ import { startCase } from 'lodash-es'
 import type { ComputedGetter, ComputedSetter, Ref, WritableComputedOptions } from 'vue'
 import { ref, watch, watchEffect } from 'vue'
 
-export interface ColorProps {
+export interface LegacyColorProps {
   /**
    * Element style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
    * See also [Color Styles]{@link https://roughness.vercel.app/guide/theme.html#color-styles}.
    */
   type?: 'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment' | (string & {}),
+}
+
+export interface ColorProps {
+  /**
+   * Element style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
+   * See also [Color Styles]{@link https://roughness.vercel.app/guide/theme.html#color-styles}.
+   */
+  color?: 'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment' | (string & {}),
 }
 
 export interface SizeProps {

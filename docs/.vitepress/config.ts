@@ -43,6 +43,7 @@ export default defineConfig({
           {
             text: 'Basic',
             items: [
+              { text: 'Box', link: '/components/box' },
               { text: 'Button', link: '/components/button' },
               { text: 'Details', link: '/components/details' },
               { text: 'Divider', link: '/components/divider' },

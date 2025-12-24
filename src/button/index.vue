@@ -3,7 +3,7 @@ import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
-import type { ColorProps, SizeProps } from '../common/utils'
+import type { LegacyColorProps, SizeProps } from '../common/utils'
 import { isTruthyBooleanish } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -47,7 +47,7 @@ const {
    * @default 'button'
    */
   tag?: 'button' | 'a' | (string & {}),
-} & ColorProps & SizeProps & GraphicsProps>()
+} & LegacyColorProps & SizeProps & GraphicsProps>()
 
 defineSlots<{
   /** Content of the button. */
