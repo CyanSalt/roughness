@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from 'node:url'
-import reactivityTransform from '@vue-macros/reactivity-transform/vite'
 import { defineConfig } from 'vitepress'
 import pkg from '../../package.json'
 import markdownItRoughness from './markdown/roughness'
@@ -124,9 +123,6 @@ export default defineConfig({
         },
       },
     },
-    plugins: [
-      reactivityTransform() as never,
-    ],
     resolve: {
       alias: [
         {

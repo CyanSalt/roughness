@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { isObjectLike } from 'lodash-es'
+import { computed } from 'vue'
 import type { RValueOrKey } from '../common/key'
 
 defineOptions({
@@ -28,7 +29,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const content = $computed(() => {
+const content = computed(() => {
   return isObjectLike(row) ? row[name] : undefined
 })
 </script>

@@ -1,6 +1,5 @@
 import * as path from 'node:path'
 import vue from '@vitejs/plugin-vue'
-import reactivityTransform from '@vue-macros/reactivity-transform/vite'
 import fastglob from 'fast-glob'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
@@ -34,7 +33,6 @@ export default defineConfig(async () => ({
   },
   plugins: [
     vue(),
-    reactivityTransform(),
     dts({
       entryRoot: 'src',
       tsconfigPath: './tsconfig.app.json',

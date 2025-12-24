@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Spec } from 'comment-parser'
+import { computed } from 'vue'
 import { RScope, RText } from '../../../src'
 import { data } from '../loaders/vue.data'
 import type { CSSVar } from '../parsers/scss'
@@ -39,17 +40,17 @@ defineSlots<{
   styles?: (props: {}) => any,
 }>()
 
-const result = $computed(() => {
+const result = computed(() => {
   return data.find(item => item.file === file)?.result
 })
 
-const isPrimary = $computed(() => {
+const isPrimary = computed(() => {
   return file.endsWith('index.vue')
 })
 
 function title(text: string) {
-  if (isPrimary) return text
-  const name = result?.options?.name
+  if (isPrimary.value) return text
+  const name = result.value?.options?.name
   return name ? `${name.replace(/^R(?=[A-Z])/, '')} ${text}` : text
 }
 

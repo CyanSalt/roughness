@@ -4,7 +4,7 @@ import { useResizeObserver } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { onMounted, reactive, useSlots, useTemplateRef } from 'vue'
+import { computed, onMounted, reactive, useSlots, useTemplateRef } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { RListRenderer, useList } from '../common/list'
@@ -50,17 +50,17 @@ defineSlots<{
 
 const slots = useSlots()
 
-const columns = $(useList(columnsInjection))
+const columns = useList(columnsInjection)
 
-const footer = $computed(() => {
+const footer = computed(() => {
   if (userFooter !== undefined) return userFooter
-  if (columns.some(column => column.slots.footer)) return true
+  if (columns.value.some(column => column.slots.footer)) return true
   return false
 })
 
-let head = $(useTemplateRef<HTMLTableSectionElement>('head'))
-let body = $(useTemplateRef<HTMLTableSectionElement>('body'))
-let foot = $(useTemplateRef<HTMLTableSectionElement>('foot'))
+const head = useTemplateRef<HTMLTableSectionElement>('head')
+const body = useTemplateRef<HTMLTableSectionElement>('body')
+const foot = useTemplateRef<HTMLTableSectionElement>('foot')
 
 interface TableDimensions {
   x: number[],
@@ -87,11 +87,11 @@ function getFirstColumn(section: HTMLTableSectionElement | null | undefined) {
 }
 
 function calculateDimensions() {
-  const firstRow = getFirstRow(body) ?? getFirstRow(head) ?? getFirstRow(foot) ?? []
+  const firstRow = getFirstRow(body.value) ?? getFirstRow(head.value) ?? getFirstRow(foot.value) ?? []
   const firstColumn = [
-    ...(getFirstColumn(head) ?? []),
-    ...(getFirstColumn(body) ?? []),
-    ...(getFirstColumn(foot) ?? []),
+    ...(getFirstColumn(head.value) ?? []),
+    ...(getFirstColumn(body.value) ?? []),
+    ...(getFirstColumn(foot.value) ?? []),
   ]
   dimensions.x = firstRow.map(el => el.clientWidth)
   dimensions.y = firstColumn.map(el => el.clientHeight)
@@ -105,18 +105,18 @@ function observeDimensions(section: Ref<HTMLTableSectionElement | null | undefin
   })
 }
 
-observeDimensions($$(head))
-observeDimensions($$(body))
-observeDimensions($$(foot))
+observeDimensions(head)
+observeDimensions(body)
+observeDimensions(foot)
 
 onMounted(() => {
   calculateDimensions()
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-table-border-width') ?? 0
   const { x, y } = dimensions
@@ -139,7 +139,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   let offsetY = 0
   for (let i = 0; i < y.length - 1; i += 1) {
     const value = y[i]
-    const isSectionDivider = header && i === 0 || footer && i === y.length - 2
+    const isSectionDivider = header && i === 0 || footer.value && i === y.length - 2
     offsetY += value
     if (isSectionDivider) {
       const firstLine = rc.line(padding, offsetY - 1, width - padding, offsetY - 1, options)

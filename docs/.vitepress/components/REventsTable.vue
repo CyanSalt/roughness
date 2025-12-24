@@ -17,7 +17,7 @@ defineSlots<{
 
 const slots = useSlots()
 
-const events = $(useList(eventsInjection))
+const events = useList(eventsInjection)
 </script>
 
 <template>

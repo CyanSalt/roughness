@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
+import { computed } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish } from '../common/utils'
 import { useName } from '../form/utils'
@@ -60,16 +61,16 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-const disabled = $computed(() => {
+const disabled = computed(() => {
   return isTruthyBooleanish(userDisabled) || loading
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-upload-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-upload-border-dash')

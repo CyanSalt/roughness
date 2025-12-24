@@ -41,19 +41,19 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-let internalModelValue = $(useLocal({
+const internalModelValue = useLocal({
   get: () => modelValue,
   set: value => {
     emit('update:modelValue', value)
   },
-}))
+})
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-switch-border-width') ?? 0
   const handleStrokeWidth = getLengthProperty(svg, '--R-switch-handle-border-width') ?? 0
@@ -61,7 +61,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const rectangle = rc.rectangle(epsilon, epsilon, width - epsilon * 2, height - epsilon * 2, {
     stroke: 'var(--R-switch-border-color)',
     strokeWidth,
-    fill: internalModelValue ? 'var(--R-switch-track-color)' : undefined,
+    fill: internalModelValue.value ? 'var(--R-switch-track-color)' : undefined,
     ...getFilledSizeOptions(strokeWidth),
   })
   svg.appendChild(rectangle)
@@ -74,7 +74,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   }
   const handleSize = (height - 2 * epsilon) * 3 / 4
   const handleMargin = (height - handleSize) / 2
-  if (internalModelValue) {
+  if (internalModelValue.value) {
     const handleRectangle = rc.rectangle(
       width - handleMargin - handleSize,
       handleMargin,

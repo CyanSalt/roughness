@@ -17,7 +17,7 @@ defineSlots<{
 
 const tableSlots = useSlots()
 
-const slots = $(useList(slotsInjection))
+const slots = useList(slotsInjection)
 </script>
 
 <template>

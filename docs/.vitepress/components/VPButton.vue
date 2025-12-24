@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { EXTERNAL_URL_RE } from 'vitepress/dist/client/shared'
+import { computed } from 'vue'
 import { RButton } from '../../../src'
 
 const { tag, size: vpSize = 'medium', theme = 'brand', text, href } = defineProps<{
@@ -10,21 +11,21 @@ const { tag, size: vpSize = 'medium', theme = 'brand', text, href } = defineProp
   href?: string,
 }>()
 
-const size = $computed(() => {
+const size = computed(() => {
   switch (vpSize) {
     case 'big': return 'large'
     default: return undefined
   }
 })
 
-const color = $computed(() => {
+const color = computed(() => {
   switch (theme) {
     case 'brand': return 'primary'
     default: return undefined
   }
 })
 
-const isExternal = $computed(() => href && EXTERNAL_URL_RE.test(href))
+const isExternal = computed(() => href && EXTERNAL_URL_RE.test(href))
 </script>
 
 <template>

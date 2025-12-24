@@ -8,5 +8,8 @@
     ".vitepress/markdown/roughness-runtime.ts",
     ".vitepress/theme",
     ".vitepress/env.d.ts"
+  ],
+  "references": [
+    { "path": "../tsconfig.node.json" }
   ]
 }
