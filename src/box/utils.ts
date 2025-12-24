@@ -22,8 +22,10 @@ export function useDrawBox(props?: DrawBoxProps) {
       stroke: 'var(--R-box-border-color)',
       strokeWidth,
       strokeLineDash,
-      fill: filled ? 'var(--R-box-border-color)' : undefined,
-      ...getFilledSizeOptions(strokeWidth),
+      ...(filled ? {
+        fill: 'var(--R-box-border-color)',
+        ...getFilledSizeOptions(strokeWidth),
+      } : undefined),
     }
     const epsilon = 2
     if (round) {
