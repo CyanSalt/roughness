@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
-import { provide } from 'vue'
+import { provide, toRef } from 'vue'
 import RSpace from '../space/index.vue'
 import { labelInlineInjection } from './utils'
 
@@ -20,7 +20,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-provide(labelInlineInjection, $$(labelInline))
+provide(labelInlineInjection, toRef(() => labelInline))
 </script>
 
 <template>

@@ -21,12 +21,12 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const listStyle = $(inject(listStyleInjection, ref()))
+const listStyle = inject(listStyleInjection, ref())
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-list-marker-border-width') ?? 0
   const options: Options = {
@@ -36,17 +36,21 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ...getFilledSizeOptions(1),
   }
   let offsetY = 0
-  switch (listStyle) {
+  switch (listStyle.value) {
     case 'disc': {
       const circle = rc.circle(width / 2, height / 2 + offsetY, width / 4, {
         ...options,
+        roughness: 0.5,
         fill: undefined,
       })
       svg.appendChild(circle)
       break
     }
     case 'circle': {
-      const circle = rc.circle(width / 2, height / 2 + offsetY, width / 3, options)
+      const circle = rc.circle(width / 2, height / 2 + offsetY, width / 3, {
+        ...options,
+        roughness: 0,
+      })
       svg.appendChild(circle)
       break
     }

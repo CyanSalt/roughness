@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { computed } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
@@ -26,7 +27,7 @@ const {
   filled?: boolean,
 } & GraphicsProps>()
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function isSVGNodeList(node: IconNode): node is SVGNode[] {
   return !icon.length || Array.isArray(icon[0])
@@ -40,24 +41,24 @@ const defaultAttrs = {
   viewBox: '0 0 24 24',
 }
 
-const rootNode = $computed<SVGNode>(() => {
+const rootNode = computed<SVGNode>(() => {
   if (!icon || isSVGNodeList(icon)) {
     return ['svg', defaultAttrs, icon]
   }
   return icon
 })
 
-const svgAttrs = $computed(() => {
-  const { xmlns, viewBox } = rootNode[1]
+const svgAttrs = computed(() => {
+  const { xmlns, viewBox } = rootNode.value[1]
   return { xmlns, viewBox }
 })
 
-const children = $computed(() => {
-  return rootNode[2] ?? []
+const children = computed(() => {
+  return rootNode.value[2] ?? []
 })
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const strokeWidth = getLengthProperty(svg, '--R-icon-stroke-width') ?? 0
   const options: Options = {
     roughness: 0.5,
@@ -67,7 +68,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: filled ? 'var(--R-icon-color)' : undefined,
     ...getFilledSizeOptions(1),
   }
-  for (const child of children) {
+  for (const child of children.value) {
     drawSVGNode(rc, svg, child, {
       graphicsOptions: options,
     })

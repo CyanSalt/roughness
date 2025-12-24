@@ -4,7 +4,7 @@ import { vOnClickOutside } from '@vueuse/components'
 import { refDebounced, useMouseInElement } from '@vueuse/core'
 import { Redo } from 'lucide'
 import type { CSSProperties } from 'vue'
-import { useSlots, useTemplateRef, watchEffect } from 'vue'
+import { computed, useSlots, useTemplateRef, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
 import type { GraphicsProps } from '../graphics/utils'
@@ -76,23 +76,23 @@ defineSlots<{
   footer?: (props: {}) => any,
 }>()
 
-let internalOpen = $(useLocal({
+const internalOpen = useLocal({
   get: () => open,
   set: value => {
     emit('update:open', value)
   },
-}))
+})
 
 const slots = useSlots()
 
-const header = $computed(() => {
+const header = computed(() => {
   if (userHeader !== undefined) return userHeader
   if (slots.title) return true
   if (slots['header-end']) return true
   return false
 })
 
-const footer = $computed(() => {
+const footer = computed(() => {
   if (userFooter !== undefined) return userFooter
   if (slots.footer) return true
   return false
@@ -100,30 +100,30 @@ const footer = $computed(() => {
 
 function toggle() {
   if (trigger === 'click') {
-    internalOpen = !internalOpen
+    internalOpen.value = !internalOpen.value
   }
 }
 
 function close() {
   if (trigger !== 'manual') {
-    internalOpen = false
+    internalOpen.value = false
   }
 }
 
-let anchor = $(useTemplateRef<HTMLElement>('anchor'))
-let content = $(useTemplateRef<HTMLElement>('content'))
-const { isOutside: isOutsideAnchor } = $(useMouseInElement($$(anchor)))
-const { isOutside: isOutsideContent } = $(useMouseInElement($$(content)))
-const isOutside = $computed<boolean>(() => isOutsideAnchor && isOutsideContent)
-const isOutsideDebounced = $(refDebounced($$(isOutside), 200))
+const anchor = useTemplateRef<HTMLElement>('anchor')
+const content = useTemplateRef<HTMLElement>('content')
+const { isOutside: isOutsideAnchor } = useMouseInElement(anchor)
+const { isOutside: isOutsideContent } = useMouseInElement(content)
+const isOutside = computed<boolean>(() => isOutsideAnchor.value && isOutsideContent.value)
+const isOutsideDebounced = refDebounced(isOutside, 200)
 
 watchEffect(() => {
   if (trigger === 'hover') {
-    internalOpen = !isOutsideDebounced
+    internalOpen.value = !isOutsideDebounced.value
   }
 })
 
-const arrowStyle = $computed(() => {
+const arrowStyle = computed(() => {
   let style: CSSProperties = {}
   let rotate = '0'
   let scaleY = '1'
@@ -228,7 +228,7 @@ const arrowStyle = $computed(() => {
   return style
 })
 
-const contentStyle = $computed(() => {
+const contentStyle = computed(() => {
   let style: CSSProperties = {}
   let translateX = '0'
   let translateY = '0'
@@ -292,7 +292,7 @@ const contentStyle = $computed(() => {
   return style
 })
 
-const nestingGraphicsOptions = $computed(() => {
+const nestingGraphicsOptions = computed(() => {
   return {
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',

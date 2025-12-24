@@ -41,23 +41,23 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-let internalOpen = $(useLocal({
+const internalOpen = useLocal({
   get: () => open,
   set: value => {
     emit('update:open', value)
   },
-}))
+})
 
 function toggle(event: Event) {
-  internalOpen = (event.target as HTMLDetailsElement).open
+  internalOpen.value = (event.target as HTMLDetailsElement).open
 }
 
-let summary = $(useTemplateRef<HTMLElement>('summary'))
+const summary = useTemplateRef<HTMLElement>('summary')
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-details-summary-marker-border-width') ?? 0
   const options: Options = {
@@ -67,7 +67,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ...getFilledSizeOptions(1),
   }
   const padding = 2
-  const points: Point[] = internalOpen ? [
+  const points: Point[] = internalOpen.value ? [
     [padding, height / 8 + padding],
     [width - padding, height / 8 + padding],
     [width / 2, height - padding],

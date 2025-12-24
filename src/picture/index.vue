@@ -2,7 +2,7 @@
 import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { useTemplateRef, watch } from 'vue'
+import { computed, ref, useTemplateRef, watch } from 'vue'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps, SVGAttrs } from '../graphics/utils'
 import { drawSVGNode, parseSVGNode, SVGNode } from '../graphics/utils'
@@ -32,39 +32,39 @@ const {
   tag?: string,
 } & GraphicsProps>()
 
-let source = $(useTemplateRef<HTMLElement>('source'))
-let node = $ref<SVGNode>()
+const source = useTemplateRef<HTMLElement>('source')
+const node = ref<SVGNode>()
 
 function load(container: HTMLElement) {
   const element = container.querySelector('svg')
-  node = element ? parseSVGNode(element) : undefined
+  node.value = element ? parseSVGNode(element) : undefined
 }
 
-watch($$(source), value => {
+watch(source, value => {
   if (value) {
     load(value)
   }
 }, { immediate: true })
 
-useMutationObserver($$(source), () => {
-  if (source) {
-    load(source)
+useMutationObserver(source, () => {
+  if (source.value) {
+    load(source.value)
   }
 }, { attributes: true, characterData: true, childList: true, subtree: true })
 
-const svgAttrs = $computed(() => {
+const svgAttrs = computed(() => {
   return {
-    ...node?.[1],
+    ...node.value?.[1],
     ...attrs,
   }
 })
 
-const children = $computed(() => {
-  return node?.[2] ?? []
+const children = computed(() => {
+  return node.value?.[2] ?? []
 })
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  for (const child of children) {
+  for (const child of children.value) {
     drawSVGNode(rc, svg, child, { solid })
   }
 }
