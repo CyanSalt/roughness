@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { CSSProperties } from 'vue'
+import { computed } from 'vue'
 import type { SizeProps } from '../common/utils'
 
 defineOptions({
@@ -48,7 +49,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const style = $computed<CSSProperties>(() => {
+const style = computed<CSSProperties>(() => {
   return {
     'justify-content': ['start', 'end'].includes(justify) ? `flex-${justify}` : justify,
     'align-items': ['start', 'end'].includes(align) ? `flex-${align}` : align,
