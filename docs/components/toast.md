@@ -98,6 +98,16 @@ function add() {
 
   </template>
 
+  <template #props>
+
+  <RProp name="...">
+
+  See [Box Props](/components/box#props).
+
+  </RProp>
+
+  </template>
+
 </RUsage>
 
 <RUsage file="src/toast/toast-provider.vue">
