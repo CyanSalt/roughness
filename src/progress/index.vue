@@ -163,36 +163,14 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   display: inline-block;
   block-size: var(--R-progress-block-size);
   inline-size: var(--R-progress-inline-size);
+  @include partials.colored-element();
+  @include partials.sized-element();
   &::before {
     border-top-style: solid;
     @include partials.transition-runner((
       --R-progress-border-width: border-top-width,
       --R-progress-border-dash: border-spacing,
     ));
-  }
-  &.primary {
-    --r-element-color: var(--r-common-primary-color);
-  }
-  &.info {
-    --r-element-color: var(--r-common-info-color);
-  }
-  &.success {
-    --r-element-color: var(--r-common-success-color);
-  }
-  &.warning {
-    --r-element-color: var(--r-common-warning-color);
-  }
-  &.error {
-    --r-element-color: var(--r-common-error-color);
-  }
-  &.comment {
-    --r-element-color: var(--r-common-comment-color);
-  }
-  &.small {
-    --r-element-font-size: var(--r-common-small-font-size);
-  }
-  &.large {
-    --r-element-font-size: var(--r-common-large-font-size);
   }
 }
 .r-progress__content {
