@@ -60,7 +60,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-box', color, size, { 'is-filled': filled }]"
     @transitionrun="listener"
   >
-    <RGraphics :graphics-options="graphicsOptions" @draw="draw"></RGraphics>
+    <RGraphics :options="graphicsOptions" @draw="draw"></RGraphics>
     <slot></slot>
   </component>
 </template>
