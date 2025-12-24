@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
+import { computed } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import type { ColorProps, SizeProps } from '../common/utils'
+import { useDrawBox } from '../composables'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
@@ -39,36 +41,27 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const ratio = $computed(() => {
+const ratio = computed(() => {
   return (value - min) / (max - min) || 0
 })
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
+const drawBox = useDrawBox()
+
+const { timestamp, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
+  void timestamp.value
+  drawBox(rc, svg)
   const strokeWidth = getLengthProperty(svg, '--R-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined
   const { width, height } = getSVGSize(svg)
-  const padding = 2
-  const rectangle = rc.rectangle(
-    padding,
-    padding,
-    width - padding * 2,
-    height - padding * 2,
-    {
-      stroke: 'var(--R-progress-border-color)',
-      strokeWidth,
-      strokeLineDash,
-    },
-  )
-  svg.appendChild(rectangle)
+  const epsilon = 2
   const line = rc.line(
-    (width - padding * 2) * ratio,
-    padding,
-    (width - padding * 2) * ratio,
-    height - padding * 2,
+    (width - epsilon * 2) * ratio.value,
+    epsilon,
+    (width - epsilon * 2) * ratio.value,
+    height - epsilon * 2,
     {
       stroke: 'var(--R-progress-color)',
       strokeWidth,
@@ -77,10 +70,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   )
   svg.appendChild(line)
   const barRect = rc.rectangle(
-    padding,
-    padding,
-    (width - padding * 2) * ratio,
-    height - padding * 2,
+    epsilon,
+    epsilon,
+    (width - epsilon * 2) * ratio.value,
+    height - epsilon * 2,
     {
       strokeWidth: 0,
       fill: 'var(--R-progress-color)',
@@ -108,6 +101,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <style lang="scss">
 @use '../common/_partials';
+@use '../box/_partials' as box;
 
 @property --R-progress-color {
   syntax: '<color>';
@@ -160,11 +154,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-progress-border-dash: var(--r-progress-border-dash, none);
+  // Box styles
+  --r-box-border-color: var(--R-progress-border-color);
+  --r-box-border-width: var(--R-progress-border-width);
+  --r-box-border-dash: var(--r-common-border-dash);
   display: inline-block;
   block-size: var(--R-progress-block-size);
   inline-size: var(--R-progress-inline-size);
   @include partials.colored-element();
   @include partials.sized-element();
+  @include box.box();
   &::before {
     border-top-style: solid;
     @include partials.transition-runner((
