@@ -12,7 +12,7 @@ defineOptions({
 })
 
 const {
-  as = 'span',
+  tag = 'span',
   filled = false,
   round = false,
   color,
@@ -23,7 +23,7 @@ const {
    * HTML tag for rendering the box.
    * @default 'span'
    */
-  as?: string,
+  tag?: string,
   /** Whether the box is filled with its color. */
   filled?: boolean,
   /** Whether the box is round. */
@@ -56,7 +56,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <component
-    :is="as"
+    :is="tag"
     :class="['r-box', color, size, { 'is-filled': filled }]"
     @transitionrun="listener"
   >

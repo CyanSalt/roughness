@@ -81,7 +81,7 @@ const style = computed(() => {
 
 <template>
   <RBox
-    as="label"
+    tag="label"
     filled
     :class="['r-color-picker', { 'is-loading': loading }]"
     :style="style"

@@ -97,8 +97,8 @@ import { RButton, RSpace } from 'roughness'
 
 <template>
   <RSpace>
-    <RButton as="a" color="primary" filled>Remote Bomb</RButton>
-    <RButton as="a" color="error">Magnesis</RButton>
+    <RButton tag="a" color="primary" filled>Remote Bomb</RButton>
+    <RButton tag="a" color="error">Magnesis</RButton>
   </RSpace>
 </template>
 ```
@@ -106,8 +106,8 @@ import { RButton, RSpace } from 'roughness'
 :::
 
 <RSpace>
-  <RButton as="a" color="primary" filled>Remote Bomb</RButton>
-  <RButton as="a" color="error">Magnesis</RButton>
+  <RButton tag="a" color="primary" filled>Remote Bomb</RButton>
+  <RButton tag="a" color="error">Magnesis</RButton>
 </RSpace>
 
 ## Usage

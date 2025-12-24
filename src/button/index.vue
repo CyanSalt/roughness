@@ -13,7 +13,7 @@ const {
   block = false,
   disabled: userDisabled,
   loading = false,
-  as = 'button',
+  tag = 'button',
 } = defineProps<{
   /** Whether the button is displayed as block. */
   block?: boolean,
@@ -27,7 +27,7 @@ const {
    * HTML tag for rendering the button.
    * @default 'button'
    */
-  as?: 'button' | 'a' | (string & {}),
+  tag?: 'button' | 'a' | (string & {}),
 }>()
 
 defineSlots<{
@@ -36,7 +36,7 @@ defineSlots<{
 }>()
 
 const type = computed(() => {
-  return as === 'button' ? 'button' : undefined
+  return tag === 'button' ? 'button' : undefined
 })
 
 const disabled = computed(() => {
@@ -46,7 +46,7 @@ const disabled = computed(() => {
 
 <template>
   <RBox
-    :as="as"
+    :tag="tag"
     :type="type"
     :disabled="disabled"
     :class="['r-button', { 'is-block': block, 'is-loading': loading }]"
