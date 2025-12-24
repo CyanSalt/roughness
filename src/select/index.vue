@@ -2,19 +2,17 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { ChevronDown, Loader, X } from 'lucide'
-import type { RoughSVG } from 'roughjs/bin/svg'
+import { Options } from 'roughjs/bin/core'
 import type { InputHTMLAttributes, SelectHTMLAttributes } from 'vue'
-import { provide, reactive, useTemplateRef } from 'vue'
+import { computed, provide, reactive, ref, useTemplateRef } from 'vue'
+import RBox from '../box/index.vue'
 import RCheckboxGroup from '../checkbox/checkbox-group.vue'
 import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
-import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, sentenceCase, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
-import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
-import { getSVGSize } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
 defineOptions({
@@ -76,13 +74,13 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const name = $(useName($$(userName)))
+const name = useName(() => userName)
 
-const placeholder = $computed(() => {
-  return userPlaceholder ?? (typeof name === 'string' ? sentenceCase(`select-${name}`) : undefined)
+const placeholder = computed(() => {
+  return userPlaceholder ?? (typeof name.value === 'string' ? sentenceCase(`select-${name.value}`) : undefined)
 })
 
-const defaultModelValue: typeof modelValue = $computed<typeof modelValue>(() => {
+const defaultModelValue = computed<typeof modelValue>(() => {
   return multiple ? (
     Array.isArray(modelValue) ? modelValue : (modelValue === undefined ? [] : [modelValue])
   ) : (
@@ -90,12 +88,12 @@ const defaultModelValue: typeof modelValue = $computed<typeof modelValue>(() => 
   )
 })
 
-let internalModelValue = $(useLocal({
-  get: () => defaultModelValue,
+const internalModelValue = useLocal({
+  get: () => defaultModelValue.value,
   set: value => {
     emit('update:modelValue', value)
   },
-}))
+})
 
 const labels = reactive(new Map<string, string>())
 
@@ -104,95 +102,56 @@ function labelOf(value: RValueOrKey) {
   return labels.get(key) ?? key
 }
 
-const displayText = $computed(() => {
-  const text = Array.isArray(internalModelValue)
-    ? internalModelValue.map(value => labelOf(value))
-    : (internalModelValue !== undefined ? labelOf(internalModelValue) : internalModelValue)
+const displayText = computed(() => {
+  const text = Array.isArray(internalModelValue.value)
+    ? internalModelValue.value.map(value => labelOf(value))
+    : (internalModelValue.value !== undefined ? labelOf(internalModelValue.value) : internalModelValue.value)
   return Array.isArray(text) ? text.join(', ') : text
 })
 
-let input = $(useTemplateRef<HTMLInputElement>('input'))
+const input = useTemplateRef<HTMLInputElement>('input')
 
-let state = $ref(false)
+const state = ref(false)
 
 function toggle() {
   if (isTruthyBooleanish(disabled) || loading) return
-  state = !state
+  state.value = !state.value
 }
 
 function close() {
-  state = false
+  state.value = false
 }
 
 function update() {
   if (!multiple) {
     close()
   }
-  if (input) {
-    input.focus()
+  if (input.value) {
+    input.value.focus()
   }
 }
 
 function clear() {
-  internalModelValue = multiple ? [] : undefined
+  internalModelValue.value = multiple ? [] : undefined
 }
 
-const { timestamp, listener } = $(useTransitionListener('::before'))
-
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
-  void timestamp
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--R-select-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-select-border-dash')
-    ?.map(value => value ?? 0) ?? undefined
-  const padding = 2
-  const rectangle = rc.rectangle(
-    padding,
-    padding,
-    width - padding * 2,
-    height - padding * 2,
-    {
-      stroke: 'var(--R-select-border-color)',
-      strokeWidth,
-      strokeLineDash,
-    },
-  )
-  svg.appendChild(rectangle)
-}
-
-const {
-  timestamp: dropdownTimestamp,
-  listener: dropdownListener,
-} = $(useTransitionListener('::before'))
-
-function drawDropdown(rc: RoughSVG, svg: SVGSVGElement) {
-  void dropdownTimestamp
-  const { width, height } = getSVGSize(svg)
-  const strokeWidth = getLengthProperty(svg, '--R-select-dropdown-border-width') ?? 0
-  const strokeLineDash = getLengthPropertyAsArray(svg, '--R-select-dropdown-border-dash')
-    ?.map(value => value ?? 0) ?? undefined
-  const padding = 2
-  const rectangle = rc.rectangle(padding, padding, width - padding * 2, height - padding * 2, {
-    stroke: 'var(--R-select-border-color)',
-    strokeWidth,
-    strokeLineDash,
-    fill: 'var(--r-common-background-color)',
-    fillStyle: 'solid',
-  })
-  svg.appendChild(rectangle)
-}
+const dropdownGraphicsOptions = computed<Options>(() => ({
+  fill: 'var(--r-common-background-color)',
+  fillStyle: 'solid',
+  ...graphicsOptions,
+}))
 
 provide(labelsInjection, labels)
 </script>
 
 <template>
-  <label
+  <RBox
     v-on-click-outside.bubble="close"
+    tag="label"
+    :graphics-options="graphicsOptions"
     :class="['r-select', { 'is-loading': loading, 'is-open': state }]"
     aria-haspopup="menu"
-    @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
     <input
       ref="input"
       :value="displayText"
@@ -226,13 +185,13 @@ provide(labelsInjection, labels)
       :graphics-options="graphicsOptions"
       class="r-select__icon"
     />
-    <div
+    <RBox
       v-show="state"
+      tag="div"
+      :graphics-options="dropdownGraphicsOptions"
       class="r-select__dropdown"
       role="menu"
-      @transitionrun="dropdownListener"
     >
-      <RGraphics :options="graphicsOptions" @draw="drawDropdown" />
       <RCheckboxGroup
         v-model="internalModelValue"
         :multiple="multiple"
@@ -243,8 +202,8 @@ provide(labelsInjection, labels)
       >
         <slot></slot>
       </RCheckboxGroup>
-    </div>
-  </label>
+    </RBox>
+  </RBox>
 </template>
 
 <style lang="scss">
@@ -310,6 +269,10 @@ provide(labelsInjection, labels)
   --R-select-dropdown-padding-block: var(--r-select-dropdown-padding-block, calc(1em - 4px));
   // Horizontal padding of the select dropdown.
   --R-select-dropdown-padding-inline: var(--r-select-dropdown-padding-inline, calc(1em - 4px));
+  // Box styles
+  --r-box-border-color: var(--R-select-border-color);
+  --r-box-border-width: var(--R-select-border-width);
+  --r-box-border-dash: var(--R-select-border-dash);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -317,13 +280,6 @@ provide(labelsInjection, labels)
   inline-size: 210px;
   padding-block: var(--r-common-box-padding-block);
   padding-inline: var(--r-common-box-padding-inline) calc(var(--r-common-box-padding-inline) - (1em + 4px) / 2);
-  &::before {
-    border-top-style: solid;
-    @include partials.transition-runner((
-      --R-select-border-width: border-top-width,
-      --R-select-border-dash: border-spacing,
-    ));
-  }
   &:has(> .r-select__input:focus-visible) {
     // @default 2px when focused
     --R-select-border-width: var(--r-select-border-width, var(--r-common-emphasized-stroke-width));
@@ -365,17 +321,14 @@ provide(labelsInjection, labels)
   }
 }
 .r-select__dropdown {
+  // Box styles
+  --r-box-border-color: var(--R-select-border-color);
+  --r-box-border-width: var(--R-select-dropdown-border-width);
+  --r-box-border-dash: var(--R-select-dropdown-border-dash);
   position: absolute;
   inset-block-end: 0;
   inset-inline: 0;
   transform: translateY(100%);
-  &::before {
-    border-top-style: solid;
-    @include partials.transition-runner((
-      --R-select-dropdown-border-width: border-top-width,
-      --R-select-dropdown-border-dash: border-spacing,
-    ));
-  }
 }
 .r-select__group {
   max-block-size: calc(var(--R-select-dropdown-padding-block) * 2 + var(--r-common-line-height) * 5 + var(--r-space-gap-size) * 4);
