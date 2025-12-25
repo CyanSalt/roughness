@@ -4,7 +4,7 @@ import { X } from 'lucide'
 import { computed, useSlots, useTemplateRef, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
-import type { GraphicsProps } from '../graphics/utils'
+import { useGraphicsConfig } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 import RLink from '../link/index.vue'
 import RSpace from '../space/index.vue'
@@ -19,7 +19,6 @@ const {
   header: userHeader = undefined,
   open = true,
   state = 'auto',
-  graphicsOptions,
 } = defineProps<{
   /**
    * Whether to display the close button.
@@ -48,7 +47,7 @@ const {
    * @default 'auto'
    */
   state?: 'auto' | 'manual',
-} & GraphicsProps>()
+}>()
 
 const emit = defineEmits<{
   /** Callback function triggered when visibility of the dialog is changed. */
@@ -107,12 +106,12 @@ function close() {
   internalOpen.value = false
 }
 
-const nestingGraphicsOptions = computed(() => {
-  return {
+useGraphicsConfig({
+  include: 'dialog',
+  options: {
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',
-    ...graphicsOptions,
-  }
+  },
 })
 </script>
 
@@ -126,7 +125,7 @@ const nestingGraphicsOptions = computed(() => {
     <RCard
       :header="header"
       :footer="footer"
-      :graphics-options="nestingGraphicsOptions"
+      graphics-selector="dialog"
       tag="form"
       method="dialog"
       class="r-dialog__card"

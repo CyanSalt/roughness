@@ -4,7 +4,7 @@ import { useMutationObserver } from '@vueuse/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed, ref, useTemplateRef, watch } from 'vue'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps, SVGAttrs } from '../graphics/utils'
+import type { SVGAttrs } from '../graphics/utils'
 import { drawSVGNode, parseSVGNode, SVGNode } from '../graphics/utils'
 
 defineOptions({
@@ -15,7 +15,6 @@ const {
   solid = true,
   attrs,
   tag = 'div',
-  graphicsOptions,
 } = defineProps<{
   /**
    * Whether to add strokes to shapes that have a fill but no stroke
@@ -30,7 +29,7 @@ const {
    * @default 'div'
    */
   tag?: string,
-} & GraphicsProps>()
+}>()
 
 const source = useTemplateRef<HTMLElement>('source')
 const node = ref<SVGNode>()
@@ -74,7 +73,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   <component :is="tag" class="r-picture">
     <!-- Must go before source to make id (e.g. <symbol> or <marker>) work -->
     <RGraphics
-      :options="graphicsOptions"
+      selector="picture"
       :responsive="false"
       v-bind="svgAttrs"
       @draw="draw"

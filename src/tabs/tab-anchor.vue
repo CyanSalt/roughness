@@ -7,7 +7,6 @@ import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -18,7 +17,6 @@ const {
   active = false,
   side = 'top',
   value,
-  graphicsOptions,
 } = defineProps<{
   /**
    * Whether the anchor is active.
@@ -35,7 +33,7 @@ const {
    * @private
    */
   value: RValueOrKey,
-} & GraphicsProps>()
+}>()
 
 const emit = defineEmits<{
   /** Callback function triggered when the anchor is activated. */
@@ -117,7 +115,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :aria-selected="active"
     @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics selector="tab-anchor" @draw="draw" />
     <button type="button" class="r-tab-anchor__button" @click="activate">
       <slot>{{ content }}</slot>
     </button>

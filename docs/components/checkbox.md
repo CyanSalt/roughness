@@ -229,12 +229,6 @@ import { RCheckbox, RCheckboxGroup } from 'roughness'
 
   <RStyle name="...">
 
-  See [Box Styles](/components/box#styles).
-
-  </RStyle>
-
-  <RStyle name="...">
-
   See [Space Styles](/components/space#styles).
 
   </RStyle>

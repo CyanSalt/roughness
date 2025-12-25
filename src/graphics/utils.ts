@@ -1,18 +1,80 @@
+import { injectLocal, provideLocal } from '@vueuse/core'
 import { chunk } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import type { InjectionKey, Ref, SVGAttributes } from 'vue'
+import type { InjectionKey, MaybeRefOrGetter, Ref, SVGAttributes } from 'vue'
+import { computed, ref, toRef, toValue } from 'vue'
 
-export const optionsInjection: InjectionKey<Ref<Options | undefined>> = Symbol('RGraphicsConfig#options')
+export interface GraphicsConfig {
+  /**
+   * Selectors or patterns to apply graphics configuration.
+   */
+  include?: string | RegExp | (string | RegExp)[],
+  /**
+   * [Options for Rough.js]{@link https://github.com/rough-stuff/rough/wiki#options}.
+   */
+  options: Options,
+}
+
+function matchesAny(source: string | string[], filter: string | RegExp | (string | RegExp)[]): boolean {
+  if (Array.isArray(filter)) {
+    return filter.some(item => matchesAny(source, item))
+  }
+  if (Array.isArray(source)) {
+    return source.some(item => matchesAny(item, filter))
+  }
+  return typeof filter === 'string' ? filter === source : filter.test(source)
+}
+
+export const configInjection: InjectionKey<Ref<GraphicsConfig[]>> = Symbol('RGraphics#config')
+
+export function useGraphicsConfig(refOrGetter: MaybeRefOrGetter<GraphicsConfig>) {
+  const config = injectLocal(configInjection, ref([]))
+  provideLocal(configInjection, toRef(() => [
+    ...config.value,
+    toValue(refOrGetter),
+  ]))
+}
+
+export function useGraphicsSelectors(
+  selector: string,
+  parentSelector: MaybeRefOrGetter<string | string[] | undefined>,
+) {
+  return computed(() => {
+    const parent = toValue(parentSelector) ?? []
+    return [
+      ...(Array.isArray(parent) ? parent : [parent]),
+      selector,
+    ]
+  })
+}
+
+export function useGraphicsElementOptions(
+  selector: MaybeRefOrGetter<string | string[] | undefined>,
+  options?: MaybeRefOrGetter<Options | undefined>,
+) {
+  const config = injectLocal(configInjection, ref([]))
+  return computed<Options>(() => {
+    const keys = toValue(selector) ?? []
+    let mergedOptions: Options = {}
+    for (const item of config.value) {
+      if (!item.include || matchesAny(keys, item.include)) {
+        mergedOptions = { ...item.options, ...mergedOptions }
+      }
+    }
+    return {
+      ...toValue(options),
+      ...mergedOptions,
+    }
+  })
+}
 
 export interface GraphicsProps {
   /**
-   * [Options for Rough.js]{@link https://github.com/rough-stuff/rough/wiki#options}.
-   * See [Graphics Configuration]{@link https://roughness.vercel.app/components/graphics.html#component-prop}.
-   * @type {import('roughjs/bin/core').Options}
+   * Selector(s) to apply graphics configuration.
    */
-  graphicsOptions?: Options,
+  graphicsSelector?: string | string[],
 }
 
 export function getSVGSize(element: SVGSVGElement) {

@@ -3,7 +3,6 @@ import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -12,11 +11,10 @@ defineOptions({
 
 const {
   vertical = false,
-  graphicsOptions,
 } = defineProps<{
   /** Whether to display vertical divider. */
   vertical?: boolean,
-} & GraphicsProps>()
+}>()
 
 const { timestamp, listener } = useTransitionListener('::before')
 
@@ -41,7 +39,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :aria-orientation="vertical ? 'vertical' : 'horizontal'"
     @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics selector="divider" @draw="draw" />
   </span>
 </template>
 

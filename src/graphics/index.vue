@@ -5,8 +5,8 @@ import rough from 'roughjs'
 import type { RoughCanvas } from 'roughjs/bin/canvas'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { computed, inject, ref, watchEffect } from 'vue'
-import { optionsInjection } from './utils'
+import { computed, watchEffect } from 'vue'
+import { useGraphicsElementOptions } from './utils'
 
 defineOptions({
   name: 'RGraphics',
@@ -14,6 +14,7 @@ defineOptions({
 
 const {
   options,
+  selector,
   responsive = true,
   tag = 'svg',
 } = defineProps<{
@@ -22,6 +23,10 @@ const {
    * @type {import('roughjs/bin/core').Options}
    */
   options?: Options,
+  /**
+   * Selector(s) to apply graphics configuration.
+   */
+  selector?: string | string[],
   /**
    * Whether to adjust the size to fit the parent element.
    * @default true
@@ -50,13 +55,12 @@ const { width, height } = useElementSize(container, undefined, {
   box: 'border-box',
 })
 
-const configOptions = inject(optionsInjection, ref())
+const configOptions = useGraphicsElementOptions(() => selector, () => options)
 
 const nestingOptions = computed<Options>(() => {
   return {
     stroke: 'var(--R-graphics-stroke-color)',
     ...configOptions.value,
-    ...options,
   }
 })
 

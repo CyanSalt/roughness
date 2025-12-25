@@ -73,6 +73,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <RBox
+    graphics-selector="avatar"
     class="r-avatar"
     :style="{ '--R-avatar-pixel-color': color }"
     @draw="draw"

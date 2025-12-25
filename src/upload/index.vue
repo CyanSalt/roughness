@@ -72,6 +72,7 @@ function change(event: InputEvent) {
 <template>
   <RBox
     tag="label"
+    graphics-selector="upload"
     :class="['r-upload', { 'is-block': block }]"
   >
     <input

@@ -7,7 +7,6 @@ import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -29,12 +28,11 @@ interface InputProps {
 const {
   modelValue,
   name: userName,
-  graphicsOptions,
   ...props
 } = defineProps<{
   /** State of the switch. */
   modelValue?: boolean,
-} & InputProps & GraphicsProps>()
+} & InputProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when state is changed. */
@@ -112,7 +110,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       class="r-switch__input"
     >
     <span class="r-switch__control">
-      <RGraphics :options="graphicsOptions" @draw="draw" />
+      <RGraphics selector="switch.control" @draw="draw" />
     </span>
     <slot></slot>
   </RSpace>
