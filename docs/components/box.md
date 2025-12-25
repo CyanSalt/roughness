@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { RBox, RSpace } from 'roughness'
+
+const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-box-padding-inline)' }
 </script>
 
 # Box
@@ -15,17 +17,19 @@ Beat the box up, like Mike in '97, I bite.
 ```vue
 <script lang="ts" setup>
 import { RBox, RSpace } from 'roughness'
+
+const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-box-padding-inline)' }
 </script>
 
 <template>
   <RSpace align="center">
-    <RBox :style="{ padding: '0.5em 1em' }">Schrödinger's cat</RBox>
-    <RBox color="primary" :style="{ padding: '0.5em 1em' }">Roughness</RBox>
-    <RBox color="info" :style="{ padding: '0.5em 1em' }">Entropy</RBox>
-    <RBox color="success" :style="{ padding: '0.5em 1em' }">Fallout Shelter</RBox>
-    <RBox color="warning" :style="{ padding: '0.5em 1em' }">Black box</RBox>
-    <RBox color="error" :style="{ padding: '0.5em 1em' }">Marxism</RBox>
-    <RBox color="comment" :style="{ padding: '0.5em 1em' }">It's empty</RBox>
+    <RBox :style="boxStyle">Schrödinger's cat</RBox>
+    <RBox color="primary" :style="boxStyle">Roughness</RBox>
+    <RBox color="info" :style="boxStyle">Entropy</RBox>
+    <RBox color="success" :style="boxStyle">Fallout Shelter</RBox>
+    <RBox color="warning" :style="boxStyle">Black box</RBox>
+    <RBox color="error" :style="boxStyle">Marxism</RBox>
+    <RBox color="comment" :style="boxStyle">It's empty</RBox>
   </RSpace>
 </template>
 ```
@@ -33,13 +37,13 @@ import { RBox, RSpace } from 'roughness'
 :::
 
 <RSpace align="center">
-  <RBox :style="{ padding: '0.5em 1em' }">Schrödinger's cat</RBox>
-  <RBox color="primary" :style="{ padding: '0.5em 1em' }">Roughness</RBox>
-  <RBox color="info" :style="{ padding: '0.5em 1em' }">Entropy</RBox>
-  <RBox color="success" :style="{ padding: '0.5em 1em' }">Fallout Shelter</RBox>
-  <RBox color="warning" :style="{ padding: '0.5em 1em' }">Black box</RBox>
-  <RBox color="error" :style="{ padding: '0.5em 1em' }">Marxism</RBox>
-  <RBox color="comment" :style="{ padding: '0.5em 1em' }">It's empty</RBox>
+  <RBox :style="boxStyle">Schrödinger's cat</RBox>
+  <RBox color="primary" :style="boxStyle">Roughness</RBox>
+  <RBox color="info" :style="boxStyle">Entropy</RBox>
+  <RBox color="success" :style="boxStyle">Fallout Shelter</RBox>
+  <RBox color="warning" :style="boxStyle">Black box</RBox>
+  <RBox color="error" :style="boxStyle">Marxism</RBox>
+  <RBox color="comment" :style="boxStyle">It's empty</RBox>
 </RSpace>
 
 ### Size
@@ -49,13 +53,15 @@ import { RBox, RSpace } from 'roughness'
 ```vue
 <script lang="ts" setup>
 import { RBox, RSpace } from 'roughness'
+
+const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-box-padding-inline)' }
 </script>
 
 <template>
   <RSpace align="center">
-    <RBox size="small" :style="{ padding: '0.5em 1em' }">Tall</RBox>
-    <RBox :style="{ padding: '0.5em 1em' }">Grande</RBox>
-    <RBox size="large" :style="{ padding: '0.5em 1em' }">Venti</RBox>
+    <RBox size="small" :style="boxStyle">Tall</RBox>
+    <RBox :style="boxStyle">Grande</RBox>
+    <RBox size="large" :style="boxStyle">Venti</RBox>
   </RSpace>
 </template>
 ```
@@ -63,9 +69,9 @@ import { RBox, RSpace } from 'roughness'
 :::
 
 <RSpace align="center">
-  <RBox size="small" :style="{ padding: '0.5em 1em' }">Tall</RBox>
-  <RBox :style="{ padding: '0.5em 1em' }">Grande</RBox>
-  <RBox size="large" :style="{ padding: '0.5em 1em' }">Venti</RBox>
+  <RBox size="small" :style="boxStyle">Tall</RBox>
+  <RBox :style="boxStyle">Grande</RBox>
+  <RBox size="large" :style="boxStyle">Venti</RBox>
 </RSpace>
 
 ### Variants
@@ -75,14 +81,16 @@ import { RBox, RSpace } from 'roughness'
 ```vue
 <script lang="ts" setup>
 import { RBox, RSpace } from 'roughness'
+
+const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-box-padding-inline)' }
 </script>
 
 <template>
   <RSpace align="center">
-    <RBox :style="{ padding: '0.5em 1em' }">Tiananmen Square</RBox>
-    <RBox round :style="{ padding: '0.5em 1em' }">Shenzhen</RBox>
-    <RBox filled size="large" :style="{ padding: '0.5em 1em' }">Epstein's</RBox>
-    <RBox filled color="warning" size="large" :style="{ padding: '0.5em 1em' }">?</RBox>
+    <RBox :style="boxStyle">Tiananmen Square</RBox>
+    <RBox round :style="boxStyle">Shenzhen</RBox>
+    <RBox filled size="large" :style="boxStyle">Epstein's</RBox>
+    <RBox filled round color="warning" size="small" :style="boxStyle">$</RBox>
   </RSpace>
 </template>
 ```
@@ -90,10 +98,10 @@ import { RBox, RSpace } from 'roughness'
 :::
 
 <RSpace align="center">
-  <RBox :style="{ padding: '0.5em 1em' }">Tiananmen</RBox>
-  <RBox round :style="{ padding: '0.5em 1em' }">Shenzhen</RBox>
-  <RBox filled size="large" :style="{ padding: '0.5em 1em' }">Epstein's</RBox>
-  <RBox filled color="warning" size="large" :style="{ padding: '0.5em 1em' }">?</RBox>
+  <RBox :style="boxStyle">Tiananmen</RBox>
+  <RBox round :style="boxStyle">Shenzhen</RBox>
+  <RBox filled size="large" :style="boxStyle">Epstein's</RBox>
+  <RBox filled round color="warning" size="small" :style="boxStyle">$</RBox>
 </RSpace>
 
 ### Styles
@@ -103,13 +111,15 @@ import { RBox, RSpace } from 'roughness'
 ```vue
 <script lang="ts" setup>
 import { RBox, RSpace } from 'roughness'
+
+const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-box-padding-inline)' }
 </script>
 
 <template>
   <RSpace align="center">
-    <RBox :style="{ padding: '0.5em 1em' }">Paper/RBox>
-    <RBox :style="{ padding: '0.5em 1em', '--r-box-border-width': '2px' }">Cardboard</RBox>
-    <RBox :style="{ padding: '0.5em 1em', '--r-box-border-dash': '2' }">Crystal</RBox>
+    <RBox :style="boxStyle">Paper/RBox>
+    <RBox :style="{ ...boxStyle, '--r-box-border-width': '2px' }">Cardboard</RBox>
+    <RBox :style="{ ...boxStyle, '--r-box-border-dash': '2' }">Crystal</RBox>
   </RSpace>
 </template>
 ```
@@ -117,9 +127,9 @@ import { RBox, RSpace } from 'roughness'
 :::
 
 <RSpace align="center">
-  <RBox :style="{ padding: '0.5em 1em' }">Paper</RBox>
-  <RBox :style="{ padding: '0.5em 1em', '--r-box-border-width': '2px' }">Cardboard</RBox>
-  <RBox :style="{ padding: '0.5em 1em', '--r-box-border-dash': '8px' }">Crystal</RBox>
+  <RBox :style="boxStyle">Paper</RBox>
+  <RBox :style="{ ...boxStyle, '--r-box-border-width': '2px' }">Cardboard</RBox>
+  <RBox :style="{ ...boxStyle, '--r-box-border-dash': '8px' }">Crystal</RBox>
 </RSpace>
 
 ## Usage
