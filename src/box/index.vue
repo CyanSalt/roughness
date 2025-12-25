@@ -71,6 +71,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 .r-box {
   // Color of the box border.
   --R-box-border-color: var(--r-box-border-color, var(--r-element-color));
+  // Color of the box inside stroked line.
+  --R-box-fill-color: var(--r-box-fill-color, var(--R-box-border-color));
   // Width of the box border.
   --R-box-border-width: var(--r-box-border-width, var(--r-common-stroke-width));
   // List of comma and/or whitespace separated the lengths of alternating dashes and gaps of the element border.

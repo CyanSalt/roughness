@@ -23,7 +23,7 @@ export function useDrawBox(props?: DrawBoxProps) {
       strokeWidth,
       strokeLineDash,
       ...(filled ? {
-        fill: 'var(--R-box-border-color)',
+        fill: 'var(--R-box-fill-color)',
         ...getFilledSizeOptions(strokeWidth),
       } : undefined),
     }
