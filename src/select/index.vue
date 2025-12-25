@@ -144,6 +144,25 @@ useGraphicsConfig({
 provide(labelsInjection, labels)
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "select",
+      "description": "Box of the select control."
+    },
+    {
+      "name": "select.icon",
+      "description": "Icon of the select, including dropdown icon, loading icon and clear icon."
+    },
+    {
+      "name": "select.dropdown",
+      "description": "Box of the select dropdown menu."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RBox
     v-on-click-outside.bubble="close"

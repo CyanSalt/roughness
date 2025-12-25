@@ -1,6 +1,7 @@
 import type { InjectionKey } from 'vue'
 import type { ComponentSlots, RValue } from '../../../src'
 import type REvent from './REvent.vue'
+import type RGraphicsSelector from './RGraphicsSelector.vue'
 import type RProp from './RProp.vue'
 import type RSlot from './RSlot.vue'
 import type RStyle from './RStyle.vue'
@@ -31,4 +32,11 @@ export interface StyleData extends RValue {
   slots: ComponentSlots<typeof RStyle>,
 }
 
-export const stylesInjection: InjectionKey<SlotData[]> = Symbol('RStylesTable#styles')
+export const stylesInjection: InjectionKey<StyleData[]> = Symbol('RStylesTable#styles')
+
+export interface GraphicsSelectorData extends RValue {
+  name: string,
+  slots: ComponentSlots<typeof RGraphicsSelector>,
+}
+
+export const graphicsSelectorsInjection: InjectionKey<GraphicsSelectorData[]> = Symbol('RGraphicsSelectorsTable#graphicsSelectors')

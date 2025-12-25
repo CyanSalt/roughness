@@ -44,6 +44,17 @@ const disabled = computed(() => {
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "button",
+      "description": "Box of the button."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RBox
     :tag="tag"

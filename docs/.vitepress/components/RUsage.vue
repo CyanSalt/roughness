@@ -7,6 +7,8 @@ import type { CSSVar } from '../parsers/scss'
 import MarkdownBlock from './MarkdownBlock.vue'
 import REvent from './REvent.vue'
 import REventsTable from './REventsTable.vue'
+import RGraphicsSelector from './RGraphicsSelector.vue'
+import RGraphicsSelectorsTable from './RGraphicsSelectorsTable.vue'
 import RProp from './RProp.vue'
 import RPropsTable from './RPropsTable.vue'
 import RSlot from './RSlot.vue'
@@ -24,12 +26,14 @@ const {
   events = undefined,
   slots = undefined,
   styles = undefined,
+  graphicsSelectors = undefined,
 } = defineProps<{
   file: string,
   props?: boolean,
   events?: boolean,
   slots?: boolean,
   styles?: boolean,
+  graphicsSelectors?: boolean,
 }>()
 
 defineSlots<{
@@ -241,5 +245,26 @@ function paragraph(text: string | undefined) {
       </template>
       <slot name="styles"></slot>
     </RStylesTable>
+  </template>
+  <template v-if="graphicsSelectors ?? result?.defs?.graphicsSelectors?.length">
+    <slot name="title" :title="title('Graphics Selectors')">
+      <h3>{{ title('Graphics Selectors') }}</h3>
+    </slot>
+    <RGraphicsSelectorsTable>
+      <template
+        v-for="selector in result?.defs?.graphicsSelectors ?? []"
+        :key="selector.name"
+      >
+        <RGraphicsSelector :name="selector.name">
+          <template v-if="selector.defaultValue" #default-value>
+            <MarkdownBlock inline :source="inlineCode(JSON.stringify(selector.defaultValue))" />
+          </template>
+          <template v-if="selector.description">
+            <MarkdownBlock :source="selector.description" />
+          </template>
+        </RGraphicsSelector>
+      </template>
+      <slot name="graphics-selectors"></slot>
+    </RGraphicsSelectorsTable>
   </template>
 </template>

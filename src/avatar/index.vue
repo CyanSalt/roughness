@@ -71,6 +71,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "avatar",
+      "description": "Box of the avatar."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RBox
     graphics-selector="avatar"

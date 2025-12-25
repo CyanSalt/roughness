@@ -69,6 +69,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "picture",
+      "description": "Root of the picture."
+    }
+  ]
+}
+</defs>
+
 <template>
   <component :is="tag" class="r-picture">
     <!-- Must go before source to make id (e.g. <symbol> or <marker>) work -->

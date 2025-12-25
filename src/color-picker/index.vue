@@ -79,6 +79,17 @@ const style = computed(() => {
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "color-picker",
+      "description": "Box of the color picker."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RBox
     tag="label"

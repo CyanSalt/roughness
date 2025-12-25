@@ -159,6 +159,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "table",
+      "description": "Root of the table."
+    }
+  ]
+}
+</defs>
+
 <template>
   <table class="r-table" @transitionrun="listener">
     <RGraphics selector="table" @draw="draw" />

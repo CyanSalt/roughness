@@ -92,6 +92,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "card",
+      "description": "Root of the card."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RSpace
     :tag="tag"

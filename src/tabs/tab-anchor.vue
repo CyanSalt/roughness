@@ -108,6 +108,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "tab-anchor",
+      "description": "Root of the tab anchor."
+    }
+  ]
+}
+</defs>
+
 <template>
   <li
     :class="['r-tab-anchor', { 'is-active': active }]"

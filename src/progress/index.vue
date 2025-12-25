@@ -82,6 +82,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "progress",
+      "description": "Root of the progress."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RSpace
     inline

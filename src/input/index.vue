@@ -158,6 +158,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "input",
+      "description": "Root of the input."
+    }
+  ]
+}
+</defs>
+
 <template>
   <label
     :class="['r-input', { 'is-multiline': lines > 1 }]"

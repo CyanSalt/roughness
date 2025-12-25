@@ -79,6 +79,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "details.summary-marker",
+      "description": "Marker of the details summary."
+    }
+  ]
+}
+</defs>
+
 <template>
   <details
     :open="internalOpen"

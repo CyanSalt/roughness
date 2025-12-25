@@ -69,6 +69,17 @@ function change(event: InputEvent) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "upload",
+      "description": "Box of the upload."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RBox
     tag="label"

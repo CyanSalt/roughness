@@ -32,6 +32,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "divider",
+      "description": "Root of the divider."
+    }
+  ]
+}
+</defs>
+
 <template>
   <span
     :class="['r-divider', { 'is-vertical': vertical }]"

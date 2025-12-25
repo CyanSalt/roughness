@@ -73,6 +73,17 @@ watchEffect(() => {
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "rate.shape",
+      "description": "Icon of the rate shape."
+    }
+  ]
+}
+</defs>
+
 <template>
   <label ref="root" class="r-rate">
     <input

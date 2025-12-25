@@ -94,6 +94,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "switch",
+      "description": "Control of the switch."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RSpace
     tag="label"
