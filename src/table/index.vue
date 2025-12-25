@@ -123,13 +123,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--R-table-border-color)',
     ...getFilledSizeOptions(strokeWidth),
   }
-  const padding = 2
+  const epsilon = 2
   // Outline
   const rectangle = rc.rectangle(
-    padding,
-    padding,
-    width - padding * 2,
-    height - padding * 2,
+    epsilon,
+    epsilon,
+    width - epsilon * 2,
+    height - epsilon * 2,
     options,
   )
   svg.appendChild(rectangle)
@@ -140,12 +140,12 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     const isSectionDivider = header && i === 0 || footer.value && i === y.length - 2
     offsetY += value
     if (isSectionDivider) {
-      const firstLine = rc.line(padding, offsetY - 1, width - padding, offsetY - 1, options)
+      const firstLine = rc.line(epsilon, offsetY - 1, width - epsilon, offsetY - 1, options)
       svg.appendChild(firstLine)
-      const secondLine = rc.line(padding, offsetY + 1, width - padding, offsetY + 1, options)
+      const secondLine = rc.line(epsilon, offsetY + 1, width - epsilon, offsetY + 1, options)
       svg.appendChild(secondLine)
     } else {
-      const line = rc.line(padding, offsetY, width - padding, offsetY, options)
+      const line = rc.line(epsilon, offsetY, width - epsilon, offsetY, options)
       svg.appendChild(line)
     }
   }
@@ -153,7 +153,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   let offsetX = 0
   for (const value of x.slice(0, -1)) {
     offsetX += value
-    const line = rc.line(offsetX, padding, offsetX, height - padding, options)
+    const line = rc.line(offsetX, epsilon, offsetX, height - epsilon, options)
     svg.appendChild(line)
   }
 }

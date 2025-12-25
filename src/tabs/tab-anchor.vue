@@ -61,36 +61,36 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const strokeWidth = getLengthProperty(svg, '--R-tab-anchor-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-tab-anchor-border-dash')
     ?.map(item => item ?? 0) ?? undefined
-  const padding = 2
+  const epsilon = 2
   let startX: number
   let startY: number
   let endX: number
   let endY: number
   switch (side) {
     case 'bottom':
-      startX = padding
-      startY = padding
-      endX = width - padding
-      endY = padding
+      startX = epsilon
+      startY = epsilon
+      endX = width - epsilon
+      endY = epsilon
       break
     case 'left':
-      startX = width - padding
-      startY = padding
-      endX = width - padding
-      endY = height - padding
+      startX = width - epsilon
+      startY = epsilon
+      endX = width - epsilon
+      endY = height - epsilon
       break
     case 'right':
-      startX = padding
-      startY = padding
-      endX = padding
-      endY = height - padding
+      startX = epsilon
+      startY = epsilon
+      endX = epsilon
+      endY = height - epsilon
       break
     case 'top':
     default:
-      startX = padding
-      startY = height - padding
-      endX = width - padding
-      endY = height - padding
+      startX = epsilon
+      startY = height - epsilon
+      endX = width - epsilon
+      endY = height - epsilon
       break
   }
   const line = rc.line(
