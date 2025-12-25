@@ -300,6 +300,17 @@ useGraphicsConfig({
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "popover",
+      "description": "Card of the popover."
+    }
+  ]
+}
+</defs>
+
 <template>
   <span v-on-click-outside.bubble="close" class="r-popover">
     <button

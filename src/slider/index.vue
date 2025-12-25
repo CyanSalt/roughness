@@ -137,6 +137,17 @@ watchEffect(() => {
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "slider",
+      "description": "Root of the slider."
+    }
+  ]
+}
+</defs>
+
 <template>
   <label
     ref="root"

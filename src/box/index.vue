@@ -57,6 +57,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "box",
+      "description": "Root of the box."
+    }
+  ]
+}
+</defs>
+
 <template>
   <component
     :is="tag"

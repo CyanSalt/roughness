@@ -39,12 +39,21 @@ export interface EmitLike {
   description: string[] | undefined,
 }
 
+export interface GraphicsSelector {
+  name: string,
+  defaultValue?: unknown,
+  description?: string,
+}
+
 export interface Result {
   options?: Options,
   props?: PropLike[],
   emits?: EmitLike[],
   slots?: PropLike[],
   cssVars?: CSSVar[],
+  defs?: {
+    graphicsSelectors?: GraphicsSelector[],
+  },
 }
 
 function getDestructuringInitializer(declId: LVal | undefined, name: string) {
@@ -241,6 +250,14 @@ async function analyzeSFC(s: MagicStringAST, sfc: SFC) {
           }
         }
       }
+    }
+  }
+  const defsBlock = sfc.customBlocks.find(block => block.type === 'defs')
+  if (defsBlock) {
+    try {
+      result.defs = JSON.parse(defsBlock.content)
+    } catch {
+      // pass
     }
   }
   return result

@@ -64,6 +64,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "list-item.marker",
+      "description": "Marker of the list item."
+    }
+  ]
+}
+</defs>
+
 <template>
   <li class="r-list-item" @transitionrun="listener">
     <span v-if="listStyle" class="r-list-item__marker">

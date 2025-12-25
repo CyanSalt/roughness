@@ -141,6 +141,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "checkbox.control",
+      "description": "Box of the checkbox control."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RSpace
     tag="label"

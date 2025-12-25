@@ -77,6 +77,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "icon",
+      "description": "Root of the icon."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RText
     :class="['r-icon', { 'is-filled': filled }]"

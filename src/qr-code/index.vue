@@ -44,6 +44,17 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 }
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "qr-code",
+      "description": "Root of the QR code."
+    }
+  ]
+}
+</defs>
+
 <template>
   <span class="r-qr-code">
     <RGraphics selector="qr-code" @draw="draw"></RGraphics>

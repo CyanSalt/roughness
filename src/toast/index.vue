@@ -84,6 +84,17 @@ useGraphicsConfig({
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "toast",
+      "description": "Box of the toast."
+    }
+  ]
+}
+</defs>
+
 <template>
   <RBox
     tag="div"

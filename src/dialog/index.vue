@@ -115,6 +115,17 @@ useGraphicsConfig({
 })
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "dialog",
+      "description": "Card of the dialog."
+    }
+  ]
+}
+</defs>
+
 <template>
   <dialog
     ref="root"

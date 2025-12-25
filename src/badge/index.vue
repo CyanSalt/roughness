@@ -14,6 +14,17 @@ defineSlots<{
 }>()
 </script>
 
+<defs lang="json">
+{
+  "graphicsSelectors": [
+    {
+      "name": "badge.marker",
+      "description": "Box of the badge marker."
+    }
+  ]
+}
+</defs>
+
 <template>
   <span class="r-badge">
     <RBox tag="sup" round graphics-selector="badge.marker" class="r-badge__marker">
