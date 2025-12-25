@@ -7,7 +7,7 @@ import type { CSSProperties } from 'vue'
 import { computed, useSlots, useTemplateRef, watchEffect } from 'vue'
 import RCard from '../card/index.vue'
 import { useLocal } from '../common/utils'
-import type { GraphicsProps } from '../graphics/utils'
+import { useGraphicsConfig } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
 defineOptions({
@@ -21,7 +21,6 @@ const {
   open = false,
   side = 'top',
   trigger = 'hover',
-  graphicsOptions,
 } = defineProps<{
   /**
    * Alignment of the popover content relative to the anchor.
@@ -56,7 +55,7 @@ const {
    * @default 'hover'
    */
   trigger?: 'hover' | 'click' | 'manual',
-} & GraphicsProps>()
+}>()
 
 const emit = defineEmits<{
   /** Callback function triggered when visibility of the popover is changed. */
@@ -292,12 +291,12 @@ const contentStyle = computed(() => {
   return style
 })
 
-const nestingGraphicsOptions = computed(() => {
-  return {
+useGraphicsConfig({
+  include: 'popover',
+  options: {
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',
-    ...graphicsOptions,
-  }
+  },
 })
 </script>
 
@@ -317,7 +316,7 @@ const nestingGraphicsOptions = computed(() => {
       ref="content"
       :header="header"
       :footer="footer"
-      :graphics-options="nestingGraphicsOptions"
+      graphics-selector="popover"
       class="r-popover__content"
       :style="contentStyle"
       role="tooltip"

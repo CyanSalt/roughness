@@ -49,6 +49,7 @@ const disabled = computed(() => {
     :tag="tag"
     :type="type"
     :disabled="disabled"
+    graphics-selector="button"
     :class="['r-button', { 'is-block': block, 'is-loading': loading }]"
   >
     <slot></slot>

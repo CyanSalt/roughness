@@ -5,8 +5,7 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
-import { drawSVGNode, getFilledSizeOptions, SVGNode } from '../graphics/utils'
+import { drawSVGNode, getFilledSizeOptions, GraphicsProps, SVGNode, useGraphicsSelectors } from '../graphics/utils'
 import RText from '../text/index.vue'
 import { IconNode } from './utils'
 
@@ -17,7 +16,7 @@ defineOptions({
 const {
   icon,
   filled,
-  graphicsOptions,
+  graphicsSelector,
 } = defineProps<{
   /**
    * Icon object conforming to the type constraint.
@@ -27,10 +26,12 @@ const {
   filled?: boolean,
 } & GraphicsProps>()
 
+const selectors = useGraphicsSelectors('icon', () => graphicsSelector)
+
 const { timestamp, listener } = useTransitionListener('::before')
 
 function isSVGNodeList(node: IconNode): node is SVGNode[] {
-  return !icon.length || Array.isArray(icon[0])
+  return !node.length || Array.isArray(node[0])
 }
 
 /**
@@ -82,7 +83,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     @transitionrun="listener"
   >
     <RGraphics
-      :options="graphicsOptions"
+      :selector="selectors"
       :responsive="false"
       v-bind="svgAttrs"
       @draw="draw"

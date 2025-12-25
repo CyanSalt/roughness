@@ -1,9 +1,24 @@
 <script lang="ts" setup>
 import { computedAsync } from '@vueuse/core'
 import { parse } from 'opentype.js'
-import { RButton, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn } from 'roughness'
+import { RButton, RGraphics, RInput, RRate, RSpace, RTable, RTableColumn, useGraphicsConfig } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
-import { ref } from 'vue'
+import { defineComponent, h, ref } from 'vue'
+
+const GraphicsConfigExample = defineComponent({
+  setup() {
+    useGraphicsConfig({
+      include: ['button', 'rate.shape'],
+      options: {
+        fillStyle: 'solid',
+      },
+    })
+    return () => h(RSpace, { vertical: true, align: 'start' }, () => [
+      h(RButton, { filled: true }, () => 'Medieval Sky'),
+      h(RRate, { modelValue: 1 }),
+    ])
+  }
+})
 
 function drawHeart(rc: RoughSVG, svg: SVGSVGElement) {
   const path = rc.path('M10 30a20 20 0 0 1 40 0 20 20 0 0 1 40 0q0 30-40 60-40-30-40-60z', {
@@ -182,27 +197,27 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 ```vue
 <script lang="ts" setup>
-import { RButton, RGraphicsConfig } from 'roughness'
+import { RButton, useGraphicsConfig } from 'roughness'
+
+useGraphicsConfig({
+  include: ['button', 'rate.shape'],
+  options: {
+    fillStyle: 'solid',
+  },
+})
 </script>
 
 <template>
-  <RGraphicsConfig :options="{ fillStyle: 'solid' }">
-    <RSpace vertical align="start">
-      <RButton filled>Medieval Sky</RButton>
-      <RRate :model-value="1" />
-    </RSpace>
-  </RGraphicsConfig>
+  <RSpace vertical align="start">
+    <RButton filled>Medieval Sky</RButton>
+    <RRate :model-value="1" />
+  </RSpace>
 </template>
 ```
 
 :::
 
-<RGraphicsConfig :options="{ fillStyle: 'solid' }">
-  <RSpace vertical align="start">
-    <RButton filled>Medieval Sky</RButton>
-    <RRate :model-value="1" />
-  </RSpace>
-</RGraphicsConfig>
+<GraphicsConfigExample />
 
 Additionally, almost all components with graphics support the `graphics-options` prop:{#component-prop}
 

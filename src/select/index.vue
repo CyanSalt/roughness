@@ -2,7 +2,6 @@
 import '../common/style.scss'
 import { vOnClickOutside } from '@vueuse/components'
 import { ChevronDown, Loader, X } from 'lucide'
-import { Options } from 'roughjs/bin/core'
 import type { InputHTMLAttributes, SelectHTMLAttributes } from 'vue'
 import { computed, provide, reactive, ref, useTemplateRef } from 'vue'
 import RBox from '../box/index.vue'
@@ -12,7 +11,7 @@ import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { isTruthyBooleanish, sentenceCase, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
-import type { GraphicsProps } from '../graphics/utils'
+import { useGraphicsConfig } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
 defineOptions({
@@ -48,7 +47,6 @@ const {
   multiple = false,
   name: userName,
   placeholder: userPlaceholder,
-  graphicsOptions,
   ...props
 } = defineProps<{
   /** Whether the select is clearable. */
@@ -62,7 +60,7 @@ const {
   modelValue?: RValueOrKey[] | RValueOrKey | undefined,
   /** Whether to support selecting multiple items. */
   multiple?: boolean,
-} & SelectProps & GraphicsProps>()
+} & SelectProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when the selected item is changed. */
@@ -135,11 +133,13 @@ function clear() {
   internalModelValue.value = multiple ? [] : undefined
 }
 
-const dropdownGraphicsOptions = computed<Options>(() => ({
-  fill: 'var(--r-common-background-color)',
-  fillStyle: 'solid',
-  ...graphicsOptions,
-}))
+useGraphicsConfig({
+  include: ['select.dropdown'],
+  options: {
+    fill: 'var(--r-common-background-color)',
+    fillStyle: 'solid',
+  },
+})
 
 provide(labelsInjection, labels)
 </script>
@@ -148,7 +148,7 @@ provide(labelsInjection, labels)
   <RBox
     v-on-click-outside.bubble="close"
     tag="label"
-    :graphics-options="graphicsOptions"
+    graphics-selector="select"
     :class="['r-select', { 'is-loading': loading, 'is-open': state }]"
     aria-haspopup="menu"
   >
@@ -168,13 +168,13 @@ provide(labelsInjection, labels)
     <RIcon
       v-if="loading"
       :icon="Loader"
-      :graphics-options="graphicsOptions"
+      graphics-selector="select.icon"
       class="r-select__icon r-select__loading-icon"
     />
     <RIcon
       v-else-if="clearable && state"
       :icon="X"
-      :graphics-options="graphicsOptions"
+      graphics-selector="select.icon"
       class="r-select__icon"
       role="button"
       @click="clear"
@@ -182,13 +182,13 @@ provide(labelsInjection, labels)
     <RIcon
       v-else
       :icon="ChevronDown"
-      :graphics-options="graphicsOptions"
+      graphics-selector="select.icon"
       class="r-select__icon"
     />
     <RBox
       v-show="state"
       tag="div"
-      :graphics-options="dropdownGraphicsOptions"
+      graphics-selector="select.dropdown"
       class="r-select__dropdown"
       role="menu"
     >

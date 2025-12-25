@@ -10,7 +10,6 @@ import { keyOf } from '../common/key'
 import { RListRenderer, useList } from '../common/list'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RTableCell from './table-cell.vue'
 import RTableHeaderCell from './table-header-cell.vue'
@@ -24,7 +23,6 @@ const {
   footer: userFooter = undefined,
   header = true,
   rows,
-  graphicsOptions,
 } = defineProps<{
   /**
    * Whether to display the table footer.
@@ -41,7 +39,7 @@ const {
    * See [List Rendering]{@link https://roughness.vercel.app/guide/specs#list-rendering}.
    */
   rows: RValueOrKey[],
-} & GraphicsProps>()
+}>()
 
 defineSlots<{
   /** Content for the table. You can also add `<caption>` or `<colgroup>` in addition to one or more TableColumn. */
@@ -163,7 +161,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <table class="r-table" @transitionrun="listener">
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics selector="table" @draw="draw" />
     <RListRenderer include="RTableColumn" :render="slots.default" />
     <thead v-if="header" ref="head">
       <tr>

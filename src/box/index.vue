@@ -5,6 +5,7 @@ import { useTransitionListener } from '../common/property'
 import { ColorProps, SizeProps } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
+import { useGraphicsSelectors } from '../graphics/utils'
 import { useDrawBox } from './utils'
 
 defineOptions({
@@ -17,7 +18,7 @@ const {
   round = false,
   color,
   size,
-  graphicsOptions,
+  graphicsSelector,
 } = defineProps<{
   /**
    * HTML tag for rendering the box.
@@ -40,6 +41,8 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
+const selectors = useGraphicsSelectors('box', () => graphicsSelector)
+
 const drawBox = useDrawBox({
   filled: () => filled,
   round: () => round,
@@ -60,7 +63,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-box', color, size, { 'is-filled': filled }]"
     @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw"></RGraphics>
+    <RGraphics :selector="selectors" @draw="draw"></RGraphics>
     <slot></slot>
   </component>
 </template>

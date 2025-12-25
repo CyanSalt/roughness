@@ -7,6 +7,7 @@ import { ColorProps } from '../common/utils'
 import { useDrawBox } from '../composables'
 import RGraphics from '../graphics/index.vue'
 import type { GraphicsProps } from '../graphics/utils'
+import { useGraphicsSelectors } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import RText from '../text/index.vue'
 
@@ -19,7 +20,7 @@ const {
   header: userHeader = undefined,
   tag = 'article',
   color,
-  graphicsOptions,
+  graphicsSelector,
 } = defineProps<{
   /**
    * Whether to display the card footer.
@@ -57,6 +58,8 @@ defineSlots<{
    */
   footer?: (props: {}) => any,
 }>()
+
+const selectors = useGraphicsSelectors('card', () => graphicsSelector)
 
 const SEMANTIC_COLORS = ['primary', 'info', 'success', 'warning', 'error', 'comment']
 
@@ -97,7 +100,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :class="['r-card', color]"
     @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics :selector="selectors" @draw="draw" />
     <RSpace
       v-if="header"
       tag="header"

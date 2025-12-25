@@ -1,16 +1,10 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import RBox from '../box/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 
 defineOptions({
   name: 'RBadge',
 })
-
-const {
-  graphicsOptions,
-} = defineProps<{
-} & GraphicsProps>()
 
 defineSlots<{
   /** Content of the badge marker. */
@@ -22,7 +16,7 @@ defineSlots<{
 
 <template>
   <span class="r-badge">
-    <RBox tag="sup" round :graphics-options="graphicsOptions" class="r-badge__marker">
+    <RBox tag="sup" round graphics-selector="badge.marker" class="r-badge__marker">
       <span class="r-badge__marker-content"><slot name="marker"></slot></span>
     </RBox>
     <slot></slot>

@@ -2,7 +2,6 @@
 import '../common/style.scss'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import type { BitMatrix } from './utils'
 
@@ -12,11 +11,10 @@ defineOptions({
 
 const {
   data,
-  graphicsOptions,
 } = defineProps<{
   /** Symbol data of QR Code. */
   data: BitMatrix,
-} & GraphicsProps>()
+}>()
 
 function draw(rc: RoughSVG, svg: SVGSVGElement) {
   const { width, height } = getSVGSize(svg)
@@ -48,7 +46,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 <template>
   <span class="r-qr-code">
-    <RGraphics :graphics-options="graphicsOptions" @draw="draw"></RGraphics>
+    <RGraphics selector="qr-code" @draw="draw"></RGraphics>
   </span>
 </template>
 

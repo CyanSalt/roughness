@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { useCurrentElement } from '@vueuse/core'
-import { computed, watchEffect } from 'vue'
+import { watchEffect } from 'vue'
 import RBox from '../box/index.vue'
 import { useLocal } from '../common/utils'
-import type { GraphicsProps } from '../graphics/utils'
+import { useGraphicsConfig } from '../graphics/utils'
 
 defineOptions({
   name: 'RToast',
@@ -13,7 +13,6 @@ defineOptions({
 const {
   duration = 3000,
   open = true,
-  graphicsOptions,
 } = defineProps<{
   /**
    * Duration of each toast display.
@@ -25,7 +24,7 @@ const {
    * @default true
    */
   open?: boolean,
-} & GraphicsProps>()
+}>()
 
 const emit = defineEmits<{
   /** Callback function triggered when visibility of the toast is changed. */
@@ -76,19 +75,19 @@ watchEffect(() => {
   }
 })
 
-const nestingGraphicsOptions = computed(() => {
-  return {
+useGraphicsConfig({
+  include: ['toast'],
+  options: {
     fill: 'var(--r-common-background-color)',
     fillStyle: 'solid',
-    ...graphicsOptions,
-  }
+  },
 })
 </script>
 
 <template>
   <RBox
     tag="div"
-    :graphics-options="nestingGraphicsOptions"
+    graphics-selector="toast"
     popover="manual"
     class="r-toast"
     @toggle="toggle"

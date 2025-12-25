@@ -7,7 +7,6 @@ import { useTemplateRef } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -17,14 +16,13 @@ defineOptions({
 
 const {
   open = false,
-  graphicsOptions,
 } = defineProps<{
   /**
    * Whether the details are currently visible.
    * See [`open`]{@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details#open}
    */
   open?: boolean,
-} & GraphicsProps>()
+}>()
 
 const emit = defineEmits<{
   /** Callback function triggered when visibility of the detail is changed. */
@@ -90,7 +88,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
   >
     <RSpace ref="summary" tag="summary" :wrap="false" class="r-details__summary">
       <span class="r-details__summary-marker">
-        <RGraphics :options="graphicsOptions" @draw="draw" />
+        <RGraphics selector="details.summary-marker" @draw="draw" />
       </span>
       <slot name="summary"></slot>
     </RSpace>

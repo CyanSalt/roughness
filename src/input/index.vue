@@ -7,7 +7,6 @@ import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } fr
 import { sentenceCase, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -90,7 +89,6 @@ const {
   name: userName,
   placeholder: userPlaceholder,
   type,
-  graphicsOptions,
   ...props
 } = defineProps<{
   /**
@@ -105,7 +103,7 @@ const {
    * See [Handling `v-model` modifiers]{@link https://vuejs.org/guide/components/v-model.html#handling-v-model-modifiers}.
    */
   modelModifiers?: { number?: boolean },
-} & InputProps & GraphicsProps>()
+} & InputProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when the value is changed. */
@@ -166,7 +164,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     :style="{ '--R-input-lines': lines > 1 ? lines : undefined }"
     @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics selector="input" @draw="draw" />
     <textarea
       v-if="lines > 1"
       v-model="internalModelValue"

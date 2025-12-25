@@ -6,7 +6,6 @@ import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } fr
 import type { ColorProps, SizeProps } from '../common/utils'
 import { useDrawBox } from '../composables'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 
@@ -20,7 +19,6 @@ const {
   value,
   color,
   size,
-  graphicsOptions,
 } = defineProps<{
   /**
    * Lower numeric bound of the range.
@@ -34,7 +32,7 @@ const {
   max?: number,
   /** Current numeric progress value. */
   value: number,
-} & ColorProps & SizeProps & GraphicsProps>()
+} & ColorProps & SizeProps>()
 
 defineSlots<{
   /** Text displayed on the progress */
@@ -92,7 +90,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     role="progressbar"
     @transitionrun="listener"
   >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics selector="progress" @draw="draw" />
     <span class="r-progress__content">
       <slot></slot>
     </span>

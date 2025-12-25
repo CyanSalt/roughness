@@ -83,6 +83,7 @@ const style = computed(() => {
   <RBox
     tag="label"
     filled
+    graphics-selector="color-picker"
     :class="['r-color-picker', { 'is-loading': loading }]"
     :style="style"
     @transitionrun="listener"

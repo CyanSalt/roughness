@@ -90,6 +90,7 @@ watchEffect(() => {
       :key="n"
       :icon="shape"
       :filled="n > 5 - filledCount"
+      graphics-selector="rate.shape"
       class="r-rate__shape"
     />
   </label>

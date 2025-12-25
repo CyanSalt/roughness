@@ -10,7 +10,6 @@ import { keyOf } from '../common/key'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, useLocal } from '../common/utils'
 import { useName } from '../form/utils'
-import type { GraphicsProps } from '../graphics/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
@@ -37,7 +36,6 @@ const {
   label: userLabel,
   name: userName,
   value,
-  graphicsOptions,
   ...props
 } = defineProps<{
   /** Checked state of the checkbox. */
@@ -56,7 +54,7 @@ const {
    * See [List Rendering]{@link https://roughness.vercel.app/guide/specs#list-rendering}.
    */
   value?: RValueOrKey,
-} & InputProps & GraphicsProps>()
+} & InputProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when checked state of the checkbox is changed. */
@@ -164,7 +162,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     <RBox
       :round="multiple === false"
       :filled="indeterminate"
-      :graphics-options="graphicsOptions"
+      graphics-selector="checkbox.control"
       class="r-checkbox__control"
       @draw="draw"
     />

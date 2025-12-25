@@ -4,17 +4,12 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import { inject, ref } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import { listStyleInjection } from './utils'
 
 defineOptions({
   name: 'RListItem',
 })
-
-const {
-  graphicsOptions,
-} = defineProps<GraphicsProps>()
 
 defineSlots<{
   /** Content of the list item. */
@@ -72,7 +67,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 <template>
   <li class="r-list-item" @transitionrun="listener">
     <span v-if="listStyle" class="r-list-item__marker">
-      <RGraphics :options="graphicsOptions" @draw="draw" />
+      <RGraphics selector="list-item.marker" @draw="draw" />
     </span>
     <slot></slot>
   </li>

@@ -8,7 +8,6 @@ import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
 import { useName } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
-import type { GraphicsProps } from '../graphics/utils'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 defineOptions({
@@ -30,7 +29,6 @@ const {
   modelValue = 0,
   name: userName,
   step = 1,
-  graphicsOptions,
   ...props
 } = defineProps<{
   /**
@@ -50,7 +48,7 @@ const {
    * @default 1
    */
   step?: number,
-} & InputProps & GraphicsProps>()
+} & InputProps>()
 
 const emit = defineEmits<{
   /** Callback function triggered when the value is changed. */
@@ -155,7 +153,7 @@ watchEffect(() => {
       type="range"
       class="r-slider__input"
     >
-    <RGraphics :options="graphicsOptions" @draw="draw" />
+    <RGraphics selector="slider" @draw="draw" />
   </label>
 </template>
 
