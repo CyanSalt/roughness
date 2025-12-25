@@ -20,6 +20,7 @@
 
 @mixin box() {
   --R-box-border-color: var(--r-box-border-color, var(--r-element-color));
+  --R-box-fill-color: var(--r-box-fill-color, var(--R-box-border-color));
   --R-box-border-width: var(--r-box-border-width, var(--r-common-stroke-width));
   --R-box-border-dash: var(--r-box-border-dash, none);
   @include partials.colored-element();
