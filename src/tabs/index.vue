@@ -90,6 +90,8 @@ function activate(tab: RValueOrKey) {
     :reverse="anchorSide === 'bottom' || anchorSide === 'right'"
     :wrap="false"
     class="r-tabs"
+    role="tablist"
+    :aria-orientation="anchorSide === 'left' || anchorSide === 'right' ? 'vertical' : 'horizontal'"
   >
     <RSpace
       :vertical="anchorSide === 'left' || anchorSide === 'right'"
@@ -102,7 +104,6 @@ function activate(tab: RValueOrKey) {
         :active="tab.value === internalModelValue"
         :side="anchorSide"
         :value="tab.value"
-        v-bind="tab.props"
         @activate="activate"
       >
         <component :is="tab.slots.anchor" v-if="tab.slots.anchor"></component>

@@ -10,7 +10,14 @@ defineOptions({
 </script>
 
 <template>
-  <RSpace justify="center" align="center" class="r-loading">
+  <RSpace
+    justify="center"
+    align="center"
+    class="r-loading"
+    role="alert"
+    aria-label="Loading"
+    aria-live="polite"
+  >
     <RIcon :icon="Loader" class="r-loading__icon" />
   </RSpace>
 </template>

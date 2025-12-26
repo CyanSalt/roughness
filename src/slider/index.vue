@@ -7,7 +7,7 @@ import type { InputHTMLAttributes } from 'vue'
 import { computed, useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
@@ -56,7 +56,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 function round(value: number) {
   const rest = value % step
@@ -156,6 +156,12 @@ watchEffect(() => {
   <label
     ref="root"
     class="r-slider"
+    role="slider"
+    dir="ltr"
+    :aria-valuemin="min"
+    :aria-valuemax="max"
+    :aria-valuenow="internalModelValue"
+    :aria-required="required"
     @transitionrun="listener"
   >
     <input

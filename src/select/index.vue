@@ -10,7 +10,7 @@ import { labelsInjection } from '../checkbox/utils'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { isTruthyBooleanish, sentenceCase, useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import { useGraphicsConfig } from '../graphics/utils'
 import RIcon from '../icon/index.vue'
 
@@ -72,7 +72,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 const placeholder = computed(() => {
   return userPlaceholder ?? (typeof name.value === 'string' ? sentenceCase(`select-${name.value}`) : undefined)
@@ -169,7 +169,10 @@ provide(labelsInjection, labels)
     tag="label"
     graphics-selector="select"
     :class="['r-select', { 'is-loading': loading, 'is-open': state }]"
+    role="combobox"
     aria-haspopup="menu"
+    :aria-expanded="state"
+    :aria-required="required"
   >
     <input
       ref="input"

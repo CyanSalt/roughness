@@ -30,7 +30,7 @@ provide(itemsInjection, items)
 
 <template>
   <slot></slot>
-  <div class="r-toast-provider">
+  <div class="r-toast-provider" role="region" aria-label="Toast Messages">
     <RToast
       v-for="(item, index) in items"
       :key="item.id"

@@ -16,7 +16,7 @@ const GraphicsConfigExample = defineComponent({
     return () => h(RSpace, { vertical: true, align: 'start' }, () => [
       h(RButton, { filled: true }, () => 'Psychological Shadow'),
       h(RGraphicsConfig, {
-        include: ['button'],
+        include: 'button',
         options: { strokeWidth: 2, hachureGap: 8 },
       }, () => h(RButton, { color: 'warning', filled: true }, () => 'Waffles')),
       h(RRate, { modelValue: 1 }),
@@ -214,7 +214,7 @@ useGraphicsConfig({
 <template>
   <RSpace vertical align="start">
     <RButton filled>Psychological Shadow</RButton>
-    <RGraphicsConfig :include="['button']" options="{ strokeWidth: 2, hachureGap: 8 }" />
+    <RGraphicsConfig include="button" options="{ strokeWidth: 2, hachureGap: 8 }">
       <RButton color="warning" filled>Waffles</RButton>
     </RGraphicsConfig>
     <RRate :model-value="1" />

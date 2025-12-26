@@ -7,7 +7,7 @@ import { computed } from 'vue'
 import RBox from '../box/index.vue'
 import { getProperty, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import RLoading from '../loading/index.vue'
 
 defineOptions({
@@ -44,7 +44,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 const internalModelValue = useLocal({
   get: () => modelValue || '#000000',
@@ -97,6 +97,8 @@ const style = computed(() => {
     graphics-selector="color-picker"
     :class="['r-color-picker', { 'is-loading': loading }]"
     :style="style"
+    role="button"
+    :aria-required="required"
     @transitionrun="listener"
   >
     <input

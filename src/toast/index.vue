@@ -101,6 +101,9 @@ useGraphicsConfig({
     graphics-selector="toast"
     popover="manual"
     class="r-toast"
+    role="alert"
+    aria-live="off"
+    aria-atomic="true"
     @toggle="toggle"
   >
     <slot></slot>

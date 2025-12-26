@@ -5,7 +5,7 @@ import { Asterisk } from 'lucide'
 import { computed, inject, provide, ref, toRef } from 'vue'
 import RIcon from '../icon/index.vue'
 import RSpace from '../space/index.vue'
-import { labelInlineInjection, nameInjection } from './utils'
+import { itemInjection, labelInlineInjection } from './utils'
 
 defineOptions({
   name: 'RFormItem',
@@ -43,7 +43,10 @@ const labelInline = computed(() => {
   return userLabelInline ?? formLabelInline.value ?? true
 })
 
-provide(nameInjection, toRef(() => name))
+provide(itemInjection, toRef(() => ({
+  name,
+  required,
+})))
 </script>
 
 <template>

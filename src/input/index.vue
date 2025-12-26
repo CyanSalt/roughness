@@ -6,7 +6,7 @@ import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { computed } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
 import { sentenceCase, useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import { getSVGSize } from '../graphics/utils'
 
@@ -111,7 +111,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = useName(() => userName)
+const { name } = useFormItem(() => userName)
 
 const placeholder = computed(() => {
   return userPlaceholder ?? (typeof name.value === 'string' ? sentenceCase(`enter-${name.value}`) : undefined)

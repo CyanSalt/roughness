@@ -93,6 +93,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
 <template>
   <RText
     :class="['r-icon', { 'is-filled': filled }]"
+    aria-hidden="true"
     @transitionrun="listener"
   >
     <RGraphics

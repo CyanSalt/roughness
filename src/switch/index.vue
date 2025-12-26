@@ -5,7 +5,7 @@ import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import RGraphics from '../graphics/index.vue'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
@@ -39,7 +39,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 const internalModelValue = useLocal({
   get: () => modelValue,
@@ -113,6 +113,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     inline
     :wrap="false"
     class="r-switch"
+    role="switch"
+    :aria-checked="internalModelValue"
+    :aria-required="required"
     @transitionrun="listener"
   >
     <input

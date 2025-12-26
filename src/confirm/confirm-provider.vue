@@ -30,7 +30,7 @@ provide(itemsInjection, items)
 
 <template>
   <slot></slot>
-  <div class="r-confirm-provider">
+  <div class="r-confirm-provider" role="region" aria-label="Confirm Dialogs">
     <RConfirm
       v-for="item in items"
       :key="item.id"
