@@ -45,7 +45,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     case 'circle': {
       const circle = rc.circle(width / 2, height / 2 + offsetY, width / 3, {
         ...options,
-        roughness: 0,
+        roughness: 0.75,
         ...overridden,
       })
       svg.appendChild(circle)

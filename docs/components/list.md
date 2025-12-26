@@ -53,6 +53,10 @@ import { RList, RListItem } from 'roughness'
       <RListItem>How are you?</RListItem>
       <RListItem>Fine, thank you.<br>And you?</RListItem>
     </RList>
+    <RList list-style="circle">
+      <RListItem>You are the vessel.</RListItem>
+      <RListItem>You are the Hollow Knight.</RListItem>
+    </RList>
     <RList list-style="auto">
       <RListItem>4142135623730951</RListItem>
       <RListItem>23606797749979</RListItem>
@@ -67,6 +71,10 @@ import { RList, RListItem } from 'roughness'
   <RList list-style="square">
     <RListItem>How are you?</RListItem>
     <RListItem>Fine, thank you.<br>And you?</RListItem>
+  </RList>
+  <RList list-style="circle">
+    <RListItem>You are the vessel.</RListItem>
+    <RListItem>You are the Hollow Knight.</RListItem>
   </RList>
   <RList list-style="auto">
     <RListItem>4142135623730951</RListItem>
