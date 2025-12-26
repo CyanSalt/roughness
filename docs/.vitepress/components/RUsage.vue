@@ -256,9 +256,6 @@ function paragraph(text: string | undefined) {
         :key="selector.name"
       >
         <RGraphicsSelector :name="selector.name">
-          <template v-if="selector.defaultValue" #default-value>
-            <MarkdownBlock inline :source="inlineCode(JSON.stringify(selector.defaultValue))" />
-          </template>
           <template v-if="selector.description">
             <MarkdownBlock :source="selector.description" />
           </template>

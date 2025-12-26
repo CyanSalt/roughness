@@ -10,7 +10,6 @@ defineOptions({
 
 defineSlots<{
   name?: (props: {}) => any,
-  'default-value'?: (props: {}) => any,
   description?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
@@ -29,13 +28,6 @@ const props = useList(propsInjection)
           v-if="(row as PropData).slots.name"
         ></component>
         <slot v-else name="name" :value="(row as PropData).name">{{ (row as PropData).name }}</slot>
-      </RTableColumn>
-      <RTableColumn v-slot="{ row }" name="default-value">
-        <component
-          :is="(row as PropData).slots['default-value']"
-          v-if="(row as PropData).slots['default-value']"
-        ></component>
-        <slot v-else name="default-value"></slot>
       </RTableColumn>
       <RTableColumn v-slot="{ row }" name="description">
         <component
