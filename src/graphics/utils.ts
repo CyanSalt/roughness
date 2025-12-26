@@ -84,7 +84,7 @@ export function getSVGSize(element: SVGSVGElement) {
   }
 }
 
-export function getFilledSizeOptions(strokeWidth: number) {
+export function getFilledSizeOptions(strokeWidth: number): Options {
   return {
     fillWeight: strokeWidth ? strokeWidth / 2 : 0.5,
     hachureGap: strokeWidth ? strokeWidth * 4 : 4,
