@@ -137,6 +137,7 @@ export function parseSVGNode(element: SVGElement): SVGNode {
 
 export interface DrawSVGNodeOptions {
   solid?: boolean,
+  defaultGraphicsOptions?: Options,
   graphicsOptions?: Options,
 }
 
@@ -150,13 +151,14 @@ export function drawSVGNode(
   const { xmlns, fill, stroke, 'stroke-width': rawStrokeWidth, ...attrs } = rawAttrs
   const strokeWidth = stroke && stroke !== 'none' ? rawStrokeWidth : undefined
   const graphicsOptions: Options = {
-    ...options?.graphicsOptions,
+    ...options?.defaultGraphicsOptions,
     ...Object.fromEntries([
       ['fill', fill],
       ['stroke', stroke],
       ['strokeWidth', strokeWidth],
     ].filter(([key, value]) => value)),
     ...(strokeWidth ? getFilledSizeOptions(Number(strokeWidth)) : undefined),
+    ...options?.graphicsOptions,
   }
   if (
     options?.solid

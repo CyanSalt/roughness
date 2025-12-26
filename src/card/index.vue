@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed, useSlots } from 'vue'
 import { useTransitionListener } from '../common/property'
@@ -86,9 +87,9 @@ const drawBox = useDrawBox()
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, options: Options) {
   void timestamp.value
-  drawBox(rc, svg)
+  drawBox(rc, svg, options)
 }
 </script>
 

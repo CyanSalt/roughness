@@ -20,7 +20,7 @@ const listStyle = inject(listStyleInjection, ref())
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-list-marker-border-width') ?? 0
@@ -37,6 +37,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
         ...options,
         roughness: 0.5,
         fill: undefined,
+        ...overridden,
       })
       svg.appendChild(circle)
       break
@@ -45,6 +46,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       const circle = rc.circle(width / 2, height / 2 + offsetY, width / 3, {
         ...options,
         roughness: 0,
+        ...overridden,
       })
       svg.appendChild(circle)
       break
@@ -55,7 +57,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
         height / 2 - width / 8 + offsetY,
         width / 3,
         width / 3,
-        options,
+        {
+          ...options,
+          ...overridden,
+        },
       )
       svg.appendChild(rectangle)
       break

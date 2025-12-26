@@ -14,11 +14,11 @@ const GraphicsConfigExample = defineComponent({
       },
     })
     return () => h(RSpace, { vertical: true, align: 'start' }, () => [
+      h(RButton, { filled: true }, () => 'Psychological Shadow'),
       h(RGraphicsConfig, {
         include: ['button'],
-        options: { hachureAngle: 0 },
-      }, () => h(RButton, { filled: true }, () => 'Medieval Sky')),
-      h(RButton, { color: 'warning', filled: true }, () => 'Waffles'),
+        options: { strokeWidth: 2, hachureGap: 8 },
+      }, () => h(RButton, { color: 'warning', filled: true }, () => 'Waffles')),
       h(RRate, { modelValue: 1 }),
     ])
   }
@@ -213,10 +213,10 @@ useGraphicsConfig({
 
 <template>
   <RSpace vertical align="start">
-    <RGraphicsConfig :include="['button']" options="{ hachureAngle: 0 }" />
-      <RButton filled>Medieval Sky</RButton>
+    <RButton filled>Psychological Shadow</RButton>
+    <RGraphicsConfig :include="['button']" options="{ strokeWidth: 2, hachureGap: 8 }" />
+      <RButton color="warning" filled>Waffles</RButton>
     </RGraphicsConfig>
-    <RButton color="warning" filled>Waffles</RButton>
     <RRate :model-value="1" />
   </RSpace>
 </template>
@@ -226,23 +226,7 @@ useGraphicsConfig({
 
 <GraphicsConfigExample />
 
-Additionally, almost all components with graphics support the `graphics-options` prop:{#component-prop}
-
-::: details Show Code
-
-```vue
-<script lang="ts" setup>
-import { RButton } from 'roughness'
-</script>
-
-<template>
-  <RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Psychological Shadow</RButton>
-</template>
-```
-
-:::
-
-<RButton filled :graphics-options="{ fillStyle: 'cross-hatch' }">Psychological Shadow</RButton>
+You can find the selector IDs which you can use in the documentation of each component.
 
 ## Usage
 

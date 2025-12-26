@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { computed, inject, ref, watchEffect } from 'vue'
@@ -120,7 +121,7 @@ const disabled = computed(() => {
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   if (internalChecked.value) {
     const { width, height } = getSVGSize(svg)
@@ -135,6 +136,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     ], {
       stroke: 'var(--R-checkbox-checked-color)',
       strokeWidth: checkedStrokeWidth,
+      ...overridden,
     })
     svg.appendChild(linearPath)
   }
