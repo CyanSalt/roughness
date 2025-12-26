@@ -119,10 +119,10 @@ const disabled = computed(() => {
   return isTruthyBooleanish(userDisabled) || Boolean(disabledByGroup.value)
 })
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   if (internalChecked.value) {
     const { width, height } = getSVGSize(svg)
     const epsilon = 2

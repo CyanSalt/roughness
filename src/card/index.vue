@@ -85,10 +85,10 @@ const footer = computed(() => {
 
 const drawBox = useDrawBox()
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, options: Options) {
-  void timestamp.value
+  track()
   drawBox(rc, svg, options)
 }
 </script>

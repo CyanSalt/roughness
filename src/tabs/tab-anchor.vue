@@ -54,10 +54,10 @@ function activate() {
   emit('activate', value)
 }
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-tab-anchor-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-tab-anchor-border-dash')

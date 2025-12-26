@@ -111,10 +111,10 @@ onMounted(() => {
   calculateDimensions()
 })
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-table-border-width') ?? 0
   const { x, y } = dimensions

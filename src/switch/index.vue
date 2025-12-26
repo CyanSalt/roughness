@@ -48,10 +48,10 @@ const internalModelValue = useLocal({
   },
 })
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-switch-border-width') ?? 0
   const handleStrokeWidth = getLengthProperty(svg, '--R-switch-handle-border-width') ?? 0

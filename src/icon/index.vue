@@ -28,8 +28,6 @@ const {
 
 const selectors = useGraphicsSelectors('icon', () => graphicsSelector)
 
-const { timestamp, listener } = useTransitionListener('::before')
-
 function isSVGNodeList(node: IconNode): node is SVGNode[] {
   return !node.length || Array.isArray(node[0])
 }
@@ -58,8 +56,10 @@ const children = computed(() => {
   return rootNode.value[2] ?? []
 })
 
+const { track, listener } = useTransitionListener('::before')
+
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   const strokeWidth = getLengthProperty(svg, '--R-icon-stroke-width') ?? 0
   for (const child of children.value) {
     drawSVGNode(rc, svg, child, {

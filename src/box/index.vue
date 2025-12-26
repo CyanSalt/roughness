@@ -52,10 +52,10 @@ const drawBox = useDrawBox({
   round: () => round,
 })
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, options: Options) {
-  void timestamp.value
+  track()
   drawBox(rc, svg, options)
   emit('draw', rc, svg, options)
 }

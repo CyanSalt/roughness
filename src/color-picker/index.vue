@@ -59,11 +59,11 @@ const disabled = computed(() => {
 
 const root = useCurrentElement<HTMLElement | null>()
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 let color = computed(() => {
   if (!root.value) return undefined
-  void timestamp.value
+  track()
   let defaultColor = colord(getProperty(root.value, '--r-common-color'))
   const currentColor = colord(internalModelValue.value)
   return currentColor

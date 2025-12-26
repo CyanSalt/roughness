@@ -74,10 +74,10 @@ const ratio = computed(() => {
   return (internalModelValue.value - min) / (max - min) || 0
 })
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-slider-border-width') ?? 0
   const trackSize = getLengthProperty(svg, '--R-slider-track-size') ?? 0

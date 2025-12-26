@@ -46,10 +46,10 @@ const ratio = computed(() => {
 
 const drawBox = useDrawBox()
 
-const { timestamp, listener } = useTransitionListener('::before')
+const { track, listener } = useTransitionListener('::before')
 
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-  void timestamp.value
+  track()
   drawBox(rc, svg, overridden)
   const strokeWidth = getLengthProperty(svg, '--R-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-progress-border-dash')
