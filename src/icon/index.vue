@@ -58,20 +58,22 @@ const children = computed(() => {
   return rootNode.value[2] ?? []
 })
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const strokeWidth = getLengthProperty(svg, '--R-icon-stroke-width') ?? 0
-  const options: Options = {
-    roughness: 0.5,
-    disableMultiStroke: true,
-    stroke: 'var(--R-icon-stroke-color)',
-    strokeWidth,
-    fill: filled ? 'var(--R-icon-color)' : undefined,
-    ...getFilledSizeOptions(1),
-  }
   for (const child of children.value) {
     drawSVGNode(rc, svg, child, {
-      graphicsOptions: options,
+      defaultGraphicsOptions: {
+        roughness: 0.5,
+        disableMultiStroke: true,
+        stroke: 'var(--R-icon-stroke-color)',
+        strokeWidth,
+        ...(filled ? {
+          fill: 'var(--R-icon-color)',
+          ...getFilledSizeOptions(1),
+        } : undefined),
+      },
+      graphicsOptions: overridden,
     })
   }
 }

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { useMutationObserver } from '@vueuse/core'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed, ref, useTemplateRef, watch } from 'vue'
 import RGraphics from '../graphics/index.vue'
@@ -62,9 +63,9 @@ const children = computed(() => {
   return node.value?.[2] ?? []
 })
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   for (const child of children.value) {
-    drawSVGNode(rc, svg, child, { solid })
+    drawSVGNode(rc, svg, child, { solid, graphicsOptions: overridden })
   }
 }
 </script>

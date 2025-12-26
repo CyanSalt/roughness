@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import RGraphics from '../graphics/index.vue'
@@ -18,7 +19,7 @@ const {
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-divider-line-width') ?? 0
@@ -27,6 +28,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--R-divider-color)',
     strokeWidth,
     ...getFilledSizeOptions(strokeWidth),
+    ...overridden,
   })
   svg.appendChild(line)
 }

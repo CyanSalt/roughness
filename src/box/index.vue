@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { useTransitionListener } from '../common/property'
 import { ColorProps, SizeProps } from '../common/utils'
@@ -32,8 +33,11 @@ const {
 } & ColorProps & SizeProps & GraphicsProps>()
 
 const emit = defineEmits<{
-  /** Ready to start drawing. */
-  (event: 'draw', rc: RoughSVG, element: SVGSVGElement): void,
+  /**
+   * Ready to start drawing.
+   * @type {(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement, options: import('roughjs/bin/core').Options)}
+   */
+  (event: 'draw', rc: RoughSVG, element: SVGSVGElement, options: Options): void,
 }>()
 
 defineSlots<{
@@ -50,10 +54,10 @@ const drawBox = useDrawBox({
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, options: Options) {
   void timestamp.value
-  drawBox(rc, svg)
-  emit('draw', rc, svg)
+  drawBox(rc, svg, options)
+  emit('draw', rc, svg, options)
 }
 </script>
 

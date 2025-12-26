@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed } from 'vue'
 import type { RValueOrKey } from '../common/key'
@@ -55,7 +56,7 @@ function activate() {
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-tab-anchor-border-width') ?? 0
@@ -102,6 +103,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       stroke: 'var(--R-tab-anchor-color)',
       strokeWidth,
       strokeLineDash,
+      ...overridden,
     },
   )
   svg.appendChild(line)

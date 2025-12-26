@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed } from 'vue'
 import { getLengthProperty, getLengthPropertyAsArray, useTransitionListener } from '../common/property'
@@ -47,9 +48,9 @@ const drawBox = useDrawBox()
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
-  drawBox(rc, svg)
+  drawBox(rc, svg, overridden)
   const strokeWidth = getLengthProperty(svg, '--R-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined
@@ -64,6 +65,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       stroke: 'var(--R-progress-color)',
       strokeWidth,
       strokeLineDash,
+      ...overridden,
     },
   )
   svg.appendChild(line)
@@ -76,6 +78,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       strokeWidth: 0,
       fill: 'var(--R-progress-color)',
       ...getFilledSizeOptions(0),
+      ...overridden,
     },
   )
   svg.appendChild(barRect)

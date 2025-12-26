@@ -113,7 +113,7 @@ onMounted(() => {
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-table-border-width') ?? 0
@@ -122,6 +122,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     strokeWidth,
     stroke: 'var(--R-table-border-color)',
     ...getFilledSizeOptions(strokeWidth),
+    ...overridden,
   }
   const epsilon = 2
   // Outline

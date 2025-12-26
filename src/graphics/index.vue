@@ -42,10 +42,10 @@ const {
 const emit = defineEmits<{
   /**
    * Ready to start drawing.
-   * @type {(rc: import('roughjs/bin/canvas').RoughCanvas, element: HTMLCanvasElement)}
-   * @type {(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement)}
+   * @type {(rc: import('roughjs/bin/canvas').RoughCanvas, element: HTMLCanvasElement, options: import('roughjs/bin/core').Options)}
+   * @type {(rc: import('roughjs/bin/svg').RoughSVG, element: SVGSVGElement, options: import('roughjs/bin/core').Options)}
    */
-  (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement): void,
+  (event: 'draw', rc: T extends 'canvas' ? RoughCanvas : RoughSVG, element: T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement, options: Options): void,
 }>()
 
 const root = useCurrentElement<(T extends 'canvas' ? HTMLCanvasElement : SVGSVGElement) | null>()
@@ -57,19 +57,16 @@ const { width, height } = useElementSize(container, undefined, {
 
 const configOptions = useGraphicsElementOptions(() => selector, () => options)
 
-const nestingOptions = computed<Options>(() => {
-  return {
+const rc = computed(() => {
+  if (!root.value) return null
+  const defaultOptions = {
     stroke: 'var(--R-graphics-stroke-color)',
     ...configOptions.value,
   }
-})
-
-const rc = computed(() => {
-  if (!root.value) return null
   return (
     root.value instanceof HTMLCanvasElement
-      ? rough.canvas(root.value, { options: nestingOptions.value })
-      : rough.svg(root.value, { options: nestingOptions.value })
+      ? rough.canvas(root.value, { options: defaultOptions })
+      : rough.svg(root.value, { options: defaultOptions })
   ) as T extends 'canvas' ? RoughCanvas : RoughSVG
 })
 
@@ -90,7 +87,7 @@ watchEffect(() => {
   } else {
     root.value.innerHTML = ''
   }
-  emit('draw', rc.value, root.value)
+  emit('draw', rc.value, root.value, configOptions.value)
 })
 </script>
 

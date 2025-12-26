@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import RGraphics from '../graphics/index.vue'
 import { getSVGSize } from '../graphics/utils'
@@ -16,7 +17,7 @@ const {
   data: BitMatrix,
 }>()
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   const { width, height } = getSVGSize(svg)
   const minPadding = 2
   const cellSize = Math.floor((Math.min(width, height) - minPadding * 2) / data.size)
@@ -36,6 +37,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
           stroke: 'var(--R-qr-code-color)',
           fill: 'var(--R-qr-code-color)',
           fillStyle: 'solid',
+          ...overridden,
         },
       )
       svg.appendChild(rectangle)

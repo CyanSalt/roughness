@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'vue'
 import { computed } from 'vue'
@@ -130,7 +131,7 @@ const internalModelValue = useLocal({
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-input-border-width') ?? 0
@@ -144,6 +145,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
         stroke: 'var(--R-input-border-color)',
         strokeWidth,
         strokeLineDash,
+        ...overridden,
       })
       svg.appendChild(line)
     }
@@ -152,6 +154,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       stroke: 'var(--R-input-border-color)',
       strokeWidth,
       strokeLineDash,
+      ...overridden,
     })
     svg.appendChild(line)
   }

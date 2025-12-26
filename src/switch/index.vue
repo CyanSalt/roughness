@@ -50,7 +50,7 @@ const internalModelValue = useLocal({
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-switch-border-width') ?? 0
@@ -61,6 +61,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     strokeWidth,
     fill: internalModelValue.value ? 'var(--R-switch-track-color)' : undefined,
     ...getFilledSizeOptions(strokeWidth),
+    ...overridden,
   })
   svg.appendChild(rectangle)
   const handleOptions: Options = {
@@ -69,6 +70,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     fill: 'var(--R-switch-handle-color)',
     fillStyle: 'solid',
     ...getFilledSizeOptions(handleStrokeWidth),
+    ...overridden,
   }
   const handleSize = (height - 2 * epsilon) * 3 / 4
   const handleMargin = (height - handleSize) / 2

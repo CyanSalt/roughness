@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import '../common/style.scss'
 import { useMouseInElement, useMousePressed } from '@vueuse/core'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InputHTMLAttributes } from 'vue'
 import { computed, useTemplateRef, watchEffect } from 'vue'
@@ -75,7 +76,7 @@ const ratio = computed(() => {
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-slider-border-width') ?? 0
@@ -89,6 +90,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     {
       stroke: 'var(--R-slider-border-color)',
       strokeWidth,
+      ...overridden,
     },
   )
   svg.appendChild(rectangle)
@@ -101,6 +103,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       strokeWidth: 0,
       fill: 'var(--R-slider-color)',
       ...getFilledSizeOptions(strokeWidth),
+      ...overridden,
     },
   )
   svg.appendChild(barRect)
@@ -114,6 +117,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       strokeWidth,
       fill: 'var(--r-common-background-color)',
       fillStyle: 'solid',
+      ...overridden,
     },
   )
   svg.appendChild(controlRect)

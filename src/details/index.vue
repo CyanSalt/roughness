@@ -54,7 +54,7 @@ const summary = useTemplateRef<HTMLElement>('summary')
 
 const { timestamp, listener } = useTransitionListener('::before')
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   void timestamp.value
   const { width, height } = getSVGSize(svg)
   const strokeWidth = getLengthProperty(svg, '--R-details-summary-marker-border-width') ?? 0
@@ -63,6 +63,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
     stroke: 'var(--R-details-summary-color)',
     fill: 'var(--R-details-summary-color)',
     ...getFilledSizeOptions(1),
+    ...overridden,
   }
   const epsilon = 2
   const points: Point[] = internalOpen.value ? [

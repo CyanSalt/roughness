@@ -11,7 +11,7 @@ export interface DrawBoxProps {
 }
 
 export function useDrawBox(props?: DrawBoxProps) {
-  return function (rc: RoughSVG, svg: SVGSVGElement) {
+  return function (rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     const filled = toValue(props?.filled)
     const round = toValue(props?.round)
     const { width, height } = getSVGSize(svg)
@@ -37,6 +37,7 @@ export function useDrawBox(props?: DrawBoxProps) {
         {
           ...options,
           disableMultiStroke: Boolean(strokeLineDash),
+          ...overridden,
         },
       )
       svg.appendChild(ellipse)
@@ -46,7 +47,10 @@ export function useDrawBox(props?: DrawBoxProps) {
         epsilon,
         width - epsilon * 2,
         height - epsilon * 2,
-        options,
+        {
+          ...options,
+          ...overridden,
+        },
       )
       svg.appendChild(rectangle)
     }

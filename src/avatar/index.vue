@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed } from 'vue'
 import RBox from '../box/index.vue'
@@ -52,7 +53,7 @@ const color = computed(() => {
   return `hsl(${hue}deg 95% 45%)`
 })
 
-function draw(rc: RoughSVG, svg: SVGSVGElement) {
+function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   const { width, height } = getSVGSize(svg)
   const scaleX = width / 10
   const scaleY = height / 10
@@ -64,6 +65,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
       scaleY,
       {
         stroke: 'var(--R-avatar-pixel-color)',
+        ...overridden,
       },
     )
     svg.appendChild(rectangle)
