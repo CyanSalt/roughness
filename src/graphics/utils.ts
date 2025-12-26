@@ -1,10 +1,9 @@
-import { injectLocal, provideLocal } from '@vueuse/core'
 import { chunk } from 'lodash-es'
 import type { Options } from 'roughjs/bin/core'
 import type { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { InjectionKey, MaybeRefOrGetter, Ref, SVGAttributes } from 'vue'
-import { computed, ref, toRef, toValue } from 'vue'
+import { computed, inject, provide, ref, toRef, toValue } from 'vue'
 
 export interface GraphicsConfig {
   /**
@@ -29,11 +28,12 @@ function matchesAny(source: string | string[], filter: string | RegExp | (string
 
 export const configInjection: InjectionKey<Ref<GraphicsConfig[]>> = Symbol('RGraphics#config')
 
-export function useGraphicsConfig(refOrGetter: MaybeRefOrGetter<GraphicsConfig>) {
-  const config = injectLocal(configInjection, ref([]))
-  provideLocal(configInjection, toRef(() => [
-    ...config.value,
-    toValue(refOrGetter),
+export function useGraphicsConfig(refOrGetter: MaybeRefOrGetter<GraphicsConfig | GraphicsConfig[]>) {
+  const injected = inject(configInjection, ref([]))
+  const config = toValue(refOrGetter)
+  provide(configInjection, toRef(() => [
+    ...injected.value,
+    ...(Array.isArray(config) ? config : [config]),
   ]))
 }
 
@@ -54,7 +54,7 @@ export function useGraphicsElementOptions(
   selector: MaybeRefOrGetter<string | string[] | undefined>,
   options?: MaybeRefOrGetter<Options | undefined>,
 ) {
-  const config = injectLocal(configInjection, ref([]))
+  const config = inject(configInjection, ref([]))
   return computed<Options>(() => {
     const keys = toValue(selector) ?? []
     let mergedOptions: Options = {}
