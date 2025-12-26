@@ -66,9 +66,10 @@ let color = computed(() => {
   track()
   let defaultColor = colord(getProperty(root.value, '--r-common-color'))
   const currentColor = colord(internalModelValue.value)
-  return currentColor
-    .lighten((defaultColor.toHsl().l - currentColor.toHsl().l) / 100)
-    .toHex()
+  return colord({
+    ...currentColor.toHsl(),
+    l: (defaultColor.toHsl().l + currentColor.toHsl().l) / 2,
+  }).toHex()
 })
 
 const style = computed(() => {
