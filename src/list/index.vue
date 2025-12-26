@@ -37,6 +37,7 @@ provide(listStyleInjection, toRef(() => listStyle))
     :tag="tag"
     vertical
     class="r-list"
+    role="list"
   >
     <slot></slot>
   </RSpace>

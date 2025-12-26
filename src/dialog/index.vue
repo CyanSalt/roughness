@@ -150,6 +150,7 @@ useGraphicsConfig({
             color="default"
             size="large"
             class="r-dialog__close"
+            aria-label="Close"
           >
             <RIcon :icon="X" size="large" />
           </RLink>

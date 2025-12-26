@@ -6,7 +6,7 @@ import type { InputHTMLAttributes } from 'vue'
 import { computed, useTemplateRef, watchEffect } from 'vue'
 import { getLengthProperty } from '../common/property'
 import { useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import RIcon from '../icon/index.vue'
 import type { IconNode } from '../icon/utils'
 
@@ -40,7 +40,7 @@ const emit = defineEmits<{
   (event: 'update:modelValue', value: typeof modelValue): void,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 const internalModelValue = useLocal({
   get: () => modelValue,
@@ -85,7 +85,16 @@ watchEffect(() => {
 </defs>
 
 <template>
-  <label ref="root" class="r-rate">
+  <label
+    ref="root"
+    class="r-rate"
+    role="slider"
+    dir="ltr"
+    aria-valuemin="1"
+    aria-valuemax="5"
+    :aria-valuenow="internalModelValue"
+    :aria-required="required"
+  >
     <input
       ref="input"
       v-model.number="internalModelValue"

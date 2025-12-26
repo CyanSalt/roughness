@@ -4,7 +4,7 @@ import type { InputHTMLAttributes } from 'vue'
 import { computed } from 'vue'
 import RBox from '../box/index.vue'
 import { isTruthyBooleanish } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import RLoading from '../loading/index.vue'
 
 defineOptions({
@@ -53,7 +53,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 const disabled = computed(() => {
   return isTruthyBooleanish(userDisabled) || loading
@@ -85,6 +85,8 @@ function change(event: InputEvent) {
     tag="label"
     graphics-selector="upload"
     :class="['r-upload', { 'is-block': block }]"
+    role="button"
+    :aria-required="required"
   >
     <input
       :disabled="disabled"

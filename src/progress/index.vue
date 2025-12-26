@@ -102,6 +102,10 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     align="center"
     :class="['r-progress', color, size]"
     role="progressbar"
+    dir="ltr"
+    :aria-valuemin="min"
+    :aria-valuemax="max"
+    :aria-valuenow="value"
     @transitionrun="listener"
   >
     <RGraphics selector="progress" @draw="draw" />

@@ -10,7 +10,7 @@ import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { isTruthyBooleanish, useLocal } from '../common/utils'
-import { useName } from '../form/utils'
+import { useFormItem } from '../form/utils'
 import { getSVGSize } from '../graphics/utils'
 import RSpace from '../space/index.vue'
 import { disabledInjection, labelsInjection, modelInjection, multipleInjection } from './utils'
@@ -67,7 +67,7 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
-const name = useName(() => userName)
+const { name, required } = useFormItem(() => userName)
 
 const multiple = inject(multipleInjection, ref())
 const model = inject(modelInjection, ref())
@@ -160,6 +160,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     inline
     :wrap="false"
     class="r-checkbox"
+    :role="multiple === false ? 'radio' : 'checkbox'"
+    :aria-checked="internalChecked"
+    :aria-required="required"
     @transitionrun="listener"
   >
     <input
