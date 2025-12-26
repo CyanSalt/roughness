@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computedAsync } from '@vueuse/core'
 import { parse } from 'opentype.js'
-import { RButton, RGraphics, RInput, RRate, RSpace, RTable, RTableColumn, useGraphicsConfig } from 'roughness'
+import { RButton, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn, useGraphicsConfig } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { defineComponent, h, ref } from 'vue'
 
@@ -10,11 +10,15 @@ const GraphicsConfigExample = defineComponent({
     useGraphicsConfig({
       include: ['button', 'rate.shape'],
       options: {
-        fillStyle: 'solid',
+        fillStyle: 'cross-hatch',
       },
     })
     return () => h(RSpace, { vertical: true, align: 'start' }, () => [
-      h(RButton, { filled: true }, () => 'Medieval Sky'),
+      h(RGraphicsConfig, {
+        include: ['button'],
+        options: { hachureAngle: 0 },
+      }, () => h(RButton, { filled: true }, () => 'Medieval Sky')),
+      h(RButton, { color: 'warning', filled: true }, () => 'Waffles'),
       h(RRate, { modelValue: 1 }),
     ])
   }
@@ -197,19 +201,22 @@ function draw(rc: RoughSVG, svg: SVGSVGElement) {
 
 ```vue
 <script lang="ts" setup>
-import { RButton, useGraphicsConfig } from 'roughness'
+import { RButton, RGraphicsConfig, useGraphicsConfig } from 'roughness'
 
 useGraphicsConfig({
   include: ['button', 'rate.shape'],
   options: {
-    fillStyle: 'solid',
+    fillStyle: 'cross-hatch',
   },
 })
 </script>
 
 <template>
   <RSpace vertical align="start">
-    <RButton filled>Medieval Sky</RButton>
+    <RGraphicsConfig :include="['button']" options="{ hachureAngle: 0 }" />
+      <RButton filled>Medieval Sky</RButton>
+    </RGraphicsConfig>
+    <RButton color="warning" filled>Waffles</RButton>
     <RRate :model-value="1" />
   </RSpace>
 </template>
