@@ -16,7 +16,6 @@ const { name, rIndex } = defineProps<{
 
 defineSlots<{
   name?: (props: {}) => any,
-  'default-value'?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
 
