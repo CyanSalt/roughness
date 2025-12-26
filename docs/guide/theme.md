@@ -35,10 +35,15 @@ You can load one or more fonts of your choice by any means and specify the font 
 ```css
 :root {
   --r-common-font-family: cursive;
+  --r-common-mono-font-family: monospace;
 }
 ```
 
-It is recommended to use [小赖字体 / 小賴字體 / シャオライ / Xiaolai Font](https://github.com/lxgw/kose-font) for CJK (Chinese, Japanese and Korean) characters.
+It is recommended to use [Annotation Mono](https://qwerasd205.github.io/AnnotationMono/) as a monospaced font.
+
+You can use [小赖字体 / 小賴字體 / シャオライ / Xiaolai Font](https://github.com/lxgw/kose-font) for CJK (Chinese, Japanese and Korean) characters.
+
+For important elements such as titles, you can use [Cabin Sketch](https://fonts.google.com/specimen/Cabin+Sketch).
 
 ::: warning
 
@@ -58,11 +63,9 @@ Due to the character set, CJK fonts are usually very large. Please learn about [
 
 ::: tip
 
-Always add `cursive` or other fallback font at the end of the list, which could be useful for non-Latin (such as CJK) environments, for example browser translation.
+Always add `cursive` or `monospace` or other fallback font at the end of the list, which could be useful for non-Latin (such as CJK) environments, for example browser translation.
 
 :::
-
-We also recommend using [Annotation Mono](https://qwerasd205.github.io/AnnotationMono/) as a monospaced font for displaying code, etc. For important elements such as titles, you can use [Cabin Sketch](https://fonts.google.com/specimen/Cabin+Sketch).
 
 ## Customizing Theme
 

@@ -5,6 +5,7 @@
 @layer roughness__base {
   :root {
     --r-common-font-family: cursive;
+    --r-common-mono-font-family: monospace;
     --r-common-font-size: 16px;
     --r-common-small-font-size: calc(var(--r-common-font-size) - 4px);
     --r-common-large-font-size: calc(var(--r-common-font-size) + 4px);
