@@ -1,6 +1,6 @@
 import { startCase } from 'lodash-es'
 import type { ComputedGetter, ComputedSetter, Ref, WritableComputedOptions } from 'vue'
-import { ref, watch, watchEffect } from 'vue'
+import { ref, triggerRef, watch, watchEffect } from 'vue'
 
 export interface ColorProps {
   /**
@@ -54,4 +54,15 @@ export function isTruthyBooleanish(value: boolean | string | null | undefined) {
     && value !== null
     && value !== false
     && value !== 'false'
+}
+
+export function useTriggerable() {
+  const flag = ref<never>()
+  const track = () => {
+    void flag.value
+  }
+  const trigger = () => {
+    triggerRef(flag)
+  }
+  return { track, trigger }
 }

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useResizeObserver } from '@vueuse/core'
-import { ref, shallowRef, triggerRef, useTemplateRef, watchEffect } from 'vue'
+import { shallowRef, useTemplateRef, watchEffect } from 'vue'
+import { useTriggerable } from '../common/utils'
 import { RoughAnnotation } from './utils'
 
 defineOptions({
@@ -43,16 +44,14 @@ defineSlots<{
 
 const target = useTemplateRef<HTMLElement>('target')
 
-const flag = ref<never>()
+const { track, trigger } = useTriggerable()
 
-useResizeObserver(target, () => {
-  triggerRef(flag)
-})
+useResizeObserver(target, trigger)
 
 const currentAnnotation = shallowRef<RoughAnnotation>()
 watchEffect(onInvalidate => {
   if (target.value) {
-    void flag.value
+    track()
     const annotation = annotate(target.value, {
       type: 'highlight',
       ...annotationConfig,

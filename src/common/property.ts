@@ -1,6 +1,6 @@
 import unit from 'parse-unit'
 import toPX from 'to-px'
-import { ref, triggerRef } from 'vue'
+import { useTriggerable } from './utils'
 
 function transformValueToLength(element: Element, value: string) {
   const parts = unit(value)
@@ -31,13 +31,10 @@ export function getLengthPropertyAsArray(element: Element, property: string) {
 }
 
 export function useTransitionListener(pseudoElement?: string) {
-  const flag = ref<never>()
+  const { track, trigger } = useTriggerable()
   const listener = function (event: TransitionEvent) {
     if (typeof pseudoElement === 'string' && event.pseudoElement !== pseudoElement) return
-    triggerRef(flag)
-  }
-  const track = () => {
-    void flag.value
+    trigger()
   }
   return { track, listener }
 }
