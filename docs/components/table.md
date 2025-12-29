@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RKey, RSpace, RTable, RTableColumn, RText } from 'roughness'
+import { RBox, RKey, RSpace, RTable, RTableColumn, RText } from 'roughness'
 
 const data = [
   { [RKey]: 1, z: 2, element: 'He' },
@@ -156,15 +156,15 @@ const data = [
 
 ```vue
 <script lang="ts" setup>
-import { RTable } from 'roughness'
+import { RBox, RTable } from 'roughness'
 </script>
 
 <template>
   <RTable>
     <template #header>
       <tr>
-        <th>Value</th>
-        <th>Percentage</th>
+        <RBox tag="th" filled :style="{ '--r-box-border-width': '0px' }">Value</RBox>
+        <RBox tag="th" filled :style="{ '--r-box-border-width': '0px' }">Percentage</RBox>
       </tr>
     </template>
     <template #body>
@@ -186,8 +186,8 @@ import { RTable } from 'roughness'
 <RTable>
   <template #header>
     <tr>
-      <th>Value</th>
-      <th>Percentage</th>
+      <RBox tag="th" filled :style="{ '--r-box-border-width': '0px' }">Value</RBox>
+      <RBox tag="th" filled :style="{ '--r-box-border-width': '0px' }">Percentage</RBox>
     </tr>
   </template>
   <template #body>
