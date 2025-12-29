@@ -63,14 +63,15 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   const insetSize = getLengthProperty(svg, '--R-progress-inset-size') ?? 0
   const { width, height } = getSVGSize(svg)
   const epsilon = 2
-  const progressSize = indeterminate.value
-    ? (width - epsilon * 2) / 4
-    : (width - epsilon * 2) * ratio.value
+  const len = indeterminate.value ? 1 / 4 : ratio.value
+  const progressSize = (width - epsilon * 2) * len
+  const startX = insetSize + epsilon
+  const endX = startX + progressSize
   if (insetSize) {
     const startLine = rc.line(
-      insetSize + epsilon,
+      startX,
       epsilon,
-      insetSize + epsilon,
+      startX,
       height - epsilon * 2,
       {
         stroke: 'var(--R-progress-color)',
@@ -81,21 +82,24 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     )
     svg.appendChild(startLine)
   }
-  const endLine = rc.line(
-    progressSize + insetSize + epsilon,
-    epsilon,
-    progressSize + insetSize + epsilon,
-    height - epsilon * 2,
-    {
-      stroke: 'var(--R-progress-color)',
-      strokeWidth,
-      strokeLineDash,
-      ...overridden,
-    },
-  )
-  svg.appendChild(endLine)
+  if (len < 1) {
+    const x = endX > width ? endX - width : endX
+    const endLine = rc.line(
+      x,
+      epsilon,
+      x,
+      height - epsilon * 2,
+      {
+        stroke: 'var(--R-progress-color)',
+        strokeWidth,
+        strokeLineDash,
+        ...overridden,
+      },
+    )
+    svg.appendChild(endLine)
+  }
   const barRect = rc.rectangle(
-    insetSize + epsilon,
+    startX,
     epsilon,
     progressSize,
     height - epsilon * 2,
@@ -107,6 +111,21 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     },
   )
   svg.appendChild(barRect)
+  if (endX > width) {
+    const overflowed = rc.rectangle(
+      epsilon,
+      epsilon,
+      endX - width,
+      height - epsilon * 2,
+      {
+        strokeWidth: 0,
+        fill: 'var(--R-progress-color)',
+        ...getFilledSizeOptions(0),
+        ...overridden,
+      },
+    )
+    svg.appendChild(overflowed)
+  }
 }
 </script>
 
@@ -187,19 +206,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
 }
 
 @keyframes r-indeterminate-progress {
-  0% {
-    --R-progress-inset-size: 0%;
-  }
-  25% {
-    --R-progress-inset-size: 25%;
-  }
-  50% {
-    --R-progress-inset-size: 50%;
-  }
-  75% {
-    --R-progress-inset-size: 75%;
-  }
-  100% {
+  to {
     --R-progress-inset-size: 100%;
   }
 }
@@ -240,7 +247,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     ));
   }
   &.is-indeterminate {
-    animation: r-indeterminate-progress 1s infinite steps(1);
+    animation: r-indeterminate-progress 1s infinite steps(16);
   }
 }
 .r-progress__content {
