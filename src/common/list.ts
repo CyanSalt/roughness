@@ -60,9 +60,7 @@ function filterVNodes(nodes: VNodeArrayChildren, filter: (node: VNode) => unknow
   })
 }
 
-export const RListRenderer = defineComponent<{
-  include?: string,
-}>((props, { slots }) => {
+export const RListRenderer = defineComponent((props, { slots }) => {
   return () => {
     const include = props.include
     const nodes = slots.default?.({})
@@ -76,4 +74,10 @@ export const RListRenderer = defineComponent<{
     }
     return nodes
   }
+}, {
+  props: {
+    include: {
+      type: String,
+    },
+  },
 })
