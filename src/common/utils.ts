@@ -7,14 +7,14 @@ export interface ColorProps {
    * Element style type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
    * See also [Color Styles]{@link https://roughness.vercel.app/guide/theme.html#color-styles}.
    */
-  color?: 'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment' | (string & {}),
+  color?: 'primary' | 'info' | 'success' | 'warning' | 'error' | 'comment' | 'neutral' | (string & {}),
 }
 
 export interface SizeProps {
   /**
    * Element size type. It's actually just a class name, so you can also pass in another value and declare custom styles for it.
    */
-  size?: 'small' | 'large' | (string & {}),
+  size?: 'small' | 'large' | 'medium' | (string & {}),
 }
 
 export function sentenceCase(text: string) {

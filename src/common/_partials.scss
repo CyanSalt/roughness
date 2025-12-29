@@ -62,6 +62,9 @@
   &.comment {
     --r-element-color: var(--r-common-comment-color);
   }
+  &.neutral {
+    --r-element-color: var(--r-common-color);
+  }
 }
 
 @mixin sized-element() {
@@ -70,5 +73,8 @@
   }
   &.large {
     --r-element-font-size: var(--r-common-large-font-size);
+  }
+  &.medium {
+    --r-element-font-size: var(--r-common-font-size);
   }
 }
