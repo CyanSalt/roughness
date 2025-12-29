@@ -4,7 +4,7 @@ import { useResizeObserver } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { computed, onMounted, reactive, useSlots, useTemplateRef } from 'vue'
+import { computed, onMounted, reactive, useTemplateRef } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { RListRenderer, useList } from '../common/list'
@@ -45,8 +45,6 @@ defineSlots<{
   /** Content for the table. You can also add `<caption>` or `<colgroup>` in addition to one or more TableColumn. */
   default?: (props: {}) => any,
 }>()
-
-const slots = useSlots()
 
 const columns = useList(columnsInjection)
 
@@ -174,7 +172,9 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
 <template>
   <table class="r-table" @transitionrun="listener">
     <RGraphics selector="table" @draw="draw" />
-    <RListRenderer include="RTableColumn" :render="slots.default" />
+    <RListRenderer include="RTableColumn">
+      <slot></slot>
+    </RListRenderer>
     <thead v-if="header" ref="head">
       <tr>
         <RTableHeaderCell

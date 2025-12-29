@@ -1,5 +1,5 @@
-import type { FunctionalComponent, InjectionKey, MaybeRefOrGetter, VNode, VNodeArrayChildren } from 'vue'
-import { computed, inject, isVNode, provide, reactive, toValue, watchEffect } from 'vue'
+import type { InjectionKey, MaybeRefOrGetter, VNode, VNodeArrayChildren } from 'vue'
+import { computed, defineComponent, inject, isVNode, provide, reactive, toValue, watchEffect } from 'vue'
 
 export interface ListItemProps {
   /**
@@ -60,19 +60,20 @@ function filterVNodes(nodes: VNodeArrayChildren, filter: (node: VNode) => unknow
   })
 }
 
-export const RListRenderer: FunctionalComponent<{
+export const RListRenderer = defineComponent<{
   include?: string,
-  render?: (props: {}) => VNode[] | undefined,
-}> = props => {
-  const include = props.include
-  const nodes = props.render?.({})
-  if (!nodes) return nodes
-  let componentIndex = -1
-  const filtered = filterVNodes(nodes, node => !include || node.type && node.type['name'] === include)
-  for (const node of filtered) {
-    componentIndex += 1
-    node.props ??= {}
-    node.props.rIndex = componentIndex
+}>((props, { slots }) => {
+  return () => {
+    const include = props.include
+    const nodes = slots.default?.({})
+    if (!nodes) return nodes
+    let componentIndex = -1
+    const filtered = filterVNodes(nodes, node => !include || node.type && node.type['name'] === include)
+    for (const node of filtered) {
+      componentIndex += 1
+      node.props ??= {}
+      node.props.rIndex = componentIndex
+    }
+    return nodes
   }
-  return nodes
-}
+})

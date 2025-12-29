@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useSlots } from 'vue'
 import { RListRenderer, RTable, RTableColumn, useList } from '../../../src'
 import type { EventData } from './context'
 import { eventsInjection } from './context'
@@ -14,8 +13,6 @@ defineSlots<{
   description?: (props: {}) => any,
   default?: (props: {}) => any,
 }>()
-
-const slots = useSlots()
 
 const events = useList(eventsInjection)
 </script>
@@ -44,7 +41,9 @@ const events = useList(eventsInjection)
         ></component>
         <slot v-else name="description"></slot>
       </RTableColumn>
-      <RListRenderer include="REvent" :render="slots.default" />
+      <RListRenderer include="REvent">
+        <slot></slot>
+      </RListRenderer>
     </RTable>
   </div>
 </template>
