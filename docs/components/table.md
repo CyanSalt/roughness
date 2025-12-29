@@ -150,6 +150,58 @@ const data = [
   </RTableColumn>
 </RTable>
 
+### HTML Content
+
+::: details Show Code
+
+```vue
+<script lang="ts" setup>
+import { RTable } from 'roughness'
+</script>
+
+<template>
+  <RTable>
+    <template #header>
+      <tr>
+        <th>Value</th>
+        <th>Percentage</th>
+      </tr>
+    </template>
+    <template #body>
+      <tr>
+        <td>20</td>
+        <td>=A1/SUM(A1:A2)</td>
+      </tr>
+      <tr>
+        <td>80</td>
+        <td>=A2/SUM(A1:A2)</td>
+      </tr>
+    </template>
+  </RTable>
+</template>
+```
+
+:::
+
+<RTable>
+  <template #header>
+    <tr>
+      <th>Value</th>
+      <th>Percentage</th>
+    </tr>
+  </template>
+  <template #body>
+    <tr>
+      <td>20</td>
+      <td>=A1/SUM(A1:A2)</td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>=A2/SUM(A1:A2)</td>
+    </tr>
+  </template>
+</RTable>
+
 ## Usage
 
 <RUsage file="src/table/index.vue">

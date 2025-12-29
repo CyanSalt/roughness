@@ -22,7 +22,7 @@ defineOptions({
 const {
   footer: userFooter = undefined,
   header: userHeader = true,
-  rows,
+  rows = [],
 } = defineProps<{
   /**
    * Whether to display the table footer.
@@ -38,7 +38,7 @@ const {
    * Row keys or data.
    * See [List Rendering]{@link https://roughness.vercel.app/guide/specs#list-rendering}.
    */
-  rows: RValueOrKey[],
+  rows?: RValueOrKey[],
 }>()
 
 defineSlots<{
