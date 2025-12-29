@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.2.0](https://github.com/CyanSalt/roughness/compare/v0.1.1...v0.2.0) (2025-12-29)
+
+### Features
+
+* add back RGraphicsConfig ([956d1ae](https://github.com/CyanSalt/roughness/commit/956d1ae9f5ca9e5a90ba6ad1a5e6a4d1bb947393))
+* add box ([008438c](https://github.com/CyanSalt/roughness/commit/008438cd17f1485297e6cc116d3ad935d9528858))
+* add kbd ([4abd606](https://github.com/CyanSalt/roughness/commit/4abd60674bd1f37005eff006caaca0e8f864fa0b))
+* change options overriding order ([f7135db](https://github.com/CyanSalt/roughness/commit/f7135dbefe6db53cfee621cd1450eabc058938f5))
+* progress indeterminate state ([c0f6d04](https://github.com/CyanSalt/roughness/commit/c0f6d04a0c96792f2239ae50d1237d2e787a5a39))
+* rename `type` to `color` ([c9a5d95](https://github.com/CyanSalt/roughness/commit/c9a5d952b607d1898da67b69834e5776cf1cc7fc))
+* replace RGraphicsConfig with composables and selectors ([f7d14e8](https://github.com/CyanSalt/roughness/commit/f7d14e84d98137d043f64dc74e06f3754e205b4e))
+* support keyboard tag and pressed style ([d1d7793](https://github.com/CyanSalt/roughness/commit/d1d779386d38ef96bf2a2d0cd308f09cbbf23050))
+
+### Bug Fixes
+
+* a11y ([9056351](https://github.com/CyanSalt/roughness/commit/9056351bd87e77bc1e7f86cbc9573c2c25437055))
+* add --r-box-fill-color ([6f8d536](https://github.com/CyanSalt/roughness/commit/6f8d5361685d3a6032b482fe9835373e0862bf55))
+* add busy attribute ([ccd5332](https://github.com/CyanSalt/roughness/commit/ccd53328504cc448d7f33268a648e43a45c0fd29))
+* avoid using preserved words ([310c351](https://github.com/CyanSalt/roughness/commit/310c3511266f17c82ec6594fb5b06d5bffd9918d))
+* color picker mixing ([3c17f61](https://github.com/CyanSalt/roughness/commit/3c17f619b8c38a592e542765db226b6d2c81c844))
+* expose useDrawBox ([0df945e](https://github.com/CyanSalt/roughness/commit/0df945ec9644caa81edd2e161ea201727b42f364))
+* filled box ([a544721](https://github.com/CyanSalt/roughness/commit/a54472151e0835c4567f819f67919c83cc27dd8d))
+* keyboard font family ([de9ae50](https://github.com/CyanSalt/roughness/commit/de9ae509d58d5add8ab36db65ac6222324ee9435))
+* lint errors ([95478f7](https://github.com/CyanSalt/roughness/commit/95478f702a78834a7e1a93e98ca9560a77ed3d2f))
+* list item circle ([46a9fd8](https://github.com/CyanSalt/roughness/commit/46a9fd81ece73f03c0a3017b3dfc211a46f341e2))
+* rename kbd to keyboard ([3f8a95b](https://github.com/CyanSalt/roughness/commit/3f8a95b4d6acfb9a5fd4558e87bbe02e905b667f))
+* support array injections ([10546a5](https://github.com/CyanSalt/roughness/commit/10546a5c7a343eb70042507ba134c7153cc68823))
+* support raw slots for table ([683986b](https://github.com/CyanSalt/roughness/commit/683986b594fd10f76bce1fd46be5138df91f8804))
+
 ## [0.1.1](https://github.com/CyanSalt/roughness/compare/v0.1.0...v0.1.1) (2025-06-30)
 
 ## [0.1.0](https://github.com/CyanSalt/roughness/compare/v0.1.0-beta.23...v0.1.0) (2025-06-30)
