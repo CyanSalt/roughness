@@ -7,11 +7,11 @@ import RGraphics from '../graphics/index.vue'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 defineOptions({
-  name: 'RKbd',
+  name: 'RKeyboard',
 })
 
 defineSlots<{
-  /** Content of the kbd. */
+  /** Content of the keyboard. */
   default?: (props: {}) => any,
 }>()
 
@@ -20,10 +20,10 @@ const { track, listener } = useTransitionListener('::before')
 function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   track()
   const { width, height } = getSVGSize(svg)
-  const sideSize = getLengthProperty(svg, '--R-kbd-side-size') ?? 0
-  const strokeWidth = getLengthProperty(svg, '--R-kbd-border-width') ?? 0
+  const sideSize = getLengthProperty(svg, '--R-keyboard-side-size') ?? 0
+  const strokeWidth = getLengthProperty(svg, '--R-keyboard-border-width') ?? 0
   const options: Options = {
-    stroke: 'var(--R-kbd-border-color)',
+    stroke: 'var(--R-keyboard-border-color)',
     strokeWidth,
   }
   const epsilon = 2
@@ -59,7 +59,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   ], {
     ...options,
     strokeWidth: 0,
-    fill: 'var(--R-kbd-border-color)',
+    fill: 'var(--R-keyboard-border-color)',
     hachureAngle: 45,
     ...getFilledSizeOptions(1),
     ...overridden,
@@ -83,16 +83,16 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
 {
   "graphicsSelectors": [
     {
-      "name": "kbd",
-      "description": "Root of the kbd."
+      "name": "keyboard",
+      "description": "Root of the keyboard."
     }
   ]
 }
 </defs>
 
 <template>
-  <kbd class="r-kbd" @transitionrun="listener">
-    <RGraphics selector="kbd" @draw="draw"></RGraphics>
+  <kbd class="r-keyboard" @transitionrun="listener">
+    <RGraphics selector="keyboard" @draw="draw"></RGraphics>
     <slot></slot>
   </kbd>
 </template>
@@ -100,59 +100,59 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
 <style lang="scss">
 @use '../common/_partials';
 
-@property --R-kbd-border-color {
+@property --R-keyboard-border-color {
   syntax: '<color>';
   inherits: true;
   initial-value: currentColor;
 }
 
-@property --R-kbd-border-width {
+@property --R-keyboard-border-width {
   syntax: '<length>';
   inherits: true;
   initial-value: 0px;
 }
 
-@property --R-kbd-top-size {
+@property --R-keyboard-top-size {
   syntax: '<length>';
   inherits: true;
   initial-value: 0px;
 }
 
-@property --R-kbd-side-size {
+@property --R-keyboard-side-size {
   syntax: '<length>';
   inherits: true;
   initial-value: 0px;
 }
 
-@property --R-kbd-padding-inline {
+@property --R-keyboard-padding-inline {
   syntax: '<length-percentage>+';
   inherits: true;
   initial-value: 0px;
 }
 
-.r-kbd {
-  // Color of the kbd border.
-  --R-kbd-border-color: var(--r-kbd-border-color, var(--r-element-color));
-  // Width of the kbd border.
-  --R-kbd-border-width: var(--r-kbd-border-width, var(--r-common-stroke-width));
-  // Area height of the kbd top surface.
-  --R-kbd-top-size: var(--r-kbd-block-size, 2em);
-  // Horizontal padding of the kbd top surface.
-  --R-kbd-padding-inline: var(--r-kbd-padding-inline, calc(var(--R-kbd-top-size) - 2 * 1ch));
-  // Area width of the kbd side surfaces.
-  --R-kbd-side-size: var(--r-kbd-side-size, 6px);
+.r-keyboard {
+  // Color of the keyboard border.
+  --R-keyboard-border-color: var(--r-keyboard-border-color, var(--r-element-color));
+  // Width of the keyboard border.
+  --R-keyboard-border-width: var(--r-keyboard-border-width, var(--r-common-stroke-width));
+  // Area height of the keyboard top surface.
+  --R-keyboard-top-size: var(--r-keyboard-block-size, 2em);
+  // Horizontal padding of the keyboard top surface.
+  --R-keyboard-padding-inline: var(--r-keyboard-padding-inline, calc(var(--R-keyboard-top-size) - 2 * 1ch));
+  // Area width of the keyboard side surfaces.
+  --R-keyboard-side-size: var(--r-keyboard-side-size, 6px);
   display: inline-block;
-  padding-right: calc(var(--R-kbd-padding-inline) + var(--R-kbd-side-size));
-  padding-bottom: var(--R-kbd-side-size);
-  padding-left: var(--R-kbd-padding-inline);
+  padding-right: calc(var(--R-keyboard-padding-inline) + var(--R-keyboard-side-size));
+  padding-bottom: var(--R-keyboard-side-size);
+  padding-left: var(--R-keyboard-padding-inline);
   font-family: var(--r-common-mono-font-family);
   font-size: var(--r-common-small-font-size);
-  line-height: var(--R-kbd-top-size);
+  line-height: var(--R-keyboard-top-size);
   &::before {
     border-top-style: solid;
     @include partials.transition-runner((
-      --R-kbd-border-width: border-top-width,
-      --R-kbd-side-size: padding-top,
+      --R-keyboard-border-width: border-top-width,
+      --R-keyboard-side-size: padding-top,
     ));
   }
 }

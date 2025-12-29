@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { RKbd } from 'roughness'
+import { RKeyboard } from 'roughness'
 </script>
 
-# Kbd
+# Keyboard
 
 Keyboard not found, Press F1 to continue.
 
@@ -12,21 +12,21 @@ Keyboard not found, Press F1 to continue.
 
 ```vue
 <script lang="ts" setup>
-import { RKbd } from 'roughness'
+import { RKeyboard } from 'roughness'
 </script>
 
 <template>
-  <RKbd>Context</RKbd>, not <RKbd>⌃</RKbd>.
+  <RKeyboard>Context</RKeyboard>, not <RKeyboard>⌃</RKeyboard>.
 </template>
 ```
 
 :::
 
-<RKbd>Context</RKbd>, not <RKbd>⌃</RKbd>.
+<RKeyboard>Context</RKeyboard>, not <RKeyboard>⌃</RKeyboard>.
 
 ## Usage
 
-<RUsage file="src/kbd/index.vue">
+<RUsage file="src/keyboard/index.vue">
 
   <template #title="{ title }">
 
