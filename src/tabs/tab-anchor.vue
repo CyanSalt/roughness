@@ -2,6 +2,7 @@
 import '../common/style.scss'
 import { startCase } from 'lodash-es'
 import { Options } from 'roughjs/bin/core'
+import { Point } from 'roughjs/bin/geometry'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { computed } from 'vue'
 import type { RValueOrKey } from '../common/key'
@@ -63,50 +64,36 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-tab-anchor-border-dash')
     ?.map(item => item ?? 0) ?? undefined
   const epsilon = 2
-  let startX: number
-  let startY: number
-  let endX: number
-  let endY: number
+  const options = {
+    stroke: 'var(--R-tab-anchor-color)',
+    strokeWidth,
+    strokeLineDash,
+    ...overridden,
+  }
+  const vertices: Point[] = [
+    [epsilon, height - epsilon],
+    [epsilon, epsilon],
+    [width - epsilon, epsilon],
+    [width - epsilon, height - epsilon],
+  ]
+  let points: Point[]
   switch (side) {
     case 'bottom':
-      startX = epsilon
-      startY = epsilon
-      endX = width - epsilon
-      endY = epsilon
+      points = [...vertices.slice(2), ...vertices.slice(0, 2)]
       break
     case 'left':
-      startX = width - epsilon
-      startY = epsilon
-      endX = width - epsilon
-      endY = height - epsilon
+      points = [...vertices.slice(3), ...vertices.slice(0, 3)]
       break
     case 'right':
-      startX = epsilon
-      startY = epsilon
-      endX = epsilon
-      endY = height - epsilon
+      points = [...vertices.slice(1), ...vertices.slice(0, 1)]
       break
     case 'top':
     default:
-      startX = epsilon
-      startY = height - epsilon
-      endX = width - epsilon
-      endY = height - epsilon
+      points = [...vertices]
       break
   }
-  const line = rc.line(
-    startX,
-    startY,
-    endX,
-    endY,
-    {
-      stroke: 'var(--R-tab-anchor-color)',
-      strokeWidth,
-      strokeLineDash,
-      ...overridden,
-    },
-  )
-  svg.appendChild(line)
+  const linearPath = rc.linearPath(points, options)
+  svg.appendChild(linearPath)
 }
 </script>
 

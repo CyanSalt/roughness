@@ -89,7 +89,7 @@ const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-bo
   <RSpace align="center">
     <RBox :style="boxStyle">Tiananmen Square</RBox>
     <RBox round :style="boxStyle">Shenzhen</RBox>
-    <RBox filled size="large" :style="boxStyle">Epstein's</RBox>
+    <RBox filled :stroked="false"size="large" :style="boxStyle">Epstein's</RBox>
     <RBox filled round color="warning" size="small" :style="boxStyle">$</RBox>
   </RSpace>
 </template>
@@ -100,7 +100,7 @@ const boxStyle = { padding: 'var(--r-common-box-padding-block) var(--r-common-bo
 <RSpace align="center">
   <RBox :style="boxStyle">Tiananmen</RBox>
   <RBox round :style="boxStyle">Shenzhen</RBox>
-  <RBox filled size="large" :style="boxStyle">Epstein's</RBox>
+  <RBox filled :stroked="false" size="large" :style="boxStyle">Epstein's</RBox>
   <RBox filled round color="warning" size="small" :style="boxStyle">$</RBox>
 </RSpace>
 
