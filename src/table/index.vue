@@ -4,7 +4,7 @@ import { useResizeObserver } from '@vueuse/core'
 import type { Options } from 'roughjs/bin/core'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import type { Ref } from 'vue'
-import { computed, onMounted, reactive, useTemplateRef } from 'vue'
+import { computed, onMounted, reactive, useSlots, useTemplateRef } from 'vue'
 import type { RValueOrKey } from '../common/key'
 import { keyOf } from '../common/key'
 import { RListRenderer, useList } from '../common/list'
@@ -21,7 +21,7 @@ defineOptions({
 
 const {
   footer: userFooter = undefined,
-  header = true,
+  header: userHeader = true,
   rows,
 } = defineProps<{
   /**
@@ -44,13 +44,28 @@ const {
 defineSlots<{
   /** Content for the table. You can also add `<caption>` or `<colgroup>` in addition to one or more TableColumn. */
   default?: (props: {}) => any,
+  /** Alternative content for the table header. */
+  header?: (props: {}) => any,
+  /** Alternative content for the table body. This can be useful when you want to insert HTML content directly, such as when rendering from Markdown. */
+  body?: (props: {}) => any,
+  /** Alternative content for the table footer. */
+  footer?: (props: {}) => any,
 }>()
 
+const slots = useSlots()
+
 const columns = useList(columnsInjection)
+
+const header = computed(() => {
+  if (userHeader !== undefined) return userHeader
+  if (slots.header) return true
+  return false
+})
 
 const footer = computed(() => {
   if (userFooter !== undefined) return userFooter
   if (columns.value.some(column => column.slots.footer)) return true
+  if (slots.footer) return true
   return false
 })
 
@@ -136,7 +151,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   let offsetY = 0
   for (let i = 0; i < y.length - 1; i += 1) {
     const value = y[i]
-    const isSectionDivider = header && i === 0 || footer.value && i === y.length - 2
+    const isSectionDivider = header.value && i === 0 || footer.value && i === y.length - 2
     offsetY += value
     if (isSectionDivider) {
       const firstLine = rc.line(epsilon, offsetY - 1, width - epsilon, offsetY - 1, options)
@@ -176,35 +191,41 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
       <slot></slot>
     </RListRenderer>
     <thead v-if="header" ref="head">
-      <tr>
-        <RTableHeaderCell
-          v-for="column in columns"
-          :key="column.name"
-          :name="column.name"
-          type="header"
-        >
-          <component :is="column.slots.header" v-if="column.slots.header"></component>
-        </RTableHeaderCell>
-      </tr>
+      <slot name="header">
+        <tr>
+          <RTableHeaderCell
+            v-for="column in columns"
+            :key="column.name"
+            :name="column.name"
+            type="header"
+          >
+            <component :is="column.slots.header" v-if="column.slots.header"></component>
+          </RTableHeaderCell>
+        </tr>
+      </slot>
     </thead>
     <tbody ref="body">
-      <tr v-for="row in rows" :key="keyOf(row)">
-        <RTableCell v-for="column in columns" :key="column.name" :row="row" :name="column.name">
-          <component :is="column.slots.default" v-if="column.slots.default" :row="row"></component>
-        </RTableCell>
-      </tr>
+      <slot name="body">
+        <tr v-for="row in rows" :key="keyOf(row)">
+          <RTableCell v-for="column in columns" :key="column.name" :row="row" :name="column.name">
+            <component :is="column.slots.default" v-if="column.slots.default" :row="row"></component>
+          </RTableCell>
+        </tr>
+      </slot>
     </tbody>
     <tfoot v-if="footer" ref="foot">
-      <tr>
-        <RTableHeaderCell
-          v-for="column in columns"
-          :key="column.name"
-          :name="column.name"
-          type="footer"
-        >
-          <component :is="column.slots.footer" v-if="column.slots.footer"></component>
-        </RTableHeaderCell>
-      </tr>
+      <slot name="footer">
+        <tr>
+          <RTableHeaderCell
+            v-for="column in columns"
+            :key="column.name"
+            :name="column.name"
+            type="footer"
+          >
+            <component :is="column.slots.footer" v-if="column.slots.footer"></component>
+          </RTableHeaderCell>
+        </tr>
+      </slot>
     </tfoot>
   </table>
 </template>

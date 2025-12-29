@@ -27,6 +27,27 @@ export default function (md: MarkdownIt) {
     }
     return renderLinkClose(tokens, idx, options, env, self)
   }
+  // `<RTable />` as table
+  md.renderer.rules.table_open = function (tokens, idx, options, env, self) {
+    const token = tokens[idx]
+    const attrs = md.renderer.renderAttrs(token)
+    return `<RTable ${attrs}>\n`
+  }
+  md.renderer.rules.table_close = function (tokens, idx, options, env, self) {
+    return `</RTable>\n`
+  }
+  md.renderer.rules.thead_open = function (tokens, idx, options, env, self) {
+    return `<template #header>\n`
+  }
+  md.renderer.rules.thead_close = function (tokens, idx, options, env, self) {
+    return `</template>\n`
+  }
+  md.renderer.rules.tbody_open = function (tokens, idx, options, env, self) {
+    return `<template #body>\n`
+  }
+  md.renderer.rules.tbody_close = function (tokens, idx, options, env, self) {
+    return `</template>\n`
+  }
   // `<RDetails />` as container_details
   const renderRDetails: RenderRule = function (tokens, idx, options, env, self) {
     const token = tokens[idx]
