@@ -186,8 +186,8 @@ import { RBox, RTable } from 'roughness'
 <RTable>
   <template #header>
     <tr>
-      <RBox tag="th" filled :style="{ '--r-box-border-width': '0px' }">Value</RBox>
-      <RBox tag="th" filled :style="{ '--r-box-border-width': '0px' }">Percentage</RBox>
+      <RBox tag="th" :stroked="false" filled>Value</RBox>
+      <RBox tag="th" :stroked="false" filled>Percentage</RBox>
     </tr>
   </template>
   <template #body>

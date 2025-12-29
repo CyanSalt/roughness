@@ -6,22 +6,28 @@ import { getLengthProperty, getLengthPropertyAsArray } from '../common/property'
 import { getFilledSizeOptions, getSVGSize } from '../graphics/utils'
 
 export interface DrawBoxProps {
+  stroked?: MaybeRefOrGetter<boolean>,
   filled?: MaybeRefOrGetter<boolean>,
   round?: MaybeRefOrGetter<boolean>,
 }
 
 export function useDrawBox(props?: DrawBoxProps) {
   return function (rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
-    const filled = toValue(props?.filled)
-    const round = toValue(props?.round)
+    const stroked = toValue(props?.stroked) ?? true
+    const filled = toValue(props?.filled) ?? false
+    const round = toValue(props?.round) ?? false
     const { width, height } = getSVGSize(svg)
     const strokeWidth = getLengthProperty(svg, '--R-box-border-width') ?? 0
     const strokeLineDash = getLengthPropertyAsArray(svg, '--R-box-border-dash')
       ?.map(value => value ?? 0) ?? undefined
     const options: Options = {
-      stroke: 'var(--R-box-border-color)',
-      strokeWidth,
-      strokeLineDash,
+      ...(stroked ? {
+        stroke: 'var(--R-box-border-color)',
+        strokeWidth,
+        strokeLineDash,
+      } : {
+        strokeWidth: 0,
+      }),
       ...(filled ? {
         fill: 'var(--R-box-fill-color)',
         ...getFilledSizeOptions(strokeWidth),

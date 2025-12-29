@@ -16,6 +16,7 @@ defineOptions({
 const {
   tag = 'span',
   filled = false,
+  stroked = true,
   round = false,
   color,
   size,
@@ -26,7 +27,9 @@ const {
    * @default 'span'
    */
   tag?: string,
-  /** Whether the box is filled with its color. */
+  /** Whether the box is stroked with its border color. */
+  stroked?: boolean,
+  /** Whether the box is filled with its fill color. */
   filled?: boolean,
   /** Whether the box is round. */
   round?: boolean,
@@ -48,6 +51,7 @@ defineSlots<{
 const selectors = useGraphicsSelectors('box', () => graphicsSelector)
 
 const drawBox = useDrawBox({
+  stroked: () => stroked,
   filled: () => filled,
   round: () => round,
 })
