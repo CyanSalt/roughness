@@ -87,6 +87,7 @@ function change(event: InputEvent) {
     :class="['r-upload', { 'is-block': block }]"
     role="button"
     :aria-required="required"
+    :aria-busy="loading"
   >
     <input
       :disabled="disabled"

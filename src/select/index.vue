@@ -173,6 +173,7 @@ provide(labelsInjection, labels)
     aria-haspopup="menu"
     :aria-expanded="state"
     :aria-required="required"
+    :aria-busy="loading"
   >
     <input
       ref="input"

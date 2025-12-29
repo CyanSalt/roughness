@@ -100,6 +100,7 @@ const style = computed(() => {
     :style="style"
     role="button"
     :aria-required="required"
+    :aria-busy="loading"
     @transitionrun="listener"
   >
     <input

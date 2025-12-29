@@ -62,6 +62,7 @@ const disabled = computed(() => {
     :disabled="disabled"
     graphics-selector="button"
     :class="['r-button', { 'is-block': block, 'is-loading': loading }]"
+    :aria-busy="loading"
   >
     <slot></slot>
     <RLoading v-if="loading" class="r-button__loading" />
