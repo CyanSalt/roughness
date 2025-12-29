@@ -7,7 +7,7 @@ const name = ref('Cameron')
 
 # Avatar
 
-The way of water has no beginning and no end.
+I C U.
 
 ## Example
 
