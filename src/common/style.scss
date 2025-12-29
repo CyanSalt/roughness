@@ -46,6 +46,10 @@
     }
   }
 
+  :where(pre, code, kbd, samp) {
+    --r-element-font-family: var(--r-common-mono-font-family);
+  }
+
   [class^='r-'], [class*=' r-'] {
     font-family: var(--r-element-font-family);
     font-size: var(--r-element-font-size);

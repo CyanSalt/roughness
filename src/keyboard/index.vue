@@ -145,7 +145,6 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   padding-right: calc(var(--R-keyboard-padding-inline) + var(--R-keyboard-side-size));
   padding-bottom: var(--R-keyboard-side-size);
   padding-left: var(--R-keyboard-padding-inline);
-  font-family: var(--r-common-mono-font-family);
   font-size: var(--r-common-small-font-size);
   line-height: var(--R-keyboard-top-size);
   &::before {
