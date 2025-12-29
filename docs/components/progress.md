@@ -35,6 +35,7 @@ import { RProgress, RSpace } from 'roughness'
     <RProgress :value="0.9" color="warning">Warning</RProgress>
     <RProgress :value="0.2" color="error">Error</RProgress>
     <RProgress :value="0.6" color="comment">Comment</RProgress>
+    <RProgress />
   </RSpace>
 </template>
 ```
@@ -49,6 +50,7 @@ import { RProgress, RSpace } from 'roughness'
   <RProgress :value="0.9" color="warning">Warning</RProgress>
   <RProgress :value="0.2" color="error">Error</RProgress>
   <RProgress :value="0.6" color="comment">Comment</RProgress>
+  <RProgress />
 </RSpace>
 
 ### Animation

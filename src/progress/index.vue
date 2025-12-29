@@ -31,8 +31,11 @@ const {
    * @default 1
    */
   max?: number,
-  /** Current numeric progress value. */
-  value: number,
+  /**
+   * Current numeric progress value.
+   * The progress state is indeterminate if the value is `undefined`.
+   */
+  value?: number,
 } & ColorProps & SizeProps>()
 
 defineSlots<{
@@ -40,7 +43,10 @@ defineSlots<{
   default?: (props: {}) => any,
 }>()
 
+const indeterminate = computed(() => value === undefined)
+
 const ratio = computed(() => {
+  if (value === undefined) return 0
   return (value - min) / (max - min) || 0
 })
 
@@ -54,12 +60,31 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   const strokeWidth = getLengthProperty(svg, '--R-progress-border-width') ?? 0
   const strokeLineDash = getLengthPropertyAsArray(svg, '--R-progress-border-dash')
     ?.map(item => item ?? 0) ?? undefined
+  const insetSize = getLengthProperty(svg, '--R-progress-inset-size') ?? 0
   const { width, height } = getSVGSize(svg)
   const epsilon = 2
-  const line = rc.line(
-    (width - epsilon * 2) * ratio.value,
+  const progressSize = indeterminate.value
+    ? (width - epsilon * 2) / 4
+    : (width - epsilon * 2) * ratio.value
+  if (insetSize) {
+    const startLine = rc.line(
+      insetSize + epsilon,
+      epsilon,
+      insetSize + epsilon,
+      height - epsilon * 2,
+      {
+        stroke: 'var(--R-progress-color)',
+        strokeWidth,
+        strokeLineDash,
+        ...overridden,
+      },
+    )
+    svg.appendChild(startLine)
+  }
+  const endLine = rc.line(
+    progressSize + insetSize + epsilon,
     epsilon,
-    (width - epsilon * 2) * ratio.value,
+    progressSize + insetSize + epsilon,
     height - epsilon * 2,
     {
       stroke: 'var(--R-progress-color)',
@@ -68,11 +93,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
       ...overridden,
     },
   )
-  svg.appendChild(line)
+  svg.appendChild(endLine)
   const barRect = rc.rectangle(
+    insetSize + epsilon,
     epsilon,
-    epsilon,
-    (width - epsilon * 2) * ratio.value,
+    progressSize,
     height - epsilon * 2,
     {
       strokeWidth: 0,
@@ -100,7 +125,7 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   <RSpace
     inline
     align="center"
-    :class="['r-progress', color, size]"
+    :class="['r-progress', color, size, { 'is-indeterminate': indeterminate }]"
     role="progressbar"
     dir="ltr"
     :aria-valuemin="min"
@@ -155,6 +180,30 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   initial-value: none;
 }
 
+@property --R-progress-inset-size {
+  syntax: '<length-percentage>';
+  inherits: true;
+  initial-value: 0px;
+}
+
+@keyframes r-indeterminate-progress {
+  0% {
+    --R-progress-inset-size: 0%;
+  }
+  25% {
+    --R-progress-inset-size: 25%;
+  }
+  50% {
+    --R-progress-inset-size: 50%;
+  }
+  75% {
+    --R-progress-inset-size: 75%;
+  }
+  100% {
+    --R-progress-inset-size: 100%;
+  }
+}
+
 .r-progress {
   // Color of the progress bar and its content.
   --R-progress-color: var(--r-progress-color, var(--r-element-color));
@@ -170,6 +219,8 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
   // An odd number of values will be repeated to yield an even number of values. Thus, `8` is equivalent to `8 8`.
   // See [`stroke-dasharray`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray).
   --R-progress-border-dash: var(--r-progress-border-dash, none);
+  // Offset size of the progress bar.
+  --R-progress-inset-size: var(--r-progress-inset-size, 0%);
   // Box styles
   --r-box-border-color: var(--R-progress-border-color);
   --r-box-border-width: var(--R-progress-border-width);
@@ -185,7 +236,11 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, overridden: Options) {
     @include partials.transition-runner((
       --R-progress-border-width: border-top-width,
       --R-progress-border-dash: border-spacing,
+      --R-progress-inset-size: padding-top,
     ));
+  }
+  &.is-indeterminate {
+    animation: r-indeterminate-progress 1s infinite steps(1);
   }
 }
 .r-progress__content {

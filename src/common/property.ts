@@ -5,6 +5,8 @@ import { useTriggerable } from './utils'
 function transformValueToLength(element: Element, value: string) {
   const parts = unit(value)
   if (!isNaN(parts[0]) && !parts[1]) return parts[0]
+  // Prefer width-based percentage
+  if (parts[1] === '%') return element.clientWidth * parts[0] / 100
   return toPX(value, element as HTMLElement)
 }
 
