@@ -9,7 +9,7 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/r.svg' }],
     ['link', { rel: 'icon', href: '/r-dark.svg', media: '(prefers-color-scheme: dark)' }],
-    ['link', { rel: 'stylesheet', href: 'https://chinese-fonts-cdn.deno.dev/packages/xiaolai/dist/Xiaolai/result.css' }],
+    ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai/dist/Xiaolai/result.css' }],
   ],
   markdown: {
     theme: {

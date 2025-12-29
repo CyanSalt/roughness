@@ -52,7 +52,7 @@ Due to the character set, CJK fonts are usually very large. Please learn about [
 :::
 
 ```html
-<link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/xiaolai/dist/Xiaolai/result.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/xiaolai/dist/Xiaolai/result.css" />
 
 <style>
 :root {
