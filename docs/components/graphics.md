@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computedAsync } from '@vueuse/core'
+import { computedAsync, useNow } from '@vueuse/core'
 import { parse } from 'opentype.js'
 import { RButton, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn, useGraphicsConfig } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
@@ -54,6 +54,12 @@ function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
     fill: 'var(--r-common-color)',
   })
   svg.appendChild(path)
+}
+
+const now = useNow({ interval: 100 })
+
+function drawAnimation() {
+  now.value
 }
 </script>
 
@@ -227,6 +233,29 @@ useGraphicsConfig({
 <GraphicsConfigExample />
 
 You can find the selector IDs which you can use in the documentation of each component.
+
+### Animation
+
+::: details Show Code
+
+```vue
+<script lang="ts" setup>
+import { useNow } from '@vueuse/core'
+
+const now = useNow({ interval: 100 })
+
+function drawAnimation() {
+  now.value
+}
+
+<template>
+  <RButton filled @draw="drawAnimation">2,000 years later</RButton>
+</template>
+```
+
+:::
+
+<RButton filled @draw="drawAnimation">2,000 years later</RButton>
 
 ## Usage
 
