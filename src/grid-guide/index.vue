@@ -76,7 +76,7 @@ const {
     inline-size: 100%;
   }
   :root.dark & {
-    // @default rgb(255 255 255 / 4%) in dark theme
+    // @default [rgb(255 255 255 / 4%)] in dark theme
     --R-grid-guide-color: var(--r-grid-guide-color, rgb(255 255 255 / 4%));
   }
 }

@@ -48,7 +48,8 @@ import { RTabItem, RTabs } from 'roughness'
     <RTabItem value="installation" />
     <RTabItem value="usage" />
     <RTabItem value="theme" />
-    <RTabItem value="chart" />
+    <RTabItem value="specs" />
+    <RTabItem value="diagram" />
   </RTabs>
 </template>
 ```
@@ -59,7 +60,8 @@ import { RTabItem, RTabs } from 'roughness'
   <RTabItem value="installation" />
   <RTabItem value="usage" />
   <RTabItem value="theme" />
-  <RTabItem value="chart" />
+  <RTabItem value="specs" />
+  <RTabItem value="diagram" />
 </RTabs>
 
 ## Usage

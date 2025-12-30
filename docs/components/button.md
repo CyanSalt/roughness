@@ -110,6 +110,10 @@ import { RButton, RSpace } from 'roughness'
   <RButton tag="a" color="error">Magnesis</RButton>
 </RSpace>
 
+### 3D
+
+See [Keyboard Tag](/components/keyboard#tag).
+
 ## Usage
 
 <RUsage file="src/button/index.vue">
