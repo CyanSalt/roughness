@@ -123,7 +123,7 @@ export function parseSVGNode(element: SVGElement): SVGNode {
   const xmlns = element.namespaceURI ?? undefined
   const tag = xmlns === 'http://www.w3.org/1999/xhtml' ? element.localName : element.nodeName
   const attrs = element.nodeType === 3
-    ? { textContent: element.textContent ?? undefined }
+    ? { textContent: element.textContent }
     : {
       ...Object.fromEntries(Array.from(element.attributes, attr => [attr.name, attr.value])),
       ...getComputedStyleAttrs(element),

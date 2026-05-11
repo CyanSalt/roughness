@@ -156,13 +156,13 @@ function draw(rc: RoughSVG, svg: SVGSVGElement, options: Options) {
 }
 
 @property --R-card-padding-block {
-  syntax: '<length-percenatage>+';
+  syntax: '<length-percentage>+';
   inherits: true;
   initial-value: 0px;
 }
 
 @property --R-card-padding-inline {
-  syntax: '<length-percenatage>+';
+  syntax: '<length-percentage>+';
   inherits: true;
   initial-value: 0px;
 }

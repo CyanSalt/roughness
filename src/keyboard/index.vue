@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Options } from 'roughjs/bin/core'
 import '../common/style.scss'
+import { Options } from 'roughjs/bin/core'
 import { RoughSVG } from 'roughjs/bin/svg'
 import { getLengthProperty, useTransitionListener } from '../common/property'
 import { ColorProps, SizeProps } from '../common/utils'

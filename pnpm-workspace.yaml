@@ -7,6 +7,6 @@ publicHoistPattern:
 
 allowBuilds:
   # Prepare binary or other required files
-  cytoscape: false
+  '@parcel/watcher': true
   esbuild: true
   unrs-resolver: true

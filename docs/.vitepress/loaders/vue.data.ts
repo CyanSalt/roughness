@@ -5,6 +5,7 @@ import type { Result } from '../parsers/vue'
 import { parse } from '../parsers/vue'
 
 const root = path.join(import.meta.dirname, '../../..')
+const docs = path.join(root, 'docs')
 
 export interface DataItem {
   file: string,
@@ -18,10 +19,11 @@ export default defineLoader({
   watch: ['../../../src/**/*.vue'],
   async load(watchedFiles): Promise<DataItem[]> {
     return Promise.all(watchedFiles.map(async file => {
-      const code = await fs.promises.readFile(file, 'utf8')
-      const result = await parse(code, file)
+      const source = path.join(docs, file)
+      const code = await fs.promises.readFile(source, 'utf8')
+      const result = await parse(code, source)
       return {
-        file: path.relative(root, file),
+        file: path.relative(root, source),
         result,
       }
     }))

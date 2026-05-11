@@ -8,8 +8,7 @@ export default function (md: MarkdownIt) {
   }
   // `<RLink />` as link
   const isPermalinkOpen = (token: Token | undefined) => {
-    return token !== undefined
-      && token.type === 'link_open'
+    return token?.type === 'link_open'
       && token.attrGet('class') === 'header-anchor'
   }
   const renderLinkOpen = md.renderer.rules.link_open ?? defaultRule

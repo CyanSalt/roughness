@@ -1,5 +1,5 @@
-import type { LVal, Node, ObjectExpression, ObjectProperty } from '@babel/types'
-import type { TSFile } from '@vue-macros/api'
+import type { LVal, Node, ObjectExpression, ObjectProperty, VoidPattern } from '@babel/types'
+import type { ResultAsync, TSFile } from '@vue-macros/api'
 import { handleTSEmitsDefinition, handleTSPropsDefinition } from '@vue-macros/api'
 import type { SFC } from '@vue-macros/common'
 import {
@@ -56,15 +56,15 @@ export interface Result {
   },
 }
 
-function getDestructuringInitializer(declId: LVal | undefined, name: string) {
-  const properties = declId && declId.type === 'ObjectPattern'
+function getDestructuringInitializer(declId: VoidPattern | LVal | undefined, name: string) {
+  const properties = declId?.type === 'ObjectPattern'
     ? declId.properties
     : undefined
   if (!properties) return undefined
   const property = properties.find((prop): prop is ObjectProperty => {
     return prop.type === 'ObjectProperty' && isIdentifierOf(prop.key, name)
   })
-  return property && property.value.type === 'AssignmentPattern'
+  return property?.value.type === 'AssignmentPattern'
     ? property.value.right
     : undefined
 }
@@ -95,8 +95,16 @@ function nonNullable<T>(value: T): value is NonNullable<T> {
   return value !== undefined && value !== null
 }
 
+async function unwrap<T>(wrapper: ResultAsync<T>) {
+  const result = await wrapper
+  if (result.isErr()) {
+    throw result.error
+  }
+  return result.value
+}
+
 async function processPropsLike(options: Parameters<typeof handleTSPropsDefinition>[0]) {
-  const { definitions } = await handleTSPropsDefinition(options)
+  const { definitions } = await unwrap(handleTSPropsDefinition(options))
   const sourceCode = options.file.content
   const declId = options.declId
   const result = Object.entries(definitions).map<PropLike>(([name, def]) => {
@@ -121,7 +129,7 @@ async function processPropsLike(options: Parameters<typeof handleTSPropsDefiniti
 }
 
 async function processEmitsLike(options: Parameters<typeof handleTSEmitsDefinition>[0]) {
-  const { definitions } = await handleTSEmitsDefinition(options)
+  const { definitions } = await unwrap(handleTSEmitsDefinition(options))
   const result = Object.entries(definitions).map<EmitLike>(([name, def]) => {
     const blocks = def.flatMap(method => getJSDocAnnotations(method.ast))
     const annotations = blocks.some(nonNullable) ? blocks.filter(nonNullable) : undefined
@@ -212,7 +220,7 @@ async function analyzeSFC(s: MagicStringAST, sfc: SFC) {
       if (isCallOf(node.expression, DEFINE_OPTIONS)) {
         const expr = node.expression.arguments[0]
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (expr && expr.type === 'ObjectExpression') {
+        if (expr?.type === 'ObjectExpression') {
           result.options = processOptions(expr)
         }
       }

@@ -49,7 +49,9 @@ const text = ref('群贤毕至')
 
 function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
   if (!font.value) return
-  const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData()
+  const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData({
+    flipY: false,
+  })
   const path = rc.path(pathData, {
     fill: 'var(--r-common-color)',
   })
@@ -59,7 +61,7 @@ function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
 const now = useNow({ interval: 100 })
 
 function drawAnimation() {
-  now.value
+  void now.value
 }
 </script>
 
@@ -130,7 +132,9 @@ const text = ref('群贤毕至')
 
 function drawGlyphs(rc: RoughSVG, svg: SVGSVGElement) {
   if (!font.value) return
-  const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData()
+  const pathData = font.value.getPath(text.value, 0, 50, 50).toPathData({
+    flipY: false,
+  })
   const path = rc.path(pathData, {
     fill: 'var(--r-common-color)',
   })
@@ -245,8 +249,9 @@ import { useNow } from '@vueuse/core'
 const now = useNow({ interval: 100 })
 
 function drawAnimation() {
-  now.value
+  void now.value
 }
+</script>
 
 <template>
   <RButton filled @draw="drawAnimation">2,000 years later</RButton>
