@@ -22,6 +22,7 @@
     "lint:script": "eslint --cache --fix './**/*.{cjs,js,ts,vue}'",
     "lint:style": "stylelint --ignore-path .gitignore --cache --fix ./**/*.{css,vue}",
     "lint": "pnpm run lint:script && pnpm run lint:style",
+    "lint:ci": "eslint --max-warnings 0 './**/*.{cjs,js,ts,vue}' && stylelint --ignore-path .gitignore --max-warnings 0 ./**/*.{css,vue}",
     "test": "vitest"
   },
   "repository": {
@@ -39,6 +40,24 @@
     "url": "https://github.com/CyanSalt/roughness/issues"
   },
   "homepage": "https://github.com/CyanSalt/roughness#readme",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24.15.0",
+      "onFail": "error"
+    },
+    "packageManager": [
+      {
+        "name": "pnpm",
+        "version": "^11.0.0",
+        "onFail": "error"
+      },
+      {
+        "name": "npm",
+        "onFail": "ignore"
+      }
+    ]
+  },
   "devDependencies": {
     "@babel/types": "7.27.0",
     "@cyansalt/eslint-config": "^4.3.1",

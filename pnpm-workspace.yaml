@@ -1,2 +1,12 @@
 packages:
   - docs
+
+publicHoistPattern:
+  - '*eslint*'
+  - '*stylelint*'
+
+allowBuilds:
+  # Prepare binary or other required files
+  cytoscape: false
+  esbuild: true
+  unrs-resolver: true
