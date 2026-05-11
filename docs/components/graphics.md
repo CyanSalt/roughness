@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computedAsync, useNow } from '@vueuse/core'
-import { parse } from 'opentype.js'
+import { parse } from 'opentype.js/dist/opentype.mjs'
 import { RButton, RGraphics, RGraphicsConfig, RInput, RRate, RSpace, RTable, RTableColumn, useGraphicsConfig } from 'roughness'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { defineComponent, h, ref } from 'vue'
@@ -117,7 +117,7 @@ You need to install [`opentype.js`](https://www.npmjs.com/package/opentype.js) y
 ```vue
 <script lang="ts" setup>
 import { computedAsync } from '@vueuse/core'
-import { parse } from 'opentype.js'
+import { parse } from 'opentype.js/dist/opentype.mjs'
 import type { RoughSVG } from 'roughjs/bin/svg'
 import { RGraphics, RInput } from 'roughness'
 import { ref } from 'vue'
